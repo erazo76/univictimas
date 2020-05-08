@@ -16,7 +16,7 @@ ValidaSession("../login");
 		<div class="col-md-12">
 			<div class="box">
 				<div class="box-header with-border">
-					<h3 class="box-title">Distribuidoras</h3>
+					<h3 class="box-title">Dependencias</h3>
 				</div><!-- /.box-header -->
 				<div class="box-body dataTables_wrapper form-inline dt-bootstrap">
 						<table id="tabla" class="table table-bordered table-hover">

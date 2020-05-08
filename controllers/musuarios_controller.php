@@ -116,7 +116,7 @@ switch ($action){
 					<i class="icon fa fa-ban"></i>
 					Alerta!
 					</h4>
-					Campo distribuidora vacío.
+					Campo Dependencia vacío.
 					</div>';
 
 		}elseif(count($consulta3)!=0){
@@ -756,15 +756,15 @@ switch ($action){
 
 				//*****************************************************************************
 
-				if($_SESSION['rolx']== 1  || $_SESSION['rolx']== 4){//ingresa como soporte usuario o programador
+				if($_SESSION['rolx']== 1  || $_SESSION['rolx']== 4){//ingresa como administrador o programador
 
 					header("Location: ../views/inicio/");
 
-				}elseif($_SESSION['rolx']== 2){//entra como administrador
+				}elseif($_SESSION['rolx']== 2){//entra como supervisor
 
 					header("Location: ../views/inicio/");
 
-				}elseif($_SESSION['rolx']== 3){//entra como usuario
+				}elseif($_SESSION['rolx']== 3){//entra como colaborador
 
 					header("Location: ../views/inicio");
 

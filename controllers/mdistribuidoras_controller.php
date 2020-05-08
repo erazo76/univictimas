@@ -23,7 +23,7 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese el nombre de la distribuidora.
+            Ingrese el nombre de la Dependencia.
             </div>');
 
       }else{//(A) si se escribe un nombre se consulta si ya existe...
@@ -90,7 +90,7 @@ switch ($action){
                   Alerta!
                   </h4>
 
-                  Registro inactivo . ¿Desea incluir ['.$nombre.'] en el maestro de distribuidoras?
+                  Registro inactivo . ¿Desea incluir ['.$nombre.'] en el maestro de Dependencias?
 
                       <div class="modal-footer" >
                         <button type="button" id="no" class="btn btn-outline pull-left" data-dismiss="alert" onClick="no()">No</button>
@@ -107,7 +107,7 @@ switch ($action){
                   <i class="icon fa fa-ban"></i>
                   Alerta!
                   </h4>
-                  La distribuidora ['.$nombre.'] ya se encuentra registrada.
+                  La Dependencia ['.$nombre.'] ya se encuentra registrada.
                   </div>');
 
            }
@@ -199,7 +199,7 @@ switch ($action){
                   Alerta!
                   </h4>
 
-                  Registro inactivo . ¿Desea incluir ['.$nombre.'] en maestro de distribuidoras?
+                  Registro inactivo . ¿Desea incluir ['.$nombre.'] en maestro de Dependencias?
 
                       <div class="modal-footer" >
                         <button type="button" id="no" class="btn btn-outline pull-left" data-dismiss="alert" onClick="no()">No</button>
@@ -216,7 +216,7 @@ switch ($action){
                   <i class="icon fa fa-ban"></i>
                   Alerta!
                   </h4>
-                  La distribuidora ['.$nombre.'] ya se encuentra registrada.
+                  La Dependencia ['.$nombre.'] ya se encuentra registrada.
                   </div>');
 
            }
@@ -320,7 +320,7 @@ switch ($action){
         @$data = Mdistribuidora::find('all',array('conditions' => array('status=?',1),'order' => 'id desc'));
 
       if($data !=null){
-               $resp = '<option value="">Indique la distribuidora</option>';
+               $resp = '<option value="">Indique la Dependencia</option>';
             foreach($data as $rs){
               $resp .= '<option value="'.$rs->id.'">'.$rs->nombre.'</option>';
               $resp .= '<hidden>';
@@ -385,7 +385,7 @@ switch ($action){
                         <i class="icon fa fa-check"></i>
                         Alerta!
                         </h4>
-                        Distribuidora activada exitosamente !.
+                        Dependencia activada exitosamente !.
                         </div>');
 
                   }else{

@@ -16,7 +16,7 @@ require_once '../models/Musuario.php';
 			}
 		if($rolet==2 ){
 
-				$nomper='ADMINISTRADOR';
+				$nomper='SUPERVISOR';
 
 			}
 		if($ema==''){

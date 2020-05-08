@@ -1,7 +1,7 @@
 <?php
 require_once '../models/Mregione.php';
 require_once '../models/Mdistribuidora.php';
-date_default_timezone_set('America/Caracas');
+date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
 @$id = ($_POST["id"]);

@@ -21,7 +21,7 @@ if(!empty($id_sesion) && ($rol==4 )){//privilegios del programador
 			echo '<li><a href="../usuarios/"><i class="fa fa-users"></i> <span>Gestionar Usuarios</span></a></li>';
 			//echo '<li><a href="../segmentos/"><i class="fa fa-link"></i> <span>Segmentos</span></a></li>';
 			//echo '<li><a href="../territorios/"><i class="fa fa-flag"></i> <span>Territorios</span></a></li>';
-			//echo '<li><a href="../regiones/"><i class="fa fa-globe"></i> <span>Regiones</span></a></li>';
+			echo '<li><a href="../regiones/"><i class="fa fa-globe"></i> <span>Regiones</span></a></li>';
 			echo '<li><a href="../distribuidoras/"><i class="fa fa-truck"></i> <span>Dependencias</span></a></li>';
 			//echo '<li><a href="../marcas/"><i class="fa fa-bookmark"></i> <span>Marcas</span></a></li>';
 
@@ -39,6 +39,7 @@ if(!empty($id_sesion) && ($rol == 1)){//privilegios de administrador
 		echo ' <li class="header">MENU</li>';
 		echo ' <li class="treeview"><a href="#"><i class="fa fa-wrench fa-lg"></i> <span>Administrador</span> <i class="fa fa-angle-left pull-right"></i></a><ul class="treeview-menu">';
 			echo '<li><a href="../usuarios/"><i class="fa fa-users"></i> <span>Gestionar Usuarios</span></a></li>';
+			echo '<li><a href="../regiones/"><i class="fa fa-globe"></i> <span>Regiones</span></a></li>';
 			echo '<li><a href="../distribuidoras/"><i class="fa fa-truck"></i> <span>Dependencias</span></a></li>';
 			echo '</ul>';
 		echo '</li>';
