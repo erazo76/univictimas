@@ -383,7 +383,7 @@ ValidaSession("../login");
 
 						    		confirm: function(){
 
-										$.post( "../../controllers/maliados_controller", { action: "delete",record:value}).done(function( data ) {
+										$.post( "../../controllers/mrequerimientos_controller", { action: "delete",record:value}).done(function( data ) {
 											//$(".message").html(data);
 											var parsedJson = $.parseJSON(data);
 											$(".message").html(parsedJson.mensaje);

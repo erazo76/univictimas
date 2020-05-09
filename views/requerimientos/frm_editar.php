@@ -14,57 +14,58 @@ ValidaSession("../login");
 
 <form id="form" role="form" enctype="multipart/form-data">
 
-<div class="base">
+<div  id="desa" class="base">
 
 	<ul>
  		<li id="uno"> <!--################################## DATOS DE IDENTIFICACIÓN Y UBICACIÓN ##################################  -->
 
 			<div class="col-md-12">
 				<div class="box-header with-border" tabindex="-1">
-					 	<h3 class="box-title">Información General del Evento</h3>
+						<h1 class="box-title" id="no_cli" style="color:#FF0040;" >  </h1> 
+					 	<h3 class="box-title"> Datos de identificación y ubicación</h3>
+
 				</div><!-- /.box-header -->
 			</div>
 
 			<div class="col-md-4">
 		 	
 		  		<div class="box box-primary">
-						<input type="hidden" id="distribuidora" value="<?php echo intval($_SESSION['distribuidora']); ?>">
-						<input type="hidden" id="region" value="<?php echo intval($_SESSION['region']); ?>">
+						<input type="hidden" id="distribuidora">
+						<input type="hidden" id="region">
+						<input type="hidden" id="id">
 						<input type="hidden" id="lata" value=6.12>
-						<input type="hidden" id="longa" value=-67.39>
-						
+						<input type="hidden" id="longa" value=-67.39>						
 						<div class="box-body">
 
 							<div class="form-group-sm">
-						  
+
 <div class="row">
-	<div class="col-sm-6">
-								<label for="orbis">Código ORBIS</label>
+	<div class="col-sm-6">							
+							  <label for="orbis">Código ORBIS</label>
+
 								<div class="input-group">
 								    <div class="input-group-btn">
 								        <select id="s_orbis" class="btn-sm" tabindex="-1">
 											<option value="0">-</option>
-											<option selected value="1">A</option>
+											<option value="1">A</option>
 											<option value="2">C</option>
 											<option value="3">P</option>
 								        </select>
 								    </div>
 								    <input type="text" class="form-control bbb" id="orbis" onpaste="return false" tabindex="1" onkeypress="return esorbis(event);" onblur="alsaliro4(this.id)" placeholder="Ingrese código ORBIS Ej.: AOOO6">
-
 								</div>
 	</div>
 	<div class="col-sm-6">
-
+							
 								<label>Estatus del aliado</label>
 								<select id="estatus_aliado" class="form-control" multiple="multiple" tabindex="0">
 									<option value="0">Activo</option>
 									<option value="1">Compartido</option>
 									<option value="2">Potencial</option>
 								</select>
-
-
 	</div>
-</div>							   
+</div>	
+							   
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_orbis' class="aaa"><p></p></div>
 							</div>
 
@@ -76,7 +77,7 @@ ValidaSession("../login");
 
 							<div class="form-group-sm">
 							  <label for="razon">Razón social</label>
-							  <input type="text" class="form-control bbb" id="razon" placeholder="Ingrese razón social"  onpaste="return false" tabindex="3" onkeypress="return esrazon(event);" onblur="alsalir(this.id);">
+							  <input type="text" class="form-control bbb" id="razon" placeholder="Ingrese razón social"  onpaste="return false" tabindex="3" onkeypress="return esrazon(event);" onblur="alsalir(this.id)">
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_razon' class="aaa"><p></p></div>
 							</div>
 
@@ -106,15 +107,14 @@ ValidaSession("../login");
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_cedula' class="aaa"><p></p></div>
 							</div>
 
-
 							<div class="form-group-sm">
 							  <label for="fecha1">Fecha primera visita</label>
-							  <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="6">
+							  <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy"  placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="6">
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha1' class="aaa"><p></p></div>
 							</div>
 
 							<div class="form-group-sm">
-							  <label for="fecha2">Fecha de actualización</label>
+							  <label for="fecha2">Ultima actualización</label>
 							  <input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" disabled="true">
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha2' ></div>
 							</div>
@@ -277,12 +277,6 @@ ValidaSession("../login");
 
 						  <div class="box-body">
 
-							 <!--<div class="form-group-sm">
-								 <label for="latitud">Latitud</label>
-								 <input type="text" class="form-control bbb" id="latitud" placeholder="Ingrese latitud"  onpaste="return false" tabindex="18" onkeypress="return eslatitud(event);" onblur="alsalira2(this.id)">
-								 <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_latitud' class="aaa"><p></p></div>
-							</div>-->
-
 							<div class="form-group-sm">
 							  <label for="latitud">Latitud</label>
 
@@ -290,10 +284,10 @@ ValidaSession("../login");
 								    <span class="input-group-addon"><span class="fa fa-plus"></span>
 									
 								    </span>
-								     <input type="text" class="form-control bbb" id="latitud" placeholder="Ingrese latitud"  onpaste="return false" tabindex="19" onkeypress="return eslatitud(event);" onblur="alsalira2(this.id)" >
+								     <input type="text" class="form-control bbb" id="latitud" placeholder="Ingrese latitud"  onpaste="return false" tabindex="19" onkeypress="return eslatitud(event);" onblur="alsalira2(this.id)">
 								    <span class="input-group-addon" ><span class="fa fa-question-circle" id="h_latitud"></span>
 									
-								    </span>								
+								    </span>									
 								</div>
 						   
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_latitud' class="aaa"><p></p></div>
@@ -309,17 +303,11 @@ ValidaSession("../login");
 								    <input type="text" class="form-control bbb" id="longitud" placeholder="Ingrese longitud"  onpaste="return false" tabindex="20" onkeypress="return eslongitud(event);" onblur="alsalira3(this.id)">
 								    <span class="input-group-addon" ><span class="fa fa-question-circle" id="h_longitud"></span>
 									
-								    </span>	
+								    </span>									
 								</div>
 						   
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_longitud' class="aaa"><p></p></div>
 							</div> 
-
-							<!--<div class="form-group-sm">
-								 <label for="longitud">Longitud</label>
-								 <input type="text" class="form-control bbb" id="longitud" placeholder="Ingrese longitud"  onpaste="return false" tabindex="19" onkeypress="return eslongitud(event);" onblur="alsalira3(this.id)">
-								 <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_longitud' class="aaa"><p></p></div>
-							</div>-->
 
 							<div class="focusguard" id="guardia1" tabindex="21"></div>
 						  <!-- /.box-body -->
@@ -333,6 +321,7 @@ ValidaSession("../login");
 			<div class="col-md-4">
 
 				<div class="box-header with-border">
+						
 					 	<h3 class="box-title">Datos de contacto</h3>
 				</div><!-- /.box-header -->
 
@@ -394,6 +383,8 @@ ValidaSession("../login");
 
 						<!-- form start -->
 						<div class="box-body">
+
+
 
 							<div class="form-group">
 								<label>Frecuencia de visita</label></br>
@@ -517,11 +508,12 @@ ValidaSession("../login");
 		</li>
 
 		<li id="tres"><!--################################## DATOS PUBLICITARIOS Y DE ACTIVOS ##################################  -->
+
 <div class="row">
 			<div class="col-md-4">
 
 				<div class="box-header with-border">
-					 	<h3 class="box-title" >Datos publicitarios y de neveras</h3>
+					 	<h3 class="box-title" >Datos publicitarios y de Neveras</h3>
 				</div><!-- /.box-header -->
 
 		  		<div class="box box-primary">
@@ -601,7 +593,7 @@ ValidaSession("../login");
 							<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="-1"><i class="fa fa-fw fa-reply"></i>Regresar</button>
 							<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
 						  </div>
-						
+
 				</div><!-- /.box-body -->
 
 
@@ -650,6 +642,7 @@ ValidaSession("../login");
 </div>			 
 			</div><!-- /.box-body -->
 </div>
+
 	    </li>
 	</ul>
 </div>
@@ -743,8 +736,8 @@ ValidaSession("../login");
 					<!-- form start -->
 					  <div class="box-body">
 						<div id="weathermap">
-							<!-- <div class='custom-popup' id="map" style="height: 440px; border: 1px solid #AAA;"></div> -->
-						</div>	
+							<!--<div class='custom-popup' id="map" style="height: 440px; border: 1px solid #AAA;"></div>-->
+						</div>
 					  </div><!-- /.box-body -->
 
 				  </div><!-- /.box -->
@@ -764,7 +757,7 @@ ValidaSession("../login");
 
 						  <div class="box-footer">
 							<button id="izquierda" type="button" class="btn btn-primary" disabled tabindex="-1"><i class="fa fa-arrow-left"></i>Anterior</button>
-							
+
 							<button id="derecha" type="button" class="btn btn-primary pull-right" tabindex="-1">Siguiente<i class="fa fa-arrow-right"></i></button>
 						  </div>
 
@@ -779,21 +772,11 @@ ValidaSession("../login");
 <script src="../../plugins/leaflet/leaflet.js"></script>
 <script src="../../plugins/leaflet/leaflet.label.js"></script>
 
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAq8g7WPAx_OtQaQNzYPvexnbbV50CDf0o" async defer></script>
-<script src="../../plugins/leaflet/gmaps.js"></script>
-
-<script src="../../plugins/leaflet/Leaflet.GoogleMutant.js"></script>-->
-
-<script src="../../plugins/select3/bootstrap-select.min.js"></script>
-<script src="../../plugins/select3/i18n/defaults-es_ES.min.js"></script>
-
 <link rel="stylesheet" href="../../plugins/confirma/jquery-confirm.min.css" type="text/css"/>
 <link rel="stylesheet" href="../../css/style_format_pass.css" type="text/css"/>
 <link rel="stylesheet" href="../../plugins/datepicker/datepicker3.css" type="text/css"/>
 <link rel="stylesheet" href="../../plugins/unslider/unslider.css">
 <link rel="stylesheet" href="../../plugins/leaflet/leaflet.css"/>
-
-<link rel="stylesheet" href="../../plugins/select3/bootstrap-select.min.css">
 
  <script type="text/javascript">
 
@@ -801,7 +784,6 @@ $(document).ready(function() {
 
 	$.post( "../../controllers/mactivos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 
-	//setTimeout(function(){
 $("#latitud" ).click(function() {
 
 		var alata= parseFloat(document.getElementById('lata').value/*6.12*/); 
@@ -825,33 +807,14 @@ document.getElementById('weathermap').innerHTML = "<div class='custom-popup' id=
 
 		});
 
-	var basemap = new L.TileLayer.WMS('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		var basemap = new L.TileLayer.WMS('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     					attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     					subdomains: ['a','b','c']
-		}).addTo(map);	
-
-
-/*var basemap = L.gridLayer.googleMutant({
-    type: 'terrain', // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
-    style:'styleMutant'
-}).addTo(map);
-
-		var styleMutant = L.gridLayer.googleMutant({
-			styles: [
-				{elementType: 'labels', stylers: [{visibility: 'on'}]},
-				{featureType: 'water', stylers: [{color: '#444444'}]},
-				{featureType: 'landscape', stylers: [{color: '#eeeeee'}]},
-				{featureType: 'road', stylers: [{visibility: 'off'}]},
-				{featureType: 'poi', stylers: [{visibility: 'off'}]},
-				{featureType: 'transit', stylers: [{visibility: 'off'}]},
-				{featureType: 'administrative', stylers: [{visibility: 'on'}]},
-				{featureType: 'administrative.locality', stylers: [{visibility: 'on'}]}
-			]
-		});*/
+		}).addTo(map);		
 
 
 var popup = L.popup();
-
+var marker = L.marker([alata, alonga]).addTo(map);
 map.on('click', function(e) {
     //alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
         
@@ -930,7 +893,6 @@ map.on('click', function(e) {
 
 });
 
-	//}, 3000);
 
 $("#guardialat").focusin(function(event) {
 
@@ -958,28 +920,11 @@ document.getElementById('weathermap').innerHTML = "<div class='custom-popup' id=
 		var basemap = new L.TileLayer.WMS('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     					attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     					subdomains: ['a','b','c']
-		}).addTo(map);	
+		}).addTo(map);		
 
-/*var basemap = L.gridLayer.googleMutant({
-    type: 'terrain', // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid'
-    style:'styleMutant'
-}).addTo(map);
-
-		var styleMutant = L.gridLayer.googleMutant({
-			styles: [
-				{elementType: 'labels', stylers: [{visibility: 'off'}]},
-				{featureType: 'water', stylers: [{color: '#444444'}]},
-				{featureType: 'landscape', stylers: [{color: '#eeeeee'}]},
-				{featureType: 'road', stylers: [{visibility: 'off'}]},
-				{featureType: 'poi', stylers: [{visibility: 'off'}]},
-				{featureType: 'transit', stylers: [{visibility: 'off'}]},
-				{featureType: 'administrative', stylers: [{visibility: 'on'}]},
-				{featureType: 'administrative.locality', stylers: [{visibility: 'on'}]}
-			]
-		});*/
 
 var popup = L.popup();
-
+var marker = L.marker([alata, alonga]).addTo(map);
 map.on('click', function(e) {
     //alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
         
@@ -1056,15 +1001,24 @@ map.on('click', function(e) {
     				$('#latitud').focus();
 
     			}
+
 });
 
 
-	
 
-//$('#potencia').attr('checked',true);
+		var desh=<?php echo $_SESSION['rolx'];  ?>;
+		
+		if (desh==2){
+
+			//$("#form").children().prop('disabled',true);
+			$("#desa *").prop('disabled',true);
+			$("#exit").prop('disabled',false);
+		}
+
+
 $( "#orbis" ).blur(function() {
 
-  	$.post( "../../controllers/maliados_controller", { action: "search_orbis",orbis:$("#orbis").val(),sorbis:$("#s_orbis").val()}).done(function( data ) {
+  	$.post( "../../controllers/maliados_controller", { action: "search_orbis_2",orbis:$("#orbis").val(),sorbis:$("#s_orbis").val(),record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 
 			
 			var parsedJson = $.parseJSON(data);
@@ -1086,14 +1040,15 @@ $( "#orbis" ).blur(function() {
 	},"json");
 
 });
+//$('#potencia').attr('checked',true);
 
-$('#estatus_aliado > option[value="0"]').attr('selected', 'selected');
+//$('#estatus_aliado > option[value="0"]').attr('selected', 'selected');
 
-$('#dias > option[value="0"]').attr('selected', 'selected');
-$('#toldo > option[value="4"]').attr('selected', 'selected');
-$('#aviso > option[value="4"]').attr('selected', 'selected');
-$('#fachada > option[value="4"]').attr('selected', 'selected');
-$('#activo > option[value="4"]').attr('selected', 'selected');
+//$('#dias > option[value="0"]').attr('selected', 'selected');
+//$('#toldo > option[value="4"]').attr('selected', 'selected');
+//$('#aviso > option[value="4"]').attr('selected', 'selected');
+//$('#fachada > option[value="4"]').attr('selected', 'selected');
+//$('#activo > option[value="4"]').attr('selected', 'selected');
 
 
 //MASCARAS DE VALIDACION ########################################
@@ -1110,7 +1065,6 @@ taco=document.getElementById('s_orbis').value;
 	
 				if(taco==0){
 					$('#orbis').val('SIN CÓDIGO ORBIS');
-
 				}else{
 					$('#orbis').val('');
 				}
@@ -1130,11 +1084,10 @@ taco=document.getElementById('s_orbis').value;
 
 $('#orbis').mask('0000', {
 
-    	//placeholder: "Ingrese código ORBIS Ej.: AOOO6"
-
   });
 
-$('#cedula').mask('000000000', {
+$('#cedula').mask('A000000000', {
+
 
     	//placeholder: "Ingrese código ORBIS Ej.: AOOO6"
 
@@ -1172,6 +1125,7 @@ $('#tele2').mask('A000-000-0000', {
 
   });
 
+
 var options =  {
   onKeyPress: function(cep, e, field, options) {
     var masks = ['AC.000000', 'AB.000000', 'AD.000000'];
@@ -1183,7 +1137,6 @@ var options =  {
     }else if(cep==7){
  		mask=masks[2];    	
     }
-
     $('#longitud').mask(mask, options);
 	},
     	translation: {
@@ -1210,7 +1163,7 @@ var options =  {
 
         			pattern: /[0-4]/, optional: false
 
-     		        }       		               		             		        
+     		        }          		             		        
 
     	  }
 
@@ -1250,9 +1203,6 @@ var opciones =  {
 };
 
 $('#latitud').mask('00.000000',opciones);
-
-
-
 
 $('#h_latitud').balloon({ 
 
@@ -1370,8 +1320,6 @@ $("#derecha" ).click(function() {
 
 		if(cont_alert!=0){
 
-			//alert('existen campos vacios');
-
 						$.confirm({
 						    title: '¡existen campos vacios !', // hides the title.
 						    cancelButton: false, // hides the cancel button.
@@ -1380,62 +1328,16 @@ $("#derecha" ).click(function() {
 						    confirmButton: 'cerrar',
 						    confirmButtonClass: 'btn-success',
 						    content: false// hides content block.
-						});			
+						});	
 
 		}else{
-
-				$.post( "../../controllers/maliados_controller", {
-
-					action: "add_temp1",
-					sorbis: $("#s_orbis").val(),
-					orbis: $("#orbis").val(),
-					nombre: $("#nombre").val(),
-					razon: $("#razon").val(),
-					segmento: $("#segmento").val(),
-					cedula: $("#cedula").val(),
-					l_cedula: $("#l_cedula").val(),
-					fecha1: $("#fecha1").val(),
-					fecha2: $("#fecha2").val(),
-					estado: $("#estado").val(),
-					municipio: $("#municipio").val(),
-					ciudad: $("#ciudad").val(),
-					sector: $("#sector").val(),
-					parroquia: $("#parroquia").val(),
-					a_principal: $("#a_principal").val(),
-					acceso1: $("#acceso1").val(),
-					a_secundario: $("#a_secundario").val(),
-					acceso2: $("#acceso2").val(),
-					referencia: $("#referencia").val(),
-					zona: $("#zona").val(),
-					territorio: $("#territorio").val(),
-					territorio_g: $("#territorio_g").val(),
-					latitud: $("#latitud").val(),
-					longitud: $("#longitud").val()
-
-				}).done(function(data){
-
-					var parsedJson = $.parseJSON(data);
-					$(".message").html(parsedJson.mensaje);
-
-					if(parsedJson.resultado != 'error'){
-
-						setTimeout(function(){
-							$(".alert").alert('close');
-						}, 1500);
-
-					}else{
-
-
-					}
-
-
-				},"json");	
 
 			$('.base').unslider('animate:1');
 			tick=1;
 			document.getElementById('izquierda').disabled = false;
 
 		}
+
 
 	}else if(tick==1){
 
@@ -1455,66 +1357,6 @@ $("#derecha" ).click(function() {
 						});	
 
 		}else{
-
-				$.post( "../../controllers/maliados_controller", {
-
-					action: "add_temp2",
-					sorbis: $("#s_orbis").val(),
-					orbis: $("#orbis").val(),
-					nombre: $("#nombre").val(),
-					razon: $("#razon").val(),
-					segmento: $("#segmento").val(),
-					cedula: $("#cedula").val(),
-					l_cedula: $("#l_cedula").val(),
-					fecha1: $("#fecha1").val(),
-					fecha2: $("#fecha2").val(),
-					estado: $("#estado").val(),
-					municipio: $("#municipio").val(),
-					ciudad: $("#ciudad").val(),
-					sector: $("#sector").val(),
-					parroquia: $("#parroquia").val(),
-					a_principal: $("#a_principal").val(),
-					acceso1: $("#acceso1").val(),
-					a_secundario: $("#a_secundario").val(),
-					acceso2: $("#acceso2").val(),
-					referencia: $("#referencia").val(),
-					zona: $("#zona").val(),
-					territorio: $("#territorio").val(),
-					territorio_g: $("#territorio_g").val(),
-					latitud: $("#latitud").val(),
-					longitud: $("#longitud").val(),
-					propietario: $("#propietario").val(),
-					tele1: $("#tele1").val(),
-					tele2: $("#tele2").val(),
-					correo1: $("#correo1").val(),
-					estatus_aliado: $("#estatus_aliado").val(),
-					dias: $("#dias").val(),
-					caja_t: $("#caja_t").val(),
-					caja_p: $("#caja_p").val(),
-					caja_o: $("#caja_o").val(),
-					despacho: $("#despacho").val(),
-					descuento: $("#descuento").val(),
-					seca: $("#seca").val(),
-					rf_competencia: $("#rf_competencia").val(),
-					ls_competencia: $("#ls_competencia").val()
-
-				}).done(function(data){
-
-					var parsedJson = $.parseJSON(data);
-					$(".message").html(parsedJson.mensaje);
-					
-					if(parsedJson.resultado != 'error'){
-					
-						setTimeout(function(){
-							$(".alert").alert('close');
-						}, 1500);
-
-					}else{
-
-
-					}
-
-				},"json");	
 
 			$('.base').unslider('animate:2');
 			tick=2;
@@ -1640,57 +1482,10 @@ $("#izquierda" ).click(function() {
 						    closeIcon: false,
 						    confirmButton: 'cerrar',
 						    confirmButtonClass: 'btn-success',
-						    content: false// hides content block.
-						});						
-
+				    	    content: false// hides content block.
+						});	
+						
 				}else{
-
-				$.post( "../../controllers/maliados_controller", {
-
-					action: "add_temp1",
-					sorbis: $("#s_orbis").val(),
-					orbis: $("#orbis").val(),
-					nombre: $("#nombre").val(),
-					razon: $("#razon").val(),
-					segmento: $("#segmento").val(),
-					cedula: $("#cedula").val(),
-					l_cedula: $("#l_cedula").val(),
-					fecha1: $("#fecha1").val(),
-					fecha2: $("#fecha2").val(),
-					estado: $("#estado").val(),
-					municipio: $("#municipio").val(),
-					ciudad: $("#ciudad").val(),
-					sector: $("#sector").val(),
-					parroquia: $("#parroquia").val(),
-					a_principal: $("#a_principal").val(),
-					acceso1: $("#acceso1").val(),
-					a_secundario: $("#a_secundario").val(),
-					acceso2: $("#acceso2").val(),
-					referencia: $("#referencia").val(),
-					zona: $("#zona").val(),
-					territorio: $("#territorio").val(),
-					territorio_g: $("#territorio_g").val(),
-					latitud: $("#latitud").val(),
-					longitud: $("#longitud").val()
-
-				}).done(function(data){
-
-					var parsedJson = $.parseJSON(data);
-					$(".message").html(parsedJson.mensaje);
-
-					if(parsedJson.resultado != 'error'){
-
-						setTimeout(function(){
-							$(".alert").alert('close');
-						}, 1500);
-
-					}else{
-
-
-					}
-
-
-				},"json");						
 
 					$('.base').unslider('animate:1');
 
@@ -1725,68 +1520,9 @@ $("#izquierda" ).click(function() {
 
 				}else{
 
-				$.post( "../../controllers/maliados_controller", {
-
-					action: "add_temp2",
-					sorbis: $("#s_orbis").val(),
-					orbis: $("#orbis").val(),
-					nombre: $("#nombre").val(),
-					razon: $("#razon").val(),
-					segmento: $("#segmento").val(),
-					cedula: $("#cedula").val(),
-					l_cedula: $("#l_cedula").val(),
-					fecha1: $("#fecha1").val(),
-					fecha2: $("#fecha2").val(),
-					estado: $("#estado").val(),
-					municipio: $("#municipio").val(),
-					ciudad: $("#ciudad").val(),
-					sector: $("#sector").val(),
-					parroquia: $("#parroquia").val(),
-					a_principal: $("#a_principal").val(),
-					acceso1: $("#acceso1").val(),
-					a_secundario: $("#a_secundario").val(),
-					acceso2: $("#acceso2").val(),
-					referencia: $("#referencia").val(),
-					zona: $("#zona").val(),
-					territorio: $("#territorio").val(),
-					territorio_g: $("#territorio_g").val(),
-					latitud: $("#latitud").val(),
-					longitud: $("#longitud").val(),
-					propietario: $("#propietario").val(),
-					tele1: $("#tele1").val(),
-					tele2: $("#tele2").val(),
-					correo1: $("#correo1").val(),
-					estatus_aliado: $("#estatus_aliado").val(),
-					dias: $("#dias").val(),
-					caja_t: $("#caja_t").val(),
-					caja_p: $("#caja_p").val(),
-					caja_o: $("#caja_o").val(),
-					despacho: $("#despacho").val(),
-					descuento: $("#descuento").val(),
-					seca: $("#seca").val(),
-					rf_competencia: $("#rf_competencia").val(),
-					ls_competencia: $("#ls_competencia").val()
-
-				}).done(function(data){
-
-					var parsedJson = $.parseJSON(data);
-					$(".message").html(parsedJson.mensaje);
-					
-					if(parsedJson.resultado != 'error'){
-					
-						setTimeout(function(){
-							$(".alert").alert('close');
-						}, 1500);
-
-					}else{
-
-
-					}
-
-				},"json");	
 					$('.base').unslider('animate:2');
-				    setTimeout(function() {
 
+				    setTimeout(function() {
 
 				    	$('#toldo').focus();
 				    	document.getElementById('derecha').disabled = true;
@@ -2061,11 +1797,11 @@ $("#izquierda" ).click(function() {
 
 			enableClickableOptGroups: true,
 			enableCollapsibleOptGroups: false,
-	
+
 			onChange: function(element, checked, option) {
 					var selecto=(element.val());
 				if(checked === true) {
-
+	
 					if(/*selecto==0 || */selecto==1 || selecto==2 || selecto==3){
 						 
 						 $('#activo').multiselect('deselect', ['4']);
@@ -2106,41 +1842,17 @@ $("#izquierda" ).click(function() {
 		});
 
 		// ********************************************************************************************
-		/*$("#cancelar" ).click(function() {
-
-						$.confirm({
-						    title: '¡Esta acción lo llevará al inicio del formulario y borrará los datos no registrados!.¿Desea continuar?',
-						    content:false,
-						    confirmButton: 'Si',
-						    cancelButton: 'No',
-						    confirmButtonClass: 'btn-primary',
-    						    cancelButtonClass: 'btn-success',
-
-						    confirm: function(){
-
-								$.post( "../../controllers/maliados_controller", {action: "del_temp"}).done(function(data){},"json");
-
-								$('.base').unslider('animate:0');
-								$('#orbis').focus();
-
-						    	setTimeout(function(){
-
-						                  $(location).attr('href','../aliados/frm_registrar');
-                  
-						        }, 1500);
-							},
-
-						    cancel: function(){
-
-							}
-						});			
-
-		});*/
-
 		$("#exit" ).click(function() {
 
+				var titulado='';
+				
+				if(desh==2){
+					titulado ='¡Esta acción lo llevará al listado de aliados comerciales!.¿Desea continuar?';
+				}else{
+					titulado ='¡Esta acción lo llevará al listado de aliados comerciales sin guardar los cambios realizados!.¿Desea continuar?';
+				}
 						$.confirm({
-						    title: '¡Esta acción lo llevará al listado de aliados comerciales y borrará los datos no registrados!.¿Desea continuar?',
+						    title: titulado,
 						    content:false,
 						    confirmButton: 'Si',
 						    cancelButton: 'No',
@@ -2161,8 +1873,8 @@ $("#izquierda" ).click(function() {
 						    cancel: function(){
 
 							}
-						});				
-			
+						});	
+
 		});
 
 		// ********************************************************************************************
@@ -2179,6 +1891,7 @@ $("#izquierda" ).click(function() {
 
 			 	document.getElementById("descuento").disabled = true;
 			 	$("#descuento").val(0);
+
 			}
 
 		});
@@ -2197,13 +1910,35 @@ $("#izquierda" ).click(function() {
 
 		});
 
+			  	$.post( "../../controllers/mactivos_controller", { action: "search_act3",recordatorio: <?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+						
+						var parsedJson = $.parseJSON(data);
 
+								if(parsedJson == 'si'){
+
+									document.getElementById('oculto').style.display = 'block';
+									document.getElementById("a_propio").checked = true;
+									document.getElementById("a_propio").disabled = true;
+									$("#lab_propio").val(1);
+
+								}else{
+
+									document.getElementById("a_propio").checked = false;
+									$("#lab_propio").val(0);
+
+								}
+
+				},"json");
+
+					      	
+							var identico2 = <?php echo intval($_GET["record"]); ?>//$('#id').val();
+							//alert(identico2);	
 									var table = $('#tabla').dataTable({
-										  	
+									  	
 										  //"destroy": true,
 
 										  "ajax": {
-											"url": "../../data_json/data_mactivos",
+											"url": "../../data_json/data_mactivos_2?al="+identico2+"",
 											"dataSrc": ""
 										  },
 										  "columns": [
@@ -2240,7 +1975,8 @@ $("#izquierda" ).click(function() {
 
 				$.post( "../../controllers/mactivos_controller", {
 
-					action: "temporal",
+					action: "temporal2",
+					id: $('#id').val(),
 					marca: $('#a_marca').val(),
 					modelo: $('#a_modelo').val(),
 					serial: $('#a_serial').val(),
@@ -2254,16 +1990,14 @@ $("#izquierda" ).click(function() {
 					$(".message1").html(parsedJson.mensaje);
 
 					if(parsedJson.resultado != 'error'){
-
+						
 						document.getElementById("a_propio").disabled = true;
-
 					    setTimeout(function(){
 
 							$.post( "../../controllers/mmarcas_controller", { action: "get_marcas"}).done(function( data ) {
 								 $("#a_marca" ).html( data );
 
 							});
-
 							$("#a_modelo").val(null);
 							$("#a_serial").val(null);
 							$("#a_activo_f").val(null);
@@ -2277,8 +2011,8 @@ if(document.getElementById('oculto').style.display == 'block'){
 }else{				
 	$('#tabla').DataTable().ajax.reload();
 	document.getElementById('oculto').style.display = 'block';
-}
-						
+}						
+
 
  							$(".alert").alert('close');
 					      	$('#modal1').modal('toggle');
@@ -2293,6 +2027,7 @@ if(document.getElementById('oculto').style.display == 'block'){
 		    //$('#activo').focus();
 
 		});
+
 
 			$('#quitar').click( function () {
 
@@ -2332,7 +2067,7 @@ if(document.getElementById('oculto').style.display == 'block'){
 												//$('#tabla').dataTable();
 												 
 
-													  	$.post( "../../controllers/mactivos_controller", { action: "search_act"}).done(function( data ) {
+													  	$.post( "../../controllers/mactivos_controller", { action: "search_act3", recordatorio: $('#id').val()}).done(function( data ) {
 																
 																var parsedJson = $.parseJSON(data);
 
@@ -2365,6 +2100,7 @@ if(document.getElementById('oculto').style.display == 'block'){
 				}
 			});		
 
+
 		$("#cancelar2").click(function() {
 
 			$('#modal1').modal('toggle');
@@ -2376,8 +2112,8 @@ if(document.getElementById('oculto').style.display == 'block'){
 			$("#a_serial").val(null);
 			$("#a_activo_f").val(null);
 			$("#a_comodato").val(null);
-			//se debe comprobar si existe registro de activo, si no lo hay, a_propio se mantiene cheked.
-			  	$.post( "../../controllers/mactivos_controller", { action: "search_act"}).done(function( data ) {
+
+			  	$.post( "../../controllers/mactivos_controller", { action: "search_act_edit", busco:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 						
 						var parsedJson = $.parseJSON(data);
 
@@ -2400,15 +2136,12 @@ if(document.getElementById('oculto').style.display == 'block'){
 
 			$('#modal2').modal('toggle');
 			//map.closePopup();
-			map.remove();
-			//document.getElementById('weathermap').innerHTML = "<div class='custom-popup' id='map' style='height: 440px; border: 1px solid #AAA;'></div>";
 			$('#latitud').focus();
-
-		});
+			
+		});		
 
 		$("#agregar").click(function() {
 			$('#modal1').modal({backdrop: 'static',keyboard: false});
-			
 		});
 
 // para consultar y cargar los datos geograficos ***********************************************************
@@ -2418,20 +2151,8 @@ if(document.getElementById('oculto').style.display == 'block'){
 
 		});
 
-		$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios"}).done(function( data ) {
-			 $("#municipio" ).html( data );
 
-		});
 
-		$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
-			 $("#parroquia" ).html( data );
-
-		});				
-
-		$.post( "../../controllers/mgeograficas_controller", { action: "get_ciudad"}).done(function( data ) {
-			 $("#ciudad" ).html( data );
-
-		});	
 
 		$('#estado').change(function(event) {
 			
@@ -2449,8 +2170,7 @@ if(document.getElementById('oculto').style.display == 'block'){
 				$.post( "../../controllers/mgeograficas_controller", { action: "get_ciudad"}).done(function( data ) {
 					 $("#ciudad" ).html( data );
 
-				});					
-
+				});	
 		});
 
 
@@ -2464,8 +2184,7 @@ if(document.getElementById('oculto').style.display == 'block'){
 				$.post( "../../controllers/mgeograficas_controller", { action: "get_ciudad"}).done(function( data ) {
 					 $("#ciudad" ).html( data );
 
-				});	
-
+				});					
 		});
 
 		$('#parroquia').change(function(event) {
@@ -2477,20 +2196,6 @@ if(document.getElementById('oculto').style.display == 'block'){
 
 				});
 
-				
-
-		});
-
-		$('#ciudad').change(function(event) {
-
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_coordenadas",ciudad:$("#ciudad").val()}).done(function( data ) {
-					 var parsedJson = $.parseJSON(data);
-
-					 $("#lata").val(parsedJson.lata);
-					 $("#longa").val(parsedJson.longa);
-					 
-
-				});	
 		});
 
 // para consultar y cargar los segmentos ***********************************************************
@@ -2499,58 +2204,237 @@ if(document.getElementById('oculto').style.display == 'block'){
 
 		});
 
+
 // para consultar y cargar los territorios ***********************************************************
 
-//alert($('#distribuidora').val());
-		$.post( "../../controllers/mterritorios_controller", { action: "get_territorios",modulo: $("#zona").val(),distribuidora: $("#distribuidora").val()}).done(function( data ) {
-			 $("#territorio_g" ).html( data );
+		$.post( "../../controllers/mterritorios_controller", { action: "get_gterritorios",distribuidora: $("#distribuidora").val()}).done(function( data ) {
+			
+			 $("#territorio" ).html( data );
 
 		});
+		
+
+
 
 		$('#zona').change(function(event) {
 			
-					$.post( "../../controllers/mterritorios_controller", { action: "get_territorios",modulo: $("#zona").val(),distribuidora: $("#distribuidora").val()}).done(function( data ) {
-					 $("#territorio_g" ).html( data );
+				$.post( "../../controllers/mterritorios_controller", { action: "get_territorios",modulo:$("#zona").val(),distribuidora: $("#distribuidora").val()}).done(function( data ) {
+			
+					$("#territorio_g" ).html( data );
 
 				});
 		});
 
-		$.post( "../../controllers/mterritorios_controller", { action: "get_gterritorios",distribuidoras: $("#distribuidora").val()}).done(function( data ) {
-			 $("#territorio" ).html( data );
 
-		});
 
 		$.post( "../../controllers/mmarcas_controller", { action: "get_marcas"}).done(function( data ) {
 			 $("#a_marca" ).html( data );
 
 		});
 
-		/*$.post( "../../controllers/mdistribuidoras_controller", { action: "get_distri"}).done(function( data ) {
+		$.post( "../../controllers/mdistribuidoras_controller", { action: "get_distri"}).done(function( data ) {
 			 $("#distribuidora" ).html( data );
 
-		});*/
+		});
 
-		$.post( "../../controllers/mregiones_controller", { action: "get_regi",distribuidora:<?php echo intval($_SESSION['distribuidora']); ?>}).done(function( data ) {
+		$.post( "../../controllers/mregiones_controller", { action: "get_regi",distribuidora:$("#distribuidora").val()}).done(function( data ) {
 			 $("#region" ).html( data );
 
 		});
+
+		$.post( "../../controllers/maliados_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+
+			//alert(data);
+			var parsedJson = $.parseJSON(data);
+
+				$("#no_cli").html(parsedJson.nombre);
+				$("#id").val(parsedJson.id);
+				$("#s_orbis").val(parsedJson.sorbis);
+				$("#orbis").val(parsedJson.orbis);
+				$("#nombre").val(parsedJson.nombre);
+				$("#razon").val(parsedJson.razon);
+				$("#segmento").val(parsedJson.segmento);
+				$("#cedula").val(parsedJson.cedula);
+				$("#l_cedula").val(parsedJson.l_cedula);
+				$("#fecha1").val(parsedJson.fecha1);
+				$("#fecha2").val(parsedJson.fecha2);
+
+				$("#estado").val(parsedJson.estado);
+
+				$("#sector").val(parsedJson.sector);
+
+				var bmun =parsedJson.municipio;
+				var bpar =parsedJson.parroquia;
+				var bciu =parsedJson.ciudad;
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios_e",municipio:bmun}).done(function( data ) {
+
+				$("#municipio" ).html( data );
+			
+		});	
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias_e",parroquia: bpar}).done(function( data ) {
+			
+			 $("#parroquia" ).html( data );
+
+		});
+
+		$.post( "../../controllers/mgeograficas_controller", {action: "get_ciudad_e",ciudad: bciu}).done(function( data ) {
+			//setTimeout(function(){
+			 $("#ciudad" ).html( data );
+			//}, 1500);
+		});	
+
+				$("#a_principal").val(parsedJson.a_principal);
+				$("#acceso1").val(parsedJson.acceso1);
+				$("#a_secundario").val(parsedJson.a_secundario);
+				$("#acceso2").val(parsedJson.acceso2);
+				$("#referencia").val(parsedJson.referencia);
+				$("#zona").val(parsedJson.zona);
+
+				$("#territorio").val(parsedJson.territorio);
+				
+				//$("#territorio_g").val(parsedJson.territorio_g);
+				var bter = parsedJson.territorio_g;
+				$.post( "../../controllers/mterritorios_controller", { action: "get_territorios_e",territorio: bter}).done(function( data ) {
+					
+					 $("#territorio_g" ).html( data );
+
+				});
+				
+				$("#latitud").val(parsedJson.latitud);
+					
+					document.getElementById('lata').value=parseFloat(parsedJson.latitud); 
+				
+				$("#longitud").val(parsedJson.longitud);
+					document.getElementById('longa').value=parseFloat(parsedJson.longitud)*(-1);
+
+				$("#propietario").val(parsedJson.propietario);
+				$("#tele1").val(parsedJson.tele1);
+				$("#tele2").val(parsedJson.tele2);
+				$("#correo1").val(parsedJson.correo1);
+				$("#estatus_aliado").val(parsedJson.estatus_aliado);
+				$("#dias").val(parsedJson.dias);
+				$("#caja_t").val(parsedJson.caja_t);
+				$("#caja_p").val(parsedJson.caja_p);
+				$("#caja_o").val(parsedJson.caja_o);
+				$("#despacho").val(parsedJson.despacho);
+				$("#descuento").val(parsedJson.descuento);
+				$("#seca").val(parsedJson.seca);
+				$("#rf_competencia").val(parsedJson.rf_competencia);
+				$("#ls_competencia").val(parsedJson.ls_competencia);
+
+				$("#toldo").val(parsedJson.toldo);
+				$("#aviso").val(parsedJson.aviso);
+				$("#fachada").val(parsedJson.fachada);
+				$("#activo").val(parsedJson.activo);
+				$("#observacion").val(parsedJson.observacion);
+				$("#distribuidora").val(parsedJson.distribuidora);
+				$("#region").val(parsedJson.region);
+
+				var identico = parsedJson.id;
+				var des_cu = parsedJson.descuento;
+				//alert(des_cu);
+				var or_bis = $("#orbis").val();
+				var es_ali = parsedJson.estatus_aliado;
+				var di_as = parsedJson.dias;
+				di_as = di_as.split(',');
+
+				var desc_ch=document.getElementById("descu");
+				var desc_cue=document.getElementById("descuento");
+
+				if (des_cu == 0) {
+					desc_ch.checked=false;
+
+				}else{
+					desc_ch.checked=true;
+					desc_cue.disabled = false;
+				}
+
+				var tol_do = parsedJson.toldo;
+				tol_do = tol_do.split(',');
+
+				var avi_so = parsedJson.aviso;
+				avi_so = avi_so.split(',');
+
+				var fa_cha = parsedJson.fachada;
+				fa_cha = fa_cha.split(',');
+
+				var ac_ti = parsedJson.activo;
+				ac_ti = ac_ti.split(',');
+
+
+  //		document.getElementById('oculto').style.display = 'block';
+
+
+				if(!or_bis){
+					$("#orbis").val('SIN CÓDIGO ORBIS');
+				}
+
+				if(es_ali =='0'){
+
+					$('#estatus_aliado').multiselect('select', ['0']);
+
+				}else if(es_ali =='0,1'){
+
+					$('#estatus_aliado').multiselect('select', ['0','1']);
+
+				}else if(es_ali=='2'){
+					
+					$('#estatus_aliado').multiselect('select', ['2']);
+				}	
+
+
+				if(di_as){
+
+					$('#dias').multiselect('select', di_as);
+
+				}
+
+				if(tol_do){
+
+					$('#toldo').multiselect('select', tol_do);
+
+				}
+
+				if(avi_so){
+
+					$('#aviso').multiselect('select', avi_so);
+
+				}
+
+				if(fa_cha){
+
+					$('#fachada').multiselect('select', fa_cha);
+
+				}
+
+				if(ac_ti){
+
+					$('#activo').multiselect('select', ac_ti);
+
+				}												
+
+			
+			},"json");
+
 
 		//** enviar los datos al controlador ***********************************************************
 		$("#save" ).click(function() {
 
 				poten = $("#orbis").val();
 
-/*alert($('#distribuidora').val());
+//alert($('#distribuidora').val());
 
-if($('#distribuidora').val()== 0){
-	alert('ES PROGRAMADOR');
+/*if(poten == "Sin código ORBIS"){
+	poten="";
 }*/
 //alert($('#fecha1').val());
 
 				$.post( "../../controllers/maliados_controller", {
 
-					action: "add",
-					caso: "0",
+					action: "edit",
+					id: $("#id").val(),
 					sorbis: $("#s_orbis").val(),
 					orbis: poten,
 					nombre: $("#nombre").val(),
@@ -2624,7 +2508,7 @@ if($('#distribuidora').val()== 0){
 
 					if(parsedJson.resultado != 'error'){
 
-					$.post( "../../controllers/mactivos_controller", { action: "definitivo2",recordado:$("#cedula").val(),l_recordado:$("#l_cedula").val(),l_orbis:$("#orbis").val() }).done(function( data ) {
+					$.post( "../../controllers/mactivos_controller", { action: "definitivo",recordado:$("#cedula").val(),l_recordado:$("#l_cedula").val(),l_orbis:$("#orbis").val(),l_record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 
 					});
 
@@ -2632,10 +2516,23 @@ if($('#distribuidora').val()== 0){
 
 					    	setTimeout(function(){
 
-					                  //$(location).attr('href','../aliados/frm_registrar');
-					                  $('#sorbis').focus();
+					                  $(location).attr('href','../aliados/');
+					                  //$('#orbis').focus();
 
 					              }, 3000);
+
+					}else{
+
+						$('.base').unslider('animate:0');
+						tick=0;
+						document.getElementById('izquierda').disabled = true;
+						document.getElementById('derecha').disabled = false;
+
+					    	setTimeout(function(){
+
+					                  $('#orbis').focus();
+
+					              }, 300);
 
 					}
 
@@ -2643,7 +2540,7 @@ if($('#distribuidora').val()== 0){
 
 		});//end save
 
-	/*	$("#derecha" ).mousedown(function() {
+		$("#savetemporal" ).click(function() {
 
 				$.post( "../../controllers/maliados_controller", {
 
@@ -2653,6 +2550,7 @@ if($('#distribuidora').val()== 0){
 					razon: $("#razon").val(),
 					segmento: $("#segmento").val(),
 					cedula: $("#cedula").val(),
+					l_cedula: $("#l_cedula").val(),
 					fecha1: $("#fecha1").val(),
 					fecha2: $("#fecha2").val(),
 					estado: $("#estado").val(),
@@ -2669,19 +2567,54 @@ if($('#distribuidora').val()== 0){
 					territorio: $("#territorio").val(),
 					territorio_g: $("#territorio_g").val(),
 					latitud: $("#latitud").val(),
-					longitud: $("#longitud").val()
+					longitud: $("#longitud").val(),
 
 				}).done(function(data){
 
 					var parsedJson = $.parseJSON(data);
 					$(".message").html(parsedJson.mensaje);
 
+					switch(parsedJson.deslizador){
+
+						case "1":
+							$('.base').unslider('animate:0');
+							tick=0;
+							document.getElementById('izquierda').disabled = true;
+							document.getElementById('derecha').disabled = false;
+						break;
+
+						case "2":
+							$('.base').unslider('animate:1');
+							tick=1;
+							document.getElementById('izquierda').disabled = false;
+							document.getElementById('derecha').disabled = false;
+						break;
+
+					}
+
+					if(parsedJson.resultado != 'error'){
+
+						$('.base').unslider('animate:0');
+
+					    	setTimeout(function(){
+
+					                  $(location).attr('href','../aliados/frm_registrar');
+					                  $('#orbis').focus();
+
+					              }, 3000);
+
+					}
+
 				},"json");
 
-		});//end save*/
+		});//end save
+
+
 
 
 	});
+
+
 
 
 //################################  VALIDACIONES############################################
@@ -2726,7 +2659,7 @@ function menor(){
 	              $('#seca').maxLength(99);$('#rf_competencia').maxLength(99);$('#ls_competencia').maxLength(99);$('#observacion').maxLength(99);
 	              $('#a_modelo').maxLength(20);$('#a_serial').maxLength(20);$('#a_activo_f').maxLength(12);$('#a_comodato').maxLength(11);
 	});
-
+  
             function alsaliro4(e){
                var caso1=document.getElementById(e).value;
                 if(caso1.length < 4){
@@ -2943,10 +2876,10 @@ function esacceso1(e) {
 
 function esreferencia(e) {
 
-	k = (document.all) ? e.keyCode : e.which;
 	if (k==8 || k==0 || k==13) return true;
 	patron = /^[A-ZÑ0-9\ \.\-]$/;
 	n = String.fromCharCode(k);
+	k = (document.all) ? e.keyCode : e.which;
 
                     if(patron.test(n)==''){
 
@@ -3188,7 +3121,7 @@ function esrefcomp(e) {
 
 	k = (document.all) ? e.keyCode : e.which;
 	if (k==8 || k==0 || k==13) return true;
-	patron = /^[A-ZÑ0-9\ \.\-]$/;
+	patron = /^[A-Z0-9\ \.\-]$/;
 	n = String.fromCharCode(k);
 
                     if(patron.test(n)==''){
@@ -3210,7 +3143,7 @@ function eslineasecomp(e) {
 
 	k = (document.all) ? e.keyCode : e.which;
 	if (k==8 || k==0 || k==13) return true;
-	patron = /^[A-ZÑ0-9\ \.\-]$/;
+	patron = /^[A-Z0-9\ \.\-]$/;
 	n = String.fromCharCode(k);
 
                     if(patron.test(n)==''){
@@ -3358,16 +3291,12 @@ function sig_1(){
 
 }
 
-
-
 function sig_2(){
 
 	var vuelta33=document.getElementById("aviso");
 	vuelta33.focus();
 
 }
-
-//************************************************************************/
 
 	        function esnombre2(v) {
               var caso2=document.getElementById('propietario').value;
@@ -3386,7 +3315,7 @@ function sig_2(){
              }//end else
 			}
 
-//************************************************************************/
-
  </script>
  <?php include_once("../layouts/pie.php") ?>
+
+

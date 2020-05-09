@@ -185,7 +185,7 @@ switch ($action){
 
 			if($consulta == null){
 
-					if($rol != 3 || $rol != 2){
+					if($rol == 1 || $rol == 4){
 
 						//$distribuidora=1;
 
