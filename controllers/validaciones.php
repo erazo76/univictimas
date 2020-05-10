@@ -14,8 +14,8 @@ if($usuario_id != ""){
 		$html = "";
 
 
-			if (!preg_match('`^[\0\d]{4}[-]([\d]{3}[-])[\d]{4}$`',$telefono)){
-				$html .='	<li id="conf_tel" class="invalid">    Utilice formato telefónico "0XXX-XXX-XXXX"</li>';
+			if (!preg_match('`^[\d]{3}[-]([\d]{3}[-])[\d]{4}$`',$telefono)){
+				$html .='	<li id="conf_tel" class="invalid">    Utilice formato telefónico "XXX-XXX-XXXX"</li>';
 			}else{
 				$html .='	<li id="conf_tel" class="valid">    Correcto</li>';
 			}
@@ -30,8 +30,8 @@ if($usuario_id != ""){
 		$html = "";
 
 
-			if (!preg_match('`^[\0\d]{4}[-]([\d]{3}[-])[\d]{4}$`',$telefono)){
-				$html .='	<li id="conf_tel2" class="invalid">    Utilice formato telefónico "0XXX-XXX-XXXX"</li>';
+			if (!preg_match('`^[\d]{3}[-]([\d]{3}[-])[\d]{4}$`',$telefono)){
+				$html .='	<li id="conf_tel2" class="invalid">    Utilice formato telefónico "XXX-XXX-XXXX"</li>';
 			}else{
 				$html .='	<li id="conf_tel2" class="valid">    Correcto</li>';
 			}
@@ -77,7 +77,23 @@ if($usuario_id != ""){
 
 	}	
 
- 
+	if($action == "validar5"){
+
+		$html = "";
+
+
+			if(!preg_match('`^[_a-zA-Z0-9-]+(.[_a-zA-Z0-9-]+)*@([_a-zA-Z0-9-]+.)*[a-zA-Z0-9-]{2,200}.[a-zA-Z]{2,6}$`', $correo)){
+		
+			//if (!filter_var($correo, FILTER_VALIDATE_EMAIL)){
+				$html .='	<li id="conf_cor2" class="invalid">    Utilice el formato de correo "XXXX@XXXX.XX"</li>';
+			}else{
+				$html .='	<li id="conf_cor2" class="valid">    Correcto</li>';
+			}
+
+
+		echo $html;
+
+	} 
 
 
 }//end if principal

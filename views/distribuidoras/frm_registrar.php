@@ -18,13 +18,13 @@ ValidaSession("../login");
 		  <div class="box box-primary">
 
 			<div class="box-header with-border">
-			  <h3 class="box-title">Registrar Dependencia</h3>
+			  <h3 class="box-title">Registrar Departamento</h3>
 			</div><!-- /.box-header -->
 			<!-- form start -->
 			  <div class="box-body">
 
 						<div class="form-group">
-						  <label for="nombre">Nombre de la Ddependencia</label>
+						  <label for="nombre">Nombre del Depatamento</label>
 						  <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre de la distribuidora" onkeypress="return esnombre(event);" onblur="alsalir(this.id)" tabindex="1">
 						  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' ></div>
 						</div>

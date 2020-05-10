@@ -25,7 +25,7 @@ VerificarAdmin($_SESSION['rolx']);
 									<th>Nombre y Apellido</th>
 									<th>Correo</th>
 									<th>Perfil</th>
-									<th>Dependencia</th>
+									<th>Departamento</th>
 
 								</tr>
 							</thead>
@@ -38,7 +38,7 @@ VerificarAdmin($_SESSION['rolx']);
 									<th>Nombre y Apellido</th>
 									<th>Correo</th>
 									<th>Perfil</th>
-									<th>Dependencia</th>
+									<th>Departamento</th>
 								</tr>
 							</tfoot>
 						</table>

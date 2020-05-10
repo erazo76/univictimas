@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-
+		<style type="text/css">
+			.multiselect-container {
+				width: 100% !important;
+			}
+		</style>
 	<?php
     //----------------------------------------------------------------
 	     echo $constante["tipo_documento"];

@@ -35,7 +35,7 @@ VerificarAdmin($_SESSION['rolx']);
 				</div>
 
 				<div class="form-group">
-					<label for="distribuidora">Dependencia</label>
+					<label for="distribuidora">Departamento</label>
 					<select id="distribuidora" class="form-control" tabindex="3">
 					<option></option>
 					</select>

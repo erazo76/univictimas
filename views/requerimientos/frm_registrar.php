@@ -19,14 +19,16 @@ ValidaSession("../login");
 	<ul>
  		<li id="uno"> <!--################################## Información General del Evento ##################################  -->
 
-			<div class="col-md-12">
+			<!--<div class="col-md-4">
+				<div class="box-header with-border" tabindex="-1">
+					 	<h3 class="box-title">Información General del Evento</h3>
+				</div> 
+			</div>-->
+
+			<div class="col-md-4">
 				<div class="box-header with-border" tabindex="-1">
 					 	<h3 class="box-title">Información General del Evento</h3>
 				</div><!-- /.box-header -->
-			</div>
-
-			<div class="col-md-4">
-		 	
 		  		<div class="box box-primary">
 						<input type="hidden" id="distribuidora" value="<?php echo intval($_SESSION['distribuidora']); ?>">
 						<input type="hidden" id="region" value="<?php echo intval($_SESSION['region']); ?>">
@@ -37,18 +39,18 @@ ValidaSession("../login");
 
 						 	<div class="form-group-sm">
 							  <label for="n_accion">Nro. Acción</label>
-							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de actividad"  onpaste="return false" tabindex="1">
+							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de actividad"  onpaste="return false" tabindex="1" disabled="true">
 							</div>
 
 							<div class="form-group-sm">
 							  <label for="nombre">Nombre de la Actividad</label>
-							  <input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad"  onpaste="return false" tabindex="2" onkeypress="return esnombre(event);"  onblur="alsalir(this.id)"  >
+							  <input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad"  onpaste="return false" tabindex="2" onkeypress="return esnombre(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' class="aaa"><p></p></div>
 							</div>
 
 							<div class="form-group-sm">
 							  <label for="fecha1">Fecha de Solicitud</label>
-							  <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="3">
+							  <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="3" disabled="true">
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha1' class="aaa"><p></p></div>
 							</div>
 
@@ -61,7 +63,7 @@ ValidaSession("../login");
 
 							<div class="form-group-sm">
 							  <label for="depa">Departamento</label>
-							  <input type="text" class="form-control bbb" id="depa" placeholder="Departamento"  onpaste="return false" tabindex="5">
+							  <input type="text" class="form-control bbb" id="depa" placeholder="Departamento"  onpaste="return false" tabindex="5" disabled="true">
 							</div>
 
 							<div class="form-group-sm">
@@ -78,85 +80,68 @@ ValidaSession("../login");
 								</select>
 							</div>
 
+
+
+						<div class="form-group-sm">
+							<label >Dirección de la Actividad</label>
+							
+								<div class = "input-group">
+
+									<span class="input-group-btn">
+										<select id="a_primario" class="btn-sm"  tabindex="8"  >
+											<option value="0">Avenida</option>
+											<option value="1">Calle</option>
+											<option value="2">Carrera</option>
+											<option value="3">Vereda</option>
+											<option value="4">Callejón</option>
+											<option value="5">Carretera</option>
+											<option value="6">Autopista</option>
+										</select>
+									</span>
+										<input type="text" id="acceso1" class="form-control bbb" placeholder="Principal"  onpaste="return false" tabindex="9" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
+									
+								</div>
+								
+						
+
+								<div class="input-group">
+									<span class="input-group-addon"><span class="fa fa-slack"></span></span>
+									<input type="text" id="acceso2" class="form-control bbb" placeholder="Secundario"  onpaste="return false" tabindex="10" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
+									<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+									<span class="input-group-addon"><span class="fa fa-minus"></span></span>
+									<span><input type="text" id="num_dir" class="form-control bbb" placeholder="Numero"  onpaste="return false" tabindex="11" onkeypress="return esnumdir(event);" onblur="alsalir(this.id)">
+										
+								</div>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_dir' class="aaa"><p></p></div>
 						</div>
-		 		</div>
+						<div class="form-group-sm">
+							<label >Referencia</label>
+								<div class = "input-group">
+
+									<span class="input-group-btn">
+										<select id="a_referencia" class="btn-sm"  tabindex="12"  >
+											<option value="0">Al lado</option>
+											<option value="1">Cerca</option>
+											<option value="2">Frente</option>
+											<option value="3">Diagonal</option>
+											<option value="4">Detras</option>
+											<option value="5">Via</option>
+											<option value="6">Dentro</option>
+										</select>
+									</span>
+
+									<input type="text" class="form-control bbb" id="referencia" placeholder="Ingrese una referencia"  onpaste="return false" tabindex="13" onkeypress="return esreferencia(event);" onblur="alsalir(this.id)">
+								</div>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_referencia' class="aaa"><p></p></div>
+						</div>
+					</div>
+						 
+		  		</div>
+
 			</div>
 
 		  <div class="col-md-4">
-
-				<div class="box-header with-border">
-					<h3 class="box-title">Dirección de la Actividad</h3>
-				</div><!-- /.box-header -->	
-
-		  	<div class="box box-primary">
-
-				<div class="box-body">
-
-					<div class="form-group-sm">
-						<label >Dirección</label>
-						
-	                        <div class = "input-group">
-
-								<span class="input-group-btn">
-									<select id="a_primario" class="btn-sm"  tabindex="8"  >
-										<option value="0">Avenida</option>
-										<option value="1">Calle</option>
-										<option value="2">Carrera</option>
-										<option value="3">Vereda</option>
-										<option value="4">Callejón</option>
-										<option value="5">Carretera</option>
-										<option value="6">Autopista</option>
-									</select>
- 								</span>
-									<input type="text" id="acceso1" class="form-control bbb" placeholder="Principal"  onpaste="return false" tabindex="9" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
-								
-							</div>
-	            			<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
-					</div>
-
-					<div class="form-group-sm">
-						  
-						<div class="row">
-	  						  <div class="col-sm-6">
-								<div class="input-group">
-								    <span class="input-group-addon"><span class="fa fa-slack"></span></span>
-								    <input type="text" id="acceso2" class="form-control bbb" placeholder="Secundario"  onpaste="return false" tabindex="10" onkeypress="return esacceso(event);" onblur="alsalir(this.id)">
-								</div>
-							  </div>
-
-							  <div class="col-sm-6">
-								<div class="input-group">
-								    <span class="input-group-addon"><span class="fa fa-minus"></span></span>
-								    <span><input type="text" id="num_dir" class="form-control bbb" placeholder="Numero"  onpaste="return false" tabindex="11" onkeypress="return esacceso2(event);" onblur="alsalir(this.id)">
-								</div>
-							  </div>
-						</div>				
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso2' class="aaa"><p></p></div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_dir' class="aaa"><p></p></div>
-					</div>
-
-					<div class="form-group-sm">
-						<label >Referencia</label>
-	                        <div class = "input-group">
-
-								<span class="input-group-btn">
-									<select id="a_referencia" class="btn-sm"  tabindex="12"  >
-										<option value="0">Al lado</option>
-										<option value="1">Cerca</option>
-										<option value="2">Frente</option>
-										<option value="3">Diagonal</option>
-										<option value="4">Detras</option>
-										<option value="5">Via</option>
-										<option value="6">Dentro</option>
-									</select>
- 								</span>
-
-								<input type="text" class="form-control bbb" id="referencia" placeholder="Ingrese una referencia"  onpaste="return false" tabindex="13" onkeypress="return esreferencia(event);" onblur="alsalir(this.id)">
-							</div>
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_referencia' class="aaa"><p></p></div>
-					</div>
- 				</div>
-			</div>
 
 			<div class="box-header with-border">
 					<h3 class="box-title">Inicio y Final de la Actividad</h3>
@@ -178,7 +163,7 @@ ValidaSession("../login");
 
 						<div class="col-sm-6">
 							
-								<label for="fecha2">Fecha Final</label>
+								<label for="fecha3">Fecha Final</label>
 								<input class="form-control bbb" id="fecha3" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="15">
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha3' class="aaa"><p></p></div>
 													
@@ -212,12 +197,7 @@ ValidaSession("../login");
 			  </div>
 			</div>
 
-
-		  </div>
-
-		  <div class="col-md-4">
-
-		  		<div class="box-header with-border">
+				<div class="box-header with-border">
 					<h3 class="box-title">Responsable Territorial</h3>
 				</div><!-- /.box-header -->		
 
@@ -226,72 +206,41 @@ ValidaSession("../login");
 						<div class="box-body">
 							<label>Nombres</label>
 							<div class="input-group">
-								<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="18" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  >
+								<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="18" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
 								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control bbb" id="rt_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="19" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)"  >
+								<input type="text" class="form-control bbb" id="rt_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="19" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
 							</div>
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_nombre1' class="aaa"><p></p></div>
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_nombre2' class="aaa"><p></p></div>
-
+							
 							<label>Apellidos</label>
 							<div class="input-group">
-								<input type="text" class="form-control bbb" id="rt_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="20" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  >
+								<input type="text" class="form-control bbb" id="rt_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="20" onkeypress="return esapellido1(event);"  onblur="alsalir(this.id)"  autocomplete="off">
 								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control bbb" id="rt_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="21" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)"  >
+								<input type="text" class="form-control bbb" id="rt_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="21" onkeypress="return esapellido1(event);"  onblur="alsalir(this.id)" autocomplete="off" >
 							</div>
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_apellido1' class="aaa"><p></p></div>
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_apellido2' class="aaa"><p></p></div>
-															
-							
-						</div>
-				 
-				
-					</div>
+														
+							<div class="form-group-sm">
+								<label >Documento de Identidad</label>
+									<div class = "input-group">
 
-					<div class="box-header with-border">
-						<h3 class="box-title">Coordenadas geográficas</h3>
-					</div><!-- /.box-header -->
+										<span class="input-group-btn">
+											<select id="rt_tdoc" class="btn-sm"  tabindex="22"  >
+												<option value="0">CC</option>
+												<option value="1">CE</option>
+												<option value="2">PA</option>
+											</select>
+										</span>
 
-				<div class="box box-primary">
-
-						<div class="box-body">
-
-        
-
-
-							<div class="focusguard" id="guardia1" tabindex="22"></div>
-						  		
-						</div>
-		 		</div><!-- /.box -->
-			</div>
-		</li>
-
-		<li id="dos"> <!--################################## DATOS DE CONTACTO Y COMERCIALES ##################################  -->
-
-			<div class="col-md-4">
-
-				<div class="box-header with-border">
-					 	<h3 class="box-title">Datos de contacto</h3>
-				</div><!-- /.box-header -->
-
-		  		<div class="box box-primary">
-						<!-- form start -->
-						<div class="box-body">
+										<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="23" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off">
+									</div>
+									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_num_doc' class="aaa"><p></p></div>
+							</div>	
 
 							<div class="form-group-sm">
-							  <label for="propietario">Dueño/Responsable del establecimiento</label>
-							  <input type="text" class="form-control ccc" id="propietario" placeholder="Ingrese nombre del dueño/responsable"  onpaste="return false" tabindex="222" onkeypress="return espropietario(event);" onblur="return esnombre2(this.value);">
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_propietario' ></div>
-							</div>
-
-								<div id="confirma_nombre">
-									<ul><li id="conf_nom" style="color:#fff;text-align:center" ></li></ul>
-								</div>
-
-							<div class="form-group-sm">
-							  <label for="tele1">Teléfono de contacto principal</label>
-							  <input type="text" class="form-control ccc" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="223" onkeypress="return estele1(event);" onblur="alsalir3(this.id)" >
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' ></div>
+							  <label for="tele1">Teléfono de contacto</label>
+							  <input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
 							</div>
 
 								<div id="confirma_telefono">
@@ -299,9 +248,71 @@ ValidaSession("../login");
 								</div>
 
 							<div class="form-group-sm">
-							  <label for="tele2">Teléfono de contacto secundario</label>
-							  <input type="text" class="form-control ccc" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele2(event);" onblur="alsalir3(this.id)">
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele2' ></div>
+							  <label for="correo1">Correo electrónico</label>
+							  <input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="25" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' class="aaa"></div>
+							</div>
+
+								<div id="confirma_correo">
+									<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
+								</div>							
+							
+							
+						</div>
+				 
+				
+					</div>
+
+
+		  </div>
+
+		  <div class="col-md-4">
+
+		  		<div class="box-header with-border">
+					<h3 class="box-title">Responsable Nacional</h3>
+				</div><!-- /.box-header -->	
+
+					<div class="box box-primary">
+
+						<div class="box-body">
+							<label>Nombres</label>
+							<div class="input-group">
+								<input type="text" class="form-control bbb" id="rn_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="26" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+								<input type="text" class="form-control bbb" id="rn_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="27" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off">
+							</div>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_nombre1' class="aaa"><p></p></div>
+							
+							<label>Apellidos</label>
+							<div class="input-group">
+								<input type="text" class="form-control bbb" id="rn_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="28" onkeypress="return esapellido2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+								<input type="text" class="form-control bbb" id="rn_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="29" onkeypress="return esapellido2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
+							</div>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_apellido1' class="aaa"><p></p></div>
+							
+							
+							<div class="form-group-sm">
+								<label >Documento de Identidad</label>
+									<div class = "input-group">
+
+										<span class="input-group-btn">
+											<select id="rn_tdoc" class="btn-sm"  tabindex="30"  >
+												<option value="0">CC</option>
+												<option value="1">CE</option>
+												<option value="2">PA</option>
+											</select>
+										</span>
+
+										<input type="text" class="form-control bbb" id="rn_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="31" onkeypress="return escedula2(event);" onblur="alsalira(this.id)">
+									</div>
+									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_num_doc' class="aaa"><p></p></div>
+							</div>	
+
+							<div class="form-group-sm">
+							<label for="tele2">Teléfono de contacto</label>
+							<input type="text" class="form-control bbb" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="32" onkeypress="return estele2(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele2' class="aaa"></div>
 							</div>
 
 								<div id="confirma_telefono2">
@@ -309,15 +320,150 @@ ValidaSession("../login");
 								</div>
 
 							<div class="form-group-sm">
-							  <label for="correo1">Correo electrónico</label>
-							  <input type="text" class="form-control ccc" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="25" onkeypress="return escorreo(event);" onblur="alsalir3(this.id)">
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' ></div>
+							<label for="correo2">Correo electrónico</label>
+							<input type="text" class="form-control bbb" id="correo2" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="33" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo2' class="aaa"></div>
 							</div>
 
-								<div id="confirma_correo">
-									<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
-								</div>
+								<div id="confirma_correo2">
+									<ul><li id="conf_cor2" style="color:#fff;text-align:center" ></li></ul>
+								</div>							
+							
+							
+						</div>
 
+
+					</div>
+
+					<div class="box-header with-border">
+						<h3 class="box-title">Otros datos</h3>
+					</div><!-- /.box-header -->
+
+				<div class="box box-primary">
+
+						<div class="box-body">
+
+							<div class="form-group-sm">
+								<label>Pertenencia de la actividad</label>
+								<select id="pertenencia" class="form-control bbb" tabindex="34">
+								<option></option>
+								</select>
+							</div>
+        
+							<div class="form-group-sm">
+								<label>Grupo/Área/Equipo/Dependencia</label>
+								<select id="grupo" class="form-control bbb" tabindex="35">
+								<option></option>
+								</select>
+							</div>
+
+							<div class="focusguard" id="guardia1" tabindex="36"></div>
+						  		
+						</div>
+		 		</div><!-- /.box -->
+			</div>
+		</li>
+
+		<li id="dos"> <!--################################## INFORMACIÓN RELACIONADA CON EL TIPO DE ACTIVIDAD ##################################  -->
+
+			<div class="col-md-4">
+
+				<div class="box-header with-border">
+					 	<h3 class="box-title">Tipo de Actividad</h3>
+				</div><!-- /.box-header -->
+
+		  		<div class="box box-primary">
+						<!-- form start -->
+						<div class="box-body" >
+						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #ecf0f5;">
+							<div class="form-group sm" >
+								<label>Individual</label></br>
+								<select id="tipo1" class="form-control" multiple="multiple" tabindex="0">
+									<option value="0">Jornada Diferencial</option>
+									<option value="1">Feria de Servicios</option>
+									<option value="2">Conmemoración</option>
+									<option value="3">Iniciativa Local de Memoria</option>
+									<option value="4">Acto de Reconocimiento</option>
+									<option value="5">Orden Judicial</option>
+									<option value="6">Taller por Linea de Inversion</option>
+									<option value="7">Entrega digna de cadáveres</option>
+									<option value="8">Charla de educación financiera </option>	
+									<option value="9">Otro</option>								
+								</select>
+								<div id="otro1a" style='display:none;'>
+									<label for="Otro1">Otro</label>
+							  		<input type="text" class="form-control" id="otro1" placeholder="Indique otro tipo de actividad"  onpaste="return false" tabindex="38" onkeypress="return esotro1(event);" onblur="return alsalir4(this.value);" >
+							  		<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_esotro1' ></div>
+								</div>								
+							</div>
+						</div>
+						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #ecf0f5;">
+							<div class="form-group sm">
+								<label>Retornos y Reubicaciones</label></br>
+								<select id="tipo2" class="form-control" multiple="multiple" tabindex="0">
+									<option value="0">Integración Comunitaria</option>
+									<option value="1">Retorno</option>
+									<option value="2">Reubicacion</option>
+									<option value="3">Esquemas Especiales de Acompañamiento</option>
+									<option value="4">Casos Emblemáticos</option>
+									<option value="5">Seguimiento procesos Retornos y Reubicaciones</option>
+								</select>
+							</div>
+						</div>	
+						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #ecf0f5;">
+							<label>Colectiva</label></br>
+						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #bdd3ff; background-color: #E8F0FF">	
+							<div class="form-group sm">
+
+								<label>Nombre del Sujeto de Reparación</label></br>
+
+								<select id="tipo3" class="form-control" multiple="multiple" tabindex="0">
+									<option value="0">Comunidad</option>
+									<option value="1">Comunidad Campesina</option>
+									<option value="2">Grupo</option>
+									<option value="3">Organizaciones</option>
+									<option value="4">Organización de Mujeres</option>
+								</select>
+
+								<select id="tipo4" class="form-control" multiple="multiple" tabindex="0">
+									<option value="0">Indígena</option>
+									<option value="1">Ancestral</option>
+									<option value="2">RROM o Gitano</option>
+									<option value="3">Afrocolombiana</option>
+									<option value="4">Negra</option>
+								</select>								
+							</div>
+
+						    <div class="form-group-sm">
+							  <label>Atividad de ruta</label>
+	                            <div class = "input-group">
+								      <span class = "input-group-addon">
+	                                     <input type = "checkbox" tabindex="0" id="aruta">
+									  </span>
+									  <input type="text" class="form-control ccc" id="afase" placeholder="Indique la fase en que se ecuentra"  onpaste="return false" tabindex="0" onkeypress="return esafase(event);" onblur="return alsalir4(this.value);" disabled>
+								</div>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_afase' ></div>
+							</div>
+						</div>
+						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #bdd3ff; background-color: #E8F0FF">
+							<label>ID del Sujeto de Reparación</label></br>
+						    <div class="form-group-sm">
+							  <label>Implementación del PIRC aprobado</label>
+	                            <div class = "input-group">
+								      <span class = "input-group-addon">
+	                                     <input type = "checkbox" tabindex="0" id="apirc">
+									  </span>
+									  <input type="text" class="form-control ccc" id="amedida" placeholder="Indique el tipo de medida"  onpaste="return false" tabindex="0" onkeypress="return esamedida(event);" onblur="return alsalir4(this.value);" disabled>
+								</div>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_amedida' ></div>
+									<div id="idacc" style='display:none;'>
+										<label for="idaccion" id="guardia77" tabindex="0">Id Acción</label>
+										<input type="text" class="form-control ccc" id="idaccion" placeholder="Indique Id de la accion"  onpaste="return false" tabindex="45" onkeypress="return esidaccion(event);" onblur="return alsalir4(this.value);" >
+										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_idaccion' ></div>
+									</div>							
+							</div>
+						</div>	
+						</div>
 						</div><!-- /.box-body -->
 		 		</div><!-- /.box -->
 			</div>
@@ -329,50 +475,10 @@ ValidaSession("../login");
 				</div><!-- /.box-header -->
 
 		  		<div class="box box-primary">
-
 						<!-- form start -->
 						<div class="box-body">
 
-							<div class="form-group">
-								<label>Frecuencia de visita</label></br>
-								<select id="dias" class="form-control" multiple="multiple" tabindex="26">
-									<option value="0">Lunes</option>
-									<option value="1">Martes</option>
-									<option value="2">Miercoles</option>
-									<option value="3">Jueves</option>
-									<option value="4">Viernes</option>
-									<option value="5">Sabado</option>
-								</select>
-							</div>
-
-							<div class="form-group-sm">
-							  <label for="caja_t">Total de cajas semanales</label>
-							  <input type="text" class="form-control ccc" id="caja_t" placeholder="Ingrese total de cajas semanales"  onpaste="return false" tabindex="0" onkeypress="return escajat(event);" onblur="alsalir4(this.id);sig_1()">
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_caja_t' ></div>
-							</div>
-
-							<div class="form-group-sm">
-							  <label for="caja_p">Cajas propias semanales</label>
-							  <input type="text" class="form-control ccc" id="caja_p" placeholder="Ingrese cajas propias semanales"  onpaste="return false" tabindex="28" onkeypress="return escajap(event);" onblur="alsalir4(this.id);menor()">
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_caja_p' ></div>
-							</div>
-
-							<div class="form-group-sm">
-							  <label for="caja_o">Cajas objetivo semanales</label>
-							  <input type="text" class="form-control" id="caja_o" placeholder="Cajas  objetivo semanales" readonly="true" onfocus="cajas_obj();" tabindex="29">
- 							</div>
-
-							<div class="form-group-sm">
-								<label>Medio de despacho</label>
-								<select id="despacho" class="form-control ccc" tabindex="30" >
-								    <option value="0">Independiente</option>
-								    <option value="1">Directo</option>
-								    <option value="2">Avance</option>
-								</select>
-							</div>
-
-						 </div><!-- /.box-body -->
-
+						</div><!-- /.box-body -->
 		 		</div><!-- /.box -->
 			</div>
 
@@ -386,67 +492,7 @@ ValidaSession("../login");
 
 						<!-- form start -->
 						<div class="box-body">
-
-						    <div class="form-group-sm">
-							  <label>Descuento</label>
-	                            <div class = "input-group">
-								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="31" id="descu">
-	                                  </span>
-	                                   	<select id="descuento" class="form-control ccc" tabindex="32" disabled>
-									      <option value="0">0 %</option>
-									      <option value="1">1 %</option>
-									      <option value="2">1,5 %</option>
-									      <option value="3">2 %</option>
-									      <option value="4">2,5 %</option>
-									      <option value="5">3 %</option>
-									      <option value="6">3,5 %</option>
-									      <option value="7">4 %</option>		
-									      <option value="8">4,5 %</option>
-									      <option value="9">5 %</option>								      
-							            </select>
-	            				</div>
-							</div>
-
-							<div class="form-group-sm">
-							  <label>Línea seca</label>
-
-								<div class="input-group">
-								    <input type="text"  class="form-control ccc" id="seca" placeholder="Indique productos línea seca propios"  onpaste="return false" tabindex="33" onkeypress="return eslineaseca(event);" onblur="alsalira(this.id)">
-								    <span class="input-group-addon" ><span class="fa fa-question-circle" id="h_seca"></span>
-									
-								    </span>									
-								</div>
-						   
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_seca' ></div>
-							</div>  
-
-							<div class="form-group-sm">
-								<label>Refrigerado competencia</label>
-								<div class="input-group">
-									<input type="text"  class="form-control ccc" id="rf_competencia" placeholder="Indique productos refrigerados de la competencia"  onpaste="return false" tabindex="34" onkeypress="return esrefcomp(event);" onblur="alsalira(this.id)">
-								    <span class="input-group-addon" ><span class="fa fa-question-circle" id="h_rcompetencia"></span>
-									
-								    </span>									
-								</div>
-								
-								
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rf_competencia' ></div>
-							</div>
-
-							<div class="form-group-sm">
-								<label>Línea seca competencia</label>
-								<div class="input-group">
-									<input type="text"  class="form-control ccc" id="ls_competencia" placeholder="Indique productos línea seca de la competencia"  onpaste="return false" tabindex="35" onkeypress="return eslineasecomp(event);" onblur="alsalira(this.id)">
-								    <span class="input-group-addon" ><span class="fa fa-question-circle" id="h_scompetencia"></span>
-									
-								    </span>								
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_ls_competencia' ></div>
-							</div>
-
-							<div class="focusguard" id="guardia2" tabindex="36"></div>
-
+						<div class="focusguard" id="guardia2" tabindex="46"></div>
 						</div><!-- /.box-body -->
 
 		 		</div><!-- /.box -->
@@ -466,79 +512,9 @@ ValidaSession("../login");
 
 						<div class="box-body">
 
-						    <div class="form-group">
-							  <label>Neveras propias</label>
-	                            <div class = "input-group">
-								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="37" id="a_propio">
-	                                  </span>
-	                                   	<select id="lab_propio" class="form-control" tabindex="-1" disabled>
-									      <option value="0">No existen neveras</option>
-									      <option value="1">Exiten neveras</option>
-    						            </select>	                                  
-									  <span class="input-group-addon" ><span class="fa fa-question-circle" id="h_apropios"></span>
-									
-								      </span>	
-	            				</div>
-							</div>
 
-							<div class="form-group">
-								<label>Otras neveras</label></br>
-								<select id="activo" class="form-control" multiple="multiple" tabindex="38" >
-									<option value="4">Ninguno</option>
-									<option value="1">Competencia</option>
-									<option value="2">Propietario</option>
-									<option value="3">Distribuidor</option>
-									<!--<option value="0">Propios</option>-->
-								</select>
-							</div>
-
-							<div class="form-group">
-								<label>Toldos</label></br>
-								<select id="toldo" class="form-control" multiple="multiple" tabindex="0" >
-									<option value="4">Ninguno</option>
-									<option value="1">Competencia</option>
-									<option value="2">Propietario</option>
-									<option value="3">Distribuidor</option>
-									<option value="0">Propios</option>
-									
-								</select>
-							</div>
-
-							<div class="form-group">
-								<label>Avisos</label></br>
-								<select id="aviso" class="form-control" multiple="multiple" tabindex="0" >
-									<option value="4">Ninguno</option>
-									<option value="1">Competencia</option>
-									<option value="2">Propietario</option>
-									<option value="3">Distribuidor</option>
-									<option value="0">Propios</option>
-								</select>
-							</div>
-
-							<div class="form-group">
-								<label>Fachadas</label></br>
-								<select id="fachada" class="form-control" multiple="multiple" tabindex="0">
-									<option value="4">Ninguno</option>
-									<option value="1">Competencia</option>
-									<option value="2">Propietario</option>
-									<option value="3">Distribuidor</option>
-									<option value="0">Propios</option>
-								</select>
-							</div>
-
-							<div class="form-group-sm">
-								<label>Observaciones</label>
-								<input type="text"  class="form-control" id="observacion" placeholder="Ingrese observaciones"  onpaste="return false" tabindex="0" onkeypress="return esobservacion(event);" onblur="alsalira(this.id)">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_observacion' ></div>
-							</div>
 						</div>
 
-						  <div class="box-footer">
-							<button id="save" type="button" class="btn btn-success" tabindex="0"><i class="fa fa-fw fa-save"></i>Guardar</button>
-							<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="-1"><i class="fa fa-fw fa-reply"></i>Regresar</button>
-							<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
-						  </div>
 						
 				</div><!-- /.box-body -->
 
@@ -546,46 +522,7 @@ ValidaSession("../login");
 		 	</div>
 
 			<div class="col-md-8">
-<div id="oculto" style='display:none;'>
-	
-		
-					<div class="box-header with-border">
-					 	<h3 class="box-title">Neveras propias</h3>
-					</div><!-- /.box-header -->
-	<div class="box">			
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap">
-							<table id="tabla" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th>Id</th>
-										<th>Marca</th>
-										<th>Modelo</th>
-										<th>Serial</th>
-										<th>Activo fijo</th>
-										<th width="131px">Comodato N°</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-								<tfoot>
-									<tr>
-										<th>Id</th>
-										<th>Marca</th>
-										<th>Modelo</th>
-										<th>Serial</th>
-										<th>Activo fijo</th>
-										<th width="131px">Comodato N°</th>
-									</tr>
-								</tfoot>
-							</table>
-					</div>
-				
-					<div class="box-footer">
-						<button id="agregar" type="button" class="btn btn-primary"><i class="fa fa-fw fa-plus"></i>Agregar activo</button>
-					   	<button id="quitar" type="button" class="btn btn-danger"><i class="fa fa-fw fa-minus"></i>Desincorporar activo</button>
-					</div>
-	</div>
-</div>			 
+		 
 			</div><!-- /.box-body -->
 </div>
 	    </li>
@@ -749,6 +686,7 @@ $(document).ready(function() {
 
 
 $('#dias > option[value="0"]').attr('selected', 'selected');
+//$('#tipo1 > option[value="0"]').attr('selected', 'selected');
 $('#toldo > option[value="4"]').attr('selected', 'selected');
 $('#aviso > option[value="4"]').attr('selected', 'selected');
 $('#fachada > option[value="4"]').attr('selected', 'selected');
@@ -770,7 +708,7 @@ $('#tele1').mask('A000-000-0000', {
 
     		 'A': {
 
-        			pattern: /[0]/, optional: false
+        			pattern: /[0]/, optional: true
 
      		        }
 
@@ -786,7 +724,7 @@ $('#tele2').mask('A000-000-0000', {
 
     		 'A': {
 
-        			pattern: /[0]/, optional: false
+        			pattern: /[0]/, optional: true
 
      		        }
 
@@ -814,9 +752,9 @@ $("#derecha" ).click(function() {
 
 		var cont_alert =$('.bbb').filter(function() { return $(this).val() == ""; }).size();
 		//var cont_alert = $('.aaa p:contains("") ').size();
-
-		if(cont_alert!=0){
-
+//alert(cont_alert);
+		//if(cont_alert!=0){
+			if(cont_alert > 30){	
 			//alert('existen campos vacios');
 
 						$.confirm({
@@ -831,53 +769,7 @@ $("#derecha" ).click(function() {
 
 		}else{
 
-				$.post( "../../controllers/maliados_controller", {
-
-					action: "add_temp1",
-					sorbis: $("#s_orbis").val(),
-					orbis: $("#orbis").val(),
-					nombre: $("#nombre").val(),
-					razon: $("#razon").val(),
-					segmento: $("#segmento").val(),
-					cedula: $("#cedula").val(),
-					l_cedula: $("#l_cedula").val(),
-					fecha1: $("#fecha1").val(),
-					fecha2: $("#fecha2").val(),
-					departamento: $("#departamento").val(),
-					municipio: $("#municipio").val(),
-					ciudad: $("#ciudad").val(),
-					sector: $("#sector").val(),
-					parroquia: $("#parroquia").val(),
-					a_principal: $("#a_principal").val(),
-					acceso1: $("#acceso1").val(),
-					a_secundario: $("#a_secundario").val(),
-					acceso2: $("#acceso2").val(),
-					referencia: $("#referencia").val(),
-					zona: $("#zona").val(),
-					territorio: $("#territorio").val(),
-					territorio_g: $("#territorio_g").val(),
-					latitud: $("#latitud").val(),
-					longitud: $("#longitud").val()
-
-				}).done(function(data){
-
-					var parsedJson = $.parseJSON(data);
-					$(".message").html(parsedJson.mensaje);
-
-					if(parsedJson.resultado != 'error'){
-
-						setTimeout(function(){
-							$(".alert").alert('close');
-						}, 1500);
-
-					}else{
-
-
-					}
-
-
-				},"json");	
-
+			document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 			$('.base').unslider('animate:1');
 			tick=1;
 			document.getElementById('izquierda').disabled = false;
@@ -975,13 +867,13 @@ $("#derecha" ).click(function() {
 $("#izquierda" ).click(function() {
 
 	if(tick==1){
-
+		document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 		$('.base').unslider('animate:0');
 		tick=0;
 		document.getElementById('izquierda').disabled = true;
 
 	}else if(tick==2){
-
+		document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 		$('.base').unslider('animate:1');
 		tick=1;
 		document.getElementById('derecha').disabled = false;
@@ -1051,6 +943,21 @@ $("#izquierda" ).click(function() {
 			$('#confirma_correo').hide();
 		});
 
+		$('#correo2').keyup(function() {
+			// set password variable
+			var corre = $(this).val();
+
+			$.post( "../../controllers/validaciones", { action: "validar5",correo:corre}).done(function( data ) {
+			 $("#conf_cor2").html( data );
+
+			});
+
+		}).focus(function() {
+			$('#confirma_correo2').show();
+		}).blur(function() {
+			$('#confirma_correo2').hide();
+		});		
+
 		$('.base').unslider({
 
 			keys: false,
@@ -1059,26 +966,38 @@ $("#izquierda" ).click(function() {
 
 		});
 
-		$('#fecha1').datepicker({
-			startDate: '-180m',
-    		endDate: '+0d',
-			todayBtn: false,
-		             todayHighlight: true,
-		        	autoclose: true,
+
+		$("#fecha1").datepicker("setDate", new Date());
+
+		$('#fecha2').datepicker({
+			startDate: '+0d',
+    		todayBtn: false,
+		    todayHighlight: true,
+		    autoclose: true,
 			language: 'es',
 			showOnFocus: true
 
 		});
 
-		$("#fecha2").datepicker("setDate", new Date());
+		$('#fecha3').datepicker({
+			startDate: '+0d',
+    		todayBtn: false,
+		    todayHighlight: true,
+		    autoclose: true,
+			language: 'es',
+			showOnFocus: true
 
+		});
+
+	
 		$('#guardia1').on('focus', function() {
-				$('#rt_apellido2').focus();
+			$('#pertenencia').focus();
 				var cont_alert2 =$('.bbb').filter(function() { return $(this).val() == ""; }).size();
 				//var cont_alert = $('.aaa p:contains("") ').size();
-
-				if(cont_alert2!=0){
-
+		//alert(cont_alert2);
+				//if(cont_alert2!=0){
+					if(cont_alert2  > 30 ){
+						
 						$.confirm({
 						    title: '¡existen campos vacios !', // hides the title.
 						    cancelButton: false, // hides the cancel button.
@@ -1091,69 +1010,28 @@ $("#izquierda" ).click(function() {
 
 				}else{
 
-				$.post( "../../controllers/maliados_controller", {
-
-					action: "add_temp1",
-					sorbis: $("#s_orbis").val(),
-					orbis: $("#orbis").val(),
-					nombre: $("#nombre").val(),
-					razon: $("#razon").val(),
-					segmento: $("#segmento").val(),
-					cedula: $("#cedula").val(),
-					l_cedula: $("#l_cedula").val(),
-					fecha1: $("#fecha1").val(),
-					fecha2: $("#fecha2").val(),
-					departamento: $("#departamento").val(),
-					municipio: $("#municipio").val(),
-					ciudad: $("#ciudad").val(),
-					sector: $("#sector").val(),
-					parroquia: $("#parroquia").val(),
-					a_principal: $("#a_principal").val(),
-					acceso1: $("#acceso1").val(),
-					a_secundario: $("#a_secundario").val(),
-					acceso2: $("#acceso2").val(),
-					referencia: $("#referencia").val(),
-					zona: $("#zona").val(),
-					territorio: $("#territorio").val(),
-					territorio_g: $("#territorio_g").val(),
-					latitud: $("#latitud").val(),
-					longitud: $("#longitud").val()
-
-				}).done(function(data){
-
-					var parsedJson = $.parseJSON(data);
-					$(".message").html(parsedJson.mensaje);
-
-					if(parsedJson.resultado != 'error'){
-
-						setTimeout(function(){
-							$(".alert").alert('close');
-						}, 1500);
-
-					}else{
-
-
-					}
-
-
-				},"json");						
-
 					$('.base').unslider('animate:1');
+
+					document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 
 				    setTimeout(function() {
 
-				    	$('#propietario').focus();
-				    	document.getElementById('izquierda').disabled = false;
+						document.getElementById('izquierda').disabled = false;
 				    	tick=1;
-
-				    }, 100);					
+						$('#tipo1').focus();
+						//document.getElementById("tipo1").focus();
+				    }, 800);					
 
 				}	
 
 		});
 
+		$('#guardia77').on('focus', function() {
+				$('#idaccion').focus();
+		});
+
 		$('#guardia2').on('focus', function() {
-				$('#ls_competencia').focus();
+				$('#idaccion').focus();
 				var cont_alert4 =$('.ccc').filter(function() { return $(this).val() == ""; }).size();
 				//var cont_alert = $('.aaa p:contains("") ').size();
 
@@ -1171,64 +1049,7 @@ $("#izquierda" ).click(function() {
 
 				}else{
 
-				$.post( "../../controllers/maliados_controller", {
 
-					action: "add_temp2",
-					sorbis: $("#s_orbis").val(),
-					orbis: $("#orbis").val(),
-					nombre: $("#nombre").val(),
-					razon: $("#razon").val(),
-					segmento: $("#segmento").val(),
-					cedula: $("#cedula").val(),
-					l_cedula: $("#l_cedula").val(),
-					fecha1: $("#fecha1").val(),
-					fecha2: $("#fecha2").val(),
-					departamento: $("#departamento").val(),
-					municipio: $("#municipio").val(),
-					ciudad: $("#ciudad").val(),
-					sector: $("#sector").val(),
-					parroquia: $("#parroquia").val(),
-					a_principal: $("#a_principal").val(),
-					acceso1: $("#acceso1").val(),
-					a_secundario: $("#a_secundario").val(),
-					acceso2: $("#acceso2").val(),
-					referencia: $("#referencia").val(),
-					zona: $("#zona").val(),
-					territorio: $("#territorio").val(),
-					territorio_g: $("#territorio_g").val(),
-					latitud: $("#latitud").val(),
-					longitud: $("#longitud").val(),
-					propietario: $("#propietario").val(),
-					tele1: $("#tele1").val(),
-					tele2: $("#tele2").val(),
-					correo1: $("#correo1").val(),
-					dias: $("#dias").val(),
-					caja_t: $("#caja_t").val(),
-					caja_p: $("#caja_p").val(),
-					caja_o: $("#caja_o").val(),
-					despacho: $("#despacho").val(),
-					descuento: $("#descuento").val(),
-					seca: $("#seca").val(),
-					rf_competencia: $("#rf_competencia").val(),
-					ls_competencia: $("#ls_competencia").val()
-
-				}).done(function(data){
-
-					var parsedJson = $.parseJSON(data);
-					$(".message").html(parsedJson.mensaje);
-					
-					if(parsedJson.resultado != 'error'){
-					
-						setTimeout(function(){
-							$(".alert").alert('close');
-						}, 1500);
-
-					}else{
-
-
-					}
-
-				},"json");	
 					$('.base').unslider('animate:2');
 				    setTimeout(function() {
 
@@ -1250,6 +1071,75 @@ $("#izquierda" ).click(function() {
 			maxHeight: 180,
 			inheritClass: true,
 			nonSelectedText: 'Seleccione días de visita',
+			buttonWidth: '100%'
+
+		});
+
+
+
+		$('#tipo1').multiselect({
+
+			enableClickableOptGroups: true,
+			enableCollapsibleOptGroups: false,
+
+			onChange: function(element, checked, option){
+							//var toldor = $('#toldo').val();
+							var este =(element.val());
+				if(checked === true) {
+
+					if(este==9){
+
+						$("#otro1a").css("display", "block");
+
+					}
+				}else if(checked === false){
+
+					if(este==9){
+
+						$("#otro1a").css("display", "none");		
+						$("#otro1a").val("");
+					}
+
+				}
+				
+			},
+
+			maxHeight: 180,
+			inheritClass: true,
+			nonSelectedText: 'Selecione una o varias opciones',
+			buttonWidth: '100%'
+
+		});
+
+		$('#tipo2').multiselect({
+
+			enableClickableOptGroups: true,
+			enableCollapsibleOptGroups: false,
+			maxHeight: 180,
+			inheritClass: true,
+			nonSelectedText: 'Selecione una o varias opciones',
+			buttonWidth: '100%'
+
+		});
+
+		$('#tipo3').multiselect({
+
+			enableClickableOptGroups: true,
+			enableCollapsibleOptGroups: false,
+			maxHeight: 180,
+			inheritClass: true,
+			nonSelectedText: 'Tipo no étnico',
+			buttonWidth: '100%'
+
+		});
+
+		$('#tipo4').multiselect({
+
+			enableClickableOptGroups: true,
+			enableCollapsibleOptGroups: false,
+			maxHeight: 180,
+			inheritClass: true,
+			nonSelectedText: 'Tipo étnico',
 			buttonWidth: '100%'
 
 		});
@@ -1416,37 +1306,6 @@ $("#izquierda" ).click(function() {
 
 		});
 
-		// ********************************************************************************************
-		/*$("#cancelar" ).click(function() {
-
-						$.confirm({
-						    title: '¡Esta acción lo llevará al inicio del formulario y borrará los datos no registrados!.¿Desea continuar?',
-						    content:false,
-						    confirmButton: 'Si',
-						    cancelButton: 'No',
-						    confirmButtonClass: 'btn-primary',
-    						    cancelButtonClass: 'btn-success',
-
-						    confirm: function(){
-
-								$.post( "../../controllers/maliados_controller", {action: "del_temp"}).done(function(data){},"json");
-
-								$('.base').unslider('animate:0');
-								$('#orbis').focus();
-
-						    	setTimeout(function(){
-
-						                  $(location).attr('href','../aliados/frm_registrar');
-                  
-						        }, 1500);
-							},
-
-						    cancel: function(){
-
-							}
-						});			
-
-		});*/
 
 		$("#exit" ).click(function() {
 
@@ -1478,18 +1337,32 @@ $("#izquierda" ).click(function() {
 
 		// ********************************************************************************************
 
-		$("#descu" ).change(function() {
+		$("#aruta" ).change(function() {
 
-			if( $('#descu').prop('checked')== true ) {
+			if( $('#aruta').prop('checked')== true ) {
 
-			   	document.getElementById("descuento").disabled = false;
-			   	$("#descuento").val(1);
-			   	$('#descuento option[value=0]').attr("disabled", true);
+			   	document.getElementById("afase").disabled = false;
 
 			}else{
 
-			 	document.getElementById("descuento").disabled = true;
-			 	$("#descuento").val(0);
+			 	document.getElementById("afase").disabled = true;
+			 	
+			}
+
+		});
+
+		$("#apirc" ).change(function() {
+
+			if( $('#apirc').prop('checked')== true ) {
+
+				document.getElementById("amedida").disabled = false;
+				$("#idacc").css("display", "block");			
+			}else{
+
+				document.getElementById("amedida").disabled = true;
+				$("#idacc").css("display", "none");		
+						$("#idaccion").val("");
+				
 			}
 
 		});
@@ -2017,8 +1890,8 @@ function menor(){
 
             function alsalira(e){
                var caso1=document.getElementById(e).value;
-                if(caso1.length < 6){
-                   	document.getElementById('ms_'+ e).innerHTML = 'Debe escribir al menos 6 caractéres';
+                if(caso1.length < 7){
+                   	document.getElementById('ms_'+ e).innerHTML = 'Debe escribir al menos 7 caractéres';
                 }else{
                    document.getElementById('ms_'+ e).innerHTML = '';
                 }
@@ -2062,7 +1935,7 @@ function menor(){
 
              function alsalir3(e){
                var caso1=document.getElementById(e).value;
-                if(caso1.length < 13){
+                if(caso1.length < 12){
                    	document.getElementById('ms_'+ e).innerHTML = 'Debe escribir al menos 13 caractéres';
                 }else{
                    document.getElementById('ms_'+ e).innerHTML = '';
@@ -2124,7 +1997,7 @@ function esrazon(e) {
 
 }
 
-function escedula(e) {
+function escedula1(e) {
 
 	k = (document.all) ? e.keyCode : e.which;
 	if (k==8 || k==0 || k==13) return true;
@@ -2133,24 +2006,45 @@ function escedula(e) {
 
                     if(patron.test(n)==''){
 
-                    	document.getElementById('ms_cedula').style.display = 'block';
-                       	document.getElementById("ms_cedula").innerHTML = 'El RIF/CEDULA inicia con "J","P","V","E" o "G"';
+                    	document.getElementById('ms_rt_num_doc').style.display = 'block';
+                       	document.getElementById("ms_rt_num_doc").innerHTML = 'Use solo números';
                         	return patron.test(n);
 
                     }else{
 
-                       	document.getElementById("ms_cedula").innerHTML = '';
+                       	document.getElementById("ms_rt_num_doc").innerHTML = '';
                        	return patron.test(n);
 
                     }
 
 }
 
-function esacceso(e) {
+function escedula2(e) {
 
 	k = (document.all) ? e.keyCode : e.which;
 	if (k==8 || k==0 || k==13) return true;
-	patron = /^[A-ZÑ0-9\ \.\-]$/;
+	patron = /^[0-9]$/;
+	n = String.fromCharCode(k);
+
+				if(patron.test(n)==''){
+
+					document.getElementById('ms_rn_num_doc').style.display = 'block';
+					   document.getElementById("ms_rn_num_doc").innerHTML = 'Use solo números';
+						return patron.test(n);
+
+				}else{
+
+					   document.getElementById("ms_rn_num_doc").innerHTML = '';
+					   return patron.test(n);
+
+				}
+
+}
+function esacceso1(e) {
+
+	k = (document.all) ? e.keyCode : e.which;
+	if (k==8 || k==0 || k==13) return true;
+	patron = /^[A-ZÑ0-9\ ]$/;
 	n = String.fromCharCode(k);
 
                     if(patron.test(n)==''){
@@ -2169,11 +2063,11 @@ function esacceso(e) {
 }
 
 
-function esacceso1(e) {
+function esacceso2(e) {
 
 	k = (document.all) ? e.keyCode : e.which;
 	if (k==8 || k==0 || k==13) return true;
-	patron = /^[A-ZÑ0-9\ \.\-]$/;
+	patron = /^[A-ZÑ0-9\ ]$/;
 	n = String.fromCharCode(k);
 
                     if(patron.test(n)==''){
@@ -2213,50 +2107,6 @@ function esreferencia(e) {
 
 }
 
-function eslatitud(e) {
-
-	k = (document.all) ? e.keyCode : e.which;
-	if (k==8 || k==0 || k==13) return true;
-	patron = /^[0-9\ \.\-]$/;
-	n = String.fromCharCode(k);
-
-                    if(patron.test(n)==''){
-
-                    	document.getElementById('ms_latitud').style.display = 'block';
-                       	document.getElementById("ms_latitud").innerHTML = 'Utilice el formato "00.000000"';
-                        	return patron.test(n);
-
-                    }else{
-
-                       	document.getElementById("ms_latitud").innerHTML = '';
-                       	return patron.test(n);
-
-                    }
-
-}
-
-function eslongitud(e) {
-
-	k = (document.all) ? e.keyCode : e.which;
-	if (k==8 || k==0 || k==13) return true;
-	patron = /^[0-9\ \.\-]$/;
-	n = String.fromCharCode(k);
-
-                    if(patron.test(n)==''){
-
-                    	document.getElementById('ms_longitud').style.display = 'block';
-                       	document.getElementById("ms_longitud").innerHTML = 'Utilice el formato "-00.000000"';
-                        	return patron.test(n);
-
-                    }else{
-
-                       	document.getElementById("ms_longitud").innerHTML = '';
-                       	return patron.test(n);
-
-                    }
-
-}
-
 function espropietario(e) {
 
 	k = (document.all) ? e.keyCode : e.which;
@@ -2286,15 +2136,37 @@ function estele1(e) {
 	patron = /[0-9\-\(\)]/;
 	n = String.fromCharCode(k);
 
+				if(patron.test(n)==''){
+
+					document.getElementById('ms_tele1').style.display = 'block';
+					   document.getElementById("ms_tele1").innerHTML = 'Use solo números y "-"';
+						return patron.test(n);
+
+				}else{
+
+					   document.getElementById("ms_tele1").innerHTML = '';
+					   return patron.test(n);
+
+				}
+
+}
+
+function esnumdir(e) {
+
+	k = (document.all) ? e.keyCode : e.which;
+	if (k==8 || k==0 || k==13) return true;
+	patron = /[0-9]/;
+	n = String.fromCharCode(k);
+
                     if(patron.test(n)==''){
 
-                    	document.getElementById('ms_tele1').style.display = 'block';
-                       	document.getElementById("ms_tele1").innerHTML = 'Use solo números y "-"';
+                    	document.getElementById('ms_num_dir').style.display = 'block';
+                       	document.getElementById("ms_num_dir").innerHTML = 'Use solo números';
                         	return patron.test(n);
 
                     }else{
 
-                       	document.getElementById("ms_tele1").innerHTML = '';
+                       	document.getElementById("ms_num_dir").innerHTML = '';
                        	return patron.test(n);
 
                     }
@@ -2323,29 +2195,7 @@ function estele2(e) {
 
 }
 
-function estele2(e) {
-
-	k = (document.all) ? e.keyCode : e.which;
-	if (k==8 || k==0 || k==13) return true;
-	patron = /[0-9\-\(\)]/;
-	n = String.fromCharCode(k);
-
-                    if(patron.test(n)==''){
-
-                    	document.getElementById('ms_tele2').style.display = 'block';
-                       	document.getElementById("ms_tele2").innerHTML = 'Use solo números y "-"';
-                        	return patron.test(n);
-
-                    }else{
-
-                       	document.getElementById("ms_tele2").innerHTML = '';
-                       	return patron.test(n);
-
-                    }
-
-}
-
-function escorreo(e) {
+function escorreo1(e) {
 
 	k = (document.all) ? e.keyCode : e.which;
 	if (k==8 || k==0 || k==13) return true;
@@ -2364,6 +2214,28 @@ function escorreo(e) {
                        	return patron.test(n);
 
                     }
+
+}
+
+function escorreo2(e) {
+
+k = (document.all) ? e.keyCode : e.which;
+if (k==8 || k==0 || k==13) return true;
+patron = /[A-ZÑ0-9\_\-\.\+\@\ ]/;
+n = String.fromCharCode(k);
+
+				if(patron.test(n)==''){
+
+					document.getElementById('ms_correo2').style.display = 'block';
+					   document.getElementById("ms_correo2").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+						return patron.test(n);
+
+				}else{
+
+					   document.getElementById("ms_correo2").innerHTML = '';
+					   return patron.test(n);
+
+				}
 
 }
 
@@ -2585,44 +2457,239 @@ function sig_2(){
 
 //************************************************************************/
 
-	        function esnombre2(v) {
-              var caso2=document.getElementById('rt_nombre1').value;
-             if(caso2.length < 6){
-            	document.getElementById('ms_rt_nombre1').innerHTML = 'Debe escribir al menos 6 caractéres';
-             }else{
-                 var texto2 = v.split(" ");
-                 var n_palabras = texto2.length;
-                 if(n_palabras <= 1 ){
-                    document.getElementById("ms_rt_nombre1").innerHTML = '';
-                    
-                 }else{
-                 	document.getElementById("ms_rt_nombre1").innerHTML = '¡Ingrese solo el primer nombre)';
-                 	
-                 
-        		}//end else
-			 }
-		}
+			function esnombre2(e) {
+
+					k = (document.all) ? e.keyCode : e.which;
+					if (k==8 || k==0 || k==13) return true;
+					patron = /^[A-ZÑ0-9\ \.\-]$/;
+					n = String.fromCharCode(k);
+
+							if(patron.test(n)==''){
+
+								document.getElementById('ms_rt_nombre1').style.display = 'block';
+								document.getElementById("ms_rt_nombre1").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+									return patron.test(n);
+
+							}else{
+
+								document.getElementById("ms_rt_nombre1").innerHTML = '';
+								return patron.test(n);
+
+							}
+
+			}
+
+//************************************************************************
+
+			function esapellido1(e) {
+
+				k = (document.all) ? e.keyCode : e.which;
+				if (k==8 || k==0 || k==13) return true;
+				patron = /^[A-ZÑ0-9\ \.\-]$/;
+				n = String.fromCharCode(k);
+
+					if(patron.test(n)==''){
+
+						document.getElementById('ms_rt_apellido1').style.display = 'block';
+						document.getElementById("ms_rt_apellido1").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+							return patron.test(n);
+
+					}else{
+
+						document.getElementById("ms_rt_apellido1").innerHTML = '';
+						return patron.test(n);
+
+					}
+
+			}
+
 
 //************************************************************************/
 
-function esnombre3(v) {
-              var caso2=document.getElementById('rt_nombre2').value;
-             if(caso2.length < 6){
-            	document.getElementById('ms_rt_nombre2').innerHTML = 'Debe escribir al menos 6 caractéres';
-             }else{
-                 var texto2 = v.split(" ");
-                 var n_palabras = texto2.length;
-                 if(n_palabras  <= 1 ){
-                    document.getElementById("ms_rt_nombre2").innerHTML = '';
-                    
-                 }else{
-                 	document.getElementById("ms_rt_nombre2").innerHTML = '¡Ingrese solo el segundo nombre';
-                 	
-                 
-        		}//end else
-			 }
+			function esnombre2(e) {
+
+					k = (document.all) ? e.keyCode : e.which;
+					if (k==8 || k==0 || k==13) return true;
+					patron = /^[A-ZÑ0-9\ \.\-]$/;
+					n = String.fromCharCode(k);
+
+							if(patron.test(n)==''){
+
+								document.getElementById('ms_rt_nombre1').style.display = 'block';
+								document.getElementById("ms_rt_nombre1").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+									return patron.test(n);
+
+							}else{
+
+								document.getElementById("ms_rt_nombre1").innerHTML = '';
+								return patron.test(n);
+
+							}
+
+			}
+
+//************************************************************************
+
+			function esapellido1(e) {
+
+				k = (document.all) ? e.keyCode : e.which;
+				if (k==8 || k==0 || k==13) return true;
+				patron = /^[A-ZÑ0-9\ \.\-]$/;
+				n = String.fromCharCode(k);
+
+					if(patron.test(n)==''){
+
+						document.getElementById('ms_rt_apellido1').style.display = 'block';
+						document.getElementById("ms_rt_apellido1").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+							return patron.test(n);
+
+					}else{
+
+						document.getElementById("ms_rt_apellido1").innerHTML = '';
+						return patron.test(n);
+
+					}
+
+			}
+
+			//************************************************************************/
+
+			function esnombre3(e) {
+
+				k = (document.all) ? e.keyCode : e.which;
+				if (k==8 || k==0 || k==13) return true;
+				patron = /^[A-ZÑ0-9\ \.\-]$/;
+				n = String.fromCharCode(k);
+
+						if(patron.test(n)==''){
+
+							document.getElementById('ms_rn_nombre1').style.display = 'block';
+							document.getElementById("ms_rn_nombre1").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+								return patron.test(n);
+
+						}else{
+
+							document.getElementById("ms_rn_nombre1").innerHTML = '';
+							return patron.test(n);
+
+						}
+
+			}
+
+//************************************************************************
+
+		function esapellido2(e) {
+
+				k = (document.all) ? e.keyCode : e.which;
+				if (k==8 || k==0 || k==13) return true;
+				patron = /^[A-ZÑ0-9\ \.\-]$/;
+				n = String.fromCharCode(k);
+
+				if(patron.test(n)==''){
+
+					document.getElementById('ms_rn_apellido1').style.display = 'block';
+					document.getElementById("ms_rn_apellido1").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+						return patron.test(n);
+
+				}else{
+
+					document.getElementById("ms_rn_apellido1").innerHTML = '';
+					return patron.test(n);
+
+				}
+
+		}
+//************************************************************************
+function esotro1(e) {
+
+		k = (document.all) ? e.keyCode : e.which;
+		if (k==8 || k==0 || k==13) return true;
+		patron = /^[A-ZÑ0-9\ \.\-]$/;
+		n = String.fromCharCode(k);
+
+		if(patron.test(n)==''){
+
+			document.getElementById('ms_esotro1').style.display = 'block';
+			document.getElementById("ms_esotro1").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+				return patron.test(n);
+
+		}else{
+
+			document.getElementById("ms_esotro1").innerHTML = '';
+			return patron.test(n);
+
 		}
 
+}
+
+//************************************************************************/
+function esafase(e) {
+
+		k = (document.all) ? e.keyCode : e.which;
+		if (k==8 || k==0 || k==13) return true;
+		patron = /^[A-ZÑ0-9\ \.\-]$/;
+		n = String.fromCharCode(k);
+
+		if(patron.test(n)==''){
+
+			document.getElementById('ms_afase').style.display = 'block';
+			document.getElementById("ms_afase").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+				return patron.test(n);
+
+		}else{
+
+			document.getElementById("ms_afase").innerHTML = '';
+			return patron.test(n);
+
+		}
+
+}
+
+
+//************************************************************************
+function esamedida(e) {
+
+		k = (document.all) ? e.keyCode : e.which;
+		if (k==8 || k==0 || k==13) return true;
+		patron = /^[A-ZÑ0-9\ \.\-]$/;
+		n = String.fromCharCode(k);
+
+		if(patron.test(n)==''){
+
+			document.getElementById('ms_amedida').style.display = 'block';
+			document.getElementById("ms_amedida").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+				return patron.test(n);
+
+		}else{
+
+			document.getElementById("ms_amedida").innerHTML = '';
+			return patron.test(n);
+
+		}
+
+}
+//************************************************************************/
+function esidaccion(e) {
+
+		k = (document.all) ? e.keyCode : e.which;
+		if (k==8 || k==0 || k==13) return true;
+		patron = /^[A-ZÑ0-9\ \.\-]$/;
+		n = String.fromCharCode(k);
+
+		if(patron.test(n)==''){
+
+			document.getElementById('ms_idaccion').style.display = 'block';
+			document.getElementById("ms_idaccion").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+				return patron.test(n);
+
+		}else{
+
+			document.getElementById("ms_idaccion").innerHTML = '';
+			return patron.test(n);
+
+		}
+
+}
 //************************************************************************/
 
  </script>

@@ -23,7 +23,7 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese el nombre de la Dependencia.
+            Ingrese el nombre del Departamento.
             </div>');
 
       }else{//(A) si se escribe un nombre se consulta si ya existe...
@@ -90,7 +90,7 @@ switch ($action){
                   Alerta!
                   </h4>
 
-                  Registro inactivo . ¿Desea incluir ['.$nombre.'] en el maestro de Dependencias?
+                  Registro inactivo . ¿Desea incluir ['.$nombre.'] en el maestro de Departamentos?
 
                       <div class="modal-footer" >
                         <button type="button" id="no" class="btn btn-outline pull-left" data-dismiss="alert" onClick="no()">No</button>
@@ -107,7 +107,7 @@ switch ($action){
                   <i class="icon fa fa-ban"></i>
                   Alerta!
                   </h4>
-                  La Dependencia ['.$nombre.'] ya se encuentra registrada.
+                  El Departamento ['.$nombre.'] ya se encuentra registrado.
                   </div>');
 
            }
@@ -199,7 +199,7 @@ switch ($action){
                   Alerta!
                   </h4>
 
-                  Registro inactivo . ¿Desea incluir ['.$nombre.'] en maestro de Dependencias?
+                  Registro inactivo . ¿Desea incluir ['.$nombre.'] en maestro de Departamentos?
 
                       <div class="modal-footer" >
                         <button type="button" id="no" class="btn btn-outline pull-left" data-dismiss="alert" onClick="no()">No</button>
@@ -216,7 +216,7 @@ switch ($action){
                   <i class="icon fa fa-ban"></i>
                   Alerta!
                   </h4>
-                  La Dependencia ['.$nombre.'] ya se encuentra registrada.
+                  El Departamento ['.$nombre.'] ya se encuentra registrado.
                   </div>');
 
            }
@@ -385,7 +385,7 @@ switch ($action){
                         <i class="icon fa fa-check"></i>
                         Alerta!
                         </h4>
-                        Dependencia activada exitosamente !.
+                        Departamento activado exitosamente !.
                         </div>');
 
                   }else{
