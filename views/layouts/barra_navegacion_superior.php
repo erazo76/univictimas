@@ -17,7 +17,7 @@
              <?php
                   //include_once("menu_logo_govco.php");
                    //include_once("menu_mensages.php");
-                  include_once("menu_notificaciones.php");
+                  //include_once("menu_notificaciones.php");
                   // include_once("menu_tareas.php");
                    include_once("menu_perfil_usuario.php");
                   // include_once("menu_lateral_derecho.php");

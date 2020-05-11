@@ -261,7 +261,7 @@ ValidaSession("../login");
 						</div>
 				 
 				
-					</div>
+				</div>
 
 
 		  </div>
@@ -376,8 +376,8 @@ ValidaSession("../login");
 						<!-- form start -->
 						<div class="box-body" >
 						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #ecf0f5;">
-							<div class="form-group sm" >
-								<label>Individual</label></br>
+							<div class="form-group-sm" >
+								<label id="guardia78" tabindex="0" >INDIVIDUAL</label></br>
 								<select id="tipo1" class="form-control" multiple="multiple" tabindex="0">
 									<option value="0">Jornada Diferencial</option>
 									<option value="1">Feria de Servicios</option>
@@ -390,16 +390,19 @@ ValidaSession("../login");
 									<option value="8">Charla de educación financiera </option>	
 									<option value="9">Otro</option>								
 								</select>
+								
+							</div>
 								<div id="otro1a" style='display:none;'>
+								<div class="form-group-sm">								
 									<label for="Otro1">Otro</label>
-							  		<input type="text" class="form-control" id="otro1" placeholder="Indique otro tipo de actividad"  onpaste="return false" tabindex="38" onkeypress="return esotro1(event);" onblur="return alsalir4(this.value);" >
-							  		<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_esotro1' ></div>
-								</div>								
+							  		<input type="text" class="form-control" id="otro1" placeholder="Indique otro tipo de actividad"  onpaste="return false" tabindex="0" onkeypress="return esotro1(event);" onblur="return alsalir(this.id)" autocomplete="off">
+							  		<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_otro1' ></div>
+								</div>
 							</div>
 						</div>
 						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #ecf0f5;">
-							<div class="form-group sm">
-								<label>Retornos y Reubicaciones</label></br>
+							<div class="form-group-sm">
+								<label class="guardia80" tabindex="0">RETORNOS Y REUBICACIONES</label></br>
 								<select id="tipo2" class="form-control" multiple="multiple" tabindex="0">
 									<option value="0">Integración Comunitaria</option>
 									<option value="1">Retorno</option>
@@ -411,11 +414,11 @@ ValidaSession("../login");
 							</div>
 						</div>	
 						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #ecf0f5;">
-							<label>Colectiva</label></br>
+							<label>COLECTIVA</label></br>
 						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #bdd3ff; background-color: #E8F0FF">	
-							<div class="form-group sm">
+							<div class="form-group-sm">
 
-								<label>Nombre del Sujeto de Reparación</label></br>
+								<label>Pertenencia étnica comunitaria</label></br>
 
 								<select id="tipo3" class="form-control" multiple="multiple" tabindex="0">
 									<option value="0">Comunidad</option>
@@ -440,7 +443,7 @@ ValidaSession("../login");
 								      <span class = "input-group-addon">
 	                                     <input type = "checkbox" tabindex="0" id="aruta">
 									  </span>
-									  <input type="text" class="form-control ccc" id="afase" placeholder="Indique la fase en que se ecuentra"  onpaste="return false" tabindex="0" onkeypress="return esafase(event);" onblur="return alsalir4(this.value);" disabled>
+									  <input type="text" class="form-control ccc" id="afase" placeholder="Indique la fase en que se ecuentra"  onpaste="return false" tabindex="0" onkeypress="return esafase(event);" onblur="return alsalir(this.id);" disabled>
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_afase' ></div>
 							</div>
@@ -453,12 +456,15 @@ ValidaSession("../login");
 								      <span class = "input-group-addon">
 	                                     <input type = "checkbox" tabindex="0" id="apirc">
 									  </span>
-									  <input type="text" class="form-control ccc" id="amedida" placeholder="Indique el tipo de medida"  onpaste="return false" tabindex="0" onkeypress="return esamedida(event);" onblur="return alsalir4(this.value);" disabled>
+									  <input type="text" class="form-control ccc " id="amedida" placeholder="Indique el tipo de medida"  onpaste="return false" tabindex="0" onkeypress="return esamedida(event);" onblur="return alsalir(this.id);" disabled>
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_amedida' ></div>
+									<div>
+										<label class="guardia79" tabindex="0" style="color: #E8F0FF">.</label>
+									</div>
 									<div id="idacc" style='display:none;'>
-										<label for="idaccion" id="guardia77" tabindex="0">Id Acción</label>
-										<input type="text" class="form-control ccc" id="idaccion" placeholder="Indique Id de la accion"  onpaste="return false" tabindex="45" onkeypress="return esidaccion(event);" onblur="return alsalir4(this.value);" >
+										<label for="idaccion" class="guardia77" tabindex="0">Id Acción</label>
+										<input type="text" class="form-control ccc" id="idaccion" placeholder="Indique Id de la accion"  onpaste="return false" tabindex="45" onkeypress="return esidaccion(event);" onblur="return alsalir(this.id);" >
 										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_idaccion' ></div>
 									</div>							
 							</div>
@@ -471,28 +477,92 @@ ValidaSession("../login");
 			<div class="col-md-4">
 
 				<div class="box-header with-border">
-					 	<h3 class="box-title">Datos Comerciales</h3>
+					 	<h3 class="box-title">Descripción de la actividad</h3>
 				</div><!-- /.box-header -->
 
-		  		<div class="box box-primary">
+				<div class="box box-primary">
 						<!-- form start -->
 						<div class="box-body">
-
+						<div class="form-group-sm">
+							
+								<label>Entidades participantes</label>
+								<input type="text" class="form-control ccc" id="entidad" placeholder="Indique las entidades participantes"  onpaste="return false" tabindex="46" onkeypress="return esentidad(event);"  onblur="alsalir(this.id);"  autocomplete="off">
+							
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_entidad' class="aaa"><p></p></div>
+							
+							
+								<label>Número de víctimas participantes</label>
+								<input type="text" class="form-control ccc" id="num_vic" placeholder="Indique el número de víctimas"  onpaste="return false" tabindex="47" onkeypress="return esvictimas(event);"  onblur="alsalir(this.id);"  autocomplete="off">
+							
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_vic' class="aaa"><p></p></div>
+														
+							
+    							<label for="descripcion">Descripción breve</label>
+    							<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return false" tabindex="48" onkeypress="return esdescri(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
+  							
+							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_descripcion' class="aaa"><p></p></div>
+						</div>
 						</div><!-- /.box-body -->
-		 		</div><!-- /.box -->
+				 </div><!-- /.box -->
+
+				 <div class="box-header with-border">
+					 	<h3 class="box-title">Detalle especifico del requerimiento</h3>
+				</div><!-- /.box-header -->
+
+				<div class="box box-primary" >			
+					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+							<table id="tabla" class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Tipo</th>
+										<th>Concepto</th>
+										<th>Medida</th>
+										<th>Cantidad</th>
+										<th>Observaciones</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+					</div>
+				
+					<div class="box-footer">
+						<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
+						<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+					</div>
+				</div>				
+
 			</div>
 
 			<div class="col-md-4">
 
 				<div class="box-header with-border">
-					 	<h3 class="box-title"></h3>
+					 	<h3 class="box-title">Alojamiento y Transporte</h3>
 				</div><!-- /.box-header -->
 
 		  		<div class="box box-primary">
 
 						<!-- form start -->
 						<div class="box-body">
-						<div class="focusguard" id="guardia2" tabindex="46"></div>
+
+								<label>Requerimiento de Alojamiento</label>
+	                            <div class = "input-group">
+								      <span class = "input-group-addon">
+	                                     <input type = "checkbox" tabindex="0" id="alojamiento">
+									  </span>
+									  <input type="text" class="form-control" id="msg_aloja" value="No requiere Alojamiento" disabled>
+								</div>
+								
+								<label>Requerimiento de Transporte</label>
+	                            <div class = "input-group">
+								      <span class = "input-group-addon">
+	                                     <input type = "checkbox" tabindex="0" id="transporte">
+									  </span>
+									  <input type="text" class="form-control" id="msg_trans" value="No requiere transporte" disabled>
+								</div>
+								<label class="guardia81" tabindex="0" style="color: #FFF">.</label>
+							
+						<div class="focusguard" id="guardia2" tabindex="51"></div>
 						</div><!-- /.box-body -->
 
 		 		</div><!-- /.box -->
@@ -501,17 +571,18 @@ ValidaSession("../login");
 		</li>
 
 		<li id="tres"><!--################################## DATOS PUBLICITARIOS Y DE ACTIVOS ##################################  -->
-<div class="row">
+
 			<div class="col-md-4">
 
 				<div class="box-header with-border">
-					 	<h3 class="box-title" >Datos publicitarios y de neveras</h3>
+					 	<h3 class="box-title" >aca ira la visualización del formato con los datos ya incluidos y la opción para guardar</h3>
 				</div><!-- /.box-header -->
 
 		  		<div class="box box-primary">
 
 						<div class="box-body">
 
+						<label id="prueba"></label>
 
 						</div>
 
@@ -524,7 +595,7 @@ ValidaSession("../login");
 			<div class="col-md-8">
 		 
 			</div><!-- /.box-body -->
-</div>
+
 	    </li>
 	</ul>
 </div>
@@ -538,7 +609,7 @@ ValidaSession("../login");
     <div class="modal-content">
       <div class="modal-body">
         <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Activo</h4>
+         <h4 class="modal-title" id="myModalLabel1">Detalle especifico del requerimiento</h4>
 			<div class="message1"></div>
 			<div class="row">
 				<!-- left column -->
@@ -551,34 +622,34 @@ ValidaSession("../login");
 					  <div class="box-body">
 
 							<div class="form-group-sm">
-								<label>Marca</label>
+								<label>Tipo</label>
 								<select id="a_marca"   class="form-control" >
 								    <option></option>
 								</select>
 							</div>
 
 							<div class="form-group-sm">
-								<label>Modelo</label>
-								<input type="text"  class="form-control" id="a_modelo"  placeholder="Ingrese modelo del activo"  onpaste="return false" onkeypress="return esa_modelo(event);" onblur="alsalira(this.id)">
+								<label>Concepto</label>
+								<input type="text"  class="form-control" id="a_modelo"  placeholder="Describa el concepto"  onpaste="return false" onkeypress="return esa_modelo(event);" onblur="alsalira(this.id)">
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_modelo' ></div>
 							</div>
 
 							<div class="form-group-sm">
-								<label>Serial</label>
+								<label>Medida</label>
 								<input type="text"  class="form-control" id="a_serial"  placeholder="Ingrese serial del activo"  onpaste="return false" onkeypress="return esa_serial(event);" onblur="alsalira(this.id)">
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_serial' ></div>
 							</div>
 
 							<div class="form-group-sm">
-								<label>Activo fijo</label>
-								<input type="text"  class="form-control" id="a_activo_f"  placeholder="Ingrese el número de activo fijo (LLA-000000)"  onpaste="return false" onblur="alsalira3(this.id)">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_activo_f' ></div>
+								<label>Cantidad</label>
+								<input type="text"  class="form-control" id="a_serial"  placeholder="Ingrese serial del activo"  onpaste="return false" onkeypress="return esa_serial(event);" onblur="alsalira(this.id)">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_serial' ></div>
 							</div>
 
 							<div class="form-group-sm">
-								<label>Número de comodato</label>
-								<input type="text"  class="form-control" id="a_comodato"  placeholder="Ingrese el número de comodato"  onpaste="return false" onkeypress="return esa_comodato(event);" onblur="alsalira(this.id)">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_comodato' ></div>
+								<label>Observaciones</label>
+								<input type="text"  class="form-control" id="a_activo_f"  placeholder="Ingrese el número de activo fijo (LLA-000000)"  onpaste="return false" onblur="alsalira3(this.id)">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_activo_f' ></div>
 							</div>
 
 					  </div><!-- /.box-body -->
@@ -589,7 +660,7 @@ ValidaSession("../login");
 			</div>
 							      <div class="modal-footer">
 							      		<button id="close1" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Incluir</button>
-							      		<button id="cancelar2" type="button" class="btn btn-primary"><i class="fa fa-fw fa-times"></i>Cancelar</button>
+							      		<button id="cancelar2" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
 
 							      </div>
         </div>
@@ -598,45 +669,6 @@ ValidaSession("../login");
   </div>
 </form>                   
 </div>
-
-<!-- Modal 2 -->
-<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-<form id="form" role="form" enctype="multipart/form-data" >
-  <div class="modal-dialog modal-lm">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Referencia geográfica</h4>
-			<div class="message1"></div>
-			<div class="row">
-				<!-- left column -->
-				<div class="col-md-12">
-				  <!-- general form elements -->
-				  <div class="box box-primary">
-
-					<div class="box-header with-border"></div><!-- /.box-header -->
-					<!-- form start -->
-					  <div class="box-body">
-						<div id="weathermap">
-							<!-- <div class='custom-popup' id="map" style="height: 440px; border: 1px solid #AAA;"></div> -->
-						</div>	
-					  </div><!-- /.box-body -->
-
-				  </div><!-- /.box -->
-
-				</div>
-			</div>
-							      <div class="modal-footer">
-							      		<!--<button id="close3" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Puntear</button>-->
-							      		<button id="cancelar3" type="button" class="btn btn-primary"><i class="fa fa-fw fa-times"></i>Cancelar</button>
-							      </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>                   
-</div>
-
 						  <div class="box-footer">
 							<button id="izquierda" type="button" class="btn btn-primary" disabled tabindex="-1"><i class="fa fa-arrow-left"></i>Anterior</button>
 							
@@ -676,7 +708,7 @@ $(document).ready(function() {
 
 	$.post( "../../controllers/mactivos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 
-	//setTimeout(function(){
+
 
 });
 
@@ -769,10 +801,14 @@ $("#derecha" ).click(function() {
 
 		}else{
 
-			document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+			
 			$('.base').unslider('animate:1');
 			tick=1;
 			document.getElementById('izquierda').disabled = false;
+
+			setTimeout(function() {
+				document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+			}, 800);
 
 		}
 
@@ -781,8 +817,8 @@ $("#derecha" ).click(function() {
 		var cont_alert3 =$('.ccc').filter(function() { return $(this).val() == ""; }).size();
 		//var cont_alert = $('.aaa p:contains("") ').size();
 
-		if(cont_alert3!=0){
-
+		//if(cont_alert3!=0){
+			if(cont_alert3 > 50){
 						$.confirm({
 						    title: '¡existen campos vacios !', // hides the title.
 						    cancelButton: false, // hides the cancel button.
@@ -795,68 +831,13 @@ $("#derecha" ).click(function() {
 
 		}else{
 
-				$.post( "../../controllers/maliados_controller", {
-
-					action: "add_temp2",
-					sorbis: $("#s_orbis").val(),
-					orbis: $("#orbis").val(),
-					nombre: $("#nombre").val(),
-					razon: $("#razon").val(),
-					segmento: $("#segmento").val(),
-					cedula: $("#cedula").val(),
-					l_cedula: $("#l_cedula").val(),
-					fecha1: $("#fecha1").val(),
-					fecha2: $("#fecha2").val(),
-					departamento: $("#departamento").val(),
-					municipio: $("#municipio").val(),
-					ciudad: $("#ciudad").val(),
-					sector: $("#sector").val(),
-					parroquia: $("#parroquia").val(),
-					a_principal: $("#a_principal").val(),
-					acceso1: $("#acceso1").val(),
-					a_secundario: $("#a_secundario").val(),
-					acceso2: $("#acceso2").val(),
-					referencia: $("#referencia").val(),
-					zona: $("#zona").val(),
-					territorio: $("#territorio").val(),
-					territorio_g: $("#territorio_g").val(),
-					latitud: $("#latitud").val(),
-					longitud: $("#longitud").val(),
-					propietario: $("#propietario").val(),
-					tele1: $("#tele1").val(),
-					tele2: $("#tele2").val(),
-					correo1: $("#correo1").val(),
-					dias: $("#dias").val(),
-					caja_t: $("#caja_t").val(),
-					caja_p: $("#caja_p").val(),
-					caja_o: $("#caja_o").val(),
-					despacho: $("#despacho").val(),
-					descuento: $("#descuento").val(),
-					seca: $("#seca").val(),
-					rf_competencia: $("#rf_competencia").val(),
-					ls_competencia: $("#ls_competencia").val()
-
-				}).done(function(data){
-
-					var parsedJson = $.parseJSON(data);
-					$(".message").html(parsedJson.mensaje);
-					
-					if(parsedJson.resultado != 'error'){
-					
-						setTimeout(function(){
-							$(".alert").alert('close');
-						}, 1500);
-
-					}else{
-
-
-					}
-
-				},"json");	
-
 			$('.base').unslider('animate:2');
+			
 			tick=2;
 			document.getElementById('derecha').disabled = true;
+			setTimeout(function() {
+				document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+			}, 800);			
 
 		}
 
@@ -867,16 +848,22 @@ $("#derecha" ).click(function() {
 $("#izquierda" ).click(function() {
 
 	if(tick==1){
-		document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+		
 		$('.base').unslider('animate:0');
 		tick=0;
 		document.getElementById('izquierda').disabled = true;
+		setTimeout(function() {
+			document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+		}, 800);
 
 	}else if(tick==2){
-		document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+		
 		$('.base').unslider('animate:1');
 		tick=1;
 		document.getElementById('derecha').disabled = false;
+		setTimeout(function() {
+			document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+		}, 800);
 
 	}
 
@@ -1012,31 +999,45 @@ $("#izquierda" ).click(function() {
 
 					$('.base').unslider('animate:1');
 
-					document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+					
 
 				    setTimeout(function() {
-
+				
 						document.getElementById('izquierda').disabled = false;
 				    	tick=1;
-						$('#tipo1').focus();
+						$('#guardia78').focus();
 						//document.getElementById("tipo1").focus();
+						document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 				    }, 800);					
 
 				}	
 
 		});
 
-		$('#guardia77').on('focus', function() {
+
+		$('.guardia77').on('focus', function() {
 				$('#idaccion').focus();
 		});
 
+		$('.guardia79').on('focus', function() {
+				$('#entidad').focus();
+		});
+
+		$('.guardia80').on('focus', function() {
+			$('#tipo2').dropdown('toggle');
+		});
+
+		$('.guardia81').on('focus', function() {
+			$('#guardia2').dropdown('toggle');
+		});
+
 		$('#guardia2').on('focus', function() {
-				$('#idaccion').focus();
+				$('#entidad' ).focus();
 				var cont_alert4 =$('.ccc').filter(function() { return $(this).val() == ""; }).size();
 				//var cont_alert = $('.aaa p:contains("") ').size();
-
-				if(cont_alert4!=0){
-
+alert(cont_alert4);
+				//if(cont_alert4!=0){
+					if(cont_alert4 >50){
 						$.confirm({
 						    title: '¡existen campos vacios !', // hides the title.
 						    cancelButton: false, // hides the cancel button.
@@ -1053,12 +1054,12 @@ $("#izquierda" ).click(function() {
 					$('.base').unslider('animate:2');
 				    setTimeout(function() {
 
-
-				    	$('#toldo').focus();
+						
+				    	$('#prueba').focus();
 				    	document.getElementById('derecha').disabled = true;
 				    	tick=2;
-
-				    }, 100);					
+						document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+				    }, 800);					
 
 				}
 
@@ -1090,14 +1091,15 @@ $("#izquierda" ).click(function() {
 					if(este==9){
 
 						$("#otro1a").css("display", "block");
-
+						$('#tipo1').dropdown('toggle');
+						$("#otro1").focus();
 					}
 				}else if(checked === false){
 
 					if(este==9){
 
 						$("#otro1a").css("display", "none");		
-						$("#otro1a").val("");
+						$("#otro1").val("");
 					}
 
 				}
@@ -1337,6 +1339,32 @@ $("#izquierda" ).click(function() {
 
 		// ********************************************************************************************
 
+		$("#transporte") .change(function() {
+
+			if( $('#transporte').prop('checked')== true ) {
+
+				$("#msg_trans").val("Requiere transporte");
+
+			}else{
+
+				$("#msg_trans").val("No requiere transporte");
+			}
+
+		});
+
+		$("#alojamiento") .change(function() {
+
+			if( $('#alojamiento').prop('checked')== true ) {
+
+				$("#msg_aloja").val("Requiere alojamiento");
+
+			}else{
+
+				$("#msg_aloja").val("No requiere alojamiento");
+			}
+
+		});
+
 		$("#aruta" ).change(function() {
 
 			if( $('#aruta').prop('checked')== true ) {
@@ -1346,7 +1374,7 @@ $("#izquierda" ).click(function() {
 			}else{
 
 			 	document.getElementById("afase").disabled = true;
-			 	
+				 $("#afase").val("");
 			}
 
 		});
@@ -1356,12 +1384,15 @@ $("#izquierda" ).click(function() {
 			if( $('#apirc').prop('checked')== true ) {
 
 				document.getElementById("amedida").disabled = false;
-				$("#idacc").css("display", "block");			
+				$("#idacc").css("display", "block");
+				$(".guardia79").css("display", "none");			
 			}else{
 
 				document.getElementById("amedida").disabled = true;
-				$("#idacc").css("display", "none");		
-						$("#idaccion").val("");
+				$("#idacc").css("display", "none");	
+				$(".guardia79").css("display", "block");	
+				$("#idaccion").val("");
+				$("#amedida").val("");
 				
 			}
 
@@ -1390,17 +1421,18 @@ $("#izquierda" ).click(function() {
 											"url": "../../data_json/data_mactivos",
 											"dataSrc": ""
 										  },
+										  "scrollX": true,
+										  "scrollY": "130px",
 										  "columns": [
 												{ "data": "cid" },
 												{ "data": "marca" },
 												{ "data": "modelo" },
 												{ "data": "serial" },
-												{ "data": "activo" },
-												{ "data": "comodato" }
+												{ "data": "activo" }
+												
 											],
 										//"order": [[ 0, "asc" ]],
 										"bPaginate": false,
-										
 										"info":     false,
 										"bFilter": false
 
@@ -1466,6 +1498,7 @@ if(document.getElementById('oculto').style.display == 'block'){
 
  							$(".alert").alert('close');
 					      	$('#modal1').modal('toggle');
+							$("#agregar").focus();
 
 					    }, 3000);
 
@@ -1552,6 +1585,7 @@ if(document.getElementById('oculto').style.display == 'block'){
 		$("#cancelar2").click(function() {
 
 			$('#modal1').modal('toggle');
+			$("#alojamiento").focus();
 		$.post( "../../controllers/mmarcas_controller", { action: "get_marcas"}).done(function( data ) {
 			 $("#a_marca" ).html( data );
 
@@ -2239,52 +2273,9 @@ n = String.fromCharCode(k);
 
 }
 
-function escajat(e) {
 
 
-	k = (document.all) ? e.keyCode : e.which;
-	if (k==8 || k==0 || k==13) return true;
-	patron = /[0-9]/;
-	n = String.fromCharCode(k);
-
-                    if(patron.test(n)==''){
-
-                    	document.getElementById('ms_caja_t').style.display = 'block';
-                       	document.getElementById("ms_caja_t").innerHTML = 'Use solo números';
-                        	return patron.test(n);
-
-                    }else{
-
-                       	document.getElementById("ms_caja_t").innerHTML = '';
-                       	return patron.test(n);
-
-                    }
-
-}
-
-function escajap(e) {
-
-	k = (document.all) ? e.keyCode : e.which;
-	if (k==8 || k==0 || k==13) return true;
-	patron = /[0-9]/;
-	n = String.fromCharCode(k);
-
-                    if(patron.test(n)==''){
-
-                    	document.getElementById('ms_caja_p').style.display = 'block';
-                       	document.getElementById("ms_caja_p").innerHTML = 'Use solo números';
-                        	return patron.test(n);
-
-                    }else{
-
-                       	document.getElementById("ms_caja_p").innerHTML = '';
-                       	return patron.test(n);
-
-                    }
-
-}
-
-function eslineaseca(e) {
+function esdescri(e) {
 
 	k = (document.all) ? e.keyCode : e.which;
 	if (k==8 || k==0 || k==13) return true;
@@ -2293,79 +2284,13 @@ function eslineaseca(e) {
 
                     if(patron.test(n)==''){
 
-                    	document.getElementById('ms_seca').style.display = 'block';
-                       	document.getElementById("ms_seca").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+                    	document.getElementById('ms_descripcion').style.display = 'block';
+                       	document.getElementById("ms_descripcion").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
                         	return patron.test(n);
 
                     }else{
 
-                       	document.getElementById("ms_seca").innerHTML = '';
-                       	return patron.test(n);
-
-                    }
-
-}
-
-function esrefcomp(e) {
-
-	k = (document.all) ? e.keyCode : e.which;
-	if (k==8 || k==0 || k==13) return true;
-	patron = /^[A-ZÑ0-9\ \.\-]$/;
-	n = String.fromCharCode(k);
-
-                    if(patron.test(n)==''){
-
-                    	document.getElementById('ms_rf_competencia').style.display = 'block';
-                       	document.getElementById("ms_rf_competencia").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
-                        	return patron.test(n);
-
-                    }else{
-
-                       	document.getElementById("ms_rf_competencia").innerHTML = '';
-                       	return patron.test(n);
-
-                    }
-
-}
-
-function eslineasecomp(e) {
-
-	k = (document.all) ? e.keyCode : e.which;
-	if (k==8 || k==0 || k==13) return true;
-	patron = /^[A-ZÑ0-9\ \.\-]$/;
-	n = String.fromCharCode(k);
-
-                    if(patron.test(n)==''){
-
-                    	document.getElementById('ms_ls_competencia').style.display = 'block';
-                       	document.getElementById("ms_ls_competencia").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
-                        	return patron.test(n);
-
-                    }else{
-
-                       	document.getElementById("ms_ls_competencia").innerHTML = '';
-                       	return patron.test(n);
-
-                    }
-
-}
-
-function esobservacion(e) {
-
-	k = (document.all) ? e.keyCode : e.which;
-	if (k==8 || k==0 || k==13) return true;
-	patron = /^[A-ZÑ0-9\ \.\-]$/;
-	n = String.fromCharCode(k);
-
-                    if(patron.test(n)==''){
-
-                    	document.getElementById('ms_observacion').style.display = 'block';
-                       	document.getElementById("ms_observacion").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
-                        	return patron.test(n);
-
-                    }else{
-
-                       	document.getElementById("ms_observacion").innerHTML = '';
+                       	document.getElementById("ms_descripcion").innerHTML = '';
                        	return patron.test(n);
 
                     }
@@ -2481,7 +2406,7 @@ function sig_2(){
 
 //************************************************************************
 
-			function esapellido1(e) {
+			function esentidad(e) {
 
 				k = (document.all) ? e.keyCode : e.which;
 				if (k==8 || k==0 || k==13) return true;
@@ -2490,18 +2415,44 @@ function sig_2(){
 
 					if(patron.test(n)==''){
 
-						document.getElementById('ms_rt_apellido1').style.display = 'block';
-						document.getElementById("ms_rt_apellido1").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+						document.getElementById('ms_entidad').style.display = 'block';
+						document.getElementById("ms_entidad").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
 							return patron.test(n);
 
 					}else{
 
-						document.getElementById("ms_rt_apellido1").innerHTML = '';
+						document.getElementById("ms_entidad").innerHTML = '';
 						return patron.test(n);
 
 					}
 
 			}
+
+
+//************************************************************************/
+
+
+function esvictimas(e) {
+
+	k = (document.all) ? e.keyCode : e.which;
+	if (k==8 || k==0 || k==13) return true;
+	patron = /^[0-9]$/;
+	n = String.fromCharCode(k);
+
+                    if(patron.test(n)==''){
+
+                    	document.getElementById('ms_num_vic').style.display = 'block';
+                       	document.getElementById("ms_num_vic").innerHTML = 'Use solo números';
+                        	return patron.test(n);
+
+                    }else{
+
+                       	document.getElementById("ms_num_vic").innerHTML = '';
+                       	return patron.test(n);
+
+                    }
+
+}
 
 
 //************************************************************************/
@@ -2609,13 +2560,13 @@ function esotro1(e) {
 
 		if(patron.test(n)==''){
 
-			document.getElementById('ms_esotro1').style.display = 'block';
-			document.getElementById("ms_esotro1").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+			document.getElementById('ms_otro1').style.display = 'block';
+			document.getElementById("ms_otro1").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
 				return patron.test(n);
 
 		}else{
 
-			document.getElementById("ms_esotro1").innerHTML = '';
+			document.getElementById("ms_otro1").innerHTML = '';
 			return patron.test(n);
 
 		}

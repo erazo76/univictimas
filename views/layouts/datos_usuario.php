@@ -1,5 +1,5 @@
-
-          <div class="user-panel">
+      <div>
+          <div class="user-panel" style="padding: 10px;">
             <div class="pull-left image">
 				<?php
 				     $usuariox = ($_SESSION['usuariox']); 
@@ -16,6 +16,7 @@
             <div class="pull-left info">
               <?php echo ' <p>'.$usuariox.'</p>'; ?>
 
-              <a href="#"><i class="fa fa-circle text-success"></i> Activo</a>
+              <a href="#" style="margin: -10px;"><i class="fa fa-circle text-success"></i> Activo</a><br>
             </div>
           </div>
+      </div>
