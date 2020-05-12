@@ -1,7 +1,6 @@
 <?php
 require_once '../models/Mrequerimiento.php';
-require_once '../models/Mactivo.php';
-require_once '../models/Mtemporale.php';
+require_once '../models/Mdetalle.php';
 require_once '../models/Mestado.php';
 require_once '../models/Mmunicipio.php';
 require_once '../models/Mparroquia.php';
@@ -14,68 +13,85 @@ date_default_timezone_set('America/Bogota');
 @$record = ($_POST["record"]);
 //@$rolex = ($_SESSION['rolx']);
 /***********************************/
-@$orbis = ($_POST["orbis"]);
-@$sorbis = ($_POST["sorbis"]);
-@$orb_tem = $orbis;
-@$nombre = ($_POST["nombre"]);
-@$razon = ($_POST["razon"]);
-@$segmento = ($_POST["segmento"]);
-@$cedula = ($_POST["cedula"]);
-@$l_cedula = ($_POST["l_cedula"]);
-//@$fecha1 = date_format(($_POST["fecha1"]),'d-m-Y');
-@$fecha1 = ($_POST["fecha1"]);
-@$fecha2 = ($_POST["fecha2"]);
-@$estado = ($_POST["estado"]);
-@$municipio = ($_POST["municipio"]);
-@$ciudad = ($_POST["ciudad"]);
-@$sector = ($_POST["sector"]);
-@$parroquia = ($_POST["parroquia"]);
-@$a_principal = ($_POST["a_principal"]);
-@$acceso1 = ($_POST["acceso1"]);
-@$a_secundario = ($_POST["a_secundario"]);
-@$acceso2 = ($_POST["acceso2"]);
-@$referencia = ($_POST["referencia"]);
-@$zona = ($_POST["zona"]);
-@$territorio = ($_POST["territorio"]);
-@$territorio_g = ($_POST["territorio_g"]);
-@$latitud = ($_POST["latitud"]);
-@$longitud = ($_POST["longitud"]);
-/***********************************/
-@$propietario = ($_POST["propietario"]);
-@$tele1 = ($_POST["tele1"]);
-@$tele2 = ($_POST["tele2"]);
-@$correo1 = ($_POST["correo1"]);
-@$estatus_aliado = ($_POST["estatus_aliado"]);
-@$dias = ($_POST["dias"]);
-@$caja_t = ($_POST["caja_t"]);
-@$caja_p= ($_POST["caja_p"]);
-@$caja_o = ($_POST["caja_o"]);
-@$despacho = ($_POST["despacho"]);
-@$descuento = ($_POST["descuento"]);
-@$seca = ($_POST["seca"]);
-@$rf_competencia = ($_POST["rf_competencia"]);
-@$ls_competencia = ($_POST["ls_competencia"]);
-/***********************************/
-@$toldo = ($_POST["toldo"]);
-@$aviso = ($_POST["aviso"]);
-@$fachada = ($_POST["fachada"]);
-@$activo = ($_POST["activo"]);
-@$observacion = ($_POST["observacion"]);
-@$distribuidora = ($_POST["distribuidora"]);
-@$region = ($_POST["region"]);
-@$recuperado = ($_POST["recuperado"]);
-/**********************************/
-//echo $fecha1;exit();
-//$fecha1 = date_format($fecha1,'d-m-Y');
 
+@$nombre = ($_POST["nombre"]);
+@$fecha1 = ($_POST["fecha1"]);
+@$departamento = ($_POST["departamento"]);
+@$municipio = ($_POST["municipio"]);
+@$cpoblado = ($_POST["cpoblado"]);
+/***********************************/
+@$a_primario = ($_POST["a_primario"]);
+@$acceso1 = ($_POST["acceso1"]);
+@$acceso2 = ($_POST["acceso2"]);
+@$num_dir = ($_POST["num_dir"]);
+@$a_referencia = ($_POST["a_referencia"]);
+/***********************************/
+@$fecha2 = ($_POST["fecha2"]);
+@$fecha3 = ($_POST["fecha3"]);
+@$hora1 = ($_POST["hora1"]);
+@$hora2 = ($_POST["hora2"]);
+/***********************************/
+
+@$rt_nombre1 = ($_POST["rt_nombre1"]);
+@$rt_nombre2 = ($_POST["rt_nombre2"]);
+@$rt_apellido1 = ($_POST["rt_apellido1"]);
+@$rt_apellido2 = ($_POST["rt_apellido2"]);
+@$rt_tdoc = ($_POST["rt_tdoc"]);
+@$rt_num_dic = ($_POST["rt_num_dic"]);
+@$tele1 = ($_POST["tele1"]);
+@$correo1 = ($_POST["correo1"]);
+@$grupo = ($_POST["grupo"]);
+@$otro1 = ($_POST["otro1"]);
+/***********************************/
+@$rn_nombre1 = ($_POST["rn_nombre1"]);
+@$rn_nombre2 = ($_POST["rn_nombre2"]);
+@$rn_apellido1 = ($_POST["rn_apellido1"]);
+@$rn_apellido2 = ($_POST["rn_apellido2"]);
+@$rn_tdoc = ($_POST["rn_tdoc"]);
+@$rn_num_dic = ($_POST["rn_num_dic"]);
+@$tele2 = ($_POST["tele2"]);
+@$correo2 = ($_POST["correo2"]);
+
+/***********************************/
+@$tipo1 = ($_POST["tipo1"]);
+@$tipo2 = ($_POST["tipo2"]);
+@$tipo3 = ($_POST["tipo3"]);
+@$tipo4 = ($_POST["tipo4"]);
+/***********************************/
+
+//@$arutaval = ($_POST["arutaval"]);
+//@$apircval = ($_POST["apircval"]);
+
+@$afase = ($_POST["afase"]);
+@$amedida = ($_POST["amedida"]);
+@$idaccion= ($_POST["idaccion"]);
+@$entidad = ($_POST["entidad"]);
+@$num_vic = ($_POST["num_vic"]);
+@$descripcion = ($_POST["descripcion"]);
+@$aloja = ($_POST["aloja"]);
+@$trans = ($_POST["trans"]);
+@$region = ($_POST["region"]);
+/***********************************/
 
 
 switch ($action){
 
+  case 'contar_id':
 
+    @$data = Mrequerimiento::find('all');
 
+  if($data !=null){
+    $contados= count($data);
+      
+   }else{
+    $contados= count($data)+1;
+   }
 
+     
+     echo json_encode($contados);
+break;
 
+#******************************************************************************
   case 'add_temp1':
 
             session_start();

@@ -40,7 +40,7 @@ ValidaSession("../login");
 
 						 	<div class="form-group-sm">
 							  <label for="n_accion">Nro. de Evento</label>
-							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de evento"  onpaste="return false" tabindex="1" disabled="true">
+							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de evento"  onpaste="return false" tabindex="1" disabled>
 							</div>
 
 							<div class="form-group-sm">
@@ -76,7 +76,7 @@ ValidaSession("../login");
 
 							<div class="form-group-sm">
 								<label>Centro Poblado</label>
-								<select id="corregimiento" class="form-control bbb" tabindex="7">
+								<select id="cpoblado" class="form-control bbb" tabindex="7">
 								<option></option>
 								</select>
 							</div>
@@ -715,32 +715,20 @@ $(document).ready(function() {
 	//$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 
 	$.post( "../../controllers/mrequerimientos_controller", { action: "contar_id"}).done(function( data ) {
-		$("#ideado").html( data );
+		var parsedJson = $.parseJSON(data);
+		var numstring=parsedJson.toString();
+		var res = numstring.padStart(4, 0);
+
+		$("#n_accion").val( res );
+		
 	},"json");
 
 });
 
-	
-
-
-
-
-$('#dias > option[value="0"]').attr('selected', 'selected');
-//$('#tipo1 > option[value="0"]').attr('selected', 'selected');
-$('#toldo > option[value="4"]').attr('selected', 'selected');
-$('#aviso > option[value="4"]').attr('selected', 'selected');
-$('#fachada > option[value="4"]').attr('selected', 'selected');
-$('#activo > option[value="4"]').attr('selected', 'selected');
 
 
 //MASCARAS DE VALIDACION ########################################
 
-
-$('#cedula').mask('000000000', {
-
-    	
-
-  });
 
 $('#tele1').mask('A00-000-0000', {
 
@@ -774,15 +762,6 @@ $('#tele2').mask('A000-000-0000', {
 
   });
 
-
-
-//$('#a_activo_f').mask('LLA-000000');
-
-$('#a_activo_f').mask('AAY-000000', {'translation': {
-                                        A: {pattern: /[L]/},
-                                        Y: {pattern: /[A]/}
-                                      }
-});
 
 var tick=0;
 
@@ -1104,169 +1083,6 @@ $("#izquierda" ).click(function() {
 		});
 
 
-		$('#toldo').multiselect({
-
-			enableClickableOptGroups: true,
-			enableCollapsibleOptGroups: false,
-
-			 onChange: function(element, checked, option){
-            			 	//var toldor = $('#toldo').val();
-            			 	var este =(element.val());
-				if(checked === true) {
-
-					if(este==0 || este==1 || este==2 || este==3){
-						 $('#toldo').multiselect('deselect', ['4']);
-					}else if(este==4){
-						 $('#toldo').multiselect('deselect', ['0','1','2','3' ]);
-					}
-				}else if(checked === false){
-
-					if(este==4){
-
-						$('#toldo').multiselect('select', ['4']);		
-				
-					}
-
-				}
-			 		var selectedOptions = $('#toldo option:selected');	
-					if (selectedOptions.length < 1) {
-						$('#toldo').multiselect('select', ['4']);
-					}	
-				
-			},
-
-			maxHeight: 180,
-			inheritClass: true,
-			nonSelectedText: 'Indique presencia de toldos',
-			buttonWidth: '100%'
-
-		});
-
-		$('#aviso').multiselect({
-
-			enableClickableOptGroups: true,
-			enableCollapsibleOptGroups: false,
-
-			 onChange: function(element, checked, option){
-            			 	//var toldor = $('#toldo').val();
-            			 	var este =(element.val());
-				if(checked === true) {
-
-					if(este==0 || este==1 || este==2 || este==3 ){
-						 $('#aviso').multiselect('deselect', ['4']);
-					}else if(este==4){
-						 $('#aviso').multiselect('deselect', ['0','1','2','3' ]);
-					}
-
-				}else if(checked === false){
-
-					if(este==4){
-
-						$('#aviso').multiselect('select', ['4']);		
-				
-					}
-
-				}
-			 		var selectedOptions = $('#aviso option:selected');	
-					if (selectedOptions.length < 1) {
-						$('#aviso').multiselect('select', ['4']);
-					}
-			},
-
-			maxHeight: 180,
-			inheritClass: true,
-			nonSelectedText: 'Indique presencia de  avisos',
-			buttonWidth: '100%'
-
-		});
-
-		$('#fachada').multiselect({
-
-			enableClickableOptGroups: true,
-			enableCollapsibleOptGroups: false,
-
-			 onChange: function(element, checked, option){
-            			 	//var toldor = $('#toldo').val();
-            			 	var este =(element.val());
-				if(checked === true) {
-
-					if(este==0 || este==1 || este==2 || este==3){
-						 $('#fachada').multiselect('deselect', ['4']);
-					}else if(este==4){
-						 $('#fachada').multiselect('deselect', ['0','1','2','3' ]);
-					}
-				}else if(checked === false){
-
-					if(este==4){
-
-						$('#fachada').multiselect('select', ['4']);		
-				
-					}
-
-				}
-			 		var selectedOptions = $('#fachada option:selected');	
-					if (selectedOptions.length < 1) {
-						$('#fachada').multiselect('select', ['4']);
-					}	
-				
-			},
-
-			maxHeight: 180,
-			inheritClass: true,
-			nonSelectedText: 'Indique presencia de fachadas',
-			buttonWidth: '100%'
-
-		});
-
-		$('#activo').multiselect({
-
-			enableClickableOptGroups: true,
-			enableCollapsibleOptGroups: false,
-	
-			onChange: function(element, checked, option) {
-					var selecto=(element.val());
-				if(checked === true) {
-
-					if(/*selecto==0 || */selecto==1 || selecto==2 || selecto==3){
-						 
-						 $('#activo').multiselect('deselect', ['4']);
-							
-							/*if(selecto==0){
-
-								$('#modal1').modal({backdrop: 'static',keyboard: false});
-								//document.getElementById('oculto').style.display = 'block';
-							}*/
-
-					}else if(selecto==4){
-
-						 $('#activo').multiselect('deselect', [/*'0',*/'1','2','3' ]);
-
-					}
-
-
-				}else if(checked === false){
-
-					if(selecto==4){
-
-						$('#activo').multiselect('select', ['4']);		
-				
-					}
-
-				}
-			 		var selectedOptions = $('#activo option:selected');	
-					if (selectedOptions.length < 1) {
-						$('#activo').multiselect('select', ['4']);
-					}
-			},
-
-			maxHeight: 180,
-			inheritClass: true,
-			nonSelectedText: 'Indique presencia de otras neveras',
-			buttonWidth: '100%'
-
-		});
-
-
 		$("#exit" ).click(function() {
 
 						$.confirm({
@@ -1279,7 +1095,7 @@ $("#izquierda" ).click(function() {
 
 						    confirm: function(){
 
-								$.post( "../../controllers/maliados_controller", {action: "del_temp"}).done(function(data){},"json");
+								$.post( "../../controllers/mrequerimientos_controller", {action: "del_temp"}).done(function(data){},"json");
 
 						    	setTimeout(function(){
 
@@ -1676,64 +1492,62 @@ $("#izquierda" ).click(function() {
 		//** enviar los datos al controlador ***********************************************************
 		$("#save" ).click(function() {
 
-				poten = $("#orbis").val();
-
-/*alert($('#distribuidora').val());
-
-if($('#distribuidora').val()== 0){
-	alert('ES PROGRAMADOR');
-}*/
-//alert($('#fecha1').val());
-
-				$.post( "../../controllers/maliados_controller", {
+				
+				$.post( "../../controllers/mrequerimientos_controller", {
 
 					action: "add",
-					caso: "0",
-					sorbis: $("#s_orbis").val(),
-					orbis: poten,
+					
 					nombre: $("#nombre").val(),
-					razon: $("#razon").val(),
-					segmento: $("#segmento").val(),
-					cedula: $("#cedula").val(),
-					l_cedula: $("#l_cedula").val(),
 					fecha1: $("#fecha1").val(),
-					fecha2: $("#fecha2").val(),
 					departamento: $("#departamento").val(),
 					municipio: $("#municipio").val(),
-					ciudad: $("#ciudad").val(),
-					sector: $("#sector").val(),
-					parroquia: $("#parroquia").val(),
-					a_principal: $("#a_principal").val(),
+					cpoblado: $("#cpoblado").val(),
+
+					a_primario: $("#a_primario").val(),
 					acceso1: $("#acceso1").val(),
-					a_secundario: $("#a_secundario").val(),
 					acceso2: $("#acceso2").val(),
-					referencia: $("#referencia").val(),
-					zona: $("#zona").val(),
-					territorio: $("#territorio").val(),
-					territorio_g: $("#territorio_g").val(),
-					latitud: $("#latitud").val(),
-					longitud: $("#longitud").val(),
+					num_dir: $("#num_dir").val(),
+					a_referencia: $("#a_referencia").val(),
 
-					propietario: $("#propietario").val(),
+					fecha2: $("#fecha2").val(),
+					fecha3: $("#fecha3").val(),
+					hora1: $("#hora1").val(),
+					hora2: $("#hora2").val(),
+
+					rt_nombre1: $("#rt_nombre1").val(),
+					rt_nombre2: $("#rt_nombre2").val(),
+					rt_apellido1: $("#rt_apellido1").val(),
+					rt_apellido2: $("#rt_apellido2").val(),
+					rt_tdoc: $("#rt_tdoc").val(),
+					rt_num_dic: $("#rt_num_dic").val(),
 					tele1: $("#tele1").val(),
-					tele2: $("#tele2").val(),
 					correo1: $("#correo1").val(),
-					dias: $("#dias").val(),
-					caja_t: $("#caja_t").val(),
-					caja_p: $("#caja_p").val(),
-					caja_o: $("#caja_o").val(),
-					despacho: $("#despacho").val(),
-					descuento: $("#descuento").val(),
-					seca: $("#seca").val(),
-					rf_competencia: $("#rf_competencia").val(),
-					ls_competencia: $("#ls_competencia").val(),
+					grupo: $("#grupo").val(),
+					otro1: $("#otro1").val(),
 
-					toldo: $("#toldo").val(),
-					aviso: $("#aviso").val(),
-					fachada: $("#fachada").val(),
-					activo: $("#activo").val(),
-					observacion: $("#observacion").val(),
-					distribuidora: $("#distribuidora").val(),
+					rn_nombre1: $("#rn_nombre1").val(),
+					rn_nombre2: $("#rn_nombre2").val(),
+					rn_apellido1: $("#rn_apellido1").val(),
+					rn_apellido2: $("#rn_apellido2").val(),
+					rn_tdoc: $("#rn_tdoc").val(),
+					rn_num_dic: $("#rn_num_dic").val(),
+					tele2: $("#tele2").val(),
+					correo2: $("#correo2").val(),
+
+					tipo1: $("#tipo1").val(),
+					tipo2: $("#tipo2").val(),
+					tipo3: $("#tipo3").val(),
+					tipo4: $("#tipo4").val(),
+					//arutaval: $("#arutaval").val(),
+					//apircval: $("#apircval").val(),
+					afase: $("#afase").val(),
+					amedida: $("#amedida").val(),
+					idaccion: $("#idaccion").val(),
+					entidad: $("#entidad").val(),
+					num_vic: $("#num_vic").val(),
+					descripcion: $("#descripcion").val(),
+					aloja: $("#aloja").val(),
+					trans: $("#trans").val(),
 					region: $("#region").val()
 
 				}).done(function(data){
