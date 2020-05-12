@@ -18,7 +18,7 @@ return true;
 }
 
 
-function VerificarAdmin($rol){
+function VerificarAdmin($rol){//
 	if($rol > 1 && $rol < 4){
 		header("Location:../inicio/denegado");
 		die();

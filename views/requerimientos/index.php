@@ -16,33 +16,31 @@ ValidaSession("../login");
 				<div class="box-header with-border">
 					<h3 class="box-title">Requerimientos</h3>
 				</div><!-- /.box-header -->
-	<div id="usuar" class="box">			
+				
 				<div class="box-body dataTables_wrapper form-inline dt-bootstrap">
 						<table id="tabla" class="table table-bordered table-hover">
 							<thead>
 								<tr>
 									<th>#ID</th>
-									<th>Nro. Acción</th>
-									<th>Nombre de la Actividad</th>
-									<th>Dirección Territorial.</th>
+									<th>Nro. Evento</th>
+									<th>Nombre del Evento</th>
+									<th>Dirección Territorial</th>
 									<th>Municipio</th>
 									<th>Fecha de inicio</th>
-									<th>Responsable</th>
-									<th></th>
+									<th>Responsable del Evento</th>
 								</tr>
 							</thead>
 							<tbody>
 							</tbody>
 							<tfoot>
 								<tr>
-								    <th>#ID</th>
-									<th>Nro. Acción</th>
-									<th>Nombre de la Actividad</th>
-									<th>Dirección Territorial.</th>
+									<th>#ID</th>
+									<th>Nro. Evento</th>
+									<th>Nombre del Evento</th>
+									<th>Dirección Territorial</th>
 									<th>Municipio</th>
 									<th>Fecha de inicio</th>
-									<th>Responsable</th>
-									<th></th>
+									<th>Responsable del Evento</th>
 								</tr>
 							</tfoot>
 						</table>
@@ -50,52 +48,11 @@ ValidaSession("../login");
 				<div class="box-footer">
 					<button id="add" class="btn btn-primary" type="button"><i class="fa fa-fw fa-plus"></i> Agregar</button>
 					<button id="edit" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-pencil"></i> Editar</button>
-					<button id="ver" class="btn btn-primary" type="button" style='display:none;'><i  class="fa fa-fw fa-eye"></i> Inspeccionar</button>
 					<button id="delete" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> Eliminar</button>
 				</div>
-	</div>
 
-	<div id="admin" class="box" style='display:none;'>			
-				<div class="box-body dataTables_wrapper form-inline dt-bootstrap">
-						<table id="tabla2" class="table table-bordered table-hover">
-							<thead>
-								<tr>
-									<th>#ID</th>
-									<th>Nro. Acción</th>
-									<th>Nombre de la Actividad</th>
-									<th>Dirección Territorial.</th>
-									<th>Municipio</th>
-									<th>Fecha de inicio</th>
-									<th>Responsable</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-							<tfoot>
-								<tr>
-								<th>#ID</th>
-									<th>Nro. Acción</th>
-									<th>Nombre de la Actividad</th>
-									<th>Dirección Territorial.</th>
-									<th>Municipio</th>
-									<th>Fecha de inicio</th>
-									<th>Responsable</th>
-								</tr>
-							</tfoot>
-						</table>
-				</div>
-				<div class="box-footer">
-					<button id="add1" class="btn btn-primary" type="button"><i class="fa fa-fw fa-plus"></i> Agregar</button>
-					<button id="edit1" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-pencil"></i> Editar</button>
-					<button id="ver1" class="btn btn-primary" type="button" style='display:none;'><i  class="fa fa-fw fa-eye"></i> Inspeccionar</button>
-					<button id="delete1" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> Eliminar</button>
-				</div>
-	</div>	
 		</div>
 </div>
-
-
 
 <script type="text/javascript" src="../../plugins/confirma/jquery-confirm.min.js"></script>
 <link rel="stylesheet" href="../../plugins/confirma/jquery-confirm.min.css" type="text/css"/>
@@ -105,69 +62,10 @@ ValidaSession("../login");
 		var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 		
 		if (desh==2){ //si el rol del usuario es SUPERVISOR...
-			document.getElementById('usuar').style.display = 'none';		
-			document.getElementById('admin').style.display = 'block';
-			document.getElementById('edit1').style.display = 'none';	
-			document.getElementById('add1').style.display = 'none';
-			document.getElementById('delete1').style.display = 'none';		
-			document.getElementById('ver1').style.display = 'block';
-
-			//var ttip='';
-			var table = $('#tabla2').dataTable({
-				"autoWidth": false,	
-				  "ajax": {
-					"url": "../../data_json/data_maliados_adminis",
-					"dataSrc": ""
-				  },
-
-                   "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
-
-                            if ((mData.completado)== 0 ){
- 
-                                $('td', nRow).css('background-color','#FFCCCC');
-                                                                                
-                            }else if((mData.completado)== 1 ){
-                                      
-                				$('td', nRow).css('background-color','');
-
-                            }
-
-                            return nRow;
-                    },
-
-				  "columns": [
-
-
-						{ "data": "cid" },
-						{ "data": "region" },
-						{ "data": "estado" },
-						{ "data": "distribuidora" },
-						{ "data": "modulo" },
-						{ "data": "territorio" },
-						{ "data": "segmento" },
-						{ "data": "nombre" },
-						{ "data": "cajas" },
-						{ "data": "completado"}
-					],
-			        "columnDefs": [
-			            {
-
-			                "targets": [ 9 ],
-			                "visible": false			              
-			            }
-			        ], 
-			        fixedColumns: false
-				//"order": [[ 0, "asc" ]]
-
-			});
 
 		}else{
 
-			document.getElementById('usuar').style.display = 'block';		
-			document.getElementById('admin').style.display = 'none';
-	
-			document.getElementById('ver').style.display = 'none';
-			//var ttip='';
+		}
 			var table = $('#tabla').dataTable({
 				
 				"autoWidth": false,	
@@ -221,53 +119,6 @@ ValidaSession("../login");
 				//"order": [[ 0, "asc" ]]
 
 			});
-
-		}
-
-
-//table.columns.adjust().draw();
-
-//$('#tabla tfoot tr').insertBefore($('#tabla thead tr'))
-			$('#tabla2 tbody').on( 'click', 'tr', function () {
-
-				if ( $(this).hasClass('selected') ) {
-					$(this).removeClass('selected');
-				}
-				else {
-					table.$('tr.selected').removeClass('selected');
-					$(this).addClass('selected');
-				}
-			} );
-
-			$('#tabla2 tbody').on( 'dblclick', 'tr', function () {
-
-					table.$('tr.selected').removeClass('selected');
-					$(this).addClass('selected');
-
-				var value= table.$('tr.selected').children('td:first').text();
-				//var completo=table.$('tr.selected').children('td:last').text();
-
-
-				if(!value){
-
-						$.confirm({
-						    title: '¡Seleccione el registro a editar !', // hides the title.
-						    cancelButton: false, // hides the cancel button.
-						    confirmButton: true, // hides the confirm button.
-						    closeIcon: false,
-						    confirmButton: 'cerrar',
-						    confirmButtonClass: 'btn-success',
-						    content: false// hides content block.
-						});
-
-				}else{
-
-					$(location).attr('href','frm_editar?record='+value);
-
-				}
-
-
-			} );
 
 			$('#tabla tbody').on( 'click', 'tr', function () {
 
@@ -336,27 +187,6 @@ ValidaSession("../login");
 				}
 			} );
 
-
-			$('#ver1').click( function () {
-				var value= table.$('tr.selected').children('td:first').text();
-				if(!value){
-
-						$.alert({
-						    title: '!Seleccione el registro a inspeccionar !',
-						    content: false,
-						    confirmButton: true, // hides the confirm button.
-						    closeIcon: false,
-						    confirmButton: 'cerrar',
-						    confirmButtonClass: 'btn-success'
-						});
-
-				}else{
-
-					$(location).attr('href','frm_editar?record='+value);
-
-				}
-			} );
-
 			$('#delete').click( function () {
 				var value= table.$('tr.selected').children('td:first').text();
 				if(!value){
@@ -402,6 +232,5 @@ ValidaSession("../login");
 	});
 
 </script>
-
 
 <?php include_once("../layouts/pie.php") ?>

@@ -34,16 +34,17 @@ ValidaSession("../login");
 						<input type="hidden" id="region" value="<?php echo intval($_SESSION['region']); ?>">
 						<input type="hidden" id="lata" value=6.12>
 						<input type="hidden" id="longa" value=-67.39>
+						<input type="hidden" id="ideado">
 						
 						<div class="box-body">
 
 						 	<div class="form-group-sm">
-							  <label for="n_accion">Nro. Acción</label>
-							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de actividad"  onpaste="return false" tabindex="1" disabled="true">
+							  <label for="n_accion">Nro. de Evento</label>
+							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de evento"  onpaste="return false" tabindex="1" disabled="true">
 							</div>
 
 							<div class="form-group-sm">
-							  <label for="nombre">Nombre de la Actividad</label>
+							  <label for="nombre">Nombre del Evento</label>
 							  <input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad"  onpaste="return false" tabindex="2" onkeypress="return esnombre(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' class="aaa"><p></p></div>
 							</div>
@@ -82,8 +83,22 @@ ValidaSession("../login");
 
 
 
-						<div class="form-group-sm">
-							<label >Dirección de la Actividad</label>
+					</div>
+						 
+		  		</div>
+
+			</div>
+
+		  <div class="col-md-4">
+
+		  	<div class="box-header with-border" tabindex="-1">
+				<h3 class="box-title">Ubicación del Evento</h3>
+			</div><!-- /.box-header -->		  
+
+		 	 <div class="box box-primary">
+				<div class="box-body">
+					<div class="form-group-sm">
+							<label >Dirección</label>
 							
 								<div class = "input-group">
 
@@ -114,11 +129,11 @@ ValidaSession("../login");
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_dir' class="aaa"><p></p></div>
-						</div>
-						<div class="form-group-sm">
+					</div>
+
+					<div class="form-group-sm">
 							<label >Referencia</label>
 								<div class = "input-group">
-
 									<span class="input-group-btn">
 										<select id="a_referencia" class="btn-sm"  tabindex="12"  >
 											<option value="0">Al lado</option>
@@ -130,21 +145,16 @@ ValidaSession("../login");
 											<option value="6">Dentro</option>
 										</select>
 									</span>
-
 									<input type="text" class="form-control bbb" id="referencia" placeholder="Ingrese una referencia"  onpaste="return false" tabindex="13" onkeypress="return esreferencia(event);" onblur="alsalir(this.id)">
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_referencia' class="aaa"><p></p></div>
-						</div>
-					</div>
-						 
-		  		</div>
+					</div>				
 
-			</div>
-
-		  <div class="col-md-4">
+				</div>
+			</div>	
 
 			<div class="box-header with-border">
-					<h3 class="box-title">Inicio y Final de la Actividad</h3>
+					<h3 class="box-title">Inicio y Final del Evento</h3>
 			</div><!-- /.box-header -->	
 
 			<div class="box box-primary">
@@ -197,159 +207,73 @@ ValidaSession("../login");
 			  </div>
 			</div>
 
-				<div class="box-header with-border">
-					<h3 class="box-title">Responsable Territorial</h3>
-				</div><!-- /.box-header -->		
-
-		  		<div class="box box-primary">
-
-						<div class="box-body">
-							<label>Nombres</label>
-							<div class="input-group">
-								<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="18" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control bbb" id="rt_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="19" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
-							</div>
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_nombre1' class="aaa"><p></p></div>
-							
-							<label>Apellidos</label>
-							<div class="input-group">
-								<input type="text" class="form-control bbb" id="rt_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="20" onkeypress="return esapellido1(event);"  onblur="alsalir(this.id)"  autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control bbb" id="rt_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="21" onkeypress="return esapellido1(event);"  onblur="alsalir(this.id)" autocomplete="off" >
-							</div>
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_apellido1' class="aaa"><p></p></div>
-														
-							<div class="form-group-sm">
-								<label >Documento de Identidad</label>
-									<div class = "input-group">
-
-										<span class="input-group-btn">
-											<select id="rt_tdoc" class="btn-sm"  tabindex="22"  >
-												<option value="0">CC</option>
-												<option value="1">CE</option>
-												<option value="2">PA</option>
-											</select>
-										</span>
-
-										<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="23" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off">
-									</div>
-									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_num_doc' class="aaa"><p></p></div>
-							</div>	
-
-							<div class="form-group-sm">
-							  <label for="tele1">Teléfono de contacto</label>
-							  <input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
-							</div>
-
-								<div id="confirma_telefono">
-									<ul><li id="conf_tel" style="color:#fff;text-align:center" ></li></ul>
-								</div>
-
-							<div class="form-group-sm">
-							  <label for="correo1">Correo electrónico</label>
-							  <input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="25" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off">
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' class="aaa"></div>
-							</div>
-
-								<div id="confirma_correo">
-									<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
-								</div>							
-							
-							
-						</div>
-				 
-				
-				</div>
+	
 
 
 		  </div>
 
 		  <div class="col-md-4">
-
-		  		<div class="box-header with-border">
-					<h3 class="box-title">Responsable Nacional</h3>
+	
+		 		<div class="box-header with-border">
+					<h3 class="box-title">Responsable del Evento</h3>
 				</div><!-- /.box-header -->	
-
-					<div class="box box-primary">
-
-						<div class="box-body">
-							<label>Nombres</label>
-							<div class="input-group">
-								<input type="text" class="form-control bbb" id="rn_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="26" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control bbb" id="rn_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="27" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							</div>
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_nombre1' class="aaa"><p></p></div>
-							
-							<label>Apellidos</label>
-							<div class="input-group">
-								<input type="text" class="form-control bbb" id="rn_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="28" onkeypress="return esapellido2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control bbb" id="rn_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="29" onkeypress="return esapellido2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
-							</div>
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_apellido1' class="aaa"><p></p></div>
-							
-							
-							<div class="form-group-sm">
-								<label >Documento de Identidad</label>
-									<div class = "input-group">
-
-										<span class="input-group-btn">
-											<select id="rn_tdoc" class="btn-sm"  tabindex="30"  >
-												<option value="0">CC</option>
-												<option value="1">CE</option>
-												<option value="2">PA</option>
-											</select>
-										</span>
-
-										<input type="text" class="form-control bbb" id="rn_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="31" onkeypress="return escedula2(event);" onblur="alsalira(this.id)">
-									</div>
-									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_num_doc' class="aaa"><p></p></div>
-							</div>	
-
-							<div class="form-group-sm">
-							<label for="tele2">Teléfono de contacto</label>
-							<input type="text" class="form-control bbb" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="32" onkeypress="return estele2(event);" onblur="alsalir2(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele2' class="aaa"></div>
-							</div>
-
-								<div id="confirma_telefono2">
-									<ul><li id="conf_tel2" style="color:#fff;text-align:center" ></li></ul>
-								</div>
-
-							<div class="form-group-sm">
-							<label for="correo2">Correo electrónico</label>
-							<input type="text" class="form-control bbb" id="correo2" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="33" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo2' class="aaa"></div>
-							</div>
-
-								<div id="confirma_correo2">
-									<ul><li id="conf_cor2" style="color:#fff;text-align:center" ></li></ul>
-								</div>							
-							
-							
-						</div>
-
-
-					</div>
-
-					<div class="box-header with-border">
-						<h3 class="box-title">Otros datos</h3>
-					</div><!-- /.box-header -->
 
 				<div class="box box-primary">
 
-						<div class="box-body">
+					<div class="box-body">
+						<label>Nombres</label>
+						<div class="input-group">
+							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="18" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
+							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+							<input type="text" class="form-control" id="rt_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="19" onkeypress="return esnombre2(event);"   autocomplete="off">
+						</div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_nombre1' class="aaa"><p></p></div>
+						
+						<label>Apellidos</label>
+						<div class="input-group">
+							<input type="text" class="form-control bbb" id="rt_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="20" onkeypress="return esapellido1(event);" onblur="alsalir(this.id)" autocomplete="off">
+							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+							<input type="text" class="form-control" id="rt_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="21" onkeypress="return esapellido1(event);" autocomplete="off" >
+						</div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_apellido1' class="aaa"><p></p></div>
+													
+						<div class="form-group-sm">
+							<label >Documento de Identidad</label>
+								<div class = "input-group">
 
-							<div class="form-group-sm">
-								<label>Pertenencia de la actividad</label>
-								<select id="pertenencia" class="form-control bbb" tabindex="34">
-								<option></option>
-								</select>
+									<span class="input-group-btn">
+										<select id="rt_tdoc" class="btn-sm"  tabindex="22"  >
+											<option value="0">CC</option>
+											<option value="1">CE</option>
+											<option value="2">PA</option>
+										</select>
+									</span>
+
+									<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="23" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off">
+								</div>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_num_doc' class="aaa"><p></p></div>
+						</div>	
+
+						<div class="form-group-sm">
+						<label for="tele1">Teléfono de contacto</label>
+						<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
+						</div>
+
+							<div id="confirma_telefono">
+								<ul><li id="conf_tel" style="color:#fff;text-align:center" ></li></ul>
 							</div>
-        
+
+						<div class="form-group-sm">
+						<label for="correo1">Correo electrónico</label>
+						<input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="25" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' class="aaa"></div>
+						</div>
+
+							<div id="confirma_correo">
+								<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
+							</div>
+							
 							<div class="form-group-sm">
 								<label>Grupo/Área/Equipo/Dependencia</label>
 								<select id="grupo" class="form-control bbb" tabindex="35">
@@ -357,10 +281,9 @@ ValidaSession("../login");
 								</select>
 							</div>
 
-							<div class="focusguard" id="guardia1" tabindex="36"></div>
-						  		
-						</div>
-		 		</div><!-- /.box -->
+							<div class="focusguard" id="guardia1" tabindex="36"></div>							
+					</div>
+				</div>
 			</div>
 		</li>
 
@@ -378,7 +301,8 @@ ValidaSession("../login");
 						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #ecf0f5;">
 							<div class="form-group-sm" >
 								<label id="guardia78" tabindex="0" >INDIVIDUAL</label></br>
-								<select id="tipo1" class="form-control" multiple="multiple" tabindex="0">
+								<select id="tipo1" class="form-control" tabindex="0">
+									<option value="" selected disabled hidden>Indique si el evento corresponde a:</option>
 									<option value="0">Jornada Diferencial</option>
 									<option value="1">Feria de Servicios</option>
 									<option value="2">Conmemoración</option>
@@ -403,7 +327,8 @@ ValidaSession("../login");
 						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #ecf0f5;">
 							<div class="form-group-sm">
 								<label class="guardia80" tabindex="0">RETORNOS Y REUBICACIONES</label></br>
-								<select id="tipo2" class="form-control" multiple="multiple" tabindex="0">
+								<select id="tipo2" class="form-control"  tabindex="0">
+									<option value="" selected disabled hidden>Indique si el evento corresponde a:</option>
 									<option value="0">Integración Comunitaria</option>
 									<option value="1">Retorno</option>
 									<option value="2">Reubicacion</option>
@@ -420,7 +345,8 @@ ValidaSession("../login");
 
 								<label>Pertenencia étnica comunitaria</label></br>
 
-								<select id="tipo3" class="form-control" multiple="multiple" tabindex="0">
+								<select id="tipo3" class="form-control" tabindex="0">
+									<option value="" selected disabled hidden>Indique el sujeto "no étnico" </option>
 									<option value="0">Comunidad</option>
 									<option value="1">Comunidad Campesina</option>
 									<option value="2">Grupo</option>
@@ -428,7 +354,8 @@ ValidaSession("../login");
 									<option value="4">Organización de Mujeres</option>
 								</select>
 
-								<select id="tipo4" class="form-control" multiple="multiple" tabindex="0">
+								<select id="tipo4" class="form-control" tabindex="0">
+									<option value="" selected disabled hidden>Indique el sujeto "étnico" </option>
 									<option value="0">Indígena</option>
 									<option value="1">Ancestral</option>
 									<option value="2">RROM o Gitano</option>
@@ -438,7 +365,7 @@ ValidaSession("../login");
 							</div>
 
 						    <div class="form-group-sm">
-							  <label>Atividad de ruta</label>
+							  <label>Actividad de ruta</label>
 	                            <div class = "input-group">
 								      <span class = "input-group-addon">
 	                                     <input type = "checkbox" tabindex="0" id="aruta">
@@ -514,10 +441,11 @@ ValidaSession("../login");
 							<table id="tabla" class="table table-bordered table-hover">
 								<thead>
 									<tr>
+										<th></th>
 										<th>Tipo</th>
 										<th>Concepto</th>
-										<th>Medida</th>
 										<th>Cantidad</th>
+										<th>Medida</th>
 										<th>Observaciones</th>
 									</tr>
 								</thead>
@@ -574,10 +502,74 @@ ValidaSession("../login");
 
 			<div class="col-md-4">
 
-				<div class="box-header with-border">
-					 	<h3 class="box-title" >aca ira la visualización del formato con los datos ya incluidos y la opción para guardar</h3>
-				</div><!-- /.box-header -->
+				<div id="reste" style='display:none;'>
+					<div class="box-header with-border">
+						<h3 class="box-title">Responsable Territorial</h3>
+					</div><!-- /.box-header -->	
+				
+					<div class="box box-primary">
 
+						<div class="box-body">
+							<label>Nombres</label>
+							<div class="input-group">
+								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="260" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+								<input type="text" class="form-control" id="rn_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="270" onkeypress="return esnombre3(event);" autocomplete="off">
+							</div>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_nombre1' class="aaa"><p></p></div>
+							
+							<label>Apellidos</label>
+							<div class="input-group">
+								<input type="text" class="form-control ddd" id="rn_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="280" onkeypress="return esapellido2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+								<input type="text" class="form-control" id="rn_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="290" onkeypress="return esapellido2(event);" autocomplete="off">
+							</div>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_apellido1' class="aaa"><p></p></div>
+							
+							
+							<div class="form-group-sm">
+								<label >Documento de Identidad</label>
+									<div class = "input-group">
+
+										<span class="input-group-btn">
+											<select id="rn_tdoc" class="btn-sm"  tabindex="300"  >
+												<option value="0">CC</option>
+												<option value="1">CE</option>
+												<option value="2">PA</option>
+											</select>
+										</span>
+
+										<input type="text" class="form-control ddd" id="rn_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="310" onkeypress="return escedula2(event);" onblur="alsalira(this.id)">
+									</div>
+									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_num_doc' class="aaa"><p></p></div>
+							</div>	
+
+							<div class="form-group-sm">
+							<label for="tele2">Teléfono de contacto</label>
+							<input type="text" class="form-control ddd" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="320" onkeypress="return estele2(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele2' class="aaa"></div>
+							</div>
+
+								<div id="confirma_telefono2">
+									<ul><li id="conf_tel2" style="color:#fff;text-align:center" ></li></ul>
+								</div>
+
+							<div class="form-group-sm">
+							<label for="correo2">Correo electrónico</label>
+							<input type="text" class="form-control ddd" id="correo2" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="330" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo2' class="aaa"></div>
+							</div>
+
+								<div id="confirma_correo2">
+									<ul><li id="conf_cor2" style="color:#fff;text-align:center" ></li></ul>
+								</div>							
+							
+							
+						</div>
+
+
+					</div>
+				</div>
 		  		<div class="box box-primary">
 
 						<div class="box-body">
@@ -623,33 +615,47 @@ ValidaSession("../login");
 
 							<div class="form-group-sm">
 								<label>Tipo</label>
-								<select id="a_marca"   class="form-control" >
-								    <option></option>
+								<select id="d_tipo"   class="form-control" >
+									<option value="" selected disabled hidden>Indique tipo de requerimiento </option>
+									<option value="0">Salones</option>
+									<option value="1">Administración</option>
+									<option value="2">Materiales</option>
+									<option value="3">Cotizables</option>
 								</select>
 							</div>
 
 							<div class="form-group-sm">
 								<label>Concepto</label>
-								<input type="text"  class="form-control" id="a_modelo"  placeholder="Describa el concepto"  onpaste="return false" onkeypress="return esa_modelo(event);" onblur="alsalira(this.id)">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_modelo' ></div>
-							</div>
-
-							<div class="form-group-sm">
-								<label>Medida</label>
-								<input type="text"  class="form-control" id="a_serial"  placeholder="Ingrese serial del activo"  onpaste="return false" onkeypress="return esa_serial(event);" onblur="alsalira(this.id)">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_serial' ></div>
+								<input type="text"  class="form-control" id="d_concepto"  placeholder="Describa el concepto"  onpaste="return false" onkeypress="return esdconcepto(event);" onblur="alsalir(this.id)" autocomplete="off">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_concepto' ></div>
 							</div>
 
 							<div class="form-group-sm">
 								<label>Cantidad</label>
-								<input type="text"  class="form-control" id="a_serial"  placeholder="Ingrese serial del activo"  onpaste="return false" onkeypress="return esa_serial(event);" onblur="alsalira(this.id)">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_serial' ></div>
+								<input type="text"  class="form-control" id="d_cantidad"  placeholder="Indique la cantidad"  onpaste="return false" onkeypress="return esdcantidad(event);" onblur="alsalir(this.id)" autocomplete="off">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_cantidad' ></div>
 							</div>
 
 							<div class="form-group-sm">
-								<label>Observaciones</label>
-								<input type="text"  class="form-control" id="a_activo_f"  placeholder="Ingrese el número de activo fijo (LLA-000000)"  onpaste="return false" onblur="alsalira3(this.id)">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_activo_f' ></div>
+								<label>Medida</label>
+								<select id="d_medida"   class="form-control" >
+									<option value="" selected disabled hidden>Indique tipo de medida </option>
+									<option value="0">Metros</option>
+									<option value="1">Unidades</option>
+									<option value="2">Kilogramos</option>
+									<option value="3">Gramos</option>
+									<option value="4">Centimetros</option>
+									<option value="5">Pugadas</option>
+									<option value="6">Libras</option>
+									<option value="7">Litros</option>
+									<option value="8">Galones</option>
+								</select>
+							</div>
+
+							<div class="form-group-sm">
+							  <label>Observaciones</label>
+							  <textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características"  onpaste="return false" onkeypress="return esdobs(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
+  							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_obs' class="aaa"><p></p></div>
 							</div>
 
 					  </div><!-- /.box-body -->
@@ -706,9 +712,11 @@ ValidaSession("../login");
 
 $(document).ready(function() {
 
-	$.post( "../../controllers/mactivos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+	//$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 
-
+	$.post( "../../controllers/mrequerimientos_controller", { action: "contar_id"}).done(function( data ) {
+		$("#ideado").html( data );
+	},"json");
 
 });
 
@@ -734,13 +742,13 @@ $('#cedula').mask('000000000', {
 
   });
 
-$('#tele1').mask('A000-000-0000', {
+$('#tele1').mask('A00-000-0000', {
 
     	translation: {
 
     		 'A': {
 
-        			pattern: /[0]/, optional: true
+        			pattern: /[03]/, optional: true
 
      		        }
 
@@ -1035,7 +1043,7 @@ $("#izquierda" ).click(function() {
 				$('#entidad' ).focus();
 				var cont_alert4 =$('.ccc').filter(function() { return $(this).val() == ""; }).size();
 				//var cont_alert = $('.aaa p:contains("") ').size();
-alert(cont_alert4);
+
 				//if(cont_alert4!=0){
 					if(cont_alert4 >50){
 						$.confirm({
@@ -1077,74 +1085,24 @@ alert(cont_alert4);
 		});
 
 
+		$('#tipo1').on('change', function () {
 
-		$('#tipo1').multiselect({
+     		var selectVal = $("#tipo1 option:selected").val();
+			
+			 if(selectVal==9){
 
-			enableClickableOptGroups: true,
-			enableCollapsibleOptGroups: false,
-
-			onChange: function(element, checked, option){
-							//var toldor = $('#toldo').val();
-							var este =(element.val());
-				if(checked === true) {
-
-					if(este==9){
-
-						$("#otro1a").css("display", "block");
-						$('#tipo1').dropdown('toggle');
-						$("#otro1").focus();
-					}
-				}else if(checked === false){
-
-					if(este==9){
-
-						$("#otro1a").css("display", "none");		
-						$("#otro1").val("");
-					}
-
-				}
+				$("#otro1a").css("display", "block");
 				
-			},
+				$("#otro1").focus();
 
-			maxHeight: 180,
-			inheritClass: true,
-			nonSelectedText: 'Selecione una o varias opciones',
-			buttonWidth: '100%'
+			}else{
 
+				$("#otro1a").css("display", "none");		
+				$("#otro1").val("");
+
+			}
 		});
 
-		$('#tipo2').multiselect({
-
-			enableClickableOptGroups: true,
-			enableCollapsibleOptGroups: false,
-			maxHeight: 180,
-			inheritClass: true,
-			nonSelectedText: 'Selecione una o varias opciones',
-			buttonWidth: '100%'
-
-		});
-
-		$('#tipo3').multiselect({
-
-			enableClickableOptGroups: true,
-			enableCollapsibleOptGroups: false,
-			maxHeight: 180,
-			inheritClass: true,
-			nonSelectedText: 'Tipo no étnico',
-			buttonWidth: '100%'
-
-		});
-
-		$('#tipo4').multiselect({
-
-			enableClickableOptGroups: true,
-			enableCollapsibleOptGroups: false,
-			maxHeight: 180,
-			inheritClass: true,
-			nonSelectedText: 'Tipo étnico',
-			buttonWidth: '100%'
-
-		});
 
 		$('#toldo').multiselect({
 
@@ -1418,17 +1376,18 @@ alert(cont_alert4);
 										  //"destroy": true,
 
 										  "ajax": {
-											"url": "../../data_json/data_mactivos",
+											"url": "../../data_json/data_mdetalles",
 											"dataSrc": ""
 										  },
 										  "scrollX": true,
 										  "scrollY": "130px",
 										  "columns": [
-												{ "data": "cid" },
-												{ "data": "marca" },
-												{ "data": "modelo" },
-												{ "data": "serial" },
-												{ "data": "activo" }
+												{ "data": "id" },
+												{ "data": "tipo" },
+												{ "data": "concepto" },
+												{ "data": "cantidad" },
+												{ "data": "medida" },
+												{ "data": "observaciones" }
 												
 											],
 										//"order": [[ 0, "asc" ]],
@@ -1454,15 +1413,14 @@ alert(cont_alert4);
 
 		$("#close1").click(function() {
 
-				$.post( "../../controllers/mactivos_controller", {
+				$.post( "../../controllers/mdetalles_controller", {
 
 					action: "temporal",
-					marca: $('#a_marca').val(),
-					modelo: $('#a_modelo').val(),
-					serial: $('#a_serial').val(),
-					activo: $('#a_activo_f').val(),
-					comodato: $('#a_comodato').val(),
-					distribuidora: $('#distribuidora').val()
+					tipo: $('#d_tipo').val(),
+					concepto: $('#d_concepto').val(),
+					cantidad: $('#d_cantidad').val(),
+					medida: $('#d_medida').val(),
+					observaciones: $('#d_obs').val()
 
 				}).done(function(data){
 
@@ -1471,31 +1429,16 @@ alert(cont_alert4);
 
 					if(parsedJson.resultado != 'error'){
 
-						document.getElementById("a_propio").disabled = true;
-
+						
 					    setTimeout(function(){
 
-							$.post( "../../controllers/mmarcas_controller", { action: "get_marcas"}).done(function( data ) {
-								 $("#a_marca" ).html( data );
+							$("#d_tipo").val(null);
+							$("#d_concepto").val(null);
+							$("#d_cantidad").val(null);
+							$("#d_medida").val(null);
+							$("#d_obs").val(null);
 
-							});
-
-							$("#a_modelo").val(null);
-							$("#a_serial").val(null);
-							$("#a_activo_f").val(null);
-							$("#a_comodato").val(null);
-							//$("#distribuidora").val(null);
-
-if(document.getElementById('oculto').style.display == 'block'){
-
-	$('#tabla').DataTable().ajax.reload();
-
-}else{				
-	$('#tabla').DataTable().ajax.reload();
-	document.getElementById('oculto').style.display = 'block';
-}
-						
-
+							$('#tabla').DataTable().ajax.reload();
  							$(".alert").alert('close');
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
@@ -1514,10 +1457,11 @@ if(document.getElementById('oculto').style.display == 'block'){
 			$('#quitar').click( function () {
 
 				var value= table.$('tr.selected').children('td:first').text();
+				//alert(value);
 				if(!value){
 
 						$.alert({
-						    title: '!Seleccione el activo a desincorporar!',
+						    title: '!Seleccione el item a desincorporar!',
 						    content: false,
 						    confirmButton: true, // hides the confirm button.
 						    closeIcon: false,
@@ -1529,7 +1473,7 @@ if(document.getElementById('oculto').style.display == 'block'){
 
 						$.confirm({
 
-								    title: '¿Desea desincorporar este activo?!',
+								    title: '¿Desea desincorporar este item?!',
 								    content:false,
 								    confirmButton: 'Si',
 								    cancelButton: 'No',
@@ -1538,7 +1482,7 @@ if(document.getElementById('oculto').style.display == 'block'){
 
 						    		confirm: function(){
 
-										$.post( "../../controllers/mactivos_controller", { action: "delete",record:value}).done(function( data ) {
+										$.post( "../../controllers/mdetalles_controller", {action:"delete",record:value}).done(function( data ) {
 											//$(".message").html(data);
 											var parsedJson = $.parseJSON(data);
 											$(".message").html(parsedJson.mensaje);
@@ -1549,22 +1493,17 @@ if(document.getElementById('oculto').style.display == 'block'){
 												//$('#tabla').dataTable();
 												 
 
-													  	$.post( "../../controllers/mactivos_controller", { action: "search_act"}).done(function( data ) {
+													  	$.post( "../../controllers/mdetalles_controller", { action: "search_act"}).done(function( data ) {
 																
 																var parsedJson = $.parseJSON(data);
 
 																		if(parsedJson == 'si'){
 																		
 																			$('#tabla').DataTable().ajax.reload();
-																				
-																		
 
 																		}else{
-					      													document.getElementById('oculto').style.display = 'none';
-																			document.getElementById("a_propio").checked = false;
-																			document.getElementById("a_propio").disabled = false;
-																			$("#lab_propio").val(0);
 
+																			$('#tabla').DataTable().ajax.reload();
 																		}
 
 														},"json");	
@@ -1586,31 +1525,12 @@ if(document.getElementById('oculto').style.display == 'block'){
 
 			$('#modal1').modal('toggle');
 			$("#alojamiento").focus();
-		$.post( "../../controllers/mmarcas_controller", { action: "get_marcas"}).done(function( data ) {
-			 $("#a_marca" ).html( data );
 
-		});
-			$("#a_modelo").val(null);
-			$("#a_serial").val(null);
-			$("#a_activo_f").val(null);
-			$("#a_comodato").val(null);
-			//se debe comprobar si existe registro de activo, si no lo hay, a_propio se mantiene cheked.
-			  	$.post( "../../controllers/mactivos_controller", { action: "search_act"}).done(function( data ) {
-						
-						var parsedJson = $.parseJSON(data);
-
-								if(parsedJson == 'si'){
-
-									
-
-								}else{
-
-									document.getElementById("a_propio").checked = false;
-									$("#lab_propio").val(0);
-
-								}
-
-				},"json");
+			$("#d_tipo").val(null);
+			$("#d_concepto").val(null);
+			$("#d_cantidad").val(null);
+			$("#d_medida").val(null);
+			$("#d_obs").val(null);
 
 		});
 
@@ -1841,7 +1761,7 @@ if($('#distribuidora').val()== 0){
 
 					if(parsedJson.resultado != 'error'){
 
-					$.post( "../../controllers/mactivos_controller", { action: "definitivo2",recordado:$("#cedula").val(),l_recordado:$("#l_cedula").val(),l_orbis:$("#orbis").val() }).done(function( data ) {
+					$.post( "../../controllers/mdetalles_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
 
 					});
 
@@ -1850,7 +1770,7 @@ if($('#distribuidora').val()== 0){
 					    	setTimeout(function(){
 
 					                  //$(location).attr('href','../aliados/frm_registrar');
-					                  $('#sorbis').focus();
+					                  $('#nombre').focus();
 
 					              }, 3000);
 
@@ -2297,44 +2217,66 @@ function esdescri(e) {
 
 }
 
-function esa_modelo(e) {
+function esdobs(e) {
 
 	k = (document.all) ? e.keyCode : e.which;
 	if (k==8 || k==0 || k==13) return true;
-	patron = /^[A-ZÑ0-9\.\-]$/;
+	patron = /^[A-ZÑ0-9\ \.\-]$/;
+	n = String.fromCharCode(k);
+
+					if(patron.test(n)==''){
+
+						document.getElementById('ms_d_obs').style.display = 'block';
+						document.getElementById("ms_d_obs").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+							return patron.test(n);
+
+					}else{
+
+						document.getElementById("ms_d_obs").innerHTML = '';
+						return patron.test(n);
+
+					}
+
+}
+
+function esdconcepto(e) {
+
+	k = (document.all) ? e.keyCode : e.which;
+	if (k==8 || k==0 || k==13) return true;
+	patron = /^[A-ZÑ0-9\ \.\-]$/;
 	n = String.fromCharCode(k);
 
                     if(patron.test(n)==''){
 
-                    	document.getElementById('ms_a_modelo').style.display = 'block';
-                       	document.getElementById("ms_a_modelo").innerHTML = 'Use mayusculas y no incluya caractéres especiales ni espacios';
+                    	document.getElementById('ms_d_concepto').style.display = 'block';
+                       	document.getElementById("ms_d_concepto").innerHTML = 'Use mayusculas y no incluya caractéres especiales ni espacios';
                         	return patron.test(n);
 
                     }else{
 
-                       	document.getElementById("ms_a_modelo").innerHTML = '';
+                       	document.getElementById("ms_d_concepto").innerHTML = '';
                        	return patron.test(n);
 
                     }
 
 }
 
-function esa_serial(e) {
+function esdcantidad(e) {
 
 	k = (document.all) ? e.keyCode : e.which;
 	if (k==8 || k==0 || k==13) return true;
-	patron = /^[A-ZÑ0-9\.\-]$/;
+	patron = /^[0-9]$/;
 	n = String.fromCharCode(k);
 
                     if(patron.test(n)==''){
 
-                    	document.getElementById('ms_a_serial').style.display = 'block';
-                       	document.getElementById("ms_a_serial").innerHTML = 'Use mayusculas y no incluya caractéres especiales ni espacios';
+                    	document.getElementById('ms_d_cantidad').style.display = 'block';
+                       	document.getElementById("ms_d_cantidad").innerHTML = 'Use solo nuúmeros';
                         	return patron.test(n);
 
                     }else{
 
-                       	document.getElementById("ms_a_serial").innerHTML = '';
+                       	document.getElementById("ms_d_cantidad").innerHTML = '';
                        	return patron.test(n);
 
                     }

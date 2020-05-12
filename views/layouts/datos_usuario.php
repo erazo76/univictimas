@@ -14,9 +14,9 @@
 				?>
             </div>
             <div class="pull-left info">
+              <a href="#" style="margin: -10px;"><i class="fa fa-circle text-success"></i> Activo</a><br>
               <?php echo ' <p>'.$usuariox.'</p>'; ?>
 
-              <a href="#" style="margin: -10px;"><i class="fa fa-circle text-success"></i> Activo</a><br>
             </div>
           </div>
       </div>
