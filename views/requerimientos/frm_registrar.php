@@ -35,6 +35,14 @@ ValidaSession("../login");
 						<input type="hidden" id="lata" value=6.12>
 						<input type="hidden" id="longa" value=-67.39>
 						<input type="hidden" id="ideado">
+						<input type="hidden" id="trans" value=0>
+						<input type="hidden" id="aloja" value=0>
+						<input type="hidden" id="arutaval" value=0>
+						<input type="hidden" id="apircval" value=0>
+						<input type="hidden" id="tipo1" value=0>
+						<input type="hidden" id="tipo2" value=0>
+						<input type="hidden" id="tipo3" value=0>
+						<input type="hidden" id="tipo4" value=0>
 						
 						<div class="box-body">
 
@@ -57,7 +65,7 @@ ValidaSession("../login");
 
 							<div class="form-group-sm">
 								<label>Dirección Territorial</label>
-								<select id="departamento" class="form-control bbb" tabindex="4">
+								<select name="depar" id="departamento" class="form-control bbb" tabindex="4">
 								<option></option>
 								</select>
 							</div>
@@ -128,6 +136,7 @@ ValidaSession("../login");
 										
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso2' class="aaa"><p></p></div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_dir' class="aaa"><p></p></div>
 					</div>
 
@@ -302,17 +311,17 @@ ValidaSession("../login");
 							<div class="form-group-sm" >
 								<label id="guardia78" tabindex="0" >INDIVIDUAL</label></br>
 								<select id="tipo1" class="form-control" tabindex="0">
-									<option value="" selected disabled hidden>Indique si el evento corresponde a:</option>
-									<option value="0">Jornada Diferencial</option>
-									<option value="1">Feria de Servicios</option>
-									<option value="2">Conmemoración</option>
-									<option value="3">Iniciativa Local de Memoria</option>
-									<option value="4">Acto de Reconocimiento</option>
-									<option value="5">Orden Judicial</option>
-									<option value="6">Taller por Linea de Inversion</option>
-									<option value="7">Entrega digna de cadáveres</option>
-									<option value="8">Charla de educación financiera </option>	
-									<option value="9">Otro</option>								
+									<option value="0" selected disabled hidden>Indique si el evento corresponde a:</option>
+									<option value="1">Jornada Diferencial</option>
+									<option value="2">Feria de Servicios</option>
+									<option value="3">Conmemoración</option>
+									<option value="4">Iniciativa Local de Memoria</option>
+									<option value="5">Acto de Reconocimiento</option>
+									<option value="6">Orden Judicial</option>
+									<option value="7">Taller por Linea de Inversion</option>
+									<option value="8">Entrega digna de cadáveres</option>
+									<option value="9">Charla de educación financiera </option>	
+									<option value="10">Otro</option>								
 								</select>
 								
 							</div>
@@ -346,21 +355,21 @@ ValidaSession("../login");
 								<label>Pertenencia étnica comunitaria</label></br>
 
 								<select id="tipo3" class="form-control" tabindex="0">
-									<option value="" selected disabled hidden>Indique el sujeto "no étnico" </option>
-									<option value="0">Comunidad</option>
-									<option value="1">Comunidad Campesina</option>
-									<option value="2">Grupo</option>
-									<option value="3">Organizaciones</option>
-									<option value="4">Organización de Mujeres</option>
+									<option value="0" selected disabled hidden>Indique el sujeto "no étnico" </option>
+									<option value="1">Comunidad</option>
+									<option value="2">Comunidad Campesina</option>
+									<option value="3">Grupo</option>
+									<option value="4">Organizaciones</option>
+									<option value="5">Organización de Mujeres</option>
 								</select>
 
 								<select id="tipo4" class="form-control" tabindex="0">
-									<option value="" selected disabled hidden>Indique el sujeto "étnico" </option>
-									<option value="0">Indígena</option>
-									<option value="1">Ancestral</option>
-									<option value="2">RROM o Gitano</option>
-									<option value="3">Afrocolombiana</option>
-									<option value="4">Negra</option>
+									<option value="0" selected disabled hidden>Indique el sujeto "étnico" </option>
+									<option value="1">Indígena</option>
+									<option value="2">Ancestral</option>
+									<option value="3">RROM o Gitano</option>
+									<option value="4">Afrocolombiana</option>
+									<option value="5">Negra</option>
 								</select>								
 							</div>
 
@@ -370,7 +379,7 @@ ValidaSession("../login");
 								      <span class = "input-group-addon">
 	                                     <input type = "checkbox" tabindex="0" id="aruta">
 									  </span>
-									  <input type="text" class="form-control ccc" id="afase" placeholder="Indique la fase en que se ecuentra"  onpaste="return false" tabindex="0" onkeypress="return esafase(event);" onblur="return alsalir(this.id);" disabled>
+									  <input type="text" class="form-control " id="afase" placeholder="Indique la fase en que se ecuentra"  onpaste="return false" tabindex="0" onkeypress="return esafase(event);" onblur="return alsalir(this.id);" disabled>
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_afase' ></div>
 							</div>
@@ -383,7 +392,7 @@ ValidaSession("../login");
 								      <span class = "input-group-addon">
 	                                     <input type = "checkbox" tabindex="0" id="apirc">
 									  </span>
-									  <input type="text" class="form-control ccc " id="amedida" placeholder="Indique el tipo de medida"  onpaste="return false" tabindex="0" onkeypress="return esamedida(event);" onblur="return alsalir(this.id);" disabled>
+									  <input type="text" class="form-control " id="amedida" placeholder="Indique el tipo de medida"  onpaste="return false" tabindex="0" onkeypress="return esamedida(event);" onblur="return alsalir(this.id);" disabled>
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_amedida' ></div>
 									<div>
@@ -391,7 +400,7 @@ ValidaSession("../login");
 									</div>
 									<div id="idacc" style='display:none;'>
 										<label for="idaccion" class="guardia77" tabindex="0">Id Acción</label>
-										<input type="text" class="form-control ccc" id="idaccion" placeholder="Indique Id de la accion"  onpaste="return false" tabindex="45" onkeypress="return esidaccion(event);" onblur="return alsalir(this.id);" >
+										<input type="text" class="form-control " id="idaccion" placeholder="Indique Id de la accion"  onpaste="return false" tabindex="45" onkeypress="return esidaccion(event);" onblur="return alsalir(this.id);" >
 										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_idaccion' ></div>
 									</div>							
 							</div>
@@ -570,14 +579,19 @@ ValidaSession("../login");
 
 					</div>
 				</div>
+
 		  		<div class="box box-primary">
 
 						<div class="box-body">
 
-						<label id="prueba"></label>
+							<label id="prueba"></label>
 
 						</div>
-
+						<div class="box-footer">
+							<button id="save" type="button" class="btn btn-success" tabindex="0"><i class="fa fa-fw fa-save"></i>Guardar</button>
+							<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="-1"><i class="fa fa-fw fa-reply"></i>Regresar</button>
+							<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
+						  </div>				
 						
 				</div><!-- /.box-body -->
 
@@ -616,11 +630,11 @@ ValidaSession("../login");
 							<div class="form-group-sm">
 								<label>Tipo</label>
 								<select id="d_tipo"   class="form-control" >
-									<option value="" selected disabled hidden>Indique tipo de requerimiento </option>
-									<option value="0">Salones</option>
-									<option value="1">Administración</option>
-									<option value="2">Materiales</option>
-									<option value="3">Cotizables</option>
+									<option value="0" selected disabled hidden>Indique tipo de requerimiento </option>
+									<option value="1">Salones</option>
+									<option value="2">Alimentación</option>
+									<option value="3">Materiales</option>
+									<option value="4">Cotizables</option>
 								</select>
 							</div>
 
@@ -639,16 +653,16 @@ ValidaSession("../login");
 							<div class="form-group-sm">
 								<label>Medida</label>
 								<select id="d_medida"   class="form-control" >
-									<option value="" selected disabled hidden>Indique tipo de medida </option>
-									<option value="0">Metros</option>
-									<option value="1">Unidades</option>
-									<option value="2">Kilogramos</option>
-									<option value="3">Gramos</option>
-									<option value="4">Centimetros</option>
-									<option value="5">Pugadas</option>
-									<option value="6">Libras</option>
-									<option value="7">Litros</option>
-									<option value="8">Galones</option>
+									<option value="0" selected disabled hidden>Indique tipo de medida </option>
+									<option value="1">Metros</option>
+									<option value="2">Unidades</option>
+									<option value="3">Kilogramos</option>
+									<option value="4">Gramos</option>
+									<option value="5">Centimetros</option>
+									<option value="6">Pulgadas</option>
+									<option value="7">Libras</option>
+									<option value="8">Litros</option>
+									<option value="9">Galones</option>
 								</select>
 							</div>
 
@@ -720,7 +734,7 @@ $(document).ready(function() {
 		var res = numstring.padStart(4, 0);
 
 		$("#n_accion").val( res );
-		
+		$("#ideado").val( numstring );
 	},"json");
 
 });
@@ -1086,7 +1100,7 @@ $("#izquierda" ).click(function() {
 		$("#exit" ).click(function() {
 
 						$.confirm({
-						    title: '¡Esta acción lo llevará al listado de aliados comerciales y borrará los datos no registrados!.¿Desea continuar?',
+						    title: '¡Esta acción lo llevará al listado de requerimientos y borrará los datos no registrados!.¿Desea continuar?',
 						    content:false,
 						    confirmButton: 'Si',
 						    cancelButton: 'No',
@@ -1099,7 +1113,7 @@ $("#izquierda" ).click(function() {
 
 						    	setTimeout(function(){
 
-						                  $(location).attr('href','../aliados/');
+						                  $(location).attr('href','../requerimientos/');
                   
 						        }, 1000);
 							},
@@ -1118,10 +1132,12 @@ $("#izquierda" ).click(function() {
 			if( $('#transporte').prop('checked')== true ) {
 
 				$("#msg_trans").val("Requiere transporte");
+				$("#trans").val(1);
 
 			}else{
 
 				$("#msg_trans").val("No requiere transporte");
+				$("#trans").val(0);
 			}
 
 		});
@@ -1131,10 +1147,12 @@ $("#izquierda" ).click(function() {
 			if( $('#alojamiento').prop('checked')== true ) {
 
 				$("#msg_aloja").val("Requiere alojamiento");
+				$("#aloja").val(1);
 
 			}else{
 
 				$("#msg_aloja").val("No requiere alojamiento");
+				$("#aloja").val(0);
 			}
 
 		});
@@ -1144,11 +1162,13 @@ $("#izquierda" ).click(function() {
 			if( $('#aruta').prop('checked')== true ) {
 
 			   	document.getElementById("afase").disabled = false;
+				   $("#arutaval").val(1);  
 
 			}else{
 
 			 	document.getElementById("afase").disabled = true;
 				 $("#afase").val("");
+				 $("#arutaval").val(0); 
 			}
 
 		});
@@ -1159,7 +1179,8 @@ $("#izquierda" ).click(function() {
 
 				document.getElementById("amedida").disabled = false;
 				$("#idacc").css("display", "block");
-				$(".guardia79").css("display", "none");			
+				$(".guardia79").css("display", "none");		
+				$("#apircval").val(1); 	
 			}else{
 
 				document.getElementById("amedida").disabled = true;
@@ -1167,10 +1188,12 @@ $("#izquierda" ).click(function() {
 				$(".guardia79").css("display", "block");	
 				$("#idaccion").val("");
 				$("#amedida").val("");
+				$("#apircval").val(0);  
 				
 			}
-
+			
 		});
+
 
 		$("#a_propio" ).change(function() {
 
@@ -1369,6 +1392,7 @@ $("#izquierda" ).click(function() {
 
 		$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos"}).done(function( data ) {
 			 $("#departamento" ).html( data );
+			
 
 		});
 
@@ -1378,30 +1402,22 @@ $("#izquierda" ).click(function() {
 		});
 
 		$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
-			 $("#parroquia" ).html( data );
-
-		});				
-
-		$.post( "../../controllers/mgeograficas_controller", { action: "get_ciudad"}).done(function( data ) {
-			 $("#ciudad" ).html( data );
+			 $("#cpoblado" ).html( data );
 
 		});	
 
 		$('#departamento').change(function(event) {
 			
+			
+			$("#depa" ).val($('select[name="depar"] option:selected').text());
+				
 				$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios",departamento: $("#departamento").val()}).done(function( data ) {
 					 $("#municipio" ).html( data );
 
 				});
 
-
 				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
-					 $("#parroquia" ).html( data );
-
-				});				
-
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_ciudad"}).done(function( data ) {
-					 $("#ciudad" ).html( data );
+					 $("#cpoblado" ).html( data );
 
 				});					
 
@@ -1411,41 +1427,17 @@ $("#izquierda" ).click(function() {
 		$('#municipio').change(function(event) {
 			
 				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias",municipio: $("#municipio").val()}).done(function( data ) {
-					 $("#parroquia" ).html( data );
+					 $("#cpoblado" ).html( data );
 
 				});
 
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_ciudad"}).done(function( data ) {
-					 $("#ciudad" ).html( data );
+				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
+					 $("#cpoblado" ).html( data );
 
 				});	
 
 		});
 
-		$('#parroquia').change(function(event) {
-
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_ciudad",municipio: $("#municipio").val(),parroquia: $("#parroquia").val()}).done(function( data ) {
-					 $("#ciudad" ).html( data );
-					// $("#lata" ).val( parsedJson.lata );
-					// $("#longa" ).val( parsedJson.longa );
-
-				});
-
-				
-
-		});
-
-		$('#ciudad').change(function(event) {
-
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_coordenadas",ciudad:$("#ciudad").val()}).done(function( data ) {
-					 var parsedJson = $.parseJSON(data);
-
-					 $("#lata").val(parsedJson.lata);
-					 $("#longa").val(parsedJson.longa);
-					 
-
-				});	
-		});
 
 // para consultar y cargar los segmentos ***********************************************************
 		$.post( "../../controllers/msegmentos_controller", { action: "get_segmentos"}).done(function( data ) {
@@ -1474,8 +1466,8 @@ $("#izquierda" ).click(function() {
 
 		});
 
-		$.post( "../../controllers/mmarcas_controller", { action: "get_marcas"}).done(function( data ) {
-			 $("#a_marca" ).html( data );
+		$.post( "../../controllers/grupos_controller", { action: "get_marcas"}).done(function( data ) {
+			 $("#grupo" ).html( data );
 
 		});
 
@@ -1519,7 +1511,7 @@ $("#izquierda" ).click(function() {
 					rt_apellido1: $("#rt_apellido1").val(),
 					rt_apellido2: $("#rt_apellido2").val(),
 					rt_tdoc: $("#rt_tdoc").val(),
-					rt_num_dic: $("#rt_num_dic").val(),
+					rt_num_doc: $("#rt_num_doc").val(),
 					tele1: $("#tele1").val(),
 					correo1: $("#correo1").val(),
 					grupo: $("#grupo").val(),
@@ -1530,7 +1522,7 @@ $("#izquierda" ).click(function() {
 					rn_apellido1: $("#rn_apellido1").val(),
 					rn_apellido2: $("#rn_apellido2").val(),
 					rn_tdoc: $("#rn_tdoc").val(),
-					rn_num_dic: $("#rn_num_dic").val(),
+					rn_num_doc: $("#rn_num_doc").val(),
 					tele2: $("#tele2").val(),
 					correo2: $("#correo2").val(),
 
@@ -1538,8 +1530,8 @@ $("#izquierda" ).click(function() {
 					tipo2: $("#tipo2").val(),
 					tipo3: $("#tipo3").val(),
 					tipo4: $("#tipo4").val(),
-					//arutaval: $("#arutaval").val(),
-					//apircval: $("#apircval").val(),
+					arutaval: $("#arutaval").val(),
+					apircval: $("#apircval").val(),
 					afase: $("#afase").val(),
 					amedida: $("#amedida").val(),
 					idaccion: $("#idaccion").val(),
@@ -1576,7 +1568,7 @@ $("#izquierda" ).click(function() {
 					if(parsedJson.resultado != 'error'){
 
 					$.post( "../../controllers/mdetalles_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-
+						$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 					});
 
 						$('.base').unslider('animate:0');

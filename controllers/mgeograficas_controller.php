@@ -1,13 +1,12 @@
 <?php
 require_once '../models/Mregione.php';
-require_once '../models/Mestado.php';
-require_once '../models/Mmunicipio.php';
-require_once '../models/Mparroquia.php';
+require_once '../models/Mdepartamento.php';
+require_once '../models/Mmunicol.php';
+require_once '../models/Mcpoblado.php';
 require_once '../models/Mdistribuidora.php';
-require_once '../models/Mpoblado.php';
-require_once '../models/Maliado.php';
+require_once '../models/Mrequerimiento.php';
 
-date_default_timezone_set('America/Caracas');
+date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
 @$id = ($_POST["id"]);
@@ -15,7 +14,7 @@ date_default_timezone_set('America/Caracas');
 /***********************************/
 @$nombre = ($_POST["nombre"]);
 @$distribuidora = ($_POST["distribuidora"]);
-@$estado = ($_POST["estado"]);
+@$estado = ($_POST["departamento"]);
 @$municipio = ($_POST["municipio"]);
 @$parroquia = ($_POST["parroquia"]);
 @$ciudad = ($_POST["ciudad"]);
@@ -23,14 +22,14 @@ date_default_timezone_set('America/Caracas');
 
 switch ($action){
 
-    case 'get_estados':
+    case 'get_departamentos':
 
-        @$data = Mestado::find('all');
+        @$data = Mdepartamento::find('all');
 
       if($data !=null){
-               $resp = '<option value="" disabled selected>Indique un Estado</option>';
+               $resp = '<option value="0" disabled selected>Indique un Dirección Territorial</option>';
             foreach($data as $rs){
-              $resp .= '<option value="'.$rs->id.'">'.$rs->nombres.'</option>';
+              $resp .= '<option value="'.$rs->cdd.'">'.$rs->nombre.'</option>';
               $resp .= '<hidden>';
             }
 
@@ -42,17 +41,17 @@ switch ($action){
 #******************************************************************************
     case 'get_municipios':
 
-        @$data = Mmunicipio::find('all',array('conditions' => array('idestados=?',$estado)));
+        @$data = Mmunicol::find('all',array('conditions' => array('mdepartamentos_cdd=?',$estado)));
 
       if($data !=null){
-               $resp = '<option value="" disabled selected>Indique un Municipio</option>';
+               $resp = '<option value="0" disabled selected>Indique un Municipio</option>';
             foreach($data as $rs){
-              $resp .= '<option value="'.$rs->id.'">'.$rs->nombres.'</option>';
+              $resp .= '<option value="'.$rs->cdd.'">'.$rs->nombre.'</option>';
               $resp .= '<hidden>';
             }
 
        }else{
-        $resp = '<option value="">No hay municipios asignados</option>';
+        $resp = '<option value="0">No hay municipios asignados</option>';
        }
 
          echo $resp;
@@ -61,17 +60,17 @@ switch ($action){
 #******************************************************************************
     case 'get_parroquias':
 
-        @$data = Mparroquia::find('all',array('conditions' => array('idmunicipios=?',$municipio)));
+        @$data = Mcpoblado::find('all',array('conditions' => array('mmunicols_cdd=?',$municipio)));
 
       if($data !=null){
-               $resp = '<option value="" disabled selected>Indique una Parroquia</option>';
+               $resp = '<option value="0" disabled selected>Indique un centro poblado</option>';
             foreach($data as $rs){
-              $resp .= '<option value="'.$rs->id.'">'.$rs->nombres.'</option>';
+              $resp .= '<option value="'.$rs->cdd.'">'.$rs->nombre.'</option>';
               $resp .= '<hidden>';
             }
 
        }else{
-        $resp = '<option value="">No hay parroquias asignadas</option>';
+        $resp = '<option value="0">No hay centros poblados asignados</option>';
        }
 
          echo $resp;

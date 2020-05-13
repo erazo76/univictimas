@@ -17,11 +17,10 @@ ValidaSession("../login");
 					<h3 class="box-title">Requerimientos</h3>
 				</div><!-- /.box-header -->
 				
-				<div class="box-body dataTables_wrapper form-inline dt-bootstrap">
+				<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
 						<table id="tabla" class="table table-bordered table-hover">
 							<thead>
 								<tr>
-									<th>#ID</th>
 									<th>Nro. Evento</th>
 									<th>Nombre del Evento</th>
 									<th>Dirección Territorial</th>
@@ -34,7 +33,6 @@ ValidaSession("../login");
 							</tbody>
 							<tfoot>
 								<tr>
-									<th>#ID</th>
 									<th>Nro. Evento</th>
 									<th>Nombre del Evento</th>
 									<th>Dirección Territorial</th>
@@ -66,56 +64,35 @@ ValidaSession("../login");
 		}else{
 
 		}
+		//deshabilitar edicion mientras se programa el modulo editar
+		//document.getElementById("edit").disabled=true;
+
 			var table = $('#tabla').dataTable({
 				
 				"autoWidth": false,	
 				  "ajax": {
-					"url": "../../data_json/data_maliados",
+					"url": "../../data_json/data_mrequerimientos",
 					"dataSrc": ""
 				  },
-
-                   "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
-
-                            if ((mData.completado)== 0 && ((mData.estatus)== 'POTENCIAL/' || (mData.estatus)!= 'POTENCIAL/')){
- 
-                                $('td', nRow).css('background-color','#FFCCCC');
-                                                                                
-                            }else if((mData.completado)== 1 && (mData.estatus)== 'POTENCIAL/'){
-                                          
-                                $('td', nRow).css('background-color','#FFCC99');
-
-                            }else if((mData.completado)== 1 && (mData.estatus)!= 'POTENCIAL/'){
-                                      
-                				$('td', nRow).css('background-color','');
-
-                            }
-
-                            return nRow;
-                    },
-
-
+				  "scrollX": true,
 				  "columns": [
-
-
-						{ "data": "cid" },
-						{ "data": "orbis" },
+						{ "data": "id" },
 						{ "data": "nombre" },
-						{ "data": "cedula" },
-						{ "data": "estatus" },
-						{ "data": "segmento" },
-						{ "data": "cajas" },
-						{ "data": "modulo" },
-						{ "data": "territorio" },
-						{ "data": "completado"}
+						{ "data": "departamento" },
+						{ "data": "municipio" },
+						{ "data": "fecha" },
+						{ "data": "responsable" }
 					],
-			        "columnDefs": [
-			            {
+			        "fixedColumns": false,
+					"aoColumnDefs": [
+            			{
+                			"mRender": function ( data, type, row ) {
+								return pad(data,5);
+							},
+							"aTargets": [ 0 ]
+						}
 
-			                "targets": [ 9 ],
-			                "visible": false			              
-			            }
-			        ], 
-			        fixedColumns: false
+					]
 				//"order": [[ 0, "asc" ]]
 
 			});
@@ -230,7 +207,11 @@ ValidaSession("../login");
 			});
 
 	});
-
+	function pad (str, max) {
+		str = str.toString();
+		return str.length < max ? pad("0" + str, max) : str;
+	
+	}
 </script>
 
 <?php include_once("../layouts/pie.php") ?>

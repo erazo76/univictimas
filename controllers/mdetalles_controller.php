@@ -790,7 +790,7 @@ switch ($action){
 
         if($usuario_id !=""){
 
-                  $activoro = Mrequerimiento::find('all',array('conditions' => array('id=?',$recordado)));
+                  $activoro = Mrequerimiento::find('all',array('conditions' => array('id=?',intval($recordado))));
                 
                     foreach ($activoro as $rs) {
                                          

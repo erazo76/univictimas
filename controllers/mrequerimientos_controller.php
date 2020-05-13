@@ -1,9 +1,9 @@
 <?php
 require_once '../models/Mrequerimiento.php';
 require_once '../models/Mdetalle.php';
-require_once '../models/Mestado.php';
-require_once '../models/Mmunicipio.php';
-require_once '../models/Mparroquia.php';
+require_once '../models/Mdepartamento.php';
+require_once '../models/Mmunicol.php';
+require_once '../models/Mcpoblado.php';
 
 date_default_timezone_set('America/Bogota');
 
@@ -37,7 +37,7 @@ date_default_timezone_set('America/Bogota');
 @$rt_apellido1 = ($_POST["rt_apellido1"]);
 @$rt_apellido2 = ($_POST["rt_apellido2"]);
 @$rt_tdoc = ($_POST["rt_tdoc"]);
-@$rt_num_dic = ($_POST["rt_num_dic"]);
+@$rt_num_doc = ($_POST["rt_num_doc"]);
 @$tele1 = ($_POST["tele1"]);
 @$correo1 = ($_POST["correo1"]);
 @$grupo = ($_POST["grupo"]);
@@ -48,7 +48,7 @@ date_default_timezone_set('America/Bogota');
 @$rn_apellido1 = ($_POST["rn_apellido1"]);
 @$rn_apellido2 = ($_POST["rn_apellido2"]);
 @$rn_tdoc = ($_POST["rn_tdoc"]);
-@$rn_num_dic = ($_POST["rn_num_dic"]);
+@$rn_num_doc = ($_POST["rn_num_doc"]);
 @$tele2 = ($_POST["tele2"]);
 @$correo2 = ($_POST["correo2"]);
 
@@ -59,8 +59,8 @@ date_default_timezone_set('America/Bogota');
 @$tipo4 = ($_POST["tipo4"]);
 /***********************************/
 
-//@$arutaval = ($_POST["arutaval"]);
-//@$apircval = ($_POST["apircval"]);
+@$arutaval = ($_POST["arutaval"]);
+@$apircval = ($_POST["apircval"]);
 
 @$afase = ($_POST["afase"]);
 @$amedida = ($_POST["amedida"]);
@@ -81,7 +81,7 @@ switch ($action){
     @$data = Mrequerimiento::find('all');
 
   if($data !=null){
-    $contados= count($data);
+    $contados= count($data)+1;
       
    }else{
     $contados= count($data)+1;
@@ -256,10 +256,10 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese el nombre del aliado.
+            Ingrese el nombre del evento.
             </div>');
 
-      }else if($razon ==""){
+      }else if($departamento ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -267,51 +267,7 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese la razón social del aliado.
-            </div>');
-
-      }else if($segmento ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Ingrese el segmento de mercado del aliado.
-            </div>');
-
-      }else if($cedula ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Ingrese RIF/cedula del aliado.
-            </div>');
-
-      }else if($fecha1 ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique fecha de la primera visita al aliado.
-            </div>');
-
-      }else if($estado ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique estado donde se ubica el aliado.
+            Seleccione una dirección territorial.
             </div>');
 
       }else if($municipio ==""){
@@ -322,51 +278,7 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Indique municipio donde se ubica el aliado.
-            </div>');
-
-      }else if($ciudad ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-             Indique ciudad o poblado donde se ubica el aliado.
-            </div>');
-
-      }else if($sector ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-             Indique sector donde se ubica el aliado.
-            </div>');
-
-      }else if($parroquia ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-             Indique parroquia donde se ubica el aliado.
-            </div>');
-
-      }else if($a_principal ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Seleccione el tipo acceso principal.
+            Seleccione un municipio.
             </div>');
 
       }else if($acceso1 ==""){
@@ -377,18 +289,7 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Indique acceso principal al  establecimiento del aliado.
-            </div>');
-
-      }else if($a_secundario ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Seleccione el tipo acceso secundario.
+            Indique el acceso principal.
             </div>');
 
       }else if($acceso2 ==""){
@@ -399,10 +300,10 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-              Indique acceso secundario al establecimiento del aliado.
+            Indique el acceso secundario.
             </div>');
 
-      }else if($zona ==""){
+      }else if($num_dir ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -410,10 +311,10 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Seleccione zona de venta.
+            Indique el numero de dirección.
             </div>');
 
-      }else if($territorio ==""){
+      }else if($a_referencia ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -421,10 +322,10 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Seleccione territorio de venta provedor.
+             Indique un lugar de referencia.
             </div>');
 
-      }else if($territorio_g ==""){
+      }else if($fecha2 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -432,10 +333,10 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Seleccione territorio de venta geográfico.
+             Indique fecha de inicio del evento.
             </div>');
 
-      }else if($latitud ==""){
+      }else if($fecha3 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -443,10 +344,10 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Indique latitud geográfica del aliado.
+            Indique fecha final del evento.
             </div>');
 
-      }else if($longitud ==""){
+      }else if($hora1 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -454,76 +355,87 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Indique longitud geográfica del aliado.
+            Indique hora de inicio del evento.
             </div>');
 
-      }else if($propietario ==""){
+      }else if($hora2 ==""){
 
-        $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
             <h4>
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Indique nombre del propietario/encargado.
+            Indique hora final del evento.
             </div>');
 
-      }else if($tele1==""){
+      }else if($rt_nombre1 ==""){
 
-        $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
             <h4>
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Indique teléfono principal del aliado.
+            Indique el nombre del responsable del evento.
             </div>');
 
-      }else if($tele2 ==""){
+      }else if($rt_apellido1 ==""){
 
-        $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
             <h4>
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Indique teléfono secundario del aliado.
+            Indique el apellido del responsable del evento.
+            </div>');
+
+      }else if($rt_num_doc ==""){
+
+        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Indique el número del documento de identidad.
+            </div>');
+
+      }else if($tele1 ==""){
+
+        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Indique un teléfono de contacto.
             </div>');
 
       }else if($correo1 ==""){
 
-        $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
             <h4>
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Indique correo electrónico del aliado.
+            Indique un correo electrónico.
             </div>');
 
-      }else if($estatus_aliado ==null){
+      }else if($grupo ==""){
 
-        $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
             <h4>
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Seleccione el estatus del aliado.
+           Seleccione el grupo, área, equipo o dependencia.
             </div>');
 
-      }else if($dias ==""){
-
-        $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique frecuencia de visita por semana.
-            </div>');
-
-      }else if($caja_t ==""){
+      }else if($entidad ==""){
 
         $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -531,10 +443,10 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Indique total de cajas/semana que comercializa el aliado.
+            Indique las entidades participantes.
             </div>');
 
-      }else if($caja_p ==""){
+      }else if($num_vic ==""){
 
         $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -542,10 +454,10 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-             Indique cajas/semana de LLA que comercializa el aliado.
+            Indique el número de victimas participantes.
             </div>');
 
-      }else if($despacho ==""){
+      }else if($descripcion ==""){
 
         $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -553,141 +465,60 @@ break;
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-             Indique medio de despacho al aliado.
+            Redacte una descripción breve del evento.
             </div>');
 
-      }/*else if($descuento ==""){
+      }else{  //(A)
 
-        $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-             Indique porcentaje de descuento al aliado.
-            </div>');
-
-      }*/else if($seca ==""){
-
-        $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-             Indique observaciones sobre linea seca LLA .
-            </div>');
-
-      }else if($rf_competencia ==""){
-
-        $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique observaciones  refrigerados de la competencia .
-            </div>');
-
-      }else if($ls_competencia ==""){
-
-        $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique observaciones  linea seca de la competencia .
-            </div>');
-
-      }else if($observacion ==""){
-
-        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique observaciones sobre el aliado.
-            </div>');
-
-      }else{  //(A) si se escribe un nombre se consulta si ya existe...
-
-        $consulta = Maliado::find('all',array('conditions' => array('orbis=? AND sorbis=? AND nombre=?',$orbis,$sorbis,$nombre)));
-
-          if($consulta==null ){  //(B) si no existe lo guarda...
-
-//print_r($estatus_aliado);exit;-".$longitud." ".$latitud."
-            $geo_consulta = Maliado::find_by_sql("SELECT ST_GeomFromText( 'MULTIPOINT(-".$longitud." ".$latitud.")',4326) AS punto;");
-
-            foreach ($geo_consulta as $treo) {
-              $geometrica = $treo->punto;
-            }
-
-            //$tipos = $estatus_aliado[0].",".$estatus_aliado[1];
-//print_r($geometrica);exit();
-            $tipos = implode(",", $estatus_aliado);
-            $dias1 = implode(",", $dias);
-
-            $toldo1=implode(",", $toldo);
-            $aviso1=implode(",", $aviso);
-            $fachada1=implode(",", $fachada);
-            $activo1=implode(",", $activo);
+       
 
             session_start();
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
-            $alia = new Maliado();
-            $alia->cedula = $cedula;
-            $alia->l_cedula = $l_cedula;
-            $alia->sorbis = $sorbis;
-            $alia->orbis = $orbis;
+            $alia = new Mrequerimiento();
             $alia->nombre = $nombre;
-            $alia->razon = $razon;
-            $alia->mestado_id = $estado;
-            $alia->msegmento_id= $segmento;
-            $alia->visita1 = $fecha1;
-            $alia->mmunicipio_id = $municipio;
-            $alia->mparroquia_id = $parroquia;
-            $alia->mciudad_id = $ciudad;
-            $alia->msector_id = $sector;
-            $alia->macceso1 = $a_principal;
-            $alia->acc_nombre1 = $acceso1;
-            $alia->macceso2 = $a_secundario;
-            $alia->acc_nombre2 = $acceso2;
-            $alia->referencia = $referencia;
-            $alia->mzona_id = $zona;
-            $alia->mterritorio = $territorio;
-            $alia->mterritorio_g = $territorio_g;
-            $alia->latitud = $latitud;
-            $alia->longitud = $longitud;
-            $alia->propietario = $propietario;
-            $alia->telefono1 = $tele1;
-            $alia->telefono2 = $tele2;
-            $alia->email = $correo1;
-            $alia->tipos = $tipos;
-            $alia->dias = $dias1;
-            $alia->cajas_t = $caja_t;
-            $alia->cajas_p = $caja_p;
-            $alia->cajas_o = $caja_o;
-            $alia->despacho = $despacho;
-            $alia->descuento = $descuento;
-            $alia->linea_seca = $seca;
-            $alia->refrigerado_c = $rf_competencia;
-            $alia->linea_seca_c = $ls_competencia;
-            $alia->toldos = $toldo1;
-            $alia->avisos = $aviso1;
-            $alia->fachadas = $fachada1;
-            $alia->activos = $activo1;
-            $alia->observaciones = $observacion;
-            $alia->mdistribuidoras_id = $distribuidora;
+            $alia->fecha1 = $hoy;
+            $alia->mdepartamentos_id = $departamento;
+            $alia->mmunicipios_id = $municipio;
+            $alia->mcpoblado_id = $cpoblado;
+            $alia->a_primario = $a_primario;
+            $alia->acceso1 = $acceso1;
+            $alia->acceso2= $acceso2;
+            $alia->num_dir = $num_dir;
+            $alia->a_referencia = $a_referencia;
+            $alia->fecha2 = $fecha2;
+            $alia->fecha3 = $fecha3;
+            $alia->hora1 = $hora1;
+            $alia->hora2 = $hora2;
+            $alia->rt_nombre1 = $rt_nombre1;
+            $alia->rt_nombre2 = $rt_nombre2;
+            $alia->rt_apellido1 = $rt_apellido1;
+            $alia->rt_apellido2 = $rt_apellido2;
+            $alia->rt_tdoc = $rt_tdoc;
+            $alia->rt_num_doc = $rt_num_doc;
+            $alia->grupos_id = $grupo;
+            $alia->otro1 = $otro1;
+            $alia->tipo1 = $tipo1;
+            $alia->tipo2 = $tipo2;
+            $alia->tipo3 = $tipo3;
+            $alia->tipo4 = $tipo4;
+            $alia->arutaval = $arutaval;
+            $alia->apircval = $apircval;
+            $alia->afase = $afase;
+            $alia->amedida = $amedida;
+            $alia->idaccion = $idaccion;
+            $alia->entidad = $entidad;
+            $alia->num_vic = $num_vic;
+            $alia->descripcion = $descripcion;
+            $alia->aloja = $aloja;
+            $alia->trans = $trans;
             $alia->mregiones_id = $region;
 
             $alia->user_create = $usuario_id;
             $alia->created = $hoy;
             $alia->completado = 1;
-            $alia->geom = $geometrica;
+
 
 
              if($alia->save()){ // da el mensaje de guardado...
@@ -700,14 +531,6 @@ break;
                     </h4>
                     Los datos han sido registrados exitosamente !.
                     </div>');
-
-                if($caso=='1'){
-                   $alia2 = Mtemporale::find($id);
-                   $alia2 ->delete();
-                }else{
-                    $alia2 = Mtemporale::find_by_user_create($usuario_id); 
-                    $alia2 ->delete();
-                }    
  
             }else{
 
@@ -725,54 +548,8 @@ break;
             }
 
             //echo json_encode($respuesta);
-
-        }else{ //(B) si exite el nombre verifica el status del registro...
-
-            foreach ($consulta as $st) {
-
-                 $estado=$st->status;
-                 $ide=$st->id;
-
-              }
-
-            if($estado!=1){ //se activa mensaje modal para llevar el status a "1" ... (o no).
-
-                    //echo 'MODAL PARA ACTIVAR REGISTRO GUARDADO'; exit();
-
-              $respuesta = array('resultado'=>'error','mensaje'=>'<input type="hidden" id="id" value="'.$ide.'">
-                  <div class="alert alert-danger alert-dismissable">
-                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                  <h4>
-                  <i class="icon fa fa-ban"></i>
-                  Alerta!
-                  </h4>
-
-                  Registro inactivo . ¿Desea activar ['.$sorbis.$orbis.' => '.$nombre.'] en el registro de aliados comerciales?
-
-                      <div class="modal-footer" >
-                        <button type="button" id="no" class="btn btn-outline pull-left" data-dismiss="alert" onClick="no()">No</button>
-                        <button type="button" id="silo" class="btn btn-outline pull-left" onClick="si()" >Si</button>
-                      </div>
-                  </div>');
-
-            }else{
-
-              $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
-                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                  <h4>
-                  <i class="icon fa fa-ban"></i>
-                  Alerta!
-                  </h4>
-                  El aliado comercial ['.$sorbis.$orbis.' => '.$nombre.'] ya se encuentra registrado.
-                  </div>');
-
-           }
-                 // echo json_encode($respuesta);
         }
-
-
-     }
-             echo json_encode($respuesta);
+            echo json_encode($respuesta);
 
   break;
   #*******************************************************************************
