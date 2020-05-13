@@ -450,7 +450,6 @@ ValidaSession("../login");
 							<table id="tabla" class="table table-bordered table-hover">
 								<thead>
 									<tr>
-										<th></th>
 										<th>Tipo</th>
 										<th>Concepto</th>
 										<th>Cantidad</th>
@@ -1221,7 +1220,6 @@ $("#izquierda" ).click(function() {
 										  "scrollX": true,
 										  "scrollY": "130px",
 										  "columns": [
-												{ "data": "id" },
 												{ "data": "tipo" },
 												{ "data": "concepto" },
 												{ "data": "cantidad" },

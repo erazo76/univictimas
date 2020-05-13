@@ -16,7 +16,7 @@ ValidaSession("../login");
 				<div class="box-header with-border">
 					<h3 class="box-title">Requerimientos</h3>
 				</div><!-- /.box-header -->
-				
+			<div class="box box-primary" >		
 				<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
 						<table id="tabla" class="table table-bordered table-hover">
 							<thead>
@@ -48,7 +48,7 @@ ValidaSession("../login");
 					<button id="edit" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-pencil"></i> Editar</button>
 					<button id="delete" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> Eliminar</button>
 				</div>
-
+			</div>
 		</div>
 </div>
 
@@ -65,7 +65,7 @@ ValidaSession("../login");
 
 		}
 		//deshabilitar edicion mientras se programa el modulo editar
-		//document.getElementById("edit").disabled=true;
+		document.getElementById("edit").disabled=true;
 
 			var table = $('#tabla').dataTable({
 				
@@ -83,7 +83,7 @@ ValidaSession("../login");
 						{ "data": "fecha" },
 						{ "data": "responsable" }
 					],
-			        "fixedColumns": false,
+			        fixedColumns: false,
 					"aoColumnDefs": [
             			{
                 			"mRender": function ( data, type, row ) {

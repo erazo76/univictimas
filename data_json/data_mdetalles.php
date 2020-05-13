@@ -28,7 +28,7 @@ require_once '../models/Mdetalle.php';
 		}
 
 		array_push($result,array(
-											 "id"=>$rs->id,
+											 
 					    					 "tipo"=>$tipo,
 					     					 "concepto"=>$rs->d_concepto,
 		                            	     "cantidad"=>$rs->d_cantidad,

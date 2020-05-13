@@ -1190,9 +1190,9 @@ break;
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
-        if($usuario_id !="" && ($rol ==1 || $rol==4)){
+        if($usuario_id !="" /*&& ($rol ==1 || $rol==4)*/){
 
-                  $alia= Maliado::find($record);
+                  $alia= Mrequerimiento::find($record);
                   $alia->user_modify = $usuario_id;
                   $alia->updated = $hoy;
                   $alia->status = 0;
