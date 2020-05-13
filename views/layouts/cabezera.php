@@ -25,7 +25,8 @@
  	     echo $constante["css_iconos2"];
  	     echo $constante["css_datatable"];
  	     echo $constante["css_tema"];
- 	     echo $constante["css_skyn"];
+		  echo $constante["css_skyn"];
+		  echo $constante["css_carrusel"];
 	//----------------------------------------------------------------
 	//-- Se imprimente las etiquetas html de escape para validar el --
 	//-- Soporte de IExploer de HTML5                               --
