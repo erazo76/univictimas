@@ -7,6 +7,8 @@
 
 if(!empty($id_sesion) && ($rol==4 )){//privilegios del programador
 
+
+
 	echo '<ul class="sidebar-menu nav">';
 
 		echo ' <li class="header">MENU</li>';
@@ -29,6 +31,8 @@ if(!empty($id_sesion) && ($rol==4 )){//privilegios del programador
 		echo '</li>';
 
 	echo '</ul>';
+
+	
 
 }
 
@@ -96,6 +100,8 @@ if(!empty($id_sesion) && ($rol==2 )){//privilegios de supervisor
 
 }
 
+
+
 ?>
 
 <script type="text/javascript">
@@ -107,22 +113,20 @@ if(!empty($id_sesion) && ($rol==2 )){//privilegios de supervisor
 		      $(this).addClass('active');
 		});*/
 
-$(function(){
-  var current_page_URL = location.href;
-  $( "a" ).each(function() {
-     if ($(this).attr("href") !== "#") {
-       var target_URL = $(this).prop("href");
-       if (target_URL == current_page_URL) {
-          $('li.active').removeClass('active');
-          $(this).parent('li').addClass('active');
-          return false;
-       }
-     }
-  });
+			$(function(){
+			var current_page_URL = location.href;
+			$( "a" ).each(function() {
+				if ($(this).attr("href") !== "#") {
+				var target_URL = $(this).prop("href");
+				if (target_URL == current_page_URL) {
+					$('li.active').removeClass('active');
+					$(this).parent('li').addClass('active');
+					return false;
+				}
+				}
+			});
+			});
+
 });
-
-
-
-	});
 
  </script>

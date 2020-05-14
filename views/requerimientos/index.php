@@ -47,6 +47,7 @@ ValidaSession("../login");
 					<button id="add" class="btn btn-primary" type="button"><i class="fa fa-fw fa-plus"></i> Agregar</button>
 					<button id="edit" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-pencil"></i> Editar</button>
 					<button id="delete" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> Eliminar</button>
+					<!--<button id="repo" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> reporte</button>-->
 				</div>
 			</div>
 		</div>
@@ -206,7 +207,13 @@ ValidaSession("../login");
 				}
 			});
 
+			$('#repo').click( function () {
+
+				$(location).attr('href','../requerimientos/frm_reportar');
+			});
 	});
+
+
 	function pad (str, max) {
 		str = str.toString();
 		return str.length < max ? pad("0" + str, max) : str;

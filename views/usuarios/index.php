@@ -16,7 +16,7 @@ ValidaSession("../login");
 				<div class="box-header with-border">
 					<h3 class="box-title">Usuarios</h3>
 				</div><!-- /.box-header -->
-				<div class="box-body dataTables_wrapper form-inline dt-bootstrap">
+				<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
 						<table id="tabla" class="table table-bordered table-hover">
 							<thead>
 								<tr>
@@ -64,6 +64,7 @@ ValidaSession("../login");
 					"url": "../../data_json/data_musuarios",
 					"dataSrc": ""
 				  },
+				  "scrollX": true,
 				  "columns": [
 						{ "data": "cid" },
 						{ "data": "username" },

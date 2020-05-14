@@ -91,6 +91,7 @@
 	//----------------------------------------------------------------
                 include_once("menu_lateral_izquierdo.php");
 	//----------------------------------------------------------------
+	include_once("carrusel2.php");
 	?>
         </section>
 
@@ -100,6 +101,8 @@
 	<?php
 	    // <!-- Content Header (Page header) -->
 		//----------------------------------------------------------------
+
+		
 		//-- Barra de Ubicacion de donde esta el Usuario en el Sistema  --
 		//----------------------------------------------------------------
         //      include_once("ubicacion_sistema.php");

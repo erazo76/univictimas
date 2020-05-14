@@ -1573,7 +1573,7 @@ $("#izquierda" ).click(function() {
 
 					    	setTimeout(function(){
 
-					                  //$(location).attr('href','../aliados/frm_registrar');
+					                  $(location).attr('href','../requerimientos/frm_registrar');
 					                  $('#nombre').focus();
 
 					              }, 3000);

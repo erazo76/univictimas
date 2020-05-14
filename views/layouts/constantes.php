@@ -41,6 +41,7 @@
 //------------------------------------------------------------------------------------------------------------
   $constante["css_tema"]='<link href="../../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />';
   $constante["css_carrusel"]='<link href="../../css/carrusel.css" rel="stylesheet" type="text/css" />';
+ // $constante["css_reportes"]='<link href="../../css/reportes.css" rel="stylesheet" type="text/css" />';
 //------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------
 //    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
