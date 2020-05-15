@@ -1570,13 +1570,15 @@ $("#izquierda" ).click(function() {
 					});
 
 						$('.base').unslider('animate:0');
-
+							valore=$("#ideado").val();
+							//alert(valore);
 					    	setTimeout(function(){
 
-					                  $(location).attr('href','../requerimientos/frm_registrar');
-					                  $('#nombre').focus();
+					                //  $(location).attr('href','../requerimientos/frm_registrar');
+					                 //$('#nombre').focus();
+								   $(location).attr('href','frm_reportar?record='+valore);
 
-					              }, 3000);
+					              }, 1500);
 
 					}
 

@@ -1311,7 +1311,7 @@ break;
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
-      @$data = Maliado::find('all',array('conditions' => array('id=?',$record)));
+      @$data = Mrequerimiento::find('all',array('conditions' => array('id=?',$record)));
 
       if($data !=null){
 
