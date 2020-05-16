@@ -7,6 +7,7 @@ date_default_timezone_set('America/Bogota');
 @$record = ($_POST["record"]);
 /***********************************/
 @$nombre = ($_POST["nombre"]);
+@$grupo = ($_POST["grupo"]);
 /**********************************/
 
 switch ($action){
@@ -326,6 +327,26 @@ switch ($action){
 
          echo $resp;
     break;
+
+#******************************************************************************
+
+case 'get_grupo':
+
+  @$data = Grupo::find('all',array('conditions' => array('id=?',intval($grupo))));
+
+if($data !=null){
+         
+      foreach($data as $rs){
+        $resp = $rs->nombre;
+        
+      }
+
+ }else{
+         $resp = 'No hay grupos, áreas, equipos o dependencias asignados';
+ }
+
+   echo $resp;
+break;
 
 #******************************************************************************
 

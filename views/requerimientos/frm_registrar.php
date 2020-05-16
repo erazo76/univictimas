@@ -39,10 +39,7 @@ ValidaSession("../login");
 						<input type="hidden" id="aloja" value=0>
 						<input type="hidden" id="arutaval" value=0>
 						<input type="hidden" id="apircval" value=0>
-						<input type="hidden" id="tipo1" value=0>
-						<input type="hidden" id="tipo2" value=0>
-						<input type="hidden" id="tipo3" value=0>
-						<input type="hidden" id="tipo4" value=0>
+				
 						
 						<div class="box-body">
 
@@ -311,17 +308,16 @@ ValidaSession("../login");
 							<div class="form-group-sm" >
 								<label id="guardia78" tabindex="0" >INDIVIDUAL</label></br>
 								<select id="tipo1" class="form-control" tabindex="0">
-									<option value="0" selected disabled hidden>Indique si el evento corresponde a:</option>
-									<option value="1">Jornada Diferencial</option>
-									<option value="2">Feria de Servicios</option>
-									<option value="3">Conmemoración</option>
-									<option value="4">Iniciativa Local de Memoria</option>
-									<option value="5">Acto de Reconocimiento</option>
-									<option value="6">Orden Judicial</option>
-									<option value="7">Taller por Linea de Inversion</option>
-									<option value="8">Entrega digna de cadáveres</option>
-									<option value="9">Charla de educación financiera </option>	
-									<option value="10">Otro</option>								
+									<option value="" selected disabled hidden>Indique si el evento corresponde a:</option>
+									<option value="0">Jornada Diferencial</option>
+									<option value="1">Feria de Servicios</option>
+									<option value="2">Conmemoración</option>
+									<option value="3">Iniciativa Local de Memoria</option>
+									<option value="4">Acto de Reconocimiento u Orden Judicial</option>
+									<option value="5">Taller por Linea de Inversion</option>
+									<option value="6">Entrega digna de cadáveres</option>
+									<option value="7">Charla de educación financiera </option>	
+									<option value="8">Otro</option>								
 								</select>
 								
 							</div>
@@ -355,21 +351,21 @@ ValidaSession("../login");
 								<label>Pertenencia étnica comunitaria</label></br>
 
 								<select id="tipo3" class="form-control" tabindex="0">
-									<option value="0" selected disabled hidden>Indique el sujeto "no étnico" </option>
-									<option value="1">Comunidad</option>
-									<option value="2">Comunidad Campesina</option>
-									<option value="3">Grupo</option>
-									<option value="4">Organizaciones</option>
-									<option value="5">Organización de Mujeres</option>
+									<option value="" selected disabled hidden>Indique el sujeto "no étnico" </option>
+									<option value="0">Comunidad</option>
+									<option value="1">Comunidad Campesina</option>
+									<option value="2">Grupo</option>
+									<option value="3">Organizaciones</option>
+									<option value="4">Organización de Mujeres</option>
 								</select>
 
 								<select id="tipo4" class="form-control" tabindex="0">
-									<option value="0" selected disabled hidden>Indique el sujeto "étnico" </option>
-									<option value="1">Indígena</option>
-									<option value="2">Ancestral</option>
-									<option value="3">RROM o Gitano</option>
-									<option value="4">Afrocolombiana</option>
-									<option value="5">Negra</option>
+									<option value="" selected disabled hidden>Indique el sujeto "étnico" </option>
+									<option value="0">Indígena</option>
+									<option value="1">Ancestral</option>
+									<option value="2">RROM o Gitano</option>
+									<option value="3">Afrocolombiana</option>
+									<option value="4">Negra</option>
 								</select>								
 							</div>
 
@@ -749,7 +745,7 @@ $('#tele1').mask('A00-000-0000', {
 
     		 'A': {
 
-        			pattern: /[03]/, optional: true
+        			pattern: /[03]/, optional: false
 
      		        }
 
@@ -1076,13 +1072,13 @@ $("#izquierda" ).click(function() {
 
 		});
 
-
+		
 		$('#tipo1').on('change', function () {
 
      		var selectVal = $("#tipo1 option:selected").val();
 			
-			 if(selectVal==9){
-
+			 if(selectVal==8){
+				alert(selectVal);
 				$("#otro1a").css("display", "block");
 				
 				$("#otro1").focus();
@@ -1498,6 +1494,7 @@ $("#izquierda" ).click(function() {
 					acceso2: $("#acceso2").val(),
 					num_dir: $("#num_dir").val(),
 					a_referencia: $("#a_referencia").val(),
+					referencia: $("#referencia").val(),
 
 					fecha2: $("#fecha2").val(),
 					fecha3: $("#fecha3").val(),
@@ -1528,6 +1525,7 @@ $("#izquierda" ).click(function() {
 					tipo2: $("#tipo2").val(),
 					tipo3: $("#tipo3").val(),
 					tipo4: $("#tipo4").val(),
+					
 					arutaval: $("#arutaval").val(),
 					apircval: $("#apircval").val(),
 					afase: $("#afase").val(),

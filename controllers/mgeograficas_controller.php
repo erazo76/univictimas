@@ -14,10 +14,10 @@ date_default_timezone_set('America/Bogota');
 /***********************************/
 @$nombre = ($_POST["nombre"]);
 @$distribuidora = ($_POST["distribuidora"]);
-@$estado = ($_POST["departamento"]);
+@$departamento = ($_POST["departamento"]);
 @$municipio = ($_POST["municipio"]);
-@$parroquia = ($_POST["parroquia"]);
-@$ciudad = ($_POST["ciudad"]);
+@$cpoblado = ($_POST["cpoblado"]);
+
 /**********************************/
 
 switch ($action){
@@ -41,7 +41,7 @@ switch ($action){
 #******************************************************************************
     case 'get_municipios':
 
-        @$data = Mmunicol::find('all',array('conditions' => array('mdepartamentos_cdd=?',$estado)));
+        @$data = Mmunicol::find('all',array('conditions' => array('mdepartamentos_cdd=?',$departamento)));
 
       if($data !=null){
                $resp = '<option value="0" disabled selected>Indique un Municipio</option>';
@@ -76,17 +76,36 @@ switch ($action){
          echo $resp;
     break;
 
+    #******************************************************************************
+
+    case 'get_departamentos_e':
+
+      @$data = Mdepartamento::find('all',array('conditions' => array('cdd=?',intval($departamento))));
+//print_r($data);exit();
+      if($data !=null){
+          
+          foreach($data as $rs){
+         
+             $resp = $rs->cdd.'-'.$rs->nombre;
+          }  
+
+      }else{
+             $resp = "No hay departamentos asignados";
+      }
+
+       echo $resp;
+  break;
+
 #******************************************************************************
 
     case 'get_municipios_e':
 
-        @$data = Mmunicipio::find('all',array('conditions' => array('id=?',intval($municipio))));
-//print_r($data);exit();
+        @$data = Mmunicol::find('all',array('conditions' => array('cdd=?',intval($municipio))));
+
         if($data !=null){
             
             foreach($data as $rs){
-               $resp = '<option value="'.$rs->id.'">'.$rs->nombres.'</option>';
-               $resp .= '<hidden>';
+              $resp = $rs->cdd.'-'.$rs->nombre;
             }  
 
         }else{
@@ -97,36 +116,18 @@ switch ($action){
     break;
 
 #******************************************************************************
-    case 'get_parroquias_e':
 
-        @$data = Mparroquia::find('all',array('conditions' => array('id=?',intval($parroquia))));
+    case 'get_cpoblado_e':
 
-        if($data !=null){
-
-          foreach($data as $rs){          
-               $resp = '<option value="'.$rs->id.'">'.$rs->nombres.'</option>';
-               $resp .= '<hidden>';
-          }     
-        }else{
-               $resp = '<option value="">No hay parroquias asignadas</option>';
-        }
-
-         echo $resp;
-    break;
-
-#******************************************************************************
-    case 'get_ciudad_e':
-
-        @$data = Mpoblado::find('all',array('conditions' => array('gid=?',intval($ciudad))));
+        @$data = Mcpoblado::find('all',array('conditions' => array('cdd=?',intval($cpoblado))));
 
           if($data !=null){
 
             foreach($data as $rs){            
-               $resp = '<option value="'.$rs->gid.'">'.strtoupper($rs->nombre).'</option>';
-               $resp .= '<hidden>';
+              $resp = $rs->cdd.'-'.$rs->nombre;           
             }               
           }else{
-               $resp = '<option value="">No hay centros poblados asignados</option>';
+               $resp = 'No hay centros poblados asignados';
           }
 
          echo $resp;

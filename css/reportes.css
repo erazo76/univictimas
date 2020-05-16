@@ -25,15 +25,16 @@
     border-color: #000;
     border-width: 1px;
     border-style: solid;
-    font-size:10px;
-   }
+    font-size:11px;
+    line-height: 15px;
+}
 
 .caja{
     background: #ffffff;
     color: #000;
     height: 15px;
     text-align: center;
-
+    line-height: 15px;
    }
 
 .caja2{
@@ -43,6 +44,7 @@
     text-align: center;
     border-right: solid;
     border-width: 1px;
+    line-height: 15px;
    }   
 
 .logunivic{
@@ -72,6 +74,7 @@
     grid-column: 2/ 8;
     font-size: 7px;
     height: 24px;
+    line-height: 10px;
 }
 
 .tit_2{
@@ -172,6 +175,8 @@
     color: #fff;
     height: 24px;
     font-weight: bold;
+    line-height: 24px;
+    
 }
 
 .aiz{
@@ -184,6 +189,7 @@
     height: 24px;
     text-align: left;
     font-weight: bold;
+    line-height: 12px;
 }
 .finito{
     height: 5px;
@@ -207,6 +213,7 @@
 
 .cj24p{
     height: 24px;
+    
 }
 
 .cj32p{

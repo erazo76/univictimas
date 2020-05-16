@@ -20,12 +20,17 @@ session_start();
 		}
 
 		$data3=Mmunicol::find_by_sql("SELECT nombre FROM mmunicols WHERE cdd =".$rs->mmunicipios_id." AND status=1 order by id desc;");
-		foreach ($data3 as &$rq) {
+		
+		if($data3!=null){
+			foreach ($data3 as &$rq) {
 
-			$mun=$rq->nombre;
+				$mun=$rq->nombre;
 
+			}
+		}else{
+			
+				$mun='No Asignado';
 		}
-
 		$responsable=$rs->rt_nombre1.' '.$rs->rt_apellido1;
 
 		array_push($result,array(

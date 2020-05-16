@@ -27,7 +27,7 @@ ValidaSession("../login");
 		<div class="box box-primary"  style="width:216mm; height:500px; overflow:auto;">
 			<div class="box-body ">
 		
-			<div class="contenedorw">
+			<div class="contenedorw" id="printJS-form">
 				<div class="caja1 logunivic"></div>
 				<div class="caja1 tit_1 fro" >FORMATO SOLICITUD AL OPERADOR</div>
 				<div class="caja1 tit_1">PROCEDIMIENTO: ESTRATEGIAS DE REPARACIÓN INTEGRAL</div>
@@ -47,41 +47,41 @@ ValidaSession("../login");
 			
 				<div class="caja1 finito2 tit_2">
 
-				</div><div class="caja1 fgr pg1_3">NOMBRE DE LA ACTIVIDAD:</div>
-				<div class="caja1 pg3_8"></div>
+				</div><div class="caja1 fgr pg1_3">NOMBRE DEL EVENTO:</div>
+				<div class="caja1 pg3_8" id="nombre"></div>
 
 				<div class="caja1 finito2 tit_2"></div>
 
-				<div class="caja1 faz aiz">N° EVENTO:</div><div class="caja1 cj24p"></div>
-				<div class="caja1 fgr letrap">FECHA DE SOLICITUD:</div><div class="caja1 cj24p"></div>
-				<div class="caja1 fgr letrap">DIRECCION TERRITORIAL:</div><div class="caja1 cj24p pg6_8"></div>
+				<div class="caja1 faz aiz">N° EVENTO:</div><div class="caja1 cj24p" id="id"></div>
+				<div class="caja1 fgr letrap">FECHA DE SOLICITUD:</div><div class="caja1 cj24p" id="fecha1"></div>
+				<div class="caja1 fgr letrap">DIRECCION TERRITORIAL:</div><div class="caja1 cj24p pg6_8" id="dir_terri" style="line-height: 10px;"></div>
 
 				<div class="caja1 finito2 tit_2"></div>
 
-				<div class="caja1 fgr">DEPARTAMENTO:</div><div class="caja1 cj24p"></div>
-				<div class="caja1 fgr">MUNICIPIO:</div><div class="caja1 cj24p"></div>
-				<div class="caja1 fgr letrap">COREGIMIENTO VEREDA:</div><div class="caja1 cj24p pg6_8"></div>
+				<div class="caja1 fgr">DEPARTAMENTO:</div><div class="caja1 cj24p" id="departamento" style="line-height: 10px;font-size:8px;"></div>
+				<div class="caja1 fgr">MUNICIPIO:</div><div class="caja1 cj24p" id="municipio" style="line-height: 10px;font-size:8px;"></div>
+				<div class="caja1 fgr letrap">COREGIMIENTO VEREDA:</div><div class="caja1 cj24p pg6_8" id="cpoblado"></div>
 				
 				<div class="caja1 finito2 tit_2"></div>
 
 				<div class="caja1 fgr pg1_3 cj16p">DIRECCION Y LUGAR EXACTO DEL EVENTO:</div>
 				<div class="caja1 fgr pg3_6 cj16p">FECHA DE INICIO Y FIN DEL EVENTO:</div><div class="caja1 fgr pg6_8 cj16p">HORA DE INICIO Y FIN DEL EVENTO:</div>
-				<div class="caja1 pg1_3 cj32p pgr18_20 "></div>
-				<div class="caja1 fgr cj16p pg3_5">FECHA INICIO:</div><div class="caja1 cj16p "></div>
-				<div class="caja1 fgr cj16p  ">HORA DE INICIO:</div><div class="caja1 cj16p"></div>
-				<div class="caja1 fgr cj16p pg3_5">FECHA FIN:</div><div class="caja1 cj16p "></div>
-				<div class="caja1 fgr cj16p  ">HORA DE FINALIZACIÓN:</div><div class="caja1 cj16p"></div>
-				<div class="caja1 fgr pg1_3">RESPONSABLE DEL EVENTO:</div><div class="caja1 pg3_8 cj24p"></div>
-				<div class="caja1 fgr cj24p pg1_3">CELULAR Y CORREO ELECTRÓNICO DEL ERPONSABLE:</div><div class="caja1 pg3_8 cj24p"></div>
+				<div class="caja1 pg1_3 cj32p pgr18_20 " id="direccion"></div>
+				<div class="caja1 fgr cj16p pg3_5">FECHA INICIO:</div><div class="caja1 cj16p " id="fecha2"></div>
+				<div class="caja1 fgr cj16p  ">HORA DE INICIO:</div><div class="caja1 cj16p" id="hora1"></div>
+				<div class="caja1 fgr cj16p pg3_5">FECHA FIN:</div><div class="caja1 cj16p " id="fecha3"></div>
+				<div class="caja1 fgr cj16p  ">HORA DE FINALIZACIÓN:</div><div class="caja1 cj16p" id="hora2"></div>
+				<div class="caja1 fgr pg1_3">RESPONSABLE DEL EVENTO:</div><div class="caja1 pg3_8 cj24p" id="responsable"></div>
+				<div class="caja1 fgr cj24p pg1_3">CELULAR Y CORREO ELECTRÓNICO DEL RESPONSABLE:</div><div class="caja1 pg3_8 cj24p" id="contacto"></div>
 				<div class="caja1 fgr cj24p pg1_3">MARQUE CON UNA X SI EL EVENTO PERTENECE A:</div>
 				<div class="caja1 pg3_8 cj24p">
-				Reparación Individual:  <input type="radio" name="tipo" id="tipo">  
-				Reparación Colectiva: 	<input type="radio" name="tipo" id="tipo">   
-				Retornos y Reubicaciones:	<input type="radio" name="tipo" id="tipo">    
-				Otra: 	<input type="radio" name="tipo" id="tipo">  
+				Reparación Individual:  <input type="radio" name="tipo" id="rta">  
+				Reparación Colectiva: 	<input type="radio" name="tipo" id="rtb">   
+				Retornos y Reubicaciones:	<input type="radio" name="tipo" id="rtc">    
+				Otra: 	<input type="radio" name="tipo" id="rtd">  
 				</div>
 				<div class="caja1 caja1 fgr cj24p pg1_3">GRUPO/ÁREA/EQUIPO/DEPENDENCIA:</div>
-				<div class="caja1 pg3_8 cj24p"></div>
+				<div class="caja1 pg3_8 cj24p" id="grupo"></div>
 
 				<div class="caja1 finito2 tit_2"></div>
 				
@@ -93,19 +93,19 @@ ValidaSession("../login");
 				<div class="caja1 tit_2b alto2">
 
 						<div class="caja cj24p">
-						Jornada Diferencial	<input type="radio" name="tipo1" id="tipo1">  
-						Feria de Servicios	<input type="radio" name="tipo1" id="tipo1">  
-						Conmemoración	<input type="radio" name="tipo1" id="tipo1">  
-						Iniciativa local de memoria	<input type="radio" name="tipo1" id="tipo1">  
-						Acto de Reconocimiento u orden judicial	<input type="radio" name="tipo1" id="tipo1">  
+						Jornada Diferencial	<input type="radio" name="tipo1" id="tipo1a">  
+						Feria de Servicios	<input type="radio" name="tipo1" id="tipo1b">  
+						Conmemoración	<input type="radio" name="tipo1" id="tipo1c">  
+						Iniciativa local de memoria	<input type="radio" name="tipo1" id="tipo1d">  
+						Acto de Reconocimiento u orden judicial	<input type="radio" name="tipo1" id="tipo1e">  
 						</div>
 						<div class="caja cj24p">
-						Taller por línea de inversión	<input type="radio" name="tipo1" id="tipo1">  
-						Entrega digna de cadáveres	<input type="radio" name="tipo1" id="tipo1">  
-						Charla de educación financiera	<input type="radio" name="tipo1" id="tipo1">  
-						Otro	<input type="radio" name="tipo1" id="tipo1">  
+						Taller por línea de inversión	<input type="radio" name="tipo1" id="tipo1f">  
+						Entrega digna de cadáveres	<input type="radio" name="tipo1" id="tipo1g">  
+						Charla de educación financiera	<input type="radio" name="tipo1" id="tipo1h">  
+						Otro	<input type="radio" name="tipo1" id="tipo1i">  
 						</div>
-						<div class="caja cj24p"></div>
+						<div class="caja cj24p" id="otro1"></div>
 				</div>
 
 				<div class="caja1 finito2 tit_2"></div>
@@ -113,14 +113,14 @@ ValidaSession("../login");
 				<div class="caja1 tit_2a">(ESPACIO EXCLUSIVO PARA REPARACIÓN RETORNOS Y REUBICACIONES) MARQUE CON UNA X SI LA ACTIVIDAD CORRESPONDE A UNA O VARIAS DE LAS SIGUIENTES OPCIONES: </div>
 				<div class="caja1 tit_2b alto1">
 					<div class="caja cj24p">
-					Integración Comunitaria	<input type="radio" name="tipo2" id="tipo2">  
-					Retorno	<input type="radio" name="tipo2" id="tipo2">  
-					Reubicación	<input type="radio" name="tipo2" id="tipo2">  
-					Esquemas Especiales de Acompañamiento	<input type="radio" name="tipo2" id="tipo2">  
-					Casos Emblemáticos 	<input type="radio" name="tipo2" id="tipo2">  
+					Integración Comunitaria	<input type="radio" name="tipo2" id="tipo2a">  
+					Retorno	<input type="radio" name="tipo2" id="tipo2b">  
+					Reubicación	<input type="radio" name="tipo2" id="tipo2c">  
+					Esquemas Especiales de Acompañamiento	<input type="radio" name="tipo2" id="tipo2d">  
+					Casos Emblemáticos 	<input type="radio" name="tipo2" id="tipo2e">  
 					</div>
 					<div class="caja cj24p">
-						<input type="radio" name="tipo2" id="tipo2">  Seguimiento procesos Retornos y Reubicaciones
+					Seguimiento procesos Retornos y Reubicaciones	<input type="radio" name="tipo2" id="tipo2f">  
 					</div>
 				</div>
 
@@ -138,9 +138,9 @@ ValidaSession("../login");
 						</div>
 
 						<div class="caja2 cj24p pg1_4">|No étnico:| 
-						Comunidad<input type="radio" name="tipo3" id="tipo3"> 
-						Comunidad campesina	<input type="radio" name="tipo3" id="tipo3"> 
-						Grupo<input type="radio" name="tipo3" id="tipo3">  
+						Comunidad<input type="radio" name="tipo3" id="tipo3a"> 
+						Comunidad campesina	<input type="radio" name="tipo3" id="tipo3b"> 
+						Grupo<input type="radio" name="tipo3" id="tipo3c">  
 							
 						</div>
 						<div class="caja2 cj24p pg4_6">Marcar con X:
@@ -151,8 +151,8 @@ ValidaSession("../login");
 						</div>
 
 						<div class="caja2 cj24p pg1_4">
-						Organizaciones	<input type="radio" name="tipo3" id="tipo3">  
-						Organización de mujeres	<input type="radio" name="tipo3" id="tipo3">  
+						Organizaciones	<input type="radio" name="tipo3" id="tipo3d">  
+						Organización de mujeres	<input type="radio" name="tipo3" id="tipo3e">  
 						</div>
 						<div class="caja2 cj24p pg4_6 aiz">Si el evento es de ruta	
 							<input  type="checkbox" name="aruta" id="aruta"> indicar
@@ -163,36 +163,36 @@ ValidaSession("../login");
 						</div>
 
 						<div class="caja2 cj24p pg1_4">|Étnico:|
-						Indígena	<input type="radio" name="tipo4" id="tipo4">  
-						Ancestral	<input type="radio" name="tipo4" id="tipo4">  
-						RROM o gitano	<input type="radio" name="tipo4" id="tipo4">  
+						Indígena	<input type="radio" name="tipo4" id="tipo4a">  
+						Ancestral	<input type="radio" name="tipo4" id="tipo4b">  
+						RROM o gitano	<input type="radio" name="tipo4" id="tipo4c">  
 							
 						</div>
 						<div class="caja2 cj24p pg4_6 aiz"> fase en que se encuentra:
 							
 
 						</div>
-						<div class="caja cj24p pg6_8 aiz">tipo de Medida: 
+						<div class="caja cj24p pg6_8 aiz" id="amedida">tipo de Medida: 
 
 						</div>
 
 						<div class="caja2 cj24p pg1_4">
-						Afrocolombiana	<input type="radio" name="tipo4" id="tipo4">  
-						Negra	<input type="radio" name="tipo4" id="tipo4">  
+						Afrocolombiana	<input type="radio" name="tipo4" id="tipo4d">  
+						Negra	<input type="radio" name="tipo4" id="tipo4e">  
 						</div>
-						<div class="caja2 cj24p pg4_6"></div>
+						<div class="caja2 cj24p pg4_6" id="afase"></div>
 
-						<div class="caja cj24p pg6_8 aiz">ID evento:</div>
+						<div class="caja cj24p pg6_8 aiz" id="idaccion">ID evento:</div>
 
 						<div class="caja1 tit_2 finito2"></div>						
 						<div class="caja1 tit_2 faz">DESCRIPCIÓN DEL DESARROLLO DE  LA ACTIVIDAD</div>					
 						<div class="caja1 finito2 tit_2"></div>
 
 						<div class="caja1 fgr aiz ">ENTIDADES PARTICIPANTES:</div>
-						<div class="caja1 cj24p pg2_6"></div>
+						<div class="caja1 cj24p pg2_6" id="entidad"></div>
 						<div class="caja1 fgr aiz letrap">NÚMERO DE VÍCTIMAS PARTICIPANTES:</div>
-						<div class="caja1 cj24p"></div>
-						<div class="caja1 tit_2b alto1 aiz">DESCRIPCIÓN BREVE: 
+						<div class="caja1 cj24p" id="num_vic"></div>
+						<div class="caja1 tit_2b alto1 aiz" id="descripcion">DESCRIPCIÓN BREVE: 
 
 						</div>
 
@@ -207,8 +207,15 @@ ValidaSession("../login");
 
 
 			</div>	
-		</div>	
+
+
+		</div>
+
+		<div>
+		<button id="imprimir" class="btn btn-primary" type="button"><i class="fa fa-fw fa-print" ></i>Imprimir</button>
+		</div>
 		
+
 	</div>
 </div>
 </form>
@@ -225,6 +232,7 @@ ValidaSession("../login");
 <script src="../../plugins/leaflet/leaflet.label.js"></script>
 <script src="../../plugins/select3/bootstrap-select.min.js"></script>
 <script src="../../plugins/select3/i18n/defaults-es_ES.min.js"></script>
+<script src="../../plugins/printjs/print.min.js"></script>
 
 <link rel="stylesheet" href="../../plugins/confirma/jquery-confirm.min.css" type="text/css"/>
 <link rel="stylesheet" href="../../css/style_format_pass.css" type="text/css"/>
@@ -233,190 +241,209 @@ ValidaSession("../login");
 <link rel="stylesheet" href="../../plugins/leaflet/leaflet.css"/>
 <link rel="stylesheet" href="../../css/reportes.css"  type="text/css" />
 <link rel="stylesheet" href="../../plugins/select3/bootstrap-select.min.css">
+<link rel="stylesheet" href="../../plugins/printjs/print.min.css">
 
 <script type="text/javascript">
 
 	$(document).ready(function() {
 
-
+//alert(<?php echo intval($_GET["record"]); ?>);
 		$.post( "../../controllers/mrequerimientos_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 
 //alert(data);
-var parsedJson = $.parseJSON(data);
+	var parsedJson = $.parseJSON(data);
 
-	$("#no_cli").html(parsedJson.nombre);
-	$("#id").val(parsedJson.id);
-	$("#s_orbis").val(parsedJson.sorbis);
-	$("#orbis").val(parsedJson.orbis);
-	$("#nombre").val(parsedJson.nombre);
-	$("#razon").val(parsedJson.razon);
-	$("#segmento").val(parsedJson.segmento);
-	$("#cedula").val(parsedJson.cedula);
-	$("#l_cedula").val(parsedJson.l_cedula);
-	$("#fecha1").val(parsedJson.fecha1);
-	$("#fecha2").val(parsedJson.fecha2);
+	var idd=parsedJson.id.toString();
+	$("#id").html(idd.padStart(4, 0));
 
-	$("#estado").val(parsedJson.estado);
+	$("#nombre").html(parsedJson.nombre);
+	$("#fecha1").html(parsedJson.fecha1);
 
-	$("#sector").val(parsedJson.sector);
-
+	var bdep =parsedJson.departamento;
 	var bmun =parsedJson.municipio;
-	var bpar =parsedJson.parroquia;
-	var bciu =parsedJson.ciudad;
+	var bcpo =parsedJson.cpoblado;
 
-$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios_e",municipio:bmun}).done(function( data ) {
+	$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos_e",departamento:bdep}).done(function( data ) {
 
-	$("#municipio" ).html( data );
-
-});	
-
-$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias_e",parroquia: bpar}).done(function( data ) {
-
- $("#parroquia" ).html( data );
-
-});
-
-$.post( "../../controllers/mgeograficas_controller", {action: "get_ciudad_e",ciudad: bciu}).done(function( data ) {
-//setTimeout(function(){
- $("#ciudad" ).html( data );
-//}, 1500);
-});	
-
-	$("#a_principal").val(parsedJson.a_principal);
-	$("#acceso1").val(parsedJson.acceso1);
-	$("#a_secundario").val(parsedJson.a_secundario);
-	$("#acceso2").val(parsedJson.acceso2);
-	$("#referencia").val(parsedJson.referencia);
-	$("#zona").val(parsedJson.zona);
-
-	$("#territorio").val(parsedJson.territorio);
-	
-	//$("#territorio_g").val(parsedJson.territorio_g);
-	var bter = parsedJson.territorio_g;
-	$.post( "../../controllers/mterritorios_controller", { action: "get_territorios_e",territorio: bter}).done(function( data ) {
+		$("#departamento" ).html( data );
+		$("#dir_terri" ).html( data );
 		
-		 $("#territorio_g" ).html( data );
+
+	});	
+
+	$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios_e",municipio: bmun}).done(function( data ) {
+
+		$("#municipio" ).html( data );
 
 	});
+
+	$.post( "../../controllers/mgeograficas_controller", {action: "get_cpoblado_e",cpoblado: bcpo}).done(function( data ) {
 	
-	$("#latitud").val(parsedJson.latitud);
-		
-		document.getElementById('lata').value=parseFloat(parsedJson.latitud); 
+		$("#cpoblado" ).html( data );
 	
-	$("#longitud").val(parsedJson.longitud);
-		document.getElementById('longa').value=parseFloat(parsedJson.longitud)*(-1);
+	});	
 
-	$("#propietario").val(parsedJson.propietario);
-	$("#tele1").val(parsedJson.tele1);
-	$("#tele2").val(parsedJson.tele2);
-	$("#correo1").val(parsedJson.correo1);
-	$("#estatus_aliado").val(parsedJson.estatus_aliado);
-	$("#dias").val(parsedJson.dias);
-	$("#caja_t").val(parsedJson.caja_t);
-	$("#caja_p").val(parsedJson.caja_p);
-	$("#caja_o").val(parsedJson.caja_o);
-	$("#despacho").val(parsedJson.despacho);
-	$("#descuento").val(parsedJson.descuento);
-	$("#seca").val(parsedJson.seca);
-	$("#rf_competencia").val(parsedJson.rf_competencia);
-	$("#ls_competencia").val(parsedJson.ls_competencia);
+	var d_aprima =parsedJson.a_primario;
+	var d_acc1 =parsedJson.acceso1;
+	var d_acc2 =parsedJson.acceso2;
+	var d_numd =parsedJson.num_dir;
+	var d_aref =parsedJson.a_referencia;
+	var d_refe =parsedJson.referencia;
 
-	$("#toldo").val(parsedJson.toldo);
-	$("#aviso").val(parsedJson.aviso);
-	$("#fachada").val(parsedJson.fachada);
-	$("#activo").val(parsedJson.activo);
-	$("#observacion").val(parsedJson.observacion);
-	$("#distribuidora").val(parsedJson.distribuidora);
-	$("#region").val(parsedJson.region);
+	switch (d_aprima) {
+		case 0:	aprima="Avenida";break;
+		case 1: aprima="Calle";break;					
+		case 2:	aprima="Carrera";break;
+		case 3:	aprima="Vereda";break;			
+		case 4:	aprima="Callejón";break;			
+		case 5:	aprima="Carretera";break;			
+		case 6:	aprima="Autopista";break;
+	}
+	
+	switch (d_aref) {
+		case 0:	aref="Al lado";break;
+		case 1: aref="Cerca";break;					
+		case 2:	aref="Frente";break;
+		case 3:	aref="Diagonal";break;			
+		case 4:	aref="Detras";break;			
+		case 5:	aref="Via";break;			
+		case 6:	aref="Dentro";break;
+	}
 
-	var identico = parsedJson.id;
-	var des_cu = parsedJson.descuento;
-	//alert(des_cu);
-	var or_bis = $("#orbis").val();
-	var es_ali = parsedJson.estatus_aliado;
-	var di_as = parsedJson.dias;
-	di_as = di_as.split(',');
+	var direcc= aprima+' '+d_acc1+' #'+d_acc2+'-'+d_numd+' ('+aref+' '+d_refe+').'
 
-	var desc_ch=document.getElementById("descu");
-	var desc_cue=document.getElementById("descuento");
+	$("#direccion").html(direcc);
 
-	if (des_cu == 0) {
-		desc_ch.checked=false;
+	$("#fecha2").html(parsedJson.fecha2);
+	$("#fecha3").html(parsedJson.fecha3);
+	$("#hora1").html(parsedJson.hora1);
+	$("#hora2").html(parsedJson.hora2);
 
+	var n1=parsedJson.rt_nombre1;
+	var n2=parsedJson.rt_nombre2;
+	var a1=parsedJson.rt_apellido1;
+	var a2=parsedJson.rt_apellido2;
+	var ntdoc=parsedJson.rt_tdoc;
+	var ntnd=parsedJson.rt_num_doc;
+
+	switch (ntdoc) {
+		case 0:	tdoc="CC: ";break;
+		case 1: tdoc="CE: ";break;					
+		case 2:	tdoc="PA. ";break;
+	}
+
+	var respon=n1+' '+n2+' '+a1+' '+a2+' - '+tdoc+ntnd;
+	$("#responsable").html(respon);
+
+	var tel1=parsedJson.tele1;
+	var email=parsedJson.correo1;
+	var contac=email+', Celular: '+tel1;
+
+	$("#contacto").html(contac);
+
+	var grup=parsedJson.grupo;
+	  
+	  $.post( "../../controllers/grupos_controller", { action: "get_grupo",grupo:grup}).done(function( data ) {
+
+		$("#grupo").html( data );
+
+	});	
+
+	var tip1=parsedJson.tipo1;
+	switch (tip1) {
+		case 0:	$("#tipo1a").attr('checked', true);break;
+		case 1:	$("#tipo1b").attr('checked', true);break;
+		case 2:	$("#tipo1c").attr('checked', true);break;
+		case 3:	$("#tipo1d").attr('checked', true);break;
+		case 4:	$("#tipo1e").attr('checked', true);break;
+		case 5:	$("#tipo1f").attr('checked', true);break;
+		case 6:	$("#tipo1g").attr('checked', true);break;
+		case 7:	$("#tipo1h").attr('checked', true);break;
+		case 8:	$("#tipo1i").attr('checked', true);break;
+	}
+
+	$("#otro1").html(parsedJson.otro1);
+
+	var tip2=parsedJson.tipo2;
+	switch (tip2) {
+		case 0:	$("#tipo2a").attr('checked', true);break;
+		case 1:	$("#tipo2b").attr('checked', true);break;
+		case 2:	$("#tipo2c").attr('checked', true);break;
+		case 3:	$("#tipo2d").attr('checked', true);break;
+		case 4:	$("#tipo2e").attr('checked', true);break;
+		case 5:	$("#tipo2f").attr('checked', true);break;
+	}
+
+	var tip3=parsedJson.tipo3;
+	switch (tip3) {
+		case 0:	$("#tipo3a").attr('checked', true);break;
+		case 1:	$("#tipo3b").attr('checked', true);break;
+		case 2:	$("#tipo3c").attr('checked', true);break;
+		case 3:	$("#tipo3d").attr('checked', true);break;
+		case 4:	$("#tipo3e").attr('checked', true);break;
+	}
+
+	var tip4=parsedJson.tipo4;
+	switch (tip4) {
+		case 0:	$("#tipo4a").attr('checked', true);break;
+		case 1:	$("#tipo4b").attr('checked', true);break;
+		case 2:	$("#tipo4c").attr('checked', true);break;
+		case 3:	$("#tipo4d").attr('checked', true);break;
+		case 4:	$("#tipo4e").attr('checked', true);break;
+	}
+
+	var ruvl=parsedJson.arutaval;
+	switch (ruvl) {
+		case 0:	$("#aruta").attr('checked', false);break;
+		case 1:	$("#aruta").attr('checked', true);break;
+	}
+	$("#afase").html(parsedJson.afase);
+
+	var pirc=parsedJson.apircval;
+	switch (pirc) {
+		case 0:	$("#apirc").attr('checked', false);break;
+		case 1:	$("#apirc").attr('checked', true);break;
+	}
+	var med=parsedJson.amedida;	
+
+	medida='tipo de Medida: '+med;
+	$("#amedida").html(medida);
+
+	var acc=parsedJson.idaccion;	
+	accis='ID evento: '+acc;
+	$("#idaccion").html(accis);
+
+
+	$("#entidad").html(parsedJson.entidad);
+	$("#num_vic").html(parsedJson.num_vic);
+	$("#descripcion").html("Descripción breve: "+parsedJson.descripcion);
+
+	var alojan=parsedJson.aloja;
+	switch (alojan) {
+		case 0:	$("#aloja").attr('checked', false);break;
+		case 1:	$("#aloja").attr('checked', true);break;
+	}
+	
+	var transi=parsedJson.trans;
+	switch (transi) {
+		case 0:	$("#trans").attr('checked', false);break;
+		case 1:	$("#trans").attr('checked', true);break;
+	}
+
+	//control de tipos
+
+	if(tip1>0){
+		$("#rta").attr('checked', true)
+	}else if(tip2>0){
+		$("#rtb").attr('checked', true)
+	}else if(tip3>0){
+		$("#rtc").attr('checked', true)
 	}else{
-		desc_ch.checked=true;
-		desc_cue.disabled = false;
+		$("#rtd").attr('checked', true)
 	}
-
-	var tol_do = parsedJson.toldo;
-	tol_do = tol_do.split(',');
-
-	var avi_so = parsedJson.aviso;
-	avi_so = avi_so.split(',');
-
-	var fa_cha = parsedJson.fachada;
-	fa_cha = fa_cha.split(',');
-
-	var ac_ti = parsedJson.activo;
-	ac_ti = ac_ti.split(',');
-
-
-//		document.getElementById('oculto').style.display = 'block';
-
-
-	if(!or_bis){
-		$("#orbis").val('SIN CÓDIGO ORBIS');
-	}
-
-	if(es_ali =='0'){
-
-		$('#estatus_aliado').multiselect('select', ['0']);
-
-	}else if(es_ali =='0,1'){
-
-		$('#estatus_aliado').multiselect('select', ['0','1']);
-
-	}else if(es_ali=='2'){
-		
-		$('#estatus_aliado').multiselect('select', ['2']);
-	}	
-
-
-	if(di_as){
-
-		$('#dias').multiselect('select', di_as);
-
-	}
-
-	if(tol_do){
-
-		$('#toldo').multiselect('select', tol_do);
-
-	}
-
-	if(avi_so){
-
-		$('#aviso').multiselect('select', avi_so);
-
-	}
-
-	if(fa_cha){
-
-		$('#fachada').multiselect('select', fa_cha);
-
-	}
-
-	if(ac_ti){
-
-		$('#activo').multiselect('select', ac_ti);
-
-	}												
-
-
-},"json");
-
 
 	});
+});	
 
 </script>
 <?php include_once("../layouts/pie.php") ?>

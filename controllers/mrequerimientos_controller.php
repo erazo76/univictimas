@@ -25,6 +25,7 @@ date_default_timezone_set('America/Bogota');
 @$acceso2 = ($_POST["acceso2"]);
 @$num_dir = ($_POST["num_dir"]);
 @$a_referencia = ($_POST["a_referencia"]);
+@$referencia = ($_POST["referencia"]);
 /***********************************/
 @$fecha2 = ($_POST["fecha2"]);
 @$fecha3 = ($_POST["fecha3"]);
@@ -487,6 +488,7 @@ break;
             $alia->acceso2= $acceso2;
             $alia->num_dir = $num_dir;
             $alia->a_referencia = $a_referencia;
+            $alia->referencia = $referencia;
             $alia->fecha2 = $fecha2;
             $alia->fecha3 = $fecha3;
             $alia->hora1 = $hora1;
@@ -497,6 +499,8 @@ break;
             $alia->rt_apellido2 = $rt_apellido2;
             $alia->rt_tdoc = $rt_tdoc;
             $alia->rt_num_doc = $rt_num_doc;
+            $alia->tele1 = $tele1;
+            $alia->correo1 = $correo1;
             $alia->grupos_id = $grupo;
             $alia->otro1 = $otro1;
             $alia->tipo1 = $tipo1;
@@ -1321,50 +1325,50 @@ break;
 
           $resp = array(
                   "id"=>$rs->id,
-                  "sorbis"=>$rs->sorbis,
-                  "orbis"=>$rs->orbis,
                   "nombre"=>$rs->nombre,
-                  "razon"=>$rs->razon,
-                  "segmento"=>$rs->msegmento_id,
-                  "cedula"=>$rs->cedula,
-                  "l_cedula"=>$rs->l_cedula,
-                  "fecha1"=>(string)$rs->visita1->format("d-m-Y"),
-                  "fecha2"=>(string)$hoy,
-                  "estado"=>$rs->mestado_id,
-                  "municipio"=>$rs->mmunicipio_id,
-                  "ciudad"=>$rs->mciudad_id,
-                  "sector"=>$rs->msector_id,
-                  "parroquia"=>$rs->mparroquia_id,
-                  "a_principal"=>$rs->macceso1,
-                  "acceso1"=>$rs->acc_nombre1,
-                  "a_secundario"=>$rs->macceso2,
-                  "acceso2"=>$rs->acc_nombre2,
+                  "fecha1"=>(string)$rs->fecha1->format("d-m-Y"),
+                  "departamento"=>$rs->mdepartamentos_id,
+                  "municipio"=>$rs->mmunicipios_id,
+                  "cpoblado"=>$rs->mcpoblado_id,
+
+                  "a_primario"=>$rs->a_primario,
+                  "acceso1"=>$rs->acceso1,
+                  "acceso2"=>$rs->acceso2,
+                  "num_dir"=>$rs->num_dir,
+                  "a_referencia"=>$rs->a_referencia,
                   "referencia"=>$rs->referencia,
-                  "zona"=>$rs->mzona_id,
-                  "territorio"=>$rs->mterritorio,
-                  "territorio_g"=>$rs->mterritorio_g,
-                  "latitud"=>$rs->latitud,
-                  "longitud"=>$rs->longitud,
-                  "propietario"=>$rs->propietario,
-                  "tele1"=>$rs->telefono1,
-                  "tele2"=>$rs->telefono2,
-                  "correo1"=>$rs->email,
-                  "estatus_aliado"=>$rs->tipos,
-                  "dias"=>$rs->dias,
-                  "caja_t"=>$rs->cajas_t,
-                  "caja_p"=>$rs->cajas_p,
-                  "caja_o"=>$rs->cajas_o,
-                  "despacho"=>$rs->despacho,
-                  "descuento"=>$rs->descuento,
-                  "seca"=>$rs->linea_seca,
-                  "rf_competencia"=>$rs->refrigerado_c,
-                  "ls_competencia"=>$rs->linea_seca_c,
-                  "toldo"=>$rs->toldos,
-                  "aviso"=>$rs->avisos,
-                  "fachada"=>$rs->fachadas,
-                  "activo"=>$rs->activos,
-                  "observacion"=>$rs->observaciones,
-                  "distribuidora"=>$rs->mdistribuidoras_id,
+
+                  "fecha2"=>(string)$rs->fecha2->format("d-m-Y"),
+                  "fecha3"=>(string)$rs->fecha3->format("d-m-Y"),
+                  "hora1"=>date("h:i a", strtotime($rs->hora1)),
+                  "hora2"=>date("h:i a", strtotime($rs->hora2)),
+
+                  "rt_nombre1"=>$rs->rt_nombre1,
+                  "rt_nombre2"=>$rs->rt_nombre2,
+                  "rt_apellido1"=>$rs->rt_apellido1,
+                  "rt_apellido2"=>$rs->rt_apellido2,
+                  "rt_tdoc"=>$rs->rt_tdoc,
+                  "rt_num_doc"=>$rs->rt_num_doc,
+                  "tele1"=>$rs->tele1,
+                  "correo1"=>$rs->correo1,
+                  "grupo"=>$rs->grupos_id,
+                  "otro1"=>$rs->otro1,
+
+                  "tipo1"=>$rs->tipo1,
+                  "tipo2"=>$rs->tipo2,
+                  "tipo3"=>$rs->tipo3,
+                  "tipo4"=>$rs->tipo4,
+                  
+                  "arutaval"=>$rs->arutaval,
+                  "apircval"=>$rs->apircval,
+                  "afase"=>$rs->afase,
+                  "amedida"=>$rs->amedida,
+                  "idaccion"=>$rs->idaccion,
+                  "entidad"=>$rs->entidad,
+                  "num_vic"=>$rs->num_vic,
+                  "descripcion"=>$rs->descripcion,
+                  "aloja"=>$rs->aloja,
+                  "trans"=>$rs->trans,
                   "region"=>$rs->mregiones_id
 
                  );

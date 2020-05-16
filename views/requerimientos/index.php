@@ -47,7 +47,7 @@ ValidaSession("../login");
 					<button id="add" class="btn btn-primary" type="button"><i class="fa fa-fw fa-plus"></i> Agregar</button>
 					<button id="edit" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-pencil"></i> Editar</button>
 					<button id="delete" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> Eliminar</button>
-					<button id="repo" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> reporte</button>
+					<button id="repo" class="btn btn-primary" type="button"><i class="fa fa-fw fa-eye"></i>Vista previa</button>
 				</div>
 			</div>
 		</div>
@@ -207,10 +207,28 @@ ValidaSession("../login");
 				}
 			});
 
-			$('#repo').click( function () {
 
-				$(location).attr('href','../requerimientos/frm_reportar');
+			$('#repo').click( function () {
+				var value= table.$('tr.selected').children('td:first').text();
+				if(!value){
+
+						$.alert({
+						    title: '!Seleccione el registro a mostrar !',
+						    content: false,
+						    confirmButton: true, // hides the confirm button.
+						    closeIcon: false,
+						    confirmButton: 'cerrar',
+						    confirmButtonClass: 'btn-success'
+						});
+
+				}else{
+
+					$(location).attr('href','frm_reportar?record='+value);
+
+				}
 			});
+
+
 	});
 
 
