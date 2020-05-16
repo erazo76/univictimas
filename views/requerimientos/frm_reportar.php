@@ -232,7 +232,7 @@ ValidaSession("../login");
 <script src="../../plugins/leaflet/leaflet.label.js"></script>
 <script src="../../plugins/select3/bootstrap-select.min.js"></script>
 <script src="../../plugins/select3/i18n/defaults-es_ES.min.js"></script>
-<script src="../../plugins/printjs/print.min.js"></script>
+
 
 <link rel="stylesheet" href="../../plugins/confirma/jquery-confirm.min.css" type="text/css"/>
 <link rel="stylesheet" href="../../css/style_format_pass.css" type="text/css"/>
@@ -241,7 +241,7 @@ ValidaSession("../login");
 <link rel="stylesheet" href="../../plugins/leaflet/leaflet.css"/>
 <link rel="stylesheet" href="../../css/reportes.css"  type="text/css" />
 <link rel="stylesheet" href="../../plugins/select3/bootstrap-select.min.css">
-<link rel="stylesheet" href="../../plugins/printjs/print.min.css">
+
 
 <script type="text/javascript">
 
