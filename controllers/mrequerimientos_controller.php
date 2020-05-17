@@ -96,7 +96,7 @@ break;
   case 'add_temp1':
 
             session_start();
-            $usuario_id = $_SESSION['idusuariox'];
+            @$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 //echo($usuario_id);exit(); *******########### PENDIENTE DE CAMBIAR COMPLETADO POR "1"
              $consulta = Mtemporale::find('all',array('conditions' => array('user_create=? AND completado=?',$usuario_id,2)));
@@ -168,7 +168,7 @@ break;
   case 'add_temp2':
 
             session_start();
-            $usuario_id = $_SESSION['idusuariox'];
+            @$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 //echo($usuario_id);exit();
              $consulta = Mtemporale::find('all',array('conditions' => array('user_create=? AND completado=?',$usuario_id,2)));
@@ -474,7 +474,7 @@ break;
        
 
             session_start();
-            $usuario_id = $_SESSION['idusuariox'];
+            @$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
             $alia = new Mrequerimiento();
@@ -1190,7 +1190,7 @@ break;
       if($record !=null){
 
         session_start();
-        $usuario_id = $_SESSION['idusuariox'];
+        @$usuario_id = $_SESSION['idusuariox'];
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
@@ -1311,7 +1311,9 @@ break;
     if($record !=null){
 
         session_start();
-        $usuario_id = $_SESSION['idusuariox'];
+        @$usuario_id = $_SESSION['idusuariox'];
+        
+//echo($usuario_id);exit();
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
@@ -1380,172 +1382,6 @@ break;
     }
     break;
 
-#******************************************************************************
-
-  case 'search2':
-
-    if($record !=null){
-
-        session_start();
-                $distri_a = intval($_SESSION['distribuidora']); 
-                $regio_a = intval($_SESSION['region']);
-
-        $usuario_id = $_SESSION['idusuariox'];
-
-        $rol = $_SESSION['rolx'];
-        $hoy = date("d-m-Y");
-
-      @$data = Mtemporale::find('all',array('conditions' => array('id=?',$record)));
-
-      if($data !=null){
-
-        foreach($data as $rs){
-//echo($rs->tipos);exit();
-          $resp = array(
-                  "id"=>$rs->id,
-                  "sorbis"=>$rs->sorbis,
-                  "orbis"=>$rs->orbis,
-                  "nombre"=>$rs->nombre,
-                  "razon"=>$rs->razon,
-                  "segmento"=>$rs->msegmento_id,
-                  "cedula"=>$rs->cedula,
-                  "fecha1"=>(string)$rs->visita1->format("d-m-Y"),
-                  "fecha2"=>(string)$hoy,
-                  "estado"=>$rs->mestado_id,
-                  "municipio"=>$rs->mmunicipio_id,
-                  "ciudad"=>$rs->mciudad_id,
-                  "sector"=>$rs->msector_id,
-                  "parroquia"=>$rs->mparroquia_id,
-                  "a_principal"=>$rs->macceso1,
-                  "acceso1"=>$rs->acc_nombre1,
-                  "a_secundario"=>$rs->macceso2,
-                  "acceso2"=>$rs->acc_nombre2,
-                  "referencia"=>$rs->referencia,
-                  "zona"=>$rs->mzona_id,
-                  "territorio"=>$rs->mterritorio,
-                  "territorio_g"=>$rs->mterritorio_g,
-                  "latitud"=>$rs->latitud,
-                  "longitud"=>$rs->longitud,
-                  "propietario"=>$rs->propietario,
-                  "tele1"=>$rs->telefono1,
-                  "tele2"=>$rs->telefono2,
-                  "correo1"=>$rs->email,
-                  "estatus_aliado"=>$rs->tipos,
-                  "dias"=>$rs->dias,
-                  "caja_t"=>$rs->cajas_t,
-                  "caja_p"=>$rs->cajas_p,
-                  "caja_o"=>$rs->cajas_o,
-                  "despacho"=>$rs->despacho,
-                  "descuento"=>$rs->descuento,
-                  "seca"=>$rs->linea_seca,
-                  "rf_competencia"=>$rs->refrigerado_c,
-                  "ls_competencia"=>$rs->linea_seca_c,
-                  "toldo"=>$rs->toldos,
-                  "aviso"=>$rs->avisos,
-                  "fachada"=>$rs->fachadas,
-                  "activo"=>$rs->activos,
-                  "observacion"=>$rs->observaciones,
-                  "distribuidora"=>$distri_a,
-                  "region"=>$regio_a,
-                  "recuperado"=>$rs->completado
-                 );
-        }
-
-        echo json_encode($resp);
-       }
-
-    }
-    break;
-
-#******************************************************************************
-
-  case 'search_orbis':
-
-
-
-    if($sorbis!=null || $orbis!=null){
-
-      @$data = Maliado::find('all',array('conditions' => array('orbis=? AND sorbis=?',$orbis,$sorbis)));
-
-
-        if($data !=null){
-
-            foreach ($data as $rm) {
-                $traba=$rm->orbis;
-            }
-                    
-                if($traba!='SIN CÓDIGO ORBIS'){
-                    $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
-                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                        <h4>
-                        <i class="icon fa fa-ban"></i>
-                        Alerta!
-                        </h4>
-                        El código ORBIS ya se encuentra asignado.
-                        </div>');
-                }else{
-
-                    $respuesta = array('resultado'=>'alert','mensaje'=>'');
-
-                }
-
-        }else{
-
-                    $respuesta = array('resultado'=>'alert','mensaje'=>'');
-
-        }
-        //echo json_encode($respuesta);
-    }else{
-       $respuesta = array('resultado'=>'alert','mensaje'=>'');
-    }
- echo json_encode($respuesta);
-
-    break;
-
-    #******************************************************************************
-
-  case 'search_orbis_2':
-
-
-
-    if($sorbis!=null || $orbis!=null){
-
-      @$data = Maliado::find('all',array('conditions' => array('orbis=? AND sorbis=? AND id!=?',$orbis,$sorbis,$record)));
-
-        if($data !=null){
-
-            foreach ($data as $rm) {
-                $traba=$rm->orbis;
-            }
-
-                if($traba!='SIN CÓDIGO ORBIS'){
-
-                    $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
-                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                        <h4>
-                        <i class="icon fa fa-ban"></i>
-                        Alerta!
-                        </h4>
-                        El código ORBIS ya se encuentra asignado.
-                        </div>');
-                
-                }else{
-
-                    $respuesta = array('resultado'=>'alert','mensaje'=>'');
-
-                }
-        }else{
-
-                    $respuesta = array('resultado'=>'alert','mensaje'=>'');
-
-        }
-        //echo json_encode($respuesta);
-    }else{
-       $respuesta = array('resultado'=>'alert','mensaje'=>'');
-    }
- echo json_encode($respuesta);
-
-    break;
 
 }//end switch
 

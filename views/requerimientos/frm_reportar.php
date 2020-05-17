@@ -18,18 +18,27 @@ ValidaSession("../login");
 		<input type="hidden" id="region" value="<?php echo intval($_SESSION['region']); ?>">
 
 <div class="row">
-	<div class="col-md-12 col-md-offset-2" style="width:100%; height:100%;overflow:auto;" >
+
+	<div class="col-md-1">
+		<div class="flotante">
+			<button id="print" class="btn btn-primary oculto-impresion " type="button"><i class="fa fa-fw fa-print"></i>Imprimir</button>
+		</div>
+	</div>
+
+	<div class="col-md-11" style="width:216mm; height:356mm;overflow:auto;" >
 
 		<div class="box-header with-border" tabindex="-1">
 			<h3 class="box-title">FORMATO SOLICITUD AL OPERADOR</h3>
-		</div><!-- /.box-header -->	
+		</div> <!--/.box-header	
 
-		<div class="box box-primary"  style="width:216mm; height:500px; overflow:auto;">
-			<div class="box-body ">
+		<div class="box box-primary"  style="width:216mm; height:100%; overflow:auto;">
+			<div class="box-body ">-->
 		
 			<div class="contenedorw" id="printJS-form">
-				<div class="caja1 logunivic"></div>
-				<div class="caja1 tit_1 fro" >FORMATO SOLICITUD AL OPERADOR</div>
+				
+				<img src="../../dist/img/unidadvictimaslogo2018-2.png" alt="logo" class="caja1 logunivic bnn">
+				
+				<div class="caja1 tit_1 fro" style="color:#fff;">FORMATO SOLICITUD AL OPERADOR</div>
 				<div class="caja1 tit_1">PROCEDIMIENTO: ESTRATEGIAS DE REPARACIÓN INTEGRAL</div>
 				<div class="caja1 tit_1">PROCESO: REPARACIÓN INTEGRAL</div>
 				<div class="caja1 letrap cj16p">Código: 400.08.15-67</div>
@@ -39,11 +48,11 @@ ValidaSession("../login");
 				<div class="caja1 tit_2">CONTRATO No.  1296 de 2017</div>
 				<div class="caja1 fgr">OBJETO DEL CONTRATO: </div>
 				<div class="caja1 tit_3">Prestar sus servicios para apoyar la organización, administración y producción de las jornadas o acciones para la implementación de medidas de reparación integral a las víctimas del conflicto armado que le sean solicitadas por LA UNIDAD, de acuerdo con los requerimientos técnicos.</div>
-				<div class="caja1 tit_2 faz">REQUERIMIENTOS DE SERVICIO PARA ACCIONES DE LA DIRECCIÓN DE REPARACIÓN</div>
+				<div class="caja1 tit_2 faz" style="color:#fff !important;">REQUERIMIENTOS DE SERVICIO PARA ACCIONES DE LA DIRECCIÓN DE REPARACIÓN</div>
 				
 				<div class="caja1 tit_2 finito"></div>
 
-				<div class="caja1 tit_2 faz">INFORMACIÓN GENERAL DEL EVENTO</div>
+				<div class="caja1 tit_2 faz" style="color:#fff !important;">INFORMACIÓN GENERAL DEL EVENTO</div>
 			
 				<div class="caja1 finito2 tit_2">
 
@@ -52,7 +61,7 @@ ValidaSession("../login");
 
 				<div class="caja1 finito2 tit_2"></div>
 
-				<div class="caja1 faz aiz">N° EVENTO:</div><div class="caja1 cj24p" id="id"></div>
+				<div class="caja1 faz aiz" style="color:#fff !important;">N° EVENTO:</div><div class="caja1 cj24p" id="id"></div>
 				<div class="caja1 fgr letrap">FECHA DE SOLICITUD:</div><div class="caja1 cj24p" id="fecha1"></div>
 				<div class="caja1 fgr letrap">DIRECCION TERRITORIAL:</div><div class="caja1 cj24p pg6_8" id="dir_terri" style="line-height: 10px;"></div>
 
@@ -85,7 +94,7 @@ ValidaSession("../login");
 
 				<div class="caja1 finito2 tit_2"></div>
 				
-				<div class="caja1 tit_2 faz">INFORMACIÓN RELACIONADA CON EL TIPO DE ACTIVIDAD</div>
+				<div class="caja1 tit_2 faz" style="color:#fff !important;">INFORMACIÓN RELACIONADA CON EL TIPO DE ACTIVIDAD</div>
 
 				<div class="caja1 finito2 tit_2"></div>
 
@@ -129,8 +138,8 @@ ValidaSession("../login");
 				<div class="caja1 tit_2a">(ESPACIO EXCLUSIVO PARA REPARACIÓN COLECTIVA) MARQUE CON UNA X SI LA ACTIVIDAD CORRESPONDE A UNA O VARIAS DE LAS SIGUIENTES OPCIONES: </div>
 				<div class="caja1 tit_2b alto3">
 					<div class="contenedorx">
-						<div class="caja1 cj24p aiz pg1_6">NOMBRE DEL SUJETO DE REPARACIÓN COLECTIVA:</div>
-						<div class="caja1 cj24p aiz pg6_8">ID SUJETO DE REPARACIÓN COLECTIVA:</div>
+						<div class="caja1 cj24p aiz pg1_6" style="border-bottom: solid;" >NOMBRE DEL SUJETO DE REPARACIÓN COLECTIVA:</div>
+						<div class="caja1 cj24p aiz pg6_8" style="border-bottom: solid;">ID SUJETO DE REPARACIÓN COLECTIVA:</div>
 						<div class="caja2 cj24p pg1_4">TIPO DE SUJETO:</div>
 						<div class="caja2 cj24p pg4_6"></div>
 						<div class="caja cj24p pg6_8">
@@ -184,39 +193,70 @@ ValidaSession("../login");
 
 						<div class="caja cj24p pg6_8 aiz" id="idaccion">ID evento:</div>
 
-						<div class="caja1 tit_2 finito2"></div>						
-						<div class="caja1 tit_2 faz">DESCRIPCIÓN DEL DESARROLLO DE  LA ACTIVIDAD</div>					
+
+
+						
+					</div>
+				</div>
+				<div class="caja1 tit_2 finito2"></div>						
+						<div class="caja1 tit_2 faz" style="color:#fff !important;">DESCRIPCIÓN DEL DESARROLLO DE  LA ACTIVIDAD</div>					
 						<div class="caja1 finito2 tit_2"></div>
 
 						<div class="caja1 fgr aiz ">ENTIDADES PARTICIPANTES:</div>
 						<div class="caja1 cj24p pg2_6" id="entidad"></div>
 						<div class="caja1 fgr aiz letrap">NÚMERO DE VÍCTIMAS PARTICIPANTES:</div>
 						<div class="caja1 cj24p" id="num_vic"></div>
-						<div class="caja1 tit_2b alto1 aiz" id="descripcion">DESCRIPCIÓN BREVE: 
+						<div class="caja1 tit_2b alto1 aiz" id="descripcion">DESCRIPCIÓN BREVE:</div>
 
-						</div>
-
-						<div class="caja1 tit_2 finito2"></div>						
-						<div class="caja1 tit_2 faz">DETALLE ESPECIFICO DEL REQUERIMIENTO</div>					
-						<div class="caja1 finito2 tit_2"></div>						
-						
-					</div>
-				</div>
+				<div class="caja1 tit_2 finito2"></div>						
+						<div class="caja1 tit_2 faz" style="color:#fff !important;">DETALLE ESPECIFICO DEL REQUERIMIENTO</div>					
+						<div class="caja1 finito2 tit_2"></div>	
 
 			</div>
+			<div class="contenedorw">
+				<div class="caja1 tit_2 fac" >SALONES</div>	
+				<div class="caja1 pg1_4 fgr" >CONCEPTO</div>
+				<div class="caja1 pg4_5 fgr letrap" >UNIDAD DE MEDIDA</div>
+				<div class="caja1 pg5_6 fgr" >CANTIDAD</div>
+				<div class="caja1 pg6_8 fgr" >OBSERVACIONES</div>
+			</div>
+			<div class="conten_gen" id="salones"></div>
+
+			<div class="contenedorx">
+				<div class="caja1 tit_2 fac" >ALIMENTACIÓN</div>	
+				<div class="caja1 pg1_4 fgr" >CONCEPTO</div>
+				<div class="caja1 pg4_5 fgr letrap" >UNIDAD DE MEDIDA</div>
+				<div class="caja1 pg5_6 fgr" >CANTIDAD</div>
+				<div class="caja1 pg6_8 fgr" >OBSERVACIONES</div>
+			</div>
+			<div class="conten_gen" id="alimentos"></div>
+			
+			<div class="contenedorx">
+				<div class="caja1 tit_2 fac" >MATERIALES</div>	
+				<div class="caja1 pg1_4 fgr" >CONCEPTO</div>
+				<div class="caja1 pg4_5 fgr letrap" >UNIDAD DE MEDIDA</div>
+				<div class="caja1 pg5_6 fgr" >CANTIDAD</div>
+				<div class="caja1 pg6_8 fgr" >OBSERVACIONES</div>
+			</div>
+			<div class="conten_gen" id="materiales"></div>
+
+			<div class="contenedorx">
+				<div class="caja1 tit_2 fac" >COTIZABLES</div>	
+				<div class="caja1 pg1_4 fgr" >CONCEPTO</div>
+				<div class="caja1 pg4_5 fgr letrap" >UNIDAD DE MEDIDA</div>
+				<div class="caja1 pg5_6 fgr" >CANTIDAD</div>
+				<div class="caja1 pg6_8 fgr" >OBSERVACIONES</div>
+			</div>
+			<div class="conten_gen" id="cotizables"></div>
+			<!--</div>	
 
 
-			</div>	
+		</div>-->
 
-
-		</div>
-
-		<div>
-		<button id="imprimir" class="btn btn-primary" type="button"><i class="fa fa-fw fa-print" ></i>Imprimir</button>
-		</div>
-		
+	
 
 	</div>
+
 </div>
 </form>
 
@@ -239,7 +279,7 @@ ValidaSession("../login");
 <link rel="stylesheet" href="../../plugins/datepicker/datepicker3.css" type="text/css"/>
 <link rel="stylesheet" href="../../plugins/unslider/unslider.css">
 <link rel="stylesheet" href="../../plugins/leaflet/leaflet.css"/>
-<link rel="stylesheet" href="../../css/reportes.css"  type="text/css" />
+<link rel="stylesheet" href="../../css/reportes.css"  type="text/css" media="all"/>
 <link rel="stylesheet" href="../../plugins/select3/bootstrap-select.min.css">
 
 
@@ -247,7 +287,7 @@ ValidaSession("../login");
 
 	$(document).ready(function() {
 
-//alert(<?php echo intval($_GET["record"]); ?>);
+
 		$.post( "../../controllers/mrequerimientos_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 
 //alert(data);
@@ -443,6 +483,76 @@ ValidaSession("../login");
 	}
 
 	});
+
+//#########################################INSERTAR LOS DIVS CON LA COSNSULA DE  LA TABLA DETALLES#####################################
+
+		$.post( "../../controllers/mdetalles_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+
+			var parsedJson = $.parseJSON(data);
+
+			
+				parsedJson.forEach(function(parsedJson, index) {
+					//console.log("indice " + index + " | tipo " + parsedJson.tipo + " concepto: " + parsedJson.concepto + " cantidad: " + parsedJson.cantidad + " medida: " + parsedJson.medida + " observaciones: " + parsedJson.observaciones)
+				
+					var r_tipo =parsedJson.tipo;
+					var r_concepto =parsedJson.concepto;
+					var r_cantidad =parsedJson.cantidad;
+					var r_medida =parsedJson.medida;
+							switch (r_medida) {
+								case 0:	med='Metros';break;
+								case 1: med='Unidades';break;
+								case 2:	med='Kilogramos';break;
+								case 3:	med='Gramos';break;
+								case 4: med='Centimetros';break;
+								case 5:	med='Pulgadas';break;
+								case 6:	med='Libras';break;
+								case 7:	med='Litros';break;
+								case 8:	med='Galones';break;
+							}
+
+					var r_observaciones =parsedJson.observaciones;	
+
+					switch (r_tipo) {
+						case 0:	
+						//insertar div de SALONES						
+						$('#salones').append('<div class="caja1 pg1_4 ">'+r_concepto+'</div><div class="caja1 pg4_5">'+r_cantidad+'</div><div class="caja1 pg5_6">'+med+'</div><div class="caja1 pg6_8">'+r_observaciones+'</div>');
+					
+						break;
+						case 1:	
+						//insertar div de ALIMENTACION
+						$('#alimentos').append('<div class="caja1 pg1_4 ">'+r_concepto+'</div><div class="caja1 pg4_5">'+r_cantidad+'</div><div class="caja1 pg5_6">'+med+'</div><div class="caja1 pg6_8">'+r_observaciones+'</div>');
+					
+						break;
+						case 2:	
+						//insertar div de MATERIALES
+						$('#materiales').append('<div class="caja1 pg1_4 ">'+r_concepto+'</div><div class="caja1 pg4_5">'+r_cantidad+'</div><div class="caja1 pg5_6">'+med+'</div><div class="caja1 pg6_8">'+r_observaciones+'</div>');
+					
+						break;
+						case 3:	
+						//insertar div de CONTABLES
+						$('#cotizables').append('<div class="caja1 pg1_4 ">'+r_concepto+'</div><div class="caja1 pg4_5">'+r_cantidad+'</div><div class="caja1 pg5_6">'+med+'</div><div class="caja1 pg6_8">'+r_observaciones+'</div>');
+					
+						break;						
+					}
+				
+				
+				
+				
+				});
+
+
+		});	
+
+//##############################INSERTAR LOS DIVS CON LA COSNSULA DE  LA TABLA DETALLES ###############################################
+
+	$('#print').click( function () {
+
+		setTimeout(function () { 
+			window.print(); 
+		}, 500);
+		
+	});		
+
 });	
 
 </script>

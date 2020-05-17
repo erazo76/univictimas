@@ -625,11 +625,11 @@ ValidaSession("../login");
 							<div class="form-group-sm">
 								<label>Tipo</label>
 								<select id="d_tipo"   class="form-control" >
-									<option value="0" selected disabled hidden>Indique tipo de requerimiento </option>
-									<option value="1">Salones</option>
-									<option value="2">Alimentación</option>
-									<option value="3">Materiales</option>
-									<option value="4">Cotizables</option>
+									<option value="" selected disabled hidden>Indique tipo de requerimiento </option>
+									<option value="0">Salones</option>
+									<option value="1">Alimentación</option>
+									<option value="2">Materiales</option>
+									<option value="3">Cotizables</option>
 								</select>
 							</div>
 
@@ -648,16 +648,16 @@ ValidaSession("../login");
 							<div class="form-group-sm">
 								<label>Medida</label>
 								<select id="d_medida"   class="form-control" >
-									<option value="0" selected disabled hidden>Indique tipo de medida </option>
-									<option value="1">Metros</option>
-									<option value="2">Unidades</option>
-									<option value="3">Kilogramos</option>
-									<option value="4">Gramos</option>
-									<option value="5">Centimetros</option>
-									<option value="6">Pulgadas</option>
-									<option value="7">Libras</option>
-									<option value="8">Litros</option>
-									<option value="9">Galones</option>
+									<option value="" selected disabled hidden>Indique tipo de medida </option>
+									<option value="0">Metros</option>
+									<option value="1">Unidades</option>
+									<option value="2">Kilogramos</option>
+									<option value="3">Gramos</option>
+									<option value="4">Centimetros</option>
+									<option value="5">Pulgadas</option>
+									<option value="6">Libras</option>
+									<option value="7">Litros</option>
+									<option value="8">Galones</option>
 								</select>
 							</div>
 

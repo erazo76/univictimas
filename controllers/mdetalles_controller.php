@@ -305,23 +305,23 @@ switch ($action){
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
-      @$data = Mactivo::find('all',array('conditions' => array('maliados_id=?',$record)));
+      @$data = Mdetalle::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
 
       if($data !=null){
 
         foreach($data as $rs){
 
-            $resp = array(
-                  "marca"=>$rs->mmarcas_id,
-                  "modelo"=>$rs->modelo,
-                  "serial"=>$rs->serial,
-                  "activo"=>$rs->activo,
-                  "comodato"=>$rs->comodato
+            $resp[] = array(
+                  "tipo"=>$rs->d_tipo,
+                  "concepto"=>$rs->d_concepto,
+                  "cantidad"=>$rs->d_cantidad,
+                  "medida"=>$rs->d_medida,
+                  "observaciones"=>$rs->d_obs
 
             );
 
         }
-
+       // print_r($resp);exit();
         echo json_encode($resp);
       }
 
