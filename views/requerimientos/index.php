@@ -75,6 +75,23 @@ ValidaSession("../login");
 					"url": "../../data_json/data_mrequerimientos",
 					"dataSrc": ""
 				  },
+				  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
+
+						if ((mData.aprobado)== 2){
+
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/aprobado2.png)');
+							$('td:eq(0)', nRow).css('background-size','contain');
+							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
+							$('td:eq(0)', nRow).css('font-weight','bold');
+
+						}else{
+								
+							$('td:eq(0)', nRow).css('background-image','');
+
+						}
+
+						return nRow;
+				  },
 				  "scrollX": true,
 				  "columns": [
 						{ "data": "id" },
@@ -82,7 +99,8 @@ ValidaSession("../login");
 						{ "data": "departamento" },
 						{ "data": "municipio" },
 						{ "data": "fecha" },
-						{ "data": "responsable" }
+						{ "data": "responsable" },
+						{ "data": "aprobado" }
 					],
 			        fixedColumns: false,
 					"aoColumnDefs": [
@@ -91,6 +109,7 @@ ValidaSession("../login");
 								return pad(data,5);
 							},
 							"aTargets": [ 0 ]
+							
 						}
 
 					]

@@ -5,7 +5,7 @@ require_once '../models/Mmunicol.php';
 session_start();
 //$toca=0;
 	//muestra toda la data
-		$data = Mrequerimiento::find_by_sql("SELECT id,cid,nombre,mdepartamentos_id,mmunicipios_id,fecha2,rt_nombre1,rt_apellido1 FROM mrequerimientos WHERE status=1 order by id desc;");
+		$data = Mrequerimiento::find_by_sql("SELECT id,cid,nombre,mdepartamentos_id,mmunicipios_id,fecha2,rt_nombre1,rt_apellido1,completado FROM mrequerimientos WHERE status=1 order by id desc;");
 
 	$result = array();
 	
@@ -40,7 +40,8 @@ session_start();
 		                           		 "departamento"=>$dep,
 		                           		 "municipio"=>$mun,
 		                           		 "fecha"=>$rs->fecha2->format("d-m-Y"),
-		                        		 "responsable"=>$responsable
+										 "responsable"=>$responsable,
+										 "aprobado"=>$rs->completado,
 		                        		 
 
 		                         ));

@@ -691,7 +691,7 @@ break;
 }
 
   break;
-  #*******************************************************************************  
+#*******************************************************************************  
   case 'edit':
 
 //echo 'la fecha es: '.$fecha1;exit();
@@ -1185,6 +1185,141 @@ break;
 
 #*******************************************************************************
 
+
+#*******************************************************************************  
+case 'aprobar':
+  
+        if($rn_nombre1 ==""){
+  
+          $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable" >
+              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+              <h4>
+              <i class="icon fa fa-warning"></i>
+              Alerta!
+              </h4>
+              Ingrese el primer nombre del responsable territorial.
+              </div>');
+  
+        }else if($rn_apellido1 ==""){
+  
+          $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+              <h4>
+              <i class="icon fa fa-warning"></i>
+              Alerta!
+              </h4>
+              Ingrese el primer apellido del responsable territorial.
+              </div>');
+  
+        }else if($rn_num_doc ==""){
+  
+          $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+              <h4>
+              <i class="icon fa fa-warning"></i>
+              Alerta!
+              </h4>
+              Ingrese el numero de documento del responsable territorial.
+              </div>');
+  
+        }else if($tele2 ==""){
+  
+          $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+              <h4>
+              <i class="icon fa fa-warning"></i>
+              Alerta!
+              </h4>
+              Ingrese el número telefónico/celualar del responsable territorial.
+              </div>');
+  
+        }else if($correo2 == ""){
+  
+          $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+              <h4>
+              <i class="icon fa fa-warning"></i>
+              Alerta!
+              </h4>
+             Ingrese el correo electrónico del responsable territorial.
+              </div>');
+  
+        }else{  
+  
+          $consulta = Mrequerimiento::find('all',array('conditions' => array('id!=?',$id)));
+  
+            if($consulta==!null){  //(B) si existe actualiza el responsable territorial que aprueba...
+  
+              session_start();
+              $usuario_id = $_SESSION['idusuariox'];
+              $hoy = date('d-m-Y');
+  
+              $alia = Mrequerimiento::find($id);
+  
+              $alia->user_modify = $usuario_id;
+              $alia->updated = $hoy;
+
+              $alia->rn_nombre1 = $rn_nombre1;
+              $alia->rn_nombre2 = $rn_nombre2;
+              $alia->rn_apellido1 = $rn_apellido1;
+              $alia->rn_apellido2 = $rn_apellido2;
+
+              $alia->rn_tdoc = $rn_tdoc;
+              $alia->rn_num_doc = $rn_num_doc;
+              $alia->tele2 = $tele2;
+              $alia->correo2 = $correo2;
+
+              $alia->completado = 2;
+              
+  
+  
+               if($alia->save()){ // da el mensaje de guardado...
+  
+                  $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
+                      <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                      <h4>
+                      <i class="icon fa fa-check"></i>
+                      Alerta!
+                      </h4>
+                      Se ha aprobado el requerimiento.
+                      </div>');
+  
+              }else{
+  
+  
+                $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
+                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                    <h4>
+                    <i class="icon fa fa-ban"></i>
+                    Alerta!
+                    </h4>
+                    Error al aprobar el requerimiento.
+                    </div>');
+  
+  
+              }
+  
+              //echo json_encode($respuesta);
+  
+          }else{ 
+  
+                $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
+                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                    <h4>
+                    <i class="icon fa fa-ban"></i>
+                    Alerta!
+                    </h4>
+                    Este requerimiento no existe.
+                    </div>');
+    
+          }
+  
+               echo json_encode($respuesta);
+        }
+
+    break;
+
+
   case 'delete':
 
       if($record !=null){
@@ -1371,8 +1506,8 @@ break;
                   "descripcion"=>$rs->descripcion,
                   "aloja"=>$rs->aloja,
                   "trans"=>$rs->trans,
-                  "region"=>$rs->mregiones_id
-
+                  "region"=>$rs->mregiones_id,
+                  "completado"=>$rs->completado
                  );
         }
 

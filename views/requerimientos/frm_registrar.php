@@ -298,17 +298,23 @@ ValidaSession("../login");
 			<div class="col-md-4">
 
 				<div class="box-header with-border">
-					 	<h3 class="box-title">Tipo de Actividad</h3>
+					 	<h3 class="box-title" id="guardia78" tabindex="0">Tipo de Evento</h3>
 				</div><!-- /.box-header -->
 
 		  		<div class="box box-primary">
 						<!-- form start -->
 						<div class="box-body" >
-						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #ecf0f5;">
+								<select id="activity" class="form-control" tabindex="0">
+									<option value="" selected disabled hidden>Indique el tipo de evento:</option>
+									<option value="0">INDIVIDUAL</option>
+									<option value="1">RETORNOS Y REUBICACIONES</option>
+									<option value="2">COLECTIVA</option>
+								</select>
+						<div class="box-body" id="actv_1" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
 							<div class="form-group-sm" >
-								<label id="guardia78" tabindex="0" >INDIVIDUAL</label></br>
+								<label ></label></br>
 								<select id="tipo1" class="form-control" tabindex="0">
-									<option value="" selected disabled hidden>Indique si el evento corresponde a:</option>
+									
 									<option value="0">Jornada Diferencial</option>
 									<option value="1">Feria de Servicios</option>
 									<option value="2">Conmemoración</option>
@@ -317,7 +323,8 @@ ValidaSession("../login");
 									<option value="5">Taller por Linea de Inversion</option>
 									<option value="6">Entrega digna de cadáveres</option>
 									<option value="7">Charla de educación financiera </option>	
-									<option value="8">Otro</option>								
+									<option value="8">Otro</option>		
+									<option value="9" selected hidden>Indique si el evento corresponde a:</option>						
 								</select>
 								
 							</div>
@@ -329,21 +336,24 @@ ValidaSession("../login");
 								</div>
 							</div>
 						</div>
-						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #ecf0f5;">
+						
+						<div class="box-body" id="actv_2" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
 							<div class="form-group-sm">
-								<label class="guardia80" tabindex="0">RETORNOS Y REUBICACIONES</label></br>
+								<label class="guardia80" tabindex="0"></label></br>
 								<select id="tipo2" class="form-control"  tabindex="0">
-									<option value="" selected disabled hidden>Indique si el evento corresponde a:</option>
+								
 									<option value="0">Integración Comunitaria</option>
 									<option value="1">Retorno</option>
 									<option value="2">Reubicacion</option>
 									<option value="3">Esquemas Especiales de Acompañamiento</option>
 									<option value="4">Casos Emblemáticos</option>
 									<option value="5">Seguimiento procesos Retornos y Reubicaciones</option>
+									<option value="6" selected hidden>Indique si el evento corresponde a:</option>
 								</select>
 							</div>
 						</div>	
-						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #ecf0f5;">
+
+						<div class="box-body" id="actv_3" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
 							<label>COLECTIVA</label></br>
 						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #bdd3ff; background-color: #E8F0FF">	
 							<div class="form-group-sm">
@@ -351,12 +361,13 @@ ValidaSession("../login");
 								<label>Pertenencia étnica comunitaria</label></br>
 
 								<select id="tipo3" class="form-control" tabindex="0">
-									<option value="" selected disabled hidden>Indique el sujeto "no étnico" </option>
+									
 									<option value="0">Comunidad</option>
 									<option value="1">Comunidad Campesina</option>
 									<option value="2">Grupo</option>
 									<option value="3">Organizaciones</option>
 									<option value="4">Organización de Mujeres</option>
+									<option value="5" selected  hidden>Indique el sujeto "no étnico" </option>
 								</select>
 
 								<select id="tipo4" class="form-control" tabindex="0">
@@ -366,6 +377,7 @@ ValidaSession("../login");
 									<option value="2">RROM o Gitano</option>
 									<option value="3">Afrocolombiana</option>
 									<option value="4">Negra</option>
+									<option value="5" selected hidden>Indique el sujeto "étnico" </option>
 								</select>								
 							</div>
 
@@ -396,7 +408,7 @@ ValidaSession("../login");
 									</div>
 									<div id="idacc" style='display:none;'>
 										<label for="idaccion" class="guardia77" tabindex="0">Id Acción</label>
-										<input type="text" class="form-control " id="idaccion" placeholder="Indique Id de la accion"  onpaste="return false" tabindex="45" onkeypress="return esidaccion(event);" onblur="return alsalir(this.id);" >
+										<input type="text" class="form-control " id="idaccion" placeholder="Indique Id de la accion"  onpaste="return false" tabindex="0" onkeypress="return esidaccion(event);" onblur="return alsalir(this.id);" >
 										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_idaccion' ></div>
 									</div>							
 							</div>
@@ -418,19 +430,19 @@ ValidaSession("../login");
 						<div class="form-group-sm">
 							
 								<label>Entidades participantes</label>
-								<input type="text" class="form-control ccc" id="entidad" placeholder="Indique las entidades participantes"  onpaste="return false" tabindex="46" onkeypress="return esentidad(event);"  onblur="alsalir(this.id);"  autocomplete="off">
+								<input type="text" class="form-control ccc" id="entidad" placeholder="Indique las entidades participantes"  onpaste="return false" tabindex="0" onkeypress="return esentidad(event);"  onblur="alsalir(this.id);"  autocomplete="off">
 							
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_entidad' class="aaa"><p></p></div>
 							
 							
 								<label>Número de víctimas participantes</label>
-								<input type="text" class="form-control ccc" id="num_vic" placeholder="Indique el número de víctimas"  onpaste="return false" tabindex="47" onkeypress="return esvictimas(event);"  onblur="alsalir(this.id);"  autocomplete="off">
+								<input type="text" class="form-control ccc" id="num_vic" placeholder="Indique el número de víctimas"  onpaste="return false" tabindex="0" onkeypress="return esvictimas(event);"  onblur="alsalir(this.id);"  autocomplete="off">
 							
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_vic' class="aaa"><p></p></div>
 														
 							
     							<label for="descripcion">Descripción breve</label>
-    							<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return false" tabindex="48" onkeypress="return esdescri(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
+    							<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return false" tabindex="0" onkeypress="return esdescri(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
   							
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_descripcion' class="aaa"><p></p></div>
 						</div>
@@ -438,7 +450,7 @@ ValidaSession("../login");
 				 </div><!-- /.box -->
 
 				 <div class="box-header with-border">
-					 	<h3 class="box-title">Detalle especifico del requerimiento</h3>
+					 	<h3 id="jump1" tabindex="0" class="box-title">Detalle especifico del requerimiento</h3>
 				</div><!-- /.box-header -->
 
 				<div class="box box-primary" >			
@@ -480,7 +492,7 @@ ValidaSession("../login");
 								<label>Requerimiento de Alojamiento</label>
 	                            <div class = "input-group">
 								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="0" id="alojamiento">
+	                                     <input type = "checkbox" tabindex="50" id="alojamiento">
 									  </span>
 									  <input type="text" class="form-control" id="msg_aloja" value="No requiere Alojamiento" disabled>
 								</div>
@@ -488,16 +500,31 @@ ValidaSession("../login");
 								<label>Requerimiento de Transporte</label>
 	                            <div class = "input-group">
 								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="0" id="transporte">
+	                                     <input type = "checkbox" tabindex="51" id="transporte">
 									  </span>
 									  <input type="text" class="form-control" id="msg_trans" value="No requiere transporte" disabled>
 								</div>
 								<label class="guardia81" tabindex="0" style="color: #FFF">.</label>
 							
-						<div class="focusguard" id="guardia2" tabindex="51"></div>
+						
 						</div><!-- /.box-body -->
 
-		 		</div><!-- /.box -->
+				 </div><!-- /.box -->
+				 
+				 <div class="box box-primary">
+
+					<div class="box-body">
+
+						<label id="prueba"></label>
+
+					</div>
+					<div class="box-footer">
+						<button id="save" type="button" class="btn btn-success" tabindex="52"><i class="fa fa-fw fa-save"></i>Guardar</button>
+						<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="53"><i class="fa fa-fw fa-reply"></i>Regresar</button>
+						<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
+					</div>				
+					<div class="focusguard" id="guardia2" tabindex="54"></div>
+				</div><!-- /.box-body -->
 
 			</div>
 		</li>
@@ -506,96 +533,11 @@ ValidaSession("../login");
 
 			<div class="col-md-4">
 
-				<div id="reste" style='display:none;'>
-					<div class="box-header with-border">
-						<h3 class="box-title">Responsable Territorial</h3>
-					</div><!-- /.box-header -->	
-				
-					<div class="box box-primary">
-
-						<div class="box-body">
-							<label>Nombres</label>
-							<div class="input-group">
-								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="260" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control" id="rn_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="270" onkeypress="return esnombre3(event);" autocomplete="off">
-							</div>
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_nombre1' class="aaa"><p></p></div>
-							
-							<label>Apellidos</label>
-							<div class="input-group">
-								<input type="text" class="form-control ddd" id="rn_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="280" onkeypress="return esapellido2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control" id="rn_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="290" onkeypress="return esapellido2(event);" autocomplete="off">
-							</div>
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_apellido1' class="aaa"><p></p></div>
-							
-							
-							<div class="form-group-sm">
-								<label >Documento de Identidad</label>
-									<div class = "input-group">
-
-										<span class="input-group-btn">
-											<select id="rn_tdoc" class="btn-sm"  tabindex="300"  >
-												<option value="0">CC</option>
-												<option value="1">CE</option>
-												<option value="2">PA</option>
-											</select>
-										</span>
-
-										<input type="text" class="form-control ddd" id="rn_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="310" onkeypress="return escedula2(event);" onblur="alsalira(this.id)">
-									</div>
-									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_num_doc' class="aaa"><p></p></div>
-							</div>	
-
-							<div class="form-group-sm">
-							<label for="tele2">Teléfono de contacto</label>
-							<input type="text" class="form-control ddd" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="320" onkeypress="return estele2(event);" onblur="alsalir2(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele2' class="aaa"></div>
-							</div>
-
-								<div id="confirma_telefono2">
-									<ul><li id="conf_tel2" style="color:#fff;text-align:center" ></li></ul>
-								</div>
-
-							<div class="form-group-sm">
-							<label for="correo2">Correo electrónico</label>
-							<input type="text" class="form-control ddd" id="correo2" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="330" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo2' class="aaa"></div>
-							</div>
-
-								<div id="confirma_correo2">
-									<ul><li id="conf_cor2" style="color:#fff;text-align:center" ></li></ul>
-								</div>							
-							
-							
-						</div>
-
-
-					</div>
-				</div>
-
-		  		<div class="box box-primary">
-
-						<div class="box-body">
-
-							<label id="prueba"></label>
-
-						</div>
-						<div class="box-footer">
-							<button id="save" type="button" class="btn btn-success" tabindex="0"><i class="fa fa-fw fa-save"></i>Guardar</button>
-							<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="-1"><i class="fa fa-fw fa-reply"></i>Regresar</button>
-							<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
-						  </div>				
-						
-				</div><!-- /.box-body -->
-
-
 		 	</div>
 
 			<div class="col-md-8">
 		 
-			</div><!-- /.box-body -->
+			</div>
 
 	    </li>
 	</ul>
@@ -781,6 +723,7 @@ $("#derecha" ).click(function() {
 		var cont_alert =$('.bbb').filter(function() { return $(this).val() == ""; }).size();
 		//var cont_alert = $('.aaa p:contains("") ').size();
 //alert(cont_alert);
+			document.getElementById('derecha').disabled = true;
 		//if(cont_alert!=0){
 			if(cont_alert > 30){	
 			//alert('existen campos vacios');
@@ -801,6 +744,7 @@ $("#derecha" ).click(function() {
 			$('.base').unslider('animate:1');
 			tick=1;
 			document.getElementById('izquierda').disabled = false;
+			
 
 			setTimeout(function() {
 				document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
@@ -827,10 +771,10 @@ $("#derecha" ).click(function() {
 
 		}else{
 
-			$('.base').unslider('animate:2');
+			//$('.base').unslider('animate:2');
 			
-			tick=2;
-			document.getElementById('derecha').disabled = true;
+			//tick=2;
+			document.getElementById('derecha').disabled = false;
 			setTimeout(function() {
 				document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 			}, 800);			
@@ -1015,6 +959,12 @@ $("#izquierda" ).click(function() {
 				$('#idaccion').focus();
 		});
 
+		$('#jump1').on('focus', function() {
+				$('#agregar').focus();
+		});
+
+		
+
 		$('.guardia79').on('focus', function() {
 				$('#entidad').focus();
 		});
@@ -1047,7 +997,7 @@ $("#izquierda" ).click(function() {
 				}else{
 
 
-					$('.base').unslider('animate:2');
+					//$('.base').unslider('animate:2');
 				    setTimeout(function() {
 
 						
@@ -1078,7 +1028,7 @@ $("#izquierda" ).click(function() {
      		var selectVal = $("#tipo1 option:selected").val();
 			
 			 if(selectVal==8){
-				alert(selectVal);
+				//alert(selectVal);
 				$("#otro1a").css("display", "block");
 				
 				$("#otro1").focus();
@@ -1091,6 +1041,31 @@ $("#izquierda" ).click(function() {
 			}
 		});
 
+		$('#activity').on('change', function () {
+
+			var selectVal = $("#activity option:selected").val();
+
+			if(selectVal==0){
+
+					$("#actv_1").css("display", "block");
+					$("#actv_2").css("display", "none");
+					$("#actv_3").css("display", "none");
+
+			}else if(selectVal==1){
+
+				    $("#actv_1").css("display", "none");
+					$("#actv_2").css("display", "block");
+					$("#actv_3").css("display", "none");
+
+			}else{
+
+					$("#actv_1").css("display", "none");
+					$("#actv_2").css("display", "none");
+					$("#actv_3").css("display", "block");
+
+			}
+		
+		});
 
 		$("#exit" ).click(function() {
 
