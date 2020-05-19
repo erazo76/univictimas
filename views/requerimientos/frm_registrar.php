@@ -1070,7 +1070,7 @@ $("#izquierda" ).click(function() {
 
 
 		$("#fecha1").datepicker("setDate", new Date());
-
+		
 		$('#fecha2').datepicker({
 			startDate: '+0d',
     		todayBtn: false,
@@ -1465,7 +1465,7 @@ $("#izquierda" ).click(function() {
 
 		$("#close1").click(function() {
 
-				$.post( "../../controllers/mdetallEs_controller", {
+				$.post( "../../controllers/mdetalles_controller", {
 
 					action: "temporal",
 					tipo: $('#d_tipo').val(),
