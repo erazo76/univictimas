@@ -1,5 +1,6 @@
 <?php
-require_once '../models/Mdetalle.php';
+require_once '../models/Mvictima.php';
+require_once '../models/Mrequerimiento.php';
 date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
@@ -11,11 +12,11 @@ date_default_timezone_set('America/Bogota');
 @$l_orbis = ($_POST["l_orbis"]);
 @$l_record = ($_POST["l_record"]);
 /***********************************/
-@$tipo = ($_POST["tipo"]);
-@$concepto = ($_POST["concepto"]);
-@$cantidad = ($_POST["cantidad"]);
-@$medida = ($_POST["medida"]);
-@$observaciones = ($_POST["observaciones"]);
+@$nombre2 = ($_POST["nombre2"]);
+@$t_doc2 = ($_POST["t_doc2"]);
+@$num_doc2 = ($_POST["num_doc2"]);
+@$tele3 = ($_POST["tele3"]);
+@$correo3 = ($_POST["correo3"]);
 //@$distribuidora = ($_POST["distribuidora"]);
 @$busco = ($_POST["busco"]);
 /**********************************/
@@ -24,7 +25,7 @@ switch ($action){
 
   case 'add':
 
-      if($nombre ==""){
+      if($nombre2 ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -247,7 +248,7 @@ switch ($action){
 
         if($usuario_id !="" /*&& ($rol ==1 || $rol==4)*/){
 
-                  $acti= Mdetalle::find($record);
+                  $acti= Mvictima::find($record);
                   $acti->user_modify = $usuario_id;
                   $acti->updated = $hoy;
                   $acti->status = 0;
@@ -260,7 +261,7 @@ switch ($action){
                         <i class="icon fa fa-check"></i>
                         Alerta!
                         </h4>
-                        Se desincorporo el item al Requerimiento.
+                        Se retiro al participante del evento.
                         </div>');
 
                   }else{
@@ -272,7 +273,7 @@ switch ($action){
                         <i class="icon fa fa-ban"></i>
                         Alerta!
                         </h4>
-                        Error al desincorporar el item.
+                        Error al retirar al participante del evento..
                         </div>');
 
                   }
@@ -305,18 +306,18 @@ switch ($action){
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
-      @$data = Mdetalle::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
+      @$data = Mvictima::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
 
       if($data !=null){
 
         foreach($data as $rs){
 
             $resp[] = array(
-                  "tipo"=>$rs->d_tipo,
-                  "concepto"=>$rs->d_concepto,
-                  "cantidad"=>$rs->d_cantidad,
-                  "medida"=>$rs->d_medida,
-                  "observaciones"=>$rs->d_obs
+                  "nombre2"=>$rs->nombre,
+                  "t_doc2"=>$rs->t_doc,
+                  "num_doc2"=>$rs->num_doc,
+                  "tele3"=>$rs->tele,
+                  "correo3"=>$rs->correo
 
             );
 
@@ -334,7 +335,7 @@ switch ($action){
 #*******************************************************************************
   case 'search_act':
     
-      @$data = Mdetalle::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
+      @$data = Mvictima::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
 
       if($data !=null){//si consigue al menos un registro 
 
@@ -392,7 +393,7 @@ switch ($action){
 #*******************************************************************************
   case 'search_act_delete':
     
-      @$data = Mdetalle::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
+      @$data = Mvictima::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
 
       if($data !=null){//si consigue al menos un registro de activo
 
@@ -460,7 +461,7 @@ switch ($action){
 
     case 'temporal':
 
-      if($tipo ==""){
+      if($nombre2 ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -468,10 +469,10 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese el tipo de item.
+            Ingrese el nombre completo del participante
             </div>');
 
-      }else if($concepto ==""){
+      }else if($num_doc2 ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -479,10 +480,10 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese concepto del item.
+            Ingrese  el número del documento de identidad del participante.
             </div>');
 
-      }else if($cantidad ==""){
+      }else if($tele3 ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -490,10 +491,10 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese la cantidad de items.
+            Ingrese el número telefonico del participante.
             </div>');
 
-      }else  if($medida ==""){
+      }else  if($correo3 ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -501,18 +502,7 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese la unidad de medida del item.
-            </div>');
-
-      }else  if($observaciones ==""){
-
-        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Ingrese el las observaciones.
+            Ingrese el correo electrónico del participante.
             </div>');
 
       }else{
@@ -521,12 +511,12 @@ switch ($action){
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
-            $tempo = new Mdetalle();
-            $tempo->d_tipo = $tipo;
-            $tempo->d_concepto = $concepto;
-            $tempo->d_cantidad = $cantidad;
-            $tempo->d_medida = $medida;
-            $tempo->d_obs = $observaciones;
+            $tempo = new Mvictima();
+            $tempo->nombre = $nombre2;
+            $tempo->t_doc = $t_doc2;
+            $tempo->num_doc = $num_doc2;
+            $tempo->tele = $tele3;
+            $tempo->correo = $correo3;
             $tempo->mrequerimientos_id = 1;
             $tempo->user_create = $usuario_id;
             $tempo->created = $hoy;
@@ -538,7 +528,7 @@ switch ($action){
                         <i class="icon fa fa-check"></i>
                         Alerta!
                         </h4>
-                        Se registro el item exitosamente !.
+                        Se registro al participante exitosamente !.
                         </div>');
 
                   }else{
@@ -550,7 +540,7 @@ switch ($action){
                         <i class="icon fa fa-ban"></i>
                         Alerta!
                         </h4>
-                        Error al registrar el item.
+                        Error al registrar al participante.
                         </div>');
 
                   }
@@ -801,7 +791,7 @@ switch ($action){
 
                     } 
 
-                    $consultada=Mdetalle::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
+                    $consultada=Mvictima::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
 
                         foreach ($consultada as $activoros) {
                                                 

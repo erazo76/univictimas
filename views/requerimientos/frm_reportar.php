@@ -259,17 +259,17 @@ ValidaSession("../login");
 				<div class="caja1 tit_2 fac">TRANSPORTE</div>
 				<div class="caja1 pg1_2 fgr" style="text-align: center;">¿Requiere transporte aéreo?</div>
 				<div class="caja1 pg2_3 cj24p">	
-					<input id="trans" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-class="fast" data-size="mini">
+					<input id="trans1" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-class="fast" data-size="mini">
 				</div>	
 
 				<div class="caja1 pg3_5 fgr" style="font-size:9px;text-align: center;" >¿Requiere transporte terrestre y/o fluvial intermunicipal?</div>
 				<div class="caja1 pg5_6 cj24p">	
-					<input type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-class="fast" data-size="mini">
+					<input id="trans2" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-class="fast" data-size="mini">
 				</div>
 
 				<div class="caja1 pg6_7 fgr" style="font-size:9px;text-align: center;" >¿Requiere transporte terrestre urbano?</div>
 				<div class="caja1 pg7_8 cj24p">	
-					<input type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-class="fast" data-size="mini">
+					<input id="trans3" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-class="fast" data-size="mini">
 				</div>					
 				<div class="caja1 tit_2 pg16p" >
 					<span style="font-size: 9px; color:crimson;">Si requiere transporte, diligenciar la pestaña subsiguiente</span>
@@ -646,12 +646,50 @@ ValidaSession("../login");
 				$('#aloja').prop('checked', false).change();break;
 	}
 	
-	var transi=parsedJson.trans;
+	var transi=parsedJson.t_trans;
+
 	switch (transi) {
-		case 0:	
-		$('#trans').prop('checked', true).change();break;
-		case 1:	
-		$('#trans').prop('checked', false).change();break;
+		case "0":	
+
+			$('#trans1').prop('checked', true).change();
+			$('#trans2').prop('checked', false).change();
+			$('#trans3').prop('checked', false).change();
+		
+		break;
+		case "0,1":	
+
+			$('#trans1').prop('checked', true).change();
+			$('#trans2').prop('checked', true).change();
+			$('#trans3').prop('checked', false).change();
+		
+		break;
+		case "0,1,2":	
+
+			$('#trans1').prop('checked', true).change();
+			$('#trans2').prop('checked', true).change();
+			$('#trans3').prop('checked', true).change();
+		
+		case "0,2":	
+
+			$('#trans1').prop('checked', true).change();
+			$('#trans2').prop('checked', false).change();
+			$('#trans3').prop('checked', true).change();
+
+		break;
+		case "1,2":	
+		
+			$('#trans1').prop('checked', false).change();
+			$('#trans2').prop('checked', true).change();
+			$('#trans3').prop('checked', true).change();
+
+		break;		
+		default:
+			$('#trans1').prop('checked', false).change();
+			$('#trans2').prop('checked', false).change();
+			$('#trans3').prop('checked', false).change();
+
+
+		break;
 	}
 
 	//control de tipos

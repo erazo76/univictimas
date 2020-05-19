@@ -415,12 +415,9 @@ ValidaSession("../login");
 						</div>	
 						</div>
 						</div><!-- /.box-body -->
-		 		</div><!-- /.box -->
-			</div>
-
-			<div class="col-md-4">
-
-				<div class="box-header with-border">
+				 </div><!-- /.box -->
+				 
+				 <div class="box-header with-border">
 					 	<h3 class="box-title">Descripción de la actividad</h3>
 				</div><!-- /.box-header -->
 
@@ -447,10 +444,41 @@ ValidaSession("../login");
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_descripcion' class="aaa"><p></p></div>
 						</div>
 						</div><!-- /.box-body -->
-				 </div><!-- /.box -->
+				 </div><!-- /.box -->				 
+			</div>
+
+			<div class="col-md-4">
+
 
 				 <div class="box-header with-border">
-					 	<h3 id="jump1" tabindex="0" class="box-title">Detalle especifico del requerimiento</h3>
+					 	<h3 id="jump1" tabindex="0" class="box-title">Participantes del evento</h3>
+				</div><!-- /.box-header -->
+
+				<div class="box box-primary" >			
+					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+							<table id="tabla2" class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Nombre</th>
+										<th>Nro. Documento</th>
+										<th>Correo-e</th>
+										<th>Teléfono </th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+					</div>
+				
+					<div class="box-footer">
+						<button id="agregar2" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
+						<button id="quitar2" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+					</div>
+				</div>				
+
+				<div class="box-header with-border">
+					<h3 id="jump3" tabindex="0" class="box-title">Detalle especifico del requerimiento</h3>
 				</div><!-- /.box-header -->
 
 				<div class="box box-primary" >			
@@ -458,6 +486,7 @@ ValidaSession("../login");
 							<table id="tabla" class="table table-bordered table-hover">
 								<thead>
 									<tr>
+										<th></th>
 										<th>Tipo</th>
 										<th>Concepto</th>
 										<th>Cantidad</th>
@@ -474,11 +503,14 @@ ValidaSession("../login");
 						<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
 						<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
 					</div>
-				</div>				
+				</div>	
+
 
 			</div>
 
 			<div class="col-md-4">
+
+
 
 				<div class="box-header with-border">
 					 	<h3 class="box-title">Alojamiento y Transporte</h3>
@@ -504,6 +536,16 @@ ValidaSession("../login");
 									  </span>
 									  <input type="text" class="form-control" id="msg_trans" value="No requiere transporte" disabled>
 								</div>
+
+								<div class="form-group" id="noveo" style="display:none;">
+									<label id="jump2"  tabindex="52">Tipo de transporte </label></br>
+									<select id="t_trans" class="form-control" multiple="multiple" tabindex="53">
+										<option value="0">Aéreo</option>
+										<option value="1">Terrestre/fluvial intermunicipal</option>
+										<option value="2">Terrestre urbano</option>
+									</select>
+								</div>								
+
 								<label class="guardia81" tabindex="0" style="color: #FFF">.</label>
 							
 						
@@ -519,11 +561,11 @@ ValidaSession("../login");
 
 					</div>
 					<div class="box-footer">
-						<button id="save" type="button" class="btn btn-success" tabindex="52"><i class="fa fa-fw fa-save"></i>Guardar</button>
-						<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="53"><i class="fa fa-fw fa-reply"></i>Regresar</button>
+						<button id="save" type="button" class="btn btn-success" tabindex="53"><i class="fa fa-fw fa-save"></i>Guardar</button>
+						<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="54"><i class="fa fa-fw fa-reply"></i>Regresar</button>
 						<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
 					</div>				
-					<div class="focusguard" id="guardia2" tabindex="54"></div>
+					<div class="focusguard" id="guardia2" tabindex="55"></div>
 				</div><!-- /.box-body -->
 
 			</div>
@@ -626,6 +668,87 @@ ValidaSession("../login");
   </div>
 </form>                   
 </div>
+
+<!-- Modal 1 -->
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+<form id="form" role="form" enctype="multipart/form-data" >
+  <div class="modal-dialog modal-lm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="contenido-modal">
+         <h4 class="modal-title" id="myModalLabel1">Participantes del evento</h4>
+			<div class="message1"></div>
+			<div class="row">
+				<!-- left column -->
+				<div class="col-md-12">
+				  <!-- general form elements -->
+				  <div class="box box-primary">
+
+					<div class="box-header with-border"></div><!-- /.box-header -->
+					<!-- form start -->
+					  <div class="box-body">
+
+					 	 <div class="form-group-sm">
+					 	 	<label>Nombre del participante</label>
+							<input type="text" class="form-control" id="nombre2" placeholder="Nombre completo"  onpaste="return false" tabindex="260" onkeypress="return esnombre4(event);"  onblur="alsalir(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre2'><p></p></div>
+					 	 </div>
+							
+							
+							<div class="form-group-sm">
+								<label >Documento de Identidad</label>
+									<div class = "input-group">
+
+										<span class="input-group-btn">
+											<select id="t_doc2" class="btn-sm"  tabindex="300"  >
+												<option value="0">CC</option>
+												<option value="1">CE</option>
+												<option value="2">PA</option>
+											</select>
+										</span>
+
+										<input type="text" class="form-control" id="num_doc2" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="310" onkeypress="return escedula3(event);" onblur="alsalira(this.id)">
+									</div>
+									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_doc2'><p></p></div>
+							</div>	
+
+							<div class="form-group-sm">
+								<label for="tele2">Teléfono de contacto</label>
+								<input type="text" class="form-control" id="tele3" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="320" onkeypress="return estele3(event);" onblur="alsalir2(this.id)" autocomplete="off">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele3' class="aaa"></div>
+							</div>
+
+								<div id="confirma_telefono3">
+									<ul><li id="conf_tel3" style="color:#fff;text-align:center" ></li></ul>
+								</div>
+
+							<div class="form-group-sm">
+								<label for="correo3">Correo electrónico</label>
+								<input type="text" class="form-control" id="correo3" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="330" onkeypress="return escorreo3(event);" onblur="alsalir2(this.id)" autocomplete="off">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo3' class="aaa"></div>
+							</div>
+
+								<div id="confirma_correo3">
+									<ul><li id="conf_cor3" style="color:#fff;text-align:center" ></li></ul>
+								</div>			
+
+					  </div><!-- /.box-body -->
+
+				  </div><!-- /.box -->
+
+				</div>
+			</div>
+							      <div class="modal-footer">
+							      		<button id="close2" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Incluir</button>
+							      		<button id="cancelar3" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
+
+							      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>                   
+</div>
 						  <div class="box-footer">
 							<button id="izquierda" type="button" class="btn btn-primary" disabled tabindex="-1"><i class="fa fa-arrow-left"></i>Anterior</button>
 							
@@ -696,6 +819,22 @@ $('#tele1').mask('A00-000-0000', {
     	
 
   });
+
+  $('#tele3').mask('A00-000-0000', {
+
+translation: {
+
+	 'A': {
+
+			pattern: /[03]/, optional: false
+
+			 }
+
+  },
+
+
+
+});
 
 $('#tele2').mask('A000-000-0000', {
 
@@ -792,6 +931,7 @@ $("#izquierda" ).click(function() {
 		$('.base').unslider('animate:0');
 		tick=0;
 		document.getElementById('izquierda').disabled = true;
+		document.getElementById('derecha').disabled = false;
 		setTimeout(function() {
 			document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 		}, 800);
@@ -840,6 +980,24 @@ $("#izquierda" ).click(function() {
 			$('#confirma_telefono2').hide();
 		});
 
+
+		$('#tele3').keyup(function() {
+			// set password variable
+			var telefo = $(this).val();
+
+			$.post( "../../controllers/validaciones", { action: "validar22",telefono:telefo}).done(function( data ) {
+			 $("#conf_tel3").html( data );
+
+			});
+
+		}).focus(function() {
+			$('#confirma_telefono3').show();
+		}).blur(function() {
+			$('#confirma_telefono3').hide();
+		});
+
+
+
 		$('#propietario').keyup(function() {
 			// set password variable
 			var nombreso = $(this).val();
@@ -884,6 +1042,23 @@ $("#izquierda" ).click(function() {
 		}).blur(function() {
 			$('#confirma_correo2').hide();
 		});		
+
+
+		$('#correo3').keyup(function() {
+			// set password variable
+			var corre = $(this).val();
+
+			$.post( "../../controllers/validaciones", { action: "validar55",correo:corre}).done(function( data ) {
+			 $("#conf_cor3").html( data );
+
+			});
+
+		}).focus(function() {
+			$('#confirma_correo3').show();
+		}).blur(function() {
+			$('#confirma_correo3').hide();
+		});		
+
 
 		$('.base').unslider({
 
@@ -944,6 +1119,7 @@ $("#izquierda" ).click(function() {
 				    setTimeout(function() {
 				
 						document.getElementById('izquierda').disabled = false;
+						document.getElementById('derecha').disabled = true;
 				    	tick=1;
 						$('#guardia78').focus();
 						//document.getElementById("tipo1").focus();
@@ -960,10 +1136,16 @@ $("#izquierda" ).click(function() {
 		});
 
 		$('#jump1').on('focus', function() {
-				$('#agregar').focus();
+				$('#agregar2').focus();
 		});
 
+		$('#jump2').on('focus', function() {
+				$('#t_trans').focus();
+		});
 		
+		$('#jump3').on('focus', function() {
+				$('#agregar').focus();
+		});
 
 		$('.guardia79').on('focus', function() {
 				$('#entidad').focus();
@@ -1011,13 +1193,15 @@ $("#izquierda" ).click(function() {
 
 		});
 
-		$('#dias').multiselect({
+		
+
+		$('#t_trans').multiselect({
 
 			enableClickableOptGroups: true,
 			enableCollapsibleOptGroups: false,
 			maxHeight: 180,
 			inheritClass: true,
-			nonSelectedText: 'Seleccione días de visita',
+			nonSelectedText: 'Seleccione tipo de transporte',
 			buttonWidth: '100%'
 
 		});
@@ -1103,11 +1287,17 @@ $("#izquierda" ).click(function() {
 
 				$("#msg_trans").val("Requiere transporte");
 				$("#trans").val(1);
+				$("#noveo").css("display", "block");
 
 			}else{
 
 				$("#msg_trans").val("No requiere transporte");
 				$("#trans").val(0);
+				$("#noveo").css("display", "none");
+				$('#t_trans').multiselect('deselect', ['0']);
+				$('#t_trans').multiselect('deselect', ['1']);
+				$('#t_trans').multiselect('deselect', ['2']);
+
 			}
 
 		});
@@ -1188,9 +1378,17 @@ $("#izquierda" ).click(function() {
 											"url": "../../data_json/data_mdetalles",
 											"dataSrc": ""
 										  },
+
+										  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
+
+											$('td:eq(0)', nRow).css('opacity','0');
+	
+											return nRow;
+											},
 										  "scrollX": true,
 										  "scrollY": "130px",
 										  "columns": [
+												{ "data": "id" },
 												{ "data": "tipo" },
 												{ "data": "concepto" },
 												{ "data": "cantidad" },
@@ -1218,10 +1416,56 @@ $("#izquierda" ).click(function() {
 								}
 							});
 
+							var table2 = $('#tabla2').dataTable({
+										  	
+											  //"destroy": true,
+	
+											  "ajax": {
+												"url": "../../data_json/data_mvictimas",
+												"dataSrc": ""
+											  },
+											  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
+
+														$('td:eq(0)', nRow).css('opacity','0');
+
+														return nRow;
+														},
+											  "scrollX": true,
+											  "scrollY": "130px",
+											  "columns": [
+													{ "data": "id" },
+													{ "data": "nombre" },
+													{ "data": "documento" },
+													{ "data": "correo" },
+													{ "data": "telefono" }
+													
+												],
+											//"order": [[ 0, "asc" ]],
+											"bPaginate": false,
+											"info":     false,
+											"bFilter": false
+	
+											  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
+										});
+	
+	
+								$('#tabla2 tbody').on( 'click', 'tr', function () {
+	
+									if ( $(this).hasClass('selected') ) {
+										$(this).removeClass('selected');
+									}
+									else {
+										table.$('tr.selected').removeClass('selected');
+										$(this).addClass('selected');
+									}
+								});
+
+
+
 
 		$("#close1").click(function() {
 
-				$.post( "../../controllers/mdetalles_controller", {
+				$.post( "../../controllers/mdetallEs_controller", {
 
 					action: "temporal",
 					tipo: $('#d_tipo').val(),
@@ -1261,6 +1505,49 @@ $("#izquierda" ).click(function() {
 		    //$('#activo').focus();
 
 		});
+
+		$("#close2").click(function() {
+
+			$.post( "../../controllers/mvictimas_controller", {
+
+				action: "temporal",
+				nombre2: $('#nombre2').val(),
+				t_doc2: $('#t_doc2').val(),
+				num_doc2: $('#num_doc2').val(),
+				tele3: $('#tele3').val(),
+				correo3: $('#correo3').val()
+
+			}).done(function(data){
+
+				var parsedJson = $.parseJSON(data);
+				$(".message1").html(parsedJson.mensaje);
+
+				if(parsedJson.resultado != 'error'){
+
+					
+					setTimeout(function(){
+
+						$("#nombre2").val(null);
+						$("#t_doc2").val(0);
+						$("#num_doc2").val(null);
+						$("#tele3").val(null);
+						$("#correo3").val(null);
+
+						$('#tabla2').DataTable().ajax.reload();
+						$(".alert").alert('close');
+						$('#modal2').modal('toggle');
+						$("#agregar2").focus();
+
+					}, 3000);
+
+				}else{
+
+				}
+
+			},"json");
+			//$('#activo').focus();
+
+		});		
 
 			$('#quitar').click( function () {
 
@@ -1329,6 +1616,74 @@ $("#izquierda" ).click(function() {
 				}
 			});		
 
+			$('#quitar2').click( function () {
+
+				var value2= table2.$('tr.selected').children('td:first').text();
+				//alert(value);
+				if(!value2){
+
+						$.alert({
+							title: '!Seleccione el participante a retirar!',
+							content: false,
+							confirmButton: true, // hides the confirm button.
+							closeIcon: false,
+							confirmButton: 'cerrar',
+							confirmButtonClass: 'btn-success'
+						});
+
+				}else{
+
+						$.confirm({
+
+									title: '¿Desea retirar a este participante?!',
+									content:false,
+									confirmButton: 'Si',
+									cancelButton: 'No',
+									confirmButtonClass: 'btn-primary',
+										cancelButtonClass: 'btn-success',
+
+									confirm: function(){
+
+										$.post( "../../controllers/mvictimas_controller", {action:"delete",record:value2}).done(function( data ) {
+											//$(".message").html(data);
+											var parsedJson = $.parseJSON(data);
+											$(".message").html(parsedJson.mensaje);
+
+											setTimeout(function(){
+
+												$(".alert").alert('close');
+												//$('#tabla').dataTable();
+												
+
+														$.post( "../../controllers/mvictimas_controller", { action: "search_act"}).done(function( data ) {
+																
+																var parsedJson = $.parseJSON(data);
+
+																		if(parsedJson == 'si'){
+																		
+																			$('#tabla2').DataTable().ajax.reload();
+
+																		}else{
+
+																			$('#tabla2').DataTable().ajax.reload();
+																		}
+
+														},"json");	
+
+											}, 3000);
+										});		
+
+									},
+
+									cancel: function(){
+
+									}
+						});
+
+				}
+			});		
+
+
 		$("#cancelar2").click(function() {
 
 			$('#modal1').modal('toggle');
@@ -1345,18 +1700,27 @@ $("#izquierda" ).click(function() {
 		$("#cancelar3").click(function() {
 
 			$('#modal2').modal('toggle');
-			//map.closePopup();
-			map.remove();
-			//document.getElementById('weathermap').innerHTML = "<div class='custom-popup' id='map' style='height: 440px; border: 1px solid #AAA;'></div>";
-			$('#latitud').focus();
+			$("#agregar2").focus();
+
+			$("#nombre2").val(null);
+			$("#t_doc2").val(0);
+			$("#num_doc2").val(null);
+			$("#tele3").val(null);
+			$("#correo3").val(null);
 
 		});
+
 
 		$("#agregar").click(function() {
 			$('#modal1').modal({backdrop: 'static',keyboard: false});
 			
 		});
 
+
+		$("#agregar2").click(function() {
+			$('#modal2').modal({backdrop: 'static',keyboard: false});
+			
+		});
 // para consultar y cargar los datos geograficos ***********************************************************
 
 		$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos"}).done(function( data ) {
@@ -1452,7 +1816,7 @@ $("#izquierda" ).click(function() {
 
 		//** enviar los datos al controlador ***********************************************************
 		$("#save" ).click(function() {
-
+				//alert($("#t_trans").val());
 				
 				$.post( "../../controllers/mrequerimientos_controller", {
 
@@ -1511,6 +1875,7 @@ $("#izquierda" ).click(function() {
 					descripcion: $("#descripcion").val(),
 					aloja: $("#aloja").val(),
 					trans: $("#trans").val(),
+					t_trans: $("#t_trans").val(),
 					region: $("#region").val()
 
 				}).done(function(data){
@@ -1541,6 +1906,10 @@ $("#izquierda" ).click(function() {
 					$.post( "../../controllers/mdetalles_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
 						$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 					});
+
+					$.post( "../../controllers/mvictimas_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
+						$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+					});					
 
 						$('.base').unslider('animate:0');
 							valore=$("#ideado").val();
@@ -1594,13 +1963,8 @@ function menor(){
           //****longitud de campos********************************************
 
 	$(function(){
+		$('#tele2').maxLength(15);$('#tele1').maxLength(15);$('#tele3').maxLength(15);
 
-	              $('#orbis').maxLength(17);$('#nombre').maxLength(99);$('#razon').maxLength(99);$('#cedula').maxLength(11);
-	              $('#acceso1').maxLength(99);$('#acceso2').maxLength(99);$('#referencia').maxLength(99);$('#propietario').maxLength(50);
-	              $('#latitud').maxLength(10);$('#longitud').maxLength(11);$('#tele2').maxLength(15);$('#tele1').maxLength(15);
-	              $('#correo1').maxLength(99);$('#caja_t').maxLength(7);$('#caja_p').maxLength(7);
-	              $('#seca').maxLength(99);$('#rf_competencia').maxLength(99);$('#ls_competencia').maxLength(99);$('#observacion').maxLength(99);
-	              $('#a_modelo').maxLength(20);$('#a_serial').maxLength(20);$('#a_activo_f').maxLength(12);$('#a_comodato').maxLength(11);
 	});
 
             function alsaliro4(e){
@@ -1773,6 +2137,29 @@ function escedula2(e) {
 				}
 
 }
+
+function escedula3(e) {
+
+		k = (document.all) ? e.keyCode : e.which;
+		if (k==8 || k==0 || k==13) return true;
+		patron = /^[0-9]$/;
+		n = String.fromCharCode(k);
+
+					if(patron.test(n)==''){
+
+						document.getElementById('ms_num_doc2').style.display = 'block';
+						document.getElementById("ms_num_doc2").innerHTML = 'Use solo números';
+							return patron.test(n);
+
+					}else{
+
+						document.getElementById("ms_num_doc2").innerHTML = '';
+						return patron.test(n);
+
+					}
+
+}
+
 function esacceso1(e) {
 
 	k = (document.all) ? e.keyCode : e.which;
@@ -1925,6 +2312,28 @@ function estele2(e) {
                        	return patron.test(n);
 
                     }
+
+}
+
+function estele3(e) {
+
+		k = (document.all) ? e.keyCode : e.which;
+		if (k==8 || k==0 || k==13) return true;
+		patron = /[0-9\-\(\)]/;
+		n = String.fromCharCode(k);
+
+						if(patron.test(n)==''){
+
+							document.getElementById('ms_tele3').style.display = 'block';
+							document.getElementById("ms_tele3").innerHTML = 'Use solo números y "-"';
+								return patron.test(n);
+
+						}else{
+
+							document.getElementById("ms_tele3").innerHTML = '';
+							return patron.test(n);
+
+						}
 
 }
 
@@ -2125,7 +2534,33 @@ function sig_2(){
 
 			}
 
+
+//************************************************************************/
+
+function esnombre4(e) {
+
+		k = (document.all) ? e.keyCode : e.which;
+		if (k==8 || k==0 || k==13) return true;
+		patron = /^[A-ZÑ0-9\ \.\-]$/;
+		n = String.fromCharCode(k);
+
+				if(patron.test(n)==''){
+
+					document.getElementById('ms_nombre2').style.display = 'block';
+					document.getElementById("ms_nombre2").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+						return patron.test(n);
+
+				}else{
+
+					document.getElementById("ms_nombre2").innerHTML = '';
+					return patron.test(n);
+
+				}
+
+}
 //************************************************************************
+
+
 
 			function esentidad(e) {
 

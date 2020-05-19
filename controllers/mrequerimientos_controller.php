@@ -71,6 +71,7 @@ date_default_timezone_set('America/Bogota');
 @$descripcion = ($_POST["descripcion"]);
 @$aloja = ($_POST["aloja"]);
 @$trans = ($_POST["trans"]);
+@$t_trans = ($_POST["t_trans"]);
 @$region = ($_POST["region"]);
 /***********************************/
 
@@ -477,7 +478,9 @@ break;
             @$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
-            $alia = new Mrequerimiento();
+            $t_trans1 = implode(",", $t_trans);
+
+            $alia = new Mrequerimiento();     
             $alia->nombre = $nombre;
             $alia->fecha1 = $hoy;
             $alia->mdepartamentos_id = $departamento;
@@ -517,6 +520,7 @@ break;
             $alia->descripcion = $descripcion;
             $alia->aloja = $aloja;
             $alia->trans = $trans;
+            $alia->t_trans = $t_trans1;
             $alia->mregiones_id = $region;
 
             $alia->user_create = $usuario_id;
@@ -1506,6 +1510,7 @@ case 'aprobar':
                   "descripcion"=>$rs->descripcion,
                   "aloja"=>$rs->aloja,
                   "trans"=>$rs->trans,
+                  "t_trans"=>$rs->t_trans,
                   "region"=>$rs->mregiones_id,
                   "completado"=>$rs->completado
                  );
