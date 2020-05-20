@@ -23,21 +23,23 @@ ValidaSession("../login");
 
 	<div class="col-md-1">
 		<div class="flotante">
-			<button id="print" class="btn btn-primary oculto-impresion " type="button" style="width:95px;"><i class="fa fa-fw fa-print"></i>Imprimir</button></br></br>
-			<button id="aprobar" class="btn btn-primary oculto-impresion " type="button" style="width:95px;"><i class="fa fa-fw  fa-check-square-o"></i>Aprobar</button></br>
-			<button id="edit" class="btn btn-primary oculto-impresion" type="button" style="width:95px;"><i  class="fa fa-fw fa-edit"></i> Editar </button>
-					
+			<button id="print" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw fa-print"></i></button>
+			<button id="aprobar" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw  fa-check-square-o"></i></button>
+			<button id="edit" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw fa-edit"></i>  </button>
+			<button id="victim" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw  fa-users"></i></button>
+			<button id="ayt" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;"><i  class="fa fa-fw  fa-hotel"></i>|<i  class="fa fa-fw  fa-plane"></i></button>		
+			<button id="anexos" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw  fa-files-o"></i></button>
 		</div>
 	</div>
 
-	<div class="col-md-11" style="width:216mm; height:356mm;" >
+	<div class="col-md-11" style="width:216mm; height:356mm;" id="pr1" >
 
 		<div class="box-header with-border" tabindex="-1">
 			<h3 class="box-title">FORMATO SOLICITUD AL OPERADOR</h3>
-		</div> <!--/.box-header	
+		</div> <!--/.box-header	-->
 
-		<div class="box box-primary"  style="width:216mm; height:100%; overflow:auto;">
-			<div class="box-body ">-->
+		<div class="box box-primary" id="pr2">
+			<div class="box-body " >
 		
 			<div class="contenedorw" id="printJS-form">
 				
@@ -320,10 +322,10 @@ ValidaSession("../login");
 
 	</div>
 
-			<!--</div>	
+			</div>	
 
 
-		</div>-->
+		</div>
 
 	
 
@@ -789,7 +791,25 @@ ValidaSession("../login");
 			
 		});	
 
+		
+
+
+
 });	
+
+
+if (window.matchMedia("(min-width: 200px) and (max-width: 370px)").matches) {
+
+		$("#pr1").css({"width": "100%", "overflow": "auto"});
+		$("#pr2").css({"width": "216mm", "height": "100%"});
+		$("#print").css("display","none");
+		$(".flotante").css("opacity","0.9");
+
+} else {
+	
+
+}
+
 
 
 //################################################################### GUARDAR APROBACON ###############################################
@@ -1054,5 +1074,84 @@ $(function(){
 
 			}
 
+
+			
+			$('#print').balloon({ 
+				html: true, 
+					position: 'right',
+					contents: 'IMPRIMIR' ,
+							
+						css: {
+					fontSize: 12,
+					fontWeight: 'bold',
+					backgroundColor: '#3366cc',
+					color: '#fff'
+				} 
+			});
+
+			$('#aprobar').balloon({ 
+				html: true, 
+					position: 'right',
+					contents: 'APROBAR' ,
+							
+						css: {
+					fontSize: 12,
+					fontWeight: 'bold',
+					backgroundColor: '#3366cc',
+					color: '#fff'
+				} 
+			});
+
+			$('#edit').balloon({ 
+				html: true, 
+					position: 'right',
+					contents: 'EDITAR' ,
+							
+						css: {
+					fontSize: 12,
+					fontWeight: 'bold',
+					backgroundColor: '#3366cc',
+					color: '#fff'
+				} 
+			});
+
+			$('#victim').balloon({ 
+				html: true, 
+					position: 'right',
+					contents: 'PARTICIPANTES' ,
+							
+						css: {
+					fontSize: 12,
+					fontWeight: 'bold',
+					backgroundColor: '#3366cc',
+					color: '#fff'
+				} 
+			});
+
+			$('#ayt').balloon({ 
+				html: true, 
+					position: 'right',
+					contents: 'ALOJAMIENTO Y TRANSPORTE' ,
+							
+						css: {
+					fontSize: 12,
+					fontWeight: 'bold',
+					backgroundColor: '#3366cc',
+					color: '#fff'
+				} 
+			});
+
+			$('#anexos').balloon({ 
+				html: true, 
+					position: 'right',
+					contents: 'ANEXOS' ,
+							
+						css: {
+					fontSize: 12,
+					fontWeight: 'bold',
+					backgroundColor: '#3366cc',
+					color: '#fff'
+				} 
+			});
 </script>
 <?php include_once("../layouts/pie.php") ?>

@@ -27,6 +27,7 @@ ValidaSession("../login");
 									<th>Municipio</th>
 									<th>Fecha de inicio</th>
 									<th>Responsable del Evento</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -83,11 +84,12 @@ ValidaSession("../login");
 							$('td:eq(0)', nRow).css('background-size','contain');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
+							$('td:eq(6)', nRow).css('opacity','0');
 
 						}else{
 								
 							$('td:eq(0)', nRow).css('background-image','');
-
+							$('td:eq(6)', nRow).css('opacity','0');
 						}
 
 						return nRow;

@@ -352,5 +352,27 @@
     }
 
 
+ /*  @media (min-width: 50mm) and (max-width: 200mm) {
+                
+        #pr1{
+           
+            width:100%; 
+            height:356mm;
+             overflow: auto;
+        }
+
+        #pr2{
+            width:216mm;
+            height:100%;
+           
+        }
+
+        #print{
+            display: none;
+        }
+    
+    }*/
+
+ 
 
      
