@@ -797,7 +797,11 @@ ValidaSession("../login");
 
 		});	
 
+		$("#anexos").click(function() {
 
+			$(location).attr('href','frm_adjuntados?record='+$("#idea").val());
+
+		});	
 
 });	
 

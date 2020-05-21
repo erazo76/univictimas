@@ -28,60 +28,38 @@ ValidaSession("../login");
 		</div>
 	</div>
 
-	<div class="col-md-11" style="width:216mm; height:356mm;" id="pr1" >
+	<div class="col-md-11" style="width:216mm; height:100%;" id="pr1" >
 
 		<div class="box-header with-border" tabindex="-1">
-			<h3 class="box-title">FORMATO LISTADO DE PARTICIPANTES</h3>
+			<h3 class="box-title">DOCUMENTOS ANEXOS</h3>
 		</div> <!--/.box-header	-->
 
 		<div class="box box-primary" id="pr2">
 			<div class="box-body " >
 		
-				<div class="contenedorw" id="printJS-form">
-					
-					<img src="../../dist/img/unidadvictimaslogo2018-2.png" alt="logo" class="caja1 logunivic bnn">
-					
-					<div class="caja1 tit_1 fro" style="color:#fff;">FORMATO LISTADO DE PARTICIPANTES</div>
-					<div class="caja1 tit_1">PROCEDIMIENTO: ESTRATEGIAS DE REPARACIÓN INTEGRAL</div>
-					<div class="caja1 tit_1">PROCESO: REPARACIÓN INTEGRAL</div>
-					<div class="caja1 letrap cj16p">Código: 400.08.15-67</div>
-					<div class="caja1 letrap cj16p">Versión: 04</div>
-					<div class="caja1 letrap cj16p">Fecha: 14/02/2018</div>
-					<div class="caja1 pg6_8 cj16p" >Página: 1 de 1</div>
-					<div class="caja1 tit_2">CONTRATO No.  1296 de 2017</div>
-					<div class="caja1 fgr">OBJETO DEL CONTRATO: </div>
-					<div class="caja1 tit_3">Prestar sus servicios para apoyar la organización, administración y producción de las jornadas o acciones para la implementación de medidas de reparación integral a las víctimas del conflicto armado que le sean solicitadas por LA UNIDAD, de acuerdo con los requerimientos técnicos.</div>
-					<div class="caja1 tit_2 faz" style="color:#fff !important;">LISTADO DE VICTIMAS PARTICIPANTES EN EL EVENTO</div>
-					
+				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:100%;">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol>
 
-					<div class="caja1 fgr pg1_3">NOMBRE DEL EVENTO:</div>
-					<div class="caja1 pg3_8" id="nombre"></div>
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" id="carro">
+				
+					</div>
 
-					<div class="caja1 finito2 tit_2"></div>
-
-					<div class="caja1 faz aiz" style="color:#fff !important;">N° EVENTO:</div><div class="caja1 cj24p" id="id"></div>
-					<div class="caja1 fgr letrap">FECHA DE SOLICITUD:</div><div class="caja1 cj24p" id="fecha1"></div>
-					<div class="caja1 fgr letrap">DIRECCION TERRITORIAL:</div><div class="caja1 cj24p pg6_8" id="dir_terri" style="line-height: 10px;"></div>
-
-					<div class="caja1 tit_2 finito"></div>
-
-				</div>	
-
-				<div class="contenedorw">
-					<div class="caja1 pg1_3 fgr" >NOMBRE Y APELLIDO</div>
-					<div class="caja1 pg3_5 fgr " >Nro. DE DOCUMENTO</div>
-					<div class="caja1 pg5_6 fgr" >TELÉFONO</div>
-					<div class="caja1 pg6_8 fgr" >CORREO</div>
+					<!-- Controls -->
+					<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+						<span class="sr-only">Anterior</span>
+					</a>
+					<a class="right carousel-control" href="#myCarousel" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+						<span class="sr-only">Siguiente</span>
+					</a>
 				</div>
-				<div class="conten_gen" id="participantes"></div>
-
-				<div class="contenedorx">
-					<div class="caja1 tit_2 finito"></div>
-					<div class="caja1 tit_2 faz" style="color:#fff !important;"></div>
-					<div class="caja1 tit_2 finito"></div>	
-					
-				</div>
-			 
 			</div>
 
 		</div>	
@@ -136,55 +114,27 @@ ValidaSession("../login");
 		}
 
 
-		$.post( "../../controllers/mrequerimientos_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+//#########################################INSERTAR LOS DIVS CON LA COSNSULA DE ADJUNTOS ##################################
 
-		//alert(data);
+		$.post( "../../controllers/madjuntos_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+
 			var parsedJson = $.parseJSON(data);
-
-			var idd=parsedJson.id.toString();
-			$("#id").html(idd.padStart(4, 0));
-
-			$("#nombre").html(parsedJson.nombre);
-			$("#fecha1").html(parsedJson.fecha1);
-
-			var bdep =parsedJson.departamento;
-
-			$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos_e",departamento:bdep}).done(function( data ) {
-
-				$("#departamento" ).html( data );
-				$("#dir_terri" ).html( data );
 				
-
-			});	
-
-
-
-		});
-
-//#########################################INSERTAR LOS DIVS CON LA COSNSULA DE  LA TABLA DETALLES#####################################
-
-		$.post( "../../controllers/mvictimas_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
-
-			var parsedJson = $.parseJSON(data);
-
 			
 				parsedJson.forEach(function(parsedJson, index) {
 					//console.log("indice " + index + " | tipo " + parsedJson.tipo + " concepto: " + parsedJson.concepto + " cantidad: " + parsedJson.cantidad + " medida: " + parsedJson.medida + " observaciones: " + parsedJson.observaciones)
 				
-					var nombre2 =parsedJson.nombre2;
-					var t_doc =parsedJson.t_doc;
-							switch (t_doc) {
-								case 0:var med='CC';break;
-								case 1:var med='CE';break;
-								case 2:var med='PA';break;
-							}
-					var num_doc2 =parsedJson.num_doc2;
-					var docu=med+'-'+num_doc2;		
-					var tele3 =parsedJson.tele3;
-					var correo3 =parsedJson.correo3;	
-				if(nombre2 != null){
-					$('#participantes').append('<div class="caja1 pg1_3 aiz" >'+nombre2+'</div><div class="caja1 pg3_5 p">'+docu+'</div><div class="caja1 pg5_6">'+tele3+'</div><div class="caja1 pg6_8 aiz">'+correo3+'</div>');
-				}			
+					var imagen =parsedJson.imagen;
+						
+					if(imagen != null && index > 0){
+						
+						$('#carro').append('<div class="item"><img src="../../dist/img/adjuntos/'+imagen+'" alt=""><div class="carousel-caption"><p>'+imagen+'</p></div></div>');	
+
+					}else{
+
+						$('#carro').append('<div class="item active"><img src="../../dist/img/adjuntos/'+imagen+'" alt=""><div class="carousel-caption"><p>'+imagen+'</p></div></div>');	
+
+					}		
 					
 
 				});
@@ -249,5 +199,11 @@ if (window.matchMedia("(min-width: 200px) and (max-width: 370px)").matches) {
 					color: '#fff'
 				} 
 			});
+
+			$('.carousel').carousel({
+				interval: false,
+				wrap:true
+			});
+
 </script>
 <?php include_once("../layouts/pie.php") ?>

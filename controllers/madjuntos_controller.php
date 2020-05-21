@@ -21,6 +21,33 @@ date_default_timezone_set('America/Bogota');
 /**********************************/
 switch ($action){
 
+  case 'contar_id':
+   
+    $data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
+    
+            if($data !=null){
+            
+              foreach($data as $rs){
+
+                $resp[] = array(
+                      "imagen"=>$rs->imagen
+
+                );
+
+              }  
+            echo json_encode($resp);
+
+          }else{
+
+            $resp[] = array();
+            echo json_encode($resp);
+
+          }
+
+break;
+
+
+
   case 'add':
 
       if($nombre2 ==""){
@@ -304,19 +331,14 @@ switch ($action){
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
-      @$data = Mvictima::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
+      @$data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
 
       if($data !=null){
 
         foreach($data as $rs){
 
             $resp[] = array(
-                  "nombre2"=>$rs->nombre,
-                  "t_doc"=>$rs->t_doc,
-                  "num_doc2"=>$rs->num_doc,
-                  "tele3"=>$rs->tele,
-                  "correo3"=>$rs->correo
-
+                  "imagen"=>$rs->imagen,
             );
 
         }
@@ -391,9 +413,9 @@ switch ($action){
 #*******************************************************************************
   case 'search_act_delete':
     
-      @$data = Mvictima::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
+      @$data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
 
-      if($data !=null){//si consigue al menos un registro de activo
+      if($data !=null){//si consigue al menos un registro activo
 
             session_start();
             $usuario_id = $_SESSION['idusuariox'];
@@ -753,7 +775,7 @@ switch ($action){
 
                     } 
 
-                    $consultada=Mvictima::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
+                    $consultada=Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
 
                         foreach ($consultada as $activoros) {
                                                 

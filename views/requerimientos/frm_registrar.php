@@ -559,19 +559,16 @@ ValidaSession("../login");
 
 						<label id="prueba">Archivos adjuntos</label>
 						
-						<ul class="list-group" style="height: 150px;overflow:auto;">
-						<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-						<a href="#" class="list-group-item">Morbi leo risus</a>
-						<a href="#" class="list-group-item">Porta ac consectetur ac</a>
-						<a href="#" class="list-group-item">Vestibulum at eros</a>				
+						<ul class="list-group" style="height: 150px;overflow:auto;" id="ul_adj">
+			
 						</ul>
 						
 
 					</div>
 
 					<div class="box-footer">
-						<button id="save" type="button" class="btn btn-success" tabindex="54" style="width: 102px;"><i class="fa fa-fw fa-save"></i>Guardar</button>
-						<button id="anex" type="button" class="btn btn-success" tabindex="55" style="width: 98px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button>
+						<button id="save" type="button" class="btn btn-success" tabindex="54" style="width: 97px;"><i class="fa fa-fw fa-save"></i>Guardar</button>
+						<button id="anex" type="button" class="btn btn-success" tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button>
 						<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="56" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
 						<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
 					</div>				
@@ -847,7 +844,9 @@ ValidaSession("../login");
 
 $(document).ready(function() {
 
-	//$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+	$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 
 	$.post( "../../controllers/mrequerimientos_controller", { action: "contar_id"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
@@ -1644,12 +1643,27 @@ $("#izquierda" ).click(function() {
 								$('#modal3').modal('toggle');
 								$("#anex").focus();
 
-							}, 3000);
-		
+								$.post( "../../controllers/madjuntos_controller", { action: "contar_id"}).done(function( data ) {
 
-                    
+									var parsedJson = $.parseJSON(data);
+									$('#ul_adj li').remove();
+									parsedJson.forEach(function(parsedJson, index) {
+										var imagen =parsedJson.imagen;
+										//alert(imagen);
+										
+										$('#ul_adj').append('<li class="list-group-item">'+imagen+'</li>');
+
+									});	
+
+								},"json");
+
+							}, 3000);
+
 				}
 			});
+
+
+
 
 		});		
 
@@ -2028,7 +2042,11 @@ $("#izquierda" ).click(function() {
 
 					$.post( "../../controllers/mvictimas_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
 						$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});					
+					});		
+
+					$.post( "../../controllers/madjuntos_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
+						$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+					});				
 
 						$('.base').unslider('animate:0');
 							valore=$("#ideado").val();
