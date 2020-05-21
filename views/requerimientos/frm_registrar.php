@@ -567,8 +567,8 @@ ValidaSession("../login");
 					</div>
 
 					<div class="box-footer">
-						<button id="save" type="button" class="btn btn-success" tabindex="54" style="width: 97px;"><i class="fa fa-fw fa-save"></i>Guardar</button>
-						<button id="anex" type="button" class="btn btn-success" tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button>
+						<button id="save" type="button" class="btn btn-success pull-right" tabindex="54" style="width: 97px;"><i class="fa fa-fw fa-save"></i>Guardar</button>
+						<button id="anex" type="button" class="btn btn-success pull-right" tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button>
 						<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="56" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
 						<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
 					</div>				
