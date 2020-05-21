@@ -791,7 +791,11 @@ ValidaSession("../login");
 			
 		});	
 
-		
+		$("#victim").click(function() {
+
+			$(location).attr('href','frm_fparticipantes?record='+$("#idea").val());
+
+		});	
 
 
 

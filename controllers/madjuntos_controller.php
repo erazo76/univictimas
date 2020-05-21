@@ -1,26 +1,24 @@
 <?php
-require_once '../models/Mvictima.php';
+require_once '../models/Madjunto.php';
 require_once '../models/Mrequerimiento.php';
 date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
-@$id = ($_POST["id"]);
+
 @$record = ($_POST["record"]);
 @$recordado = ($_POST["recordado"]);
 @$recordatorio = ($_POST["recordatorio"]);
 @$l_recordado = ($_POST["l_recordado"]);
 @$l_orbis = ($_POST["l_orbis"]);
 @$l_record = ($_POST["l_record"]);
-/***********************************/
-@$nombre2 = ($_POST["nombre2"]);
-@$t_doc2 = ($_POST["t_doc2"]);
-@$num_doc2 = ($_POST["num_doc2"]);
-@$tele3 = ($_POST["tele3"]);
-@$correo3 = ($_POST["correo3"]);
-//@$distribuidora = ($_POST["distribuidora"]);
 @$busco = ($_POST["busco"]);
+/***********************************/
+//@$distribuidora = ($_POST["distribuidora"]);
+@$id = ($_POST["idea"]);
+@$sourcePath = $_FILES['file']['tmp_name'];  // Almacenar ruta de origen del archivo en una variable
+@$targetPath = "../dist/img/adjuntos/".$id."_".$_FILES['file']['name']; // Ruta de destino donde el archivo se va a almacenar
+@$tipo_archivo = $_FILES['file']['type'];
 /**********************************/
-
 switch ($action){
 
   case 'add':
@@ -461,91 +459,55 @@ switch ($action){
 
     case 'temporal':
 
-      if($nombre2 ==""){
+      @$comodin=$id."_".($_FILES['file']['name']);
+      @$blanco=($_FILES['file']['name']);
+      @$consulta1 = Madjunto::find('all',array('conditions' => array('imagen=?',$comodin)));
 
-        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Ingrese el nombre completo del participante
-            </div>');
-
-      }else if($num_doc2 ==""){
-
-        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Ingrese  el número del documento de identidad del participante.
-            </div>');
-
-      }else if($tele3 ==""){
-
-        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Ingrese el número telefonico del participante.
-            </div>');
-
-      }else  if($correo3 ==""){
-
-        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Ingrese el correo electrónico del participante.
-            </div>');
-
-      }else{
+      if($consulta1 == null && $blanco != ''){
 
             session_start();
             $usuario_id = $_SESSION['idusuariox'];
-            $hoy = date('d-m-Y');
 
-            $tempo = new Mvictima();
-            $tempo->nombre = $nombre2;
-            $tempo->t_doc = $t_doc2;
-            $tempo->num_doc = $num_doc2;
-            $tempo->tele = $tele3;
-            $tempo->correo = $correo3;
+            $hoy = date("d-m-Y");
+
+            if($sourcePath){//si cargaron el archivo
+              if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg")){
+                move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
+                @$nombre_imagen = $id."_".($_FILES['file']['name']);
+              }
+            }else{ //si no cargaron nada
+              @$nombre_imagen = "";
+            }
+            $tempo = new Madjunto();
+ 
+            $tempo->imagen = $nombre_imagen;
             $tempo->mrequerimientos_id = 1;
             $tempo->user_create = $usuario_id;
             $tempo->created = $hoy;
+
                   if($tempo->save()){
 
-                    $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
+                   echo'<div class="alert alert-success alert-dismissable">
                         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
                         <h4>
                         <i class="icon fa fa-check"></i>
                         Alerta!
                         </h4>
-                        Se registro al participante exitosamente !.
-                        </div>');
-
-                  }else{
-
-
-                    $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
-                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                        <h4>
-                        <i class="icon fa fa-ban"></i>
-                        Alerta!
-                        </h4>
-                        Error al registrar al participante.
-                        </div>');
+                        Se Adjunto la imagen exitosamente !.
+                        </div>';
 
                   }
+      }else{
+                  echo'<div class="alert alert-danger alert-dismissable">
+                      <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                      <h4>
+                      <i class="icon fa fa-ban"></i>
+                      Alerta!
+                      </h4>
+                      La imagen ['.$comodin.'] ya está incluida. cambie el nombre del archivo e intente de nuevo.
+                      </div>';
       }
-        echo json_encode($respuesta);
+        
       break;
 
 #******************************************************************************

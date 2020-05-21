@@ -557,15 +557,25 @@ ValidaSession("../login");
 
 					<div class="box-body">
 
-						<label id="prueba"></label>
+						<label id="prueba">Archivos adjuntos</label>
+						
+						<ul class="list-group" style="height: 150px;overflow:auto;">
+						<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+						<a href="#" class="list-group-item">Morbi leo risus</a>
+						<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+						<a href="#" class="list-group-item">Vestibulum at eros</a>				
+						</ul>
+						
 
 					</div>
+
 					<div class="box-footer">
-						<button id="save" type="button" class="btn btn-success" tabindex="53"><i class="fa fa-fw fa-save"></i>Guardar</button>
-						<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="54"><i class="fa fa-fw fa-reply"></i>Regresar</button>
+						<button id="save" type="button" class="btn btn-success" tabindex="54" style="width: 102px;"><i class="fa fa-fw fa-save"></i>Guardar</button>
+						<button id="anex" type="button" class="btn btn-success" tabindex="55" style="width: 98px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button>
+						<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="56" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
 						<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
 					</div>				
-					<div class="focusguard" id="guardia2" tabindex="55"></div>
+					<div class="focusguard" id="guardia2" tabindex="57"></div>
 				</div><!-- /.box-body -->
 
 			</div>
@@ -669,7 +679,7 @@ ValidaSession("../login");
 </form>                   
 </div>
 
-<!-- Modal 1 -->
+<!-- Modal 2 -->
 <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
 <form id="form" role="form" enctype="multipart/form-data" >
   <div class="modal-dialog modal-lm">
@@ -749,6 +759,57 @@ ValidaSession("../login");
   </div>
 </form>                   
 </div>
+
+<!-- Modal 3 -->
+<div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+<form id="form" role="form" enctype="multipart/form-data" >
+  <div class="modal-dialog modal-lm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="contenido-modal">
+         <h4 class="modal-title" id="myModalLabel1">Anexos</h4>
+			<div class="message1"></div>
+			<div class="row">
+				<!-- left column -->
+				<div class="col-md-12">
+				  <!-- general form elements -->
+				  <div class="box box-primary">
+
+					<div class="box-header with-border"></div><!-- /.box-header -->
+					<!-- form start -->
+					  <div class="box-body">
+
+
+						<div class="form-group">
+							<img class="imgusr" alt="" src="#" id="file_url" width="100%" height="300%">
+							
+						</div>
+
+						<div class="form-group">
+							<label for="exampleInputFile">Adjuntar archivo  no mayor a 1 Mb.</label>
+							<input type="file" id="InputFile" tabindex="900">
+						</div>
+
+					  </div><!-- /.box-body -->
+
+				  </div><!-- /.box -->
+
+				</div>
+			</div>
+							      <div class="modal-footer">
+										<button id="close11" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Adjuntar</button>
+										
+							      		<button id="cancelar22" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
+
+							      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>                   
+</div>
+
+
 						  <div class="box-footer">
 							<button id="izquierda" type="button" class="btn btn-primary" disabled tabindex="-1"><i class="fa fa-arrow-left"></i>Anterior</button>
 							
@@ -1092,6 +1153,10 @@ $("#izquierda" ).click(function() {
 		});
 
 	
+		$("#InputFile").change(function(){
+		    readURL(this);
+		});
+
 		$('#guardia1').on('focus', function() {
 			$('#pertenencia').focus();
 				var cont_alert2 =$('.bbb').filter(function() { return $(this).val() == ""; }).size();
@@ -1547,7 +1612,47 @@ $("#izquierda" ).click(function() {
 			},"json");
 			//$('#activo').focus();
 
+		});	
+
+		$("#close11").click(function() {
+			
+			var formData = new FormData();
+			formData.append('file', $('input[type=file]')[0].files[0]);
+			formData.append('action', 'temporal');
+			formData.append('idea', $("#ideado").val());
+
+			$.ajax({
+				url: "../../controllers/madjuntos_controller",
+				type: "POST",
+				data: formData,
+				contentType: false,
+				cache: false,
+				processData:false,
+				success: function(data)
+				{
+						
+					$(".message1").html(data);
+
+							$('#modal3').scrollTop(0);
+								
+							setTimeout(function(){
+
+								$("#InputFile").val(null);
+								$("#file_url").attr('src', '');
+
+								$(".alert").alert('close');
+								$('#modal3').modal('toggle');
+								$("#anex").focus();
+
+							}, 3000);
+		
+
+                    
+				}
+			});
+
 		});		
+
 
 			$('#quitar').click( function () {
 
@@ -1697,6 +1802,15 @@ $("#izquierda" ).click(function() {
 
 		});
 
+		$("#cancelar22").click(function() {
+
+			$('#modal3').modal('toggle');
+			$("#InputFile").val(null);
+			$("#file_url").attr('src', '');
+			$("#anex").focus();
+
+		});
+
 		$("#cancelar3").click(function() {
 
 			$('#modal2').modal('toggle');
@@ -1719,6 +1833,11 @@ $("#izquierda" ).click(function() {
 
 		$("#agregar2").click(function() {
 			$('#modal2').modal({backdrop: 'static',keyboard: false});
+			
+		});
+
+		$("#anex").click(function() {
+			$('#modal3').modal({backdrop: 'static',keyboard: false});
 			
 		});
 // para consultar y cargar los datos geograficos ***********************************************************
@@ -2798,6 +2917,19 @@ function esidaccion(e) {
 
 }
 //************************************************************************/
+
+			function readURL(input) {
+
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+
+					reader.onload = function (e) {
+						$('#file_url').attr('src', e.target.result);
+					}
+
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
 
  </script>
  <?php include_once("../layouts/pie.php") ?>
