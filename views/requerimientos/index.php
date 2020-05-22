@@ -16,7 +16,7 @@ ValidaSession("../login");
 				<div class="box-header with-border">
 					<h3 class="box-title">Requerimientos</h3>
 				</div><!-- /.box-header -->
-			<div class="box box-primary" >		
+			<div class="box box-primary"  >		
 				<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
 						<table id="tabla" class="table table-bordered table-hover">
 							<thead>
@@ -27,21 +27,16 @@ ValidaSession("../login");
 									<th>Municipio</th>
 									<th>Fecha de inicio</th>
 									<th>Responsable del Evento</th>
+									<th>Solicitado el:</th>
+									<th>Usuario Solic.:</th>
+									<th>Modificado el:</th>
+									<th>Usuario modif.</th>
+									<th>Aprobado por:</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 							</tbody>
-							<tfoot>
-								<tr>
-									<th>Nro. Evento</th>
-									<th>Nombre del Evento</th>
-									<th>Dirección Territorial</th>
-									<th>Municipio</th>
-									<th>Fecha de inicio</th>
-									<th>Responsable del Evento</th>
-								</tr>
-							</tfoot>
 						</table>
 				</div>
 				<div class="box-footer">
@@ -71,7 +66,7 @@ ValidaSession("../login");
 
 			var table = $('#tabla').dataTable({
 				
-				"autoWidth": false,	
+				//"autoWidth": false,	
 				  "ajax": {
 					"url": "../../data_json/data_mrequerimientos",
 					"dataSrc": ""
@@ -84,17 +79,19 @@ ValidaSession("../login");
 							$('td:eq(0)', nRow).css('background-size','contain');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
-							$('td:eq(6)', nRow).css('opacity','0');
+							$('td:eq(11)', nRow).css('opacity','0');
 
 						}else{
 								
 							$('td:eq(0)', nRow).css('background-image','');
-							$('td:eq(6)', nRow).css('opacity','0');
+							$('td:eq(11)', nRow).css('opacity','0');
 						}
 
 						return nRow;
 				  },
 				  "scrollX": true,
+				  "scrollY": "280px",
+				  "scrollCollapse": true,
 				  "columns": [
 						{ "data": "id" },
 						{ "data": "nombre" },
@@ -102,9 +99,14 @@ ValidaSession("../login");
 						{ "data": "municipio" },
 						{ "data": "fecha" },
 						{ "data": "responsable" },
+						{ "data": "created" },
+						{ "data": "usercreate" },
+						{ "data": "updated" },
+						{ "data": "userupdate" },
+						{ "data": "resp_aprob" },
 						{ "data": "aprobado" }
 					],
-			        fixedColumns: false,
+			       // fixedColumns: false,
 					"aoColumnDefs": [
             			{
                 			"mRender": function ( data, type, row ) {
@@ -112,7 +114,57 @@ ValidaSession("../login");
 							},
 							"aTargets": [ 0 ]
 							
+						},
+						{
+							"width": "80px",
+							"aTargets": [0]
+						},
+						{
+							"width": "140px",
+							"aTargets": [1]
+						},
+						{
+							"width": "140px",
+							"aTargets": [2]
+						},
+						{
+							"width": "140px",
+							"aTargets": [3]
+						},
+						{
+							"width": "100px",
+							"aTargets": [4]
+						},
+						{
+							"width": "150px",
+							"aTargets": [5]
 						}
+						,
+						{
+							"width": "85px",
+							"aTargets": [6]
+						},
+						{
+							"width": "140px",
+							"aTargets": [7]
+						},
+						{
+							"width": "100px",
+							"aTargets": [8]
+						},
+						{
+							"width": "140px",
+							"aTargets": [9]
+						},
+						{
+							"width": "140px",
+							"aTargets": [10]
+						},
+						{
+							"width": "1px",
+							"aTargets": [11]
+						}						
+							
 
 					]
 				//"order": [[ 0, "asc" ]]
