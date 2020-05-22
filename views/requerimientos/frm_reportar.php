@@ -696,11 +696,11 @@ ValidaSession("../login");
 
 	//control de tipos
 
-	if(tip1>0){
+	if(tip1 != null){
 		$("#rta").attr('checked', true)
-	}else if(tip2>0){
+	}else if(tip2 != null){
 		$("#rtb").attr('checked', true)
-	}else if(tip3>0){
+	}else if(tip3 != null){
 		$("#rtc").attr('checked', true)
 	}else{
 		$("#rtd").attr('checked', true)
