@@ -1,31 +1,39 @@
 <?php
-require_once '../models/Mvictima.php';
+require_once '../models/Mcontrato.php';
 require_once '../models/Mrequerimiento.php';
 date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
-@$id = ($_POST["id"]);
-@$record = ($_POST["record"]);
-@$recordado = ($_POST["recordado"]);
-@$recordatorio = ($_POST["recordatorio"]);
-@$l_recordado = ($_POST["l_recordado"]);
-@$l_orbis = ($_POST["l_orbis"]);
-@$l_record = ($_POST["l_record"]);
-/***********************************/
-@$nombre2 = ($_POST["nombre2"]);
-@$t_doc2 = ($_POST["t_doc2"]);
-@$num_doc2 = ($_POST["num_doc2"]);
-@$tele3 = ($_POST["tele3"]);
-@$correo3 = ($_POST["correo3"]);
-//@$distribuidora = ($_POST["distribuidora"]);
-@$busco = ($_POST["busco"]);
+@$cos_contrato = ($_POST["cos_contrato"]);
+@$num_contrato = ($_POST["num_contrato"]);
+@$id = 1;
+
+
 /**********************************/
 
 switch ($action){
+  
+    case 'sumar_costo':
+
+      @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = 1 and status = 1');
+
+    if($data !=null){
+      foreach($data as $rs){
+        if($rs->tot_cos==null){
+          $contados=0;
+        }else{
+        $contados = $rs->tot_cos;      
+        }
+      }        
+    }
+
+      
+      echo json_encode($contados);
+  break;
 
   case 'add':
 
-      if($nombre2 ==""){
+      if($num_contrato==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -33,12 +41,22 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese el nombre de la marca.
+            Ingrese el número de contrato.
             </div>');
+      }else if($cos_contrato==""){
 
-      }else{  //(A) si se escribe un nombre se consulta si ya existe...
+        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Ingrese la asignación del contrato.
+            </div>'); 
 
-        $consulta = Mmarca::find('all',array('conditions' => array('nombre=?',$nombre)));
+      }else{  
+
+        $consulta = Mcontrato::find('all',array('conditions' => array('num_contrato=?',$num_contrato)));
 
           if($consulta==null){  //(B) si no existe lo guarda...
 
@@ -46,8 +64,9 @@ switch ($action){
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
-            $segme = new Mmarca();
-            $segme->nombre = $nombre;
+            $segme = new Mcontrato();
+            $segme->num_contrato = $num_contrato;
+            $segme->cos_contrato = $cos_contrato;
             $segme->user_create = $usuario_id;
             $segme->created = $hoy;
 
@@ -78,37 +97,7 @@ switch ($action){
 
             //echo json_encode($respuesta);
 
-        }else{ //(B) si exite el nombre verifica el status del registro...
-
-            foreach ($consulta as $st) {
-
-                 $estado=$st->status;
-                 $ide=$st->id;
-
-              }
-
-            if($estado!=1){ //se activa mensaje modal para llevar el status a "1" ... (o no).
-
-                    //echo 'MODAL PARA ACTIVAR REGISTRO GUARDADO'; exit();
-
-              $respuesta = array('resultado'=>'alert','mensaje'=>'<input type="hidden" id="id" value="'.$ide.'">
-                  <div class="alert alert-danger alert-dismissable">
-                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                  <h4>
-                  <i class="icon fa fa-ban"></i>
-                  Alerta!
-                  </h4>
-
-                  Registro inactivo . ¿Desea incluir ['.$nombre.'] en el maestro de marcas?
-
-                      <div class="modal-footer" >
-                        <button type="button" id="no" class="btn btn-outline pull-left" data-dismiss="alert" onClick="no()">No</button>
-                        <button type="button" id="silo" class="btn btn-outline pull-left" onClick="si()" >Si</button>
-                      </div>
-                  </div>');
-
-            }else{
-
+          }else{ 
 
               $respuesta = array('resultado'=>'alert','mensaje'=>'<div class="alert alert-danger alert-dismissable">
                   <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -116,46 +105,48 @@ switch ($action){
                   <i class="icon fa fa-ban"></i>
                   Alerta!
                   </h4>
-                  La marca ['.$nombre.'] ya se encuentra registrada.
+                  El contrato ['.$num_contrato.'] ya se encuentra registrado.
                   </div>');
 
            }
                  // echo json_encode($respuesta);
         }
-
-
-     }
              echo json_encode($respuesta);
 
   break;
 #*******************************************************************************
   case 'edit':
 
-      if($nombre ==""){
+    if($num_contrato==""){
 
-        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Ingrese el nombre de la marca.
-            </div>');
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese el número de contrato.
+          </div>');
+    }else if($cos_contrato==""){
 
-      }else{
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese la asignación del contrato.
+          </div>'); 
 
-    $consulta = Mmarca::find('all',array('conditions' => array('nombre=?',$nombre)));
-
-      if($consulta==null){
+    }else{
 
             session_start();
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
-
-
-            $depa= Mmarca::find($id);
-            $depa->nombre = $nombre;
+            $depa= Mcontrato::find($id);
+            $depa->cos_contrato = $cos_contrato;
+            $depa->num_contrato = $num_contrato;
             $depa->user_modify = $usuario_id;
             $depa->updated = $hoy;
 
@@ -186,52 +177,6 @@ switch ($action){
 
             }
 
-        }else{ //(B) si exite el nombre verifica el status del registro...
-
-            foreach ($consulta as $st) {
-
-                 $estado=$st->status;
-                 $ide=$st->id;
-
-              }
-
-            if($estado!=1){ //se activa mensaje modal para llevar el status a "1" ... (o no).
-
-                    //echo 'MODAL PARA ACTIVAR REGISTRO GUARDADO'; exit();
-
-              $respuesta = array('resultado'=>'alert','mensaje'=>'<input type="hidden" id="id" value="'.$ide.'">
-                  <div class="alert alert-danger alert-dismissable">
-                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                  <h4>
-                  <i class="icon fa fa-ban"></i>
-                  Alerta!
-                  </h4>
-
-                  Registro inactivo . ¿Desea incluir ['.$nombre.'] en maestro de marcas?
-
-                      <div class="modal-footer" >
-                        <button type="button" id="no" class="btn btn-outline pull-left" data-dismiss="alert" onClick="no()">No</button>
-                        <button type="button" id="silo" class="btn btn-outline pull-left" onClick="si()" >Si</button>
-                      </div>
-                  </div>');
-
-            }else{
-
-
-              $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
-                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                  <h4>
-                  <i class="icon fa fa-ban"></i>
-                  Alerta!
-                  </h4>
-                  La marca ['.$nombre.'] ya se encuentra registrado.
-                  </div>');
-
-           }
-                 // echo json_encode($respuesta);
-        }
-
-
      }
              echo json_encode($respuesta);
 
@@ -248,7 +193,7 @@ switch ($action){
 
         if($usuario_id !="" /*&& ($rol ==1 || $rol==4)*/){
 
-                  $acti= Mvictima::find($record);
+                  $acti= Mdetalle::find($record);
                   $acti->user_modify = $usuario_id;
                   $acti->updated = $hoy;
                   $acti->status = 0;
@@ -261,7 +206,7 @@ switch ($action){
                         <i class="icon fa fa-check"></i>
                         Alerta!
                         </h4>
-                        Se retiro al participante del evento.
+                        Se desincorporo el item al Requerimiento.
                         </div>');
 
                   }else{
@@ -273,7 +218,7 @@ switch ($action){
                         <i class="icon fa fa-ban"></i>
                         Alerta!
                         </h4>
-                        Error al retirar al participante del evento..
+                        Error al desincorporar el item.
                         </div>');
 
                   }
@@ -299,55 +244,104 @@ switch ($action){
   break;
 #*******************************************************************************
   case 'search':
-    if($record !=null){
-
         session_start();
         $usuario_id = $_SESSION['idusuariox'];
-        $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
-      @$data = Mvictima::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
+      @$data = Mcontrato::find('all');
 
       if($data !=null){
 
         foreach($data as $rs){
 
-            $resp[] = array(
-                  "nombre2"=>$rs->nombre,
-                  "t_doc"=>$rs->t_doc,
-                  "num_doc2"=>$rs->num_doc,
-                  "tele3"=>$rs->tele,
-                  "correo3"=>$rs->correo
-
+            $resp = array(
+                  "num_contrato"=>$rs->num_contrato,
+                  "cos_contrato"=>$rs->cos_contrato,
+                  "estado"=>"si"
             );
 
         }
        // print_r($resp);exit();
         echo json_encode($resp);
       }else{
-        $resp[] = array( );
+        $resp = array(
+          "num_contrato"=>0,
+          "cos_contrato"=>0,
+          "estado"=>"no"   
+        );
         echo json_encode($resp);
       }
-
-    }
   break;
 
 #*******************************************************************************
   case 'search_act':
+    session_start();
+    $usuario_id = $_SESSION['idusuariox'];
+    $hoy = date("d-m-Y");
+
+    @$data = Mcontrato::find('all');
+    if($data !=null){
+      foreach($data as $rs){
+          @$individual = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as indi_cos from mrequerimientos WHERE status=1 AND tipo1 <>9 AND tipo2=6 AND tipo3=5;");  
+          @$reubicacion = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as reub_cos from mrequerimientos WHERE status=1 AND tipo2 <>6 AND tipo1=9 AND tipo3=5;"); 
+          @$colectiva = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as cole_cos from mrequerimientos WHERE status=1 AND tipo3 <>5 AND tipo1=9 AND tipo2=6;");
+          
+          if($individual !=null){
+            foreach($individual as $r1){
+              if($r1->indi_cos==null){
+              $reg1=0;
+              }else{
+              $reg1 = $r1->indi_cos;      
+              }
+            }        
+          }
+          
+          if($reubicacion !=null){
+            foreach($reubicacion as $r2){
+              if($r2->reub_cos==null){
+              $reg2=0;
+              }else{
+              $reg2 = $r2->reub_cos;      
+              }
+            }        
+          }
+
+          if($colectiva !=null){
+            foreach($colectiva as $r3){
+              if($r3->cole_cos==null){
+              $reg3=0;
+              }else{
+              $reg3 = $r3->cole_cos;      
+              }
+            }        
+          }
+          $reg4=$rs->cos_contrato-($reg1+$reg2+$reg3);
+          @$resp = array(
+                    "num_contrato"=>$rs->num_contrato,
+                    "cos_contrato"=>$rs->cos_contrato,
+                    "estado"=>"si",
+                    "cos_indi"=>number_format($reg1,1,',', ' '),
+                    "cos_reub"=>number_format($reg2,1,',', ' '),
+                    "cos_cole"=>number_format($reg3,1,',', ' '),
+                    "restan"=>number_format($reg4,1,',', ' '),
+          );
+        
+          echo json_encode($resp);
+        } 
     
-      @$data = Mvictima::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
-
-      if($data !=null){//si consigue al menos un registro 
-
-        $resp='si';
-
-      }else{
-
-        $resp='no';
-
-      }
-
-    echo json_encode($resp);
+    }else{
+          @$resp = array(
+            "num_contrato"=>0,
+            "cos_contrato"=>0,
+            "estado"=>"no", 
+            "cos_indi"=>0,
+            "cos_reub"=>0,
+            "cos_cole"=>0,
+            "restan"=>0   
+          );
+          echo json_encode($resp);
+    }   
+     
 
   break;
 
@@ -393,7 +387,7 @@ switch ($action){
 #*******************************************************************************
   case 'search_act_delete':
     
-      @$data = Mvictima::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
+      @$data = Mdetalle::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
 
       if($data !=null){//si consigue al menos un registro de activo
 
@@ -461,7 +455,7 @@ switch ($action){
 
     case 'temporal':
 
-      if($nombre2 ==""){
+      if($tipo ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -469,10 +463,10 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese el nombre completo del participante
+            Ingrese el tipo de item.
             </div>');
 
-      }else if($num_doc2 ==""){
+      }else if($concepto ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -480,10 +474,10 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese  el número del documento de identidad del participante.
+            Ingrese concepto del item.
             </div>');
 
-      }else if($tele3 ==""){
+      }else if($cantidad ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -491,10 +485,10 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese el número telefonico del participante.
+            Ingrese la cantidad de items.
             </div>');
 
-      }else  if($correo3 ==""){
+      }else  if($medida ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -502,7 +496,29 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese el correo electrónico del participante.
+            Ingrese la unidad de medida del item.
+            </div>');
+
+      }else  if($costo ==""){
+
+        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Ingrese el costo del item.
+            </div>');
+
+      }else  if($observaciones ==""){
+
+        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Ingrese el las observaciones.
             </div>');
 
       }else{
@@ -511,12 +527,14 @@ switch ($action){
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
-            $tempo = new Mvictima();
-            $tempo->nombre = $nombre2;
-            $tempo->t_doc = $t_doc2;
-            $tempo->num_doc = $num_doc2;
-            $tempo->tele = $tele3;
-            $tempo->correo = $correo3;
+            $tempo = new Mdetalle();
+            $tempo->d_tipo = $tipo;
+            $tempo->d_concepto = $concepto;
+            $tempo->d_cantidad = $cantidad;
+            $tempo->d_medida = $medida;
+            $tempo->d_costo = $costo;
+            $tempo->d_costo_t = $costo*$cantidad;
+            $tempo->d_obs = $observaciones;
             $tempo->mrequerimientos_id = 1;
             $tempo->user_create = $usuario_id;
             $tempo->created = $hoy;
@@ -528,7 +546,7 @@ switch ($action){
                         <i class="icon fa fa-check"></i>
                         Alerta!
                         </h4>
-                        Se registro al participante exitosamente !.
+                        Se registro el item exitosamente !.
                         </div>');
 
                   }else{
@@ -540,7 +558,7 @@ switch ($action){
                         <i class="icon fa fa-ban"></i>
                         Alerta!
                         </h4>
-                        Error al registrar al participante.
+                        Error al registrar el item.
                         </div>');
 
                   }
@@ -791,8 +809,8 @@ switch ($action){
 
                     } 
 
-                    $consultada=Mvictima::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
-                    if( $consultada!=null) {
+                    $consultada=Mdetalle::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
+
                         foreach ($consultada as $activoros) {
                                                 
                           $activoros->user_modify = $usuario_id;
@@ -801,7 +819,7 @@ switch ($action){
                           $activoros->save();
 
                         }    
-                    }  
+                      
 
         }
 

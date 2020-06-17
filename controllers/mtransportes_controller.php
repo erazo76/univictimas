@@ -1,5 +1,5 @@
 <?php
-require_once '../models/Mvictima.php';
+require_once '../models/Mtransporte.php';
 require_once '../models/Mrequerimiento.php';
 date_default_timezone_set('America/Bogota');
 
@@ -11,14 +11,37 @@ date_default_timezone_set('America/Bogota');
 @$l_recordado = ($_POST["l_recordado"]);
 @$l_orbis = ($_POST["l_orbis"]);
 @$l_record = ($_POST["l_record"]);
+
 /***********************************/
-@$nombre2 = ($_POST["nombre2"]);
-@$t_doc2 = ($_POST["t_doc2"]);
-@$num_doc2 = ($_POST["num_doc2"]);
-@$tele3 = ($_POST["tele3"]);
-@$correo3 = ($_POST["correo3"]);
-//@$distribuidora = ($_POST["distribuidora"]);
-@$busco = ($_POST["busco"]);
+@$nomb_p = ($_POST["nomb_p"]);
+@$t_doc_p = ($_POST["t_doc_p"]);
+@$num_doc_p = ($_POST["num_doc_p"]);
+@$tele5 = ($_POST["tele5"]);
+@$depa2 = ($_POST["depa2"]);
+@$muni2 = ($_POST["muni2"]);
+/***********************************/
+@$r_aereo = ($_POST["r_aereo"]);
+@$f_ida = ($_POST["f_ida"]);
+@$h_ida = ($_POST["h_ida"]);
+@$f_vuelta = ($_POST["f_vuelta"]);
+@$h_vuelta = ($_POST["h_vuelta"]);
+@$a_ida = intval($_POST["a_ida"]);
+@$a_vuelta = intval($_POST["a_vuelta"]);
+@$a_total = intval($_POST["a_total"]);
+/***********************************/
+@$r_terrestre = ($_POST["r_terrestre"]);
+@$r_ida = intval($_POST["r_ida"]);
+@$r_vuelta = intval($_POST["r_vuelta"]);
+@$r_total = intval($_POST["r_total"]);
+/***********************************/
+@$u_terrestre = ($_POST["u_terrestre"]);
+@$u_ida = intval($_POST["u_ida"]);
+@$u_vuelta = intval($_POST["u_vuelta"]);
+@$u_total = intval($_POST["u_total"]);
+/**********************************/
+@$f_aloja = ($_POST["f_aloja"]);
+@$n_aloja = intval($_POST["n_aloja"]);
+@$aloja_total = intval($_POST["aloja_total"]);
 /**********************************/
 
 switch ($action){
@@ -461,7 +484,7 @@ switch ($action){
 
     case 'temporal':
 
-      if($nombre2 ==""){
+      if($nomb_p ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -469,10 +492,10 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese el nombre completo del participante
+            Ingrese el nombre completo del personal
             </div>');
 
-      }else if($num_doc2 ==""){
+      }else if($num_doc_p ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -480,10 +503,10 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese  el número del documento de identidad del participante.
+            Ingrese  el número del documento de identidad del personal.
             </div>');
 
-      }else if($tele3 ==""){
+      }else if($tele5 ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -491,18 +514,7 @@ switch ($action){
             <i class="icon fa fa-warning"></i>
             Alerta!
             </h4>
-            Ingrese el número telefonico del participante.
-            </div>');
-
-      }else  if($correo3 ==""){
-
-        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Ingrese el correo electrónico del participante.
+            Ingrese el número telefonico del personal.
             </div>');
 
       }else{
@@ -511,12 +523,37 @@ switch ($action){
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
-            $tempo = new Mvictima();
-            $tempo->nombre = $nombre2;
-            $tempo->t_doc = $t_doc2;
-            $tempo->num_doc = $num_doc2;
-            $tempo->tele = $tele3;
-            $tempo->correo = $correo3;
+            $tempo = new Mtransporte();
+            $tempo->nomb_p = $nomb_p;
+            $tempo->t_doc_p = $t_doc_p;
+            $tempo->num_doc_p = $num_doc_p;
+            $tempo->tele5 = $tele5;
+            $tempo->depa2 = $depa2;
+            $tempo->muni2 = $muni2;
+
+            $tempo->r_aereo = $r_aereo;
+            $tempo->f_ida = $f_ida;
+            $tempo->h_ida = $h_ida;
+            $tempo->f_vuelta = $f_vuelta;
+            $tempo->h_vuelta = $h_vuelta;
+            $tempo->a_ida = $a_ida;
+            $tempo->a_vuelta = $a_vuelta;
+            $tempo->a_total = $a_total;
+
+            $tempo->r_terrestre = $r_terrestre;
+            $tempo->r_ida = $r_ida;
+            $tempo->r_vuelta = $r_vuelta;
+            $tempo->r_total = $r_total;
+
+            $tempo->u_terrestre = $u_terrestre;
+            $tempo->u_ida = $u_ida;
+            $tempo->u_vuelta = $u_vuelta;
+            $tempo->u_total = $u_total;
+
+            $tempo->f_aloja = $f_aloja;
+            $tempo->n_aloja = $n_aloja;
+            $tempo->aloja_total = $aloja_total;
+
             $tempo->mrequerimientos_id = 1;
             $tempo->user_create = $usuario_id;
             $tempo->created = $hoy;
@@ -528,7 +565,7 @@ switch ($action){
                         <i class="icon fa fa-check"></i>
                         Alerta!
                         </h4>
-                        Se registro al participante exitosamente !.
+                        Se registro al personal exitosamente !.
                         </div>');
 
                   }else{
@@ -540,7 +577,7 @@ switch ($action){
                         <i class="icon fa fa-ban"></i>
                         Alerta!
                         </h4>
-                        Error al registrar al participante.
+                        Error al registrar al personal.
                         </div>');
 
                   }
@@ -792,7 +829,7 @@ switch ($action){
                     } 
 
                     $consultada=Mvictima::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
-                    if( $consultada!=null) {
+
                         foreach ($consultada as $activoros) {
                                                 
                           $activoros->user_modify = $usuario_id;
@@ -801,7 +838,7 @@ switch ($action){
                           $activoros->save();
 
                         }    
-                    }  
+                      
 
         }
 

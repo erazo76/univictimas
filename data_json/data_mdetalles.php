@@ -3,7 +3,7 @@ require_once '../models/Mdetalle.php';
 
 
 	$result = array();
-	$data = Mdetalle::find_by_sql("select id,cid,d_tipo,d_concepto,d_cantidad,d_medida,d_obs,mrequerimientos_id,status from mdetalles WHERE status=1 AND mrequerimientos_id=1 order by id desc;");
+	$data = Mdetalle::find_by_sql("select id,cid,d_tipo,d_concepto,d_cantidad,d_medida,d_costo,d_obs,mrequerimientos_id,status from mdetalles WHERE status=1 AND mrequerimientos_id=1 order by id desc;");
 	$items = 0;
 
 	foreach ($data as &$rs) {
@@ -12,7 +12,8 @@ require_once '../models/Mdetalle.php';
 			case '0':	$tipo='SALONES';break;
 			case '1':	$tipo='ALIMENTACIÓN';break;	
 			case '2':	$tipo='MATERIALES';	break;
-			case '3':	$tipo='COTIZABLES';	break;				
+			case '3':	$tipo='COTIZABLES';	break;
+			case '4':	$tipo='PERSONAL';	break;				
 		}
 
 		switch ($rs->d_medida) {
@@ -32,7 +33,8 @@ require_once '../models/Mdetalle.php';
 					    					 "tipo"=>$tipo,
 					     					 "concepto"=>$rs->d_concepto,
 		                            	     "cantidad"=>$rs->d_cantidad,
-		                            	     "medida"=>$tipo2,
+											 "medida"=>$tipo2,
+											 "costo"=>$rs->d_costo,
 		                            	     "observaciones"=>$rs->d_obs
 
 		                         ));

@@ -776,7 +776,7 @@ break;
                     } 
 
                     $consultada=Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
-
+                    if( $consultada!=null) {
                         foreach ($consultada as $activoros) {
                                                 
                           $activoros->user_modify = $usuario_id;
@@ -785,7 +785,7 @@ break;
                           $activoros->save();
 
                         }    
-                      
+                      }   
 
         }
 

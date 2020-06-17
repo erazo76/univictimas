@@ -15,13 +15,31 @@ date_default_timezone_set('America/Bogota');
 @$concepto = ($_POST["concepto"]);
 @$cantidad = ($_POST["cantidad"]);
 @$medida = ($_POST["medida"]);
+@$costo = ($_POST["costo"]);
 @$observaciones = ($_POST["observaciones"]);
 //@$distribuidora = ($_POST["distribuidora"]);
 @$busco = ($_POST["busco"]);
 /**********************************/
 
 switch ($action){
+  
+    case 'sumar_costo':
 
+      @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = 1 and status = 1');
+
+    if($data !=null){
+      foreach($data as $rs){
+        if($rs->tot_cos==null){
+          $contados=0;
+        }else{
+        $contados = $rs->tot_cos;      
+        }
+      }        
+    }
+
+      
+      echo json_encode($contados);
+  break;
   case 'add':
 
       if($nombre ==""){
@@ -316,6 +334,7 @@ switch ($action){
                   "concepto"=>$rs->d_concepto,
                   "cantidad"=>$rs->d_cantidad,
                   "medida"=>$rs->d_medida,
+                  "costo"=>$rs->d_costo,
                   "observaciones"=>$rs->d_obs
 
             );
@@ -504,6 +523,17 @@ switch ($action){
             Ingrese la unidad de medida del item.
             </div>');
 
+      }else  if($costo ==""){
+
+        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Ingrese el costo del item.
+            </div>');
+
       }else  if($observaciones ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
@@ -526,6 +556,8 @@ switch ($action){
             $tempo->d_concepto = $concepto;
             $tempo->d_cantidad = $cantidad;
             $tempo->d_medida = $medida;
+            $tempo->d_costo = $costo;
+            $tempo->d_costo_t = $costo*$cantidad;
             $tempo->d_obs = $observaciones;
             $tempo->mrequerimientos_id = 1;
             $tempo->user_create = $usuario_id;
@@ -803,6 +835,7 @@ switch ($action){
 
                     $consultada=Mdetalle::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
 
+                    if( $consultada!=null) {
                         foreach ($consultada as $activoros) {
                                                 
                           $activoros->user_modify = $usuario_id;
@@ -811,7 +844,7 @@ switch ($action){
                           $activoros->save();
 
                         }    
-                      
+                      } 
 
         }
 

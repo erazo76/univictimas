@@ -96,6 +96,9 @@
 //------------------------------------------------------------------------------------------------------------
 $constante ["js_datatable"] = '<script type="text/javascript" src="../../plugins/datatables/jquery.dataTables.js"></script>';
 $constante ["js_boo_datatable"] = '<script type="text/javascript" src="../../plugins/datatables/dataTables.bootstrap.js"></script>';
+
+
+
 //------------------------------------------------------------------------------------------------------------
 //    <!-- Optionally, you can add Slimscroll and FastClick plugins.
 //          Both of these plugins are recommended to enhance the

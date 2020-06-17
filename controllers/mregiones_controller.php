@@ -1,6 +1,7 @@
 <?php
 require_once '../models/Mregione.php';
 require_once '../models/Mdistribuidora.php';
+require_once '../models/Mdepartamento.php';
 date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
@@ -9,6 +10,7 @@ date_default_timezone_set('America/Bogota');
 /***********************************/
 @$nombre = ($_POST["nombre"]);
 @$distribuidora = ($_POST["distribuidora"]);
+@$departamento = ($_POST["departamento"]);
 /**********************************/
 
 switch ($action){
@@ -335,23 +337,20 @@ switch ($action){
         $usuario_id = $_SESSION['idusuariox'];
         $rol = $_SESSION['rolx'];
 
-    if($rol ==3 ){
+   
 
-      @$data = Mdistribuidora::find('all',array('conditions' => array('id=?',$distribuidora)));
+      @$data = Mdepartamento::find('all',array('conditions' => array('cdd=?',$departamento)));
 
       if($data !=null){
 
         foreach($data as $rs){
 
-          $resp = array(
-                  "region"=>$rs->mregiones_id
-
-                 );
+          $resp = $rs->mregiones_id;
+                
         }
 
-        echo json_encode($resp);
-       }
-    }
+        echo $resp; exit();    
+      }
 
     break;
 

@@ -31,7 +31,7 @@ ValidaSession("../login");
 				</div><!-- /.box-header -->
 		  		<div class="box box-primary">
 						<input type="hidden" id="distribuidora" value="<?php echo intval($_SESSION['distribuidora']); ?>">
-						<input type="hidden" id="region" value="<?php echo intval($_SESSION['region']); ?>">
+						<input type="hidden" id="region">
 						<input type="hidden" id="lata" value=6.12>
 						<input type="hidden" id="longa" value=-67.39>
 						<input type="hidden" id="ideado">
@@ -74,7 +74,7 @@ ValidaSession("../login");
 
 							<div class="form-group-sm">
 								<label>Municipio</label>
-								<select id="municipio" class="form-control bbb" tabindex="6">
+								<select name="munir" id="municipio" class="form-control bbb" tabindex="6">
 								<option></option>
 								</select>
 							</div>
@@ -491,6 +491,7 @@ ValidaSession("../login");
 										<th>Concepto</th>
 										<th>Cantidad</th>
 										<th>Medida</th>
+										<th>Costo Unitario</th>
 										<th>Observaciones</th>
 									</tr>
 								</thead>
@@ -545,7 +546,8 @@ ValidaSession("../login");
 										<option value="2">Terrestre urbano</option>
 									</select>
 								</div>								
-
+									<button id="a_tra" type="button" class="btn btn-primary " tabindex="53" style="width: 100%;display: none;" disabled><i  class="fa fa-fw  fa-hotel"></i>|<i  class="fa fa-fw  fa-plane"></i>Asignación transporte/alojamiento</button>
+									
 								<label class="guardia81" tabindex="0" style="color: #FFF">.</label>
 							
 						
@@ -559,7 +561,7 @@ ValidaSession("../login");
 
 						<label id="prueba">Archivos adjuntos</label>
 						
-						<ul class="list-group" style="height: 150px;overflow:auto;" id="ul_adj">
+						<ul class="list-group" style="height: 125px;overflow:auto;" id="ul_adj">
 			
 						</ul>
 						
@@ -575,18 +577,267 @@ ValidaSession("../login");
 					<div class="focusguard" id="guardia2" tabindex="57"></div>
 				</div><!-- /.box-body -->
 
+				<div class="box-header with-border">
+					<h3 class="box-title">Resumen de costo</h3>
+				</div><!-- /.box-header -->
+				<div class="box box-primary">
+					<div class="box-body">	
+						<label>Total</label>
+						<div class="form-group-sm">
+							<input type="text" class="form-control pesos" id="totalite" disabled>
+						</div>
+
+					</div>
+				</div>
 			</div>
 		</li>
 
-		<li id="tres"><!--################################## DATOS PUBLICITARIOS Y DE ACTIVOS ##################################  -->
+		<li id="tres"><!--################################## DATOS ALOJAMIENTO Y TRANSPORTE ##################################  -->
 
-			<div class="col-md-4">
+			<div class="col-md-4" style="display: none;">
+				<div class="box-header with-border">
+					<h3 class="box-title">Datos del personal</h3>
+				</div><!-- /.box-header -->
+				<div class="box box-primary">
+					<div class="box-body">			
+					
+						<div class="form-group-sm">
+							<label>Nombre del personal</label>
+							<input type="text" class="form-control" id="nomb_p" placeholder="Nombre completo"  onpaste="return false" tabindex="550" onkeypress="return esnombre5(event);"  onblur="alsalir(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nomb_p'><p></p></div>
+						</div>
+						
+						<div class="form-group-sm">
+							<label >Documento de Identidad</label>
+								<div class = "input-group">
 
-		 	</div>
+									<span class="input-group-btn">
+										<select id="t_doc_p" class="btn-sm"  tabindex="555"  >
+											<option value="0">CC</option>
+											<option value="1">CE</option>
+											<option value="2">PA</option>
+										</select>
+									</span>
 
-			<div class="col-md-8">
-		 
+									<input type="text" class="form-control" id="num_doc_p" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="560" onkeypress="return escedula5(event);" onblur="alsalira(this.id)">
+								</div>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_doc_p'><p></p></div>
+						</div>	
+
+						<div class="form-group-sm">
+							<label for="tele2">Teléfono de contacto</label>
+							<input type="text" class="form-control" id="tele5" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="565" onkeypress="return estele5(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele5' class="aaa"></div>
+						</div>
+
+							<div id="confirma_telefono5">
+								<ul><li id="conf_tel5" style="color:#fff;text-align:center" ></li></ul>
+							</div>	
+
+							<div class="form-group-sm">
+							  <label for="depa2">Departamento</label>
+							  <input type="text" class="form-control" id="depa2" placeholder="Departamento"  onpaste="return false" disabled="true">
+							</div>
+
+							<div class="form-group-sm">
+							  <label for="muni2">Municipio</label>
+							  <input type="text" class="form-control" id="muni2" placeholder="Municipio"  onpaste="return false" disabled="true">
+							</div>
+
+					</div>
+				</div>
+
+				<div class="box-header with-border">
+					<h3 class="box-title">Lista de personal</h3>
+				</div><!-- /.box-header -->
+
+				<div class="box box-primary" >			
+					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+							<table id="tabla5" class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Nombre y apellido </th>
+										<th>Nro. Documento</th>
+										<th>teléfono</th>
+										<th>Correo-e</th>
+										<th>Departamento</th>
+										<th>Municipio</th>
+										<th>Ruta aérea</th>
+										<th>Costo aéreo</th>
+										<th>Ruta T./F. intermunicipal</th>
+										<th>Costo T./F intermunicipal</th>
+										<th>Ruta T. urbana </th>																		
+										<th>Costo T. urbana</th>
+										<th>Alojamiento</th>
+										<th>Costo Alojamiento</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+					</div>
+				
+					<div class="box-footer">
+						<button id="quitar5" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+					</div>
+				</div>
 			</div>
+
+			<div class="col-md-4" id="t_oculto" style="display: none;">
+				<div class="box-header with-border">
+					<h3 class="box-title">Transporte</h3>
+				</div><!-- /.box-header -->
+				<div class="box box-primary">
+					<div class="box-body">
+
+					<div id="ta_dido" style="display:none;">	
+						<div class="form-group-sm">
+							<label>Ruta Aérea</label>
+							<input type="text" class="form-control" id="r_aereo" placeholder="Ruta aérea"  onpaste="return false" tabindex="570" onkeypress="return esruta3(event);"  onblur="alsalir(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_aereo'><p></p></div>
+						</div>
+
+						<label>Salida y llegada</label>
+						<div class="input-group">
+							<input class="form-control" id="f_ida" data-date-format="dd-mm-yyyy" placeholder="Fecha de salida" type="text" onpaste="return false" tabindex="575">	
+							<span class="input-group-btn" tabindex="-1" style="width:40px;"></span>
+							<input class="form-control" id="h_ida" type="time" onpaste="return false" tabindex="576" min="05:00" max="22:00">
+						</div>
+						<div class="input-group">
+							<input class="form-control" id="f_vuelta" data-date-format="dd-mm-yyyy" placeholder="Fecha de llegada" type="text" onpaste="return false" tabindex="580">
+							<span class="input-group-btn" tabindex="-1" style="width:40px;"></span>
+							<input class="form-control" id="h_vuelta" type="time" onpaste="return false" tabindex="582" min="05:00" max="22:00">
+						</div>
+
+						<label>Costo ida/vuelta</label>
+						<div class="input-group">
+							<input type="text" class="form-control pesos" id="a_ida" placeholder="Costo de ida"  onpaste="return false" tabindex="583" onblur="alsalir(this.id)" autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+							<input type="text" class="form-control pesos" id="a_vuelta" placeholder="Costo de vuelta"  onpaste="return false" tabindex="584" onblur="alsalir(this.id)" autocomplete="off">
+						</div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_ida'><p></p></div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_vuelta'><p></p></div>				
+						<div class="form-group-sm">
+
+							<label>Costo transporte aéreo</label>
+							<input type="text" class="form-control pesos" id="a_total" placeholder="Costo Total"  onpaste="return false" tabindex="585" onblur="alsalir(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_total'><p></p></div>
+						</div>
+					</div>
+
+					<div id="tm_dido" style="display:none;">	
+						<div class="form-group-sm">
+							<label>Ruta terrestre/fluvial intermunicipal</label>
+							<input type="text" class="form-control" id="r_terrestre" placeholder="Ruta terreste o fluvial"  onpaste="return false" tabindex="670" onkeypress="return esruta1(event);"  onblur="alsalir(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nomb_p'><p></p></div>
+						</div>
+
+						<label>Costo ida/vuelta</label>
+						<div class="input-group">
+							<input type="text" class="form-control pesos" id="r_ida" placeholder="Costo de ida"  onpaste="return false" tabindex="675" onblur="alsalir(this.id)" autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+							<input type="text" class="form-control pesos" id="r_vuelta" placeholder="Costo de vuelta"  onpaste="return false" tabindex="680" onblur="alsalir(this.id)" autocomplete="off">
+						</div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_ida'><p></p></div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_vuelta'><p></p></div>
+					
+						<div class="form-group-sm">
+							<label>Costo transporte terrestre/fluvial</label>
+							<input type="text" class="form-control pesos" id="r_total" placeholder="Costo Total"  onpaste="return false" tabindex="685" onblur="alsalir(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_total'><p></p></div>
+						</div>
+					</div>
+
+					<div id="tu_dido" style="display:none;">	
+						<div class="form-group-sm">
+							<label>Ruta terrestre urbana</label>
+							<input type="text" class="form-control" id="u_terrestre" placeholder="Ruta urbana"  onpaste="return false" tabindex="870" onkeypress="return esruta2(event);"  onblur="alsalir(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_terrestre'><p></p></div>
+						</div>
+
+						<label>Costo ida/vuelta</label>
+						<div class="input-group">
+							<input type="text" class="form-control pesos" id="u_ida" placeholder="Costo de ida"  onpaste="return false" tabindex="875" onblur="alsalir(this.id)" autocomplete="off">
+							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+							<input type="text" class="form-control pesos" id="u_vuelta" placeholder="Costo de vuelta"  onpaste="return false" tabindex="880" onblur="alsalir(this.id)" autocomplete="off">
+						</div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_ida'><p></p></div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_vuelta'><p></p></div>
+						
+						<div class="form-group-sm">
+							<label>Costo transporte urbano</label>
+							<input type="text" class="form-control pesos" id="u_total" placeholder="Costo Total"  onpaste="return false" tabindex="885" onblur="alsalir(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_total'><p></p></div>
+						</div>
+					</div>
+					<button id="t_guarda1" type="button" class="btn btn-success t_ocu1 t_guarda1"><i class="fa fa-fw fa-save"></i>Agregar</button>
+					<button id="t_ocul" type="button" class="btn btn-primary pull-right t_ocu1"><i class="fa fa-fw fa-reply"></i>Regresar</button>
+											
+					</div>
+				</div>
+			</div>
+
+		 	
+
+			<div class="col-md-4" style="display: none;">
+				<div id="a_oculto" style="display: none;">
+				<div class="box-header with-border">
+					<h3 class="box-title">Alojamiento</h3>
+				</div><!-- /.box-header -->
+				<div class="box box-primary">
+
+
+					<div class="box-body">		
+
+						<label>Arribo/Nro. de Noches </label>
+						<div class="input-group">
+							<input class="form-control" id="f_aloja" data-date-format="dd-mm-yyyy" placeholder="Fecha de arribo" type="text" onpaste="return false" tabindex="900">	
+								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+							<input type="text" class="form-control" id="n_aloja" placeholder="Nro. de noches"  onpaste="return false" tabindex="905" onblur="alsalir(this.id)" autocomplete="off">
+						</div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_n_aloja'><p></p></div>
+
+
+						<div class="form-group-sm">
+							<label>Costo de alojamiento</label>
+							<input type="text" class="form-control pesos" id="aloja_total" placeholder="Costo Total"  onpaste="return false" tabindex="910" onblur="alsalir(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_aloja_total'><p></p></div>
+						</div>
+
+					<button id="t_guarda2" type="button" class="btn btn-success t_guarda1"><i class="fa fa-fw fa-save"></i>Agregar</button>
+					<button id="t_ocu2" type="button" class="btn btn-primary pull-right"><i class="fa fa-fw fa-reply"></i>Regresar</button>		
+					</div>
+				</div>
+				</div>
+				<div class="box-header with-border">
+					<h3 class="box-title">Resumen de costo</h3>
+				</div><!-- /.box-header -->
+				<div class="box box-primary">
+					<div class="box-body">	
+
+						<label>Personal</label>
+						<div class="form-group-sm">
+							<input type="text" class="form-control pesos" id="total_total1" disabled>
+						</div>
+						<label>Sub-total Transporte </label>
+						<div class="form-group-sm">
+							<input type="text" class="form-control pesos" id="total_t" disabled>
+						</div>
+
+						<label>Sub-total alojamiento </label>
+						<div class="form-group-sm">
+							<input type="text" class="form-control pesos" id="total_a" disabled>
+						</div>
+
+						<label>Total</label>
+						<div class="form-group-sm">
+							<input type="text" class="form-control pesos" id="total_total" disabled>
+						</div>
+
+					</div>
+				</div>
+			</div>		 
 
 	    </li>
 	</ul>
@@ -621,6 +872,7 @@ ValidaSession("../login");
 									<option value="1">Alimentación</option>
 									<option value="2">Materiales</option>
 									<option value="3">Cotizables</option>
+									<option value="4">Personal</option>
 								</select>
 							</div>
 
@@ -650,6 +902,12 @@ ValidaSession("../login");
 									<option value="7">Litros</option>
 									<option value="8">Galones</option>
 								</select>
+							</div>
+
+							<div class="form-group-sm">
+								<label>Costo unitario</label>
+								<input type="text"  class="form-control" id="d_costo"  placeholder="Indique el costo"  onpaste="return false" onkeypress="return esdcantidad2(event);" onblur="alsalir(this.id)" autocomplete="off">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_costo' ></div>
 							</div>
 
 							<div class="form-group-sm">
@@ -852,9 +1110,15 @@ $(document).ready(function() {
 		var parsedJson = $.parseJSON(data);
 		var numstring=parsedJson.toString();
 		var res = numstring.padStart(4, 0);
-
+//alert(parsedJson);
 		$("#n_accion").val( res );
 		$("#ideado").val( numstring );
+	},"json");
+
+	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
+		var parsedJson = $.parseJSON(data);
+		var cos_tot=parsedJson;
+		$("#totalite").val( cos_tot );
 	},"json");
 
 });
@@ -863,6 +1127,7 @@ $(document).ready(function() {
 
 //MASCARAS DE VALIDACION ########################################
 
+$('.pesos').mask('#.##0,00', {reverse: true});
 
 $('#tele1').mask('A00-000-0000', {
 
@@ -923,6 +1188,7 @@ $("#derecha" ).click(function() {
 		//var cont_alert = $('.aaa p:contains("") ').size();
 //alert(cont_alert);
 			document.getElementById('derecha').disabled = true;
+			$("#derecha").css("display", "none");
 		//if(cont_alert!=0){
 			if(cont_alert > 30){	
 			//alert('existen campos vacios');
@@ -943,6 +1209,7 @@ $("#derecha" ).click(function() {
 			$('.base').unslider('animate:1');
 			tick=1;
 			document.getElementById('izquierda').disabled = false;
+			$("#izquierda").css("display", "block");
 			
 
 			setTimeout(function() {
@@ -974,6 +1241,7 @@ $("#derecha" ).click(function() {
 			
 			//tick=2;
 			document.getElementById('derecha').disabled = false;
+			$("#derecha").css("display", "block");
 			setTimeout(function() {
 				document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 			}, 800);			
@@ -991,7 +1259,9 @@ $("#izquierda" ).click(function() {
 		$('.base').unslider('animate:0');
 		tick=0;
 		document.getElementById('izquierda').disabled = true;
+		$("#izquierda").css("display", "none");
 		document.getElementById('derecha').disabled = false;
+		$("#derecha").css("display", "block");
 		setTimeout(function() {
 			document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 		}, 800);
@@ -1001,6 +1271,7 @@ $("#izquierda" ).click(function() {
 		$('.base').unslider('animate:1');
 		tick=1;
 		document.getElementById('derecha').disabled = false;
+		$("#derecha").css("display", "block");
 		setTimeout(function() {
 			document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 		}, 800);
@@ -1151,6 +1422,36 @@ $("#izquierda" ).click(function() {
 
 		});
 
+
+		$('#f_ida').datepicker({
+			startDate: '+0d',
+    		todayBtn: false,
+		    todayHighlight: true,
+		    autoclose: true,
+			language: 'es',
+			showOnFocus: true
+
+		});
+
+		$('#f_vuelta').datepicker({
+			startDate: '+0d',
+    		todayBtn: false,
+		    todayHighlight: true,
+		    autoclose: true,
+			language: 'es',
+			showOnFocus: true
+
+		});
+
+		$('#f_aloja').datepicker({
+			startDate: '+0d',
+    		todayBtn: false,
+		    todayHighlight: true,
+		    autoclose: true,
+			language: 'es',
+			showOnFocus: true
+
+		});
 	
 		$("#InputFile").change(function(){
 		    readURL(this);
@@ -1183,7 +1484,9 @@ $("#izquierda" ).click(function() {
 				    setTimeout(function() {
 				
 						document.getElementById('izquierda').disabled = false;
+						$("#izquierda").css("display", "block");
 						document.getElementById('derecha').disabled = true;
+						$("#derecha").css("display", "none");
 				    	tick=1;
 						$('#guardia78').focus();
 						//document.getElementById("tipo1").focus();
@@ -1249,6 +1552,7 @@ $("#izquierda" ).click(function() {
 						
 				    	$('#prueba').focus();
 				    	document.getElementById('derecha').disabled = true;
+						$("#derecha").css("display", "none");
 				    	tick=2;
 						document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 				    }, 800);					
@@ -1263,12 +1567,30 @@ $("#izquierda" ).click(function() {
 
 			enableClickableOptGroups: true,
 			enableCollapsibleOptGroups: false,
+			onChange: function(element, checked, option) {
+				var selecto=(element.val());
+				if(checked === true) {
+
+					//if(selecto==0){$('#ta_dido').css('display','block');}
+				//	if(selecto==1){$('#tm_dido').css('display','block');}
+				//	if(selecto==2){$('#tu_dido').css('display','block');}
+
+				}else if(checked === false){
+
+					if(selecto==0){$('#ta_dido').css('display','none');}
+					if(selecto==1){$('#tm_dido').css('display','none');}
+					if(selecto==2){$('#tu_dido').css('display','none');}
+
+				}
+
+			},
 			maxHeight: 180,
 			inheritClass: true,
 			nonSelectedText: 'Seleccione tipo de transporte',
 			buttonWidth: '100%'
 
 		});
+
 
 		
 		$('#tipo1').on('change', function () {
@@ -1345,6 +1667,88 @@ $("#izquierda" ).click(function() {
 
 		// ********************************************************************************************
 
+
+
+
+		$("#a_tra" ).click(function(){
+
+			if($('#transporte').prop('checked')== true && $('#t_trans option:selected').length==0){
+				
+				$.alert({
+						    title: 'Debe indicar al menos un tipo de transporte!',
+						    content: false,
+						    confirmButton: true, // hides the confirm button.
+						    closeIcon: false,
+						    confirmButton: 'cerrar',
+						    confirmButtonClass: 'btn-success'
+						});
+			}else{
+				$('.base').unslider('animate:2');
+				document.getElementById('izquierda').disabled = true;
+				$("#izquierda").css("display", "none");
+			}
+
+		});
+
+		$("#t_ocul" ).click(function(){
+
+			$.confirm({
+						    title: '¡Esta acción borrará los datos no registrados!.¿Desea continuar?',
+						    content:false,
+						    confirmButton: 'Si',
+						    cancelButton: 'No',
+						    confirmButtonClass: 'btn-primary',
+    						    cancelButtonClass: 'btn-success',
+
+						    confirm: function(){
+								$('.base').unslider('animate:1');
+								document.getElementById('izquierda').disabled = false;
+								$("#izquierda").css("display", "block");
+								$('#ta_dido').css('display','none');
+								$('#tm_dido').css('display','none');
+								$('#tu_dido').css('display','none');
+								document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+								$('#t_trans').multiselect('deselect', ['0']);
+								$('#t_trans').multiselect('deselect', ['1']);
+								$('#t_trans').multiselect('deselect', ['2']);
+							},
+
+						    cancel: function(){
+
+							}
+			});	
+		});
+
+
+		$("#t_ocu2" ).click(function(){
+			$.confirm({
+						    title: '¡Esta acción borrará los datos no registrados!.¿Desea continuar?',
+						    content:false,
+						    confirmButton: 'Si',
+						    cancelButton: 'No',
+						    confirmButtonClass: 'btn-primary',
+    						    cancelButtonClass: 'btn-success',
+
+						    confirm: function(){
+								$('.base').unslider('animate:1');
+								document.getElementById('izquierda').disabled = false;
+								$("#izquierda").css("display", "block");
+								$('#ta_dido').css('display','none');
+								$('#tm_dido').css('display','none');
+								$('#tu_dido').css('display','none');
+								document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+								$('#t_trans').multiselect('deselect', ['0']);
+								$('#t_trans').multiselect('deselect', ['1']);
+								$('#t_trans').multiselect('deselect', ['2']);
+							},
+
+						    cancel: function(){
+
+							}
+			});	
+
+		});
+
 		$("#transporte") .change(function() {
 
 			if( $('#transporte').prop('checked')== true ) {
@@ -1352,6 +1756,10 @@ $("#izquierda" ).click(function() {
 				$("#msg_trans").val("Requiere transporte");
 				$("#trans").val(1);
 				$("#noveo").css("display", "block");
+				//document.getElementById("a_tra").disabled=false;
+				$("#t_oculto").css("display", "block");
+				
+				
 
 			}else{
 
@@ -1361,8 +1769,18 @@ $("#izquierda" ).click(function() {
 				$('#t_trans').multiselect('deselect', ['0']);
 				$('#t_trans').multiselect('deselect', ['1']);
 				$('#t_trans').multiselect('deselect', ['2']);
+				$("#t_oculto").css("display", "none");
+					if ($('#alojamiento').prop('checked')== true){	
+						//document.getElementById("a_tra").disabled=false;
+						
+						
+					}else{
+						//document.getElementById("a_tra").disabled=true;
+						
+					}
 
 			}
+
 
 		});
 
@@ -1372,14 +1790,27 @@ $("#izquierda" ).click(function() {
 
 				$("#msg_aloja").val("Requiere alojamiento");
 				$("#aloja").val(1);
-
-			}else{
+				//document.getElementById("a_tra").disabled=false;
+				$("#a_oculto").css("display", "block");
+				$(".t_ocu1").css("display", "none");
+			}else{ 
 
 				$("#msg_aloja").val("No requiere alojamiento");
-				$("#aloja").val(0);
+				$("#aloja").val(0);				
+				$("#a_oculto").css("display", "none");
+					if ($('#transporte').prop('checked')== true ){		
+					//	document.getElementById("a_tra").disabled=false;
+						
+					}else{
+						//document.getElementById("a_tra").disabled=true;
+						
+					}
+				$(".t_ocu1").css("display", "block");	
 			}
 
 		});
+
+		
 
 		$("#aruta" ).change(function() {
 
@@ -1457,7 +1888,9 @@ $("#izquierda" ).click(function() {
 												{ "data": "concepto" },
 												{ "data": "cantidad" },
 												{ "data": "medida" },
+												{ "data": "costo" },
 												{ "data": "observaciones" }
+												
 												
 											],
 										//"order": [[ 0, "asc" ]],
@@ -1525,6 +1958,59 @@ $("#izquierda" ).click(function() {
 								});
 
 
+								var table5 = $('#tabla5').dataTable({
+										  	
+											  //"destroy": true,
+	
+											  "ajax": {
+												"url": "../../data_json/data_mtransportes",
+												"dataSrc": ""
+											  },
+											  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
+
+														$('td:eq(0)', nRow).css('opacity','0');
+
+														return nRow;
+														},
+											  "scrollX": true,
+											  "scrollY": "130px",
+											  "columns": [			
+													{ "data": "id" },
+													{ "data": "nombre" },
+													{ "data": "documento" },
+													{ "data": "telefono" },
+													{ "data": "correo" },
+													{ "data": "departamento" },
+													{ "data": "municipio" },
+													{ "data": "aerea" },
+													{ "data": "c_aerea" },
+													{ "data": "terflu" },
+													{ "data": "c_terflu" },
+													{ "data": "turba" },
+													{ "data": "c_turba" },
+													{ "data": "alojam" },
+													{ "data": "c_alojam" }													
+												],
+											//"order": [[ 0, "asc" ]],
+											"bPaginate": false,
+											"info":     false,
+											"bFilter": false
+	
+											  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
+										});
+	
+	
+								$('#tabla5 tbody').on( 'click', 'tr', function () {
+	
+									if ( $(this).hasClass('selected') ) {
+										$(this).removeClass('selected');
+									}
+									else {
+										table.$('tr.selected').removeClass('selected');
+										$(this).addClass('selected');
+									}
+								});
+
 
 
 		$("#close1").click(function() {
@@ -1536,6 +2022,7 @@ $("#izquierda" ).click(function() {
 					concepto: $('#d_concepto').val(),
 					cantidad: $('#d_cantidad').val(),
 					medida: $('#d_medida').val(),
+					costo: $('#d_costo').val(),
 					observaciones: $('#d_obs').val()
 
 				}).done(function(data){
@@ -1553,11 +2040,18 @@ $("#izquierda" ).click(function() {
 							$("#d_cantidad").val(null);
 							$("#d_medida").val(null);
 							$("#d_obs").val(null);
+							$("#d_costo").val(null);
 
 							$('#tabla').DataTable().ajax.reload();
  							$(".alert").alert('close');
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
+
+							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
+								var parsedJson = $.parseJSON(data);
+								var cos_tot=parsedJson;
+								$("#totalite").val( cos_tot );
+							},"json");
 
 					    }, 3000);
 
@@ -1569,6 +2063,96 @@ $("#izquierda" ).click(function() {
 		    //$('#activo').focus();
 
 		});
+
+		$(".t_guarda1").click(function() {
+
+					$.post( "../../controllers/mtransportes_controller", {
+
+						action: "temporal",
+						nomb_p: $('#nomb_p').val(),
+						t_doc_p: $('#t_doc_p').val(),
+						num_doc_p: $('#num_doc_p').val(),
+						tele5: $('#tele5').val(),
+						depa2: $('#depa2').val(),
+						muni2: $('#muni2').val(),
+
+						r_aereo: $('#r_aereo').val(),
+						f_ida: $('#f_ida').val(),
+						h_ida: $('#h_ida').val(),
+						f_vuelta: $('#f_vuelta').val(),
+						h_vuelta: $('#h_vuelta').val(),
+						a_ida: $('#a_ida').val(),
+						a_vuelta: $('#a_vuelta').val(),
+						a_total: $('#a_total').val(),
+
+						r_terrestre: $('#r_terrestre').val(),						
+						r_ida: $('#r_ida').val(),						
+						r_vuelta: $('#r_vuelta').val(),						
+						r_total: $('#r_total').val(),	
+
+						u_terrestre: $('#u_terrestre').val(),
+						u_ida: $('#u_ida').val(),						
+						u_vuelta: $('#u_vuelta').val(),						
+						u_total: $('#u_total').val(),
+
+						f_aloja: $('#f_aloja').val(),						
+						n_aloja: $('#n_aloja').val(),						
+						aloja_total: $('#aloja_total').val()
+						
+
+					}).done(function(data){
+
+						var parsedJson = $.parseJSON(data);
+						$(".message").html(parsedJson.mensaje);
+
+						if(parsedJson.resultado != 'error'){
+
+							
+							setTimeout(function(){
+
+								$('#nomb_p').val(null);
+								$('#t_doc_p').val(0);
+								$('#num_doc_p').val(null);
+								$('#tele5').val(null);
+
+								$('#r_aereo').val(null);
+								$('#f_ida').val(null);
+								$('#h_ida').val(null);
+								$('#f_vuelta').val(null);
+								$('#h_vuelta').val(null);
+								$('#a_ida').val(0);
+								$('#a_vuelta').val(0);
+								$('#a_total').val(0);
+
+								$('#r_terrestre').val(null);						
+								$('#r_ida').val(0);						
+								$('#r_vuelta').val(0);						
+								$('#r_total').val(0);	
+
+								$('#u_terrestre').val(null);
+								$('#u_ida').val(0);						
+								$('#u_vuelta').val(0);						
+								$('#u_total').val(0);
+
+								$('#f_aloja').val(null);						
+								$('#n_aloja').val(0);						
+								$('#aloja_total').val(0);
+
+								$('#tabla5').DataTable().ajax.reload();
+								$(".alert").alert('close');
+								$("#nomb_p").focus();
+
+							}, 2000);
+
+						}else{
+
+						}
+
+					},"json");
+					//$('#activo').focus();
+
+		});	
+
 
 		$("#close2").click(function() {
 
@@ -1812,6 +2396,7 @@ $("#izquierda" ).click(function() {
 			$("#d_concepto").val(null);
 			$("#d_cantidad").val(null);
 			$("#d_medida").val(null);
+			$("#d_costo").val(null);
 			$("#d_obs").val(null);
 
 		});
@@ -1838,6 +2423,12 @@ $("#izquierda" ).click(function() {
 
 		});
 
+
+		const formatterPeso = new Intl.NumberFormat('es-CO', {
+			style: 'currency',
+			currency: 'COP',
+			minimumFractionDigits: 0
+    	 });
 
 		$("#agregar").click(function() {
 			$('#modal1').modal({backdrop: 'static',keyboard: false});
@@ -1876,6 +2467,7 @@ $("#izquierda" ).click(function() {
 			
 			
 			$("#depa" ).val($('select[name="depar"] option:selected').text());
+			$("#depa2" ).val($('select[name="depar"] option:selected').text());
 				
 				$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios",departamento: $("#departamento").val()}).done(function( data ) {
 					 $("#municipio" ).html( data );
@@ -1885,13 +2477,22 @@ $("#izquierda" ).click(function() {
 				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
 					 $("#cpoblado" ).html( data );
 
-				});					
+				});	
 
+				$.post( "../../controllers/mregiones_controller", { action: "get_regi",departamento:$("#departamento").val()}).done(function( data ) {
+					 var parsedJson = $.parseJSON(data);
+					
+					 $("#region").val( parsedJson );	
+		
+					// alert($("#region").val());
+
+				});				
+				
 		});
 
 
 		$('#municipio').change(function(event) {
-			
+			$("#muni2" ).val($('select[name="munir"] option:selected').text());
 				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias",municipio: $("#municipio").val()}).done(function( data ) {
 					 $("#cpoblado" ).html( data );
 
@@ -1942,10 +2543,10 @@ $("#izquierda" ).click(function() {
 
 		});*/
 
-		$.post( "../../controllers/mregiones_controller", { action: "get_regi",distribuidora:<?php echo intval($_SESSION['distribuidora']); ?>}).done(function( data ) {
+		/*$.post( "../../controllers/mregiones_controller", { action: "get_regi",departamento:$("#departamento").val()}).done(function( data ) {
 			 $("#region" ).html( data );
-
-		});
+				alert( $("#region" ).val());
+		});*/
 
 		//** enviar los datos al controlador ***********************************************************
 		$("#save" ).click(function() {
@@ -2009,6 +2610,7 @@ $("#izquierda" ).click(function() {
 					aloja: $("#aloja").val(),
 					trans: $("#trans").val(),
 					t_trans: $("#t_trans").val(),
+					to_total:$("#totalite").val(),
 					region: $("#region").val()
 
 				}).done(function(data){
@@ -2022,14 +2624,18 @@ $("#izquierda" ).click(function() {
 							$('.base').unslider('animate:0');
 							tick=0;
 							document.getElementById('izquierda').disabled = true;
+							$("#izquierda").css("display", "none");
 							document.getElementById('derecha').disabled = false;
+							$("#derecha").css("display", "block");
 						break;
 
 						case "2":
 							$('.base').unslider('animate:1');
 							tick=1;
 							document.getElementById('izquierda').disabled = false;
-							document.getElementById('derecha').disabled = false;
+							$("#izquierda").css("display", "block");
+							document.getElementById('derecha').disabled = true;
+							$("#derecha").css("display", "none");
 						break;
 
 					}
@@ -2364,27 +2970,7 @@ function esreferencia(e) {
 
 }
 
-function espropietario(e) {
 
-	k = (document.all) ? e.keyCode : e.which;
-	if (k==8 || k==0 || k==13) return true;
-	patron = /^[A-ZÑ0-9\ \.\-\']$/;
-	n = String.fromCharCode(k);
-
-                    if(patron.test(n)==''){
-
-                    	document.getElementById('ms_propietario').style.display = 'block';
-                       	document.getElementById("ms_propietario").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
-                        	return patron.test(n);
-
-                    }else{
-
-                       	document.getElementById("ms_propietario").innerHTML = '';
-                       	return patron.test(n);
-
-                    }
-
-}
 
 function estele1(e) {
 
@@ -2518,7 +3104,27 @@ n = String.fromCharCode(k);
 
 }
 
+function escorreo3(e) {
 
+k = (document.all) ? e.keyCode : e.which;
+if (k==8 || k==0 || k==13) return true;
+patron = /[A-ZÑ0-9\_\-\.\+\@\ ]/;
+n = String.fromCharCode(k);
+
+				if(patron.test(n)==''){
+
+					document.getElementById('ms_correo3').style.display = 'block';
+					   document.getElementById("ms_correo3").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+						return patron.test(n);
+
+				}else{
+
+					   document.getElementById("ms_correo3").innerHTML = '';
+					   return patron.test(n);
+
+				}
+
+}
 
 function esdescri(e) {
 
@@ -2607,6 +3213,30 @@ function esdcantidad(e) {
                     }
 
 }
+
+
+function esdcantidad2(e) {
+
+k = (document.all) ? e.keyCode : e.which;
+if (k==8 || k==0 || k==13) return true;
+patron = /^[0-9\.]$/;
+n = String.fromCharCode(k);
+
+				if(patron.test(n)==''){
+
+					document.getElementById('ms_d_costo').style.display = 'block';
+					   document.getElementById("ms_d_costo").innerHTML = 'Use solo nuúmeros y punto decimal';
+						return patron.test(n);
+
+				}else{
+
+					   document.getElementById("ms_d_costo").innerHTML = '';
+					   return patron.test(n);
+
+				}
+
+}
+
 
 function esa_comodato(e) {
 

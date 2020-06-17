@@ -72,6 +72,7 @@ date_default_timezone_set('America/Bogota');
 @$aloja = ($_POST["aloja"]);
 @$trans = ($_POST["trans"]);
 @$t_trans = ($_POST["t_trans"]);
+@$to_total = ($_POST["to_total"]);
 @$region = ($_POST["region"]);
 /***********************************/
 
@@ -478,7 +479,12 @@ break;
             @$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
-            $t_trans1 = implode(",", $t_trans);
+            if($t_trans != null){
+              $t_trans1 = implode(",", $t_trans);
+            }else{
+              $t_trans1 = null;
+            }
+            
 
             $alia = new Mrequerimiento();     
             $alia->nombre = $nombre;
@@ -521,6 +527,7 @@ break;
             $alia->aloja = $aloja;
             $alia->trans = $trans;
             $alia->t_trans = $t_trans1;
+            $alia->costo_total = $to_total;
             $alia->mregiones_id = $region;
 
             $alia->user_create = $usuario_id;
@@ -1511,6 +1518,7 @@ case 'aprobar':
                   "aloja"=>$rs->aloja,
                   "trans"=>$rs->trans,
                   "t_trans"=>$rs->t_trans,
+                  "to_total"=>$rs->costo_total,
                   "region"=>$rs->mregiones_id,
                   "completado"=>$rs->completado
                  );

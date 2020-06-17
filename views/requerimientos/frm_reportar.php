@@ -27,7 +27,7 @@ ValidaSession("../login");
 			<button id="aprobar" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw  fa-check-square-o"></i></button>
 			<button id="edit" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw fa-edit"></i>  </button>
 			<button id="victim" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw  fa-users"></i></button>
-			<button id="ayt" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;"><i  class="fa fa-fw  fa-hotel"></i>|<i  class="fa fa-fw  fa-plane"></i></button>		
+			<!--<button id="ayt" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;"><i  class="fa fa-fw  fa-hotel"></i>|<i  class="fa fa-fw  fa-plane"></i></button>-->		
 			<button id="anexos" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw  fa-files-o"></i></button>
 		</div>
 	</div>
@@ -221,9 +221,10 @@ ValidaSession("../login");
 
 			</div>
 			<div class="contenedorw">
-				<div class="caja1 pg1_4 fgr" >CONCEPTO</div>
-				<div class="caja1 pg4_5 fgr letrap" >UNIDAD DE MEDIDA</div>
-				<div class="caja1 pg5_6 fgr" >CANTIDAD</div>
+				<div class="caja1 pg1_3 fgr" >CONCEPTO</div>
+				<div class="caja1 pg3_4 fgr letrap" >CANTIDAD</div>
+				<div class="caja1 pg4_5 fgr" >UNIDAD DE MEDIDA</div>
+				<div class="caja1 pg5_6 fgr" >COSTO</div>
 				<div class="caja1 pg6_8 fgr" >OBSERVACIONES</div>
 				<div class="caja1 tit_2 fac" >SALONES</div>	
 
@@ -248,6 +249,11 @@ ValidaSession("../login");
 				</div>	
 			</div>
 			<div class="conten_gen" id="cotizables"></div>
+
+			<div class="contenedorx">
+				<div class="caja1 tit_2 fac" >PERSONAL</div>	
+			</div>
+			<div class="conten_gen" id="personal"></div>
 			
 			<div class="contenedorx">
 
@@ -730,7 +736,9 @@ ValidaSession("../login");
 					var r_tipo =parsedJson.tipo;
 					var r_concepto =parsedJson.concepto;
 					var r_cantidad =parsedJson.cantidad;
+					var r_costo =parsedJson.costo;
 					var r_medida =parsedJson.medida;
+
 							switch (r_medida) {
 								case 0:	med='Metros';break;
 								case 1: med='Unidades';break;
@@ -748,24 +756,29 @@ ValidaSession("../login");
 					switch (r_tipo) {
 						case 0:	
 						//insertar div de SALONES						
-						$('#salones').append('<div class="caja1 pg1_4 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg4_5">'+r_cantidad+'</div><div class="caja1 pg5_6">'+med+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#salones').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 					
 						break;
 						case 1:	
 						//insertar div de ALIMENTACION
-						$('#alimentos').append('<div class="caja1 pg1_4 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg4_5">'+r_cantidad+'</div><div class="caja1 pg5_6">'+med+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#alimentos').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 					
 						break;
 						case 2:	
 						//insertar div de MATERIALES
-						$('#materiales').append('<div class="caja1 pg1_4 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg4_5">'+r_cantidad+'</div><div class="caja1 pg5_6">'+med+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#materiales').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 					
 						break;
 						case 3:	
 						//insertar div de CONTABLES
-						$('#cotizables').append('<div class="caja1 pg1_4 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg4_5 p">'+r_cantidad+'</div><div class="caja1 pg5_6">'+med+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#cotizables').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 					
-						break;						
+						break;
+						case 4:	
+						//insertar div de CONTABLES
+						$('#personal').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+					
+						break;							
 					}
 				
 
@@ -1136,7 +1149,7 @@ $(function(){
 				} 
 			});
 
-			$('#ayt').balloon({ 
+		/*	$('#ayt').balloon({ 
 				html: true, 
 					position: 'right',
 					contents: 'ALOJAMIENTO Y TRANSPORTE' ,
@@ -1147,7 +1160,7 @@ $(function(){
 					backgroundColor: '#3366cc',
 					color: '#fff'
 				} 
-			});
+			});*/
 
 			$('#anexos').balloon({ 
 				html: true, 
