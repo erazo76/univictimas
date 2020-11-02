@@ -1121,6 +1121,8 @@ $(document).ready(function() {
 		$("#totalite").val( cos_tot );
 	},"json");
 
+	$("#izquierda").css("display", "none");
+
 });
 
 
@@ -2701,12 +2703,47 @@ function menor(){
 
 		}
 }
-//################################  VALIDACIONES############################################
+//################################  VALIDACIONES  ############################################
 
           //****longitud de campos********************************************
 
 	$(function(){
-		$('#tele2').maxLength(15);$('#tele1').maxLength(15);$('#tele3').maxLength(15);
+
+		$('#tele3').maxLength(15);
+
+		$("#nombre").maxLength(200);
+		$("#acceso1").maxLength(100);
+		$("#acceso2").maxLength(100);
+		$("#num_dir").maxLength(10);		
+		$("#referencia").maxLength(100);
+		$("#rt_nombre1").maxLength(100);
+		$("#rt_nombre2").maxLength(100);
+		$("#rt_apellido1").maxLength(100);
+		$("#rt_apellido2").maxLength(100);		
+		$("#rt_num_doc").maxLength(20);
+		$("#tele1").maxLength(15);
+		$("#correo1").maxLength(150);		
+		$("#otro1").maxLength(100);
+		$("#rn_nombre1").maxLength(100);
+		$("#rn_nombre2").maxLength(100);
+		$("#rn_apellido1").maxLength(100);
+		$("#rn_apellido2").maxLength(100);
+		$("#rn_num_doc").maxLength(20);
+		$("#tele2").maxLength(15);
+		$("#correo2").maxLength(150);
+		$("#afase").maxLength(100);
+		$("#amedida").maxLength(100);
+		$("#idaccion").maxLength(100);
+		$("#entidad").maxLength(100);
+		$("#num_vic").maxLength(5);
+		$("#descripcion").maxLength(200);
+		$("#d_concepto").maxLength(150);
+		$("#d_cantidad").maxLength(8);
+		$("#d_costo").maxLength(15);
+		$("#d_obs").maxLength(200);
+		$("#num_doc2").maxLength(20);
+		$("#correo3").maxLength(150);
+		$("#nombre2").maxLength(100);
 
 	});
 

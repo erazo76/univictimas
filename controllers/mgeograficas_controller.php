@@ -109,7 +109,7 @@ switch ($action){
             }  
 
         }else{
-               $resp = '<option value="">No hay municipios asignados</option>';
+               $resp = 'No hay municipios asignados';
         }
 
          echo $resp;
@@ -124,7 +124,7 @@ switch ($action){
           if($data !=null){
 
             foreach($data as $rs){            
-              $resp = $rs->cdd.'-'.$rs->nombre;           
+              $resp = $rs->cdd.'-'.$rs->nombre;        
             }               
           }else{
                $resp = 'No hay centros poblados asignados';
@@ -132,6 +132,97 @@ switch ($action){
 
          echo $resp;
     break;
+
+ ##############################################################################
+
+ case 'get_departamentos_f':
+  @$data = Mdepartamento::find('all');
+  @$data2 = Mdepartamento::find('all',array('conditions' => array('cdd=?',intval($departamento))));
+
+    foreach($data2 as $rl){
+      @$sel=$rl->cdd;
+    }
+
+  
+    @$resp="";
+  if($data !=null){
+      
+    foreach($data as $rs){
+      if($sel == $rs->cdd){
+          $resp.= '<option value="'.$rs->cdd.'"selected>'.$rs->nombre.'</option>';
+          
+      }else{
+          $resp.= '<option value="'.$rs->cdd.'">'.$rs->nombre.'</option>';
+          
+      }    
+    } 
+    $resp .= '<hidden>';
+    //printf($resp);exit(); 
+  }else{
+         $resp= 0;
+  }
+
+   echo $resp;
+break;
+
+#******************************************************************************
+
+case 'get_municipios_f':
+    @$data = Mmunicol::find('all',array('conditions' => array('mdepartamentos_cdd=?',$departamento)));
+    @$data2 = Mmunicol::find('all',array('conditions' => array('cdd=?',intval($municipio))));
+   
+    @$resp="";
+   
+    if($data2 !=null){
+      foreach($data2 as $rl){
+            @$sel=$rl->cdd;
+      }
+
+        foreach($data as $rs){
+          if($sel==$rs->cdd){
+              $resp.= '<option value="'.$rs->cdd.'"selected>'.$rs->nombre.'</option>';
+              
+          }else{
+              $resp.= '<option value="'.$rs->cdd.'">'.$rs->nombre.'</option>';
+              
+          }    
+        }  
+        $resp.= '<hidden>';
+    }else{
+         $resp.= '<option value="">No hay municipios asignados</option>';
+    }
+
+     echo $resp;
+break;
+
+#******************************************************************************
+
+case 'get_cpoblado_f':
+
+    @$data = Mcpoblado::find('all',array('conditions' => array('mmunicols_cdd=?',$municipio)));
+    @$data2 = Mcpoblado::find('all',array('conditions' => array('cdd=?',intval($cpoblado))));
+    @$resp="";
+    if($data2 !=null){
+      foreach($data2 as $rl){
+            $sel=$rl->cdd;
+      }
+
+        foreach($data as $rs){
+          if($sel==$rs->cdd){
+              $resp.= '<option value="'.$rs->cdd.'"selected>'.$rs->nombre.'</option>';
+              
+          }else{
+              $resp.= '<option value="'.$rs->cdd.'">'.$rs->nombre.'</option>';
+              
+          }    
+        }  
+        $resp .= '<hidden>';             
+    }else{
+        $resp = '<option value="0">No hay centros poblados asignados</option>';
+    }
+
+     echo $resp;
+break;
 
 #******************************************************************************
 

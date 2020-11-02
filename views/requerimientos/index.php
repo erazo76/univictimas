@@ -62,7 +62,7 @@ ValidaSession("../login");
 
 		}
 		//deshabilitar edicion mientras se programa el modulo editar
-		document.getElementById("edit").disabled=true;
+		document.getElementById("edit").disabled=false;
 
 			var table = $('#tabla').dataTable({
 				
