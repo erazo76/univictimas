@@ -14,20 +14,11 @@ ValidaSession("../login");
 
 <form id="form" role="form" enctype="multipart/form-data">
 
-<div class="base">
-
-	<ul>
- 		<li id="uno"> <!--################################## Información General del Evento ##################################  -->
-
-			<!--<div class="col-md-4">
-				<div class="box-header with-border" tabindex="-1">
-					 	<h3 class="box-title">Información General del Evento</h3>
-				</div> 
-			</div>-->
+<div  class="row">
 
 			<div class="col-md-4">
 				<div class="box-header with-border" tabindex="-1">
-					 	<h3 class="box-title">Información General del Evento</h3>
+					 	<h3 class="box-title">Asignación Nro: <label id="n_accion"></label></h3>
 				</div><!-- /.box-header -->
 		  		<div class="box box-primary">
 						<input type="hidden" id="distribuidora" value="<?php echo intval($_SESSION['distribuidora']); ?>">
@@ -39,37 +30,19 @@ ValidaSession("../login");
 						<input type="hidden" id="aloja" value=0>
 						<input type="hidden" id="arutaval" value=0>
 						<input type="hidden" id="apircval" value=0>
-				
-						
+
 						<div class="box-body">
 
 						 	<div class="form-group-sm">
-							  <label for="n_accion">Nro. de Evento</label>
-							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de evento"  onpaste="return false" tabindex="1" disabled>
+							  <label for="fecha1">Fecha </label> 	   
+					          <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="3" disabled="true">
 							</div>
 
 							<div class="form-group-sm">
-							  <label for="nombre">Nombre del Evento</label>
-							  <input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad"  onpaste="return false" tabindex="2" onkeypress="return esnombre(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' class="aaa"><p></p></div>
-							</div>
-
-							<div class="form-group-sm">
-							  <label for="fecha1">Fecha de Solicitud</label>
-							  <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="3" disabled="true">
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha1' class="aaa"><p></p></div>
-							</div>
-
-							<div class="form-group-sm">
-								<label>Dirección Territorial</label>
+								<label>Departamento</label>
 								<select name="depar" id="departamento" class="form-control bbb" tabindex="4">
 								<option></option>
 								</select>
-							</div>
-
-							<div class="form-group-sm">
-							  <label for="depa">Departamento</label>
-							  <input type="text" class="form-control bbb" id="depa" placeholder="Departamento"  onpaste="return false" tabindex="5" disabled="true">
 							</div>
 
 							<div class="form-group-sm">
@@ -86,24 +59,8 @@ ValidaSession("../login");
 								</select>
 							</div>
 
-
-
-					</div>
-						 
-		  		</div>
-
-			</div>
-
-		  <div class="col-md-4">
-
-		  	<div class="box-header with-border" tabindex="-1">
-				<h3 class="box-title">Ubicación del Evento</h3>
-			</div><!-- /.box-header -->		  
-
-		 	 <div class="box box-primary">
-				<div class="box-body">
-					<div class="form-group-sm">
-							<label >Dirección</label>
+							<div class="form-group-sm">
+								<label >Dirección</label>
 							
 								<div class = "input-group">
 
@@ -121,8 +78,6 @@ ValidaSession("../login");
 										<input type="text" id="acceso1" class="form-control bbb" placeholder="Principal"  onpaste="return false" tabindex="9" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
 									
 								</div>
-								
-						
 
 								<div class="input-group">
 									<span class="input-group-addon"><span class="fa fa-slack"></span></span>
@@ -135,114 +90,58 @@ ValidaSession("../login");
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso2' class="aaa"><p></p></div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_dir' class="aaa"><p></p></div>
-					</div>
+							</div>
 
-					<div class="form-group-sm">
-							<label >Referencia</label>
-								<div class = "input-group">
-									<span class="input-group-btn">
-										<select id="a_referencia" class="btn-sm"  tabindex="12"  >
-											<option value="0">Al lado</option>
-											<option value="1">Cerca</option>
-											<option value="2">Frente</option>
-											<option value="3">Diagonal</option>
-											<option value="4">Detras</option>
-											<option value="5">Via</option>
-											<option value="6">Dentro</option>
-										</select>
-									</span>
-									<input type="text" class="form-control bbb" id="referencia" placeholder="Ingrese una referencia"  onpaste="return false" tabindex="13" onkeypress="return esreferencia(event);" onblur="alsalir(this.id)">
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_referencia' class="aaa"><p></p></div>
-					</div>				
+							<div class="form-group-sm">
+									<label >Referencia</label>
+										<div class = "input-group">
+											<span class="input-group-btn">
+												<select id="a_referencia" class="btn-sm"  tabindex="12"  >
+													<option value="0">Al lado</option>
+													<option value="1">Cerca</option>
+													<option value="2">Frente</option>
+													<option value="3">Diagonal</option>
+													<option value="4">Detras</option>
+													<option value="5">Via</option>
+													<option value="6">Dentro</option>
+												</select>
+											</span>
+											<input type="text" class="form-control bbb" id="referencia" placeholder="Ingrese una referencia"  onpaste="return false" tabindex="13" onkeypress="return esreferencia(event);" onblur="alsalir(this.id)">
+										</div>
+										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_referencia' class="aaa"><p></p></div>
+							</div>	
+
+						</div>
+
+						<div class="box-body">
+
+							<div class="form-group-sm">
+								<label>Asignado por:</label>
+								<input type="text" class="form-control bbb" id="asignador" value="<?php echo($_SESSION['nombresx']); ?>"  onpaste="return false" tabindex="18"   onblur="alsalir(this.id)"  autocomplete="off" disabled="true">
+							</div>
+						</div>
+						<div class="box-footer">
+						</div>
 
 				</div>
-			</div>	
 
-			<div class="box-header with-border">
-					<h3 class="box-title">Inicio y Final del Evento</h3>
-			</div><!-- /.box-header -->	
-
-			<div class="box box-primary">
-			  <div class="box-body">
-				<div class="form-group-sm">
-						  
-					<div class="row">
-
-						<div class="col-sm-6">
-							
-								<label for="fecha2">Fecha Inicio</label>
-								<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="14">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha2' class="aaa"><p></p></div>
-													
-						</div>
-
-						<div class="col-sm-6">
-							
-								<label for="fecha3">Fecha Final</label>
-								<input class="form-control bbb" id="fecha3" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="15">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha3' class="aaa"><p></p></div>
-													
-						</div>
-					</div>							   
-					
-				</div>
-
-				<div class="form-group-sm">
-						  
-					<div class="row">
-
-						<div class="col-sm-6">
-							
-								<label for="hora1">Hora Inicio</label>
-								<input class="form-control bbb" id="hora1" type="time" onpaste="return false" tabindex="16" min="05:00" max="22:00">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_hora1' class="aaa"><p></p></div>
-													
-						</div>
-
-						<div class="col-sm-6">
-							
-								<label for="hora2">Hora Final</label>
-								<input class="form-control bbb" id="hora2" type="time" onpaste="return false" tabindex="17" min="05:00" max="22:00">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_hora2' class="aaa"><p></p></div>
-													
-						</div>
-					</div>							   
-					
-				</div>
-			  </div>
 			</div>
 
-	
-
-
-		  </div>
-
-		  <div class="col-md-4">
+		  	<div class="col-md-4">
 	
 		 		<div class="box-header with-border">
-					<h3 class="box-title">Responsable del Evento</h3>
+					<h3 class="box-title">Beneficiario</h3>
 				</div><!-- /.box-header -->	
 
 				<div class="box box-primary">
 
 					<div class="box-body">
-						<label>Nombres</label>
-						<div class="input-group">
-							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="18" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
-							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control" id="rt_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="19" onkeypress="return esnombre2(event);"   autocomplete="off">
+						<label>Nombre(s) y Apellido(s)</label>
+						<div class="form-group-sm">
+							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Ingrese Nombre(s) y Apelido(s)"  onpaste="return false" tabindex="18" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
 						</div>
 						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_nombre1' class="aaa"><p></p></div>
-						
-						<label>Apellidos</label>
-						<div class="input-group">
-							<input type="text" class="form-control bbb" id="rt_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="20" onkeypress="return esapellido1(event);" onblur="alsalir(this.id)" autocomplete="off">
-							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control" id="rt_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="21" onkeypress="return esapellido1(event);" autocomplete="off" >
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_apellido1' class="aaa"><p></p></div>
-													
+			
 						<div class="form-group-sm">
 							<label >Documento de Identidad</label>
 								<div class = "input-group">
@@ -261,9 +160,9 @@ ValidaSession("../login");
 						</div>	
 
 						<div class="form-group-sm">
-						<label for="tele1">Teléfono de contacto</label>
-						<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
+							<label for="tele1">Teléfono de contacto</label>
+							<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
 						</div>
 
 							<div id="confirma_telefono">
@@ -271,578 +170,86 @@ ValidaSession("../login");
 							</div>
 
 						<div class="form-group-sm">
-						<label for="correo1">Correo electrónico</label>
-						<input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="25" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off">
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' class="aaa"></div>
+							<label for="correo1">Correo electrónico</label>
+							<input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="25" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' class="aaa"></div>
 						</div>
 
 							<div id="confirma_correo">
 								<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
 							</div>
-							
-							<div class="form-group-sm">
-								<label>Grupo/Área/Equipo/Dependencia</label>
-								<select id="grupo" class="form-control bbb" tabindex="35">
-								<option></option>
-								</select>
-							</div>
+									
+						<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+						<label for="tabla"> Equipos asignados</label>
+								<table id="tabla" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Tipo</th>
+											<th>Concepto</th>
+											<th>Cantidad</th>
+											<th>Medida</th>
+											<th>Costo Unitario</th>
+											<th>Observaciones</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+						</div>
+				
+						<div class="box-footer">
+							<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
+							<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+						</div>
+					</div>	
+						
+				</div><!-- /.box -->
 
-							<div class="focusguard" id="guardia1" tabindex="36"></div>							
-					</div>
-				</div>
 			</div>
-		</li>
-
-		<li id="dos"> <!--################################## INFORMACIÓN RELACIONADA CON EL TIPO DE ACTIVIDAD ##################################  -->
 
 			<div class="col-md-4">
-
 				<div class="box-header with-border">
-					 	<h3 class="box-title" id="guardia78" tabindex="0">Tipo de Evento</h3>
+					<h3 class="box-title">Entrega de asignación</h3>
 				</div><!-- /.box-header -->
-
-		  		<div class="box box-primary">
-						<!-- form start -->
-						<div class="box-body" >
-								<select id="activity" class="form-control" tabindex="0">
-									<option value="" selected disabled hidden>Indique el tipo de evento:</option>
-									<option value="0">INDIVIDUAL</option>
-									<option value="1">RETORNOS Y REUBICACIONES</option>
-									<option value="2">COLECTIVA</option>
-								</select>
-						<div class="box-body" id="actv_1" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
-							<div class="form-group-sm" >
-								<label ></label></br>
-								<select id="tipo1" class="form-control" tabindex="0">
-									
-									<option value="0">Jornada Diferencial</option>
-									<option value="1">Feria de Servicios</option>
-									<option value="2">Conmemoración</option>
-									<option value="3">Iniciativa Local de Memoria</option>
-									<option value="4">Acto de Reconocimiento u Orden Judicial</option>
-									<option value="5">Taller por Linea de Inversion</option>
-									<option value="6">Entrega digna de cadáveres</option>
-									<option value="7">Charla de educación financiera </option>	
-									<option value="8">Otro</option>		
-									<option value="9" selected hidden>Indique si el evento corresponde a:</option>						
-								</select>
-								
-							</div>
-								<div id="otro1a" style='display:none;'>
-								<div class="form-group-sm">								
-									<label for="Otro1">Otro</label>
-							  		<input type="text" class="form-control" id="otro1" placeholder="Indique otro tipo de actividad"  onpaste="return false" tabindex="0" onkeypress="return esotro1(event);" onblur="return alsalir(this.id)" autocomplete="off">
-							  		<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_otro1' ></div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="box-body" id="actv_2" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
-							<div class="form-group-sm">
-								<label class="guardia80" tabindex="0"></label></br>
-								<select id="tipo2" class="form-control"  tabindex="0">
-								
-									<option value="0">Integración Comunitaria</option>
-									<option value="1">Retorno</option>
-									<option value="2">Reubicacion</option>
-									<option value="3">Esquemas Especiales de Acompañamiento</option>
-									<option value="4">Casos Emblemáticos</option>
-									<option value="5">Seguimiento procesos Retornos y Reubicaciones</option>
-									<option value="6" selected hidden>Indique si el evento corresponde a:</option>
-								</select>
-							</div>
-						</div>	
-
-						<div class="box-body" id="actv_3" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
-							<label>COLECTIVA</label></br>
-						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #bdd3ff; background-color: #E8F0FF">	
-							<div class="form-group-sm">
-
-								<label>Pertenencia étnica comunitaria</label></br>
-
-								<select id="tipo3" class="form-control" tabindex="0">
-									
-									<option value="0">Comunidad</option>
-									<option value="1">Comunidad Campesina</option>
-									<option value="2">Grupo</option>
-									<option value="3">Organizaciones</option>
-									<option value="4">Organización de Mujeres</option>
-									<option value="5" selected  hidden>Indique el sujeto "no étnico" </option>
-								</select>
-
-								<select id="tipo4" class="form-control" tabindex="0">
-									<option value="" selected disabled hidden>Indique el sujeto "étnico" </option>
-									<option value="0">Indígena</option>
-									<option value="1">Ancestral</option>
-									<option value="2">RROM o Gitano</option>
-									<option value="3">Afrocolombiana</option>
-									<option value="4">Negra</option>
-									<option value="5" selected hidden>Indique el sujeto "étnico" </option>
-								</select>								
-							</div>
-
-						    <div class="form-group-sm">
-							  <label>Actividad de ruta</label>
-	                            <div class = "input-group">
-								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="0" id="aruta">
-									  </span>
-									  <input type="text" class="form-control " id="afase" placeholder="Indique la fase en que se ecuentra"  onpaste="return false" tabindex="0" onkeypress="return esafase(event);" onblur="return alsalir(this.id);" disabled>
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_afase' ></div>
-							</div>
-						</div>
-						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #bdd3ff; background-color: #E8F0FF">
-							<label>ID del Sujeto de Reparación</label></br>
-						    <div class="form-group-sm">
-							  <label>Implementación del PIRC aprobado</label>
-	                            <div class = "input-group">
-								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="0" id="apirc">
-									  </span>
-									  <input type="text" class="form-control " id="amedida" placeholder="Indique el tipo de medida"  onpaste="return false" tabindex="0" onkeypress="return esamedida(event);" onblur="return alsalir(this.id);" disabled>
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_amedida' ></div>
-									<div>
-										<label class="guardia79" tabindex="0" style="color: #E8F0FF">.</label>
-									</div>
-									<div id="idacc" style='display:none;'>
-										<label for="idaccion" class="guardia77" tabindex="0">Id Acción</label>
-										<input type="text" class="form-control " id="idaccion" placeholder="Indique Id de la accion"  onpaste="return false" tabindex="0" onkeypress="return esidaccion(event);" onblur="return alsalir(this.id);" >
-										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_idaccion' ></div>
-									</div>							
-							</div>
-						</div>	
-						</div>
-						</div><!-- /.box-body -->
-				 </div><!-- /.box -->
-				 
-				 <div class="box-header with-border">
-					 	<h3 class="box-title">Descripción de la actividad</h3>
-				</div><!-- /.box-header -->
-
+				
 				<div class="box box-primary">
-						<!-- form start -->
-						<div class="box-body">
-						<div class="form-group-sm">
-							
-								<label>Entidades participantes</label>
-								<input type="text" class="form-control ccc" id="entidad" placeholder="Indique las entidades participantes"  onpaste="return false" tabindex="0" onkeypress="return esentidad(event);"  onblur="alsalir(this.id);"  autocomplete="off">
-							
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_entidad' class="aaa"><p></p></div>
-							
-							
-								<label>Número de víctimas participantes</label>
-								<input type="text" class="form-control ccc" id="num_vic" placeholder="Indique el número de víctimas"  onpaste="return false" tabindex="0" onkeypress="return esvictimas(event);"  onblur="alsalir(this.id);"  autocomplete="off">
-							
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_vic' class="aaa"><p></p></div>
-														
-							
-    							<label for="descripcion">Descripción breve</label>
-    							<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return false" tabindex="0" onkeypress="return esdescri(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
-  							
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_descripcion' class="aaa"><p></p></div>
-						</div>
-						</div><!-- /.box-body -->
-				 </div><!-- /.box -->				 
-			</div>
-
-			<div class="col-md-4">
-
-
-				 <div class="box-header with-border">
-					 	<h3 id="jump1" tabindex="0" class="box-title">Participantes del evento</h3>
-				</div><!-- /.box-header -->
-
-				<div class="box box-primary" >			
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-							<table id="tabla2" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Nombre</th>
-										<th>Nro. Documento</th>
-										<th>Correo-e</th>
-										<th>Teléfono </th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-					</div>
-				
-					<div class="box-footer">
-						<button id="agregar2" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
-						<button id="quitar2" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
-					</div>
-				</div>				
-
-				<div class="box-header with-border">
-					<h3 id="jump3" tabindex="0" class="box-title">Detalle especifico del requerimiento</h3>
-				</div><!-- /.box-header -->
-
-				<div class="box box-primary" >			
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-							<table id="tabla" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Tipo</th>
-										<th>Concepto</th>
-										<th>Cantidad</th>
-										<th>Medida</th>
-										<th>Costo Unitario</th>
-										<th>Observaciones</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-					</div>
-				
-					<div class="box-footer">
-						<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
-						<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
-					</div>
-				</div>	
-
-
-			</div>
-
-			<div class="col-md-4">
-
-
-
-				<div class="box-header with-border">
-					 	<h3 class="box-title">Alojamiento y Transporte</h3>
-				</div><!-- /.box-header -->
-
-		  		<div class="box box-primary">
-
-						<!-- form start -->
-						<div class="box-body">
-
-								<label>Requerimiento de Alojamiento</label>
-	                            <div class = "input-group">
-								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="50" id="alojamiento">
-									  </span>
-									  <input type="text" class="form-control" id="msg_aloja" value="No requiere Alojamiento" disabled>
-								</div>
-								
-								<label>Requerimiento de Transporte</label>
-	                            <div class = "input-group">
-								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="51" id="transporte">
-									  </span>
-									  <input type="text" class="form-control" id="msg_trans" value="No requiere transporte" disabled>
-								</div>
-
-								<div class="form-group" id="noveo" style="display:none;">
-									<label id="jump2"  tabindex="52">Tipo de transporte </label></br>
-									<select id="t_trans" class="form-control" multiple="multiple" tabindex="53">
-										<option value="0">Aéreo</option>
-										<option value="1">Terrestre/fluvial intermunicipal</option>
-										<option value="2">Terrestre urbano</option>
-									</select>
-								</div>								
-									<button id="a_tra" type="button" class="btn btn-primary " tabindex="53" style="width: 100%;display: none;" disabled><i  class="fa fa-fw  fa-hotel"></i>|<i  class="fa fa-fw  fa-plane"></i>Asignación transporte/alojamiento</button>
-									
-								<label class="guardia81" tabindex="0" style="color: #FFF">.</label>
-							
-						
-						</div><!-- /.box-body -->
-
-				 </div><!-- /.box -->
-				 
-				 <div class="box box-primary">
 
 					<div class="box-body">
 
-						<label id="prueba">Archivos adjuntos</label>
-						
-						<ul class="list-group" style="height: 125px;overflow:auto;" id="ul_adj">
-			
-						</ul>
-						
+						<div class="form-group-sm">	
+							<label for="fecha2">Fecha</label>
+							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="14">
+						</div>									
 
-					</div>
-
-					<div class="box-footer">
-						<button id="save" type="button" class="btn btn-success pull-right" tabindex="54" style="width: 97px;"><i class="fa fa-fw fa-save"></i>Guardar</button>
-						<button id="anex" type="button" class="btn btn-success pull-right" tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button>
-						<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="56" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
-						<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
-					</div>				
-					<div class="focusguard" id="guardia2" tabindex="57"></div>
-				</div><!-- /.box-body -->
-
-				<div class="box-header with-border">
-					<h3 class="box-title">Resumen de costo</h3>
-				</div><!-- /.box-header -->
-				<div class="box box-primary">
-					<div class="box-body">	
-						<label>Total</label>
 						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="totalite" disabled>
+							<label for="despachador">Entregado por: </label> <button id="despa" type="button" class="btn btn-primary btn-xs pull-right"><i class="fa fa-fw fa-user" ></i></button>
+							<input type="text" class="form-control bbb" id="despachador" onpaste="return false" tabindex="25"  onblur="alsalir2(this.id)" autocomplete="off">
+							<br>
 						</div>
 
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<li id="tres"><!--################################## DATOS ALOJAMIENTO Y TRANSPORTE ##################################  -->
-
-			<div class="col-md-4" style="display: none;">
-				<div class="box-header with-border">
-					<h3 class="box-title">Datos del personal</h3>
-				</div><!-- /.box-header -->
-				<div class="box box-primary">
-					<div class="box-body">			
-					
 						<div class="form-group-sm">
-							<label>Nombre del personal</label>
-							<input type="text" class="form-control" id="nomb_p" placeholder="Nombre completo"  onpaste="return false" tabindex="550" onkeypress="return esnombre5(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nomb_p'><p></p></div>
-						</div>
-						
-						<div class="form-group-sm">
-							<label >Documento de Identidad</label>
-								<div class = "input-group">
+							<label id="prueba">Adjuntar archivos </label> 
 
-									<span class="input-group-btn">
-										<select id="t_doc_p" class="btn-sm"  tabindex="555"  >
-											<option value="0">CC</option>
-											<option value="1">CE</option>
-											<option value="2">PA</option>
-										</select>
-									</span>
-
-									<input type="text" class="form-control" id="num_doc_p" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="560" onkeypress="return escedula5(event);" onblur="alsalira(this.id)">
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_doc_p'><p></p></div>
+							<button id="anex" type="button" class="btn btn-primary btn-xs pull-right" tabindex="55" ><i class="fa fa-fw fa-plus" ></i></button><br>						
+							<button id="veritas" type="button" class="btn btn-warning btn-xs pull-right" tabindex="55" ><i class="fa fa-fw fa-eye" ></i></button>						
+							
+							<ul class="list-group" style="height: 30px;overflow:auto;" id="ul_adj"></ul>
+							
 						</div>	
-
-						<div class="form-group-sm">
-							<label for="tele2">Teléfono de contacto</label>
-							<input type="text" class="form-control" id="tele5" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="565" onkeypress="return estele5(event);" onblur="alsalir2(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele5' class="aaa"></div>
-						</div>
-
-							<div id="confirma_telefono5">
-								<ul><li id="conf_tel5" style="color:#fff;text-align:center" ></li></ul>
-							</div>	
-
-							<div class="form-group-sm">
-							  <label for="depa2">Departamento</label>
-							  <input type="text" class="form-control" id="depa2" placeholder="Departamento"  onpaste="return false" disabled="true">
-							</div>
-
-							<div class="form-group-sm">
-							  <label for="muni2">Municipio</label>
-							  <input type="text" class="form-control" id="muni2" placeholder="Municipio"  onpaste="return false" disabled="true">
-							</div>
-
-					</div>
-				</div>
-
-				<div class="box-header with-border">
-					<h3 class="box-title">Lista de personal</h3>
-				</div><!-- /.box-header -->
-
-				<div class="box box-primary" >			
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-							<table id="tabla5" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Nombre y apellido </th>
-										<th>Nro. Documento</th>
-										<th>teléfono</th>
-										<th>Correo-e</th>
-										<th>Departamento</th>
-										<th>Municipio</th>
-										<th>Ruta aérea</th>
-										<th>Costo aéreo</th>
-										<th>Ruta T./F. intermunicipal</th>
-										<th>Costo T./F intermunicipal</th>
-										<th>Ruta T. urbana </th>																		
-										<th>Costo T. urbana</th>
-										<th>Alojamiento</th>
-										<th>Costo Alojamiento</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-					</div>
-				
-					<div class="box-footer">
-						<button id="quitar5" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4" id="t_oculto" style="display: none;">
-				<div class="box-header with-border">
-					<h3 class="box-title">Transporte</h3>
-				</div><!-- /.box-header -->
-				<div class="box box-primary">
-					<div class="box-body">
-
-					<div id="ta_dido" style="display:none;">	
-						<div class="form-group-sm">
-							<label>Ruta Aérea</label>
-							<input type="text" class="form-control" id="r_aereo" placeholder="Ruta aérea"  onpaste="return false" tabindex="570" onkeypress="return esruta3(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_aereo'><p></p></div>
-						</div>
-
-						<label>Salida y llegada</label>
-						<div class="input-group">
-							<input class="form-control" id="f_ida" data-date-format="dd-mm-yyyy" placeholder="Fecha de salida" type="text" onpaste="return false" tabindex="575">	
-							<span class="input-group-btn" tabindex="-1" style="width:40px;"></span>
-							<input class="form-control" id="h_ida" type="time" onpaste="return false" tabindex="576" min="05:00" max="22:00">
-						</div>
-						<div class="input-group">
-							<input class="form-control" id="f_vuelta" data-date-format="dd-mm-yyyy" placeholder="Fecha de llegada" type="text" onpaste="return false" tabindex="580">
-							<span class="input-group-btn" tabindex="-1" style="width:40px;"></span>
-							<input class="form-control" id="h_vuelta" type="time" onpaste="return false" tabindex="582" min="05:00" max="22:00">
-						</div>
-
-						<label>Costo ida/vuelta</label>
-						<div class="input-group">
-							<input type="text" class="form-control pesos" id="a_ida" placeholder="Costo de ida"  onpaste="return false" tabindex="583" onblur="alsalir(this.id)" autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control pesos" id="a_vuelta" placeholder="Costo de vuelta"  onpaste="return false" tabindex="584" onblur="alsalir(this.id)" autocomplete="off">
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_ida'><p></p></div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_vuelta'><p></p></div>				
-						<div class="form-group-sm">
-
-							<label>Costo transporte aéreo</label>
-							<input type="text" class="form-control pesos" id="a_total" placeholder="Costo Total"  onpaste="return false" tabindex="585" onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_total'><p></p></div>
-						</div>
-					</div>
-
-					<div id="tm_dido" style="display:none;">	
-						<div class="form-group-sm">
-							<label>Ruta terrestre/fluvial intermunicipal</label>
-							<input type="text" class="form-control" id="r_terrestre" placeholder="Ruta terreste o fluvial"  onpaste="return false" tabindex="670" onkeypress="return esruta1(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nomb_p'><p></p></div>
-						</div>
-
-						<label>Costo ida/vuelta</label>
-						<div class="input-group">
-							<input type="text" class="form-control pesos" id="r_ida" placeholder="Costo de ida"  onpaste="return false" tabindex="675" onblur="alsalir(this.id)" autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control pesos" id="r_vuelta" placeholder="Costo de vuelta"  onpaste="return false" tabindex="680" onblur="alsalir(this.id)" autocomplete="off">
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_ida'><p></p></div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_vuelta'><p></p></div>
-					
-						<div class="form-group-sm">
-							<label>Costo transporte terrestre/fluvial</label>
-							<input type="text" class="form-control pesos" id="r_total" placeholder="Costo Total"  onpaste="return false" tabindex="685" onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_total'><p></p></div>
-						</div>
-					</div>
-
-					<div id="tu_dido" style="display:none;">	
-						<div class="form-group-sm">
-							<label>Ruta terrestre urbana</label>
-							<input type="text" class="form-control" id="u_terrestre" placeholder="Ruta urbana"  onpaste="return false" tabindex="870" onkeypress="return esruta2(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_terrestre'><p></p></div>
-						</div>
-
-						<label>Costo ida/vuelta</label>
-						<div class="input-group">
-							<input type="text" class="form-control pesos" id="u_ida" placeholder="Costo de ida"  onpaste="return false" tabindex="875" onblur="alsalir(this.id)" autocomplete="off">
-							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control pesos" id="u_vuelta" placeholder="Costo de vuelta"  onpaste="return false" tabindex="880" onblur="alsalir(this.id)" autocomplete="off">
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_ida'><p></p></div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_vuelta'><p></p></div>
 						
-						<div class="form-group-sm">
-							<label>Costo transporte urbano</label>
-							<input type="text" class="form-control pesos" id="u_total" placeholder="Costo Total"  onpaste="return false" tabindex="885" onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_total'><p></p></div>
-						</div>
 					</div>
-					<button id="t_guarda1" type="button" class="btn btn-success t_ocu1 t_guarda1"><i class="fa fa-fw fa-save"></i>Agregar</button>
-					<button id="t_ocul" type="button" class="btn btn-primary pull-right t_ocu1"><i class="fa fa-fw fa-reply"></i>Regresar</button>
-											
-					</div>
-				</div>
+
+					<div class="box-footer">
+					<button id="exit" type="button" class="btn btn-primary pull-left " tabindex="56" ><i class="fa fa-fw fa-reply"></i>Regresar</button>
+					<button id="save" type="button" class="btn btn-success pull-right" tabindex="54" ><i class="fa fa-fw fa-save"></i>Guardar</button>					
+					<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
+					</div>			
+
+				</div><!-- /.box-body -->	
+				
 			</div>
-
-		 	
-
-			<div class="col-md-4" style="display: none;">
-				<div id="a_oculto" style="display: none;">
-				<div class="box-header with-border">
-					<h3 class="box-title">Alojamiento</h3>
-				</div><!-- /.box-header -->
-				<div class="box box-primary">
-
-
-					<div class="box-body">		
-
-						<label>Arribo/Nro. de Noches </label>
-						<div class="input-group">
-							<input class="form-control" id="f_aloja" data-date-format="dd-mm-yyyy" placeholder="Fecha de arribo" type="text" onpaste="return false" tabindex="900">	
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control" id="n_aloja" placeholder="Nro. de noches"  onpaste="return false" tabindex="905" onblur="alsalir(this.id)" autocomplete="off">
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_n_aloja'><p></p></div>
-
-
-						<div class="form-group-sm">
-							<label>Costo de alojamiento</label>
-							<input type="text" class="form-control pesos" id="aloja_total" placeholder="Costo Total"  onpaste="return false" tabindex="910" onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_aloja_total'><p></p></div>
-						</div>
-
-					<button id="t_guarda2" type="button" class="btn btn-success t_guarda1"><i class="fa fa-fw fa-save"></i>Agregar</button>
-					<button id="t_ocu2" type="button" class="btn btn-primary pull-right"><i class="fa fa-fw fa-reply"></i>Regresar</button>		
-					</div>
-				</div>
-				</div>
-				<div class="box-header with-border">
-					<h3 class="box-title">Resumen de costo</h3>
-				</div><!-- /.box-header -->
-				<div class="box box-primary">
-					<div class="box-body">	
-
-						<label>Personal</label>
-						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="total_total1" disabled>
-						</div>
-						<label>Sub-total Transporte </label>
-						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="total_t" disabled>
-						</div>
-
-						<label>Sub-total alojamiento </label>
-						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="total_a" disabled>
-						</div>
-
-						<label>Total</label>
-						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="total_total" disabled>
-						</div>
-
-					</div>
-				</div>
-			</div>		 
-
-	    </li>
-	</ul>
-</div>
-
+	</div>
 </form>
 
 <!-- Modal 1 -->
@@ -941,7 +348,7 @@ ValidaSession("../login");
     <div class="modal-content">
       <div class="modal-body">
         <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Participantes del evento</h4>
+         <h4 class="modal-title" id="myModalLabel1">Entrega de asignación</h4>
 			<div class="message1"></div>
 			<div class="row">
 				<!-- left column -->
@@ -952,50 +359,48 @@ ValidaSession("../login");
 					<div class="box-header with-border"></div><!-- /.box-header -->
 					<!-- form start -->
 					  <div class="box-body">
+					  		<label>Nombre(s) y Apellido(s)</label>
+							<div class="form-group">
+								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="Ingrese Nombres(s) y Apellido(s)"  onpaste="return false" tabindex="260" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off">
+							</div>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_nombre1' class="aaa"><p></p></div>
 
-					 	 <div class="form-group-sm">
-					 	 	<label>Nombre del participante</label>
-							<input type="text" class="form-control" id="nombre2" placeholder="Nombre completo"  onpaste="return false" tabindex="260" onkeypress="return esnombre4(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre2'><p></p></div>
-					 	 </div>
-							
-							
 							<div class="form-group-sm">
 								<label >Documento de Identidad</label>
 									<div class = "input-group">
 
 										<span class="input-group-btn">
-											<select id="t_doc2" class="btn-sm"  tabindex="300"  >
+											<select id="rn_tdoc" class="btn-sm"  tabindex="300"  >
 												<option value="0">CC</option>
 												<option value="1">CE</option>
 												<option value="2">PA</option>
 											</select>
 										</span>
 
-										<input type="text" class="form-control" id="num_doc2" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="310" onkeypress="return escedula3(event);" onblur="alsalira(this.id)">
+										<input type="text" class="form-control ddd" id="rn_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="310" onkeypress="return escedula2(event);" onblur="alsalira(this.id)">
 									</div>
-									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_doc2'><p></p></div>
+									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_num_doc' class="aaa"><p></p></div>
 							</div>	
 
 							<div class="form-group-sm">
-								<label for="tele2">Teléfono de contacto</label>
-								<input type="text" class="form-control" id="tele3" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="320" onkeypress="return estele3(event);" onblur="alsalir2(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele3' class="aaa"></div>
+							<label for="tele2">Teléfono de contacto</label>
+							<input type="text" class="form-control ddd" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="320" onkeypress="return estele2(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele2' class="aaa"></div>
 							</div>
 
-								<div id="confirma_telefono3">
-									<ul><li id="conf_tel3" style="color:#fff;text-align:center" ></li></ul>
+								<div id="confirma_telefono2">
+									<ul><li id="conf_tel2" style="color:#fff;text-align:center" ></li></ul>
 								</div>
 
 							<div class="form-group-sm">
-								<label for="correo3">Correo electrónico</label>
-								<input type="text" class="form-control" id="correo3" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="330" onkeypress="return escorreo3(event);" onblur="alsalir2(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo3' class="aaa"></div>
+							<label for="correo2">Correo electrónico</label>
+							<input type="text" class="form-control ddd" id="correo2" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="330" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo2' class="aaa"></div>
 							</div>
 
-								<div id="confirma_correo3">
-									<ul><li id="conf_cor3" style="color:#fff;text-align:center" ></li></ul>
-								</div>			
+							<div id="confirma_correo2">
+								<ul><li id="conf_cor2" style="color:#fff;text-align:center" ></li></ul>
+							</div>							
 
 					  </div><!-- /.box-body -->
 
@@ -1065,11 +470,6 @@ ValidaSession("../login");
 </div>
 
 
-						  <div class="box-footer">
-							<button id="izquierda" type="button" class="btn btn-primary" disabled tabindex="-1"><i class="fa fa-arrow-left"></i>Anterior</button>
-							
-							<button id="derecha" type="button" class="btn btn-primary pull-right" tabindex="-1">Siguiente<i class="fa fa-arrow-right"></i></button>
-						  </div>
 
 <script language="JavaScript" src="../../plugins/maxLength/maxLength.js"></script>
 <script type="text/javascript" src="../../plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -1111,7 +511,7 @@ $(document).ready(function() {
 		var numstring=parsedJson.toString();
 		var res = numstring.padStart(4, 0);
 //alert(parsedJson);
-		$("#n_accion").val( res );
+		$("#n_accion").text( res );
 		$("#ideado").val( numstring );
 	},"json");
 
@@ -1883,7 +1283,7 @@ $("#izquierda" ).click(function() {
 											return nRow;
 											},
 										  "scrollX": true,
-										  "scrollY": "130px",
+										  "scrollY": "75px",
 										  "columns": [
 												{ "data": "id" },
 												{ "data": "tipo" },
@@ -2438,7 +1838,7 @@ $("#izquierda" ).click(function() {
 		});
 
 
-		$("#agregar2").click(function() {
+		$("#despa").click(function() {
 			$('#modal2').modal({backdrop: 'static',keyboard: false});
 			
 		});
