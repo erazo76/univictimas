@@ -35,26 +35,26 @@ ValidaSession("../login");
 
 						 	<div class="form-group-sm">
 							  <label for="fecha1">Fecha </label> 	   
-					          <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="3" disabled="true">
+					          <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false"  disabled="true">
 							</div>
 
 							<div class="form-group-sm">
 								<label>Departamento</label>
-								<select name="depar" id="departamento" class="form-control bbb" tabindex="4">
+								<select name="depar" id="departamento" class="form-control bbb" tabindex="1">
 								<option></option>
 								</select>
 							</div>
 
 							<div class="form-group-sm">
 								<label>Municipio</label>
-								<select name="munir" id="municipio" class="form-control bbb" tabindex="6">
+								<select name="munir" id="municipio" class="form-control bbb" tabindex="2">
 								<option></option>
 								</select>
 							</div>
 
 							<div class="form-group-sm">
 								<label>Centro Poblado</label>
-								<select id="cpoblado" class="form-control bbb" tabindex="7">
+								<select id="cpoblado" class="form-control bbb" tabindex="3">
 								<option></option>
 								</select>
 							</div>
@@ -65,7 +65,7 @@ ValidaSession("../login");
 								<div class = "input-group">
 
 									<span class="input-group-btn">
-										<select id="a_primario" class="btn-sm"  tabindex="8"  >
+										<select id="a_primario" class="btn-sm"  tabindex="4"  >
 											<option value="0">Avenida</option>
 											<option value="1">Calle</option>
 											<option value="2">Carrera</option>
@@ -75,16 +75,16 @@ ValidaSession("../login");
 											<option value="6">Autopista</option>
 										</select>
 									</span>
-										<input type="text" id="acceso1" class="form-control bbb" placeholder="Principal"  onpaste="return false" tabindex="9" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
+										<input type="text" id="acceso1" class="form-control bbb" placeholder="Principal"  onpaste="return false" tabindex="5" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
 									
 								</div>
 
 								<div class="input-group">
 									<span class="input-group-addon"><span class="fa fa-slack"></span></span>
-									<input type="text" id="acceso2" class="form-control bbb" placeholder="Secundario"  onpaste="return false" tabindex="10" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
+									<input type="text" id="acceso2" class="form-control bbb" placeholder="Secundario"  onpaste="return false" tabindex="6" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
 									<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
 									<span class="input-group-addon"><span class="fa fa-minus"></span></span>
-									<span><input type="text" id="num_dir" class="form-control bbb" placeholder="Numero"  onpaste="return false" tabindex="11" onkeypress="return esnumdir(event);" onblur="alsalir(this.id)">
+									<span><input type="text" id="num_dir" class="form-control bbb" placeholder="Numero"  onpaste="return false" tabindex="7" onkeypress="return esnumdir(event);" onblur="alsalir(this.id)">
 										
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
@@ -96,7 +96,7 @@ ValidaSession("../login");
 									<label >Referencia</label>
 										<div class = "input-group">
 											<span class="input-group-btn">
-												<select id="a_referencia" class="btn-sm"  tabindex="12"  >
+												<select id="a_referencia" class="btn-sm"  tabindex="8"  >
 													<option value="0">Al lado</option>
 													<option value="1">Cerca</option>
 													<option value="2">Frente</option>
@@ -106,7 +106,7 @@ ValidaSession("../login");
 													<option value="6">Dentro</option>
 												</select>
 											</span>
-											<input type="text" class="form-control bbb" id="referencia" placeholder="Ingrese una referencia"  onpaste="return false" tabindex="13" onkeypress="return esreferencia(event);" onblur="alsalir(this.id)">
+											<input type="text" class="form-control bbb" id="referencia" placeholder="Ingrese una referencia"  onpaste="return false" tabindex="9" onkeypress="return esreferencia(event);" onblur="alsalir(this.id)">
 										</div>
 										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_referencia' class="aaa"><p></p></div>
 							</div>	
@@ -117,7 +117,7 @@ ValidaSession("../login");
 
 							<div class="form-group-sm">
 								<label>Asignado por:</label>
-								<input type="text" class="form-control bbb" id="asignador" value="<?php echo($_SESSION['nombresx']); ?>"  onpaste="return false" tabindex="18"   onblur="alsalir(this.id)"  autocomplete="off" disabled="true">
+								<input type="text" class="form-control bbb" id="rt_nombre2" value="<?php echo($_SESSION['nombresx']); ?>"  onpaste="return false"  onblur="alsalir(this.id)"  autocomplete="off" disabled="true">
 							</div>
 						</div>
 						<div class="box-footer">
@@ -138,7 +138,7 @@ ValidaSession("../login");
 					<div class="box-body">
 						<label>Nombre(s) y Apellido(s)</label>
 						<div class="form-group-sm">
-							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Ingrese Nombre(s) y Apelido(s)"  onpaste="return false" tabindex="18" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
+							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Ingrese Nombre(s) y Apelido(s)"  onpaste="return false" tabindex="10" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
 						</div>
 						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_nombre1' class="aaa"><p></p></div>
 			
@@ -147,21 +147,21 @@ ValidaSession("../login");
 								<div class = "input-group">
 
 									<span class="input-group-btn">
-										<select id="rt_tdoc" class="btn-sm"  tabindex="22"  >
+										<select id="rt_tdoc" class="btn-sm"  tabindex="11"  >
 											<option value="0">CC</option>
 											<option value="1">CE</option>
 											<option value="2">PA</option>
 										</select>
 									</span>
 
-									<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="23" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off">
+									<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="12" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off">
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_num_doc' class="aaa"><p></p></div>
 						</div>	
 
 						<div class="form-group-sm">
 							<label for="tele1">Teléfono de contacto</label>
-							<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="13" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
 						</div>
 
@@ -171,7 +171,7 @@ ValidaSession("../login");
 
 						<div class="form-group-sm">
 							<label for="correo1">Correo electrónico</label>
-							<input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="25" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="14" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off">
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' class="aaa"></div>
 						</div>
 
@@ -185,11 +185,10 @@ ValidaSession("../login");
 									<thead>
 										<tr>
 											<th></th>
-											<th>Tipo</th>
-											<th>Concepto</th>
-											<th>Cantidad</th>
-											<th>Medida</th>
-											<th>Costo Unitario</th>
+											<th>Equipo</th>
+											<th>Marca</th>
+											<th>Modelo</th>
+											<th>Serial</th>											
 											<th>Observaciones</th>
 										</tr>
 									</thead>
@@ -199,7 +198,7 @@ ValidaSession("../login");
 						</div>
 				
 						<div class="box-footer">
-							<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
+							<button id="agregar" type="button" class="btn btn-primary sm" tabindex="15"><i class="fa fa-fw fa-plus"></i>Agregar</button>
 							<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
 						</div>
 					</div>	
@@ -219,30 +218,63 @@ ValidaSession("../login");
 
 						<div class="form-group-sm">	
 							<label for="fecha2">Fecha</label>
-							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="14">
+							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" disabled>
 						</div>									
 
-						<div class="form-group-sm">
-							<label for="despachador">Entregado por: </label> <button id="despa" type="button" class="btn btn-primary btn-xs pull-right"><i class="fa fa-fw fa-user" ></i></button>
-							<input type="text" class="form-control bbb" id="despachador" onpaste="return false" tabindex="25"  onblur="alsalir2(this.id)" autocomplete="off">
-							<br>
-						</div>
+						<label>Entregado por:</label>
+							<div class="form-group">
+								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="Ingrese Nombres(s) y Apellido(s)"  onpaste="return false" tabindex="17" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off" disabled>
+							</div>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_nombre1' class="aaa"><p></p></div>
 
+							<div class="form-group-sm">
+								<label >Documento de Identidad</label>
+									<div class = "input-group">
+
+										<span class="input-group-btn">
+											<select id="rn_tdoc" class="btn-sm"  tabindex="18"  disabled>
+												<option value="0">CC</option>
+												<option value="1">CE</option>
+												<option value="2">PA</option>
+											</select>
+										</span>
+
+										<input type="text" class="form-control ddd" id="rn_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="19" onkeypress="return escedula2(event);" onblur="alsalira(this.id)" disabled>
+									</div>
+									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_num_doc' class="aaa"><p></p></div>
+							</div>	
+
+							<div class="form-group-sm">
+							<label for="tele2">Teléfono de contacto</label>
+							<input type="text" class="form-control ddd" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="20" onkeypress="return estele2(event);" onblur="alsalir2(this.id)" autocomplete="off" disabled>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele2' class="aaa"></div>
+							</div>
+
+								<div id="confirma_telefono2">
+									<ul><li id="conf_tel2" style="color:#fff;text-align:center" ></li></ul>
+								</div>
+
+							<div class="form-group-sm">
+							<label for="correo2">Correo electrónico</label>
+							<input type="text" class="form-control ddd" id="correo2" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="21" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off" disabled>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo2' class="aaa"></div>
+							</div>
+
+							<div id="confirma_correo2">
+								<ul><li id="conf_cor2" style="color:#fff;text-align:center" ></li></ul>
+							</div>							
+						<br>
 						<div class="form-group-sm">
 							<label id="prueba">Adjuntar archivos </label> 
-
-							<button id="anex" type="button" class="btn btn-primary btn-xs pull-right" tabindex="55" ><i class="fa fa-fw fa-plus" ></i></button><br>						
-							<button id="veritas" type="button" class="btn btn-warning btn-xs pull-right" tabindex="55" ><i class="fa fa-fw fa-eye" ></i></button>						
-							
-							<ul class="list-group" style="height: 30px;overflow:auto;" id="ul_adj"></ul>
-							
+							<button id="anex" type="button" class="btn btn-primary btn-xs pull-right" tabindex="22" disabled><i class="fa fa-fw fa-plus" ></i></button><br>						
+							<ul class="list-group" style="height: 30px;overflow:auto;" id="ul_adj"></ul>							
 						</div>	
 						
 					</div>
 
 					<div class="box-footer">
-					<button id="exit" type="button" class="btn btn-primary pull-left " tabindex="56" ><i class="fa fa-fw fa-reply"></i>Regresar</button>
-					<button id="save" type="button" class="btn btn-success pull-right" tabindex="54" ><i class="fa fa-fw fa-save"></i>Guardar</button>					
+					<button id="exit" type="button" class="btn btn-primary pull-left "  ><i class="fa fa-fw fa-reply"></i>Regresar</button>
+					<button id="save" type="button" class="btn btn-success pull-right" tabindex="23" ><i class="fa fa-fw fa-save"></i>Guardar</button>					
 					<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
 					</div>			
 
@@ -259,7 +291,7 @@ ValidaSession("../login");
     <div class="modal-content">
       <div class="modal-body">
         <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Detalle especifico del requerimiento</h4>
+         <h4 class="modal-title" id="myModalLabel1">Asignación de equipo</h4>
 			<div class="message1"></div>
 			<div class="row">
 				<!-- left column -->
@@ -272,55 +304,30 @@ ValidaSession("../login");
 					  <div class="box-body">
 
 							<div class="form-group-sm">
-								<label>Tipo</label>
-								<select id="d_tipo"   class="form-control" >
-									<option value="" selected disabled hidden>Indique tipo de requerimiento </option>
-									<option value="0">Salones</option>
-									<option value="1">Alimentación</option>
-									<option value="2">Materiales</option>
-									<option value="3">Cotizables</option>
-									<option value="4">Personal</option>
+								<label>Equipo</label>								
+								<select name="a_equipo" id="a_equipo" class="form-control bbb" tabindex="100">
+								<option></option>								
 								</select>
 							</div>
-
 							<div class="form-group-sm">
-								<label>Concepto</label>
-								<input type="text"  class="form-control" id="d_concepto"  placeholder="Describa el concepto"  onpaste="return false" onkeypress="return esdconcepto(event);" onblur="alsalir(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_concepto' ></div>
+								<label>Marca</label>
+								<input type="text"  class="form-control" id="a_marca"    onpaste="return false" disabled>
+							</div>
+							<div class="form-group-sm">
+								<label>Modelo</label>
+								<input type="text"  class="form-control" id="a_modelo"    onpaste="return false" disabled>
 							</div>
 
 							<div class="form-group-sm">
-								<label>Cantidad</label>
-								<input type="text"  class="form-control" id="d_cantidad"  placeholder="Indique la cantidad"  onpaste="return false" onkeypress="return esdcantidad(event);" onblur="alsalir(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_cantidad' ></div>
-							</div>
-
-							<div class="form-group-sm">
-								<label>Medida</label>
-								<select id="d_medida"   class="form-control" >
-									<option value="" selected disabled hidden>Indique tipo de medida </option>
-									<option value="0">Metros</option>
-									<option value="1">Unidades</option>
-									<option value="2">Kilogramos</option>
-									<option value="3">Gramos</option>
-									<option value="4">Centimetros</option>
-									<option value="5">Pulgadas</option>
-									<option value="6">Libras</option>
-									<option value="7">Litros</option>
-									<option value="8">Galones</option>
-								</select>
-							</div>
-
-							<div class="form-group-sm">
-								<label>Costo unitario</label>
-								<input type="text"  class="form-control" id="d_costo"  placeholder="Indique el costo"  onpaste="return false" onkeypress="return esdcantidad2(event);" onblur="alsalir(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_costo' ></div>
+								<label>Serial</label>
+								<input type="text"  class="form-control" id="a_serial"  placeholder="Indique el serial del equipo" tabindex="200" onpaste="return false">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_serial' class="aaa"><p></p></div>
 							</div>
 
 							<div class="form-group-sm">
 							  <label>Observaciones</label>
-							  <textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características"  onpaste="return false" onkeypress="return esdobs(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
-  							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_obs' class="aaa"><p></p></div>
+							  <textarea class="form-control" id="a_obs" rows="4" placeholder="Redacte un resumen de características"  onpaste="return false" onkeypress="return esdobs(event);"  onblur="alsalir(this.id);"  autocomplete="off" tabindex="300"></textarea>
+  							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_obs' class="aaa"><p></p></div>
 							</div>
 
 					  </div><!-- /.box-body -->
@@ -330,87 +337,8 @@ ValidaSession("../login");
 				</div>
 			</div>
 							      <div class="modal-footer">
-							      		<button id="close1" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Incluir</button>
+							      		<button id="close1" type="button" class="btn btn-success" tabindex="400"><i class="fa fa-fw fa-save"></i>Incluir</button>
 							      		<button id="cancelar2" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
-
-							      </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>                   
-</div>
-
-<!-- Modal 2 -->
-<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-<form id="form" role="form" enctype="multipart/form-data" >
-  <div class="modal-dialog modal-lm">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Entrega de asignación</h4>
-			<div class="message1"></div>
-			<div class="row">
-				<!-- left column -->
-				<div class="col-md-12">
-				  <!-- general form elements -->
-				  <div class="box box-primary">
-
-					<div class="box-header with-border"></div><!-- /.box-header -->
-					<!-- form start -->
-					  <div class="box-body">
-					  		<label>Nombre(s) y Apellido(s)</label>
-							<div class="form-group">
-								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="Ingrese Nombres(s) y Apellido(s)"  onpaste="return false" tabindex="260" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							</div>
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_nombre1' class="aaa"><p></p></div>
-
-							<div class="form-group-sm">
-								<label >Documento de Identidad</label>
-									<div class = "input-group">
-
-										<span class="input-group-btn">
-											<select id="rn_tdoc" class="btn-sm"  tabindex="300"  >
-												<option value="0">CC</option>
-												<option value="1">CE</option>
-												<option value="2">PA</option>
-											</select>
-										</span>
-
-										<input type="text" class="form-control ddd" id="rn_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="310" onkeypress="return escedula2(event);" onblur="alsalira(this.id)">
-									</div>
-									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_num_doc' class="aaa"><p></p></div>
-							</div>	
-
-							<div class="form-group-sm">
-							<label for="tele2">Teléfono de contacto</label>
-							<input type="text" class="form-control ddd" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="320" onkeypress="return estele2(event);" onblur="alsalir2(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele2' class="aaa"></div>
-							</div>
-
-								<div id="confirma_telefono2">
-									<ul><li id="conf_tel2" style="color:#fff;text-align:center" ></li></ul>
-								</div>
-
-							<div class="form-group-sm">
-							<label for="correo2">Correo electrónico</label>
-							<input type="text" class="form-control ddd" id="correo2" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="330" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo2' class="aaa"></div>
-							</div>
-
-							<div id="confirma_correo2">
-								<ul><li id="conf_cor2" style="color:#fff;text-align:center" ></li></ul>
-							</div>							
-
-					  </div><!-- /.box-body -->
-
-				  </div><!-- /.box -->
-
-				</div>
-			</div>
-							      <div class="modal-footer">
-							      		<button id="close2" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Incluir</button>
-							      		<button id="cancelar3" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
 
 							      </div>
         </div>
@@ -1289,8 +1217,7 @@ $("#izquierda" ).click(function() {
 												{ "data": "tipo" },
 												{ "data": "concepto" },
 												{ "data": "cantidad" },
-												{ "data": "medida" },
-												{ "data": "costo" },
+												{ "data": "medida" },												
 												{ "data": "observaciones" }
 												
 												
@@ -1957,8 +1884,7 @@ $("#izquierda" ).click(function() {
 				$.post( "../../controllers/mrequerimientos_controller", {
 
 					action: "add",
-					
-					nombre: $("#nombre").val(),
+										
 					fecha1: $("#fecha1").val(),
 					departamento: $("#departamento").val(),
 					municipio: $("#municipio").val(),
@@ -1971,76 +1897,25 @@ $("#izquierda" ).click(function() {
 					a_referencia: $("#a_referencia").val(),
 					referencia: $("#referencia").val(),
 
-					fecha2: $("#fecha2").val(),
-					fecha3: $("#fecha3").val(),
-					hora1: $("#hora1").val(),
-					hora2: $("#hora2").val(),
-
 					rt_nombre1: $("#rt_nombre1").val(),
 					rt_nombre2: $("#rt_nombre2").val(),
-					rt_apellido1: $("#rt_apellido1").val(),
-					rt_apellido2: $("#rt_apellido2").val(),
+
 					rt_tdoc: $("#rt_tdoc").val(),
 					rt_num_doc: $("#rt_num_doc").val(),
 					tele1: $("#tele1").val(),
 					correo1: $("#correo1").val(),
-					grupo: $("#grupo").val(),
-					otro1: $("#otro1").val(),
 
 					rn_nombre1: $("#rn_nombre1").val(),
-					rn_nombre2: $("#rn_nombre2").val(),
-					rn_apellido1: $("#rn_apellido1").val(),
-					rn_apellido2: $("#rn_apellido2").val(),
 					rn_tdoc: $("#rn_tdoc").val(),
 					rn_num_doc: $("#rn_num_doc").val(),
 					tele2: $("#tele2").val(),
 					correo2: $("#correo2").val(),
-
-					tipo1: $("#tipo1").val(),
-					tipo2: $("#tipo2").val(),
-					tipo3: $("#tipo3").val(),
-					tipo4: $("#tipo4").val(),
-					
-					arutaval: $("#arutaval").val(),
-					apircval: $("#apircval").val(),
-					afase: $("#afase").val(),
-					amedida: $("#amedida").val(),
-					idaccion: $("#idaccion").val(),
-					entidad: $("#entidad").val(),
-					num_vic: $("#num_vic").val(),
-					descripcion: $("#descripcion").val(),
-					aloja: $("#aloja").val(),
-					trans: $("#trans").val(),
-					t_trans: $("#t_trans").val(),
-					to_total:$("#totalite").val(),
 					region: $("#region").val()
 
 				}).done(function(data){
 
 					var parsedJson = $.parseJSON(data);
 					$(".message").html(parsedJson.mensaje);
-
-					switch(parsedJson.deslizador){
-
-						case "1":
-							$('.base').unslider('animate:0');
-							tick=0;
-							document.getElementById('izquierda').disabled = true;
-							$("#izquierda").css("display", "none");
-							document.getElementById('derecha').disabled = false;
-							$("#derecha").css("display", "block");
-						break;
-
-						case "2":
-							$('.base').unslider('animate:1');
-							tick=1;
-							document.getElementById('izquierda').disabled = false;
-							$("#izquierda").css("display", "block");
-							document.getElementById('derecha').disabled = true;
-							$("#derecha").css("display", "none");
-						break;
-
-					}
 
 					if(parsedJson.resultado != 'error'){
 
@@ -2055,17 +1930,15 @@ $("#izquierda" ).click(function() {
 					$.post( "../../controllers/madjuntos_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
 						$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 					});				
-
-						$('.base').unslider('animate:0');
+						
 							valore=$("#ideado").val();
-							//alert(valore);
+							
 					    	setTimeout(function(){
 
-					                //  $(location).attr('href','../requerimientos/frm_registrar');
-					                 //$('#nombre').focus();
-								   $(location).attr('href','frm_reportar?record='+valore);
+								   //$(location).attr('href','frm_adjuntados?record='+valore);
+								   $(location).attr('href','index');
 
-					              }, 1500);
+					        }, 1500);
 
 					}
 

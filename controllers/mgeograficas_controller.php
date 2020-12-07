@@ -27,7 +27,7 @@ switch ($action){
         @$data = Mdepartamento::find('all');
 
       if($data !=null){
-               $resp = '<option value="0" disabled selected>Indique un Dirección Territorial</option>';
+               $resp = '<option value="0" disabled selected>Seleccione un Departamento</option>';
             foreach($data as $rs){
               $resp .= '<option value="'.$rs->cdd.'">'.$rs->nombre.'</option>';
               $resp .= '<hidden>';
@@ -44,7 +44,7 @@ switch ($action){
         @$data = Mmunicol::find('all',array('conditions' => array('mdepartamentos_cdd=?',$departamento)));
 
       if($data !=null){
-               $resp = '<option value="0" disabled selected>Indique un Municipio</option>';
+               $resp = '<option value="0" disabled selected>Seleccione un Municipio</option>';
             foreach($data as $rs){
               $resp .= '<option value="'.$rs->cdd.'">'.$rs->nombre.'</option>';
               $resp .= '<hidden>';
@@ -63,7 +63,7 @@ switch ($action){
         @$data = Mcpoblado::find('all',array('conditions' => array('mmunicols_cdd=?',$municipio)));
 
       if($data !=null){
-               $resp = '<option value="0" disabled selected>Indique un centro poblado</option>';
+               $resp = '<option value="0" disabled selected>Seleccione un centro poblado</option>';
             foreach($data as $rs){
               $resp .= '<option value="'.$rs->cdd.'">'.$rs->nombre.'</option>';
               $resp .= '<hidden>';
