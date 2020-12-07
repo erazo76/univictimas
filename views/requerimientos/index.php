@@ -14,25 +14,21 @@ ValidaSession("../login");
 		<div class="col-md-12">
 			
 				<div class="box-header with-border">
-					<h3 class="box-title">Requerimientos</h3>
+					<h3 class="box-title">Asigmaciones</h3>
 				</div><!-- /.box-header -->
 			<div class="box box-primary"  >		
 				<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
 						<table id="tabla" class="table table-bordered table-hover">
 							<thead>
 								<tr>
-									<th>Nro. Evento</th>
-									<th>Nombre del Evento</th>
-									<th>Dirección Territorial</th>
-									<th>Municipio</th>
-									<th>Fecha de inicio</th>
-									<th>Responsable del Evento</th>
-									<th>Solicitado el:</th>
-									<th>Usuario Solic.:</th>
-									<th>Modificado el:</th>
-									<th>Usuario modif.</th>
-									<th>Aprobado por:</th>
-									<th></th>
+									<th>Nro.:</th>									
+									<th>Departamento</th>
+									<th>Municipio</th>									
+									<th>Fecha de asiganción</th>
+									<th>Beneficiario</th>
+									<th>Asignado por:</th>
+									<th>Despachado por:</th>				
+									<th></th>									
 								</tr>
 							</thead>
 							<tbody>
@@ -42,8 +38,9 @@ ValidaSession("../login");
 				<div class="box-footer">
 					<button id="add" class="btn btn-primary" type="button"><i class="fa fa-fw fa-plus"></i> Agregar</button>
 					<button id="edit" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-pencil"></i> Editar</button>
-					<button id="delete" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> Eliminar</button>
+					<!--<button id="delete" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> Eliminar</button>
 					<button id="repo" class="btn btn-primary" type="button"><i class="fa fa-fw fa-eye"></i>Vista previa</button>
+					-->
 				</div>
 			</div>
 		</div>
@@ -62,7 +59,7 @@ ValidaSession("../login");
 
 		}
 		//deshabilitar edicion mientras se programa el modulo editar
-		document.getElementById("edit").disabled=false;
+		document.getElementById("edit").disabled=true;
 
 			var table = $('#tabla').dataTable({
 				
@@ -75,16 +72,23 @@ ValidaSession("../login");
 
 						if ((mData.aprobado)== 2){
 
-							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/aprobado2.png)');
-							$('td:eq(0)', nRow).css('background-size','contain');
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/despachado.png),radial-gradient(white, yellow)');
+							$('td:eq(0)', nRow).css('background-size','70px 25px');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
-							$('td:eq(11)', nRow).css('opacity','0');
+							$('td:eq(0)', nRow).css('text-align','left');
+							$('td:eq(0)', nRow).css('background-position','bottom center');
+							$('td:eq(7)', nRow).css('opacity','0');
 
 						}else{
 								
-							$('td:eq(0)', nRow).css('background-image','');
-							$('td:eq(11)', nRow).css('opacity','0');
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/asignado.png),radial-gradient(yellow, white)');
+							$('td:eq(0)', nRow).css('background-size','70px 25px');
+							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
+							$('td:eq(0)', nRow).css('font-weight','bold');
+							$('td:eq(0)', nRow).css('text-align','left');
+							$('td:eq(0)', nRow).css('background-position','bottom center');							
+							$('td:eq(7)', nRow).css('opacity','0');
 						}
 
 						return nRow;
@@ -93,17 +97,13 @@ ValidaSession("../login");
 				  "scrollY": "280px",
 				  "scrollCollapse": true,
 				  "columns": [
-						{ "data": "id" },
-						{ "data": "nombre" },
+						{ "data": "id" },						
 						{ "data": "departamento" },
 						{ "data": "municipio" },
 						{ "data": "fecha" },
-						{ "data": "responsable" },
-						{ "data": "created" },
-						{ "data": "usercreate" },
-						{ "data": "updated" },
-						{ "data": "userupdate" },
-						{ "data": "resp_aprob" },
+						{ "data": "beneficiario" },
+						{ "data": "asignado" },
+						{ "data": "despachado" },						
 						{ "data": "aprobado" }
 					],
 			       // fixedColumns: false,
@@ -128,11 +128,11 @@ ValidaSession("../login");
 							"aTargets": [2]
 						},
 						{
-							"width": "140px",
+							"width": "100px",
 							"aTargets": [3]
 						},
 						{
-							"width": "100px",
+							"width": "150px",
 							"aTargets": [4]
 						},
 						{
@@ -141,31 +141,13 @@ ValidaSession("../login");
 						}
 						,
 						{
-							"width": "85px",
+							"width": "150px",
 							"aTargets": [6]
 						},
 						{
-							"width": "140px",
-							"aTargets": [7]
-						},
-						{
-							"width": "100px",
-							"aTargets": [8]
-						},
-						{
-							"width": "140px",
-							"aTargets": [9]
-						},
-						{
-							"width": "140px",
-							"aTargets": [10]
-						},
-						{
 							"width": "1px",
-							"aTargets": [11]
-						}						
-							
-
+							"aTargets": [7]
+						}	
 					]
 				//"order": [[ 0, "asc" ]]
 
@@ -183,7 +165,7 @@ ValidaSession("../login");
 				}
 			} );
 
-			$('#tabla tbody').on( 'dblclick', 'tr', function () {
+		/*	$('#tabla tbody').on( 'dblclick', 'tr', function () {
 
 					table.$('tr.selected').removeClass('selected');
 					$(this).addClass('selected');
@@ -211,7 +193,7 @@ ValidaSession("../login");
 				}
 
 
-			} );
+			});*/
 
 
 			$("#add" ).click(function() {
@@ -237,49 +219,6 @@ ValidaSession("../login");
 
 				}
 			} );
-
-			$('#delete').click( function () {
-				var value= table.$('tr.selected').children('td:first').text();
-				if(!value){
-
-						$.alert({
-						    title: '!Seleccione el registro a eliminar !',
-						    content: false,
-						    confirmButton: true, // hides the confirm button.
-						    closeIcon: false,
-						    confirmButton: 'cerrar',
-						    confirmButtonClass: 'btn-success'
-						});
-
-				}else{
-
-						$.confirm({
-
-								    title: '¿Desea eliminar este registro?!',
-								    content:false,
-								    confirmButton: 'Si',
-								    cancelButton: 'No',
-								    confirmButtonClass: 'btn-primary',
-		    						    cancelButtonClass: 'btn-success',
-
-						    		confirm: function(){
-
-										$.post( "../../controllers/mrequerimientos_controller", { action: "delete",record:value}).done(function( data ) {
-											//$(".message").html(data);
-											var parsedJson = $.parseJSON(data);
-											$(".message").html(parsedJson.mensaje);
-											window.setTimeout('location.reload()', 3000);
-										});						    			
-
-									},
-								 	cancel: function(){
-
-									}
-						});
-
-				}
-			});
-
 
 			$('#repo').click( function () {
 				var value= table.$('tr.selected').children('td:first').text();
