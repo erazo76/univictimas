@@ -17,7 +17,7 @@ ValidaSession("../login");
 	<div class="col-md-6 col-md-offset-3">
 
 		<div class="box-header with-border" tabindex="-1">
-			<h3 class="box-title">Ingreso de equipos</h3>
+			<h3 class="box-title">Ingresar Unidades de Negocio</h3>
 		</div><!-- /.box-header -->
 
 		<div class="box box-primary">
@@ -32,7 +32,7 @@ ValidaSession("../login");
 				</div>	
 				<br>
 				<div class="form-group-sm row">
-					<label for="nombre" class="col-sm-4 col-form-label">Equipo</label>
+					<label for="nombre" class="col-sm-4 col-form-label">Unidad</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre del equipo"  onpaste="return false" tabindex="1" onkeypress="return esnombre(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
 						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' class="aaa"><p></p></div>

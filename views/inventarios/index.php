@@ -14,7 +14,7 @@ ValidaSession("../login");
 		<div class="col-md-12">
 			
 				<div class="box-header with-border">
-					<h3 class="box-title">Listado de equipos</h3>
+					<h3 class="box-title">Unidades de Negocio</h3>
 				</div><!-- /.box-header -->
 			<div class="box box-primary"  >		
 				<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
@@ -22,12 +22,12 @@ ValidaSession("../login");
 							<thead>
 								<tr>
 									<th>Id</th>
-									<th>Equipo</th>
+									<th>Unidad</th>
 									<th>Marca</th>
 									<th>Modelo</th>
 									<th>Existencias</th>
 									<th>Reservados</th>
-									<th>Despachados</th>
+									<th>Entregados</th>
 								</tr>
 							</thead>
 							<tbody>

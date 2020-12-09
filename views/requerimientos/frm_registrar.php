@@ -18,7 +18,7 @@ ValidaSession("../login");
 
 			<div class="col-md-4">
 				<div class="box-header with-border" tabindex="-1">
-					 	<h3 class="box-title">Asignación Nro: <label id="n_accion"></label></h3>
+					 	<h3 class="box-title">Entrega Nro: <label id="n_accion"></label></h3>
 				</div><!-- /.box-header -->
 		  		<div class="box box-primary">
 						<input type="hidden" id="distribuidora" value="<?php echo intval($_SESSION['distribuidora']); ?>">
@@ -180,12 +180,12 @@ ValidaSession("../login");
 							</div>
 									
 						<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-						<label for="tabla"> Equipos asignados</label>
+						<label for="tabla">Unidades de negocio</label>
 								<table id="tabla" class="table table-bordered table-hover">
 									<thead>
 										<tr>
-											<th></th>
-											<th>Equipo</th>
+											<th>Id</th>										
+											<th>Unidad</th>
 											<th>Marca</th>
 											<th>Modelo</th>
 											<th>Serial</th>											
@@ -209,7 +209,7 @@ ValidaSession("../login");
 
 			<div class="col-md-4">
 				<div class="box-header with-border">
-					<h3 class="box-title">Entrega de asignación</h3>
+					<h3 class="box-title">Entrega</h3>
 				</div><!-- /.box-header -->
 				
 				<div class="box box-primary">
@@ -217,7 +217,7 @@ ValidaSession("../login");
 					<div class="box-body">
 
 						<div class="form-group-sm">	
-							<label for="fecha2">Fecha</label>
+							<label for="fecha2">Fecha de entrega</label>
 							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" disabled>
 						</div>									
 
@@ -265,7 +265,7 @@ ValidaSession("../login");
 							</div>							
 						<br>
 						<div class="form-group-sm">
-							<label id="prueba">Adjuntar archivos </label> 
+							<label id="prueba">Adjuntar soportes </label> 
 							<button id="anex" type="button" class="btn btn-primary btn-xs pull-right" tabindex="22" disabled><i class="fa fa-fw fa-plus" ></i></button><br>						
 							<ul class="list-group" style="height: 30px;overflow:auto;" id="ul_adj"></ul>							
 						</div>	
@@ -291,7 +291,7 @@ ValidaSession("../login");
     <div class="modal-content">
       <div class="modal-body">
         <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Asignación de equipo</h4>
+         <h4 class="modal-title" id="myModalLabel1">Asignación para entrega de unidades</h4>
 			<div class="message1"></div>
 			<div class="row">
 				<!-- left column -->
@@ -304,7 +304,7 @@ ValidaSession("../login");
 					  <div class="box-body">
 
 							<div class="form-group-sm">
-								<label>Equipo</label>								
+								<label>Unidad de negocio</label>								
 								<select name="a_equipo" id="a_equipo" class="form-control bbb" tabindex="100">
 								<option></option>								
 								</select>
@@ -355,7 +355,7 @@ ValidaSession("../login");
     <div class="modal-content">
       <div class="modal-body">
         <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Anexos</h4>
+         <h4 class="modal-title" id="myModalLabel1">Soportes adjuntos</h4>
 			<div class="message1"></div>
 			<div class="row">
 				<!-- left column -->
@@ -430,7 +430,7 @@ ValidaSession("../login");
 
 $(document).ready(function() {
 
-	$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+	$.post( "../../controllers/mequipos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 
@@ -1200,28 +1200,48 @@ $("#izquierda" ).click(function() {
 										  //"destroy": true,
 
 										  "ajax": {
-											"url": "../../data_json/data_mdetalles",
+											"url": "../../data_json/data_mequipos",
 											"dataSrc": ""
 										  },
-
-										  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
-
-											$('td:eq(0)', nRow).css('opacity','0');
-	
-											return nRow;
-											},
 										  "scrollX": true,
 										  "scrollY": "75px",
 										  "columns": [
-												{ "data": "id" },
-												{ "data": "tipo" },
-												{ "data": "concepto" },
-												{ "data": "cantidad" },
-												{ "data": "medida" },												
+												{ "data": "id" },	
+												{ "data": "unidad" },
+												{ "data": "marca" },
+												{ "data": "modelo" },
+												{ "data": "serial" },																								
 												{ "data": "observaciones" }
 												
 												
 											],
+											"aoColumnDefs": [
+											{
+												"width": "20px",
+												"aTargets": [0]
+											},
+
+											{
+												"width": "140px",
+												"aTargets": [1]
+											},
+											{
+												"width": "80px",
+												"aTargets": [2]
+											},
+											{
+												"width": "80px",
+												"aTargets": [3]
+											},
+											{
+												"width": "80px",
+												"aTargets": [4]
+											},
+											{
+												"width": "150px",
+												"aTargets": [5]
+											}
+										],
 										//"order": [[ 0, "asc" ]],
 										"bPaginate": false,
 										"info":     false,
@@ -1343,16 +1363,15 @@ $("#izquierda" ).click(function() {
 
 
 		$("#close1").click(function() {
-
-				$.post( "../../controllers/mdetalles_controller", {
+			
+				$.post( "../../controllers/mequipos_controller", {
 
 					action: "temporal",
-					tipo: $('#d_tipo').val(),
-					concepto: $('#d_concepto').val(),
-					cantidad: $('#d_cantidad').val(),
-					medida: $('#d_medida').val(),
-					costo: $('#d_costo').val(),
-					observaciones: $('#d_obs').val()
+					equipo: $('#a_equipo').val(),
+					marca:  $('#a_marca').val(),
+					modelo: $('#a_modelo').val(),
+					serial: $('#a_serial').val(),					
+					observaciones: $('#a_obs').val()
 
 				}).done(function(data){
 
@@ -1360,27 +1379,22 @@ $("#izquierda" ).click(function() {
 					$(".message1").html(parsedJson.mensaje);
 
 					if(parsedJson.resultado != 'error'){
-
+					
 						
 					    setTimeout(function(){
 
-							$("#d_tipo").val(null);
-							$("#d_concepto").val(null);
-							$("#d_cantidad").val(null);
-							$("#d_medida").val(null);
-							$("#d_obs").val(null);
-							$("#d_costo").val(null);
+							$("#a_equipo").val(null);
+							$("#a_marca").val(null);
+							$("#a_modelo").val(null);
+							$("#a_serial").val(null);
+							$("#a_obs").val(null);							
 
 							$('#tabla').DataTable().ajax.reload();
  							$(".alert").alert('close');
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
-
-							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
-								var parsedJson = $.parseJSON(data);
-								var cos_tot=parsedJson;
-								$("#totalite").val( cos_tot );
-							},"json");
+							
+							
 
 					    }, 3000);
 
@@ -1600,7 +1614,7 @@ $("#izquierda" ).click(function() {
 
 						$.confirm({
 
-								    title: '¿Desea desincorporar este item?!',
+								    title: '¿Desea retirar esta unidad del listado?!',
 								    content:false,
 								    confirmButton: 'Si',
 								    cancelButton: 'No',
@@ -1609,7 +1623,7 @@ $("#izquierda" ).click(function() {
 
 						    		confirm: function(){
 
-										$.post( "../../controllers/mdetalles_controller", {action:"delete",record:value}).done(function( data ) {
+										$.post( "../../controllers/mequipos_controller", {action:"delete",record:value}).done(function( data ) {
 											//$(".message").html(data);
 											var parsedJson = $.parseJSON(data);
 											$(".message").html(parsedJson.mensaje);
@@ -1620,7 +1634,7 @@ $("#izquierda" ).click(function() {
 												//$('#tabla').dataTable();
 												 
 
-													  	$.post( "../../controllers/mdetalles_controller", { action: "search_act"}).done(function( data ) {
+													  	$.post( "../../controllers/mequipos_controller", { action: "search_act"}).done(function( data ) {
 																
 																var parsedJson = $.parseJSON(data);
 
@@ -1834,6 +1848,21 @@ $("#izquierda" ).click(function() {
 
 		});
 
+// para consultar y cargar los unidades de negocio ***********************************************************
+
+		$.post( "../../controllers/mequipos_controller", { action: "get_equipos"}).done(function( data ) {
+			 $("#a_equipo" ).html( data );
+		});	
+
+		$('#a_equipo').change(function(event) {
+			
+				$.post( "../../controllers/mequipos_controller", { action: "get_datos",equipa: $("#a_equipo").val()}).done(function( data ) {
+					var parsedJson = $.parseJSON(data);					
+					$("#a_marca").val(parsedJson.marca);
+					$("#a_modelo").val(parsedJson.modelo);
+				});
+
+		});
 
 // para consultar y cargar los segmentos ***********************************************************
 		$.post( "../../controllers/msegmentos_controller", { action: "get_segmentos"}).done(function( data ) {
@@ -1919,8 +1948,8 @@ $("#izquierda" ).click(function() {
 
 					if(parsedJson.resultado != 'error'){
 
-					$.post( "../../controllers/mdetalles_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-						$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+					$.post( "../../controllers/mequipos_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
+						$.post( "../../controllers/mequipos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 					});
 
 					$.post( "../../controllers/mvictimas_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
@@ -1936,6 +1965,10 @@ $("#izquierda" ).click(function() {
 					    	setTimeout(function(){
 
 								   //$(location).attr('href','frm_adjuntados?record='+valore);
+
+
+			$.post( "../../controllers/mequipos_controller", { action: "restar_inv",valore:valore}).done(function( data ) {},"json");	
+
 								   $(location).attr('href','index');
 
 					        }, 1500);
@@ -2467,13 +2500,13 @@ function esdobs(e) {
 
 					if(patron.test(n)==''){
 
-						document.getElementById('ms_d_obs').style.display = 'block';
-						document.getElementById("ms_d_obs").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+						document.getElementById('ms_a_obs').style.display = 'block';
+						document.getElementById("ms_a_obs").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
 							return patron.test(n);
 
 					}else{
 
-						document.getElementById("ms_d_obs").innerHTML = '';
+						document.getElementById("ms_a_obs").innerHTML = '';
 						return patron.test(n);
 
 					}

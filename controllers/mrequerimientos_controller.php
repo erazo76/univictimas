@@ -398,9 +398,9 @@ break;
                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
                     <h4>
                     <i class="icon fa fa-check"></i>
-                    Alerta!
+                    Muy bien!
                     </h4>
-                    Los datos han sido registrados exitosamente !.
+                    Los datos han sido registrados exitosamente!.
                     </div>');
  
             }else{
