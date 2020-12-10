@@ -81,6 +81,7 @@ break;
               foreach($invo as $inv){
                
                 $inv->cantidad -= 1;
+                $inv->res += 1;
                 $inv->user_modify = $usuario_id;
                 $inv->updated = $hoy;
                 $inv->save();  
@@ -91,7 +92,31 @@ break;
   break;
 
 #*******************************************************************************
+case 'entrega_inv':
+       
+  @$data = Mequipo::find('all',array('conditions' => array('mrequerimientos_id=?',$valore)));     
 
+    session_start();
+    $usuario_id = $_SESSION['idusuariox'];
+    $hoy = date('d-m-Y');
+    
+    foreach($data as $rs){
+            $equip = $rs->equipo;
+            $invo = Minventario::find('all',array('conditions' => array('id=?',$equip)));
+          foreach($invo as $inv){
+           
+            $inv->res -= 1;
+            $inv->env += 1;
+            $inv->user_modify = $usuario_id;
+            $inv->updated = $hoy;
+            $inv->save();  
+          }      
+    }
+
+
+break;
+
+#*******************************************************************************
   case 'add':
 
       if($nombre ==""){

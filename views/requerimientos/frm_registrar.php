@@ -1194,7 +1194,7 @@ $("#izquierda" ).click(function() {
 
 		});
 
-
+									
 									var table = $('#tabla').dataTable({
 										  	
 										  //"destroy": true,
@@ -1602,7 +1602,7 @@ $("#izquierda" ).click(function() {
 				if(!value){
 
 						$.alert({
-						    title: '!Seleccione el item a desincorporar!',
+						    title: '!Seleccione la unidad a retirar!',
 						    content: false,
 						    confirmButton: true, // hides the confirm button.
 						    closeIcon: false,

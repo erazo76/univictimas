@@ -5,7 +5,7 @@ require_once '../models/Musuario.php';
 session_start();
 //$toca=0;
 	//muestra toda la data
-		$data = Minventario::find_by_sql("SELECT id,nombre,marca,modelo,cantidad FROM minventarios WHERE status=1 order by id desc;");
+		$data = Minventario::find_by_sql("SELECT id,nombre,marca,modelo,cantidad,res,env FROM minventarios WHERE status=1 order by id desc;");
 
 	$result = array();
 	
@@ -19,8 +19,8 @@ session_start();
 										"marca"=>$rs->marca,
 										"modelo"=>$rs->modelo,
 										"existencias"=>$rs->cantidad,
-										"reservados"=> 0,
-										"despachados"=> 0
+										"reservados"=>$rs->res,
+										"despachados"=>$rs->env
 		                      		 
 		                         ));
 		$items++;

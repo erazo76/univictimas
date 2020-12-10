@@ -1407,8 +1407,7 @@ case 'aprobar':
                   
   
             $resp = array(
-                    "id"=>$rs->id,
-                    "nombre"=>$rs->nombre,
+                    "id"=>$rs->id,                    
                     "fecha1"=>(string)$rs->fecha1->format("d-m-Y"),
                     "departamento"=>$rs->mdepartamentos_id,
                     "municipio"=>$rs->mmunicipios_id,
@@ -1420,43 +1419,16 @@ case 'aprobar':
                     "num_dir"=>$rs->num_dir,
                     "a_referencia"=>$rs->a_referencia,
                     "referencia"=>$rs->referencia,
-  
-                    "fecha2"=>(string)$rs->fecha2->format("d-m-Y"),
-                    "fecha3"=>(string)$rs->fecha3->format("d-m-Y"),
-                   // "hora1"=>date("h:i a", strtotime($rs->hora1)),
-                   // "hora2"=>date("h:i a", strtotime($rs->hora2)),
 
-                    "hora1"=>$rs->hora1,
-                    "hora2"=>$rs->hora2,
   
                     "rt_nombre1"=>$rs->rt_nombre1,
                     "rt_nombre2"=>$rs->rt_nombre2,
-                    "rt_apellido1"=>$rs->rt_apellido1,
-                    "rt_apellido2"=>$rs->rt_apellido2,
+
                     "rt_tdoc"=>$rs->rt_tdoc,
                     "rt_num_doc"=>$rs->rt_num_doc,
                     "tele1"=>$rs->tele1,
                     "correo1"=>$rs->correo1,
-                    "grupo"=>$rs->grupos_id,
-                    "otro1"=>$rs->otro1,
-  
-                    "tipo1"=>$rs->tipo1,
-                    "tipo2"=>$rs->tipo2,
-                    "tipo3"=>$rs->tipo3,
-                    "tipo4"=>$rs->tipo4,
-                    
-                    "arutaval"=>$rs->arutaval,
-                    "apircval"=>$rs->apircval,
-                    "afase"=>$rs->afase,
-                    "amedida"=>$rs->amedida,
-                    "idaccion"=>$rs->idaccion,
-                    "entidad"=>$rs->entidad,
-                    "num_vic"=>$rs->num_vic,
-                    "descripcion"=>$rs->descripcion,
-                    "aloja"=>$rs->aloja,
-                    "trans"=>$rs->trans,
-                    "t_trans"=>$rs->t_trans,
-                    "to_total"=>$rs->costo_total,
+
                     "region"=>$rs->mregiones_id,
                     "completado"=>$rs->completado
                    );

@@ -1,10 +1,15 @@
 <?php
 require_once '../models/Mequipo.php';
 require_once '../models/Minventario.php';
+if(intval($_GET["al"]) > 1){
+	@$unid = intval($_GET["al"]);
+}else{
+	@$unid = 1;
+}
 
 
 	$result = array();
-	$data = Mequipo::find_by_sql("select id,cid,equipo,marca,modelo,serial,observaciones,mrequerimientos_id,status from mequipos WHERE status=1 AND mrequerimientos_id=1 order by id desc;");
+	$data = Mequipo::find_by_sql("select id,cid,equipo,marca,modelo,serial,observaciones,mrequerimientos_id,status from mequipos WHERE status=1 AND mrequerimientos_id=".$unid." order by id desc;");
 	$items = 0;
 
 	foreach ($data as &$rs) {
