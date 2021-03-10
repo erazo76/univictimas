@@ -273,7 +273,7 @@ break;
             Seleccione un municipio.
             </div>');
 
-      }else if($acceso1 ==""){
+      }/*else if($acceso1 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -317,7 +317,7 @@ break;
              Indique un lugar de referencia.
             </div>');
 
-      }else if($rt_nombre1 ==""){
+      }*/else if($rt_nombre1 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -361,6 +361,17 @@ break;
             Indique un correo electrónico.
             </div>');
 
+      }else if($fecha2 ==""){
+
+        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Indique la fecha de entrega.
+            </div>');
+
       }else{  //(A)
 
             session_start();
@@ -391,6 +402,7 @@ break;
             $alia->user_create = $usuario_id;
             $alia->created = $hoy;
             $alia->completado = 1;
+            $alia->fecha2 = $fecha2;
 
              if($alia->save()){ // da el mensaje de guardado...
 

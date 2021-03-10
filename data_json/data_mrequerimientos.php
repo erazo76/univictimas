@@ -6,7 +6,7 @@ require_once '../models/Musuario.php';
 session_start();
 //$toca=0;
 	//muestra toda la data
-		$data = Mrequerimiento::find_by_sql("SELECT id,cid,mdepartamentos_id,mmunicipios_id,fecha1,rt_nombre1,rt_nombre2,updated,created,user_create,user_modify,rn_nombre1,completado FROM mrequerimientos WHERE status=1 order by id desc;");
+		$data = Mrequerimiento::find_by_sql("SELECT id,cid,mdepartamentos_id,mmunicipios_id,fecha2,rt_nombre1,rt_nombre2,updated,created,user_create,user_modify,rn_nombre1,completado FROM mrequerimientos WHERE status=1 order by id desc;");
 
 	$result = array();
 	
@@ -44,7 +44,7 @@ session_start();
 		                           		 "id"=>$rs->id,		                           		 
 		                           		 "departamento"=>$dep,
 		                           		 "municipio"=>$mun,
-		                           		 "fecha"=>$rs->fecha1->format("d-m-Y"),
+		                           		 "fecha"=>$rs->fecha2->format("d-m-Y"),
 										 "beneficiario"=>$rs->rt_nombre1,
 										 "asignado"=>$rs->rt_nombre2, 
 										 "despachado"=>$resp_aprob, 

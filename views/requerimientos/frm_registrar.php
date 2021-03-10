@@ -59,7 +59,7 @@ ValidaSession("../login");
 								</select>
 							</div>
 
-							<div class="form-group-sm">
+							<!--<div class="form-group-sm">
 								<label >Dirección</label>
 							
 								<div class = "input-group">
@@ -90,9 +90,9 @@ ValidaSession("../login");
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso2' class="aaa"><p></p></div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_dir' class="aaa"><p></p></div>
-							</div>
+							</div> -->
 
-							<div class="form-group-sm">
+							<!--<div class="form-group-sm">
 									<label >Referencia</label>
 										<div class = "input-group">
 											<span class="input-group-btn">
@@ -109,17 +109,17 @@ ValidaSession("../login");
 											<input type="text" class="form-control bbb" id="referencia" placeholder="Ingrese una referencia"  onpaste="return false" tabindex="9" onkeypress="return esreferencia(event);" onblur="alsalir(this.id)">
 										</div>
 										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_referencia' class="aaa"><p></p></div>
-							</div>	
+							</div>-->	
 
 						</div>
 
-						<div class="box-body">
+						<!--<div class="box-body">
 
 							<div class="form-group-sm">
 								<label>Asignado por:</label>
 								<input type="text" class="form-control bbb" id="rt_nombre2" value="<?php echo($_SESSION['nombresx']); ?>"  onpaste="return false"  onblur="alsalir(this.id)"  autocomplete="off" disabled="true">
 							</div>
-						</div>
+						</div>-->
 						<div class="box-footer">
 						</div>
 
@@ -179,7 +179,7 @@ ValidaSession("../login");
 								<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
 							</div>
 									
-						<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+						<!--<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
 						<label for="tabla">Unidades de negocio</label>
 								<table id="tabla" class="table table-bordered table-hover">
 									<thead>
@@ -200,7 +200,7 @@ ValidaSession("../login");
 						<div class="box-footer">
 							<button id="agregar" type="button" class="btn btn-primary sm" tabindex="15"><i class="fa fa-fw fa-plus"></i>Agregar</button>
 							<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
-						</div>
+						</div>-->
 					</div>	
 						
 				</div><!-- /.box -->
@@ -218,10 +218,10 @@ ValidaSession("../login");
 
 						<div class="form-group-sm">	
 							<label for="fecha2">Fecha de entrega</label>
-							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" disabled>
+							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" >
 						</div>									
 
-						<label>Entregado por:</label>
+						<!--<label>Entregado por:</label>
 							<div class="form-group">
 								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="Ingrese Nombres(s) y Apellido(s)"  onpaste="return false" tabindex="17" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off" disabled>
 							</div>
@@ -262,11 +262,11 @@ ValidaSession("../login");
 
 							<div id="confirma_correo2">
 								<ul><li id="conf_cor2" style="color:#fff;text-align:center" ></li></ul>
-							</div>							
+							</div>-->							
 						<br>
 						<div class="form-group-sm">
 							<label id="prueba">Adjuntar soportes </label> 
-							<button id="anex" type="button" class="btn btn-primary btn-xs pull-right" tabindex="22" disabled><i class="fa fa-fw fa-plus" ></i></button><br>						
+							<button id="anex" type="button" class="btn btn-primary btn-xs pull-right" tabindex="22" ><i class="fa fa-fw fa-plus" ></i></button><br>						
 							<ul class="list-group" style="height: 30px;overflow:auto;" id="ul_adj"></ul>							
 						</div>	
 						
@@ -733,7 +733,7 @@ $("#izquierda" ).click(function() {
 		$("#fecha1").datepicker("setDate", new Date());
 		
 		$('#fecha2').datepicker({
-			startDate: '+0d',
+			
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1939,8 +1939,8 @@ $("#izquierda" ).click(function() {
 					rn_num_doc: $("#rn_num_doc").val(),
 					tele2: $("#tele2").val(),
 					correo2: $("#correo2").val(),
-					region: $("#region").val()
-
+					region: $("#region").val(),
+					fecha2: $("#fecha2").val()
 				}).done(function(data){
 
 					var parsedJson = $.parseJSON(data);

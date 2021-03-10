@@ -24,10 +24,8 @@ ValidaSession("../login");
 									<th>Nro.:</th>									
 									<th>Departamento</th>
 									<th>Municipio</th>									
-									<th>Fecha de asiganción</th>
-									<th>Beneficiario</th>
-									<th>Asignado por:</th>
-									<th>Entregado por:</th>				
+									<th>Fecha de entrega</th>
+									<th>Beneficiario</th>		
 									<th></th>									
 								</tr>
 							</thead>
@@ -78,17 +76,17 @@ ValidaSession("../login");
 							$('td:eq(0)', nRow).css('font-weight','bold');
 							$('td:eq(0)', nRow).css('text-align','left');
 							$('td:eq(0)', nRow).css('background-position','bottom center');
-							$('td:eq(7)', nRow).css('opacity','0');
+							$('td:eq(5)', nRow).css('opacity','0');
 
 						}else{
 								
-							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/asignado.png),radial-gradient(yellow, white)');
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/despachado.png),radial-gradient(yellow, white)');
 							$('td:eq(0)', nRow).css('background-size','70px 25px');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
 							$('td:eq(0)', nRow).css('text-align','left');
 							$('td:eq(0)', nRow).css('background-position','bottom center');							
-							$('td:eq(7)', nRow).css('opacity','0');
+							$('td:eq(5)', nRow).css('opacity','0');
 						}
 
 						return nRow;
@@ -101,9 +99,7 @@ ValidaSession("../login");
 						{ "data": "departamento" },
 						{ "data": "municipio" },
 						{ "data": "fecha" },
-						{ "data": "beneficiario" },
-						{ "data": "asignado" },
-						{ "data": "despachado" },						
+						{ "data": "beneficiario" },						
 						{ "data": "aprobado" }
 					],
 			       // fixedColumns: false,
@@ -116,40 +112,11 @@ ValidaSession("../login");
 							
 						},
 						{
-							"width": "80px",
-							"aTargets": [0]
-						},
-						{
-							"width": "140px",
-							"aTargets": [1]
-						},
-						{
-							"width": "140px",
-							"aTargets": [2]
-						},
-						{
-							"width": "100px",
-							"aTargets": [3]
-						},
-						{
-							"width": "150px",
-							"aTargets": [4]
-						},
-						{
-							"width": "150px",
-							"aTargets": [5]
-						}
-						,
-						{
-							"width": "150px",
-							"aTargets": [6]
-						},
-						{
 							"width": "1px",
-							"aTargets": [7]
+							"aTargets": [5]
 						}	
-					]
-				//"order": [[ 0, "asc" ]]
+					],
+				"order": [[ 0, "desc" ]]
 
 			});
 

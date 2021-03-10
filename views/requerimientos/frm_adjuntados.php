@@ -153,7 +153,7 @@ ValidaSession("../login");
 
 
 	$("#volver").click(function() {
-		$(location).attr('href','frm_reportar?record='+$("#idea").val());
+		$(location).attr('href','frm_editar?record='+$("#idea").val());
 	});
 
 });	

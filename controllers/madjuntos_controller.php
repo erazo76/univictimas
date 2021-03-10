@@ -493,7 +493,7 @@ break;
             $hoy = date("d-m-Y");
 
             if($sourcePath){//si cargaron el archivo
-              if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg")){
+              if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf")){
                 move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
                 @$nombre_imagen = $id."_".($_FILES['file']['name']);
               }
