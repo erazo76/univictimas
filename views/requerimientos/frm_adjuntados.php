@@ -20,7 +20,7 @@ ValidaSession("../login");
 		
 	<div class="col-md-1">
 		<div class="flotante">
-			<button id="print" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw fa-print"></i></button>
+			<br>
 			<button id="volver" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw   fa-mail-reply"></i></button>
 		</div>
 	</div>
@@ -123,13 +123,13 @@ ValidaSession("../login");
 //##############################INSERTAR LOS DIVS CON LA COSNSULA DE  LA TABLA DETALLES ###############################################
 
 
-	$('#print').click( function () {
+/*	$('#print').click( function () {
 
 		setTimeout(function () { 
 			window.print(); 
 		}, 500);
 		
-	});	
+	});	*/
 
 
 	$("#volver").click(function() {
@@ -143,8 +143,8 @@ if (window.matchMedia("(min-width: 200px) and (max-width: 370px)").matches) {
 
 		$("#pr1").css({"width": "100%", "overflow": "auto"});
 		$("#pr2").css({"width": "216mm", "height": "100%"});
-		$("#print").css("display","none");
-		$(".flotante").css("opacity","0.9");
+		//$("#print").css("display","none");
+		$(".flotante").css("opacity","0.8");
 
 } else {
 
@@ -154,7 +154,7 @@ if (window.matchMedia("(min-width: 200px) and (max-width: 370px)").matches) {
 
 
 //################################################################### GUARDAR APROBACON ###############################################
-			$('#print').balloon({ 
+			/*$('#print').balloon({ 
 				html: true, 
 					position: 'right',
 					contents: 'IMPRIMIR' ,
@@ -165,7 +165,7 @@ if (window.matchMedia("(min-width: 200px) and (max-width: 370px)").matches) {
 					backgroundColor: '#3366cc',
 					color: '#fff'
 				} 
-			});
+			});*/
 
 			$('#volver').balloon({ 
 				html: true, 
