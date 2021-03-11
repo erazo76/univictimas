@@ -266,9 +266,9 @@ ValidaSession("../login");
 							</div>-->							
 						<br>
 						<div class="form-group-sm">
-							<label id="prueba">Adjuntar soportes </label> 
+							<label id="prueba">Soportes Adjuntos </label> 
 							<button id="anex" type="button" class="btn btn-primary btn-xs pull-right" tabindex="22" ><i class="fa fa-fw fa-eye" ></i></button><br>						
-							<ul class="list-group" style="height: 30px;overflow:auto;" id="ul_adj"></ul>							
+							<ul class="list-group" style="height: 130px;overflow:auto;" id="ul_adj"></ul>							
 						</div>	
 						
 					</div>
@@ -521,6 +521,7 @@ $(document).ready(function() {
 		$("#n_accion").text(idd.padStart(4, 0));
 	
 		$("#fecha1").val(parsedJson.fecha1);
+		$("#fecha2").val(parsedJson.fecha2);
 
 		var bdep =parsedJson.departamento;
 		var bmun =parsedJson.municipio;
@@ -1679,7 +1680,7 @@ $("#izquierda" ).click(function() {
 
 							$('#modal3').scrollTop(0);
 								
-							setTimeout(function(){
+							setTimeout(function(){ 
 
 								$("#InputFile").val(null);
 								$("#file_url").attr('src', '');
@@ -1688,7 +1689,7 @@ $("#izquierda" ).click(function() {
 								$('#modal3').modal('toggle');
 								$("#anex").focus();
 
-								$.post( "../../controllers/madjuntos_controller", { action: "contar_id"}).done(function( data ) {
+								$.post( "../../controllers/madjuntos_controller", { action: "contar_id2",guarda:guarda}).done(function( data ) {
 
 									var parsedJson = $.parseJSON(data);
 									$('#ul_adj li').remove();
@@ -1707,10 +1708,24 @@ $("#izquierda" ).click(function() {
 				}
 			});
 
-
-
-
 		});		
+
+  /*######################################### CREAR LISTA DE DOCUMENTOS CARGADAS EN BD #############################*/
+  
+		var guarda = $("#idea").val();
+		$.post( "../../controllers/madjuntos_controller", { action: "contar_id2",guarda:guarda}).done(function( data ) {
+
+			var parsedJson = $.parseJSON(data);
+			$('#ul_adj li').remove();
+			parsedJson.forEach(function(parsedJson, index) {
+				var imagen =parsedJson.imagen;
+				//alert(imagen);
+				
+				$('#ul_adj').append('<li class="list-group-item">'+imagen+'</li>');
+
+			});	
+
+		},"json");
 
 			$('#quitar').click( function () {
 

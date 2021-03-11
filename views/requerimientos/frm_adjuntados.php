@@ -18,9 +18,6 @@ ValidaSession("../login");
 		<input type="hidden" id="region" value="<?php echo intval($_SESSION['region']); ?>">
 		<input type="hidden" id="idea" value="<?php echo intval($_GET["record"]); ?>">
 		
-
-<div class="row">
-
 	<div class="col-md-1">
 		<div class="flotante">
 			<button id="print" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw fa-print"></i></button>
@@ -28,47 +25,30 @@ ValidaSession("../login");
 		</div>
 	</div>
 
-	<div class="col-md-11" style="width:216mm; height:100%;" id="pr1" >
-
+<div class="row">
+	
+ 	<div class="col-md-12">
+	
 		<div class="box-header with-border" tabindex="-1">
 			<h3 class="box-title">DOCUMENTOS ANEXOS</h3>
-		</div> <!--/.box-header	-->
+		</div> <!--/.box-header	-->			
+			
+		<div class="box box-primary" >
 
-		<div class="box box-primary" id="pr2">
-			<div class="box-body " >
-		
-				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:100%;">
-					<!-- Indicators -->
-					<ol class="carousel-indicators">
-						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-						<li data-target="#myCarousel" data-slide-to="1"></li>
-						<li data-target="#myCarousel" data-slide-to="2"></li>
-					</ol>
+			<div class="box-body" >	
 
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner" id="carro">
-				
-					</div>
-
-					<!-- Controls -->
-					<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-						<span class="glyphicon glyphicon-chevron-left"></span>
-						<span class="sr-only">Anterior</span>
-					</a>
-					<a class="right carousel-control" href="#myCarousel" data-slide="next">
-						<span class="glyphicon glyphicon-chevron-right"></span>
-						<span class="sr-only">Siguiente</span>
-					</a>
+				<div class="form-group-sm">
+					<div id="docum"></div>	
 				</div>
+
 			</div>
 
 		</div>	
-
-	</div>
 	
-</div>
+ 	</div>	
 
 </div>
+
 </form>
 
 
@@ -125,23 +105,23 @@ ValidaSession("../login");
 					//console.log("indice " + index + " | tipo " + parsedJson.tipo + " concepto: " + parsedJson.concepto + " cantidad: " + parsedJson.cantidad + " medida: " + parsedJson.medida + " observaciones: " + parsedJson.observaciones)
 				
 					var imagen =parsedJson.imagen;
-						
-					if(imagen != null && index > 0){
-						
-						$('#carro').append('<div class="item"><img src="../../dist/img/adjuntos/'+imagen+'" alt=""><div class="carousel-caption"><p>'+imagen+'</p></div></div>');	
-
-					}else{
-
-						$('#carro').append('<div class="item active"><img src="../../dist/img/adjuntos/'+imagen+'" alt=""><div class="carousel-caption"><p>'+imagen+'</p></div></div>');	
-
-					}		
 					
+						if(imagen != null && index > 0){
+
+							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'" type="application/pdf" width="100%" height="480px"></iframe>');	
+
+						}else{
+
+							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'" type="application/pdf" width="100%"  height="480px"></iframe>');	
+						
+						}	
 
 				});
 
 		});	
 
 //##############################INSERTAR LOS DIVS CON LA COSNSULA DE  LA TABLA DETALLES ###############################################
+
 
 	$('#print').click( function () {
 
@@ -167,7 +147,7 @@ if (window.matchMedia("(min-width: 200px) and (max-width: 370px)").matches) {
 		$(".flotante").css("opacity","0.9");
 
 } else {
-	
+
 
 }
 

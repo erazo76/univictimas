@@ -15,6 +15,7 @@ date_default_timezone_set('America/Bogota');
 /***********************************/
 //@$distribuidora = ($_POST["distribuidora"]);
 @$id = ($_POST["idea"]);
+@$guarda = ($_POST["guarda"]);
 @$sourcePath = $_FILES['file']['tmp_name'];  // Almacenar ruta de origen del archivo en una variable
 @$targetPath = "../dist/img/adjuntos/".$id."_".$_FILES['file']['name']; // Ruta de destino donde el archivo se va a almacenar
 @$tipo_archivo = $_FILES['file']['type'];
@@ -30,7 +31,7 @@ switch ($action){
               foreach($data as $rs){
 
                 $resp[] = array(
-                      "imagen"=>$rs->imagen
+                      "imagen"=>$rs->imagen 
 
                 );
 
@@ -44,10 +45,36 @@ switch ($action){
 
           }
 
-break;
+  break;
 
+/*############################################################################################################-*/
 
+  case 'contar_id2':
+   
+    $data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',$guarda,1)));
+    
+            if($data !=null){
+            
+              foreach($data as $rs){
 
+                $resp[] = array(
+                      "imagen"=>$rs->imagen 
+
+                );
+
+              }  
+            echo json_encode($resp);
+
+          }else{
+
+            $resp[] = array();
+            echo json_encode($resp);
+
+          }
+
+  break;
+
+/*############################################################################################################-*/
   case 'add':
 
       if($nombre2 ==""){

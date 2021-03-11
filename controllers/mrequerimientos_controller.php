@@ -1421,6 +1421,7 @@ case 'aprobar':
             $resp = array(
                     "id"=>$rs->id,                    
                     "fecha1"=>(string)$rs->fecha1->format("d-m-Y"),
+                    "fecha2"=>(string)$rs->fecha2->format("d-m-Y"),
                     "departamento"=>$rs->mdepartamentos_id,
                     "municipio"=>$rs->mmunicipios_id,
                     "cpoblado"=>$rs->mcpoblado_id,
