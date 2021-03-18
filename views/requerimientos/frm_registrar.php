@@ -427,12 +427,18 @@ ValidaSession("../login");
 <link rel="stylesheet" href="../../plugins/select3/bootstrap-select.min.css">
 
  <script type="text/javascript">
-
+	
 $(document).ready(function() {
 
+	$.post( "../../controllers/mrequerimientos_controller", {action: "del_temp"}).done(function(data){},"json");
+	
+	
 	$.post( "../../controllers/mequipos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+
+	$.post( "../../controllers/mrequerimientos_controller", {action: "crear"}).done(function(data){},"json");
+setTimeout(function() {
 
 	$.post( "../../controllers/mrequerimientos_controller", { action: "contar_id"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
@@ -442,7 +448,7 @@ $(document).ready(function() {
 		$("#n_accion").text( res );
 		$("#ideado").val( numstring );
 	},"json");
-
+}, 300);
 	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
 		var cos_tot=parsedJson;
@@ -980,6 +986,7 @@ $("#izquierda" ).click(function() {
 						    confirm: function(){
 
 								$.post( "../../controllers/mrequerimientos_controller", {action: "del_temp"}).done(function(data){},"json");
+								$.post( "../../controllers/mrequerimientos_controller", {action: "del_temp2"}).done(function(data){},"json");
 
 						    	setTimeout(function(){
 
@@ -1750,6 +1757,7 @@ $("#izquierda" ).click(function() {
 			$("#InputFile").val(null);
 			$("#file_url").attr('src', '');
 			$("#anex").focus();
+			document.getElementById('exit').disabled = false;
 
 		});
 
@@ -1785,8 +1793,8 @@ $("#izquierda" ).click(function() {
 		});
 
 		$("#anex").click(function() {
-			$('#modal3').modal({backdrop: 'static',keyboard: false});
-			
+			$('#modal3').modal({backdrop: 'static',keyboard: false});			
+			//document.getElementById('exit').disabled = true;			
 		});
 // para consultar y cargar los datos geograficos ***********************************************************
 
@@ -1910,10 +1918,11 @@ $("#izquierda" ).click(function() {
 		$("#save" ).click(function() {
 				//alert($("#t_trans").val());
 				
+				
 				$.post( "../../controllers/mrequerimientos_controller", {
 
 					action: "add",
-										
+					id:	$("#ideado").val(),				
 					fecha1: $("#fecha1").val(),
 					departamento: $("#departamento").val(),
 					municipio: $("#municipio").val(),
@@ -1966,7 +1975,7 @@ $("#izquierda" ).click(function() {
 
 								   //$(location).attr('href','frm_adjuntados?record='+valore);
 
-
+								  		
 			$.post( "../../controllers/mequipos_controller", { action: "restar_inv",valore:valore}).done(function( data ) {},"json");	
 
 								   $(location).attr('href','index');

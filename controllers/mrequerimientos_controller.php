@@ -1,5 +1,6 @@
 <?php
 require_once '../models/Mrequerimiento.php';
+require_once '../models/Madjunto.php';
 require_once '../models/Mdetalle.php';
 require_once '../models/Mdepartamento.php';
 require_once '../models/Mmunicol.php';
@@ -80,14 +81,14 @@ date_default_timezone_set('America/Bogota');
 switch ($action){
 
   case 'contar_id':
-
-    @$data = Mrequerimiento::find('all');
+//contar cuantos usuarios hay conectados
+    @$data = Mrequerimiento::find('last');
 
   if($data !=null){
-    $contados= count($data)+1;
+    $contados= $data->id;
       
    }else{
-    $contados= count($data)+1;
+    $contados= $data->id;
    }
 
      
@@ -248,7 +249,26 @@ break;
        echo json_encode($respuesta);
 
   break;
+/***************************************** CREAR ****************************************** */
+  case 'crear':
+    session_start();
+    @$usuario_id = $_SESSION['idusuariox'];
+    $hoy = date('d-m-Y');
+    $alia = new Mrequerimiento();  
+    $alia->created = $hoy;
+    $alia->completado = 3;
+    $alia->mdepartamentos_id = 5;
+    $alia->mmunicipios_id = 5045;
+    $alia->fecha2=  $hoy;
+    $alia->rt_nombre1 = 1;
+    $alia->rt_nombre2 = 1;
+    $alia->rn_nombre1 = 1;
+    $alia->user_create = $usuario_id;
+   
+    $alia->save();    
+  break;
 
+/******************************************** ADD *************************************** */
   case 'add':
 
       if($departamento ==""){
@@ -378,8 +398,8 @@ break;
             @$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
-            $alia = new Mrequerimiento();    
-            
+           //$alia = new Mrequerimiento();    
+            $alia = Mrequerimiento::find($id);
             $alia->fecha1 = $hoy;
             $alia->mdepartamentos_id = $departamento;
             $alia->mmunicipios_id = $municipio;
@@ -442,12 +462,38 @@ break;
         session_start();
         $usuario_id = $_SESSION['idusuariox'];
         
-        $alia2 = Mtemporale::find($record);
-        $alia2 ->delete();
-  break;
+        $data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND user_create=?',1,$usuario_id)));
 
-    #*******************************************************************************
+        foreach($data as $rs){
+            
+            unlink('../dist/img/adjuntos/'.$rs->imagen);            
+            $rs->delete();           
+          
+        }
+ 
+        
+  break;
+ 
+   #*******************************************************************************
   
+   case 'del_temp2':
+
+    session_start();
+    $usuario_id = $_SESSION['idusuariox'];
+    
+    $data = Mrequerimiento::find('all',array('conditions' => array('completado=? AND user_create=?',3,$usuario_id)));
+
+    foreach($data as $rs){
+        
+                 
+        $rs->delete();           
+      
+    }
+
+    
+break;
+
+#******************************************************************************* 
   case 'get_recuperados':
 
         session_start();

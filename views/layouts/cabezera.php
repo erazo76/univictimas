@@ -56,7 +56,11 @@
 	//----------------------------------------------------------------
     ?>
 
-
+		<script Language="JavaScript">
+			if(history.forward(1)){
+			history.replace(history.forward(1));
+			}
+		</script>
 
   </head>
 

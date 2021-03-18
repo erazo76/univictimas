@@ -23,8 +23,9 @@ date_default_timezone_set('America/Bogota');
 switch ($action){
 
   case 'contar_id':
-   
-    $data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
+    session_start();
+    $usuario_id = $_SESSION['idusuariox'];
+    $data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=? AND user_create=?',1,1,$usuario_id)));
     
             if($data !=null){
             
@@ -802,7 +803,7 @@ switch ($action){
 
                     } 
 
-                    $consultada=Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
+                    $consultada=Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=? AND user_create=?',1,1,$usuario_id)));
                     if( $consultada!=null) {
                         foreach ($consultada as $activoros) {
                                                 

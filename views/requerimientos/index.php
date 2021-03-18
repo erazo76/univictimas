@@ -68,9 +68,9 @@ ValidaSession("../login");
 				  },
 				  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
 
-						if ((mData.aprobado)== 2){
+						if ((mData.aprobado)== 3){
 
-							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/despachado.png),radial-gradient(white, yellow)');
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/asignado.png),radial-gradient(white, yellow)');
 							$('td:eq(0)', nRow).css('background-size','70px 25px');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
