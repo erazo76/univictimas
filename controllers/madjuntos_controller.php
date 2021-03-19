@@ -33,7 +33,7 @@ switch ($action){
 
                 $resp[] = array(
                       "imagen"=>$rs->imagen 
-
+ 
                 );
 
               }  
@@ -441,12 +441,14 @@ switch ($action){
 #*******************************************************************************
   case 'search_act_delete':
     
-      @$data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
+      session_start();
+      $usuario_id = $_SESSION['idusuariox'];
+
+      @$data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=? AND user_create=?',1,1,$usuario_id)));
 
       if($data !=null){//si consigue al menos un registro activo
 
-            session_start();
-            $usuario_id = $_SESSION['idusuariox'];
+
             $hoy = date('d-m-Y');
 
             foreach ($data as $acti) {
