@@ -4,7 +4,7 @@
 //------------------------------------------------------------------------------------------------------------
   $constante = array();
   $constante["titulo_pag"] = ":: UNIVICTIMAS| Unidad para las Victimas ::";
-  $constante["favi_ico"] ='<link rel="shortcut icon" href="favicon.png" />';
+  $constante["favi_ico"] ='<link rel="shortcut icon" href="./favicon.png" />';
   $constante["tipo_documento"]='<meta charset="UTF-8">';
 //------------------------------------------------------------------------------------------------------------
 //-- <!-- Tell the browser to be responsive to screen width -->

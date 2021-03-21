@@ -1,4 +1,11 @@
 <?php
+//session_start();
+session_start([
+  'cache_limiter' => 'private',
+  'read_and_close' => true,
+]);
+@$usuario_id = $_SESSION['idusuariox'];
+
 require_once '../models/Mrequerimiento.php';
 require_once '../models/Madjunto.php';
 require_once '../models/Mdetalle.php';
@@ -98,15 +105,15 @@ break;
 #******************************************************************************
   case 'add_temp1':
 
-            session_start();
-            @$usuario_id = $_SESSION['idusuariox'];
+            //session_start();
+            //@$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 //echo($usuario_id);exit(); *******########### PENDIENTE DE CAMBIAR COMPLETADO POR "1"
              $consulta = Mtemporale::find('all',array('conditions' => array('user_create=? AND completado=?',$usuario_id,2)));
 //print_r($consulta);exit();
           if($consulta==null ){  //(B) si no existe lo guarda...
 
-            /*session_start();
+            /*//session_start();
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');*/
 //echo($usuario_id);exit();:all(array('group' => 'price'));
@@ -170,8 +177,8 @@ break;
 
   case 'add_temp2':
 
-            session_start();
-            @$usuario_id = $_SESSION['idusuariox'];
+            //session_start();
+            //@$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 //echo($usuario_id);exit();
              $consulta = Mtemporale::find('all',array('conditions' => array('user_create=? AND completado=?',$usuario_id,2)));
@@ -251,8 +258,8 @@ break;
   break;
 /***************************************** CREAR ****************************************** */
   case 'crear':
-    session_start();
-    @$usuario_id = $_SESSION['idusuariox'];
+    //session_start();
+    //@$usuario_id = $_SESSION['idusuariox'];
     $hoy = date('d-m-Y');
     $alia = new Mrequerimiento();  
     $alia->created = $hoy;
@@ -394,8 +401,8 @@ break;
 
       }else{  //(A)
 
-            session_start();
-            @$usuario_id = $_SESSION['idusuariox'];
+            //session_start();
+            //@$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
            //$alia = new Mrequerimiento();    
@@ -459,7 +466,7 @@ break;
   
   case 'del_temp':
 
-        session_start();
+        //session_start();
         $usuario_id = $_SESSION['idusuariox'];
         
         $data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND user_create=?',1,$usuario_id)));
@@ -478,7 +485,7 @@ break;
   
    case 'del_temp2':
 
-    session_start();
+    //session_start();
     $usuario_id = $_SESSION['idusuariox'];
     
     $data = Mrequerimiento::find('all',array('conditions' => array('completado=? AND user_create=?',3,$usuario_id)));
@@ -496,7 +503,7 @@ break;
 #******************************************************************************* 
   case 'get_recuperados':
 
-        session_start();
+        //session_start();
         $usuario_id = $_SESSION['idusuariox'];
          $rolex = $_SESSION['rolx'];
          $resp = '';
@@ -549,7 +556,7 @@ break;
     #*******************************************************************************
   case 'search_rec':
 
-        session_start();
+        //session_start();
         $usuario_id = $_SESSION['idusuariox'];
         $rolex = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
@@ -575,7 +582,7 @@ break;
   
   case 'get_incompletos':
 
-        session_start();
+        //session_start();
         $usuario_id = $_SESSION['idusuariox'];
         $rolex = $_SESSION['rolx'];
      if($rolex==3){
@@ -1008,7 +1015,7 @@ break;
             $fachada1=implode(",", $fachada);
             $activo1=implode(",", $activo);
 
-            session_start();
+            //session_start();
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
@@ -1175,7 +1182,7 @@ case 'aprobar':
   
             if($consulta==!null){  //(B) si existe actualiza el responsable territorial que aprueba...
   
-              session_start();
+              //session_start();
               $usuario_id = $_SESSION['idusuariox'];
               $hoy = date('d-m-Y');
   
@@ -1249,8 +1256,8 @@ case 'aprobar':
 
       if($record !=null){
 
-        session_start();
-        @$usuario_id = $_SESSION['idusuariox'];
+        //session_start();
+        //@$usuario_id = $_SESSION['idusuariox'];
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
@@ -1312,7 +1319,7 @@ case 'aprobar':
 
       if($record !=null){
 
-        session_start();
+        //session_start();
         $usuario_id = $_SESSION['idusuariox'];
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
@@ -1370,8 +1377,8 @@ case 'aprobar':
 
     if($record !=null){
 
-        session_start();
-        @$usuario_id = $_SESSION['idusuariox'];
+        //session_start();
+        //@$usuario_id = $_SESSION['idusuariox'];
         
 //echo($usuario_id);exit();
         $rol = $_SESSION['rolx'];
@@ -1449,8 +1456,8 @@ case 'aprobar':
 
       if($record !=null){
   
-          session_start();
-          @$usuario_id = $_SESSION['idusuariox'];
+          //session_start();
+          //@$usuario_id = $_SESSION['idusuariox'];
           
   //echo($usuario_id);exit();
           $rol = $_SESSION['rolx'];
@@ -1498,7 +1505,7 @@ case 'aprobar':
   
       }
       break;
-
+     // @session_destroy(); 
 }//end switch
 
 ?>

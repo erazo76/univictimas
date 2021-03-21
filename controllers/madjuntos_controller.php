@@ -1,4 +1,11 @@
 <?php
+
+session_start([
+  'cache_limiter' => 'private',
+  'read_and_close' => true,
+]);
+@$usuario_id = $_SESSION['idusuariox'];
+
 require_once '../models/Madjunto.php';
 require_once '../models/Mrequerimiento.php';
 date_default_timezone_set('America/Bogota');
@@ -23,8 +30,8 @@ date_default_timezone_set('America/Bogota');
 switch ($action){
 
   case 'contar_id':
-    session_start();
-    $usuario_id = $_SESSION['idusuariox'];
+    //session_start();
+    //$usuario_id = $_SESSION['idusuariox'];
     $data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=? AND user_create=?',1,1,$usuario_id)));
     
             if($data !=null){
@@ -45,7 +52,7 @@ switch ($action){
             echo json_encode($resp);
 
           }
-
+                 
   break;
 
 /*############################################################################################################-*/
@@ -95,8 +102,8 @@ switch ($action){
 
           if($consulta==null){  //(B) si no existe lo guarda...
 
-            session_start();
-            $usuario_id = $_SESSION['idusuariox'];
+            //session_start();
+            //$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
             $segme = new Mmarca();
@@ -201,8 +208,8 @@ switch ($action){
 
       if($consulta==null){
 
-            session_start();
-            $usuario_id = $_SESSION['idusuariox'];
+            //session_start();
+            //$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
 
@@ -294,8 +301,8 @@ switch ($action){
 
   if($record !=null){
 
-        session_start();
-        $usuario_id = $_SESSION['idusuariox'];
+        //session_start();
+        //$usuario_id = $_SESSION['idusuariox'];
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
@@ -354,8 +361,8 @@ switch ($action){
   case 'search':
     if($record !=null){
 
-        session_start();
-        $usuario_id = $_SESSION['idusuariox'];
+        //session_start();
+        //$usuario_id = $_SESSION['idusuariox'];
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
@@ -441,8 +448,8 @@ switch ($action){
 #*******************************************************************************
   case 'search_act_delete':
     
-      session_start();
-      $usuario_id = $_SESSION['idusuariox'];
+      //session_start();
+      //$usuario_id = $_SESSION['idusuariox'];
 
       @$data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=? AND user_create=?',1,1,$usuario_id)));
 
@@ -517,8 +524,8 @@ switch ($action){
 
       if($consulta1 == null && $blanco != ''){
 
-            session_start();
-            $usuario_id = $_SESSION['idusuariox'];
+            //session_start();
+            //$usuario_id = $_SESSION['idusuariox'];
 
             $hoy = date("d-m-Y");
 
@@ -626,8 +633,8 @@ switch ($action){
  
             if($consultata == null){
 
-                session_start();
-                $usuario_id = $_SESSION['idusuariox'];
+                //session_start();
+                //$usuario_id = $_SESSION['idusuariox'];
                 $hoy = date('d-m-Y');
 
                 $tempo = new Mactivo();
@@ -687,8 +694,8 @@ switch ($action){
 
       if($id !=null){
 
-        session_start();
-        $usuario_id = $_SESSION['idusuariox'];
+        //session_start();
+        //$usuario_id = $_SESSION['idusuariox'];
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
@@ -749,8 +756,8 @@ switch ($action){
 
       if($recordado !=null){
 
-        session_start();
-        $usuario_id = $_SESSION['idusuariox'];
+        //session_start();
+        //$usuario_id = $_SESSION['idusuariox'];
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
@@ -790,8 +797,8 @@ switch ($action){
 
       if($recordado !=null){
 
-        session_start();
-        $usuario_id = $_SESSION['idusuariox'];
+        //session_start();
+        ////$usuario_id = $_SESSION['idusuariox'];
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
@@ -824,6 +831,7 @@ switch ($action){
 
   }
   break;  
-
+  //@session_destroy(); 
 }//end switch
+
 ?>
