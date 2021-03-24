@@ -21,6 +21,7 @@ ValidaSession("../login");
 					 	<h3 class="box-title">Entrega Nro: <label id="n_accion"></label></h3>
 				</div><!-- /.box-header -->
 		  		<div class="box box-primary">
+				  		<input type="hidden" id="idea" value="<?php echo intval($_GET["record"]); ?>">
 						<input type="hidden" id="distribuidora" value="<?php echo intval($_SESSION['distribuidora']); ?>">
 						<input type="hidden" id="region">
 						<input type="hidden" id="lata" value=6.12>
@@ -40,21 +41,21 @@ ValidaSession("../login");
 
 							<div class="form-group-sm">
 								<label>Departamento</label>
-								<select name="depar" id="departamento" class="form-control bbb" tabindex="1">
+								<select name="depar" id="departamento" class="form-control bbb" tabindex="1" disabled="true">
 								<option></option>
 								</select>
 							</div>
 
 							<div class="form-group-sm">
 								<label>Municipio</label>
-								<select name="munir" id="municipio" class="form-control bbb" tabindex="2">
+								<select name="munir" id="municipio" class="form-control bbb" tabindex="2" disabled="true">
 								<option></option>
 								</select>
 							</div>
 
 							<div class="form-group-sm">
 								<label>Centro Poblado</label>
-								<select id="cpoblado" class="form-control bbb" tabindex="3">
+								<select id="cpoblado" class="form-control bbb" tabindex="3" disabled="true">
 								<option></option>
 								</select>
 							</div>
@@ -90,9 +91,9 @@ ValidaSession("../login");
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso2' class="aaa"><p></p></div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_dir' class="aaa"><p></p></div>
-							</div> -->
+							</div>
 
-							<!--<div class="form-group-sm">
+							<div class="form-group-sm">
 									<label >Referencia</label>
 										<div class = "input-group">
 											<span class="input-group-btn">
@@ -138,7 +139,7 @@ ValidaSession("../login");
 					<div class="box-body">
 						<label>Nombre(s) y Apellido(s)</label>
 						<div class="form-group-sm">
-							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Ingrese Nombre(s) y Apelido(s)"  onpaste="return false" tabindex="10" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
+							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Ingrese Nombre(s) y Apelido(s)"  onpaste="return false" tabindex="10" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off" disabled="true">
 						</div>
 						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_nombre1' class="aaa"><p></p></div>
 			
@@ -147,21 +148,21 @@ ValidaSession("../login");
 								<div class = "input-group">
 
 									<span class="input-group-btn">
-										<select id="rt_tdoc" class="btn-sm"  tabindex="11"  >
+										<select id="rt_tdoc" class="btn-sm"  tabindex="11" disabled="true" disabled="true">
 											<option value="0">CC</option>
 											<option value="1">CE</option>
 											<option value="2">PA</option>
 										</select>
 									</span>
 
-									<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="12" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off">
+									<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="12" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off" disabled="true">
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_num_doc' class="aaa"><p></p></div>
 						</div>	
 
 						<div class="form-group-sm">
 							<label for="tele1">Teléfono de contacto</label>
-							<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="13" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="13" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off" disabled="true">
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
 						</div>
 
@@ -171,7 +172,7 @@ ValidaSession("../login");
 
 						<div class="form-group-sm">
 							<label for="correo1">Correo electrónico</label>
-							<input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="14" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="14" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off" disabled="true">
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' class="aaa"></div>
 						</div>
 
@@ -218,7 +219,7 @@ ValidaSession("../login");
 
 						<div class="form-group-sm">	
 							<label for="fecha2">Fecha de entrega</label>
-							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" >
+							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" disabled="true">
 						</div>									
 
 						<!--<label>Entregado por:</label>
@@ -265,17 +266,17 @@ ValidaSession("../login");
 							</div>-->							
 						<br>
 						<div class="form-group-sm">
-							<label id="prueba">Adjuntar soportes </label> 
-							<button id="anex" type="button" class="btn btn-primary btn-xs pull-right" tabindex="22" ><i class="fa fa-fw fa-plus" ></i></button><br>						
-							<ul class="list-group" style="height: 30px;overflow:auto;" id="ul_adj"></ul>							
+							<label id="prueba">Soportes Adjuntos </label> 
+							<button id="anex" type="button" class="btn btn-primary btn-xs pull-right" tabindex="22" ><i class="fa fa-fw fa-eye" ></i></button><br>						
+							<ul class="list-group" style="height: 130px;overflow:auto;" id="ul_adj"></ul>							
 						</div>	
 						
 					</div>
 
 					<div class="box-footer">
 					<button id="exit" type="button" class="btn btn-primary pull-left "  ><i class="fa fa-fw fa-reply"></i>Regresar</button>
-					<button id="save" type="button" class="btn btn-success pull-right" tabindex="23" ><i class="fa fa-fw fa-save"></i>Guardar</button>					
-					<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
+					<!--<button id="save" type="button" class="btn btn-success pull-right" tabindex="23" disabled ><i class="fa fa-fw fa-save"></i>Guardar</button>					
+					<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
 					</div>			
 
 				</div><!-- /.box-body -->	
@@ -427,41 +428,144 @@ ValidaSession("../login");
 <link rel="stylesheet" href="../../plugins/select3/bootstrap-select.min.css">
 
  <script type="text/javascript">
-	
+
 $(document).ready(function() {
 
-	$.post( "../../controllers/mrequerimientos_controller", {action: "del_temp_null"}).done(function(data){},"json");
-						
-	
-	//$.post( "../../controllers/mequipos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-	//$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-	//$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-setTimeout(function() {
-	$.post( "../../controllers/mrequerimientos_controller", {action: "crear"}).done(function(data){},"json");
-}, 500);
-
-setTimeout(function() {
+	/*$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 
 	$.post( "../../controllers/mrequerimientos_controller", { action: "contar_id"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
 		var numstring=parsedJson.toString();
 		var res = numstring.padStart(4, 0);
 //alert(parsedJson);
-		$("#n_accion").text( res );
+		$("#n_accion").val( res );
 		$("#ideado").val( numstring );
 	},"json");
-
-}, 1000);
 
 	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
 		var cos_tot=parsedJson;
 		$("#totalite").val( cos_tot );
-	},"json");
+	},"json");*/
 
-	$("#izquierda").css("display", "none");
+		$("#izquierda").css("display", "none");
+
+// para consultar y cargar los datos geograficos ***********************************************************
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos"}).done(function( data ) {
+				$("#departamento" ).html( data );
+		
+		});
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios"}).done(function( data ) {
+			 $("#municipio" ).html( data );
+
+		});
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
+			 $("#cpoblado" ).html( data );
+
+		});	
+
+		$('#departamento').change(function(event) {
+			
+			
+			$("#depa" ).val($('select[name="depar"] option:selected').text());
+			$("#depa2" ).val($('select[name="depar"] option:selected').text());
+				
+				$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios",departamento: $("#departamento").val()}).done(function( data ) {
+					 $("#municipio" ).html( data );
+
+				});
+
+				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
+					 $("#cpoblado" ).html( data );
+
+				});	
+
+				$.post( "../../controllers/mregiones_controller", { action: "get_regi",departamento:$("#departamento").val()}).done(function( data ) {
+					 var parsedJson = $.parseJSON(data);
+					
+					 $("#region").val( parsedJson );	
+		
+					// alert($("#region").val());
+
+				});				
+				
+		});
+
+
+		$('#municipio').change(function(event) {
+			$("#muni2" ).val($('select[name="munir"] option:selected').text());
+				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias",municipio: $("#municipio").val()}).done(function( data ) {
+					 $("#cpoblado" ).html( data );
+
+				});
+
+				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
+					 $("#cpoblado" ).html( data );
+
+				});	
+
+		});
+
+
+	$.post( "../../controllers/mrequerimientos_controller", { action: "search_a",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+		
+		var parsedJson = $.parseJSON(data);
+
+		var idd=parsedJson.id.toString();
+
+		$("#n_accion").text(idd.padStart(4, 0));
+	
+		$("#fecha1").val(parsedJson.fecha1);
+		$("#fecha2").val(parsedJson.fecha2);
+
+		var bdep =parsedJson.departamento;
+		var bmun =parsedJson.municipio;
+		var bcpo =parsedJson.cpoblado;
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos_f",departamento:bdep}).done(function( data ) {
+			
+			$("#departamento").html(data);
+			$("#depa" ).val( $("#departamento option:selected").text());
+
+		});	
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios_f",departamento:bdep,municipio: bmun}).done(function( data ) {
+			
+			$("#municipio").html(data);
+
+		});
+		
+		$.post( "../../controllers/mgeograficas_controller", {action: "get_cpoblado_f",municipio: bmun,cpoblado: bcpo}).done(function( data ) {
+
+			$("#cpoblado").html(data);
+
+		});	
+	
+		$("#a_primario").val(parsedJson.a_primario);
+		$("#acceso1").val(parsedJson.acceso1);
+		$("#acceso2").val(parsedJson.acceso2);
+		$("#num_dir").val(parsedJson.num_dir);
+		$("#a_referencia").val(parsedJson.a_referencia);
+		$("#referencia").val(parsedJson.referencia);
+
+		$("#rt_nombre1").val(parsedJson.rt_nombre1);
+		$("#rt_nombre2").val(parsedJson.rt_nombre2);
+
+		$("#rt_tdoc").val(parsedJson.rt_tdoc);
+		$("#rt_num_doc").val(parsedJson.rt_num_doc);
+		$("#tele1").val(parsedJson.tele1);
+		$("#correo1").val(parsedJson.correo1);
+
+
+	},"json");	
 
 });
+
 
 
 
@@ -740,7 +844,7 @@ $("#izquierda" ).click(function() {
 		});
 
 
-		$("#fecha1").datepicker("setDate", new Date());
+		//$("#fecha1").datepicker("setDate", new Date());
 		
 		$('#fecha2').datepicker({
 			
@@ -979,38 +1083,15 @@ $("#izquierda" ).click(function() {
 
 		$("#exit" ).click(function() {
 
-						$.confirm({
-						    title: '¡Esta acción lo llevará al listado de requerimientos y borrará los datos no registrados!.¿Desea continuar?',
-						    content:false,
-						    confirmButton: 'Si',
-						    cancelButton: 'No',
-						    confirmButtonClass: 'btn-primary',
-    						    cancelButtonClass: 'btn-success',
+			setTimeout(function(){
 
-						    confirm: function(){
-								var idea4=$("#ideado").val();
-								alert(idea4);
+				$(location).attr('href','../requerimientos/');
 
-								$.post( "../../controllers/mrequerimientos_controller", {action:"del_temp",regis4:idea4}).done(function(data){},"json");								
-
-						    	setTimeout(function(){
-
-						                  $(location).attr('href','../requerimientos/');
-                  
-						        }, 1000);
-							},
-
-						    cancel: function(){
-
-							}
-						});				
+			}, 1000);			
 			
 		});
 
 		// ********************************************************************************************
-
-
-
 
 		$("#a_tra" ).click(function(){
 
@@ -1205,74 +1286,73 @@ $("#izquierda" ).click(function() {
 			}
 
 		});
-
-									
-									var table = $('#tabla').dataTable({
+		var identico2 = <?php echo intval($_GET["record"]); ?>;
+		var table = $('#tabla').dataTable({
 										  	
-										  //"destroy": true,
-
-										  "ajax": {
-											"url": "../../data_json/data_mequipos",
-											"dataSrc": ""
-										  },
-										  "scrollX": true,
-										  "scrollY": "75px",
-										  "columns": [
-												{ "data": "id" },	
-												{ "data": "unidad" },
-												{ "data": "marca" },
-												{ "data": "modelo" },
-												{ "data": "serial" },																								
-												{ "data": "observaciones" }
-												
-												
+											  //"destroy": true,
+	
+											  "ajax": {
+												"url": "../../data_json/data_mequipos?al="+identico2,
+												"dataSrc": ""
+											  },
+											  "scrollX": true,
+											  "scrollY": "75px",
+											  "columns": [
+													{ "data": "id" },	
+													{ "data": "unidad" },
+													{ "data": "marca" },
+													{ "data": "modelo" },
+													{ "data": "serial" },																								
+													{ "data": "observaciones" }
+													
+													
+												],
+												"aoColumnDefs": [
+												{
+													"width": "20px",
+													"aTargets": [0]
+												},
+	
+												{
+													"width": "140px",
+													"aTargets": [1]
+												},
+												{
+													"width": "80px",
+													"aTargets": [2]
+												},
+												{
+													"width": "80px",
+													"aTargets": [3]
+												},
+												{
+													"width": "80px",
+													"aTargets": [4]
+												},
+												{
+													"width": "150px",
+													"aTargets": [5]
+												}
 											],
-											"aoColumnDefs": [
-											{
-												"width": "20px",
-												"aTargets": [0]
-											},
-
-											{
-												"width": "140px",
-												"aTargets": [1]
-											},
-											{
-												"width": "80px",
-												"aTargets": [2]
-											},
-											{
-												"width": "80px",
-												"aTargets": [3]
-											},
-											{
-												"width": "80px",
-												"aTargets": [4]
-											},
-											{
-												"width": "150px",
-												"aTargets": [5]
-											}
-										],
-										//"order": [[ 0, "asc" ]],
-										"bPaginate": false,
-										"info":     false,
-										"bFilter": false
-
-										  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
-									});
-
-
-							$('#tabla tbody').on( 'click', 'tr', function () {
-
-								if ( $(this).hasClass('selected') ) {
-									$(this).removeClass('selected');
-								}
-								else {
-									table.$('tr.selected').removeClass('selected');
-									$(this).addClass('selected');
-								}
-							});
+											//"order": [[ 0, "asc" ]],
+											"bPaginate": false,
+											"info":     false,
+											"bFilter": false
+	
+											  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
+										});
+	
+	
+								$('#tabla tbody').on( 'click', 'tr', function () {
+	
+									if ( $(this).hasClass('selected') ) {
+										$(this).removeClass('selected');
+									}
+									else {
+										table.$('tr.selected').removeClass('selected');
+										$(this).addClass('selected');
+									}
+								});
 
 							var table2 = $('#tabla2').dataTable({
 										  	
@@ -1375,15 +1455,16 @@ $("#izquierda" ).click(function() {
 
 
 		$("#close1").click(function() {
-			
-				$.post( "../../controllers/mequipos_controller", {
+
+				$.post( "../../controllers/mdetalles_controller", {
 
 					action: "temporal",
-					equipo: $('#a_equipo').val(),
-					marca:  $('#a_marca').val(),
-					modelo: $('#a_modelo').val(),
-					serial: $('#a_serial').val(),					
-					observaciones: $('#a_obs').val()
+					tipo: $('#d_tipo').val(),
+					concepto: $('#d_concepto').val(),
+					cantidad: $('#d_cantidad').val(),
+					medida: $('#d_medida').val(),
+					costo: $('#d_costo').val(),
+					observaciones: $('#d_obs').val()
 
 				}).done(function(data){
 
@@ -1391,22 +1472,27 @@ $("#izquierda" ).click(function() {
 					$(".message1").html(parsedJson.mensaje);
 
 					if(parsedJson.resultado != 'error'){
-					
+
 						
 					    setTimeout(function(){
 
-							$("#a_equipo").val(null);
-							$("#a_marca").val(null);
-							$("#a_modelo").val(null);
-							$("#a_serial").val(null);
-							$("#a_obs").val(null);							
+							$("#d_tipo").val(null);
+							$("#d_concepto").val(null);
+							$("#d_cantidad").val(null);
+							$("#d_medida").val(null);
+							$("#d_obs").val(null);
+							$("#d_costo").val(null);
 
 							$('#tabla').DataTable().ajax.reload();
  							$(".alert").alert('close');
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
-							
-							
+
+							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
+								var parsedJson = $.parseJSON(data);
+								var cos_tot=parsedJson;
+								$("#totalite").val( cos_tot );
+							},"json");
 
 					    }, 3000);
 
@@ -1554,12 +1640,11 @@ $("#izquierda" ).click(function() {
 
 		$("#close11").click(function() {
 			
-			var idea3=$("#ideado").val();
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
 			formData.append('action', 'temporal');
 			formData.append('idea', $("#ideado").val());
-			
+
 			$.ajax({
 				url: "../../controllers/madjuntos_controller",
 				type: "POST",
@@ -1574,7 +1659,7 @@ $("#izquierda" ).click(function() {
 
 							$('#modal3').scrollTop(0);
 								
-							setTimeout(function(){
+							setTimeout(function(){ 
 
 								$("#InputFile").val(null);
 								$("#file_url").attr('src', '');
@@ -1583,7 +1668,7 @@ $("#izquierda" ).click(function() {
 								$('#modal3').modal('toggle');
 								$("#anex").focus();
 
-								$.post( "../../controllers/madjuntos_controller", { action: "contar_id",regis3:idea3}).done(function( data ) {
+								$.post( "../../controllers/madjuntos_controller", { action: "contar_id2",guarda:guarda}).done(function( data ) {
 
 									var parsedJson = $.parseJSON(data);
 									$('#ul_adj li').remove();
@@ -1602,11 +1687,24 @@ $("#izquierda" ).click(function() {
 				}
 			});
 
-
-
-
 		});		
 
+  /*######################################### CREAR LISTA DE DOCUMENTOS CARGADAS EN BD #############################*/
+  
+		var guarda = $("#idea").val();
+		$.post( "../../controllers/madjuntos_controller", { action: "contar_id2",guarda:guarda}).done(function( data ) {
+
+			var parsedJson = $.parseJSON(data);
+			$('#ul_adj li').remove();
+			parsedJson.forEach(function(parsedJson, index) {
+				var imagen =parsedJson.imagen;
+				//alert(imagen);
+				
+				$('#ul_adj').append('<li class="list-group-item">'+imagen+'</li>');
+
+			});	
+
+		},"json");
 
 			$('#quitar').click( function () {
 
@@ -1615,39 +1713,39 @@ $("#izquierda" ).click(function() {
 				if(!value){
 
 						$.alert({
-						    title: '!Seleccione la unidad a retirar!',
-						    content: false,
-						    confirmButton: true, // hides the confirm button.
-						    closeIcon: false,
-						    confirmButton: 'cerrar',
-						    confirmButtonClass: 'btn-success'
+							title: '!Seleccione la unidad a retirar!',
+							content: false,
+							confirmButton: true, // hides the confirm button.
+							closeIcon: false,
+							confirmButton: 'cerrar',
+							confirmButtonClass: 'btn-success'
 						});
 
 				}else{
 
 						$.confirm({
 
-								    title: '¿Desea retirar esta unidad del listado?!',
-								    content:false,
-								    confirmButton: 'Si',
-								    cancelButton: 'No',
-								    confirmButtonClass: 'btn-primary',
-		    						    cancelButtonClass: 'btn-success',
+									title: '¿Desea retirar esta unidad del listado?!',
+									content:false,
+									confirmButton: 'Si',
+									cancelButton: 'No',
+									confirmButtonClass: 'btn-primary',
+										cancelButtonClass: 'btn-success',
 
-						    		confirm: function(){
+									confirm: function(){
 
 										$.post( "../../controllers/mequipos_controller", {action:"delete",record:value}).done(function( data ) {
 											//$(".message").html(data);
 											var parsedJson = $.parseJSON(data);
 											$(".message").html(parsedJson.mensaje);
 
-									    	setTimeout(function(){
+											setTimeout(function(){
 
 												$(".alert").alert('close');
 												//$('#tabla').dataTable();
-												 
+												
 
-													  	$.post( "../../controllers/mequipos_controller", { action: "search_act"}).done(function( data ) {
+														$.post( "../../controllers/mequipos_controller", { action: "search_act"}).done(function( data ) {
 																
 																var parsedJson = $.parseJSON(data);
 
@@ -1662,18 +1760,18 @@ $("#izquierda" ).click(function() {
 
 														},"json");	
 
-									        }, 3000);
+											}, 3000);
 										});		
 
 									},
 
-								 	cancel: function(){
+									cancel: function(){
 
 									}
 						});
 
 				}
-			});		
+				});		
 
 			$('#quitar2').click( function () {
 
@@ -1763,7 +1861,6 @@ $("#izquierda" ).click(function() {
 			$("#InputFile").val(null);
 			$("#file_url").attr('src', '');
 			$("#anex").focus();
-			document.getElementById('exit').disabled = false;
 
 		});
 
@@ -1793,90 +1890,18 @@ $("#izquierda" ).click(function() {
 		});
 
 
-		$("#despa").click(function() {
+		$("#agregar2").click(function() {
 			$('#modal2').modal({backdrop: 'static',keyboard: false});
 			
 		});
 
 		$("#anex").click(function() {
-			$('#modal3').modal({backdrop: 'static',keyboard: false});			
-			//document.getElementById('exit').disabled = true;			
-		});
-// para consultar y cargar los datos geograficos ***********************************************************
-
-		$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos"}).done(function( data ) {
-			 $("#departamento" ).html( data );
+			//$('#modal3').modal({backdrop: 'static',keyboard: false});
+			$(location).attr('href','frm_adjuntados?record='+$("#idea").val()+'&origin=1');
 			
-
-		});
-
-		$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios"}).done(function( data ) {
-			 $("#municipio" ).html( data );
-
-		});
-
-		$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
-			 $("#cpoblado" ).html( data );
-
-		});	
-
-		$('#departamento').change(function(event) {
-			
-			
-			$("#depa" ).val($('select[name="depar"] option:selected').text());
-			$("#depa2" ).val($('select[name="depar"] option:selected').text());
-				
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios",departamento: $("#departamento").val()}).done(function( data ) {
-					 $("#municipio" ).html( data );
-
-				});
-
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
-					 $("#cpoblado" ).html( data );
-
-				});	
-
-				$.post( "../../controllers/mregiones_controller", { action: "get_regi",departamento:$("#departamento").val()}).done(function( data ) {
-					 var parsedJson = $.parseJSON(data);
-					
-					 $("#region").val( parsedJson );	
-		
-					// alert($("#region").val());
-
-				});				
-				
 		});
 
 
-		$('#municipio').change(function(event) {
-			$("#muni2" ).val($('select[name="munir"] option:selected').text());
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias",municipio: $("#municipio").val()}).done(function( data ) {
-					 $("#cpoblado" ).html( data );
-
-				});
-
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
-					 $("#cpoblado" ).html( data );
-
-				});	
-
-		});
-
-// para consultar y cargar los unidades de negocio ***********************************************************
-
-		$.post( "../../controllers/mequipos_controller", { action: "get_equipos"}).done(function( data ) {
-			 $("#a_equipo" ).html( data );
-		});	
-
-		$('#a_equipo').change(function(event) {
-			
-				$.post( "../../controllers/mequipos_controller", { action: "get_datos",equipa: $("#a_equipo").val()}).done(function( data ) {
-					var parsedJson = $.parseJSON(data);					
-					$("#a_marca").val(parsedJson.marca);
-					$("#a_modelo").val(parsedJson.modelo);
-				});
-
-		});
 
 // para consultar y cargar los segmentos ***********************************************************
 		$.post( "../../controllers/msegmentos_controller", { action: "get_segmentos"}).done(function( data ) {
@@ -1924,11 +1949,11 @@ $("#izquierda" ).click(function() {
 		$("#save" ).click(function() {
 				//alert($("#t_trans").val());
 				
-				
 				$.post( "../../controllers/mrequerimientos_controller", {
 
 					action: "add",
-					id:	$("#ideado").val(),				
+					
+					nombre: $("#nombre").val(),
 					fecha1: $("#fecha1").val(),
 					departamento: $("#departamento").val(),
 					municipio: $("#municipio").val(),
@@ -1941,30 +1966,81 @@ $("#izquierda" ).click(function() {
 					a_referencia: $("#a_referencia").val(),
 					referencia: $("#referencia").val(),
 
+					fecha2: $("#fecha2").val(),
+					fecha3: $("#fecha3").val(),
+					hora1: $("#hora1").val(),
+					hora2: $("#hora2").val(),
+
 					rt_nombre1: $("#rt_nombre1").val(),
 					rt_nombre2: $("#rt_nombre2").val(),
-
+					rt_apellido1: $("#rt_apellido1").val(),
+					rt_apellido2: $("#rt_apellido2").val(),
 					rt_tdoc: $("#rt_tdoc").val(),
 					rt_num_doc: $("#rt_num_doc").val(),
 					tele1: $("#tele1").val(),
 					correo1: $("#correo1").val(),
+					grupo: $("#grupo").val(),
+					otro1: $("#otro1").val(),
 
 					rn_nombre1: $("#rn_nombre1").val(),
+					rn_nombre2: $("#rn_nombre2").val(),
+					rn_apellido1: $("#rn_apellido1").val(),
+					rn_apellido2: $("#rn_apellido2").val(),
 					rn_tdoc: $("#rn_tdoc").val(),
 					rn_num_doc: $("#rn_num_doc").val(),
 					tele2: $("#tele2").val(),
 					correo2: $("#correo2").val(),
-					region: $("#region").val(),
-					fecha2: $("#fecha2").val()
+
+					tipo1: $("#tipo1").val(),
+					tipo2: $("#tipo2").val(),
+					tipo3: $("#tipo3").val(),
+					tipo4: $("#tipo4").val(),
+					
+					arutaval: $("#arutaval").val(),
+					apircval: $("#apircval").val(),
+					afase: $("#afase").val(),
+					amedida: $("#amedida").val(),
+					idaccion: $("#idaccion").val(),
+					entidad: $("#entidad").val(),
+					num_vic: $("#num_vic").val(),
+					descripcion: $("#descripcion").val(),
+					aloja: $("#aloja").val(),
+					trans: $("#trans").val(),
+					t_trans: $("#t_trans").val(),
+					to_total:$("#totalite").val(),
+					region: $("#region").val()
+
 				}).done(function(data){
 
 					var parsedJson = $.parseJSON(data);
 					$(".message").html(parsedJson.mensaje);
 
+					switch(parsedJson.deslizador){
+
+						case "1":
+							$('.base').unslider('animate:0');
+							tick=0;
+							document.getElementById('izquierda').disabled = true;
+							$("#izquierda").css("display", "none");
+							document.getElementById('derecha').disabled = false;
+							$("#derecha").css("display", "block");
+						break;
+
+						case "2":
+							$('.base').unslider('animate:1');
+							tick=1;
+							document.getElementById('izquierda').disabled = false;
+							$("#izquierda").css("display", "block");
+							document.getElementById('derecha').disabled = true;
+							$("#derecha").css("display", "none");
+						break;
+
+					}
+
 					if(parsedJson.resultado != 'error'){
 
-					/*$.post( "../../controllers/mequipos_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-						$.post( "../../controllers/mequipos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+					$.post( "../../controllers/mdetalles_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
+						$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 					});
 
 					$.post( "../../controllers/mvictimas_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
@@ -1973,20 +2049,18 @@ $("#izquierda" ).click(function() {
 
 					$.post( "../../controllers/madjuntos_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
 						$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});	*/			
-						
-							//valore=$("#ideado").val();
-							
+					});				
+
+						$('.base').unslider('animate:0');
+							valore=$("#ideado").val();
+							//alert(valore);
 					    	setTimeout(function(){
 
-								   //$(location).attr('href','frm_adjuntados?record='+valore);
+					                //  $(location).attr('href','../requerimientos/frm_registrar');
+					                 //$('#nombre').focus();
+								   $(location).attr('href','frm_reportar?record='+valore);
 
-								  		
-									//$.post( "../../controllers/mequipos_controller", { action: "restar_inv",valore:valore}).done(function( data ) {},"json");	
-
-								   	$(location).attr('href','index');
-
-					        }, 1500);	
+					              }, 1500);
 
 					}
 
@@ -2515,13 +2589,13 @@ function esdobs(e) {
 
 					if(patron.test(n)==''){
 
-						document.getElementById('ms_a_obs').style.display = 'block';
-						document.getElementById("ms_a_obs").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+						document.getElementById('ms_d_obs').style.display = 'block';
+						document.getElementById("ms_d_obs").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
 							return patron.test(n);
 
 					}else{
 
-						document.getElementById("ms_a_obs").innerHTML = '';
+						document.getElementById("ms_d_obs").innerHTML = '';
 						return patron.test(n);
 
 					}

@@ -22,7 +22,11 @@ date_default_timezone_set('America/Bogota');
 /***********************************/
 //@$distribuidora = ($_POST["distribuidora"]);
 @$id = ($_POST["idea"]);
+@$idea3 = ($_POST["regis3"]);
 @$guarda = ($_POST["guarda"]);
+
+
+
 @$sourcePath = $_FILES['file']['tmp_name'];  // Almacenar ruta de origen del archivo en una variable
 @$targetPath = "../dist/img/adjuntos/".$id."_".$_FILES['file']['name']; // Ruta de destino donde el archivo se va a almacenar
 @$tipo_archivo = $_FILES['file']['type'];
@@ -32,7 +36,7 @@ switch ($action){
   case 'contar_id':
     //session_start();
     //$usuario_id = $_SESSION['idusuariox'];
-    $data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=? AND user_create=?',1,1,$usuario_id)));
+    $data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND status=? AND user_create=?',$idea3,1,$usuario_id)));
     
             if($data !=null){
             
@@ -540,7 +544,7 @@ switch ($action){
             $tempo = new Madjunto();
  
             $tempo->imagen = $nombre_imagen;
-            $tempo->mrequerimientos_id = 1;
+            $tempo->mrequerimientos_id = $id;
             $tempo->user_create = $usuario_id;
             $tempo->created = $hoy;
 

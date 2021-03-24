@@ -1918,7 +1918,7 @@ $("#izquierda" ).click(function() {
 
 		$("#anex").click(function() {
 			//$('#modal3').modal({backdrop: 'static',keyboard: false});
-			$(location).attr('href','frm_adjuntados?record='+$("#idea").val());
+			$(location).attr('href','frm_adjuntados?record='+$("#idea").val()+'&origin=2');
 			
 		});
 

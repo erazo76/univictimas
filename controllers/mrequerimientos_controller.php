@@ -82,6 +82,8 @@ date_default_timezone_set('America/Bogota');
 @$t_trans = ($_POST["t_trans"]);
 @$to_total = ($_POST["to_total"]);
 @$region = ($_POST["region"]);
+
+@$regis4 = ($_POST["regis4"]);
 /***********************************/
 
 
@@ -259,11 +261,11 @@ break;
 /***************************************** CREAR ****************************************** */
   case 'crear':
     //session_start();
-    //@$usuario_id = $_SESSION['idusuariox'];
+    @$usuario_id = $_SESSION['idusuariox'];
     $hoy = date('d-m-Y');
     $alia = new Mrequerimiento();  
     $alia->created = $hoy;
-    $alia->completado = 3;
+    //$alia->completado = 3;
     $alia->mdepartamentos_id = 5;
     $alia->mmunicipios_id = 5045;
     $alia->fecha2=  $hoy;
@@ -271,6 +273,7 @@ break;
     $alia->rt_nombre2 = 1;
     $alia->rn_nombre1 = 1;
     $alia->user_create = $usuario_id;
+    $alia->status = 0;
    
     $alia->save();    
   break;
@@ -430,6 +433,7 @@ break;
             $alia->created = $hoy;
             $alia->completado = 1;
             $alia->fecha2 = $fecha2;
+            $alia->status = 1;
 
              if($alia->save()){ // da el mensaje de guardado...
 
@@ -466,29 +470,36 @@ break;
   
   case 'del_temp':
 
-        //session_start();
-        $usuario_id = $_SESSION['idusuariox'];
-        
-        $data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=? AND user_create=?',1,$usuario_id)));
+    @$usuario_id = $_SESSION['idusuariox'];
+    
+    $data = Mrequerimiento::find('all',array('conditions' => array('id=? AND user_create=?',$regis4,$usuario_id)));
 
-        foreach($data as $rs){
+    foreach($data as $rs){
+                        
+        $rs->delete();          
+      
+    }      
+             
+        @$data2 = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=?',$regis4)));
+
+        foreach($data2 as $rt){
             
-            unlink('../dist/img/adjuntos/'.$rs->imagen);            
-            $rs->delete();           
+            unlink('../dist/img/adjuntos/'.$rt->imagen);            
+            $rt->delete();           
           
         }
- 
+        
         
   break;
  
    #*******************************************************************************
   
-   case 'del_temp2':
+   case 'del_temp_null':
 
     //session_start();
-    $usuario_id = $_SESSION['idusuariox'];
+    @$usuario_id = $_SESSION['idusuariox'];
     
-    $data = Mrequerimiento::find('all',array('conditions' => array('completado=? AND user_create=?',3,$usuario_id)));
+    $data = Mrequerimiento::find('all',array('conditions' => array('status=? AND user_create=?',0,$usuario_id)));
 
     foreach($data as $rs){
         

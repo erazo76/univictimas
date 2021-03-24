@@ -133,7 +133,13 @@ ValidaSession("../login");
 
 
 	$("#volver").click(function() {
-		$(location).attr('href','frm_editar?record='+$("#idea").val());
+			var origin=<?php echo intval($_GET["origin"]); ?>;
+		if(origin==1){
+			$(location).attr('href','frm_ver?record='+$("#idea").val());
+		}else{
+			$(location).attr('href','frm_editar?record='+$("#idea").val());
+		}
+
 	});
 
 });	
