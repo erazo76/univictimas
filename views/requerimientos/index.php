@@ -171,7 +171,7 @@ ValidaSession("../login");
 				
 				setTimeout(function() {       
 					$(location).attr('href','frm_registrar');
-     			}, 1500);
+     			}, 3000);
 
 			});
 
