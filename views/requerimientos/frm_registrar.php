@@ -267,9 +267,28 @@ ValidaSession("../login");
 						<div class="form-group-sm">
 							<label id="prueba">Adjuntar soportes </label> 
 							<button id="anex" type="button" class="btn btn-primary btn-xs pull-right" tabindex="22" ><i class="fa fa-fw fa-plus" ></i></button><br>						
-							<ul class="list-group" style="height: 30px;overflow:auto;" id="ul_adj"></ul>							
+							<!--<ul class="list-group" style="height: 30px;overflow:auto;" id="ul_adj"></ul>-->							
 						</div>	
 						
+						<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+						<!--<label for="tabla">Soportes adjuntos</label>-->
+								<table id="tabla" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Id</th>										
+											<th>Anexo</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+						</div>
+				
+						<!--<div class="box-footer">
+							<button id="agregar" type="button" class="btn btn-primary sm" tabindex="15"><i class="fa fa-fw fa-plus"></i>Agregar</button>
+							<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+						</div>-->
+
 					</div>
 
 					<div class="box-footer">
@@ -429,16 +448,15 @@ ValidaSession("../login");
  <script type="text/javascript">
 	
 $(document).ready(function() {
-
-	$.post( "../../controllers/mrequerimientos_controller", {action: "del_temp_null"}).done(function(data){},"json");
-						
+				
 	
 	//$.post( "../../controllers/mequipos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	//$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	//$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-setTimeout(function() {
+/*setTimeout(function() {
 	$.post( "../../controllers/mrequerimientos_controller", {action: "crear"}).done(function(data){},"json");
-}, 500);
+	$.post( "../../controllers/mrequerimientos_controller", {action: "del_temp_null"}).done(function(data){},"json");
+}, 1000);*/
 
 setTimeout(function() {
 
@@ -451,7 +469,7 @@ setTimeout(function() {
 		$("#ideado").val( numstring );
 	},"json");
 
-}, 1000);
+}, 2500);
 
 	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
@@ -460,6 +478,8 @@ setTimeout(function() {
 	},"json");
 
 	$("#izquierda").css("display", "none");
+
+	
 
 });
 
@@ -989,7 +1009,7 @@ $("#izquierda" ).click(function() {
 
 						    confirm: function(){
 								var idea4=$("#ideado").val();
-								alert(idea4);
+								
 
 								$.post( "../../controllers/mrequerimientos_controller", {action:"del_temp",regis4:idea4}).done(function(data){},"json");								
 
@@ -1206,52 +1226,26 @@ $("#izquierda" ).click(function() {
 
 		});
 
-									
+			setTimeout(function() {		
+				var este=$("#ideado").val();
 									var table = $('#tabla').dataTable({
 										  	
 										  //"destroy": true,
 
 										  "ajax": {
-											"url": "../../data_json/data_mequipos",
+											"url": "../../data_json/data_mequipos?este="+este,
 											"dataSrc": ""
 										  },
 										  "scrollX": true,
 										  "scrollY": "75px",
 										  "columns": [
 												{ "data": "id" },	
-												{ "data": "unidad" },
-												{ "data": "marca" },
-												{ "data": "modelo" },
-												{ "data": "serial" },																								
-												{ "data": "observaciones" }
-												
-												
+												{ "data": "anexo" }						
 											],
 											"aoColumnDefs": [
 											{
 												"width": "20px",
 												"aTargets": [0]
-											},
-
-											{
-												"width": "140px",
-												"aTargets": [1]
-											},
-											{
-												"width": "80px",
-												"aTargets": [2]
-											},
-											{
-												"width": "80px",
-												"aTargets": [3]
-											},
-											{
-												"width": "80px",
-												"aTargets": [4]
-											},
-											{
-												"width": "150px",
-												"aTargets": [5]
 											}
 										],
 										//"order": [[ 0, "asc" ]],
@@ -1261,7 +1255,7 @@ $("#izquierda" ).click(function() {
 
 										  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
 									});
-
+										
 
 							$('#tabla tbody').on( 'click', 'tr', function () {
 
@@ -1273,6 +1267,7 @@ $("#izquierda" ).click(function() {
 									$(this).addClass('selected');
 								}
 							});
+			}, 3000);				
 
 							var table2 = $('#tabla2').dataTable({
 										  	
@@ -1559,7 +1554,6 @@ $("#izquierda" ).click(function() {
 			formData.append('file', $('input[type=file]')[0].files[0]);
 			formData.append('action', 'temporal');
 			formData.append('idea', $("#ideado").val());
-			
 			$.ajax({
 				url: "../../controllers/madjuntos_controller",
 				type: "POST",
@@ -1582,29 +1576,16 @@ $("#izquierda" ).click(function() {
 								$(".alert").alert('close');
 								$('#modal3').modal('toggle');
 								$("#anex").focus();
+									
 
-								$.post( "../../controllers/madjuntos_controller", { action: "contar_id",regis3:idea3}).done(function( data ) {
-
-									var parsedJson = $.parseJSON(data);
-									$('#ul_adj li').remove();
-									parsedJson.forEach(function(parsedJson, index) {
-										var imagen =parsedJson.imagen;
-										//alert(imagen);
-										
-										$('#ul_adj').append('<li class="list-group-item">'+imagen+'</li>');
-
-									});	
-
-								},"json");
-
-							}, 3000);
+							}, 2500);
 
 				}
 			});
 
-
-
-
+			setTimeout(function(){
+				$('#tabla').DataTable().ajax.reload();
+			}, 3000);
 		});		
 
 

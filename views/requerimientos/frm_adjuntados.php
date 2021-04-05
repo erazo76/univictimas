@@ -108,11 +108,12 @@ ValidaSession("../login");
 					
 						if(imagen != null && index > 0){
 
-							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'" type="application/pdf" width="100%" height="480px"></iframe>');	
+							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'"  width="100%" height="480px"></iframe>');	
 
 						}else{
 
-							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'" type="application/pdf" width="100%"  height="480px"></iframe>');	
+							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'"  width="100%"  height="480px"></iframe>');	
+							//$('#docum').append('<div class="col-auto bg-danger p-5 text-center">NO HAY ARCHIVOS ADJUNTOS!!</div>');	
 						
 						}	
 
@@ -123,7 +124,10 @@ ValidaSession("../login");
 //##############################INSERTAR LOS DIVS CON LA COSNSULA DE  LA TABLA DETALLES ###############################################
 
 
-/*	$('#print').click( function () {
+/*
+		['image/jpg', 'application/pdf']
+
+$('#print').click( function () {
 
 		setTimeout(function () { 
 			window.print(); 

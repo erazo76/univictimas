@@ -268,8 +268,22 @@ ValidaSession("../login");
 						<div class="form-group-sm">
 							<label id="prueba">Soportes Adjuntos </label> 
 							<button id="anex" type="button" class="btn btn-primary btn-xs pull-right" tabindex="22" ><i class="fa fa-fw fa-eye" ></i></button><br>						
-							<ul class="list-group" style="height: 130px;overflow:auto;" id="ul_adj"></ul>							
+							<!--<ul class="list-group" style="height: 130px;overflow:auto;" id="ul_adj"></ul>-->							
 						</div>	
+
+						<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+						<!--<label for="tabla">Soportes adjuntos</label>-->
+								<table id="tabla" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Id</th>										
+											<th>Anexo</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+						</div>						
 						
 					</div>
 
@@ -431,6 +445,7 @@ ValidaSession("../login");
 
 $(document).ready(function() {
 
+	document.getElementById("anex").disabled=false;
 	/*$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
@@ -1292,46 +1307,26 @@ $("#izquierda" ).click(function() {
 											  //"destroy": true,
 	
 											  "ajax": {
-												"url": "../../data_json/data_mequipos?al="+identico2,
+												"url": "../../data_json/data_mequipos?este="+identico2,
 												"dataSrc": ""
+											  },
+											  "fnDrawCallback": function () {
+													var rows = this.fnGetData();
+													if ( rows.length === 0 ) {
+														document.getElementById("anex").disabled=true;
+													}
 											  },
 											  "scrollX": true,
 											  "scrollY": "75px",
 											  "columns": [
-													{ "data": "id" },	
-													{ "data": "unidad" },
-													{ "data": "marca" },
-													{ "data": "modelo" },
-													{ "data": "serial" },																								
-													{ "data": "observaciones" }
-													
+												{ "data": "id" },	
+												{ "data": "anexo" }													
 													
 												],
 												"aoColumnDefs": [
 												{
 													"width": "20px",
 													"aTargets": [0]
-												},
-	
-												{
-													"width": "140px",
-													"aTargets": [1]
-												},
-												{
-													"width": "80px",
-													"aTargets": [2]
-												},
-												{
-													"width": "80px",
-													"aTargets": [3]
-												},
-												{
-													"width": "80px",
-													"aTargets": [4]
-												},
-												{
-													"width": "150px",
-													"aTargets": [5]
 												}
 											],
 											//"order": [[ 0, "asc" ]],
