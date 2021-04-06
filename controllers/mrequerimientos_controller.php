@@ -466,6 +466,195 @@ break;
             echo json_encode($respuesta);
 
   break;
+
+  /******************************************** ADD EDIT *************************************** */
+  case 'add_edit':
+
+    if($departamento ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Seleccione un Departamento.
+          </div>');
+
+    }else if($municipio ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Seleccione un municipio.
+          </div>');
+
+    }/*else if($acceso1 ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Indique el acceso principal.
+          </div>');
+
+    }else if($acceso2 ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Indique el acceso secundario.
+          </div>');
+
+    }else if($num_dir ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Indique el numero de dirección.
+          </div>');
+
+    }else if($a_referencia ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+           Indique un lugar de referencia.
+          </div>');
+
+    }*/else if($rt_nombre1 ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Indique nombre completo del Beneficiario.
+          </div>');
+
+    }else if($rt_num_doc ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Indique el número del documento de identidad.
+          </div>');
+
+    }else if($tele1 ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Indique un teléfono de contacto.
+          </div>');
+
+    }else if($correo1 ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Indique un correo electrónico.
+          </div>');
+
+    }else if($fecha2 ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Indique la fecha de entrega.
+          </div>');
+
+    }else{  //(A)
+
+          //session_start();
+          //@$usuario_id = $_SESSION['idusuariox'];
+          $hoy = date('d-m-Y');
+
+         //$alia = new Mrequerimiento();    
+          $alia = Mrequerimiento::find($id);
+          $alia->fecha1 = $hoy;
+          $alia->mdepartamentos_id = $departamento;
+          $alia->mmunicipios_id = $municipio;
+          $alia->mcpoblado_id = $cpoblado;
+          $alia->a_primario = $a_primario;
+          $alia->acceso1 = $acceso1;
+          $alia->acceso2= $acceso2;
+          $alia->num_dir = $num_dir;
+          $alia->a_referencia = $a_referencia;
+          $alia->referencia = $referencia;
+         
+          $alia->rt_nombre1 = $rt_nombre1;
+          $alia->rt_nombre2 = $rt_nombre2;
+
+          $alia->rt_tdoc = $rt_tdoc;
+          $alia->rt_num_doc = $rt_num_doc;
+          $alia->tele1 = $tele1;
+          $alia->correo1 = $correo1;   
+          
+          $alia->user_modify = $usuario_id;
+          $alia->updated = $hoy;
+          $alia->completado = 1;
+          $alia->fecha2 = $fecha2;
+          $alia->status = 1;
+
+           if($alia->save()){ // da el mensaje de guardado...
+
+              $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
+                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                  <h4>
+                  <i class="icon fa fa-check"></i>
+                  Muy bien!
+                  </h4>
+                  Los datos han sido actualizados exitosamente!.
+                  </div>');
+
+          }else{
+
+
+            $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
+                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                <h4>
+                <i class="icon fa fa-ban"></i>
+                Alerta!
+                </h4>
+                Error al registrar los datos.
+                </div>');
+
+
+          }
+
+          //echo json_encode($respuesta);
+      }
+          echo json_encode($respuesta);
+
+break;
   #*******************************************************************************
   
   case 'del_temp':

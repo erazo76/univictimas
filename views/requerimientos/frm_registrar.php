@@ -1237,7 +1237,7 @@ $("#izquierda" ).click(function() {
 											"dataSrc": ""
 										  },
 										  "scrollX": true,
-										  "scrollY": "75px",
+										  "scrollY": "120px",
 										  "columns": [
 												{ "data": "id" },	
 												{ "data": "anexo" }						
@@ -1576,8 +1576,7 @@ $("#izquierda" ).click(function() {
 								$(".alert").alert('close');
 								$('#modal3').modal('toggle');
 								$("#anex").focus();
-									
-
+	
 							}, 2500);
 
 				}
@@ -1586,6 +1585,7 @@ $("#izquierda" ).click(function() {
 			setTimeout(function(){
 				$('#tabla').DataTable().ajax.reload();
 			}, 3000);
+
 		});		
 
 
@@ -1944,28 +1944,9 @@ $("#izquierda" ).click(function() {
 
 					if(parsedJson.resultado != 'error'){
 
-					/*$.post( "../../controllers/mequipos_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-						$.post( "../../controllers/mequipos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});
-
-					$.post( "../../controllers/mvictimas_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-						$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});		
-
-					$.post( "../../controllers/madjuntos_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-						$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});	*/			
-						
-							//valore=$("#ideado").val();
-							
 					    	setTimeout(function(){
 
-								   //$(location).attr('href','frm_adjuntados?record='+valore);
-
-								  		
-									//$.post( "../../controllers/mequipos_controller", { action: "restar_inv",valore:valore}).done(function( data ) {},"json");	
-
-								   	$(location).attr('href','index');
+								$(location).attr('href','index');
 
 					        }, 1500);	
 

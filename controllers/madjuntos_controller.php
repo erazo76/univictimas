@@ -307,17 +307,13 @@ switch ($action){
 
         //session_start();
         //$usuario_id = $_SESSION['idusuariox'];
-        $rol = $_SESSION['rolx'];
-        $hoy = date("d-m-Y");
+        $rol = $_SESSION['rolx'];        
 
         if($usuario_id !="" /*&& ($rol ==1 || $rol==4)*/){
 
-                  $acti= Mvictima::find($record);
-                  $acti->user_modify = $usuario_id;
-                  $acti->updated = $hoy;
-                  $acti->status = 0;
-
-                  if($acti->save()){
+                  $acti= Madjunto::find($record);
+                  unlink('../dist/img/adjuntos/'.$acti->imagen); 
+                  if($acti->delete()){
 
                     $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
                         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -325,7 +321,7 @@ switch ($action){
                         <i class="icon fa fa-check"></i>
                         Alerta!
                         </h4>
-                        Se retiro al participante del evento.
+                        Se elimino el archivo de la lista.
                         </div>');
 
                   }else{
@@ -337,7 +333,7 @@ switch ($action){
                         <i class="icon fa fa-ban"></i>
                         Alerta!
                         </h4>
-                        Error al retirar al participante del evento..
+                        Error al eliminar el archivo de la lista.
                         </div>');
 
                   }

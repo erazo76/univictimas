@@ -1317,7 +1317,7 @@ $("#izquierda" ).click(function() {
 													}
 											  },
 											  "scrollX": true,
-											  "scrollY": "75px",
+											  "scrollY": "120px",
 											  "columns": [
 												{ "data": "id" },	
 												{ "data": "anexo" }													
