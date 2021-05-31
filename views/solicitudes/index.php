@@ -64,7 +64,7 @@ ValidaSession("../login");
 		//deshabilitar edicion mientras se programa el modulo editar
 		document.getElementById("edit").disabled=true;
 
-			var table = $('#tabla').dataTable({
+			/*var table = $('#tabla').dataTable({
 				
 				//"autoWidth": false,	
 				  "ajax": {
@@ -169,7 +169,7 @@ ValidaSession("../login");
 					]
 				//"order": [[ 0, "asc" ]]
 
-			});
+			});*/
 
 			$('#tabla tbody').on( 'click', 'tr', function () {
 
