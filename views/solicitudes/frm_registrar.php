@@ -54,11 +54,12 @@ ValidaSession("../login");
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' class="aaa"><p></p></div>
 							</div>
 
-							<div class="form-group-sm">
-							  <label for="fecha1">Fecha de Solicitud</label>
+							<div class="input-group-sm">
+							  <label for="fecha1">Fecha y hora de la solicitud</label>
 							  <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="3" disabled="true">
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha1' class="aaa"><p></p></div>
 							</div>
+							
 
 							<div class="form-group-sm">
 								<label>Dirección Territorial</label>
@@ -91,12 +92,7 @@ ValidaSession("../login");
 					</div>
 						 
 		  		</div>
-
-			</div>
-
-		  <div class="col-md-4">
-
-		  	<div class="box-header with-border" tabindex="-1">
+				  <div class="box-header with-border" tabindex="-1">
 				<h3 class="box-title">Ubicación del Evento</h3>
 			</div><!-- /.box-header -->		  
 
@@ -158,6 +154,11 @@ ValidaSession("../login");
 
 				</div>
 			</div>	
+			</div>
+
+		  <div class="col-md-4">
+
+
 
 			<div class="box-header with-border">
 					<h3 class="box-title">Inicio y Final del Evento</h3>
@@ -213,7 +214,76 @@ ValidaSession("../login");
 			  </div>
 			</div>
 
-	
+			<div class="box-header with-border">
+					<h3 class="box-title">Responsable nacional</h3>
+				</div><!-- /.box-header -->	
+
+				<div class="box box-primary">
+
+					<div class="box-body">
+						<label>Nombres</label>
+						<div class="input-group">
+							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="18" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
+							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+							<input type="text" class="form-control" id="rt_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="19" onkeypress="return esnombre2(event);"   autocomplete="off">
+						</div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_nombre1' class="aaa"><p></p></div>
+						
+						<label>Apellidos</label>
+						<div class="input-group">
+							<input type="text" class="form-control bbb" id="rt_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="20" onkeypress="return esapellido1(event);" onblur="alsalir(this.id)" autocomplete="off">
+							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+							<input type="text" class="form-control" id="rt_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="21" onkeypress="return esapellido1(event);" autocomplete="off" >
+						</div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_apellido1' class="aaa"><p></p></div>
+													
+						<div class="form-group-sm">
+							<label >Documento de Identidad</label>
+								<div class = "input-group">
+
+									<span class="input-group-btn">
+										<select id="rt_tdoc" class="btn-sm"  tabindex="22"  >
+											<option value="0">CC</option>
+											<option value="1">CE</option>
+											<option value="2">PA</option>
+										</select>
+									</span>
+
+									<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="23" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off">
+								</div>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_num_doc' class="aaa"><p></p></div>
+						</div>	
+
+						<div class="form-group-sm">
+						<label for="tele1">Teléfono de contacto</label>
+						<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
+						</div>
+
+							<div id="confirma_telefono">
+								<ul><li id="conf_tel" style="color:#fff;text-align:center" ></li></ul>
+							</div>
+
+						<div class="form-group-sm">
+						<label for="correo1">Correo electrónico</label>
+						<input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="25" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off">
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' class="aaa"></div>
+						</div>
+
+							<div id="confirma_correo">
+								<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
+							</div>
+							
+							<div class="form-group-sm">
+								<label>Grupo/Área/Equipo/Dependencia</label>
+								<select id="grupo" class="form-control bbb" tabindex="35">
+								<option></option>
+								</select>
+							</div>
+
+							<div class="focusguard" id="guardia1" tabindex="36"></div>							
+					</div>
+				</div>	
 
 
 		  </div>
@@ -221,7 +291,7 @@ ValidaSession("../login");
 		  <div class="col-md-4">
 	
 		 		<div class="box-header with-border">
-					<h3 class="box-title">Responsable del Evento</h3>
+					<h3 class="box-title">Responsable Territorial</h3>
 				</div><!-- /.box-header -->	
 
 				<div class="box box-primary">
@@ -442,9 +512,74 @@ ValidaSession("../login");
     							<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return false" tabindex="0" onkeypress="return esdescri(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
   							
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_descripcion' class="aaa"><p></p></div>
+							   
+							    <label>Focalización</label>								
+								<div class="form-group-sm">
+										<select id="d_tipdo"   class="form-control" >
+											<option value="" selected disabled hidden>Indique atividad </option>
+											<option value="0">Asistencia</option>
+											<option value="1">Atención</option>
+											<option value="2">Prevención</option>
+											<option value="3">Protección</option>
+											<option value="4">Reparación Integral</option>
+											<option value="5">Verdad</option>
+											<option value="6">Justicia</option>
+										</select>
+								</div>
+
 						</div>
 						</div><!-- /.box-body -->
-				 </div><!-- /.box -->				 
+
+
+
+				 </div><!-- /.box -->	
+
+				 <div class="box-header with-border">
+					 	<h3 class="box-title">Aprobaciones</h3>
+				</div><!-- /.box-header -->
+
+				<div class="box box-primary">
+						<!-- form start -->
+						<div class="box-body">
+							<div class="form-group-sm">
+							
+
+								<label>Nivel territorial</label>
+								<div class="input-group">
+									<span class="input-group-addon" >
+										<input disabled type="checkbox">
+									</span>
+									<input disabled type="text" class="form-control ccc" id="entidad" placeholder="Observación"  onpaste="return false" tabindex="0" autocomplete="off">
+								</div>								
+							
+								<label>Nivel nacional</label>
+								<div class="input-group" disabled>
+									<span class="input-group-addon">
+										<input disabled type="checkbox">
+									</span>
+									<input disabled type="text" class="form-control ccc" id="num_vica" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
+								</div>								
+								<label>Nivel Funcionario</label>
+								<div class="input-group" disabled>
+									<span class="input-group-addon" >
+										<input disabled type="checkbox">
+									</span>
+									<input disabled type="text" class="form-control ccc" id="num_vicb" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
+								</div>
+
+								<label>Nivel supervisor</label>
+								<div class="input-group">
+									<span class="input-group-addon" >
+										<input type="checkbox">
+									</span>
+									<input type="text" class="form-control ccc" id="num_vicd" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
+								</div>								
+																													
+
+						</div>
+						</div><!-- /.box-body -->
+				 </div><!-- /.box -->	
+
 			</div>
 
 			<div class="col-md-4">
@@ -555,6 +690,32 @@ ValidaSession("../login");
 
 				 </div><!-- /.box -->
 				 
+				 <div class="box-header with-border">
+					<h3 class="box-title">Resumen de costo presupuestal</h3>
+				</div><!-- /.box-header -->
+				<div class="box box-primary">
+				
+					<div class="box-body">	
+
+						<label>Componente presupuestal</label>
+						<div class="form-group-sm">
+								<select id="d_tipco"   class="form-control" >
+									<option value="" selected disabled hidden>Indique componente pesupuestal </option>
+									<option value="0">CDP</option>
+									<option value="1">Soporte de anticipos</option>
+									<option value="2">Soportes de excedentes</option>
+								</select>
+						</div>
+
+						<label>Total</label>
+						<div class="form-group-sm">
+							<input type="text" class="form-control pesos" id="totalite" disabled>
+						</div>
+
+
+					</div>
+				</div>
+
 				 <div class="box box-primary">
 
 					<div class="box-body">
@@ -577,18 +738,7 @@ ValidaSession("../login");
 					<div class="focusguard" id="guardia2" tabindex="57"></div>
 				</div><!-- /.box-body -->
 
-				<div class="box-header with-border">
-					<h3 class="box-title">Resumen de costo</h3>
-				</div><!-- /.box-header -->
-				<div class="box box-primary">
-					<div class="box-body">	
-						<label>Total</label>
-						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="totalite" disabled>
-						</div>
 
-					</div>
-				</div>
 			</div>
 		</li>
 
@@ -1082,6 +1232,8 @@ ValidaSession("../login");
 <script src="../../plugins/leaflet/leaflet.js"></script>
 <script src="../../plugins/leaflet/leaflet.label.js"></script>
 
+
+
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAq8g7WPAx_OtQaQNzYPvexnbbV50CDf0o" async defer></script>
 <script src="../../plugins/leaflet/gmaps.js"></script>
 
@@ -1101,6 +1253,7 @@ ValidaSession("../login");
  <script type="text/javascript">
 
 $(document).ready(function() {
+
 
 	$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");

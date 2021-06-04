@@ -16,7 +16,7 @@ if(!empty($id_sesion) && ($rol==4 )){//privilegios del programador
 		//echo '<li><a href="../inventarios/"><i class="fa fa-cubes"></i> <span>Unidades</span></a></li>';	
 		echo '<li><a href="../requerimientos/"><i class="fa fa-certificate "></i> <span>Entregas</span></a></li>';
 		echo '<li><a href="../solicitudes/"><i class="fa fa-certificate "></i> <span>Requerimientos</span></a></li>';
-			//echo '<li><a href="../requerimientos/dashboard"><i class="fa fa-bar-chart"></i> <span>Estadisticas</span></a></li>';
+		echo '<li><a href="../requerimientos/dashboard"><i class="fa fa-bar-chart"></i> <span>Estadisticas</span></a></li>';
 			//echo '<li><a href="../mapa/"><i class="fa fa-link"></i> <span>Geolocalización</span></a></li>';
 		echo '</ul>';
 		echo '</li>';
@@ -84,7 +84,7 @@ if(!empty($id_sesion) && ($rol==2 )){//privilegios de supervisor
 		    //echo '<li><a href="../inventarios/"><i class="fa fa-cubes"></i> <span>Unidades</span></a></li>';
 		    echo '<li><a href="../requerimientos/"><i class="fa fa-certificate "></i> <span>Entregas</span></a></li>';
 			echo '<li><a href="../solicitudes/"><i class="fa fa-certificate "></i> <span>Requerimientos</span></a></li>';
-			//echo '<li><a href="../requerimientos/dashboard"><i class="fa fa-bar-chart"></i> <span>Estadisticas</span></a></li>';
+			echo '<li><a href="../requerimientos/dashboard"><i class="fa fa-bar-chart"></i> <span>Estadisticas</span></a></li>';
 			//echo '<li><a href="../aliados/"><i class="fa fa-cogs "></i> <span>Registro de Aliado Comercial</span></a></li>';
 			//echo '<li><a href="../mapa/"><i class="fa fa-link"></i> <span>Geolocalización</span></a></li>';
 			//echo '<li><a href="../reportes/"><i class="fa fa-link"></i> <span>Reportes</span></a></li>';

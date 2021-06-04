@@ -79,7 +79,7 @@ ValidaSession("../login");
               <!-- BAR CHART -->
               <div class="box box-success">
                 <div class="box-header with-border">
-                  <h3 class="box-title">EJECUCIÓN PRESUPUESTAL TERRITORIAL</h3>
+                  <h3 class="box-title">EJECUCIÓN PRESUPUESTAL DEPARTAMENTAL</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -88,6 +88,21 @@ ValidaSession("../login");
                 <div class="box-body">
                   <div class="chart" id="chart"  style="position: relative; ">
                     <canvas id="barChart" height="230"></canvas>
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+              <div class="box box-success">
+                <div class="box-header with-border">
+                  <h3 class="box-title">EJECUCIÓN PRESUPUESTAL MUNICIPAL</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart" id="chartb"  style="position: relative; ">
+                    <canvas id="barChartB" height="230"></canvas>
                   </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -200,6 +215,66 @@ $(document).ready(function() {
             };
  
             var mostrar = document.getElementById('barChart');
+ 
+            var grafico = new Chart(mostrar, {
+                type: 'bar',
+                data: chartdata,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,  
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+
+    $.ajax({
+        url: "../../data_json/data_dashboard1.php",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        method: "GET",
+        success: function(data) {
+            var nombre = [ 'Presupuesto en $'];
+            var stock = data;
+            var color = [                
+                'rgba(255, 255, 128, 0.6)',
+                'rgba(147, 185, 128, 0.6)',
+                'rgba(129, 166, 185, 0.6)',
+                'rgba(128, 195, 211, 0.6)',
+                'rgba(226, 238, 208, 0.6)',
+                'rgba(255, 170, 129, 0.6)'];
+            var bordercolor = [                
+                'rgba(255, 255, 128, 1)',
+                'rgba(147, 185, 128, 1)',
+                'rgba(129, 166, 185, 1)',
+                'rgba(128, 195, 211, 1)',
+                'rgba(226, 238, 208, 1)',
+                'rgba(255, 170, 129, 1)'];
+            console.log(data);
+
+            var chartdata = {
+                labels: [],
+                datasets: [{
+                    label: [nombre],
+                    backgroundColor: color,
+                    borderColor: bordercolor,
+                    borderWidth: 1,
+                    hoverBackgroundColor: bordercolor,
+                    hoverBorderColor: color,
+                    data: stock
+                }]
+            };
+ 
+            var mostrar = document.getElementById('barChartB');
  
             var grafico = new Chart(mostrar, {
                 type: 'bar',
