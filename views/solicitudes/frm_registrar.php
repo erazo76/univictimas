@@ -57,6 +57,7 @@ ValidaSession("../login");
 							<div class="input-group-sm">
 							  <label for="fecha1">Fecha y hora de la solicitud</label>
 							  <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="3" disabled="true">
+							  <input class="form-control bbb" id="hora1" type="time" onpaste="return false" tabindex="16" min="05:00" max="22:00">
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha1' class="aaa"><p></p></div>
 							</div>
 							
