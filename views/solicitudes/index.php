@@ -21,8 +21,7 @@ ValidaSession("../login");
 						<table id="tabla" class="table table-bordered table-hover">
 							<thead>
 								<tr>
-									<th>Nro. Evento</th>
-									<th>Nombre del Evento</th>
+									<th>Nro. Evento</th>									
 									<th>Dirección Territorial</th>
 									<th>Municipio</th>
 									<th>Fecha de inicio</th>
@@ -64,11 +63,11 @@ ValidaSession("../login");
 		//deshabilitar edicion mientras se programa el modulo editar
 		document.getElementById("edit").disabled=true;
 
-			/*var table = $('#tabla').dataTable({
+			var table = $('#tabla').dataTable({
 				
 				//"autoWidth": false,	
 				  "ajax": {
-					"url": "../../data_json/data_mrequerimientos",
+					"url": "../../data_json/data_msolicitudes",
 					"dataSrc": ""
 				  },
 				  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
@@ -79,12 +78,12 @@ ValidaSession("../login");
 							$('td:eq(0)', nRow).css('background-size','contain');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
-							$('td:eq(11)', nRow).css('opacity','0');
+							$('td:eq(10)', nRow).css('opacity','0');
 
 						}else{
 								
 							$('td:eq(0)', nRow).css('background-image','');
-							$('td:eq(11)', nRow).css('opacity','0');
+							$('td:eq(10)', nRow).css('opacity','0');
 						}
 
 						return nRow;
@@ -93,8 +92,7 @@ ValidaSession("../login");
 				  "scrollY": "280px",
 				  "scrollCollapse": true,
 				  "columns": [
-						{ "data": "id" },
-						{ "data": "nombre" },
+						{ "data": "id" },						
 						{ "data": "departamento" },
 						{ "data": "municipio" },
 						{ "data": "fecha" },
@@ -110,7 +108,7 @@ ValidaSession("../login");
 					"aoColumnDefs": [
             			{
                 			"mRender": function ( data, type, row ) {
-								return pad(data,5);
+								return pad(data,4);
 							},
 							"aTargets": [ 0 ]
 							
@@ -119,6 +117,7 @@ ValidaSession("../login");
 							"width": "80px",
 							"aTargets": [0]
 						},
+
 						{
 							"width": "140px",
 							"aTargets": [1]
@@ -128,28 +127,28 @@ ValidaSession("../login");
 							"aTargets": [2]
 						},
 						{
-							"width": "140px",
+							"width": "100px",
 							"aTargets": [3]
 						},
 						{
-							"width": "100px",
-							"aTargets": [4]
-						},
-						{
 							"width": "150px",
-							"aTargets": [5]
+							"aTargets": [4]
 						}
 						,
 						{
 							"width": "85px",
-							"aTargets": [6]
+							"aTargets": [5]
 						},
 						{
 							"width": "140px",
-							"aTargets": [7]
+							"aTargets": [6]
 						},
 						{
 							"width": "100px",
+							"aTargets": [7]
+						},
+						{
+							"width": "140px",
 							"aTargets": [8]
 						},
 						{
@@ -157,19 +156,15 @@ ValidaSession("../login");
 							"aTargets": [9]
 						},
 						{
-							"width": "140px",
-							"aTargets": [10]
-						},
-						{
 							"width": "1px",
-							"aTargets": [11]
+							"aTargets": [10]
 						}						
 							
 
 					]
 				//"order": [[ 0, "asc" ]]
 
-			});*/
+			});
 
 			$('#tabla tbody').on( 'click', 'tr', function () {
 

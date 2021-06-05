@@ -731,7 +731,7 @@ ValidaSession("../login");
 					</div>
 
 					<div class="box-footer">
-						<button id="save" type="button" class="btn btn-success pull-right" tabindex="54" style="width: 97px;" disabled><i class="fa fa-fw fa-save" ></i>Guardar</button>
+						<button id="save" type="button" class="btn btn-success pull-right" tabindex="54" style="width: 97px;" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
 						<button id="anex" type="button" class="btn btn-success pull-right" tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button>
 						<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="56" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
 						<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
@@ -1260,7 +1260,7 @@ $(document).ready(function() {
 	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 
-	$.post( "../../controllers/mrequerimientos_controller", { action: "contar_id"}).done(function( data ) {
+	$.post( "../../controllers/msolicitudes_controller", { action: "contar_id"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
 		var numstring=parsedJson.toString();
 		var res = numstring.padStart(4, 0);
@@ -1803,7 +1803,7 @@ $("#izquierda" ).click(function() {
 
 						    confirm: function(){
 
-								$.post( "../../controllers/mrequerimientos_controller", {action: "del_temp"}).done(function(data){},"json");
+								$.post( "../../controllers/msolicitudes_controller", {action: "del_temp"}).done(function(data){},"json");
 
 						    	setTimeout(function(){
 
@@ -2706,7 +2706,7 @@ $("#izquierda" ).click(function() {
 		$("#save" ).click(function() {
 				//alert($("#t_trans").val());
 				
-				$.post( "../../controllers/mrequerimientos_controller", {
+				$.post( "../../controllers/msolicitudes_controller", {
 
 					action: "add",
 					

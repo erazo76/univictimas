@@ -476,7 +476,7 @@ ValidaSession("../login");
 		}
 
 
-		$.post( "../../controllers/mrequerimientos_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+		$.post( "../../controllers/msolicitude_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 
 //alert(data);
 	var parsedJson = $.parseJSON(data);
@@ -838,7 +838,7 @@ if (window.matchMedia("(min-width: 200px) and (max-width: 370px)").matches) {
 $("#close22" ).click(function() {
 	
 
-		$.post( "../../controllers/mrequerimientos_controller", {
+		$.post( "../../controllers/msolicitude_controller", {
 
 			action: "aprobar",
 			
