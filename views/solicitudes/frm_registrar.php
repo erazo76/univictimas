@@ -39,6 +39,10 @@ ValidaSession("../login");
 						<input type="hidden" id="aloja" value=0>
 						<input type="hidden" id="arutaval" value=0>
 						<input type="hidden" id="apircval" value=0>
+						<input type="hidden" id="v_terr" value=0>
+						<input type="hidden" id="v_naci" value=0>
+						<input type="hidden" id="v_func" value=0>
+						<input type="hidden" id="v_supe" value=0>
 				
 						
 						<div class="box-body">
@@ -53,14 +57,16 @@ ValidaSession("../login");
 							  <input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad"  onpaste="return false" tabindex="2" onkeypress="return esnombre(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' class="aaa"><p></p></div>
 							</div>
-
-							<div class="input-group-sm">
-							  <label for="fecha1">Fecha y hora de la solicitud</label>
-							  <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="3" disabled="true">
-							  <input class="form-control bbb" id="hora1" type="time" onpaste="return false" tabindex="16" min="05:00" max="22:00">
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha1' class="aaa"><p></p></div>
+									
+							<div class="form-group-sm">
+								<label for="fecha1">Fecha y hora de la solicitud</label>
+								<div class="input-group">	
+												  
+									<input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="3" disabled="true">
+										<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+									<input class="form-control bbb" id="hsoli" type="time" disabled="true">														  
+								</div>								
 							</div>
-							
 
 							<div class="form-group-sm">
 								<label>Dirección Territorial</label>
@@ -215,76 +221,74 @@ ValidaSession("../login");
 			  </div>
 			</div>
 
-			<div class="box-header with-border">
+				<div class="box-header with-border">
 					<h3 class="box-title">Responsable nacional</h3>
 				</div><!-- /.box-header -->	
 
 				<div class="box box-primary">
 
 					<div class="box-body">
-						<label>Nombres</label>
-						<div class="input-group">
-							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="18" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
-							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control" id="rt_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="19" onkeypress="return esnombre2(event);"   autocomplete="off">
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_nombre1' class="aaa"><p></p></div>
-						
-						<label>Apellidos</label>
-						<div class="input-group">
-							<input type="text" class="form-control bbb" id="rt_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="20" onkeypress="return esapellido1(event);" onblur="alsalir(this.id)" autocomplete="off">
-							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control" id="rt_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="21" onkeypress="return esapellido1(event);" autocomplete="off" >
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_apellido1' class="aaa"><p></p></div>
-													
-						<div class="form-group-sm">
-							<label >Documento de Identidad</label>
-								<div class = "input-group">
-
-									<span class="input-group-btn">
-										<select id="rt_tdoc" class="btn-sm"  tabindex="22"  >
-											<option value="0">CC</option>
-											<option value="1">CE</option>
-											<option value="2">PA</option>
-										</select>
-									</span>
-
-									<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="23" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off">
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_num_doc' class="aaa"><p></p></div>
-						</div>	
-
-						<div class="form-group-sm">
-						<label for="tele1">Teléfono de contacto</label>
-						<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
-						</div>
-
-							<div id="confirma_telefono">
-								<ul><li id="conf_tel" style="color:#fff;text-align:center" ></li></ul>
+					
+							<label>Nombres</label>
+							<div class="input-group">
+								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="1er nombre"  onpaste="return false" tabindex="260" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+								<input type="text" class="form-control" id="rn_nombre2" placeholder="2do. nombre"  onpaste="return false" tabindex="270" onkeypress="return esnombre3(event);" autocomplete="off">
 							</div>
-
-						<div class="form-group-sm">
-						<label for="correo1">Correo electrónico</label>
-						<input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="25" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off">
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' class="aaa"></div>
-						</div>
-
-							<div id="confirma_correo">
-								<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_nombre1' class="aaa"><p></p></div>
+							
+							<label>Apellidos</label>
+							<div class="input-group">
+								<input type="text" class="form-control ddd" id="rn_apellido1" placeholder="1er. apellido"  onpaste="return false" tabindex="280" onkeypress="return esapellido2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+								<input type="text" class="form-control" id="rn_apellido2" placeholder="2do. apellido"  onpaste="return false" tabindex="290" onkeypress="return esapellido2(event);" autocomplete="off">
 							</div>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_apellido1' class="aaa"><p></p></div>
+							
 							
 							<div class="form-group-sm">
-								<label>Grupo/Área/Equipo/Dependencia</label>
-								<select id="grupo" class="form-control bbb" tabindex="35">
-								<option></option>
-								</select>
+								<label >Documento de Identidad</label>
+									<div class = "input-group">
+
+										<span class="input-group-btn">
+											<select id="rn_tdoc" class="btn-sm"  tabindex="300"  >
+												<option value="0">CC</option>
+												<option value="1">CE</option>
+												<option value="2">PA</option>
+											</select>
+										</span>
+
+										<input type="text" class="form-control ddd" id="rn_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="310" onkeypress="return escedula2(event);" onblur="alsalira(this.id)">
+									</div>
+									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_num_doc' class="aaa"><p></p></div>
+							</div>	
+
+							<div class="form-group-sm">
+							<label for="tele2">Teléfono de contacto</label>
+							<input type="text" class="form-control ddd" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="320" onkeypress="return estele2(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele2' class="aaa"></div>
 							</div>
+
+								<div id="confirma_telefono2">
+									<ul><li id="conf_tel2" style="color:#fff;text-align:center" ></li></ul>
+								</div>
+
+							<div class="form-group-sm">
+							<label for="correo2">Correo electrónico</label>
+							<input type="text" class="form-control ddd" id="correo2" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="330" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo2' class="aaa"></div>
+							</div>
+
+								<div id="confirma_correo2">
+									<ul><li id="conf_cor2" style="color:#fff;text-align:center" ></li></ul>
+								</div>		
 
 							<div class="focusguard" id="guardia1" tabindex="36"></div>							
 					</div>
 				</div>	
+
+
+
 
 
 		  </div>
@@ -351,16 +355,25 @@ ValidaSession("../login");
 								<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
 							</div>
 							
-							<div class="form-group-sm">
-								<label>Grupo/Área/Equipo/Dependencia</label>
-								<select id="grupo" class="form-control bbb" tabindex="35">
-								<option></option>
-								</select>
-							</div>
+
 
 							<div class="focusguard" id="guardia1" tabindex="36"></div>							
 					</div>
 				</div>
+				<div class="box-header with-border">
+					<h3 class="box-title">Grupo/Área/Equipo/Dependencia</h3>
+				</div><!-- /.box-header -->	
+				<div class="box box-primary">
+
+					<div class="box-body">
+						<div class="form-group-sm">									
+									<select id="grupo" class="form-control bbb" tabindex="35">
+									<option></option>
+									</select>
+								</div>
+						</div>
+				</div>
+
 			</div>
 		</li>
 
@@ -516,8 +529,8 @@ ValidaSession("../login");
 							   
 							    <label>Focalización</label>								
 								<div class="form-group-sm">
-										<select id="d_tipdo"   class="form-control" >
-											<option value="" selected disabled hidden>Indique atividad </option>
+										<select id="foca"   class="form-control" >
+											<option value="" selected disabled hidden>Indique tipo de focalización </option>
 											<option value="0">Asistencia</option>
 											<option value="1">Atención</option>
 											<option value="2">Prevención</option>
@@ -546,34 +559,34 @@ ValidaSession("../login");
 							
 
 								<label>Nivel territorial</label>
-								<div class="input-group">
+								<div class="input-group" >
 									<span class="input-group-addon" >
-										<input disabled type="checkbox">
+										<input disabled type="checkbox" id="a_terr">
 									</span>
-									<input disabled type="text" class="form-control ccc" id="entidad" placeholder="Observación"  onpaste="return false" tabindex="0" autocomplete="off">
+									<input disabled type="text" class="form-control ccc" id="a_terro" placeholder="Observación"  onpaste="return false" tabindex="0" autocomplete="off">
 								</div>								
 							
 								<label>Nivel nacional</label>
-								<div class="input-group" disabled>
+								<div class="input-group" >
 									<span class="input-group-addon">
-										<input disabled type="checkbox">
+										<input disabled type="checkbox" id="a_naci">
 									</span>
-									<input disabled type="text" class="form-control ccc" id="num_vica" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
+									<input disabled type="text" class="form-control ccc" id="a_nacio" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
 								</div>								
 								<label>Nivel Funcionario</label>
-								<div class="input-group" disabled>
+								<div class="input-group" >
 									<span class="input-group-addon" >
-										<input disabled type="checkbox">
+										<input disabled type="checkbox" id="a_func">
 									</span>
-									<input disabled type="text" class="form-control ccc" id="num_vicb" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
+									<input disabled type="text" class="form-control ccc" id="a_funco" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
 								</div>
 
 								<label>Nivel supervisor</label>
-								<div class="input-group">
+								<div class="input-group" >
 									<span class="input-group-addon" >
-										<input type="checkbox">
+										<input type="checkbox" id="a_supe">
 									</span>
-									<input type="text" class="form-control ccc" id="num_vicd" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
+									<input type="text" class="form-control ccc" id="a_supeo" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
 								</div>								
 																													
 
@@ -776,7 +789,7 @@ ValidaSession("../login");
 						</div>	
 
 						<div class="form-group-sm">
-							<label for="tele2">Teléfono de contacto</label>
+							<label for="tele22">Teléfono de contacto</label>
 							<input type="text" class="form-control" id="tele5" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="565" onkeypress="return estele5(event);" onblur="alsalir2(this.id)" autocomplete="off">
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele5' class="aaa"></div>
 						</div>
@@ -1129,7 +1142,7 @@ ValidaSession("../login");
 							</div>	
 
 							<div class="form-group-sm">
-								<label for="tele2">Teléfono de contacto</label>
+								<label for="tele3">Teléfono de contacto</label>
 								<input type="text" class="form-control" id="tele3" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="320" onkeypress="return estele3(event);" onblur="alsalir2(this.id)" autocomplete="off">
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele3' class="aaa"></div>
 							</div>
@@ -1254,8 +1267,11 @@ ValidaSession("../login");
  <script type="text/javascript">
 
 $(document).ready(function() {
-
-
+	var ahora = new Date();
+	var hora = ahora.getHours() + ':' + ahora.getMinutes();
+	//alert(hora);
+              $('#hsoli').val(hora);
+//alert( $('#hsoli').val());
 	$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
@@ -1274,6 +1290,42 @@ $(document).ready(function() {
 		var cos_tot=parsedJson;
 		$("#totalite").val( cos_tot );
 	},"json");
+
+	var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
+//alert(desh);
+		switch (desh) {
+
+		case 4:	document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
+				document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
+				document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
+				document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
+			    break;					
+		case 2:	document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
+				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
+				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
+				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;		
+			    break;
+		case 3:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
+				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
+				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
+				break;	
+		case 5:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+				document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
+				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
+				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
+				break;			
+		case 6:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
+				document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
+				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
+				break;
+		case 7:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
+				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
+				document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
+				break;
+	}
 
 });
 
@@ -1315,13 +1367,13 @@ translation: {
 
 });
 
-$('#tele2').mask('A000-000-0000', {
+$('#tele2').mask('A00-000-0000', {
 
     	translation: {
 
     		 'A': {
 
-        			pattern: /[0]/, optional: true
+        			pattern: /[03]/, optional: false
 
      		        }
 
@@ -1964,7 +2016,37 @@ $("#izquierda" ).click(function() {
 
 		});
 
-		
+		$("#a_terr" ).change(function() {
+			if( $('#a_terr').prop('checked')== true ) {
+				$("#v_terr").val(1);  
+			}else{
+				$("#v_terr").val(0); 
+			}
+		});
+
+		$("#a_naci" ).change(function() {
+			if( $('#a_naci').prop('checked')== true ) {
+				$("#v_naci").val(1);  
+			}else{
+				$("#v_naci").val(0); 
+			}
+		});
+
+		$("#a_func" ).change(function() {
+			if( $('#a_func').prop('checked')== true ) {
+				$("#v_func").val(1);  
+			}else{
+				$("#v_func").val(0); 
+			}
+		});
+
+		$("#a_supe" ).change(function() {
+			if( $('#a_supe').prop('checked')== true ) {
+				$("#v_supe").val(1);  
+			}else{
+				$("#v_supe").val(0); 
+			}
+		});				
 
 		$("#aruta" ).change(function() {
 
@@ -2712,6 +2794,7 @@ $("#izquierda" ).click(function() {
 					
 					nombre: $("#nombre").val(),
 					fecha1: $("#fecha1").val(),
+					hsoli: $("#hsoli").val(),
 					departamento: $("#departamento").val(),
 					municipio: $("#municipio").val(),
 					cpoblado: $("#cpoblado").val(),
@@ -2752,7 +2835,17 @@ $("#izquierda" ).click(function() {
 					tipo2: $("#tipo2").val(),
 					tipo3: $("#tipo3").val(),
 					tipo4: $("#tipo4").val(),
+					foca: $("#foca").val(),
 					
+					v_terr: $("#v_terr").val(),
+					v_naci: $("#v_naci").val(),
+					v_func: $("#v_func").val(),
+					v_supe: $("#v_supe").val(),	
+					a_terro: $("#a_terro").val(),
+					a_nacio: $("#a_nacio").val(),
+					a_funco: $("#a_funco").val(),
+					a_supeo: $("#a_supeo").val(),	
+
 					arutaval: $("#arutaval").val(),
 					apircval: $("#apircval").val(),
 					afase: $("#afase").val(),

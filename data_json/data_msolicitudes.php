@@ -70,22 +70,21 @@ session_start();
 	
 			array_push($result,array(
 							
-												"id"=>$rs->id,												
-												"departamento"=>$dep,
-												"municipio"=>$mun,
-												"fecha"=>$rs->fecha2->format("d-m-Y"),
-											 "responsable"=>$responsable,
+								"id"=>$rs->id,
+								"nombre"=>$rs->nombre,
+								"departamento"=>$dep,
+								"municipio"=>$mun,
+								"fecha"=>$rs->fecha2->format("d-m-Y"),
+								"responsable"=>$responsable,
+								"created"=>$rs->created->format("d-m-Y"), 
+								"usercreate"=>$usercreated, 
+								"updated"=>$updated, 
+								"userupdate"=>$userupdate, 
+								"resp_aprob"=>$resp_aprob, 
+								"aprobado"=>$rs->completado																
 	
-											 "created"=>$rs->created->format("d-m-Y"), 
-											 "usercreate"=>$usercreated, 
-											 "updated"=>$updated, 
-											 "userupdate"=>$userupdate, 
-											 "resp_aprob"=>$resp_aprob, 
-	
-											 "aprobado"=>$rs->completado
-											 
-	
-									 ));
+			 ));
+			 
 			$items++;
 		}
 

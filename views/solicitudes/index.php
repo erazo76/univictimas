@@ -21,7 +21,8 @@ ValidaSession("../login");
 						<table id="tabla" class="table table-bordered table-hover">
 							<thead>
 								<tr>
-									<th>Nro. Evento</th>									
+								<th>Nro. Evento</th>
+									<th>Nombre del Evento</th>
 									<th>Dirección Territorial</th>
 									<th>Municipio</th>
 									<th>Fecha de inicio</th>
@@ -78,90 +79,93 @@ ValidaSession("../login");
 							$('td:eq(0)', nRow).css('background-size','contain');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
-							$('td:eq(10)', nRow).css('opacity','0');
+							$('td:eq(11)', nRow).css('opacity','0');
 
 						}else{
 								
 							$('td:eq(0)', nRow).css('background-image','');
-							$('td:eq(10)', nRow).css('opacity','0');
+							$('td:eq(11)', nRow).css('opacity','0');
 						}
 
 						return nRow;
-				  },
-				  "scrollX": true,
-				  "scrollY": "280px",
-				  "scrollCollapse": true,
-				  "columns": [
-						{ "data": "id" },						
-						{ "data": "departamento" },
-						{ "data": "municipio" },
-						{ "data": "fecha" },
-						{ "data": "responsable" },
-						{ "data": "created" },
-						{ "data": "usercreate" },
-						{ "data": "updated" },
-						{ "data": "userupdate" },
-						{ "data": "resp_aprob" },
-						{ "data": "aprobado" }
-					],
-			       // fixedColumns: false,
-					"aoColumnDefs": [
-            			{
-                			"mRender": function ( data, type, row ) {
-								return pad(data,4);
+					},
+						"scrollX": true,
+						"scrollY": "280px",
+						"scrollCollapse": true,
+						"columns": [
+							{ "data": "id" },
+							{ "data": "nombre" },
+							{ "data": "departamento" },
+							{ "data": "municipio" },
+							{ "data": "fecha" },
+							{ "data": "responsable" },
+							{ "data": "created" },
+							{ "data": "usercreate" },
+							{ "data": "updated" },
+							{ "data": "userupdate" },
+							{ "data": "resp_aprob" },
+							{ "data": "aprobado" }
+						],
+						// fixedColumns: false,
+						"aoColumnDefs": [
+							{
+							"mRender": function ( data, type, row ) {
+								return pad(data,5);
 							},
 							"aTargets": [ 0 ]
-							
-						},
-						{
+
+							},
+							{
 							"width": "80px",
 							"aTargets": [0]
-						},
-
-						{
+							},
+							{
 							"width": "140px",
 							"aTargets": [1]
-						},
-						{
+							},
+							{
 							"width": "140px",
 							"aTargets": [2]
-						},
-						{
-							"width": "100px",
+							},
+							{
+							"width": "140px",
 							"aTargets": [3]
-						},
-						{
-							"width": "150px",
-							"aTargets": [4]
-						}
-						,
-						{
-							"width": "85px",
-							"aTargets": [5]
-						},
-						{
-							"width": "140px",
-							"aTargets": [6]
-						},
-						{
+							},
+							{
 							"width": "100px",
-							"aTargets": [7]
-						},
-						{
+							"aTargets": [4]
+							},
+							{
+							"width": "150px",
+							"aTargets": [5]
+							}
+							,
+							{
+							"width": "85px",
+							"aTargets": [6]
+							},
+							{
 							"width": "140px",
+							"aTargets": [7]
+							},
+							{
+							"width": "100px",
 							"aTargets": [8]
-						},
-						{
+							},
+							{
 							"width": "140px",
 							"aTargets": [9]
-						},
-						{
-							"width": "1px",
+							},
+							{
+							"width": "140px",
 							"aTargets": [10]
-						}						
-							
+							},
+							{
+							"width": "1px",
+							"aTargets": [11]
+							}						
 
-					]
+						]
 				//"order": [[ 0, "asc" ]]
 
 			});

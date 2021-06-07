@@ -230,7 +230,7 @@ switch ($action){
 						//exit();
 
 
-					}elseif($rol == 3 || $rol==2){
+					}elseif($rol == 3 || $rol==2  || $rol==5  || $rol==6  || $rol==7){
 
 
 
@@ -760,7 +760,7 @@ switch ($action){
 
 					header("Location: ../views/inicio/");
 
-				}elseif($_SESSION['rolx']== 2){//entra como supervisor
+				}elseif($_SESSION['rolx']== 2 || $_SESSION['rolx']== 5 || $_SESSION['rolx']== 6 || $_SESSION['rolx']== 7){//entra como supervisor
 
 					header("Location: ../views/inicio/");
 

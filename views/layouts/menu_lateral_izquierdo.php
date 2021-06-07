@@ -56,7 +56,7 @@ if(!empty($id_sesion) && ($rol == 1)){//privilegios de administrador
 
 }
 
-if(!empty($id_sesion) && ($rol==3 )){//privilegios de colaborador
+if(!empty($id_sesion) && ($rol==3)){ //privilegios de colaborador
 
 	echo '<ul class="sidebar-menu nav">';
 
@@ -75,7 +75,7 @@ if(!empty($id_sesion) && ($rol==3 )){//privilegios de colaborador
 
 }
 
-if(!empty($id_sesion) && ($rol==2 )){//privilegios de supervisor
+if(!empty($id_sesion) && (($rol==2 ) || ($rol==5 ) || ($rol==6 ) || ($rol==7 ))){//privilegios de supervisor
 
 	echo '<ul class="sidebar-menu nav">';
 

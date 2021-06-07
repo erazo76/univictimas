@@ -14,9 +14,9 @@ require_once '../models/Musuario.php';
 				$nomper='SOPORTE';
 
 			}
-		if($rolet==2 ){
+		if($rolet==2 || $rolet==5 || $rolet==6 || $rolet==7){
 
-				$nomper='SUPERVISOR';
+				$nomper='SUPERVISiÓN';
 
 			}
 		if($ema==''){
