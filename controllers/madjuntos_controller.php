@@ -7,6 +7,7 @@ session_start([
 @$usuario_id = $_SESSION['idusuariox'];
 
 require_once '../models/Madjunto.php';
+require_once '../models/Madjuntado.php';
 require_once '../models/Mrequerimiento.php';
 date_default_timezone_set('America/Bogota');
 
@@ -29,6 +30,7 @@ date_default_timezone_set('America/Bogota');
 
 @$sourcePath = $_FILES['file']['tmp_name'];  // Almacenar ruta de origen del archivo en una variable
 @$targetPath = "../dist/img/adjuntos/".$id."_".$_FILES['file']['name']; // Ruta de destino donde el archivo se va a almacenar
+@$targetPathReg = "../dist/img/adjuntos_reg/".$id."_".$_FILES['file']['name']; // Ruta de destino donde el archivo se va a almacenar
 @$tipo_archivo = $_FILES['file']['type'];
 /**********************************/
 switch ($action){
@@ -388,6 +390,36 @@ switch ($action){
   break;
 
 #*******************************************************************************
+case 'search_reg':
+  if($record !=null){
+
+      //session_start();
+      //$usuario_id = $_SESSION['idusuariox'];
+      $rol = $_SESSION['rolx'];
+      $hoy = date("d-m-Y");
+
+    @$data = Madjuntado::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
+
+    if($data !=null){
+
+      foreach($data as $rs){
+
+          $resp[] = array(
+                "imagen"=>$rs->imagen,
+          );
+
+      }
+     // print_r($resp);exit();
+      echo json_encode($resp);
+    }else{
+      $resp[] = array( );
+      echo json_encode($resp);
+    }
+
+  }
+break;
+
+#*******************************************************************************
   case 'search_act':
     
       @$data = Mvictima::find('all',array('conditions' => array('mrequerimientos_id=? AND status=?',1,1)));
@@ -568,6 +600,62 @@ switch ($action){
       }
         
       break;
+
+
+#******************************************************************************
+
+case 'temporal_reg':
+
+  @$comodin=$id."_".($_FILES['file']['name']);
+  @$blanco=($_FILES['file']['name']);
+  @$consulta1 = Madjuntado::find('all',array('conditions' => array('imagen=?',$comodin)));
+
+  if($consulta1 == null && $blanco != ''){
+
+        //session_start();
+        //$usuario_id = $_SESSION['idusuariox'];
+
+        $hoy = date("d-m-Y");
+
+        if($sourcePath){//si cargaron el archivo
+          if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf")){
+            move_uploaded_file($sourcePath,$targetPathReg) ; // Mover archivo subido
+            @$nombre_imagen = $id."_".($_FILES['file']['name']);
+          }
+        }else{ //si no cargaron nada
+          @$nombre_imagen = "";
+        }
+        $tempo = new Madjuntado();
+
+        $tempo->imagen = $nombre_imagen;
+        $tempo->mrequerimientos_id = $id;
+        $tempo->user_create = $usuario_id;
+        $tempo->created = $hoy;
+
+              if($tempo->save()){
+
+               echo'<div class="alert alert-success alert-dismissable">
+                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                    <h4>
+                    <i class="icon fa fa-check"></i>
+                    Alerta!
+                    </h4>
+                    Se Adjunto la imagen exitosamente !.
+                    </div>';
+
+              }
+  }else{
+              echo'<div class="alert alert-danger alert-dismissable">
+                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                  <h4>
+                  <i class="icon fa fa-ban"></i>
+                  Alerta!
+                  </h4>
+                  La imagen ['.$comodin.'] ya está incluida. cambie el nombre del archivo e intente de nuevo.
+                  </div>';
+  }
+    
+  break;
 
 #******************************************************************************
 

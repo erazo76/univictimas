@@ -713,8 +713,8 @@ ValidaSession("../login");
 
 						<label>Componente presupuestal</label>
 						<div class="form-group-sm">
-								<select id="d_tipco"   class="form-control" >
-									<option value="" selected disabled hidden>Indique componente pesupuestal </option>
+								<select id="presup"   class="form-control" >
+									<option value="" selected disabled hidden>Indique componente presupuestal </option>
 									<option value="0">CDP</option>
 									<option value="1">Soporte de anticipos</option>
 									<option value="2">Soportes de excedentes</option>
@@ -744,9 +744,9 @@ ValidaSession("../login");
 					</div>
 
 					<div class="box-footer">
-						<button id="save" type="button" class="btn btn-success pull-right" tabindex="54" style="width: 97px;" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
-						<button id="anex" type="button" class="btn btn-success pull-right" tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button>
-						<button id="exit" type="button" class="btn btn-primary pull-right" tabindex="56" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
+						<button id="save" type="button" class="btn btn-success " tabindex="54" style="width: 97px;" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
+						<button id="anex" type="button" class="btn btn-success " tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button>
+						<button id="exit" type="button" class="btn btn-primary " tabindex="56" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
 						<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
 					</div>				
 					<div class="focusguard" id="guardia2" tabindex="57"></div>
@@ -2437,7 +2437,7 @@ $("#izquierda" ).click(function() {
 			
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
-			formData.append('action', 'temporal');
+			formData.append('action', 'temporal_reg');
 			formData.append('idea', $("#ideado").val());
 
 			$.ajax({

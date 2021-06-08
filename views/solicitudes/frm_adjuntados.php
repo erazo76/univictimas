@@ -96,7 +96,7 @@ ValidaSession("../login");
 
 //#########################################INSERTAR LOS DIVS CON LA COSNSULA DE ADJUNTOS ##################################
 
-		$.post( "../../controllers/madjuntos_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+		$.post( "../../controllers/madjuntos_controller", { action: "search_reg",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 
 			var parsedJson = $.parseJSON(data);
 				
@@ -108,11 +108,11 @@ ValidaSession("../login");
 					
 						if(imagen != null && index > 0){
 
-							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'"  width="100%" height="480px"></iframe>');	
+							$('#docum').append('<iframe src="../../dist/img/adjuntos_reg/'+imagen+'"  width="100%" height="480px"></iframe>');	
 
 						}else{
 
-							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'"  width="100%"  height="480px"></iframe>');	
+							$('#docum').append('<iframe src="../../dist/img/adjuntos_reg/'+imagen+'"  width="100%"  height="480px"></iframe>');	
 							//$('#docum').append('<div class="col-auto bg-danger p-5 text-center">NO HAY ARCHIVOS ADJUNTOS!!</div>');	
 						
 						}	
@@ -139,7 +139,7 @@ $('#print').click( function () {
 	$("#volver").click(function() {
 			var origin=<?php echo intval($_GET["origin"]); ?>;
 		if(origin==1){
-			$(location).attr('href','frm_ver?record='+$("#idea").val());
+			$(location).attr('href','frm_reportar?record='+$("#idea").val());
 		}else{
 			$(location).attr('href','frm_editar?record='+$("#idea").val());
 		}

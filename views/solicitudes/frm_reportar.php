@@ -24,11 +24,11 @@ ValidaSession("../login");
 	<div class="col-md-1">
 		<div class="flotante">
 			<button id="print" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw fa-print"></i></button>
-			<button id="aprobar" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw  fa-check-square-o"></i></button>
+			<!--<button id="aprobar" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw  fa-check-square-o"></i></button>-->	
 			<button id="edit" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw fa-edit"></i>  </button>
 			<button id="victim" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw  fa-users"></i></button>
-			<!--<button id="ayt" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;"><i  class="fa fa-fw  fa-hotel"></i>|<i  class="fa fa-fw  fa-plane"></i></button>-->		
-			<button id="anexos" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw  fa-files-o"></i></button>
+			<!--<button id="ayt" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;"><i  class="fa fa-fw  fa-hotel"></i>|<i  class="fa fa-fw  fa-plane"></i></button>-->	
+			<button id="anexos" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw  fa-files-o"></i></button>	
 		</div>
 	</div>
 
@@ -52,7 +52,7 @@ ValidaSession("../login");
 				<div class="caja1 letrap cj16p">Versión: 04</div>
 				<div class="caja1 letrap cj16p">Fecha: 14/02/2018</div>
 				<div class="caja1 pg6_8 cj16p" >Página: 1 de 1</div>
-				<div class="caja1 tit_2">CONTRATO No.  1296 de 2017</div>
+				<div class="caja1 tit_2">CONTRATO No.  _____ de 2021</div>
 				<div class="caja1 fgr">OBJETO DEL CONTRATO: </div>
 				<div class="caja1 tit_3">Prestar sus servicios para apoyar la organización, administración y producción de las jornadas o acciones para la implementación de medidas de reparación integral a las víctimas del conflicto armado que le sean solicitadas por LA UNIDAD, de acuerdo con los requerimientos técnicos.</div>
 				<div class="caja1 tit_2 faz" style="color:#fff !important;">REQUERIMIENTOS DE SERVICIO PARA ACCIONES DE LA DIRECCIÓN DE REPARACIÓN</div>
@@ -316,7 +316,7 @@ ValidaSession("../login");
 				</div>				
 				<div class="caja1 pg4_8 cj24p " style="line-height: 10px;">
 					<span style="font-size: 9px;font-weight: bold;">Claudia Juliana Melo Romero</span></br>
-					<span style="font-size: 9px;font-weight: bold;">Supervisora del Contrato No - 1296 de 2017 Directora Técnica de Reparación</span>
+					<span style="font-size: 9px;font-weight: bold;">Supervisora del Contrato No - ____ de 2021 Directora Técnica de Reparación</span>
 				</div>							
 
      		</div>
@@ -467,16 +467,16 @@ ValidaSession("../login");
 
 	$(document).ready(function() {
 
-		var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
+		/*var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
 		if (desh==2 || desh==4){ //si el rol del usuario es SUPERVISOR... o programador
 			document.getElementById('aprobar').style.display = 'block';	
 		}else{
 			document.getElementById('aprobar').style.display = 'none';	
-		}
+		}*/
 
 
-		$.post( "../../controllers/msolicitude_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+		$.post( "../../controllers/msolicitudes_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 
 //alert(data);
 	var parsedJson = $.parseJSON(data);
@@ -712,14 +712,14 @@ ValidaSession("../login");
 		$("#rtd").attr('checked', true)
 	}
 
-	if(parsedJson.completado == 2){
+	/*if(parsedJson.completado == 2){
 		document.getElementById('aprob').style.display = 'block';	
 		document.getElementById("aprobar").disabled=true;
 		
 	}else{
 		document.getElementById('aprob').style.display = 'none';
 		document.getElementById("aprobar").disabled=false;
-	} 
+	} */
 
 	});
 
@@ -812,7 +812,7 @@ ValidaSession("../login");
 
 		$("#anexos").click(function() {
 
-			$(location).attr('href','frm_adjuntados?record='+$("#idea").val());
+			$(location).attr('href','frm_adjuntados?record='+$("#idea").val()+'&origin=1');
 
 		});	
 
