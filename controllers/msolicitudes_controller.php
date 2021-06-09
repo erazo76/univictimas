@@ -91,7 +91,10 @@ date_default_timezone_set('America/Bogota');
 @$trans = ($_POST["trans"]);
 @$t_trans = ($_POST["t_trans"]);
 @$to_total = ($_POST["to_total"]);
+@$presup = ($_POST["presup"]);
 @$region = ($_POST["region"]);
+
+@$regis4 = ($_POST["regis4"]);
 /***********************************/
 
 
@@ -99,14 +102,14 @@ switch ($action){
 
   case 'contar_id':
 
-    @$data = Msolicitude::find('all');
+    @$data = Msolicitude::find('last');
 
-  if($data !=null){
-    $contados= count($data)+1;
-      
-   }else{
-    $contados= count($data)+1;
-   }
+     if($data !=null){
+      $contados= $data->id;        
+     }else{
+      $contados= $data->id;
+     }
+  
 
      
      echo json_encode($contados);
@@ -266,6 +269,27 @@ break;
        echo json_encode($respuesta);
 
   break;
+/***************************************** CREAR ****************************************** */
+case 'crear':
+  //session_start();
+  @$usuario_id = $_SESSION['idusuariox'];
+  $hoy = date('d-m-Y');
+  $alia = new Msolicitude();  
+  $alia->created = $hoy;
+  //$alia->completado = 3;
+  $alia->mdepartamentos_id = 5;
+  $alia->mmunicipios_id = 5045;
+  $alia->fecha2=  $hoy;
+  $alia->rt_nombre1 = 1;
+  $alia->rt_nombre2 = 1;
+  $alia->rn_nombre1 = 1;
+  $alia->user_create = $usuario_id;
+  $alia->status = 0;
+ 
+  $alia->save();    
+break;
+
+/******************************************** ADD *************************************** */
 
   case 'add':
 
@@ -493,8 +517,8 @@ break;
 
        
 
-            session_start();
-            @$usuario_id = $_SESSION['idusuariox'];
+           /* session_start();
+            @$usuario_id = $_SESSION['idusuariox'];*/
             $hoy = date('d-m-Y');
 
             if($t_trans != null){
@@ -504,7 +528,7 @@ break;
             }
             
 
-            $alia = new Msolicitude();     
+            $alia = Msolicitude::find($id);     
             $alia->nombre = $nombre;
             $alia->fecha1 = $hoy;
             $alia->hsoli = $hsoli;
@@ -521,6 +545,7 @@ break;
             $alia->fecha3 = $fecha3;
             $alia->hora1 = $hora1;
             $alia->hora2 = $hora2;
+
             $alia->rt_nombre1 = $rt_nombre1;
             $alia->rt_nombre2 = $rt_nombre2;
             $alia->rt_apellido1 = $rt_apellido1;
@@ -529,6 +554,16 @@ break;
             $alia->rt_num_doc = $rt_num_doc;
             $alia->tele1 = $tele1;
             $alia->correo1 = $correo1;
+
+            $alia->rt_nombre1 = $rn_nombre1;
+            $alia->rt_nombre2 = $rn_nombre2;
+            $alia->rt_apellido1 = $rn_apellido1;
+            $alia->rt_apellido2 = $rn_apellido2;
+            $alia->rt_tdoc = $rn_tdoc;
+            $alia->rt_num_doc = $rn_num_doc;
+            $alia->tele1 = $tele2;
+            $alia->correo1 = $correo2;
+
             $alia->grupos_id = $grupo;
             $alia->otro1 = $otro1;
             $alia->tipo1 = $tipo1;
@@ -556,11 +591,12 @@ break;
             $alia->trans = $trans;
             $alia->t_trans = $t_trans1;
             $alia->costo_total = $to_total;
+            $alia->presup = $presup;
             $alia->mregiones_id = $region;
             $alia->user_create = $usuario_id;
             $alia->created = $hoy;
             $alia->completado = 1;
-
+            $alia->status = 1;
 
 
              if($alia->save()){ // da el mensaje de guardado...
@@ -595,21 +631,54 @@ break;
 
   break;
   #*******************************************************************************
-  
   case 'del_temp':
 
-        session_start();
-        $usuario_id = $_SESSION['idusuariox'];
+    @$usuario_id = $_SESSION['idusuariox'];
+    
+    $data = Msolicitude::find('all',array('conditions' => array('id=? AND user_create=?',$regis4,$usuario_id)));
+
+    foreach($data as $rs){
+                        
+        $rs->delete();          
+      
+    }      
+             
+        @$data2 = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=?',$regis4)));
+
+        foreach($data2 as $rt){
+            
+            unlink('../dist/img/adjuntos/'.$rt->imagen);            
+            $rt->delete();           
+          
+        }
         
-        $alia2 = Mtemporale::find($record);
-        $alia2 ->delete();
+        
   break;
+ 
+   #*******************************************************************************
+  
+   case 'del_temp_null':
+
+    //session_start();
+    @$usuario_id = $_SESSION['idusuariox'];
+    
+    $data = Msolicitude::find('all',array('conditions' => array('status=? AND user_create=?',0,$usuario_id)));
+
+    foreach($data as $rs){
+        
+                 
+        $rs->delete();           
+      
+    }
+
+    
+break;
 
     #*******************************************************************************
   
   case 'get_recuperados':
 
-        session_start();
+       // session_start();
         $usuario_id = $_SESSION['idusuariox'];
          $rolex = $_SESSION['rolx'];
          $resp = '';
@@ -662,7 +731,7 @@ break;
     #*******************************************************************************
   case 'search_rec':
 
-        session_start();
+        //session_start();
         $usuario_id = $_SESSION['idusuariox'];
         $rolex = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
@@ -1362,8 +1431,8 @@ case 'aprobar':
 
       if($record !=null){
 
-        session_start();
-        @$usuario_id = $_SESSION['idusuariox'];
+       /* session_start();
+        @$usuario_id = $_SESSION['idusuariox'];*/
         $rol = $_SESSION['rolx'];
         $hoy = date("d-m-Y");
 
@@ -1483,8 +1552,8 @@ case 'aprobar':
 
     if($record !=null){
 
-        session_start();
-        @$usuario_id = $_SESSION['idusuariox'];
+       /* session_start();
+        @$usuario_id = $_SESSION['idusuariox'];*/
         
 //echo($usuario_id);exit();
         $rol = $_SESSION['rolx'];
@@ -1502,6 +1571,7 @@ case 'aprobar':
                   "id"=>$rs->id,
                   "nombre"=>$rs->nombre,
                   "fecha1"=>(string)$rs->fecha1->format("d-m-Y"),
+                  "hsoli"=>$rs->hsoli,
                   "departamento"=>$rs->mdepartamentos_id,
                   "municipio"=>$rs->mmunicipios_id,
                   "cpoblado"=>$rs->mcpoblado_id,
@@ -1526,6 +1596,16 @@ case 'aprobar':
                   "rt_num_doc"=>$rs->rt_num_doc,
                   "tele1"=>$rs->tele1,
                   "correo1"=>$rs->correo1,
+
+                  "rn_nombre1"=>$rs->rt_nombre1,
+                  "rn_nombre2"=>$rs->rt_nombre2,
+                  "rn_apellido1"=>$rs->rt_apellido1,
+                  "rn_apellido2"=>$rs->rt_apellido2,
+                  "rn_tdoc"=>$rs->rt_tdoc,
+                  "rn_num_doc"=>$rs->rt_num_doc,
+                  "tele2"=>$rs->tele2,
+                  "correo2"=>$rs->correo2,
+
                   "grupo"=>$rs->grupos_id,
                   "otro1"=>$rs->otro1,
 
@@ -1534,6 +1614,16 @@ case 'aprobar':
                   "tipo3"=>$rs->tipo3,
                   "tipo4"=>$rs->tipo4,
                   
+                  "foca"=>$rs->foca,
+                  "v_terr"=>$rs->v_terri,
+                  "v_naci"=>$rs->v_naci,
+                  "v_func"=>$rs->v_func,
+                  "v_supe"=>$rs->v_supe,
+                  "a_terro"=>$rs->a_terro,
+                  "a_nacio"=>$rs->a_nacio,
+                  "a_funco"=>$rs->a_funco,
+                  "a_supeo"=>$rs->a_supeo,
+
                   "arutaval"=>$rs->arutaval,
                   "apircval"=>$rs->apircval,
                   "afase"=>$rs->afase,
@@ -1546,6 +1636,7 @@ case 'aprobar':
                   "trans"=>$rs->trans,
                   "t_trans"=>$rs->t_trans,
                   "to_total"=>$rs->costo_total,
+                  "presup"=>$rs->presup,
                   "region"=>$rs->mregiones_id,
                   "completado"=>$rs->completado
                  );
@@ -1556,6 +1647,61 @@ case 'aprobar':
 
     }
     break;
+
+ //########################################################################################################################
+ case 'search_a':
+
+  if($record !=null){
+
+      //session_start();
+      //@$usuario_id = $_SESSION['idusuariox'];
+      
+//echo($usuario_id);exit();
+      $rol = $_SESSION['rolx'];
+      $hoy = date("d-m-Y");
+
+    @$data = Msolicitude::find('all',array('conditions' => array('id=?',$record)));
+
+    if($data !=null){
+
+      foreach($data as $rs){
+//echo($rs->tipos);exit();
+              
+
+        $resp = array(
+                "id"=>$rs->id,                    
+                "fecha1"=>(string)$rs->fecha1->format("d-m-Y"),
+                "fecha2"=>(string)$rs->fecha2->format("d-m-Y"),
+                "departamento"=>$rs->mdepartamentos_id,
+                "municipio"=>$rs->mmunicipios_id,
+                "cpoblado"=>$rs->mcpoblado_id,
+
+                "a_primario"=>$rs->a_primario,
+                "acceso1"=>$rs->acceso1,
+                "acceso2"=>$rs->acceso2,
+                "num_dir"=>$rs->num_dir,
+                "a_referencia"=>$rs->a_referencia,
+                "referencia"=>$rs->referencia,
+
+
+                "rt_nombre1"=>$rs->rt_nombre1,
+                "rt_nombre2"=>$rs->rt_nombre2,
+
+                "rt_tdoc"=>$rs->rt_tdoc,
+                "rt_num_doc"=>$rs->rt_num_doc,
+                "tele1"=>$rs->tele1,
+                "correo1"=>$rs->correo1,
+
+                "region"=>$rs->mregiones_id,
+                "completado"=>$rs->completado
+               );
+      }
+
+      echo json_encode($resp);
+     }
+
+  }
+  break;   
 
 
 }//end switch

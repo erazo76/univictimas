@@ -1,9 +1,10 @@
 <?php
 require_once '../models/Mvictima.php';
 
+$unid=$_GET["este"];
 
 	$result = array();
-	$data = Mvictima::find_by_sql("select id,cid,nombre,t_doc,num_doc,tele,correo,mrequerimientos_id,status from mvictimas WHERE status=1 AND mrequerimientos_id=1 order by id desc;");
+	$data = Mvictima::find_by_sql("select id,cid,nombre,t_doc,num_doc,tele,correo,mrequerimientos_id,status from mvictimas WHERE status=1 AND mrequerimientos_id=".$unid." order by id desc;");
 	$items = 0;
 
 	foreach ($data as &$rs) {

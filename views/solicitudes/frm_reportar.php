@@ -647,11 +647,12 @@ ValidaSession("../login");
 	$("#descripcion").html("Descripción breve: "+parsedJson.descripcion);
 
 	var alojan=parsedJson.aloja;
+	//alert(alojan);
 	switch (alojan) {
 		case 0:	
-			    $('#aloja').prop('checked', true).change();break;
+			    $('#aloja').prop('checked', false).change();break;
 		case 1:	
-				$('#aloja').prop('checked', false).change();break;
+				$('#aloja').prop('checked', true).change();break;
 	}
 	
 	var transi=parsedJson.t_trans;
@@ -676,7 +677,8 @@ ValidaSession("../login");
 			$('#trans1').prop('checked', true).change();
 			$('#trans2').prop('checked', true).change();
 			$('#trans3').prop('checked', true).change();
-		
+
+		break;
 		case "0,2":	
 
 			$('#trans1').prop('checked', true).change();
@@ -702,11 +704,11 @@ ValidaSession("../login");
 
 	//control de tipos
 
-	if(tip1 != null){
+	if(tip1 < 9){
 		$("#rta").attr('checked', true)
-	}else if(tip2 != null){
+	}else if(tip2 < 6){
 		$("#rtb").attr('checked', true)
-	}else if(tip3 != null){
+	}else if(tip3 < 5){
 		$("#rtc").attr('checked', true)
 	}else{
 		$("#rtd").attr('checked', true)

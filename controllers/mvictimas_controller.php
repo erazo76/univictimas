@@ -5,6 +5,7 @@ date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
 @$id = ($_POST["id"]);
+@$idea = ($_POST["idea"]);
 @$record = ($_POST["record"]);
 @$recordado = ($_POST["recordado"]);
 @$recordatorio = ($_POST["recordatorio"]);
@@ -517,7 +518,7 @@ switch ($action){
             $tempo->num_doc = $num_doc2;
             $tempo->tele = $tele3;
             $tempo->correo = $correo3;
-            $tempo->mrequerimientos_id = 1;
+            $tempo->mrequerimientos_id = $idea;
             $tempo->user_create = $usuario_id;
             $tempo->created = $hoy;
                   if($tempo->save()){

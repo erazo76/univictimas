@@ -622,7 +622,7 @@ ValidaSession("../login");
 				
 					<div class="box-footer">
 						<button id="agregar2" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
-						<button id="quitar2" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+						<!--<button id="quitar2" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>-->
 					</div>
 				</div>				
 
@@ -651,7 +651,7 @@ ValidaSession("../login");
 				
 					<div class="box-footer">
 						<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
-						<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+						<!--<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>-->
 					</div>
 				</div>	
 
@@ -734,11 +734,19 @@ ValidaSession("../login");
 
 					<div class="box-body">
 
-						<label id="prueba">Archivos adjuntos</label>
-						
-						<ul class="list-group" style="height: 125px;overflow:auto;" id="ul_adj">
-			
-						</ul>
+					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+						<!--<label for="tabla">Soportes adjuntos</label>-->
+								<table id="tabla30" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Id</th>										
+											<th>Anexo</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+						</div>
 						
 
 					</div>
@@ -1246,8 +1254,6 @@ ValidaSession("../login");
 <script src="../../plugins/leaflet/leaflet.js"></script>
 <script src="../../plugins/leaflet/leaflet.label.js"></script>
 
-
-
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAq8g7WPAx_OtQaQNzYPvexnbbV50CDf0o" async defer></script>
 <script src="../../plugins/leaflet/gmaps.js"></script>
 
@@ -1272,25 +1278,31 @@ $(document).ready(function() {
 	//alert(hora);
               $('#hsoli').val(hora);
 //alert( $('#hsoli').val());
-	$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+/*	$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-
+*/
+setTimeout(function() {	
 	$.post( "../../controllers/msolicitudes_controller", { action: "contar_id"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
 		var numstring=parsedJson.toString();
 		var res = numstring.padStart(4, 0);
+		
 //alert(parsedJson);
 		$("#n_accion").val( res );
 		$("#ideado").val( numstring );
 	},"json");
 
-	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
+}, 2500);
+
+setTimeout(function() {	
+var ideco=$("#ideado").val();
+	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo", ideco:ideco}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
 		var cos_tot=parsedJson;
 		$("#totalite").val( cos_tot );
 	},"json");
-
+}, 3000);
 	var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 //alert(desh);
 		switch (desh) {
@@ -1854,8 +1866,9 @@ $("#izquierda" ).click(function() {
     						    cancelButtonClass: 'btn-success',
 
 						    confirm: function(){
-
-								$.post( "../../controllers/msolicitudes_controller", {action: "del_temp"}).done(function(data){},"json");
+								var idea4=$("#ideado").val();
+								
+								$.post( "../../controllers/msolicitudes_controller", {action: "del_temp",regis4:idea4}).done(function(data){},"json");
 
 						    	setTimeout(function(){
 
@@ -2099,161 +2112,17 @@ $("#izquierda" ).click(function() {
 			}
 
 		});
-
-
-									var table = $('#tabla').dataTable({
-										  	
-										  //"destroy": true,
-
-										  "ajax": {
-											"url": "../../data_json/data_mdetalles",
-											"dataSrc": ""
-										  },
-
-										  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
-
-											$('td:eq(0)', nRow).css('opacity','0');
+		
 	
-											return nRow;
-											},
-										  "scrollX": true,
-										  "scrollY": "130px",
-										  "columns": [
-												{ "data": "id" },
-												{ "data": "tipo" },
-												{ "data": "concepto" },
-												{ "data": "cantidad" },
-												{ "data": "medida" },
-												{ "data": "costo" },
-												{ "data": "observaciones" }
-												
-												
-											],
-										//"order": [[ 0, "asc" ]],
-										"bPaginate": false,
-										"info":     false,
-										"bFilter": false
-
-										  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
-									});
-
-
-							$('#tabla tbody').on( 'click', 'tr', function () {
-
-								if ( $(this).hasClass('selected') ) {
-									$(this).removeClass('selected');
-								}
-								else {
-									table.$('tr.selected').removeClass('selected');
-									$(this).addClass('selected');
-								}
-							});
-
-							var table2 = $('#tabla2').dataTable({
-										  	
-											  //"destroy": true,
-	
-											  "ajax": {
-												"url": "../../data_json/data_mvictimas",
-												"dataSrc": ""
-											  },
-											  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
-
-														$('td:eq(0)', nRow).css('opacity','0');
-
-														return nRow;
-														},
-											  "scrollX": true,
-											  "scrollY": "130px",
-											  "columns": [
-													{ "data": "id" },
-													{ "data": "nombre" },
-													{ "data": "documento" },
-													{ "data": "correo" },
-													{ "data": "telefono" }
-													
-												],
-											//"order": [[ 0, "asc" ]],
-											"bPaginate": false,
-											"info":     false,
-											"bFilter": false
-	
-											  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
-										});
-	
-	
-								$('#tabla2 tbody').on( 'click', 'tr', function () {
-	
-									if ( $(this).hasClass('selected') ) {
-										$(this).removeClass('selected');
-									}
-									else {
-										table.$('tr.selected').removeClass('selected');
-										$(this).addClass('selected');
-									}
-								});
-
-
-								var table5 = $('#tabla5').dataTable({
-										  	
-											  //"destroy": true,
-	
-											  "ajax": {
-												"url": "../../data_json/data_mtransportes",
-												"dataSrc": ""
-											  },
-											  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
-
-														$('td:eq(0)', nRow).css('opacity','0');
-
-														return nRow;
-														},
-											  "scrollX": true,
-											  "scrollY": "130px",
-											  "columns": [			
-													{ "data": "id" },
-													{ "data": "nombre" },
-													{ "data": "documento" },
-													{ "data": "telefono" },
-													{ "data": "correo" },
-													{ "data": "departamento" },
-													{ "data": "municipio" },
-													{ "data": "aerea" },
-													{ "data": "c_aerea" },
-													{ "data": "terflu" },
-													{ "data": "c_terflu" },
-													{ "data": "turba" },
-													{ "data": "c_turba" },
-													{ "data": "alojam" },
-													{ "data": "c_alojam" }													
-												],
-											//"order": [[ 0, "asc" ]],
-											"bPaginate": false,
-											"info":     false,
-											"bFilter": false
-	
-											  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
-										});
-	
-	
-								$('#tabla5 tbody').on( 'click', 'tr', function () {
-	
-									if ( $(this).hasClass('selected') ) {
-										$(this).removeClass('selected');
-									}
-									else {
-										table.$('tr.selected').removeClass('selected');
-										$(this).addClass('selected');
-									}
-								});
 
 
 
 		$("#close1").click(function() {
-
+			var ideco2=$("#ideado").val();
 				$.post( "../../controllers/mdetalles_controller", {
 
 					action: "temporal",
+					idea:$('#ideado').val(),
 					tipo: $('#d_tipo').val(),
 					concepto: $('#d_concepto').val(),
 					cantidad: $('#d_cantidad').val(),
@@ -2278,12 +2147,12 @@ $("#izquierda" ).click(function() {
 							$("#d_obs").val(null);
 							$("#d_costo").val(null);
 
-							$('#tabla').DataTable().ajax.reload();
+							//$('#tabla').DataTable().ajax.reload();
  							$(".alert").alert('close');
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
 
-							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
+							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",ideco:ideco2}).done(function( data ) {
 								var parsedJson = $.parseJSON(data);
 								var cos_tot=parsedJson;
 								$("#totalite").val( cos_tot );
@@ -2297,7 +2166,9 @@ $("#izquierda" ).click(function() {
 
 				},"json");
 		    //$('#activo').focus();
-
+			setTimeout(function(){
+				$('#tabla').DataTable().ajax.reload();
+			}, 3000);
 		});
 
 		$(".t_guarda1").click(function() {
@@ -2395,6 +2266,7 @@ $("#izquierda" ).click(function() {
 			$.post( "../../controllers/mvictimas_controller", {
 
 				action: "temporal",
+				idea:$('#ideado').val(),
 				nombre2: $('#nombre2').val(),
 				t_doc2: $('#t_doc2').val(),
 				num_doc2: $('#num_doc2').val(),
@@ -2416,8 +2288,7 @@ $("#izquierda" ).click(function() {
 						$("#num_doc2").val(null);
 						$("#tele3").val(null);
 						$("#correo3").val(null);
-
-						$('#tabla2').DataTable().ajax.reload();
+						
 						$(".alert").alert('close');
 						$('#modal2').modal('toggle');
 						$("#agregar2").focus();
@@ -2430,6 +2301,9 @@ $("#izquierda" ).click(function() {
 
 			},"json");
 			//$('#activo').focus();
+			setTimeout(function(){
+				$('#tabla2').DataTable().ajax.reload();
+			}, 3000);	
 
 		});	
 
@@ -2462,31 +2336,157 @@ $("#izquierda" ).click(function() {
 								$(".alert").alert('close');
 								$('#modal3').modal('toggle');
 								$("#anex").focus();
-
-								$.post( "../../controllers/madjuntos_controller", { action: "contar_id"}).done(function( data ) {
-
-									var parsedJson = $.parseJSON(data);
-									$('#ul_adj li').remove();
-									parsedJson.forEach(function(parsedJson, index) {
-										var imagen =parsedJson.imagen;
-										//alert(imagen);
-										
-										$('#ul_adj').append('<li class="list-group-item">'+imagen+'</li>');
-
-									});	
-
-								},"json");
-
-							}, 3000);
+							}, 2500);
 
 				}
 			});
 
-
-
+			setTimeout(function(){
+				$('#tabla30').DataTable().ajax.reload();
+			}, 3000);
 
 		});		
 
+
+		setTimeout(function() {	
+								var este = document.getElementById("ideado").value;
+
+								
+										var table = $('#tabla').dataTable({
+										  	
+											  //"destroy": true,
+	
+											  "ajax": {
+												"url": "../../data_json/data_mdetalles?este="+este,
+												"dataSrc": ""
+											  },
+	
+											  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
+	
+												$('td:eq(0)', nRow).css('opacity','0');
+		
+												return nRow;
+												},
+											  "scrollX": true,
+											  "scrollY": "130px",
+											  "columns": [
+													{ "data": "id" },
+													{ "data": "tipo" },
+													{ "data": "concepto" },
+													{ "data": "cantidad" },
+													{ "data": "medida" },
+													{ "data": "costo" },
+													{ "data": "observaciones" }
+													
+													
+												],
+											//"order": [[ 0, "asc" ]],
+											"bPaginate": false,
+											"info":     false,
+											"bFilter": false
+	
+											  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
+										});
+	
+	
+								$('#tabla tbody').on( 'click', 'tr', function () {
+	
+									if ( $(this).hasClass('selected') ) {
+										$(this).removeClass('selected');
+									}
+									else {
+										table.$('tr.selected').removeClass('selected');
+										$(this).addClass('selected');
+									}
+								});
+					
+								
+											var table2 = $('#tabla2').dataTable({
+												  
+												  //"destroy": true,
+		
+												  "ajax": {
+													"url": "../../data_json/data_mvictimas?este="+este,
+													"dataSrc": ""
+												  },
+												  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
+	
+															$('td:eq(0)', nRow).css('opacity','0');
+	
+															return nRow;
+															},
+												  "scrollX": true,
+												  "scrollY": "130px",
+												  "columns": [
+														{ "data": "id" },
+														{ "data": "nombre" },
+														{ "data": "documento" },
+														{ "data": "correo" },
+														{ "data": "telefono" }
+														
+													],
+												//"order": [[ 0, "asc" ]],
+												"bPaginate": false,
+												"info":     false,
+												"bFilter": false
+		
+												  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
+											});
+		
+		
+									$('#tabla2 tbody').on( 'click', 'tr', function () {
+		
+										if ( $(this).hasClass('selected') ) {
+											$(this).removeClass('selected');
+										}
+										else {
+											table.$('tr.selected').removeClass('selected');
+											$(this).addClass('selected');
+										}
+									});
+
+
+									var table = $('#tabla30').dataTable({
+										  
+										  //"destroy": true,
+
+										  "ajax": {
+											"url": "../../data_json/data_mequiposo?este="+este,
+											"dataSrc": ""
+										  },
+										  "scrollX": true,
+										  "scrollY": "120px",
+										  "columns": [
+												{ "data": "id" },	
+												{ "data": "anexo" }						
+											],
+											"aoColumnDefs": [
+											{
+												"width": "20px",
+												"aTargets": [0]
+											}
+										],
+										//"order": [[ 0, "asc" ]],
+										"bPaginate": false,
+										"info":     false,
+										"bFilter": false
+
+										  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
+									});
+										
+
+							$('#tabla30 tbody').on( 'click', 'tr', function () {
+
+								if ( $(this).hasClass('selected') ) {
+									$(this).removeClass('selected');
+								}
+								else {
+									table.$('tr.selected').removeClass('selected');
+									$(this).addClass('selected');
+								}
+							});
+
+							}, 3000);
 
 			$('#quitar').click( function () {
 
@@ -2791,7 +2791,7 @@ $("#izquierda" ).click(function() {
 				$.post( "../../controllers/msolicitudes_controller", {
 
 					action: "add",
-					
+					id:	$("#ideado").val(),
 					nombre: $("#nombre").val(),
 					fecha1: $("#fecha1").val(),
 					hsoli: $("#hsoli").val(),
@@ -2856,8 +2856,9 @@ $("#izquierda" ).click(function() {
 					descripcion: $("#descripcion").val(),
 					aloja: $("#aloja").val(),
 					trans: $("#trans").val(),
-					t_trans: $("#t_trans").val(),
+					t_trans: $("#t_trans").val(),					
 					to_total:$("#totalite").val(),
+					presup:$("#presup").val(),
 					region: $("#region").val()
 
 				}).done(function(data){
@@ -2889,7 +2890,7 @@ $("#izquierda" ).click(function() {
 
 					if(parsedJson.resultado != 'error'){
 
-					$.post( "../../controllers/mdetalles_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
+					/*$.post( "../../controllers/mdetalles_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
 						$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 					});
 
@@ -2899,7 +2900,7 @@ $("#izquierda" ).click(function() {
 
 					$.post( "../../controllers/madjuntos_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
 						$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});				
+					});		*/		
 
 						$('.base').unslider('animate:0');
 							valore=$("#ideado").val();
@@ -2953,7 +2954,40 @@ function menor(){
           //****longitud de campos********************************************
 
 	$(function(){
-		$('#tele2').maxLength(15);$('#tele1').maxLength(15);$('#tele3').maxLength(15);
+		$('#tele3').maxLength(15);
+		$("#nombre").maxLength(200);
+		$("#acceso1").maxLength(100);
+		$("#acceso2").maxLength(100);
+		$("#num_dir").maxLength(10);		
+		$("#referencia").maxLength(100);
+		$("#rt_nombre1").maxLength(100);
+		$("#rt_nombre2").maxLength(100);
+		$("#rt_apellido1").maxLength(100);
+		$("#rt_apellido2").maxLength(100);		
+		$("#rt_num_doc").maxLength(20);
+		$("#tele1").maxLength(15);
+		$("#correo1").maxLength(150);		
+		$("#otro1").maxLength(100);
+		$("#rn_nombre1").maxLength(100);
+		$("#rn_nombre2").maxLength(100);
+		$("#rn_apellido1").maxLength(100);
+		$("#rn_apellido2").maxLength(100);
+		$("#rn_num_doc").maxLength(20);
+		$("#tele2").maxLength(15);
+		$("#correo2").maxLength(150);
+		$("#afase").maxLength(100);
+		$("#amedida").maxLength(100);
+		$("#idaccion").maxLength(100);
+		$("#entidad").maxLength(100);
+		$("#num_vic").maxLength(5);
+		$("#descripcion").maxLength(200);
+		$("#d_concepto").maxLength(150);
+		$("#d_cantidad").maxLength(8);
+		$("#d_costo").maxLength(15);
+		$("#d_obs").maxLength(200);
+		$("#num_doc2").maxLength(20);
+		$("#correo3").maxLength(150);
+		$("#nombre2").maxLength(100);
 
 	});
 

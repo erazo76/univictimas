@@ -108,14 +108,19 @@ ValidaSession("../login");
 					
 						if(imagen != null && index > 0){
 
-							$('#docum').append('<iframe src="../../dist/img/adjuntos_reg/'+imagen+'"  width="100%" height="480px"></iframe>');	
+							$('#docum').append('<iframe src="../../dist/img/adjuntos_reg/'+imagen+'"  width="100%" height="480px" id="ifr_bas"></iframe>');	
 
 						}else{
 
-							$('#docum').append('<iframe src="../../dist/img/adjuntos_reg/'+imagen+'"  width="100%"  height="480px"></iframe>');	
+							$('#docum').append('<iframe src="../../dist/img/adjuntos_reg/'+imagen+'"  width="100%"  height="480px" id="ifr_bas"></iframe>');	
 							//$('#docum').append('<div class="col-auto bg-danger p-5 text-center">NO HAY ARCHIVOS ADJUNTOS!!</div>');	
 						
 						}	
+						if(imagen == null){
+							$('#ifr_bas').attr('src','../../dist/img/adjunto.png');	
+							$('#docum').append('<div class="col-auto bg-danger p-5 text-center">NO HAY ARCHIVOS ADJUNTOS!!</div>');	
+							$("#ifr_bas").css({"height": "10%", "overflow": "auto"});						
+						}
 
 				});
 

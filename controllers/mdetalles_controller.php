@@ -4,6 +4,9 @@ date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
 @$id = ($_POST["id"]);
+@$idea = ($_POST["idea"]);
+@$ideco = ($_POST["ideco"]);
+
 @$record = ($_POST["record"]);
 @$recordado = ($_POST["recordado"]);
 @$recordatorio = ($_POST["recordatorio"]);
@@ -25,7 +28,7 @@ switch ($action){
   
     case 'sumar_costo':
 
-      @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = 1 and status = 1');
+      @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = '.$ideco.' and status = 1');
 
     if($data !=null){
       foreach($data as $rs){
@@ -559,7 +562,7 @@ switch ($action){
             $tempo->d_costo = $costo;
             $tempo->d_costo_t = $costo*$cantidad;
             $tempo->d_obs = $observaciones;
-            $tempo->mrequerimientos_id = 1;
+            $tempo->mrequerimientos_id = $idea;
             $tempo->user_create = $usuario_id;
             $tempo->created = $hoy;
                   if($tempo->save()){

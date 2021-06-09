@@ -1008,8 +1008,7 @@ $("#izquierda" ).click(function() {
     						    cancelButtonClass: 'btn-success',
 
 						    confirm: function(){
-								var idea4=$("#ideado").val();
-								
+								var idea4=$("#ideado").val();								
 
 								$.post( "../../controllers/mrequerimientos_controller", {action:"del_temp",regis4:idea4}).done(function(data){},"json");								
 
@@ -1993,7 +1992,6 @@ function menor(){
 	$(function(){
 
 		$('#tele3').maxLength(15);
-
 		$("#nombre").maxLength(200);
 		$("#acceso1").maxLength(100);
 		$("#acceso2").maxLength(100);

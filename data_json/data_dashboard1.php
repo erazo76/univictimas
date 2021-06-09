@@ -1,15 +1,15 @@
 <?php
-require_once '../models/Mrequerimiento.php';
+require_once '../models/Msolicitude.php';
 
 
 	$result = array();
 
-	$ejecafe = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as tot_cos from mrequerimientos WHERE status=1 AND mregiones_id=1;");
-	$centro_o = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as tot_cos from mrequerimientos WHERE status=1 AND mregiones_id=2;");
-	$caribe = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as tot_cos from mrequerimientos WHERE status=1 AND mregiones_id=3;");
-	$llano = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as tot_cos from mrequerimientos WHERE status=1 AND mregiones_id=4;");
-	$centro_s = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as tot_cos from mrequerimientos WHERE status=1 AND mregiones_id=5;");
-	$pacifico = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as tot_cos from mrequerimientos WHERE status=1 AND mregiones_id=6;");
+	$ejecafe = Msolicitude::find_by_sql("SELECT sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mregiones_id=1;");
+	$centro_o = Msolicitude::find_by_sql("SELECT sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mregiones_id=2;");
+	$caribe = Msolicitude::find_by_sql("SELECT sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mregiones_id=3;");
+	$llano = Msolicitude::find_by_sql("SELECT sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mregiones_id=4;");
+	$centro_s = Msolicitude::find_by_sql("SELECT sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mregiones_id=5;");
+	$pacifico = Msolicitude::find_by_sql("SELECT sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mregiones_id=6;");
 	
 	$items = 0;
 

@@ -1,6 +1,7 @@
 <?php
 require_once '../models/Mcontrato.php';
 require_once '../models/Mrequerimiento.php';
+require_once '../models/Msolicitude.php';
 date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
@@ -282,9 +283,9 @@ switch ($action){
     @$data = Mcontrato::find('all');
     if($data !=null){
       foreach($data as $rs){
-          @$individual = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as indi_cos from mrequerimientos WHERE status=1 AND tipo1 <>9 AND tipo2=6 AND tipo3=5;");  
-          @$reubicacion = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as reub_cos from mrequerimientos WHERE status=1 AND tipo2 <>6 AND tipo1=9 AND tipo3=5;"); 
-          @$colectiva = Mrequerimiento::find_by_sql("SELECT sum(costo_total) as cole_cos from mrequerimientos WHERE status=1 AND tipo3 <>5 AND tipo1=9 AND tipo2=6;");
+          @$individual = Msolicitude::find_by_sql("SELECT sum(costo_total) as indi_cos from msolicitudes WHERE status=1 AND tipo1 <>9 AND tipo2=6 AND tipo3=5;");  
+          @$reubicacion = Msolicitude::find_by_sql("SELECT sum(costo_total) as reub_cos from msolicitudes WHERE status=1 AND tipo2 <>6 AND tipo1=9 AND tipo3=5;"); 
+          @$colectiva = Msolicitude::find_by_sql("SELECT sum(costo_total) as cole_cos from msolicitudes WHERE status=1 AND tipo3 <>5 AND tipo1=9 AND tipo2=6;");
           
           if($individual !=null){
             foreach($individual as $r1){

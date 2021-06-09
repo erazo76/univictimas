@@ -93,9 +93,8 @@ switch ($action){
 //contar cuantos usuarios hay conectados
     @$data = Mrequerimiento::find('last');
 
-  if($data !=null){
-    $contados= $data->id;
-      
+   if($data !=null){
+    $contados= $data->id;      
    }else{
     $contados= $data->id;
    }

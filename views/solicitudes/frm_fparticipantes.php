@@ -48,7 +48,7 @@ ValidaSession("../login");
 					<div class="caja1 letrap cj16p">Versión: 04</div>
 					<div class="caja1 letrap cj16p">Fecha: 14/02/2018</div>
 					<div class="caja1 pg6_8 cj16p" >Página: 1 de 1</div>
-					<div class="caja1 tit_2">CONTRATO No.  1296 de 2017</div>
+					<div class="caja1 tit_2">CONTRATO No.  ____ de 2021</div>
 					<div class="caja1 fgr">OBJETO DEL CONTRATO: </div>
 					<div class="caja1 tit_3">Prestar sus servicios para apoyar la organización, administración y producción de las jornadas o acciones para la implementación de medidas de reparación integral a las víctimas del conflicto armado que le sean solicitadas por LA UNIDAD, de acuerdo con los requerimientos técnicos.</div>
 					<div class="caja1 tit_2 faz" style="color:#fff !important;">LISTADO DE VICTIMAS PARTICIPANTES EN EL EVENTO</div>
@@ -136,7 +136,7 @@ ValidaSession("../login");
 		}
 
 
-		$.post( "../../controllers/mrequerimientos_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+		$.post( "../../controllers/msolicitudes_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 
 		//alert(data);
 			var parsedJson = $.parseJSON(data);
