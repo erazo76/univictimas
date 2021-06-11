@@ -1,5 +1,6 @@
 <?php
 require_once '../models/Msolicitude.php';
+require_once '../models/Mregione.php';
 
 
 	$result = array();
@@ -11,6 +12,7 @@ require_once '../models/Msolicitude.php';
 	$centro_s = Msolicitude::find_by_sql("SELECT sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mregiones_id=5;");
 	$pacifico = Msolicitude::find_by_sql("SELECT sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mregiones_id=6;");
 	
+	$region = Mregione::find_by_sql("SELECT id,nombre from mregiones WHERE status=1;");
 	$items = 0;
 
     if($ejecafe !=null){
@@ -73,21 +75,35 @@ require_once '../models/Msolicitude.php';
 		}        
 	}
 		
+	foreach ($region as &$rg) {
+			switch ($rg->id){
+				case 1: $val = floatval($reg1);
+						$nom = $rg->nombre;				
+				break;
+				case 2: $val = floatval($reg2);
+						$nom = $rg->nombre;				
+				break;
+				case 3: $val = floatval($reg3);
+						$nom = $rg->nombre;				
+				break;
+				case 4: $val = floatval($reg4);
+						$nom = $rg->nombre;				
+				break;
+				case 5: $val = floatval($reg5);
+						$nom = $rg->nombre;				
+				break;
+				case 6: $val = floatval($reg6);
+						$nom = $rg->nombre;				
+				break;
 
-		array_push($result,
-											 $reg1,
-					    					 $reg2,
-					     					 $reg3,
-		                            	     $reg4,
-											 $reg5,
-											 $reg6
-
-		                         );
-
-		$items++;
-
-	
+			}
+			array_push($result,array(   
+				"valor"=>$val,
+				"region"=>$nom		
+			));	
+	}	
 
 //echo($data);exit();
-	print_r(json_encode($result));
+	//print_r(json_encode($result));
+	echo json_encode($result);
 ?>

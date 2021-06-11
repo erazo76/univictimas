@@ -75,6 +75,7 @@ ValidaSession("../login");
           </div><!-- /.row -->
 
 <div class="row">
+
             <div class="col-md-6">
               <!-- BAR CHART -->
               <div class="box box-success">
@@ -86,8 +87,8 @@ ValidaSession("../login");
                   </div>
                 </div>
                 <div class="box-body">
-                  <div class="chart" id="chart"  style="position: relative; ">
-                    <canvas id="barChart" height="230"></canvas>
+                  <div id="chartdiv" style="width:100%;max-height:600px;height:100vh;">
+                  
                   </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -132,8 +133,10 @@ ValidaSession("../login");
 
 <script type="text/javascript" src="../../plugins/confirma/jquery-confirm.min.js"></script>
 <link rel="stylesheet" href="../../plugins/confirma/jquery-confirm.min.css" type="text/css"/>
-<script type="text/javascript" src="../../plugins/chartjs/Chart.min.js"></script>
-<link rel="stylesheet" href="../../plugins/chartjs/Chart.min.css" type="text/css"/>
+<script type="text/javascript" src="../../plugins/amcharts4/core.js"></script>
+<script type="text/javascript" src="../../plugins/amcharts4/charts.js"></script>
+<script type="text/javascript" src="../../plugins/amcharts4/themes/animated.js"></script>
+
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -162,66 +165,65 @@ $(document).ready(function() {
 	},"json");
 
 
-    $.ajax({
-        url: "../../data_json/data_dashboard1.php",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        method: "GET",
-        success: function(data) {
-            var nombre = [ 'Presupuesto en $'];
-            var stock = data;
-            var color = [                
-                'rgba(255, 255, 128, 0.6)',
-                'rgba(147, 185, 128, 0.6)',
-                'rgba(129, 166, 185, 0.6)',
-                'rgba(128, 195, 211, 0.6)',
-                'rgba(226, 238, 208, 0.6)',
-                'rgba(255, 170, 129, 0.6)'];
-            var bordercolor = [                
-                'rgba(255, 255, 128, 1)',
-                'rgba(147, 185, 128, 1)',
-                'rgba(129, 166, 185, 1)',
-                'rgba(128, 195, 211, 1)',
-                'rgba(226, 238, 208, 1)',
-                'rgba(255, 170, 129, 1)'];
-            console.log(data);
 
-            var chartdata = {
-                labels: ['Eje Cafetero','Centro Oriente','Caribe','Llano','Centro Sur', 'Pacífico'],
-                datasets: [{
-                    label: [nombre],
-                    backgroundColor: color,
-                    borderColor: bordercolor,
-                    borderWidth: 1,
-                    hoverBackgroundColor: bordercolor,
-                    hoverBorderColor: color,
-                    data: stock
-                }]
-            };
- 
-            var mostrar = document.getElementById('barChart');
- 
-            var grafico = new Chart(mostrar, {
-                type: 'bar',
-                data: chartdata,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,  
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    }
-                }
-            });
-        },
-        error: function(data) {
-            console.log(data);
-        }
-    });
 });
+
+am4core.ready(function() {
+
+
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+var chart = am4core.create("chartdiv", am4charts.PieChart3D);
+// Add data
+var datum = [];
+
+$.post( "../../data_json/data_dashboard1.php").done(function( data ) {
+      var parsedJson = $.parseJSON(data);
+      datum=parsedJson;
+      datum.pop();
+});
+
+
+
+setTimeout(function() {	
+
+      chart.legend = new am4charts.Legend();
+
+      chart.data = datum;
+
+      //chart.innerRadius = am4core.percent(50);
+
+      // Add and configure Series
+      var pieSeries = chart.series.push(new am4charts.PieSeries3D());
+      pieSeries.dataFields.value = "valor";
+      pieSeries.dataFields.category = "region";
+      pieSeries.slices.template.stroke = am4core.color("#fff");
+      pieSeries.slices.template.strokeOpacity = 1;
+
+      pieSeries.colors.list = [
+        am4core.color("#845EC2"),
+        am4core.color("#D65DB1"),
+        am4core.color("#FF6F91"),
+        am4core.color("#FF9671"),
+        am4core.color("#FFC75F"),
+        am4core.color("#F9F871"),
+      ];
+      // This creates initial animation
+    //  pieSeries.labels.template.maxWidth = 90;
+    //  pieSeries.labels.template.wrap = true;
+      pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
+      pieSeries.hiddenState.properties.opacity = 1;
+      pieSeries.hiddenState.properties.endAngle = -90;
+      pieSeries.hiddenState.properties.startAngle = -90;
+
+      chart.hiddenState.properties.radius = am4core.percent(0);
+}, 500);
+
+}); // end am4core.ready()
 
             function alsalir(e){
                var caso1=document.getElementById(e).value;
