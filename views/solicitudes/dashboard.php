@@ -80,18 +80,34 @@ ValidaSession("../login");
               <!-- BAR CHART -->
               <div class="box box-success">
                 <div class="box-header with-border">
-                  <h3 class="box-title">EJECUCIÓN PRESUPUESTAL TERRITORIAL</h3>
+                  <h3 class="box-title">EJECUCIÓN PRESUPUESTAL REGIONAL</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                   </div>
                 </div>
                 <div class="box-body">
-                  <div id="chartdiv" style="width:100%;max-height:600px;height:100vh;">
+                  <div id="chartdiv" style="width:100%;max-height:300px;height:100vh;">
                   
                   </div>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
+
+              <div class="box box-success">
+                <div class="box-header with-border">
+                  <h3 class="box-title">EJECUCIÓN PRESUPUESTAL DEPARTAMENTAL </h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div id="chartdiv2" style="width:100%;height:500px;">
+                  
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
             </div>
 
             <div class="col-md-6">
@@ -126,6 +142,8 @@ ValidaSession("../login");
                     <button id="p_edita" type="button" class="btn btn-success" style="display:none;"><i class="fa fa-fw fa-edit"></i>Editar</button>
                 </div> 
                 </form> 
+                <div id="chartdiv3" style="width:100%;height:300px;max-height:300px;">
+                </div>
               </div><!-- /.box-body -->
             </div><!-- /.box -->
 </div>
@@ -172,6 +190,8 @@ am4core.ready(function() {
 
 
 
+
+//############################################################################
 // Themes begin
 am4core.useTheme(am4themes_animated);
 // Themes end
@@ -191,11 +211,16 @@ $.post( "../../data_json/data_dashboard1.php").done(function( data ) {
 
 setTimeout(function() {	
 
-      chart.legend = new am4charts.Legend();
+     // chart.legend = new am4charts.Legend();
 
       chart.data = datum;
-
+     // chart.legend.maxHeight = 100;
+     // chart.legend.scrollable = true;
       //chart.innerRadius = am4core.percent(50);
+      var title = chart.titles.create();
+      title.text = "Presupuesto ejecutado ($)";
+      title.fontSize = 16;
+      title.marginBottom = 30;
 
       // Add and configure Series
       var pieSeries = chart.series.push(new am4charts.PieSeries3D());
@@ -203,25 +228,155 @@ setTimeout(function() {
       pieSeries.dataFields.category = "region";
       pieSeries.slices.template.stroke = am4core.color("#fff");
       pieSeries.slices.template.strokeOpacity = 1;
+      pieSeries.labels.template.maxWidth = 120;
+      pieSeries.labels.template.wrap = true;
 
       pieSeries.colors.list = [
-        am4core.color("#845EC2"),
-        am4core.color("#D65DB1"),
-        am4core.color("#FF6F91"),
-        am4core.color("#FF9671"),
-        am4core.color("#FFC75F"),
-        am4core.color("#F9F871"),
+        am4core.color("#ffff80"),
+        am4core.color("#93b980"),
+        am4core.color("#81a6b9"),
+        am4core.color("#80c3d3"),
+        am4core.color("#e2eed0"),
+        am4core.color("#ffaa81")
       ];
       // This creates initial animation
     //  pieSeries.labels.template.maxWidth = 90;
     //  pieSeries.labels.template.wrap = true;
-      pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
+      pieSeries.labels.template.text = "[bold font-size: 10px]{category} -> {value.percent.formatNumber('#.0')}%";
       pieSeries.hiddenState.properties.opacity = 1;
       pieSeries.hiddenState.properties.endAngle = -90;
       pieSeries.hiddenState.properties.startAngle = -90;
+      pieSeries.slices.template.tooltipText = "{category}: [bold font-size: 12px]{value.value}($)";     
 
       chart.hiddenState.properties.radius = am4core.percent(0);
 }, 500);
+
+//#######################################################################################
+
+var chart2 = am4core.create("chartdiv2", am4charts.XYChart3D);
+
+var datum2 = [];
+
+$.post( "../../data_json/data_dashboard2.php").done(function( data ) {
+      var parsedJson2 = $.parseJSON(data);
+      datum2=parsedJson2;
+     // datum2.pop();
+});
+
+
+setTimeout(function() {	
+
+    chart2.data = datum2;
+    chart2.legend = new am4charts.Legend();
+// Create axes
+    let categoryAxis = chart2.xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "departamento";
+    categoryAxis.renderer.labels.template.rotation = 270;          
+    categoryAxis.renderer.labels.template.hideOversized = false;
+    categoryAxis.renderer.labels.template.disabled = false; 
+    categoryAxis.renderer.labels.template.truncate = true;  
+    categoryAxis.renderer.labels.template.maxWidth = 120;      
+    categoryAxis.renderer.minGridDistance = 10;
+    categoryAxis.renderer.labels.template.fontSize = 10;    
+    categoryAxis.renderer.labels.template.horizontalCenter = "right";
+    categoryAxis.renderer.labels.template.verticalCenter = "middle";
+    categoryAxis.tooltip.label.rotation = 270;
+    categoryAxis.tooltip.label.horizontalCenter = "right";
+    categoryAxis.tooltip.label.verticalCenter = "middle";
+
+    let valueAxis = chart2.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.title.text = "Presupuesto ejecutado ($)";
+    valueAxis.title.fontWeight = "bold";
+
+    // Create series
+    var series = chart2.series.push(new am4charts.ColumnSeries3D());
+    series.dataFields.valueY = "valor";
+    series.dataFields.categoryX = "departamento";
+    series.name = "Departamentos";
+    series.tooltipText = "{categoryX}: [bold font-size: 12px]{valueY}[/]($)";
+    series.columns.template.fillOpacity = .8;    
+    var columnTemplate = series.columns.template;
+    columnTemplate.strokeWidth = 2;
+    columnTemplate.strokeOpacity = 1;
+    columnTemplate.stroke = am4core.color("#FFFFFF");
+
+    columnTemplate.adapter.add("fill", function(fill, target) {
+    return chart2.colors.getIndex(target.dataItem.index);
+    })
+
+    columnTemplate.adapter.add("stroke", function(stroke, target) {
+    return chart2.colors.getIndex(target.dataItem.index);
+    })
+
+    chart2.cursor = new am4charts.XYCursor();
+    chart2.cursor.lineX.strokeOpacity = 0;
+    chart2.cursor.lineY.strokeOpacity = 0;
+}, 500);
+
+//############################################################################
+
+// Create chart instance
+var chart3 = am4core.create("chartdiv3", am4charts.PieChart3D);
+// Add data
+var datum3 = [];
+
+$.post( "../../controllers/mcontratos_controller", { action: "search_act"}).done(function( data ) {
+      var parsedJson3 = $.parseJSON(data);
+      var individual = parsedJson3.cos_indi1;
+      var reubicado = parsedJson3.cos_reub1;
+      var colectivo = parsedJson3.cos_cole1;
+      
+     datum3 = [{
+                "nombre": "Individual",
+                "valor": individual
+              }, {
+                "nombre": "Retornos y Reubicaciones",
+                "valor": reubicado
+              }, {
+                "nombre": "Colectivos",
+                "valor": colectivo
+     }];
+
+},"json");
+
+     setTimeout(function() {	
+
+
+ chart3.data = datum3;
+
+ var title3 = chart3.titles.create();
+ title3.text = "Presupuesto  ejecutado por tipo de evento ($)";
+ title3.fontSize = 16;
+ title3.marginBottom = 30;
+
+ // Add and configure Series
+ var pieSeries2 = chart3.series.push(new am4charts.PieSeries3D());
+ pieSeries2.dataFields.value = "valor";
+ pieSeries2.dataFields.category = "nombre";
+ pieSeries2.slices.template.stroke = am4core.color("#fff");
+ pieSeries2.slices.template.strokeOpacity = 1;
+ pieSeries2.labels.template.maxWidth = 120;
+ pieSeries2.labels.template.wrap = true;
+
+ pieSeries2.colors.list = [
+   am4core.color("#00a65a"),
+   am4core.color("#f39c12"),
+   am4core.color("#dd4b39")
+ ];
+ // This creates initial animation
+//  pieSeries.labels.template.maxWidth = 90;
+//  pieSeries.labels.template.wrap = true;
+ pieSeries2.labels.template.text = "[bold font-size: 10px]{category} -> {value.percent.formatNumber('#.0')}%";
+ pieSeries2.hiddenState.properties.opacity = 1;
+ pieSeries2.hiddenState.properties.endAngle = -90;
+ pieSeries2.hiddenState.properties.startAngle = -90;
+ pieSeries2.slices.template.tooltipText = "{category}: [bold font-size: 12px]{value.value}($)";     
+
+ chart3.hiddenState.properties.radius = am4core.percent(0);
+}, 500);
+
+
+
 
 }); // end am4core.ready()
 

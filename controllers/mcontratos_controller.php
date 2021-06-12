@@ -325,6 +325,9 @@ switch ($action){
                     "cos_reub"=>number_format($reg2,1,',', ' '),
                     "cos_cole"=>number_format($reg3,1,',', ' '),
                     "restan"=>number_format($reg4,1,',', ' '),
+                    "cos_indi1"=>floatval($reg1),
+                    "cos_reub1"=>floatval($reg2),
+                    "cos_cole1"=>floatval($reg3)
           );
         
           echo json_encode($resp);
@@ -335,10 +338,10 @@ switch ($action){
             "num_contrato"=>0,
             "cos_contrato"=>0,
             "estado"=>"no", 
-            "cos_indi"=>0,
-            "cos_reub"=>0,
-            "cos_cole"=>0,
-            "restan"=>0   
+            "cos_indi"=>floatval(0),
+            "cos_reub"=>floatval(0),
+            "cos_cole"=>floatval(0),
+            "restan"=>floatval(0)   
           );
           echo json_encode($resp);
     }   
