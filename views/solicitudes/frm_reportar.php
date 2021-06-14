@@ -251,7 +251,7 @@ ValidaSession("../login");
 			<div class="conten_gen" id="cotizables"></div>
 
 			<div class="contenedorx">
-				<div class="caja1 tit_2 fac" >PERSONAL</div>	
+				<div class="caja1 tit_2 fac" >PERSONAL y GASTOS DE TRANSPORTE</div>	
 			</div>
 			<div class="conten_gen" id="personal"></div>
 			
@@ -777,6 +777,8 @@ ValidaSession("../login");
 					
 						break;
 						case 4:	
+						case 5:	
+						case 6:	
 						//insertar div de CONTABLES
 						$('#personal').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 					
