@@ -1045,6 +1045,8 @@ ValidaSession("../login");
 									<option value="2">Materiales</option>
 									<option value="3">Cotizables</option>
 									<option value="4">Personal</option>
+									<option value="5">Tiquetes aéreos</option>
+									<option value="6">Reembolso de transporte</option>
 								</select>
 							</div>
 

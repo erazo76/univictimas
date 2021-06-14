@@ -13,7 +13,9 @@ $unid=$_GET["este"];
 			case '1':	$tipo='ALIMENTACIÓN';break;	
 			case '2':	$tipo='MATERIALES';	break;
 			case '3':	$tipo='COTIZABLES';	break;
-			case '4':	$tipo='PERSONAL';	break;				
+			case '4':	$tipo='PERSONAL';	break;	
+			case '5':	$tipo='TEQUETES AÉREOS';	break;	
+			case '6':	$tipo='REEMBOLSO DE TRANSPORTE';	break;				
 		}
 
 		switch ($rs->d_medida) {
