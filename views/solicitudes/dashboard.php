@@ -311,7 +311,7 @@ setTimeout(function() {
     chart2.cursor = new am4charts.XYCursor();
     chart2.cursor.lineX.strokeOpacity = 0;
     chart2.cursor.lineY.strokeOpacity = 0;
-}, 500);
+}, 1000);
 
 //############################################################################
 
@@ -373,7 +373,7 @@ $.post( "../../controllers/mcontratos_controller", { action: "search_act"}).done
  pieSeries2.slices.template.tooltipText = "{category}: [bold font-size: 12px]{value.value}($)";     
 
  chart3.hiddenState.properties.radius = am4core.percent(0);
-}, 500);
+}, 1500);
 
 
 
