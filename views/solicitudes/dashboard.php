@@ -311,7 +311,7 @@ setTimeout(function() {
     chart2.cursor = new am4charts.XYCursor();
     chart2.cursor.lineX.strokeOpacity = 0;
     chart2.cursor.lineY.strokeOpacity = 0;
-}, 1000);
+}, 2000);
 
 //############################################################################
 
