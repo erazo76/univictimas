@@ -23,7 +23,7 @@ ValidaSession("../login");
 
 	<div class="col-md-1">
 		<div class="flotante">
-			<button id="print" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw fa-print"></i></button>
+			<button id="print" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw fa-print"></i></button>
 			<!--<button id="aprobar" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw  fa-check-square-o"></i></button>-->	
 			<button id="edit" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw fa-edit"></i>  </button>
 			<button id="victim" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw  fa-users"></i></button>
@@ -35,305 +35,220 @@ ValidaSession("../login");
 	<div class="col-md-11" style="width:216mm; height:356mm;" id="pr1" >
 
 		<div class="box-header with-border" tabindex="-1">
-			<h3 class="box-title">FORMATO SOLICITUD AL OPERADOR</h3>
+			<h3 class="box-title oculto-impresion">FORMATO SOLICITUD AL OPERADOR</h3>
 		</div> <!--/.box-header	-->
 
 		<div class="box box-primary" id="pr2">
-			<div class="box-body " >
+			<div class="box-body">
 		
-			<div class="contenedorw" id="printJS-form">
-				
-				<img src="../../dist/img/unidadvictimaslogo2018-2.png" alt="logo" class="caja1 logunivic bnn">
-				
-				<div class="caja1 tit_1 fro" style="color:#fff;">FORMATO SOLICITUD AL OPERADOR</div>
-				<div class="caja1 tit_1">PROCEDIMIENTO: ESTRATEGIAS DE REPARACIÓN INTEGRAL</div>
-				<div class="caja1 tit_1">PROCESO: REPARACIÓN INTEGRAL</div>
-				<div class="caja1 letrap cj16p">Código: 400.08.15-67</div>
-				<div class="caja1 letrap cj16p">Versión: 04</div>
-				<div class="caja1 letrap cj16p">Fecha: 14/02/2018</div>
-				<div class="caja1 pg6_8 cj16p" >Página: 1 de 1</div>
-				<div class="caja1 tit_2">CONTRATO No.  _____ de 2021</div>
-				<div class="caja1 fgr">OBJETO DEL CONTRATO: </div>
-				<div class="caja1 tit_3">Prestar sus servicios para apoyar la organización, administración y producción de las jornadas o acciones para la implementación de medidas de reparación integral a las víctimas del conflicto armado que le sean solicitadas por LA UNIDAD, de acuerdo con los requerimientos técnicos.</div>
-				<div class="caja1 tit_2 faz" style="color:#fff !important;">REQUERIMIENTOS DE SERVICIO PARA ACCIONES DE LA DIRECCIÓN DE REPARACIÓN</div>
-				
-				<div class="caja1 tit_2 finito"></div>
-
-				<div class="caja1 tit_2 faz" style="color:#fff !important;">INFORMACIÓN GENERAL DEL EVENTO</div>
-			
-				<div class="caja1 finito2 tit_2">
-
-				</div><div class="caja1 fgr pg1_3">NOMBRE DEL EVENTO:</div>
-				<div class="caja1 pg3_8" id="nombre"></div>
-
-				<div class="caja1 finito2 tit_2"></div>
-
-				<div class="caja1 faz aiz" style="color:#fff !important;">N° EVENTO:</div><div class="caja1 cj24p" id="id"></div>
-				<div class="caja1 fgr letrap">FECHA DE SOLICITUD:</div><div class="caja1 cj24p" id="fecha1"></div>
-				<div class="caja1 fgr letrap">DIRECCION TERRITORIAL:</div><div class="caja1 cj24p pg6_8" id="dir_terri" style="line-height: 10px;"></div>
-
-				<div class="caja1 finito2 tit_2"></div>
-
-				<div class="caja1 fgr">DEPARTAMENTO:</div><div class="caja1 cj24p" id="departamento" style="line-height: 10px;font-size:8px;"></div>
-				<div class="caja1 fgr">MUNICIPIO:</div><div class="caja1 cj24p" id="municipio" style="line-height: 10px;font-size:8px;"></div>
-				<div class="caja1 fgr letrap">COREGIMIENTO VEREDA:</div><div class="caja1 cj24p pg6_8" id="cpoblado"></div>
-				
-				<div class="caja1 finito2 tit_2"></div>
-
-				<div class="caja1 fgr pg1_3 cj16p">DIRECCION Y LUGAR EXACTO DEL EVENTO:</div>
-				<div class="caja1 fgr pg3_6 cj16p">FECHA DE INICIO Y FIN DEL EVENTO:</div><div class="caja1 fgr pg6_8 cj16p">HORA DE INICIO Y FIN DEL EVENTO:</div>
-				<div class="caja1 pg1_3 cj32p pgr18_20 " id="direccion"></div>
-				<div class="caja1 fgr cj16p pg3_5">FECHA INICIO:</div><div class="caja1 cj16p " id="fecha2"></div>
-				<div class="caja1 fgr cj16p  ">HORA DE INICIO:</div><div class="caja1 cj16p" id="hora1"></div>
-				<div class="caja1 fgr cj16p pg3_5">FECHA FIN:</div><div class="caja1 cj16p " id="fecha3"></div>
-				<div class="caja1 fgr cj16p  ">HORA DE FINALIZACIÓN:</div><div class="caja1 cj16p" id="hora2"></div>
-				<div class="caja1 fgr pg1_3">RESPONSABLE DEL EVENTO:</div><div class="caja1 pg3_8 cj24p" id="responsable"></div>
-				<div class="caja1 fgr cj24p pg1_3">CELULAR Y CORREO ELECTRÓNICO DEL RESPONSABLE:</div><div class="caja1 pg3_8 cj24p" id="contacto"></div>
-				<div class="caja1 fgr cj24p pg1_3">MARQUE CON UNA X SI EL EVENTO PERTENECE A:</div>
-				<div class="caja1 pg3_8 cj24p">
-				Reparación Individual:  <input type="radio" name="tipo" id="rta">  
-				Reparación Colectiva: 	<input type="radio" name="tipo" id="rtb">   
-				Retornos y Reubicaciones:	<input type="radio" name="tipo" id="rtc">    
-				Otra: 	<input type="radio" name="tipo" id="rtd">  
-				</div>
-				<div class="caja1 caja1 fgr cj24p pg1_3">GRUPO/ÁREA/EQUIPO/DEPENDENCIA:</div>
-				<div class="caja1 pg3_8 cj24p" id="grupo"></div>
-
-				<div class="caja1 finito2 tit_2"></div>
-				
-				<div class="caja1 tit_2 faz" style="color:#fff !important;">INFORMACIÓN RELACIONADA CON EL TIPO DE ACTIVIDAD</div>
-
-				<div class="caja1 finito2 tit_2"></div>
-
-				<div class="caja1 tit_2a ">(ESPACIO EXCLUSIVO PARA REPARACIÓN INDIVIDUAL) MARQUE CON UNA X SI LA ACTIVIDAD CORRESPONDE A UNA O VARIAS DE LAS SIGUIENTES OPCIONES: </div>
-				<div class="caja1 tit_2b alto2">
-
-						<div class="caja cj16p">
-						Jornada Diferencial	<input type="radio" name="tipo1" id="tipo1a">  
-						Feria de Servicios	<input type="radio" name="tipo1" id="tipo1b">  
-						Conmemoración	<input type="radio" name="tipo1" id="tipo1c">  
-						Iniciativa local de memoria	<input type="radio" name="tipo1" id="tipo1d">  
-						Acto de Reconocimiento u orden judicial	<input type="radio" name="tipo1" id="tipo1e">  
-						</div>
-						<div class="caja cj16p">
-						Taller por línea de inversión	<input type="radio" name="tipo1" id="tipo1f">  
-						Entrega digna de cadáveres	<input type="radio" name="tipo1" id="tipo1g">  
-						Charla de educación financiera	<input type="radio" name="tipo1" id="tipo1h">  
-						Otro	<input type="radio" name="tipo1" id="tipo1i">  
-						</div>
-						<div class="caja cj16p" id="otro1"></div>
-				</div>
-
-				<div class="caja1 finito2 tit_2"></div>
-
-				<div class="caja1 tit_2a">(ESPACIO EXCLUSIVO PARA REPARACIÓN RETORNOS Y REUBICACIONES) MARQUE CON UNA X SI LA ACTIVIDAD CORRESPONDE A UNA O VARIAS DE LAS SIGUIENTES OPCIONES: </div>
-				<div class="caja1 tit_2b alto1">
-					<div class="caja cj16p">
-					Integración Comunitaria	<input type="radio" name="tipo2" id="tipo2a">  
-					Retorno	<input type="radio" name="tipo2" id="tipo2b">  
-					Reubicación	<input type="radio" name="tipo2" id="tipo2c">  
-					Esquemas Especiales de Acompañamiento	<input type="radio" name="tipo2" id="tipo2d">  
-					Casos Emblemáticos 	<input type="radio" name="tipo2" id="tipo2e">  
+				<div class="contenedor" id="printJS-form">
+					<div class=" caja1 logunivic bnn"></div>
+					<div class="caja1 ce tit_1">FORMATO DE SOLICITUD PARA LA REALIZACIÓN DE EVENTOS TALLERES O REUNIONES</div>
+					<div class="caja1 ce_iz tit_2">Anexo 1</div>
+					<div class="caja1 ce_iz tit_3">Versión: 01</div>
+					<div class="caja1 ce tit_4">Fecha de elaboración: 
+						<div class="rw_base">
+								<div class="ce rw_1 inp"><strong>dd/mm/aaaa</strong></div>
+						</div> 
+					</div>					
+					<div class="caja1 ce tit_6">CONTARTO DE PRESTACIÓN DE SERVICIO N°: 
+						<div class="rw_base">
+							<div class="ce rw_1 inp"><strong>xxxxx</strong></div>
+						</div> 
 					</div>
-					<div class="caja cj16p">
-					Seguimiento procesos Retornos y Reubicaciones	<input type="radio" name="tipo2" id="tipo2f">  
+					<div class="caja1 ce tit_7 f_s">Modalidad</div>
+					<div class="caja1 ce tit_8 f_s">Presencial</div>
+
+					<div class="caja1 ce na_1_7">N° De solicitud:
+						<div class="rw_base">
+							<div class="ce rw_1 inp" id="id"><strong>xxxxx</strong></div>
+						</div>
 					</div>
-				</div>
-
-				<div class="caja1 finito2 tit_2"></div>
-				 
-				<div class="caja1 tit_2a">(ESPACIO EXCLUSIVO PARA REPARACIÓN COLECTIVA) MARQUE CON UNA X SI LA ACTIVIDAD CORRESPONDE A UNA O VARIAS DE LAS SIGUIENTES OPCIONES: </div>
-				<div class="caja1 tit_2b alto3">
-					<div class="contenedorx">
-						<div class="caja1 cj16p aiz pg1_6" style="border-bottom: solid;" >NOMBRE DEL SUJETO DE REPARACIÓN COLECTIVA:</div>
-						<div class="caja1 cj16p aiz pg6_8" style="border-bottom: solid;">ID SUJETO DE REPARACIÓN COLECTIVA:</div>
-						<div class="caja2 cj16p pg1_4">TIPO DE SUJETO:</div>
-						<div class="caja2 cj16p pg4_6"></div>
-						<div class="caja cj16p pg6_8">
-
+					<div class="caja1 ce na_7_8">FECHA</div>
+					<div class="caja ce na_8_9 al_2 ">Día</div>
+					<div class="caja ce na_9_10 al_2 ">Mes</div>
+					<div class="caja ce na_10_11 al_2 ">Año</div>
+					<div class="caja ce na_8_9a al_2 inp">dd</div>
+					<div class="caja ce na_9_10a al_2 inp">mm</div>
+					<div class="caja ce na_10_11a al_2 inp">aaaa</div>
+					<div class="caja1 ce na_11_16">SUBDIRECCIÓN O ÁREA SOLICITANTE</div>
+					<div class="caja1 ce na_16_21 inp f_s2" id="grupo"><strong>PARTICIPACIÓN</strong></div>
+					<div class="caja1 ce gris1"><strong>1) INFORMACIÓN GENERAL</strong></div>
+					<div class="caja1 ce ig-89 igr-18 f_s" >NOMBRE DE LA ACTIVIDAD</div>
+					<div class="caja1 ce ig-89 igr-821 f_s inp" id="nombre"><strong>Dialogos por lo fundamental ...</strong></div>
+					<div class="caja1 ce ig-910 igr-14 f_s">DEPARTAMENTO</div>
+					<div class="caja1 ce ig-910 igr-48 f_s inp" id="departamento"><strong>Magdalena</strong></div>
+					<div class="caja1 ce ig-910 igr-89 f_s2">CIUDAD O MUNICIPIO</div>
+					<div class="caja1 ce ig-910 igr-912 f_s inp" id="municipio"><strong>Santa Marta</strong></div>
+					<div class="caja1 ce ig-910 igr-1213 f_s2">FECHA DE INICIO</div>
+					<div class="caja1 ce ig-910 igr-1315 f_s inp" id="fecha2"><strong>dd-mm-aaaa</strong></div>
+					<div class="caja1 ce ig-910 igr-1516 f_s2">FECHA DE FINALIZACIÓN</div>
+					<div class="caja1 ce ig-910 igr-1618 f_s inp" id="fecha3"><strong>dd-mm-aaaa</strong></div>
+					<div class="caja1 ce ig-910 igr-1821 f_s2">N° de días de la actividad: 
+						<div class="rw_base">
+							<div class="ce rw_1 inp"><strong>xx</strong></div>
 						</div>
-
-						<div class="caja2 cj16p pg1_4">|No étnico:| 
-						Comunidad<input type="radio" name="tipo3" id="tipo3a"> 
-						Comunidad campesina	<input type="radio" name="tipo3" id="tipo3b"> 
-						Grupo<input type="radio" name="tipo3" id="tipo3c">  
-							
-						</div>
-						<div class="caja2 cj16p pg4_6">Marcar con X:
-						 
-						</div>
-						<div class="caja cj16p pg6_8">Marcar con X: Si el evento es de
-							 
-						</div>
-
-						<div class="caja2 cj16p pg1_4">
-						Organizaciones	<input type="radio" name="tipo3" id="tipo3d">  
-						Organización de mujeres	<input type="radio" name="tipo3" id="tipo3e">  
-						</div>
-						<div class="caja2 cj16p pg4_6 aiz">Si el evento es de ruta	
-							<input  type="checkbox" name="aruta" id="aruta"> indicar
-
-						</div>
-						<div class="caja cj16p pg6_8 aiz ">implementación del PIRC aprobado
-							<input  type="checkbox" name="apirc" id="apirc">indicar
-						</div>
-
-						<div class="caja2 cj16p pg1_4">|Étnico:|
-						Indígena	<input type="radio" name="tipo4" id="tipo4a">  
-						Ancestral	<input type="radio" name="tipo4" id="tipo4b">  
-						RROM o gitano	<input type="radio" name="tipo4" id="tipo4c">  
-							
-						</div>
-						<div class="caja2 cj16p pg4_6 aiz"> fase en que se encuentra:
-							
-
-						</div>
-						<div class="caja cj16p pg6_8 aiz" id="amedida">tipo de Medida: 
-
-						</div>
-
-						<div class="caja2 cj16p pg1_4">
-						Afrocolombiana	<input type="radio" name="tipo4" id="tipo4d">  
-						Negra	<input type="radio" name="tipo4" id="tipo4e">  
-						</div>
-						<div class="caja2 cj16p pg4_6" id="afase"></div>
-
-						<div class="caja cj16p pg6_8 aiz" id="idaccion">ID evento:</div>
-
-
-
-						
 					</div>
-				</div>
-				<div class="caja1 tit_2 finito2"></div>						
-						<div class="caja1 tit_2 faz" style="color:#fff !important;">DESCRIPCIÓN DEL DESARROLLO DE  LA ACTIVIDAD</div>					
-						<div class="caja1 finito2 tit_2"></div>
-
-						<div class="caja1 fgr aiz ">ENTIDADES PARTICIPANTES:</div>
-						<div class="caja1 cj24p pg2_6" id="entidad"></div>
-						<div class="caja1 fgr aiz letrap">NÚMERO DE VÍCTIMAS PARTICIPANTES:</div>
-						<div class="caja1 cj24p" id="num_vic"></div>
-						<div class="caja1 tit_2b alto1 aiz" id="descripcion">DESCRIPCIÓN BREVE:</div>
-
-				<div class="caja1 tit_2 finito2"></div>						
-						<div class="caja1 tit_2 faz" style="color:#fff !important;">DETALLE ESPECIFICO DEL REQUERIMIENTO</div>					
-						<div class="caja1 finito2 tit_2"></div>	
-
-			</div>
-			<div class="contenedorw">
-				<div class="caja1 pg1_3 fgr" >CONCEPTO</div>
-				<div class="caja1 pg3_4 fgr letrap" >CANTIDAD</div>
-				<div class="caja1 pg4_5 fgr" >UNIDAD DE MEDIDA</div>
-				<div class="caja1 pg5_6 fgr" >COSTO</div>
-				<div class="caja1 pg6_8 fgr" >OBSERVACIONES</div>
-				<div class="caja1 tit_2 fac" >SALONES</div>	
-
-			</div>
-			<div class="conten_gen" id="salones"></div>
-
-			<div class="contenedorx">
-				<div class="caja1 tit_2 fac" >ALIMENTACIÓN</div>	
-			</div>
-
-			<div class="conten_gen" id="alimentos"></div>
-			
-			<div class="contenedorx">
-				<div class="caja1 tit_2 fac" >MATERIALES</div>	
-			</div>
-			<div class="conten_gen" id="materiales"></div>
-
-			<div class="contenedorx">
-				<div class="caja1 tit_2 fac" style="line-height: 10px;height:24px" >
-					<span style="font-size: 10px;font-weight: bold;">REQUERIMIENTOS ADICIONALES</span></br>
-					<span style="font-size: 9px; color:crimson;">(Inserte aquí lo que no está relacionado en los ítems del contrato)</span>
-				</div>	
-			</div>
-			<div class="conten_gen" id="cotizables"></div>
-
-			<div class="contenedorx">
-				<div class="caja1 tit_2 fac" >PERSONAL y GASTOS DE TRANSPORTE</div>	
-			</div>
-			<div class="conten_gen" id="personal"></div>
-			
-			<div class="contenedorx">
-
-				<div class="caja1 tit_2 fac">ALOJAMIENTO</div>
-				<div class="caja1 pg1_2 fgr" style="text-align: center;" >¿Requiere alojamiento?</div>
-				<div class="caja1 pg2_8 cj24p">	
-					<input id="aloja" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-class="fast" data-size="mini">
-					<span style="font-size: 9px; color:crimson;">Si requiere alojamiento, diligenciar la pestaña subsiguiente</span>
-				</div>
-
-				<div class="caja1 tit_2 fac">TRANSPORTE</div>
-				<div class="caja1 pg1_2 fgr" style="text-align: center;">¿Requiere transporte aéreo?</div>
-				<div class="caja1 pg2_3 cj24p">	
-					<input id="trans1" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-class="fast" data-size="mini">
-				</div>	
-
-				<div class="caja1 pg3_5 fgr" style="font-size:9px;text-align: center;" >¿Requiere transporte terrestre y/o fluvial intermunicipal?</div>
-				<div class="caja1 pg5_6 cj24p">	
-					<input id="trans2" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-class="fast" data-size="mini">
-				</div>
-
-				<div class="caja1 pg6_7 fgr" style="font-size:9px;text-align: center;" >¿Requiere transporte terrestre urbano?</div>
-				<div class="caja1 pg7_8 cj24p">	
-					<input id="trans3" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-class="fast" data-size="mini">
-				</div>					
-				<div class="caja1 tit_2 pg16p" >
-					<span style="font-size: 9px; color:crimson;">Si requiere transporte, diligenciar la pestaña subsiguiente</span>
-				</div>	
-				<div class="caja1 tit_2 finito"></div>
-				<div class="caja1 tit_2 faz" style="color:#fff !important;">OBSERVACIONES FINALES</div>
-				<div class="caja1 tit_2 finito"></div>	
-
-				<div class="caja1 pg1_3 tit_2b alto1"></div>
-				<div class="caja1 pg3_6 tit_2b alto1">
-					<div id="aprob" style="display:none;">
-						<img src="../../dist/img/aprobado1.png" alt="aprobado" style="z-index:2;position:absolute;opacity:0.4;">
+					<div class="caja1 ce f_s2 ig-1016 igr-18">DESCRIPCIÓN BREVE DEL EVENTO</div>
+					<div class="caja1 ce_iz  ig-1016 igr-817 inp" id="descripcion">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At accusantium voluptatum cum sint possimus mollitia, recusandae ipsum rem nostrum iusto itaque, nesciunt ea pariatur reprehenderit ducimus quis magni suscipit tenetur provident asperiores obcaecati amet! Error voluptatum, nesciunt neque cumque eos officiis. Numquam velit libero possimus fuga? Veniam voluptatem nobis nulla.</div>
+					<div class="caja1 ce ig-1011 igr-1721 f_s">N° de personas esperadas:
+						<div class="rw_base">
+							<div class="ce rw_1 inp"><strong>xxxx</strong></div>
+						</div>						
 					</div>
+					<div class="caja1 ce ig-1116 igr-1719">Víctimas:
+						<div class="rw_base">
+							<div class="ce rw_1 inp" id="num_vic"><strong>xxxx</strong></div>
+						</div>						
+					</div>
+					<div class="caja1 ce ig-1116 igr-1921">Funcionarios:
+						<div class="rw_base">
+							<div class="ce rw_1 inp"><strong>xxxx</strong></div>
+						</div>						
+					</div>
+					<div class="caja1 ce ig-1618 igr-18">SUPERVISOR DEL CONTRATO</div>
+					<div class="caja1 ce ig-1618 igr-813 inp" ><strong>Aura Elena Acevedo</strong></div>
+					<div class="caja1 ce_iz f_s2 ig-1617 igr-1316 ">EMAIL</div>
+					<div class="caja1 ce_iz f_s2 ig-1718 igr-1316">TELÉFONO</div>
+					<div class="caja1 ce_iz f_s2 ig-1617 igr-1621 inp"><strong>aura.acevedo@unidadvictimas.gov.co</strong></div>
+					<div class="caja1 ce_iz f_s2 ig-1718 igr-1621 inp">### ### ####</div>
+
+					<div class="caja1 ce ig-1820 igr-18">SUB-DIRECTOR(A) SOLICITANTE</div>
+					<div class="caja1 ce ig-1820 igr-813 inp"><strong>Yanny Zambrano Díaz</strong></div>
+					<div class="caja1 ce_iz f_s2 ig-1819 igr-1316">EMAIL</div>
+					<div class="caja1 ce_iz f_s2 ig-1920 igr-1316">TELÉFONO</div>
+					<div class="caja1 ce_iz f_s2 ig-1819 igr-1621 inp"><strong>yanny.zambrano@unidadvictimas.gov.co</strong></div>
+					<div class="caja1 ce_iz f_s2 ig-1920 igr-1621 inp">### ### ####</div>	
+					
+					<div class="caja1 ce ig-2021 igr-18">RESPONSABLE DEL EVENTO</div>
+					<div class="caja1 ce ig-2021 igr-813 inp" id="responsable"><strong>Carolina Murillo</strong></div>
+					<div class="caja1 ce ig-2122 igr-18">CARGO</div>
+					<div class="caja1 ce ig-2122 igr-813 inp"><strong>Contratista</strong></div>
+					<div class="caja1 ce_iz  ig-2021 igr-1316" >EMAIL</div>
+					<div class="caja1 ce_iz  ig-2122 igr-1316">TELÉFONO</div>
+					<div class="caja1 ce_iz  ig-2021 igr-1621 inp" id="contacto_c"><strong>diana.murillo@unidadvictimas.gov.co</strong></div>
+					<div class="caja1 ce_iz  ig-2122 igr-1621 inp" id="contacto_t">3155747140</div>	
+
+					<div class="caja1 ce gris1"><strong>2) REQUERIMIENTOS LOGÍSTICOS</strong></div>
+					<div class="caja1 ce ig-2325 igr-15">CONCEPTO</div>
+					<div class="caja1 ce ig-2324 igr-521"><strong>Servicios y Cantidades Aproximadas Solicitadas</strong></div>
+					<div class="ig-2425 igr-516">
+						<div class="rl_base">
+							<div class="caja2 rl-1 ce f_s"></div>
+							<div class="caja2 rl-2 ce f_s"></div>
+							<div class="caja2 rl-3 ce f_s">Día previo</div>
+							<div class="caja2 rl-4 ce f_s">Día 1</div>
+							<div class="caja2 rl-5 ce f_s">Día 2</div>
+							<div class="caja2 rl-6 ce f_s">Día 3</div>
+							<div class="caja2 rl-7 ce f_s">Día posterior</div>
+						</div>
+					</div>
+					<div class="caja1 ce ig-2426 igr-1617">TOTAL</div>
+					<div class="caja1 ce ig-2426 igr-1721">OBSERVACIONES</div>
+					<div class="caja2 ce  igr-15">FECHAS DEL EVENTO</div>
+					<div class="igr-516">
+						<div class="rl_base">
+							<div class="caja2 rl-1 ce f_s"><strong></strong></div>
+							<div class="caja2 rl-2 ce f_s"><strong></strong></div>
+							<div class="caja2 rl-3 ce f_s"><strong></strong></div>
+							<div class="caja2 rl-4 ce f_s"><strong></strong></div>
+							<div class="caja2 rl-5 ce f_s"><strong></strong></div>
+							<div class="caja2 rl-6 ce f_s"><strong></strong></div>
+							<div class="caja2 rl-7 ce f_s"><strong></strong></div>
+						</div>
+					</div>
+					<div class="caja1 rl-1 vig-96 ce f_s">ALOJAMIENTO</div>
+					<div class="caja1 rl-1 vig-96 ce f_s">LOGÍSTICA</div>
+					<div class="caja1 rl-1 vig-96 ce f_s">ADICIONALES</div>
+					<div class="caja1 rl-1 vig-96 ce f_s">MATERIALES</div>
+
+					<div class="caja1 rl-25 alt ig-2627 f_s" id="a-1"></div>
+					<div class="caja1 rl-25 alt ig-2728 f_s" id="l-1"></div>
+					<div class="caja1 rl-25 alt ig-2829 f_s" id="ad-1"></div>
+					<div class="caja1 rl-25 alt ig-2930 f_s" id="ma-1"></div>
+
+					<div class="caja1 ig-2627 alt igr-516 f_s" id="a-2"></div>
+					<div class="caja1 ig-2728 alt igr-516 f_s" id="l-2"></div>
+					<div class="caja1 ig-2829 alt igr-516 f_s" id="ad-2"></div>
+					<div class="caja1 ig-2930 alt igr-516 f_s" id="ma-2"></div>
+
+					<div class="caja1 ig-2627 alt igr-1617 f_s" id="a-3"></div>
+					<div class="caja1 ig-2728 alt igr-1617 f_s" id="l-3"></div>
+					<div class="caja1 ig-2829 alt igr-1617 f_s" id="ad-3"></div>
+					<div class="caja1 ig-2930 alt igr-1617 f_s" id="ma-3"></div>
+
+					<div class="caja1 ig-2627 alt igr-1721 f_s" id="a-4"></div>
+					<div class="caja1 ig-2728 alt igr-1721 f_s" id="l-4"></div>
+					<div class="caja1 ig-2829 alt igr-1721 f_s" id="ad-4"></div>
+					<div class="caja1 ig-2930 alt igr-1721 f_s" id="ma-4"></div>
+
+					<div class="caja1 ce f_s igr-15 gris">TIQUETES AEREOS</div>
+						<div class="igr-516">
+							<div class="rl_base">
+								<div class="caja1 rl-1 ce f_s gris"><strong></strong></div>
+								<div class="caja1 rl-2 ce f_s gris"><strong></strong></div>
+								<div class="caja1 rl-3 ce f_s"><strong></strong></div>
+								<div class="caja1 rl-4 ce f_s"><strong></strong></div>
+								<div class="caja1 rl-5 ce f_s"><strong></strong></div>
+								<div class="caja1 rl-6 ce f_s"><strong></strong></div>
+								<div class="caja1 rl-7 ce f_s"><strong></strong></div>
+							</div>
+						</div>	
+					<div class="caja1 ce f_s"></div>
+					<div class="caja1 ce f_s igr-1721"></div>
+
+					<div class="caja1 ce gris1"><strong>3) PAGO A TERCEROS</strong></div>					
+					<div class="igr-121">
+						<div class="rm_base">
+							<div class="caja1 ce f_s rl-1 gris">VALOR A DESEMBOLSAR</div>
+							<div class="caja1 ce f_s rl-2 gris">OBSERVACIONES / JUSTIFICACIÓN</div>
+							<div class="caja1 ce f_s rl-1">$</div>
+							<div class="caja1 ce f_s rl-2"></div>
+						</div>
+					</div>
+					<div class="caja1 ce igr-18 gris alt">Sugerencias y recomendaciones</div>
+					<div class="caja1 ce igr-821 alt">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt nemo facilis placeat consectetur perspiciatis reprehenderit at quas, tenetur magni architecto, ex omnis eius animi saepe, aspernatur ullam. Explicabo, vitae aliquam.
+					Voluptas culpa maiores quidem provident hic suscipit ut repellat maxime, quam error numquam. Autem reprehenderit, aliquid eius excepturi quis eos modi. Eius voluptates vitae iure, libero ullam nisi amet fugiat?</div>
+					<div class="caja1 iz igr-121 alt">OBSERVACIONES GENERALES</div>					
+					<div class="caja1 igr-121 alt">
+						<div class="rn_base">													
+							<div class="rl-1 ig-3536">
+								<div class="linea ce"></div>	
+								<div class="ce deco">Responsable del evento</div>
+							</div>							
+							<div class="rl-2  ig-3536">
+								<div class="linea ce"></div>	
+								<div class="ce deco">Sub-director(a) solicitante</div>
+							</div>							
+							<div class="rl-3  ig-3536">
+								<div class="linea ce"></div>	
+								<div class="ce deco">Supervisión del contrato</div> 
+								<div class="rl-3">
+									<div class="ro_base">
+										<div class="f_s iz rl-1">Vo Bo: </div>
+										<div class="f_s iz rl-2"><strong>xxxx</strong></div>
+									</div>									
+								</div>
+								<div class="rl-3"> 
+									<div class="ro_base">
+										<div class="f_s iz rl-1">Revisado:</div>
+										<div class="f_s iz rl-2"><strong>xxxx</strong></div>
+									</div>
+								</div>
+								<div class="rl-3">
+									<div class="ro_base">
+										<div class="f_s iz rl-1">Verificado:</div>
+										<div class="f_s iz rl-2"><strong>xxxx</strong></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
 				</div>
-				<div class="caja1 pg6_8 tit_2b alto1"></div>
-
-				<div class="caja1 pg1_3 cj24p" style="line-height: 10px;">
-					<span style="font-size: 9px;font-weight: bold;">Judy Valencia Lozano</span></br>
-					<span style="font-size: 9px;font-weight: bold;"> Enlace Territorial</span>
-				</div>
-				<div class="caja1 pg3_6 cj24p" style="line-height: 10px;">
-					<span style="font-size: 9px;font-weight: bold;">Maria del Rosario Palacios Cordoba</span></br>
-					<span style="font-size: 9px;font-weight: bold;"> Director Territorial</span>
-				</div>
-				<div class="caja1 pg6_8 cj24p" style="line-height: 10px;">
-					<span style="font-size: 9px;font-weight: bold;">Judith Cecilia Tarazona Ordoñez</span></br>
-					<span style="font-size: 9px;font-weight: bold;">Equipo de Acompañamiento Integral</span>
-				</div>	
-
-				<div class="caja1 pg1_4 tit_2b alto1"></div>
-				<div class="caja1 pg4_8 tit_2b alto1"></div>
-
-				<div class="caja1 pg1_4 cj24p" style="line-height: 10px;">
-					<span style="font-size: 9px;font-weight: bold;">Alicia J. Rueda Rojas </span></br>
-					<span style="font-size: 9px;font-weight: bold;">Subdirectora Técnica  de Reparación Individual</span>
-				</div>				
-				<div class="caja1 pg4_8 cj24p " style="line-height: 10px;">
-					<span style="font-size: 9px;font-weight: bold;">Claudia Juliana Melo Romero</span></br>
-					<span style="font-size: 9px;font-weight: bold;">Supervisora del Contrato No - ____ de 2021 Directora Técnica de Reparación</span>
-				</div>							
-
-     		</div>
-			<div class="contenedorx">
-
-
 
 			</div>
-
-	</div>
-
-			</div>	
-
-
 		</div>
-
-	
 
 	</div>
 
@@ -567,7 +482,8 @@ ValidaSession("../login");
 	var email=parsedJson.correo1;
 	var contac=email+', Celular: '+tel1;
 
-	$("#contacto").html(contac);
+	$("#contacto_t").html(tel1);
+	$("#contacto_c").html(email);
 
 	var grup=parsedJson.grupo;
 	  
@@ -644,7 +560,7 @@ ValidaSession("../login");
 
 	$("#entidad").html(parsedJson.entidad);
 	$("#num_vic").html(parsedJson.num_vic);
-	$("#descripcion").html("Descripción breve: "+parsedJson.descripcion);
+	$("#descripcion").html(parsedJson.descripcion);
 
 	var alojan=parsedJson.aloja;
 	//alert(alojan);
@@ -758,18 +674,33 @@ ValidaSession("../login");
 					switch (r_tipo) {
 						case 0:	
 						//insertar div de SALONES						
-						$('#salones').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
-					
+						//$('#salones').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#a-1').append('<div  class="caja2 " >'+r_concepto+'</div>');
+						$('#a-2').append(							
+							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+						);
+						$('#a-3').append('<div  class="caja2 " >'+r_cantidad+'</div>');
+						$('#a-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');					
 						break;
 						case 1:	
 						//insertar div de ALIMENTACION
-						$('#alimentos').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
-					
+						//$('#alimentos').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#l-1').append('<div  class="caja2 ">'+r_concepto+'</div>');
+						$('#l-2').append(							
+							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+						);
+						$('#l-3').append('<div  class="caja2 ">'+r_cantidad+'</div>');
+						$('#l-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');
 						break;
 						case 2:	
 						//insertar div de MATERIALES
-						$('#materiales').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
-					
+						//$('#materiales').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#ad-1').append('<div class="caja2 "  >'+r_concepto+'</div>');
+						$('#ad-2').append(							
+							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+						);
+						$('#ad-3').append('<div  class="caja2 " >'+r_cantidad+'</div>');
+						$('#ad-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');
 						break;
 						case 3:	
 						//insertar div de CONTABLES
