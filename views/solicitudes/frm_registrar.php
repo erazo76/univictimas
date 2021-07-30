@@ -87,12 +87,12 @@ ValidaSession("../login");
 								</select>
 							</div>
 
-							<div class="form-group-sm">
+							<!--div class="form-group-sm">
 								<label>Centro Poblado</label>
 								<select id="cpoblado" class="form-control bbb" tabindex="7">
 								<option></option>
 								</select>
-							</div>
+							</div-->
 
 
 
@@ -131,8 +131,8 @@ ValidaSession("../login");
 									<span class="input-group-addon"><span class="fa fa-slack"></span></span>
 									<input type="text" id="acceso2" class="form-control bbb" placeholder="Secundario"  onpaste="return false" tabindex="10" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
 									<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-									<span class="input-group-addon"><span class="fa fa-minus"></span></span>
-									<span><input type="text" id="num_dir" class="form-control bbb" placeholder="Numero"  onpaste="return false" tabindex="11" onkeypress="return esnumdir(event);" onblur="alsalir(this.id)">
+									<!--span class="input-group-addon"><span class="fa fa-minus"></span></span>
+									<span><input type="text" id="num_dir" class="form-control bbb" placeholder="Numero"  onpaste="return false" tabindex="11" onkeypress="return esnumdir(event);" onblur="alsalir(this.id)"-->
 										
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
@@ -222,14 +222,14 @@ ValidaSession("../login");
 			</div>
 
 				<div class="box-header with-border">
-					<h3 class="box-title">Responsable nacional</h3>
+					<h3 class="box-title">Responsable del evento</h3>
 				</div><!-- /.box-header -->	
 
 				<div class="box box-primary">
 
 					<div class="box-body">
 					
-							<label>Nombres</label>
+							<label>Nombre</label>
 							<div class="input-group">
 								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="1er nombre"  onpaste="return false" tabindex="260" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off">
 								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
@@ -246,7 +246,7 @@ ValidaSession("../login");
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_apellido1' class="aaa"><p></p></div>
 							
 							
-							<div class="form-group-sm">
+							<!--div class="form-group-sm">
 								<label >Documento de Identidad</label>
 									<div class = "input-group">
 
@@ -271,7 +271,7 @@ ValidaSession("../login");
 
 								<div id="confirma_telefono2">
 									<ul><li id="conf_tel2" style="color:#fff;text-align:center" ></li></ul>
-								</div>
+								</div-->
 
 							<div class="form-group-sm">
 							<label for="correo2">Correo electrónico</label>
@@ -296,13 +296,13 @@ ValidaSession("../login");
 		  <div class="col-md-4">
 	
 		 		<div class="box-header with-border">
-					<h3 class="box-title">Responsable Territorial</h3>
+					<h3 class="box-title">Subdirección Responsable</h3>
 				</div><!-- /.box-header -->	
 
 				<div class="box box-primary">
 
 					<div class="box-body">
-						<label>Nombres</label>
+						<label>Nombre</label>
 						<div class="input-group">
 							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="18" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
 							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
@@ -318,7 +318,7 @@ ValidaSession("../login");
 						</div>
 						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_apellido1' class="aaa"><p></p></div>
 													
-						<div class="form-group-sm">
+						<!--div class="form-group-sm">
 							<label >Documento de Identidad</label>
 								<div class = "input-group">
 
@@ -333,10 +333,10 @@ ValidaSession("../login");
 									<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="23" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off">
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_num_doc' class="aaa"><p></p></div>
-						</div>	
+						</div-->	
 
 						<div class="form-group-sm">
-						<label for="tele1">Teléfono de contacto</label>
+						<label for="tele1">Teléfono</label>
 						<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
 						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
 						</div>
@@ -566,7 +566,7 @@ ValidaSession("../login");
 									<input disabled type="text" class="form-control ccc" id="a_terro" placeholder="Observación"  onpaste="return false" tabindex="0" autocomplete="off">
 								</div>								
 							
-								<label>Nivel nacional</label>
+								<label>Nivel subdirección</label>
 								<div class="input-group" >
 									<span class="input-group-addon">
 										<input disabled type="checkbox" id="a_naci">
@@ -581,7 +581,7 @@ ValidaSession("../login");
 									<input disabled type="text" class="form-control ccc" id="a_funco" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
 								</div>
 
-								<label>Nivel supervisor</label>
+								<label>Nivel supervisión</label>
 								<div class="input-group" >
 									<span class="input-group-addon" >
 										<input type="checkbox" id="a_supe">
