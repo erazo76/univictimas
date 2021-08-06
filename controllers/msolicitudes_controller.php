@@ -348,7 +348,7 @@ break;
             Indique el acceso secundario.
             </div>');
 
-      }else if($num_dir ==""){
+      }/*else if($num_dir ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -359,7 +359,7 @@ break;
             Indique el numero de dirección.
             </div>');
 
-      }else if($a_referencia ==""){
+      }*/else if($a_referencia ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -436,7 +436,7 @@ break;
             Indique el apellido del responsable del evento.
             </div>');
 
-      }else if($rt_num_doc ==""){
+      }/*else if($rt_num_doc ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -447,7 +447,7 @@ break;
             Indique el número del documento de identidad.
             </div>');
 
-      }else if($tele1 ==""){
+      }*/else if($tele1 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -1318,7 +1318,7 @@ case 'aprobar':
               Ingrese el primer apellido del responsable territorial.
               </div>');
   
-        }else if($rn_num_doc ==""){
+        }/*else if($rn_num_doc ==""){
   
           $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -1329,7 +1329,7 @@ case 'aprobar':
               Ingrese el numero de documento del responsable territorial.
               </div>');
   
-        }else if($tele2 ==""){
+        }*//*else if($tele2 ==""){
   
           $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -1340,7 +1340,7 @@ case 'aprobar':
               Ingrese el número telefónico/celualar del responsable territorial.
               </div>');
   
-        }else if($correo2 == ""){
+        }*/else if($correo2 == ""){
   
           $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
