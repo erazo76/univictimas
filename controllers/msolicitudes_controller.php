@@ -555,12 +555,12 @@ break;
             $alia->tele1 = $tele1;
             $alia->correo1 = $correo1;
 
-            $alia->rt_nombre1 = $rn_nombre1;
-            $alia->rt_nombre2 = $rn_nombre2;
-            $alia->rt_apellido1 = $rn_apellido1;
-            $alia->rt_apellido2 = $rn_apellido2;
-            $alia->rt_tdoc = $rn_tdoc;
-            $alia->rt_num_doc = $rn_num_doc;
+            $alia->rn_nombre1 = $rn_nombre1;
+            $alia->rn_nombre2 = $rn_nombre2;
+            $alia->rn_apellido1 = $rn_apellido1;
+            $alia->rn_apellido2 = $rn_apellido2;
+            $alia->rn_tdoc = $rn_tdoc;
+            $alia->rn_num_doc = $rn_num_doc;
             $alia->tele1 = $tele2;
             $alia->correo1 = $correo2;
 
