@@ -388,16 +388,20 @@ VerificarAdmin($_SESSION['rolx']);
 		  		<div class="box box-primary">
 						<!-- form start -->
 						<div class="box-body" >
-								<select id="activity" class="form-control" tabindex="0">
+								<!--<select id="activity" class="form-control" tabindex="0">
 									<option value="" selected disabled hidden>Indique el tipo de evento:</option>
 									<option value="0">INDIVIDUAL</option>
 									<option value="1">RETORNOS Y REUBICACIONES</option>
 									<option value="2">COLECTIVA</option>
-								</select>
+								</select>-->
+								
+						<input type="text" class="form-control bbb" id="tipo1" placeholder="Ingrese el tipo de evento"  onpaste="return false" tabindex="24" autocomplete="off">
+						
+
 						<div class="box-body" id="actv_1" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
 							<div class="form-group-sm" >
 								<label ></label></br>
-								<select id="tipo1" class="form-control" tabindex="0">
+								<select  class="form-control" tabindex="0">
 									
 									<option value="0">Jornada Diferencial</option>
 									<option value="1">Feria de Servicios</option>
@@ -541,6 +545,9 @@ VerificarAdmin($_SESSION['rolx']);
 										</select>
 								</div>
 
+								<label for="recomendaciones">Recomendaciones u observaciones</label>
+    							<textarea class="form-control ccc" id="recomendaciones" rows="4" placeholder="Redacte recomendaciones de la actividad"  onpaste="return false" tabindex="0" onkeypress="return esrecom(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_recom' class="aaa"><p></p></div>
 						</div>
 						</div><!-- /.box-body -->
 
@@ -605,23 +612,20 @@ VerificarAdmin($_SESSION['rolx']);
 
 				<div class="box box-primary" >			
 					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-							<table id="tabla2" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Nombre</th>
-										<th>Nro. Documento</th>
-										<th>Correo-e</th>
-										<th>Teléfono </th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
+					<table id="tabla40" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Id</th>										
+											<th>Adjunto</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
 					</div>
 				
 					<div class="box-footer">
-						<button id="agregar2" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
+						<button id="anex2" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Adjuntar</button>
 						<!--<button id="quitar2" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>-->
 					</div>
 				</div>				
@@ -1068,13 +1072,7 @@ VerificarAdmin($_SESSION['rolx']);
 									<option value="" selected disabled hidden>Indique tipo de medida </option>
 									<option value="0">Metros</option>
 									<option value="1">Unidades</option>
-									<option value="2">Kilogramos</option>
-									<option value="3">Gramos</option>
-									<option value="4">Centimetros</option>
-									<option value="5">Pulgadas</option>
-									<option value="6">Libras</option>
 									<option value="7">Litros</option>
-									<option value="8">Galones</option>
 								</select>
 							</div>
 
@@ -1237,6 +1235,53 @@ VerificarAdmin($_SESSION['rolx']);
   </div>
 </form>                   
 </div>
+
+<!-- Modal 3 -->
+<div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+<form id="form" role="form" enctype="multipart/form-data" >
+  <div class="modal-dialog modal-lm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="contenido-modal">
+         <h4 class="modal-title" id="myModalLabel1">Adjuntar</h4>
+			<div class="message1"></div>
+			<div class="row">
+				<!-- left column -->
+				<div class="col-md-12">
+				  <!-- general form elements -->
+				  <div class="box box-primary">
+
+					<div class="box-header with-border"></div><!-- /.box-header -->
+					<!-- form start -->
+					  <div class="box-body">
+
+
+						
+
+						<div class="form-group">
+							<label for="exampleInputFile">Adjuntar archivo Excel.</label>
+							<input type="file" id="InputFile" tabindex="900">
+						</div>
+
+					  </div><!-- /.box-body -->
+
+				  </div><!-- /.box -->
+
+				</div>
+			</div>
+							      <div class="modal-footer">
+										<button id="close111" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Adjuntar</button>
+										
+							      		<button id="cancelar222" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
+
+							      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>                   
+</div>
+
 
 
 						  <div class="box-footer">
@@ -1739,11 +1784,15 @@ $("#izquierda" ).click(function() {
 		});
 
 		$('.guardia80').on('focus', function() {
-			$('#tipo2').dropdown('toggle');
+			$('#tipo1').dropdown('toggle');
 		});
 
 		$('.guardia81').on('focus', function() {
 			$('#guardia2').dropdown('toggle');
+		});
+
+		$('.guardia90').on('focus', function() {
+			$('#recomendacion').dropdown('toggle');
 		});
 
 		$('#guardia2').on('focus', function() {
@@ -1813,7 +1862,7 @@ $("#izquierda" ).click(function() {
 
 
 		
-		$('#tipo1').on('change', function () {
+		/*$('#tipo1').on('change', function () {
 
      		var selectVal = $("#tipo1 option:selected").val();
 			
@@ -1855,7 +1904,7 @@ $("#izquierda" ).click(function() {
 
 			}
 		
-		});
+		});*/
 
 		$("#exit" ).click(function() {
 
@@ -2348,6 +2397,46 @@ $("#izquierda" ).click(function() {
 			}, 3000);
 
 		});		
+		
+		$("#close111").click(function() {
+			
+			var formData = new FormData();
+			formData.append('file', $('input[type=file]')[0].files[0]);
+			formData.append('action', 'temporal_reg');
+			formData.append('idea', $("#ideado").val());
+
+			$.ajax({
+				url: "../../controllers/madjuntosexcel_controller",
+				type: "POST",
+				data: formData,
+				contentType: false,
+				cache: false,
+				processData:false,
+				success: function(data)
+				{
+						
+					$(".message1").html(data);
+
+							$('#modal4').scrollTop(0);
+								
+							setTimeout(function(){
+
+								$("#InputFile").val(null);
+								$("#file_url").attr('src', '');
+
+								$(".alert").alert('close');
+								$('#modal4').modal('toggle');
+								$("#anex2").focus();
+							}, 2500);
+
+				}
+			});
+
+			setTimeout(function(){
+				$('#tabla40').DataTable().ajax.reload();
+			}, 3000);
+
+		});	
 
 
 		setTimeout(function() {	
@@ -2475,6 +2564,8 @@ $("#izquierda" ).click(function() {
 
 										  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
 									});
+
+									
 										
 
 							$('#tabla30 tbody').on( 'click', 'tr', function () {
@@ -2488,7 +2579,49 @@ $("#izquierda" ).click(function() {
 								}
 							});
 
+							var table40 = $('#tabla40').dataTable({
+										  
+										  //"destroy": true,
+
+										  "ajax": {
+											"url": "../../data_json/data_mexcel?este="+este,
+											"dataSrc": ""
+										  },
+										  "scrollX": true,
+										  "scrollY": "120px",
+										  "columns": [
+												{ "data": "id" },	
+												{ "data": "adjunto" }						
+											],
+											"aoColumnDefs": [
+											{
+												"width": "20px",
+												"aTargets": [0]
+											}
+										],
+										//"order": [[ 0, "asc" ]],
+										"bPaginate": false,
+										"info":     false,
+										"bFilter": false
+
+										  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
+									});
+								$('#tabla40 tbody').on( 'click', 'tr', function () {
+
+								if ( $(this).hasClass('selected') ) {
+									$(this).removeClass('selected');
+								}
+								else {
+									table.$('tr.selected').removeClass('selected');
+									$(this).addClass('selected');
+								}
+							});
+
 							}, 3000);
+
+
+							
+
 
 			$('#quitar').click( function () {
 
@@ -2648,6 +2781,15 @@ $("#izquierda" ).click(function() {
 
 		});
 
+		$("#cancelar222").click(function() {
+
+		$('#modal4').modal('toggle');
+		$("#InputFile").val(null);
+		$("#file_url").attr('src', '');
+		$("#anex2").focus();
+
+		});
+
 		$("#cancelar3").click(function() {
 
 			$('#modal2').modal('toggle');
@@ -2681,6 +2823,12 @@ $("#izquierda" ).click(function() {
 
 		$("#anex").click(function() {
 			$('#modal3').modal({backdrop: 'static',keyboard: false});
+			
+			
+		});
+
+		$("#anex2").click(function() {
+             $('#modal4').modal({backdrop: 'static',keyboard: false});
 			
 		});
 // para consultar y cargar los datos geograficos ***********************************************************
@@ -2856,6 +3004,7 @@ $("#izquierda" ).click(function() {
 					entidad: $("#entidad").val(),
 					num_vic: $("#num_vic").val(),
 					descripcion: $("#descripcion").val(),
+					recomendaciones: $("#recomendaciones").val(),
 					aloja: $("#aloja").val(),
 					trans: $("#trans").val(),
 					t_trans: $("#t_trans").val(),					
@@ -2983,6 +3132,7 @@ function menor(){
 		$("#entidad").maxLength(100);
 		$("#num_vic").maxLength(5);
 		$("#descripcion").maxLength(200);
+		$("#recomendaciones").maxLength(200);
 		$("#d_concepto").maxLength(150);
 		$("#d_cantidad").maxLength(8);
 		$("#d_costo").maxLength(15);
@@ -3428,6 +3578,28 @@ function esdescri(e) {
                        	return patron.test(n);
 
                     }
+
+}
+
+function esrecom(e) {
+
+k = (document.all) ? e.keyCode : e.which;
+if (k==8 || k==0 || k==13) return true;
+patron = /^[A-ZÑ0-9\ \.\-]$/;
+n = String.fromCharCode(k);
+
+				if(patron.test(n)==''){
+
+					document.getElementById('ms_recom').style.display = 'block';
+					   document.getElementById("ms_recom").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
+						return patron.test(n);
+
+				}else{
+
+					   document.getElementById("ms_recom").innerHTML = '';
+					   return patron.test(n);
+
+				}
 
 }
 
