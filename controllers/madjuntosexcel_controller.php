@@ -7,6 +7,7 @@ session_start([
 @$usuario_id = $_SESSION['idusuariox'];
 
 require_once '../models/Madjunto.php';
+require_once '../models/Madjuntaexcel.php';
 require_once '../models/Madjuntado.php';
 require_once '../models/Mrequerimiento.php';
 date_default_timezone_set('America/Bogota');
@@ -25,10 +26,10 @@ date_default_timezone_set('America/Bogota');
 @$idea3 = ($_POST["regis3"]);
 @$guarda = ($_POST["guarda"]);
 
-@$sourcePath = $_FILES['archivo']['tmp_name'];  // Almacenar ruta de origen del archivo en una variable
-@$targetPath = "../dist/adjunto/adjuntos/".$id."_".$_FILES['archivo']['name']; // Ruta de destino donde el archivo se va a almacenar
-@$targetPathReg = "../dist/adjunto/adjuntos_reg/".$id."_".$_FILES['archivo']['name']; // Ruta de destino donde el archivo se va a almacenar
-@$tipo_archivo = $_FILES['archivo']['type'];
+@$sourcePath = $_FILES['file']['tmp_name'];  // Almacenar ruta de origen del archivo en una variable
+@$targetPath = "../dist/img/adjuntos/".$id."_".$_FILES['file']['name']; // Ruta de destino donde el archivo se va a almacenar
+@$targetPathReg = "../dist/img/adjuntos_reg/".$id."_".$_FILES['file']['name']; // Ruta de destino donde el archivo se va a almacenar
+@$tipo_archivo = $_FILES['file']['type'];
 /**********************************/
 switch ($action){
 
@@ -606,7 +607,7 @@ case 'temporal_reg':
   @$comodin=$id."_".($_FILES['file']['name']);
   @$blanco=($_FILES['file']['name']);
   @$consulta1 = Madjuntaexcel::find('all',array('conditions' => array('adjunto=?',$comodin)));
-
+//echo($comodin);exit();	
   if($consulta1 == null && $blanco != ''){
 
         //session_start();
@@ -615,19 +616,18 @@ case 'temporal_reg':
         $hoy = date("d-m-Y");
 
         if($sourcePath){//si cargaron el archivo
-          if (($tipo_archivo == "application/ms-excel") || ($tipo_archivo=="text/plain") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf")){
+          if (($tipo_archivo == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") || ($tipo_archivo=="text/plain") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf")){
             move_uploaded_file($sourcePath,$targetPathReg) ; // Mover archivo subido
             @$nombre_imagen = $id."_".($_FILES['file']['name']);
           }
         }else{ //si no cargaron nada
           @$nombre_imagen = "";
         }
-        $tempo = new Madjuntado();
+        $tempo = new Madjuntaexcel();
 
-        $tempo->imagen = $nombre_imagen;
-        $tempo->mrequerimientos_id = $id;
-        $tempo->user_create = $usuario_id;
-        $tempo->created = $hoy;
+        $tempo->adjunto = $nombre_imagen;
+        $tempo->no_soli = $id;        
+        $tempo->creado = $hoy;
 
               if($tempo->save()){
 

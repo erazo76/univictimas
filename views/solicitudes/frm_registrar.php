@@ -555,7 +555,66 @@ VerificarAdmin($_SESSION['rolx']);
 
 				 </div><!-- /.box -->	
 
-				 <div class="box-header with-border">
+				
+
+			</div>
+
+			<div class="col-md-4">
+
+
+				 <!-- <div class="box-header with-border">
+					 	<h3 id="jump1" tabindex="0" class="box-title">Participantes del evento</h3>
+				</div>
+
+				<div class="box box-primary" >			
+					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+					<table id="tabla40" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Id</th>										
+											<th>Adjunto</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+					</div>
+				
+					<div class="box-footer">
+						<button id="anex2" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Adjuntar</button>
+						<button id="quitar2" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+					</div>
+				</div>-->				
+
+				<div class="box-header with-border">
+					<h3 id="jump3" tabindex="0" class="box-title">Detalle especifico del requerimiento</h3>
+				</div><!-- /.box-header -->
+
+				<div class="box box-primary" >			
+					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+							<table id="tabla" class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Tipo</th>
+										<th>Concepto</th>
+										<th>Cantidad</th>
+										<th>Medida</th>
+										<th>Costo Unitario</th>
+										<th>Observaciones</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+					</div>
+				
+					<div class="box-footer">
+						<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
+						<!--<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>-->
+					</div>
+				</div>	
+				<div class="box-header with-border">
 					 	<h3 class="box-title">Aprobaciones</h3>
 				</div><!-- /.box-header -->
 
@@ -600,65 +659,6 @@ VerificarAdmin($_SESSION['rolx']);
 						</div>
 						</div><!-- /.box-body -->
 				 </div><!-- /.box -->	
-
-			</div>
-
-			<div class="col-md-4">
-
-
-				 <div class="box-header with-border">
-					 	<h3 id="jump1" tabindex="0" class="box-title">Participantes del evento</h3>
-				</div><!-- /.box-header -->
-
-				<div class="box box-primary" >			
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-					<table id="tabla40" class="table table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>Id</th>										
-											<th>Adjunto</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-					</div>
-				
-					<div class="box-footer">
-						<button id="anex2" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Adjuntar</button>
-						<!--<button id="quitar2" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>-->
-					</div>
-				</div>				
-
-				<div class="box-header with-border">
-					<h3 id="jump3" tabindex="0" class="box-title">Detalle especifico del requerimiento</h3>
-				</div><!-- /.box-header -->
-
-				<div class="box box-primary" >			
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-							<table id="tabla" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Tipo</th>
-										<th>Concepto</th>
-										<th>Cantidad</th>
-										<th>Medida</th>
-										<th>Costo Unitario</th>
-										<th>Observaciones</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-					</div>
-				
-					<div class="box-footer">
-						<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
-						<!--<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>-->
-					</div>
-				</div>	
-
 
 			</div>
 

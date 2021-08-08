@@ -618,7 +618,7 @@ case 'temporal_reg':
         $hoy = date("d-m-Y");
 
         if($sourcePath){//si cargaron el archivo
-          if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf")){
+          if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf") || ($tipo_archivo == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")){
             move_uploaded_file($sourcePath,$targetPathReg) ; // Mover archivo subido
             @$nombre_imagen = $id."_".($_FILES['file']['name']);
           }
