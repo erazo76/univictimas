@@ -46,14 +46,14 @@ ValidaSession("../login");
 					<div class="caja1 ce tit_1">FORMATO DE SOLICITUD PARA LA REALIZACIÓN DE EVENTOS TALLERES O REUNIONES</div>
 					<div class="caja1 ce_iz tit_2">Anexo 1</div>
 					<div class="caja1 ce_iz tit_3">Versión: 01</div>
-					<div class="caja1 ce tit_4">Fecha de elaboración: 
+					<div class="caja1 ce tit_4">Fecha elaboración: 
 						<div class="rw_base">
-								<div class="ce rw_1 inp"><strong>dd/mm/aaaa</strong></div>
+								<div class="ce rw_1"id="fecha2"><strong>dd/mm/aaaa</strong></div>
 						</div> 
 					</div>					
 					<div class="caja1 ce tit_6">CONTARTO DE PRESTACIÓN DE SERVICIO N°: 
 						<div class="rw_base">
-							<div class="ce rw_1 inp"><strong>xxxxx</strong></div>
+							<div class="ce rw_1 inp"><strong></strong></div>
 						</div> 
 					</div>
 					<div class="caja1 ce tit_7 f_s">Modalidad</div>
@@ -61,73 +61,73 @@ ValidaSession("../login");
 
 					<div class="caja1 ce na_1_7">N° De solicitud:
 						<div class="rw_base">
-							<div class="ce rw_1 inp" id="id"><strong>xxxxx</strong></div>
+							<div class="ce rw_1" id="id"><strong></strong></div>
 						</div>
 					</div>
 					<div class="caja1 ce na_7_8">FECHA</div>
 					<div class="caja ce na_8_9 al_2 ">Día</div>
 					<div class="caja ce na_9_10 al_2 ">Mes</div>
 					<div class="caja ce na_10_11 al_2 ">Año</div>
-					<div class="caja ce na_8_9a al_2 inp">dd</div>
-					<div class="caja ce na_9_10a al_2 inp">mm</div>
-					<div class="caja ce na_10_11a al_2 inp">aaaa</div>
+					<div class="caja ce na_8_9a al_2 inp" id="dia">dd</div>
+					<div class="caja ce na_9_10a al_2 inp" id="mes">mm</div>
+					<div class="caja ce na_10_11a al_2 inp" id="ano">aaaa</div>
 					<div class="caja1 ce na_11_16">SUBDIRECCIÓN O ÁREA SOLICITANTE</div>
-					<div class="caja1 ce na_16_21 inp f_s2" id="grupo"><strong>PARTICIPACIÓN</strong></div>
+					<div class="caja1 ce na_16_21 f_s2" id="grupo"><strong>PARTICIPACIÓN</strong></div>
 					<div class="caja1 ce gris1"><strong>1) INFORMACIÓN GENERAL</strong></div>
 					<div class="caja1 ce ig-89 igr-18 f_s" >NOMBRE DE LA ACTIVIDAD</div>
-					<div class="caja1 ce ig-89 igr-821 f_s inp" id="nombre"><strong>Dialogos por lo fundamental ...</strong></div>
+					<div class="caja1 ce ig-89 igr-821 f_s" id="nombre"><strong>Dialogos por lo fundamental ...</strong></div>
 					<div class="caja1 ce ig-910 igr-14 f_s">DEPARTAMENTO</div>
-					<div class="caja1 ce ig-910 igr-48 f_s inp" id="departamento"><strong>Magdalena</strong></div>
+					<div class="caja1 ce ig-910 igr-48 f_s" id="departamento"><strong>Magdalena</strong></div>
 					<div class="caja1 ce ig-910 igr-89 f_s2">CIUDAD O MUNICIPIO</div>
-					<div class="caja1 ce ig-910 igr-912 f_s inp" id="municipio"><strong>Santa Marta</strong></div>
+					<div class="caja1 ce ig-910 igr-912 f_s" id="municipio"><strong>Santa Marta</strong></div>
 					<div class="caja1 ce ig-910 igr-1213 f_s2">FECHA DE INICIO</div>
-					<div class="caja1 ce ig-910 igr-1315 f_s inp" id="fecha2"><strong>dd-mm-aaaa</strong></div>
+					<div class="caja1 ce ig-910 igr-1315 f_s" id="fecha4"><strong>dd-mm-aaaa</strong></div>
 					<div class="caja1 ce ig-910 igr-1516 f_s2">FECHA DE FINALIZACIÓN</div>
-					<div class="caja1 ce ig-910 igr-1618 f_s inp" id="fecha3"><strong>dd-mm-aaaa</strong></div>
+					<div class="caja1 ce ig-910 igr-1618 f_s" id="fecha3"><strong>dd-mm-aaaa</strong></div>
 					<div class="caja1 ce ig-910 igr-1821 f_s2">N° de días de la actividad: 
 						<div class="rw_base">
 							<div class="ce rw_1 inp"><strong>xx</strong></div>
 						</div>
 					</div>
 					<div class="caja1 ce f_s2 ig-1016 igr-18">DESCRIPCIÓN BREVE DEL EVENTO</div>
-					<div class="caja1 ce_iz  ig-1016 igr-817 inp" id="descripcion">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At accusantium voluptatum cum sint possimus mollitia, recusandae ipsum rem nostrum iusto itaque, nesciunt ea pariatur reprehenderit ducimus quis magni suscipit tenetur provident asperiores obcaecati amet! Error voluptatum, nesciunt neque cumque eos officiis. Numquam velit libero possimus fuga? Veniam voluptatem nobis nulla.</div>
+					<div class="caja1 ce_iz  ig-1016 igr-817" id="descripcion">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At accusantium voluptatum cum sint possimus mollitia, recusandae ipsum rem nostrum iusto itaque, nesciunt ea pariatur reprehenderit ducimus quis magni suscipit tenetur provident asperiores obcaecati amet! Error voluptatum, nesciunt neque cumque eos officiis. Numquam velit libero possimus fuga? Veniam voluptatem nobis nulla.</div>
 					<div class="caja1 ce ig-1011 igr-1721 f_s">N° de personas esperadas:
 						<div class="rw_base">
-							<div class="ce rw_1 inp"><strong>xxxx</strong></div>
+							<div class="ce rw_1 inp" id="ptotal"><strong>xxxx</strong></div>
 						</div>						
 					</div>
 					<div class="caja1 ce ig-1116 igr-1719">Víctimas:
 						<div class="rw_base">
-							<div class="ce rw_1 inp" id="num_vic"><strong>xxxx</strong></div>
+							<div class="ce rw_1" id="num_vic"><strong>xxxx</strong></div>
 						</div>						
 					</div>
 					<div class="caja1 ce ig-1116 igr-1921">Funcionarios:
 						<div class="rw_base">
-							<div class="ce rw_1 inp"><strong>xxxx</strong></div>
+							<div class="ce rw_1" id="entidad"><strong>xxxx</strong></div>
 						</div>						
 					</div>
 					<div class="caja1 ce ig-1618 igr-18">SUPERVISOR DEL CONTRATO</div>
-					<div class="caja1 ce ig-1618 igr-813 inp" ><strong>Aura Elena Acevedo</strong></div>
+					<div class="caja1 ce ig-1618 igr-813" ><strong>Aura Elena Acevedo</strong></div>
 					<div class="caja1 ce_iz f_s2 ig-1617 igr-1316 ">EMAIL</div>
 					<div class="caja1 ce_iz f_s2 ig-1718 igr-1316">TELÉFONO</div>
-					<div class="caja1 ce_iz f_s2 ig-1617 igr-1621 inp"><strong>aura.acevedo@unidadvictimas.gov.co</strong></div>
-					<div class="caja1 ce_iz f_s2 ig-1718 igr-1621 inp">### ### ####</div>
+					<div class="caja1 ce_iz f_s2 ig-1617 igr-1621"><strong>aura.acevedo@unidadvictimas.gov.co</strong></div>
+					<div class="caja1 ce_iz f_s2 ig-1718 igr-1621">### ### ####</div>
 
 					<div class="caja1 ce ig-1820 igr-18">SUB-DIRECTOR(A) SOLICITANTE</div>
-					<div class="caja1 ce ig-1820 igr-813 inp"><strong>Yanny Zambrano Díaz</strong></div>
+					<div class="caja1 ce ig-1820 igr-813" id="responsablesub"><strong>Yanny Zambrano Díaz</strong></div>
 					<div class="caja1 ce_iz f_s2 ig-1819 igr-1316">EMAIL</div>
 					<div class="caja1 ce_iz f_s2 ig-1920 igr-1316">TELÉFONO</div>
-					<div class="caja1 ce_iz f_s2 ig-1819 igr-1621 inp"><strong>yanny.zambrano@unidadvictimas.gov.co</strong></div>
-					<div class="caja1 ce_iz f_s2 ig-1920 igr-1621 inp">### ### ####</div>	
+					<div class="caja1 ce_iz f_s2 ig-1819 igr-1621" id="correo2"><strong>yanny.zambrano@unidadvictimas.gov.co</strong></div>
+					<div class="caja1 ce_iz f_s2 ig-1920 igr-1621" id="tele2">### ### ####</div>	
 					
 					<div class="caja1 ce ig-2021 igr-18">RESPONSABLE DEL EVENTO</div>
-					<div class="caja1 ce ig-2021 igr-813 inp" id="responsable"><strong>Carolina Murillo</strong></div>
+					<div class="caja1 ce ig-2021 igr-813" id="responsable"><strong>Carolina Murillo</strong></div>
 					<div class="caja1 ce ig-2122 igr-18">CARGO</div>
-					<div class="caja1 ce ig-2122 igr-813 inp"><strong>Contratista</strong></div>
+					<div class="caja1 ce ig-2122 igr-813"><strong>Contratista</strong></div>
 					<div class="caja1 ce_iz  ig-2021 igr-1316" >EMAIL</div>
 					<div class="caja1 ce_iz  ig-2122 igr-1316">TELÉFONO</div>
-					<div class="caja1 ce_iz  ig-2021 igr-1621 inp" id="contacto_c"><strong>diana.murillo@unidadvictimas.gov.co</strong></div>
-					<div class="caja1 ce_iz  ig-2122 igr-1621 inp" id="contacto_t">3155747140</div>	
+					<div class="caja1 ce_iz  ig-2021 igr-1621" id="contacto_c"><strong>diana.murillo@unidadvictimas.gov.co</strong></div>
+					<div class="caja1 ce_iz  ig-2122 igr-1621" id="contacto_t">3155747140</div>	
 
 					<div class="caja1 ce gris1"><strong>2) REQUERIMIENTOS LOGÍSTICOS</strong></div>
 					<div class="caja1 ce ig-2325 igr-15">CONCEPTO</div>
@@ -202,12 +202,12 @@ ValidaSession("../login");
 						<div class="rm_base">
 							<div class="caja1 ce f_s rl-1 gris">VALOR A DESEMBOLSAR</div>
 							<div class="caja1 ce f_s rl-2 gris">OBSERVACIONES / JUSTIFICACIÓN</div>
-							<div class="caja1 ce f_s rl-1">$</div>
+							<div class="caja1 ce f_s rl-1" id="costo_total">$</div>
 							<div class="caja1 ce f_s rl-2"></div>
 						</div>
 					</div>
 					<div class="caja1 ce igr-18 gris alt">Sugerencias y recomendaciones</div>
-					<div class="caja1 ce igr-821 alt">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt nemo facilis placeat consectetur perspiciatis reprehenderit at quas, tenetur magni architecto, ex omnis eius animi saepe, aspernatur ullam. Explicabo, vitae aliquam.
+					<div class="caja1 ce igr-821 alt" id="recomendaciones">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt nemo facilis placeat consectetur perspiciatis reprehenderit at quas, tenetur magni architecto, ex omnis eius animi saepe, aspernatur ullam. Explicabo, vitae aliquam.
 					Voluptas culpa maiores quidem provident hic suscipit ut repellat maxime, quam error numquam. Autem reprehenderit, aliquid eius excepturi quis eos modi. Eius voluptates vitae iure, libero ullam nisi amet fugiat?</div>
 					<div class="caja1 iz igr-121 alt">OBSERVACIONES GENERALES</div>					
 					<div class="caja1 igr-121 alt">
@@ -401,10 +401,22 @@ ValidaSession("../login");
 
 	$("#nombre").html(parsedJson.nombre);
 	$("#fecha1").html(parsedJson.fecha1);
+	$("#costo_total").html(costo_total);
+	
 
 	var bdep =parsedJson.departamento;
 	var bmun =parsedJson.municipio;
 	var bcpo =parsedJson.cpoblado;
+
+	
+	var n1s=parsedJson.rn_nombre1;
+	var n2s=parsedJson.rn_nombre2;
+	var a1s=parsedJson.rn_apellido1;
+	var a2s=parsedJson.rn_apellido2;
+	var respon=n1s+' '+n2s+' '+a1s+' '+a2s;
+	$("#responsablesub").html(respon);
+
+
 
 	$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos_e",departamento:bdep}).done(function( data ) {
 
@@ -458,6 +470,7 @@ ValidaSession("../login");
 	$("#direccion").html(direcc);
 
 	$("#fecha2").html(parsedJson.fecha2);
+	$("#fecha4").html(parsedJson.fecha2);
 	$("#fecha3").html(parsedJson.fecha3);
 	$("#hora1").html(parsedJson.hora1);
 	$("#hora2").html(parsedJson.hora2);
@@ -469,13 +482,17 @@ ValidaSession("../login");
 	var ntdoc=parsedJson.rt_tdoc;
 	var ntnd=parsedJson.rt_num_doc;
 
+
+
+
+
 	switch (ntdoc) {
 		case 0:	tdoc="CC: ";break;
 		case 1: tdoc="CE: ";break;					
 		case 2:	tdoc="PA. ";break;
 	}
 
-	var respon=n1+' '+n2+' '+a1+' '+a2+' - '+tdoc+ntnd;
+	var respon=n1+' '+n2+' '+a1+' '+a2;
 	$("#responsable").html(respon);
 
 	var tel1=parsedJson.tele1;
@@ -486,6 +503,8 @@ ValidaSession("../login");
 	$("#contacto_c").html(email);
 
 	var grup=parsedJson.grupo;
+
+
 	  
 	  $.post( "../../controllers/grupos_controller", { action: "get_grupo",grupo:grup}).done(function( data ) {
 
@@ -560,7 +579,30 @@ ValidaSession("../login");
 
 	$("#entidad").html(parsedJson.entidad);
 	$("#num_vic").html(parsedJson.num_vic);
+	$("#entidad").html(parsedJson.entidad);
+
+
+	var ptotal = (parsedJson.entidad += parsedJson.num_vic);
+	$("#ptotal").html(ptotal);
+
+
+	$("#tele2").html(parsedJson.tele2);
+	$("#correo2").html(parsedJson.correo2);
+	$("#recomendaciones").html(parsedJson.recomendacion);
+	$("#rn_nombre").html(parsedJson.rn_nombre);
+	
 	$("#descripcion").html(parsedJson.descripcion);
+
+		
+	var fecha =parsedJson.fecha2;
+	var separa = explode("-",fecha);
+	var mes = separa[0];
+	var dia = separa[1];
+	var ano = separa[2];
+	
+	$("#dia").html(dia);
+	$("#mes").html(mes);
+	$("#ano").html(ano);
 
 	var alojan=parsedJson.aloja;
 	//alert(alojan);

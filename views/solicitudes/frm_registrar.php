@@ -623,14 +623,21 @@ VerificarAdmin($_SESSION['rolx']);
 						<div class="box-body">
 							<div class="form-group-sm">
 							
+                              <?php
 
+									if ($_SESSION['rolx']==2 || $_SESSION['rolx']==4 ) {
+							  ?>
 								<label>Nivel territorial</label>
 								<div class="input-group" >
 									<span class="input-group-addon" >
 										<input disabled type="checkbox" id="a_terr">
 									</span>
 									<input disabled type="text" class="form-control ccc" id="a_terro" placeholder="Observación"  onpaste="return false" tabindex="0" autocomplete="off">
-								</div>								
+								</div>	
+								
+								<?php 
+									}elseif ($_SESSION['rolx']==5 || $_SESSION['rolx']==4 ) {
+								?>
 							
 								<label>Nivel nacional</label>
 								<div class="input-group" >
@@ -638,7 +645,10 @@ VerificarAdmin($_SESSION['rolx']);
 										<input disabled type="checkbox" id="a_naci">
 									</span>
 									<input disabled type="text" class="form-control ccc" id="a_nacio" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
-								</div>								
+								</div>
+								<?php 
+									}elseif ($_SESSION['rolx']==6 || $_SESSION['rolx']==4 ) {
+								?>								
 								<label>Nivel Funcionario</label>
 								<div class="input-group" >
 									<span class="input-group-addon" >
@@ -646,6 +656,9 @@ VerificarAdmin($_SESSION['rolx']);
 									</span>
 									<input disabled type="text" class="form-control ccc" id="a_funco" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
 								</div>
+								<?php 
+									}elseif ($_SESSION['rolx']==7 || $_SESSION['rolx']==4 ) {
+								?>
 
 								<label>Nivel supervisor</label>
 								<div class="input-group" >
@@ -653,7 +666,13 @@ VerificarAdmin($_SESSION['rolx']);
 										<input type="checkbox" id="a_supe">
 									</span>
 									<input type="text" class="form-control ccc" id="a_supeo" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
-								</div>								
+								</div>	
+								<?php 
+									}else {
+
+
+									}
+								?>							
 																													
 
 						</div>
