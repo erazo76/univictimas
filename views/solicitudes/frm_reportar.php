@@ -51,9 +51,9 @@ ValidaSession("../login");
 								<div class="ce rw_1"id="fecha2"><strong>dd/mm/aaaa</strong></div>
 						</div> 
 					</div>					
-					<div class="caja1 ce tit_6">CONTARTO DE PRESTACIÓN DE SERVICIO N°: 
+					<div class="caja1 ce tit_6">CONTRATO DE PRESTACIÓN DE SERVICIO N°: 
 						<div class="rw_base">
-							<div class="ce rw_1 inp"><strong></strong></div>
+							<div class="ce rw_1"><strong>1401</strong></div>
 						</div> 
 					</div>
 					<div class="caja1 ce tit_7 f_s">Modalidad</div>
