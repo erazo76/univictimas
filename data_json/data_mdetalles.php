@@ -3,7 +3,7 @@ require_once '../models/Mdetalle.php';
 $unid=$_GET["este"];
 
 	$result = array();
-	$data = Mdetalle::find_by_sql("select id,cid,d_tipo,d_concepto,d_cantidad,d_medida,d_costo,d_obs,mrequerimientos_id,status from mdetalles WHERE status=1 AND mrequerimientos_id=".$unid." order by id desc;");
+	$data = Mdetalle::find_by_sql("select id,cid,d_tipo,d_concepto,d_cantidad,d_medida,d_costo,d_obs,mrequerimientos_id,status,dia from mdetalles WHERE status=1 AND mrequerimientos_id=".$unid." order by id desc;");
 	$items = 0;
 
 	foreach ($data as &$rs) {
@@ -31,13 +31,14 @@ $unid=$_GET["este"];
 		}
 
 		array_push($result,array(
-											"id"=>$rs->id,
+											 "id"=>$rs->id,
 					    					 "tipo"=>$tipo,
 					     					 "concepto"=>$rs->d_concepto,
 		                            	     "cantidad"=>$rs->d_cantidad,
 											 "medida"=>$tipo2,
 											 "costo"=>$rs->d_costo,
-		                            	     "observaciones"=>$rs->d_obs
+		                            	     "observaciones"=>$rs->d_obs,
+											 "dia"=>$rs->dia
 
 		                         ));
 
