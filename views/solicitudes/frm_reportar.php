@@ -51,9 +51,9 @@ ValidaSession("../login");
 								<div class="ce rw_1"id="fecha2"><strong>dd/mm/aaaa</strong></div>
 						</div> 
 					</div>					
-					<div class="caja1 ce tit_6">CONTRATO DE PRESTACIÓN DE SERVICIO N°: 
+					<div class="caja1 ce tit_6">CONTARTO DE PRESTACIÓN DE SERVICIO N°: 1401
 						<div class="rw_base">
-							<div class="ce rw_1"><strong>1401</strong></div>
+							<div class="ce rw_1 inp"><strong></strong></div>
 						</div> 
 					</div>
 					<div class="caja1 ce tit_7 f_s">Modalidad</div>
@@ -134,9 +134,9 @@ ValidaSession("../login");
 					<div class="caja1 ce ig-2324 igr-521"><strong>Servicios y Cantidades Aproximadas Solicitadas</strong></div>
 					<div class="ig-2425 igr-516">
 						<div class="rl_base">
-							<div class="caja2 rl-1 ce f_s"></div>
-							<div class="caja2 rl-2 ce f_s"></div>
-							<div class="caja2 rl-3 ce f_s">Día previo</div>
+							<div class="caja2 rl-1 ce f_s">Día previo 3</div>
+							<div class="caja2 rl-2 ce f_s">Día previo 2</div>
+							<div class="caja2 rl-3 ce f_s">Día previo 1</div>
 							<div class="caja2 rl-4 ce f_s">Día 1</div>
 							<div class="caja2 rl-5 ce f_s">Día 2</div>
 							<div class="caja2 rl-6 ce f_s">Día 3</div>
@@ -582,7 +582,7 @@ ValidaSession("../login");
 	$("#entidad").html(parsedJson.entidad);
 
 
-	var ptotal = (parsedJson.entidad += parsedJson.num_vic);
+	var ptotal = (intval(parsedJson.entidad) += parsedJson.num_vic);
 	$("#ptotal").html(ptotal);
 
 
@@ -692,7 +692,7 @@ ValidaSession("../login");
 			
 				parsedJson.forEach(function(parsedJson, index) {
 					//console.log("indice " + index + " | tipo " + parsedJson.tipo + " concepto: " + parsedJson.concepto + " cantidad: " + parsedJson.cantidad + " medida: " + parsedJson.medida + " observaciones: " + parsedJson.observaciones)
-				
+				    var r_dia =parsedJson.dia;
 					var r_tipo =parsedJson.tipo;
 					var r_concepto =parsedJson.concepto;
 					var r_cantidad =parsedJson.cantidad;
@@ -711,7 +711,9 @@ ValidaSession("../login");
 								case 8:	med='Galones';break;
 							}
 
-					var r_observaciones =parsedJson.observaciones;	
+					var r_observaciones =parsedJson.observaciones;
+					
+					
 
 					switch (r_tipo) {
 						case 0:	

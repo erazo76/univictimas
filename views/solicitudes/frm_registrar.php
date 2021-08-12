@@ -99,9 +99,10 @@ VerificarAdmin($_SESSION['rolx']);
 					</div>
 						 
 		  		</div>
-				  <div class="box-header with-border" tabindex="-1">
+
+				  <!--<div class="box-header with-border" tabindex="-1">
 				<h3 class="box-title">Ubicación del Evento</h3>
-			</div><!-- /.box-header -->		  
+			</div> 		  
 
 		 	 <div class="box box-primary">
 				<div class="box-body">
@@ -131,13 +132,13 @@ VerificarAdmin($_SESSION['rolx']);
 									<span class="input-group-addon"><span class="fa fa-slack"></span></span>
 									<input type="text" id="acceso2" class="form-control bbb" placeholder="Secundario"  onpaste="return false" tabindex="10" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
 									<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-									<!--<span class="input-group-addon"><span class="fa fa-minus"></span></span>
-									<span><input type="text" id="num_dir" class="form-control bbb" placeholder="Numero"  onpaste="return false" tabindex="11" onkeypress="return esnumdir(event);" onblur="alsalir(this.id)">-->
+									<span class="input-group-addon"><span class="fa fa-minus"></span></span>
+									<span><input type="text" id="num_dir" class="form-control bbb" placeholder="Numero"  onpaste="return false" tabindex="11" onkeypress="return esnumdir(event);" onblur="alsalir(this.id)">
 										
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso2' class="aaa"><p></p></div>
-								<!--<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_dir' class="aaa"><p></p></div>-->
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_dir' class="aaa"><p></p></div>
 					</div>
 
 					<div class="form-group-sm">
@@ -160,7 +161,7 @@ VerificarAdmin($_SESSION['rolx']);
 					</div>				
 
 				</div>
-			</div>	
+			</div>-->	
 			</div>
 
 		  <div class="col-md-4">
@@ -263,7 +264,7 @@ VerificarAdmin($_SESSION['rolx']);
 									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_num_doc' class="aaa"><p></p></div>
 							</div>-->	
 
-							<!--<div class="form-group-sm">
+							<div class="form-group-sm">
 							<label for="tele2">Teléfono de contacto</label>
 							<input type="text" class="form-control ddd" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="320" onkeypress="return estele2(event);" onblur="alsalir2(this.id)" autocomplete="off">
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele2' class="aaa"></div>
@@ -271,7 +272,7 @@ VerificarAdmin($_SESSION['rolx']);
 
 								<div id="confirma_telefono2">
 									<ul><li id="conf_tel2" style="color:#fff;text-align:center" ></li></ul>
-								</div>-->
+								</div>
 
 							<div class="form-group-sm">
 							<label for="correo2">Correo electrónico</label>
@@ -294,6 +295,20 @@ VerificarAdmin($_SESSION['rolx']);
 		  </div>
 
 		  <div class="col-md-4">
+
+		  <div class="box-header with-border">
+					<h3 class="box-title">Grupo/Área/Equipo/Dependencia</h3>
+				</div><!-- /.box-header -->	
+				<div class="box box-primary">
+
+					<div class="box-body">
+						<div class="form-group-sm">									
+									<select name = "grup" id="grupo" class="form-control bbb" tabindex="35">
+									<option></option>
+									</select>
+								</div>
+						</div>
+				</div>
 	
 		 		<div class="box-header with-border">
 					<h3 class="box-title">Subdirección Responsable</h3>
@@ -360,20 +375,7 @@ VerificarAdmin($_SESSION['rolx']);
 							<div class="focusguard" id="guardia1" tabindex="36"></div>							
 					</div>
 				</div>
-				<div class="box-header with-border">
-					<h3 class="box-title">Grupo/Área/Equipo/Dependencia</h3>
-				</div><!-- /.box-header -->	
-				<div class="box box-primary">
-
-					<div class="box-body">
-						<div class="form-group-sm">									
-									<select id="grupo" class="form-control bbb" tabindex="35">
-									<option></option>
-									</select>
-								</div>
-						</div>
-				</div>
-
+			
 			</div>
 		</li>
 
@@ -531,7 +533,7 @@ VerificarAdmin($_SESSION['rolx']);
   							
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_descripcion' class="aaa"><p></p></div>
 							   
-							    <label>Focalización</label>								
+							    <!--<label>Focalización</label>								
 								<div class="form-group-sm">
 										<select id="foca"   class="form-control" >
 											<option value="" selected disabled hidden>Indique tipo de focalización </option>
@@ -543,7 +545,7 @@ VerificarAdmin($_SESSION['rolx']);
 											<option value="5">Verdad</option>
 											<option value="6">Justicia</option>
 										</select>
-								</div>
+								</div>-->
 
 								<label for="recomendaciones">Recomendaciones u observaciones</label>
     							<textarea class="form-control ccc" id="recomendaciones" rows="4" placeholder="Redacte recomendaciones de la actividad"  onpaste="return false" tabindex="0" onkeypress="return esrecom(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
@@ -596,6 +598,7 @@ VerificarAdmin($_SESSION['rolx']);
 								<thead>
 									<tr>
 										<th></th>
+										<th>Día</th>
 										<th>Tipo</th>
 										<th>Concepto</th>
 										<th>Cantidad</th>
@@ -622,33 +625,33 @@ VerificarAdmin($_SESSION['rolx']);
 						<!-- form start -->
 						<div class="box-body">
 							<div class="form-group-sm">
+							<?php 
+							if($_SESSION['rolx']==2 || $_SESSION['rolx']==4){
 							
-                              <?php
+							?>
 
-									if ($_SESSION['rolx']==2 || $_SESSION['rolx']==4 ) {
-							  ?>
 								<label>Nivel territorial</label>
 								<div class="input-group" >
 									<span class="input-group-addon" >
 										<input disabled type="checkbox" id="a_terr">
 									</span>
 									<input disabled type="text" class="form-control ccc" id="a_terro" placeholder="Observación"  onpaste="return false" tabindex="0" autocomplete="off">
-								</div>	
-								
+								</div>								
 								<?php 
-									}elseif ($_SESSION['rolx']==5 || $_SESSION['rolx']==4 ) {
-								?>
+							 }elseif($_SESSION['rolx']==5 || $_SESSION['rolx']==4){
 							
+							?>
 								<label>Nivel nacional</label>
 								<div class="input-group" >
 									<span class="input-group-addon">
 										<input disabled type="checkbox" id="a_naci">
 									</span>
 									<input disabled type="text" class="form-control ccc" id="a_nacio" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
-								</div>
+								</div>	
 								<?php 
-									}elseif ($_SESSION['rolx']==6 || $_SESSION['rolx']==4 ) {
-								?>								
+							 }elseif($_SESSION['rolx']==6 || $_SESSION['rolx']==4){
+							
+							?>							
 								<label>Nivel Funcionario</label>
 								<div class="input-group" >
 									<span class="input-group-addon" >
@@ -657,8 +660,9 @@ VerificarAdmin($_SESSION['rolx']);
 									<input disabled type="text" class="form-control ccc" id="a_funco" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
 								</div>
 								<?php 
-									}elseif ($_SESSION['rolx']==7 || $_SESSION['rolx']==4 ) {
-								?>
+							 }elseif($_SESSION['rolx']==7 || $_SESSION['rolx']==4){
+							
+							?>
 
 								<label>Nivel supervisor</label>
 								<div class="input-group" >
@@ -666,14 +670,11 @@ VerificarAdmin($_SESSION['rolx']);
 										<input type="checkbox" id="a_supe">
 									</span>
 									<input type="text" class="form-control ccc" id="a_supeo" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
-								</div>	
+								</div>								
 								<?php 
-									}else {
-
-
-									}
-								?>							
-																													
+							 }else{
+							}
+							?>																					
 
 						</div>
 						</div><!-- /.box-body -->
@@ -1059,6 +1060,20 @@ VerificarAdmin($_SESSION['rolx']);
 					<!-- form start -->
 					  <div class="box-body">
 
+					  <div class="form-group-sm">
+								<label>Selecionar día</label>
+								<select id="dia"   class="form-control" >
+									<option value="" selected disabled hidden>Indique día de requerimiento </option>
+									<option value="previo 3">previo 3</option>
+									<option value="previo 2">previo 2</option>
+									<option value="previo 1">previo 1</option>
+									<option value="Día 1">Día 1</option>
+									<option value="Día 2">Día 2</option>
+									<option value="Día 3">Día 3</option>
+									<option value="Día posterior">Día posterior</option>
+								</select>
+							</div>
+
 							<div class="form-group-sm">
 								<label>Tipo</label>
 								<select id="d_tipo"   class="form-control" >
@@ -1070,6 +1085,7 @@ VerificarAdmin($_SESSION['rolx']);
 									<option value="4">Personal</option>
 									<option value="5">Tiquetes aéreos</option>
 									<option value="6">Reembolso de transporte</option>
+									<option value="6">Alojamiento</option>
 								</select>
 							</div>
 
@@ -1696,6 +1712,8 @@ $("#izquierda" ).click(function() {
 
 		});
 
+		
+
 		$('#fecha3').datepicker({
 			startDate: '+0d',
     		todayBtn: false,
@@ -2193,6 +2211,7 @@ $("#izquierda" ).click(function() {
 
 					action: "temporal",
 					idea:$('#ideado').val(),
+					dia: $('#dia').val(),
 					tipo: $('#d_tipo').val(),
 					concepto: $('#d_concepto').val(),
 					cantidad: $('#d_cantidad').val(),
@@ -2481,6 +2500,7 @@ $("#izquierda" ).click(function() {
 											  "scrollY": "130px",
 											  "columns": [
 													{ "data": "id" },
+													{ "data": "dia" },
 													{ "data": "tipo" },
 													{ "data": "concepto" },
 													{ "data": "cantidad" },
@@ -2872,10 +2892,12 @@ $("#izquierda" ).click(function() {
 			
 			
 			$("#depa" ).val($('select[name="depar"] option:selected').text());
+			//alert($("#depa").val());
 			$("#depa2" ).val($('select[name="depar"] option:selected').text());
 				
 				$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios",departamento: $("#departamento").val()}).done(function( data ) {
 					 $("#municipio" ).html( data );
+					 //alert($(data).val());
 
 				});
 
@@ -2942,6 +2964,19 @@ $("#izquierda" ).click(function() {
 			 $("#grupo" ).html( data );
 
 		});
+		$('#grupo').change(function(event) {
+
+		$.post( "../../controllers/grupos_controller", { action: "get_grupos",grupo:$("#grupo").val()}).done(function( data ) {
+			var parsedJson = $.parseJSON(data);
+				   var r_ir =parsedJson.id;
+				   var r_nombre =parsedJson.nombre;
+
+					 $("#rt_nombre1").html(r_nombre);
+
+					
+				});
+				
+				});
 
 		/*$.post( "../../controllers/mdistribuidoras_controller", { action: "get_distri"}).done(function( data ) {
 			 $("#distribuidora" ).html( data );
@@ -2974,7 +3009,6 @@ $("#izquierda" ).click(function() {
 					num_dir: $("#num_dir").val(),
 					a_referencia: $("#a_referencia").val(),
 					referencia: $("#referencia").val(),
-
 					fecha2: $("#fecha2").val(),
 					fecha3: $("#fecha3").val(),
 					hora1: $("#hora1").val(),
@@ -3534,6 +3568,9 @@ function escorreo1(e) {
 
 }
 
+
+
+
 function escorreo2(e) {
 
 k = (document.all) ? e.keyCode : e.which;
@@ -4053,5 +4090,10 @@ function esidaccion(e) {
 				}
 			}
 
+
+			
+
  </script>
+
+
  <?php include_once("../layouts/pie.php") ?>
