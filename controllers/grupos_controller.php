@@ -11,7 +11,6 @@ date_default_timezone_set('America/Bogota');
 /**********************************/
 
 switch ($action){
-
   case 'add':
 
       if($nombre ==""){
@@ -330,13 +329,14 @@ switch ($action){
 
 #******************************************************************************
 
-case 'get_grupo':
+case 'get_grupos':
 
-  @$data = Grupo::find('all',array('conditions' => array('id=?',intval($grupo))));
+  @$data = Grupo::find('all',array('conditions' => array('id=?',$grupo)));
 
 if($data !=null){
          
       foreach($data as $rs){
+        $resp = $rs->id;
         $resp = $rs->nombre;
         
       }

@@ -14,6 +14,7 @@ date_default_timezone_set('America/Bogota');
 @$l_orbis = ($_POST["l_orbis"]);
 @$l_record = ($_POST["l_record"]);
 /***********************************/
+@$dia = ($_POST["dia"]);
 @$tipo = ($_POST["tipo"]);
 @$concepto = ($_POST["concepto"]);
 @$cantidad = ($_POST["cantidad"]);
@@ -333,6 +334,7 @@ switch ($action){
         foreach($data as $rs){
 
             $resp[] = array(
+                  "dia"=>$rs->dia,
                   "tipo"=>$rs->d_tipo,
                   "concepto"=>$rs->d_concepto,
                   "cantidad"=>$rs->d_cantidad,
@@ -482,7 +484,18 @@ switch ($action){
 
     case 'temporal':
 
-      if($tipo ==""){
+      if($dia ==""){
+
+        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Ingrese el día de item.
+            </div>');
+
+      }else if($tipo ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -555,6 +568,7 @@ switch ($action){
             $hoy = date('d-m-Y');
 
             $tempo = new Mdetalle();
+            $tempo->dia = $dia;
             $tempo->d_tipo = $tipo;
             $tempo->d_concepto = $concepto;
             $tempo->d_cantidad = $cantidad;
