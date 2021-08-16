@@ -48,7 +48,7 @@ ValidaSession("../login");
 					<div class="caja1 ce_iz tit_3">Versión: 01</div>
 					<div class="caja1 ce tit_4">Fecha elaboración: 
 						<div class="rw_base">
-								<div class="ce rw_1"id="fecha2"><strong>dd/mm/aaaa</strong></div>
+								<div class="ce rw_1" id="fecha1"><strong>dd/mm/aaaa</strong></div>
 						</div> 
 					</div>					
 					<div class="caja1 ce tit_6">CONTARTO DE PRESTACIÓN DE SERVICIO N°: 1401
@@ -68,9 +68,9 @@ ValidaSession("../login");
 					<div class="caja ce na_8_9 al_2 ">Día</div>
 					<div class="caja ce na_9_10 al_2 ">Mes</div>
 					<div class="caja ce na_10_11 al_2 ">Año</div>
-					<div class="caja ce na_8_9a al_2 inp" id="dia">dd</div>
-					<div class="caja ce na_9_10a al_2 inp" id="mes">mm</div>
-					<div class="caja ce na_10_11a al_2 inp" id="ano">aaaa</div>
+					<div class="caja ce na_8_9a al_2" id="dia">dd</div>
+					<div class="caja ce na_9_10a al_2" id="mes">mm</div>
+					<div class="caja ce na_10_11a al_2" id="ano">aaaa</div>
 					<div class="caja1 ce na_11_16">SUBDIRECCIÓN O ÁREA SOLICITANTE</div>
 					<div class="caja1 ce na_16_21 f_s2" id="grupo"><strong>PARTICIPACIÓN</strong></div>
 					<div class="caja1 ce gris1"><strong>1) INFORMACIÓN GENERAL</strong></div>
@@ -81,19 +81,19 @@ ValidaSession("../login");
 					<div class="caja1 ce ig-910 igr-89 f_s2">CIUDAD O MUNICIPIO</div>
 					<div class="caja1 ce ig-910 igr-912 f_s" id="municipio"><strong>Santa Marta</strong></div>
 					<div class="caja1 ce ig-910 igr-1213 f_s2">FECHA DE INICIO</div>
-					<div class="caja1 ce ig-910 igr-1315 f_s" id="fecha4"><strong>dd-mm-aaaa</strong></div>
+					<div class="caja1 ce ig-910 igr-1315 f_s" id="fecha2"><strong>dd-mm-aaaa</strong></div>
 					<div class="caja1 ce ig-910 igr-1516 f_s2">FECHA DE FINALIZACIÓN</div>
 					<div class="caja1 ce ig-910 igr-1618 f_s" id="fecha3"><strong>dd-mm-aaaa</strong></div>
 					<div class="caja1 ce ig-910 igr-1821 f_s2">N° de días de la actividad: 
 						<div class="rw_base">
-							<div class="ce rw_1 inp"><strong>xx</strong></div>
+							<div class="ce rw_1"><strong>3</strong></div>
 						</div>
 					</div>
 					<div class="caja1 ce f_s2 ig-1016 igr-18">DESCRIPCIÓN BREVE DEL EVENTO</div>
 					<div class="caja1 ce_iz  ig-1016 igr-817" id="descripcion">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At accusantium voluptatum cum sint possimus mollitia, recusandae ipsum rem nostrum iusto itaque, nesciunt ea pariatur reprehenderit ducimus quis magni suscipit tenetur provident asperiores obcaecati amet! Error voluptatum, nesciunt neque cumque eos officiis. Numquam velit libero possimus fuga? Veniam voluptatem nobis nulla.</div>
 					<div class="caja1 ce ig-1011 igr-1721 f_s">N° de personas esperadas:
 						<div class="rw_base">
-							<div class="ce rw_1 inp" id="ptotal"><strong>xxxx</strong></div>
+							<div class="ce rw_1" id="ptotal"><strong>xxxx</strong></div>
 						</div>						
 					</div>
 					<div class="caja1 ce ig-1116 igr-1719">Víctimas:
@@ -107,27 +107,27 @@ ValidaSession("../login");
 						</div>						
 					</div>
 					<div class="caja1 ce ig-1618 igr-18">SUPERVISOR DEL CONTRATO</div>
-					<div class="caja1 ce ig-1618 igr-813" ><strong>Aura Elena Acevedo</strong></div>
+					<div class="caja1 ce ig-1618 igr-813" >ISAIAS LOZANO VARE</div>
 					<div class="caja1 ce_iz f_s2 ig-1617 igr-1316 ">EMAIL</div>
 					<div class="caja1 ce_iz f_s2 ig-1718 igr-1316">TELÉFONO</div>
-					<div class="caja1 ce_iz f_s2 ig-1617 igr-1621"><strong>aura.acevedo@unidadvictimas.gov.co</strong></div>
-					<div class="caja1 ce_iz f_s2 ig-1718 igr-1621">### ### ####</div>
+					<div class="caja1 ce_iz f_s2 ig-1617 igr-1621">isaias.lozano@unidadvictimas.gov.co</div>
+					<div class="caja1 ce_iz f_s2 ig-1718 igr-1621">311 8660348</div>
 
 					<div class="caja1 ce ig-1820 igr-18">SUB-DIRECTOR(A) SOLICITANTE</div>
 					<div class="caja1 ce ig-1820 igr-813" id="responsablesub"><strong>Yanny Zambrano Díaz</strong></div>
 					<div class="caja1 ce_iz f_s2 ig-1819 igr-1316">EMAIL</div>
 					<div class="caja1 ce_iz f_s2 ig-1920 igr-1316">TELÉFONO</div>
-					<div class="caja1 ce_iz f_s2 ig-1819 igr-1621" id="correo2"><strong>yanny.zambrano@unidadvictimas.gov.co</strong></div>
-					<div class="caja1 ce_iz f_s2 ig-1920 igr-1621" id="tele2">### ### ####</div>	
+					<div class="caja1 ce_iz f_s2 ig-1819 igr-1621" id="correo1"><strong>yanny.zambrano@unidadvictimas.gov.co</strong></div>
+					<div class="caja1 ce_iz f_s2 ig-1920 igr-1621" id="tele1">### ### ####</div>	
 					
 					<div class="caja1 ce ig-2021 igr-18">RESPONSABLE DEL EVENTO</div>
-					<div class="caja1 ce ig-2021 igr-813" id="responsable"><strong>Carolina Murillo</strong></div>
+					<div class="caja1 ce ig-2021 igr-813" id="responsableevent"><strong>Carolina Murillo</strong></div>
 					<div class="caja1 ce ig-2122 igr-18">CARGO</div>
-					<div class="caja1 ce ig-2122 igr-813"><strong>Contratista</strong></div>
+					<div class="caja1 ce ig-2122 igr-813">Contratista</div>
 					<div class="caja1 ce_iz  ig-2021 igr-1316" >EMAIL</div>
 					<div class="caja1 ce_iz  ig-2122 igr-1316">TELÉFONO</div>
-					<div class="caja1 ce_iz  ig-2021 igr-1621" id="contacto_c"><strong>diana.murillo@unidadvictimas.gov.co</strong></div>
-					<div class="caja1 ce_iz  ig-2122 igr-1621" id="contacto_t">3155747140</div>	
+					<div class="caja1 ce_iz  ig-2021 igr-1621" id="correo2"><strong>diana.murillo@unidadvictimas.gov.co</strong></div>
+					<div class="caja1 ce_iz  ig-2122 igr-1621" id="tele2">3155747140</div>	
 
 					<div class="caja1 ce gris1"><strong>2) REQUERIMIENTOS LOGÍSTICOS</strong></div>
 					<div class="caja1 ce ig-2325 igr-15">CONCEPTO</div>
@@ -209,36 +209,39 @@ ValidaSession("../login");
 					<div class="caja1 ce igr-18 gris alt">Sugerencias y recomendaciones</div>
 					<div class="caja1 ce igr-821 alt" id="recomendaciones">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt nemo facilis placeat consectetur perspiciatis reprehenderit at quas, tenetur magni architecto, ex omnis eius animi saepe, aspernatur ullam. Explicabo, vitae aliquam.
 					Voluptas culpa maiores quidem provident hic suscipit ut repellat maxime, quam error numquam. Autem reprehenderit, aliquid eius excepturi quis eos modi. Eius voluptates vitae iure, libero ullam nisi amet fugiat?</div>
-					<div class="caja1 iz igr-121 alt">OBSERVACIONES GENERALES</div>					
+									
 					<div class="caja1 igr-121 alt">
 						<div class="rn_base">													
 							<div class="rl-1 ig-3536">
-								<div class="linea ce"></div>	
+								<div class="linea ce"></div>
+							<div id="responsableevent2">Responsable del evento</div>	
 								<div class="ce deco">Responsable del evento</div>
 							</div>							
 							<div class="rl-2  ig-3536">
-								<div class="linea ce"></div>	
+								<div class="linea ce"></div>
+								<div id="responsablesub2">Responsable del evento</div>	
 								<div class="ce deco">Sub-director(a) solicitante</div>
 							</div>							
 							<div class="rl-3  ig-3536">
 								<div class="linea ce"></div>	
-								<div class="ce deco">Supervisión del contrato</div> 
+								<div id="">Isaias Lozano Vera</div>
+								<div class="ce deco">Supervisión del contrato <div id="">Isaias Lozano Vera</div></div> 
 								<div class="rl-3">
 									<div class="ro_base">
-										<div class="f_s iz rl-1">Vo Bo: </div>
-										<div class="f_s iz rl-2"><strong>xxxx</strong></div>
+										<!--<div class="f_s iz rl-1">Vo Bo: </div>
+										<div class="f_s iz rl-2"><strong>xxxx</strong></div>-->
 									</div>									
 								</div>
 								<div class="rl-3"> 
 									<div class="ro_base">
-										<div class="f_s iz rl-1">Revisado:</div>
-										<div class="f_s iz rl-2"><strong>xxxx</strong></div>
+										<!--<div class="f_s iz rl-1">Revisado:</div>
+										<div class="f_s iz rl-2"><strong>xxxx</strong></div>-->
 									</div>
 								</div>
 								<div class="rl-3">
 									<div class="ro_base">
-										<div class="f_s iz rl-1">Verificado:</div>
-										<div class="f_s iz rl-2"><strong>xxxx</strong></div>
+										<!--<div class="f_s iz rl-1">Verificado:</div>
+										<div class="f_s iz rl-2"><strong>xxxx</strong></div>-->
 									</div>
 								</div>
 							</div>
@@ -401,20 +404,72 @@ ValidaSession("../login");
 
 	$("#nombre").html(parsedJson.nombre);
 	$("#fecha1").html(parsedJson.fecha1);
-	$("#costo_total").html(costo_total);
+	$("#fecha2").html(parsedJson.fecha2);
+	$("#fecha3").html(parsedJson.fecha3);
+	$("#descripcion").html(parsedJson.descripcion);
+	$("#entidad").html(parsedJson.entidad);
+	$("#num_vic").html(parsedJson.num_vic);
+
+	//var entidad = ;
+	//var num_vic = ;
+    //alert( $("#ptotal").val());
+	var ptotal = parsedJson.entidad + parsedJson.num_vic;
+	
+					
+	$("#ptotal").html(ptotal);
 	
 
 	var bdep =parsedJson.departamento;
 	var bmun =parsedJson.municipio;
 	var bcpo =parsedJson.cpoblado;
 
+	var n1t=parsedJson.rt_nombre1;
+	var n2t=parsedJson.rt_nombre2;
+	var a1t=parsedJson.rt_apellido1;
+	var a2t=parsedJson.rt_apellido2;
+	var respot=n1t+' '+n2t+' '+a1t+' '+a2t;
+	
+	$("#responsablesub").html(respot);
+	$("#tele1").html(parsedJson.tele1);
+	$("#correo1").html(parsedJson.correo1);
 	
 	var n1s=parsedJson.rn_nombre1;
 	var n2s=parsedJson.rn_nombre2;
 	var a1s=parsedJson.rn_apellido1;
 	var a2s=parsedJson.rn_apellido2;
 	var respon=n1s+' '+n2s+' '+a1s+' '+a2s;
-	$("#responsablesub").html(respon);
+	$("#responsableevent").html(respon);
+	$("#tele2").html(parsedJson.tele2);
+	$("#correo2").html(parsedJson.correo2);
+	$("#costo_total").html(parsedJson.costo_total);
+	$("#recomendaciones").html(parsedJson.recomendaciones);
+
+	var n1s=parsedJson.rn_nombre1;
+	var n2s=parsedJson.rn_nombre2;
+	var a1s=parsedJson.rn_apellido1;
+	var a2s=parsedJson.rn_apellido2;
+	var respon=n1s+' '+n2s+' '+a1s+' '+a2s;
+	$("#responsableevent2").html(respon);
+
+	var n1t=parsedJson.rt_nombre1;
+	var n2t=parsedJson.rt_nombre2;
+	var a1t=parsedJson.rt_apellido1;
+	var a2t=parsedJson.rt_apellido2;
+	var respot=n1t+' '+n2t+' '+a1t+' '+a2t;
+	
+	$("#responsablesub2").html(respot);
+
+		
+	var fecha =parsedJson.fecha2;
+	var separa = explode("-",fecha);
+	var mes = separa[0];
+	var dia = separa[1];
+	var ano = separa[2];
+	
+	$("#dia").html(dia);
+	$("#mes").html(mes);
+	$("#ano").html(ano);
+
 
 
 
@@ -437,6 +492,11 @@ ValidaSession("../login");
 		$("#cpoblado" ).html( data );
 	
 	});	
+	$.post( "../../controllers/grupos_controller", { action: "get_grupo",grupo:grup}).done(function( data ) {
+
+$("#grupo").html( data );
+
+});	
 
 	var d_aprima =parsedJson.a_primario;
 	var d_acc1 =parsedJson.acceso1;
@@ -506,11 +566,7 @@ ValidaSession("../login");
 
 
 	  
-	  $.post( "../../controllers/grupos_controller", { action: "get_grupo",grupo:grup}).done(function( data ) {
 
-		$("#grupo").html( data );
-
-	});	
 
 	var tip1=parsedJson.tipo1;
 	switch (tip1) {
@@ -582,8 +638,7 @@ ValidaSession("../login");
 	$("#entidad").html(parsedJson.entidad);
 
 
-	var ptotal = (intval(parsedJson.entidad) += parsedJson.num_vic);
-	$("#ptotal").html(ptotal);
+
 
 
 	$("#tele2").html(parsedJson.tele2);
@@ -593,16 +648,7 @@ ValidaSession("../login");
 	
 	$("#descripcion").html(parsedJson.descripcion);
 
-		
-	var fecha =parsedJson.fecha2;
-	var separa = explode("-",fecha);
-	var mes = separa[0];
-	var dia = separa[1];
-	var ano = separa[2];
-	
-	$("#dia").html(dia);
-	$("#mes").html(mes);
-	$("#ano").html(ano);
+
 
 	var alojan=parsedJson.aloja;
 	//alert(alojan);
@@ -686,18 +732,21 @@ ValidaSession("../login");
 //#########################################INSERTAR LOS DIVS CON LA COSNSULA DE  LA TABLA DETALLES#####################################
 
 		$.post( "../../controllers/mdetalles_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
-
+			//alert(data);
 			var parsedJson = $.parseJSON(data);
 
 			
 				parsedJson.forEach(function(parsedJson, index) {
 					//console.log("indice " + index + " | tipo " + parsedJson.tipo + " concepto: " + parsedJson.concepto + " cantidad: " + parsedJson.cantidad + " medida: " + parsedJson.medida + " observaciones: " + parsedJson.observaciones)
-				    var r_dia =parsedJson.dia;
+				
+					
 					var r_tipo =parsedJson.tipo;
+					var r_dia =parsedJson.dia;
 					var r_concepto =parsedJson.concepto;
 					var r_cantidad =parsedJson.cantidad;
 					var r_costo =parsedJson.costo;
 					var r_medida =parsedJson.medida;
+
 
 							switch (r_medida) {
 								case 0:	med='Metros';break;
@@ -711,18 +760,58 @@ ValidaSession("../login");
 								case 8:	med='Galones';break;
 							}
 
-					var r_observaciones =parsedJson.observaciones;
-					
-					
+					var r_observaciones =parsedJson.observaciones;	
 
 					switch (r_tipo) {
 						case 0:	
 						//insertar div de SALONES						
 						//$('#salones').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#a-1').append('<div  class="caja2 " >'+r_concepto+'</div>');
-						$('#a-2').append(							
-							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
-						);
+						//alert(r_dia);
+						    if(r_dia=="previo 3            "){
+
+						      $('#a-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+
+							 }else if(r_dia=="previo 2            "){
+						      $('#a-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							  );
+							 }else if(r_dia=="previo 1"){
+						   
+						      $('#a-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 1               "){
+						    
+						      $('#a-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 2               "){
+
+						    $('#a-2').append(
+							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 3               "){
+						    
+						      $('#a-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia posterior       "){
+						     
+						      $('#a-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong>'+r_cantidad+'</strong></div></div>'
+							 );
+						    }else if(r_dia==""){
+						      $('#a-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							);
+						     }else{
+						      $('#a-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							);
+						     }
 						$('#a-3').append('<div  class="caja2 " >'+r_cantidad+'</div>');
 						$('#a-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');					
 						break;
@@ -730,9 +819,51 @@ ValidaSession("../login");
 						//insertar div de ALIMENTACION
 						//$('#alimentos').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#l-1').append('<div  class="caja2 ">'+r_concepto+'</div>');
-						$('#l-2').append(							
-							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
-						);
+						//alert(r_dia);
+						    if(r_dia=="previo 3"){
+
+						      $('#l-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+
+							 }else if(r_dia=="previo 2"){
+						      $('#l-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							  );
+							 }else if(r_dia=="previo 1"){
+						   
+						      $('#l-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 1               "){
+						    
+						      $('#l-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 2"){
+
+						    $('#l-2').append(
+							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 3"){
+						    
+						      $('#l-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia posterior"){
+						     
+						      $('#l-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong>'+r_cantidad+'</strong></div></div>'
+							 );
+						    }else if(r_dia==""){
+						      $('#l-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							);
+						     }else{
+						      $('#l-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							);
+						     }
 						$('#l-3').append('<div  class="caja2 ">'+r_cantidad+'</div>');
 						$('#l-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');
 						break;
@@ -740,14 +871,57 @@ ValidaSession("../login");
 						//insertar div de MATERIALES
 						//$('#materiales').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#ad-1').append('<div class="caja2 "  >'+r_concepto+'</div>');
-						$('#ad-2').append(							
-							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
-						);
+						//alert(r_dia);
+						    if(r_dia=="previo 3            "){
+
+						      $('#ad-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+
+							 }else if(r_dia=="previo 2            "){
+						      $('#ad-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							  );
+							 }else if(r_dia=="previo 1"){
+						   
+						      $('#ad-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 1               "){
+						    
+						      $('#ad-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 2               "){
+
+						    $('#ad-2').append(
+							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 3               "){
+						    
+						      $('#ad-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia posterior       "){
+						     
+						      $('#ad-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong>'+r_cantidad+'</strong></div></div>'
+							 );
+						    }else if(r_dia==""){
+						      $('#ad-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							);
+						     }else{
+						      $('#ad-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							);
+						     }
 						$('#ad-3').append('<div  class="caja2 " >'+r_cantidad+'</div>');
 						$('#ad-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');
 						break;
 						case 3:	
 						//insertar div de CONTABLES
+						
 						$('#cotizables').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 					
 						break;

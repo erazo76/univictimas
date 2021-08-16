@@ -1067,10 +1067,10 @@ VerificarAdmin($_SESSION['rolx']);
 									<option value="previo 3">previo 3</option>
 									<option value="previo 2">previo 2</option>
 									<option value="previo 1">previo 1</option>
-									<option value="Día 1">Día 1</option>
-									<option value="Día 2">Día 2</option>
-									<option value="Día 3">Día 3</option>
-									<option value="Día posterior">Día posterior</option>
+									<option value="Dia 1">Día 1</option>
+									<option value="Dia 2">Día 2</option>
+									<option value="Dia 3">Día 3</option>
+									<option value="Dia posterior">Día posterior</option>
 								</select>
 							</div>
 
@@ -2964,15 +2964,23 @@ $("#izquierda" ).click(function() {
 			 $("#grupo" ).html( data );
 
 		});
+
+		
 		$('#grupo').change(function(event) {
 
 		$.post( "../../controllers/grupos_controller", { action: "get_grupos",grupo:$("#grupo").val()}).done(function( data ) {
+
 			var parsedJson = $.parseJSON(data);
-				   var r_ir =parsedJson.id;
-				   var r_nombre =parsedJson.nombre;
 
-					 $("#rt_nombre1").html(r_nombre);
-
+$("#rt_nombre1").val(parsedJson.rs_nombre1);
+$("#rt_nombre2").val(parsedJson.rs_nombre2);
+$("#rt_apellido1").val(parsedJson.rs_apellido1);
+$("#rt_apellido2").val(parsedJson.rs_apellido2);
+$("#correo1").val(parsedJson.rs_correo);
+$("#tele1").val(parsedJson.rs_tele);
+					//alert( $("#correo2").val());
+					//alert( $("#tele2").val());
+					 
 					
 				});
 				
