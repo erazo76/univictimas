@@ -327,26 +327,49 @@ switch ($action){
          echo $resp;
     break;
 
+   
 #******************************************************************************
 
 case 'get_grupos':
 
-  @$data = Grupo::find('all',array('conditions' => array('id=?',$grupo)));
+  @$data = Grupo::find('all',array('conditions' => array('id=?',intval($grupo))));
 
-if($data !=null){
-         
-      foreach($data as $rs){
-        $resp = $rs->id;
-        $resp = $rs->nombre;
-        
-      }
+  if($data !=null){
 
- }else{
-         $resp = 'No hay grupos, áreas, equipos o dependencias asignados';
- }
+    foreach($data as $rs){
 
-   echo $resp;
+      $resp = array(
+              "rs_nombre1"=>$rs->rs_nombre1,
+              "rs_nombre2"=>$rs->rs_nombre2,
+              "rs_apellido1"=>$rs->rs_apellido1,
+              "rs_apellido2"=>$rs->rs_apellido2,
+              "rs_correo"=>$rs->rs_correo,
+              "rs_tele"=>$rs->rs_tele
+             );
+    }
+
+    echo json_encode($resp);
+   }
 break;
+
+case 'get_search':
+
+  @$data = Grupo::find('all',array('conditions' => array('id=?',intval($grupo))));
+
+      if($data !=null){
+               $resp = '<option value="">Indique el grupo, área, equipo o dependencia</option>';
+            foreach($data as $rs){
+              $resp .= '<option value="'.$rs->id.'">'.$rs->nombre.'</option>';
+              $resp .= '<hidden>';
+            }
+
+       }else{
+               $resp = '<option value="">No hay grupos, áreas, equipos o dependencias asignados</option>';
+       }
+
+         echo $resp;
+break;
+
 
 #******************************************************************************
 

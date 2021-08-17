@@ -35,6 +35,8 @@ date_default_timezone_set('America/Bogota');
 @$a_referencia = ($_POST["a_referencia"]);
 @$referencia = ($_POST["referencia"]);
 /***********************************/
+@$costo_total = ($_POST["costo_total"]);
+@$idaccion = ($_POST["idaccion"]);
 @$fecha2 = ($_POST["fecha2"]);
 @$fecha3 = ($_POST["fecha3"]);
 @$hora1 = ($_POST["hora1"]);
@@ -346,7 +348,7 @@ break;
              Indique un lugar de referencia.
             </div>');
 
-      }*/else if($rt_nombre1 ==""){
+      }else if($rt_nombre1 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -390,7 +392,7 @@ break;
             Indique un correo electrónico.
             </div>');
 
-      }else if($fecha2 ==""){
+      }*/else if($fecha2 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -399,6 +401,17 @@ break;
             Alerta!
             </h4>
             Indique la fecha de entrega.
+            </div>');
+
+      }else if($costo_total ==""){
+
+        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Indique el valor de cotizacion.
             </div>');
 
       }else{  //(A)
@@ -432,6 +445,8 @@ break;
             $alia->created = $hoy;
             $alia->completado = 1;
             $alia->fecha2 = $fecha2;
+            $alia->costo_total = $costo_total;
+            $alia->idaccion = $idaccion;
             $alia->status = 1;
 
              if($alia->save()){ // da el mensaje de guardado...
@@ -535,7 +550,7 @@ break;
            Indique un lugar de referencia.
           </div>');
 
-    }*/else if($rt_nombre1 ==""){
+    }else if($rt_nombre1 ==""){
 
       $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -579,7 +594,7 @@ break;
           Indique un correo electrónico.
           </div>');
 
-    }else if($fecha2 ==""){
+    }*/else if($fecha2 ==""){
 
       $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -588,6 +603,17 @@ break;
           Alerta!
           </h4>
           Indique la fecha de entrega.
+          </div>');
+
+    }else if($costo_total ==""){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Indique el valor de cotizacion.
           </div>');
 
     }else{  //(A)
@@ -621,6 +647,8 @@ break;
           $alia->updated = $hoy;
           $alia->completado = 1;
           $alia->fecha2 = $fecha2;
+          $alia->costo_total = $costo_total;
+          $alia->idaccion = $idaccion;
           $alia->status = 1;
 
            if($alia->save()){ // da el mensaje de guardado...
@@ -1605,6 +1633,7 @@ case 'aprobar':
                   "num_dir"=>$rs->num_dir,
                   "a_referencia"=>$rs->a_referencia,
                   "referencia"=>$rs->referencia,
+                  "costo_total"=>$rs->costo_total,
 
                   "fecha2"=>(string)$rs->fecha2->format("d-m-Y"),
                   "fecha3"=>(string)$rs->fecha3->format("d-m-Y"),
@@ -1639,6 +1668,7 @@ case 'aprobar':
                   "trans"=>$rs->trans,
                   "t_trans"=>$rs->t_trans,
                   "to_total"=>$rs->costo_total,
+                  "idaccion"=>$rs->idaccion,
                   "region"=>$rs->mregiones_id,
                   "completado"=>$rs->completado
                  );
@@ -1677,6 +1707,8 @@ case 'aprobar':
                     "departamento"=>$rs->mdepartamentos_id,
                     "municipio"=>$rs->mmunicipios_id,
                     "cpoblado"=>$rs->mcpoblado_id,
+                    "costo_total"=>$rs->costo_total,
+                    "idaccion"=>$rs->idaccion,
   
                     "a_primario"=>$rs->a_primario,
                     "acceso1"=>$rs->acceso1,
