@@ -14,7 +14,7 @@ if(!empty($id_sesion) && ($rol==4 )){//privilegios del programador
 		echo ' <li class="header">MENU</li>';
 		echo ' <li class="treeview"><a href="#"><i class="fa fa-cog fa-lg"></i> <span>Procesos</span> <i class="fa fa-angle-left pull-right"></i></a><ul class="treeview-menu">';
 		//echo '<li><a href="../inventarios/"><i class="fa fa-cubes"></i> <span>Unidades</span></a></li>';	
-		echo '<li><a href="../requerimientos/"><i class="fa fa-certificate "></i> <span>Entregas</span></a></li>';
+		echo '<li><a href="../requerimientos/"><i class="fa fa-certificate "></i> <span>Cotizaciones</span></a></li>';
 		echo '<li><a href="../solicitudes/"><i class="fa fa-certificate "></i> <span>Requerimientos</span></a></li>';
 		echo '<li><a href="../solicitudes/dashboard"><i class="fa fa-bar-chart"></i> <span>Informes</span></a></li>';
 			//echo '<li><a href="../mapa/"><i class="fa fa-link"></i> <span>Geolocalización</span></a></li>';
@@ -63,7 +63,7 @@ if(!empty($id_sesion) && ($rol==3)){ //privilegios de colaborador
 		echo ' <li class="header">MENU</li>';
 		echo ' <li class="treeview"><a href="#"><i class="fa fa-link"></i> <span>Procesos</span> <i class="fa fa-angle-left pull-right"></i></a><ul class="treeview-menu">';
 			//echo '<li><a href="../aliados/"><i class="fa fa-link"></i> <span>Registro de Aliado Comercial</span></a></li>';
-			echo '<li><a href="../requerimientos/"><i class="fa fa-certificate "></i> <span>Entregas</span></a></li>';
+			echo '<li><a href="../requerimientos/"><i class="fa fa-certificate "></i> <span>Cotizaciones</span></a></li>';
 			echo '<li><a href="../solicitudes/"><i class="fa fa-certificate "></i> <span>Requerimientos</span></a></li>';
 			//echo '<li><a href="../mapa/"><i class="fa fa-link"></i> <span>Geolocalización</span></a></li>';
 		echo '</ul>';
@@ -82,7 +82,7 @@ if(!empty($id_sesion) && (($rol==2 ) || ($rol==5 ) || ($rol==6 ) || ($rol==7 )))
 		echo ' <li class="header">MENU</li>';
 		echo ' <li class="treeview"><a href="#"><i class="fa fa-cog fa-lg"></i> <span>Procesos</span> <i class="fa fa-angle-left pull-right"></i></a><ul class="treeview-menu">';
 		    //echo '<li><a href="../inventarios/"><i class="fa fa-cubes"></i> <span>Unidades</span></a></li>';
-		    echo '<li><a href="../requerimientos/"><i class="fa fa-certificate "></i> <span>Entregas</span></a></li>';
+		    echo '<li><a href="../requerimientos/"><i class="fa fa-certificate "></i> <span>Cotizaciones</span></a></li>';
 			echo '<li><a href="../solicitudes/"><i class="fa fa-certificate "></i> <span>Requerimientos</span></a></li>';
 			echo '<li><a href="../solicitudes/dashboard"><i class="fa fa-bar-chart"></i> <span>Informes</span></a></li>';
 			//echo '<li><a href="../aliados/"><i class="fa fa-cogs "></i> <span>Registro de Aliado Comercial</span></a></li>';
