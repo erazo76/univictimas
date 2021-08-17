@@ -220,7 +220,12 @@ ValidaSession("../login");
 						<div class="form-group-sm">	
 							<label for="fecha2">Fecha de entrega</label>
 							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" disabled="true">
-						</div>									
+						</div>	
+						
+						<div class="form-group-sm">	
+							<label for="costo_total">Valor Cotizacion</label>
+							<input class="form-control bbb" id="costo_total"  type="text" placeholder="Valor Cortizacion" onpaste="return false" tabindex="16" disabled="true">
+						</div>
 
 						<!--<label>Entregado por:</label>
 							<div class="form-group">
@@ -537,6 +542,7 @@ $(document).ready(function() {
 	
 		$("#fecha1").val(parsedJson.fecha1);
 		$("#fecha2").val(parsedJson.fecha2);
+		$("#costo_total").val(parsedJson.costo_total);
 
 		var bdep =parsedJson.departamento;
 		var bmun =parsedJson.municipio;
@@ -1959,7 +1965,8 @@ $("#izquierda" ).click(function() {
 					acceso2: $("#acceso2").val(),
 					num_dir: $("#num_dir").val(),
 					a_referencia: $("#a_referencia").val(),
-					referencia: $("#referencia").val(),
+					
+					costo_total: $("#costo_total").val(),
 
 					fecha2: $("#fecha2").val(),
 					fecha3: $("#fecha3").val(),

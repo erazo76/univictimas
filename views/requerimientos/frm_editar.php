@@ -131,13 +131,22 @@ ValidaSession("../login");
 		  	<div class="col-md-4">
 	
 		 		<div class="box-header with-border">
-					<h3 class="box-title">Beneficiario</h3>
+					<h3 class="box-title">Entrega</h3>
 				</div><!-- /.box-header -->	
 
 				<div class="box box-primary">
 
 					<div class="box-body">
-						<label>Nombre(s) y Apellido(s)</label>
+						<div class="form-group-sm">	
+							<label for="fecha2">Fecha de entrega</label>
+							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" >
+						</div>
+						
+						<div class="form-group-sm">	
+							<label for="costo_total">Valor Cotizacion</label>
+							<input class="form-control bbb" id="costo_total"  type="text" placeholder="Valor Cortizacion" onpaste="return false" tabindex="16" >
+						</div>
+						<!--<label>Nombre(s) y Apellido(s)</label>
 						<div class="form-group-sm">
 							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Ingrese Nombre(s) y Apelido(s)"  onpaste="return false" tabindex="10" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
 						</div>
@@ -178,7 +187,7 @@ ValidaSession("../login");
 
 							<div id="confirma_correo">
 								<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
-							</div>
+							</div>-->
 									
 						<!--<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
 						<label for="tabla">Unidades de negocio</label>
@@ -210,17 +219,14 @@ ValidaSession("../login");
 
 			<div class="col-md-4">
 				<div class="box-header with-border">
-					<h3 class="box-title">Entrega</h3>
+					<h3 class="box-title">Anexos</h3>
 				</div><!-- /.box-header -->
 				
 				<div class="box box-primary">
 
 					<div class="box-body">
 
-						<div class="form-group-sm">	
-							<label for="fecha2">Fecha de entrega</label>
-							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" >
-						</div>									
+						
 
 						<!--<label>Entregado por:</label>
 							<div class="form-group">
@@ -539,6 +545,7 @@ $(document).ready(function() {
 	
 		$("#fecha1").val(parsedJson.fecha1);
 		$("#fecha2").val(parsedJson.fecha2);
+		$("#costo_total").val(parsedJson.costo_total);
 
 		var bdep =parsedJson.departamento;
 		var bmun =parsedJson.municipio;
@@ -1952,7 +1959,8 @@ $("#izquierda" ).click(function() {
 					rn_num_doc: $("#rn_num_doc").val(),
 					tele2: $("#tele2").val(),
 					correo2: $("#correo2").val(),					
-					fecha2: $("#fecha2").val()
+					fecha2: $("#fecha2").val(),
+					costo_total: $("#costo_total").val()
 
 				}).done(function(data){
 

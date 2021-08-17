@@ -21,11 +21,11 @@ ValidaSession("../login");
 						<table id="tabla" class="table table-bordered table-hover">
 							<thead>
 								<tr>
-									<th>Nro.:</th>									
+									<th>Nro seg.:</th>									
 									<th>Departamento</th>
 									<th>Municipio</th>									
 									<th>Fecha de entrega</th>
-									<th>Beneficiario</th>		
+									<th>Costo Cotizacion</th>		
 									<th></th>									
 								</tr>
 							</thead>
@@ -100,8 +100,9 @@ ValidaSession("../login");
 						{ "data": "departamento" },
 						{ "data": "municipio" },
 						{ "data": "fecha" },
-						{ "data": "beneficiario" },						
-						{ "data": "aprobado" }
+						{ "data": "costo_total" },						
+						{ "data": "aprobado" },
+						
 					],
 			       // fixedColumns: false,
 					"aoColumnDefs": [

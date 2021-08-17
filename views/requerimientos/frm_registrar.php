@@ -18,7 +18,7 @@ ValidaSession("../login");
 
 			<div class="col-md-4">
 				<div class="box-header with-border" tabindex="-1">
-					 	<h3 class="box-title">Entrega Nro: <label id="n_accion"></label></h3>
+					 	<h3 class="box-title">Seguimiento Nro: <label id="n_accion"></label></h3>
 				</div><!-- /.box-header -->
 		  		<div class="box box-primary">
 						<input type="hidden" id="distribuidora" value="<?php echo intval($_SESSION['distribuidora']); ?>">
@@ -32,6 +32,11 @@ ValidaSession("../login");
 						<input type="hidden" id="apircval" value=0>
 
 						<div class="box-body">
+
+						<div class="form-group-sm">
+							  <label for="idaccion">Numero de Cotizacion </label> 	   
+					          <input class="form-control bbb" id="idaccion"  type="text" onpaste="return false"  placeholder="Numero Cotizacion">
+							</div>
 
 						 	<div class="form-group-sm">
 							  <label for="fecha1">Fecha </label> 	   
@@ -130,12 +135,22 @@ ValidaSession("../login");
 		  	<div class="col-md-4">
 	
 		 		<div class="box-header with-border">
-					<h3 class="box-title">Beneficiario</h3>
+					<h3 class="box-title">Entrega</h3>
 				</div><!-- /.box-header -->	
 
 				<div class="box box-primary">
+                 <div class="box-body">
+				<div class="form-group-sm">	
+							<label for="fecha2">Fecha de entrega</label>
+							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" >
+						</div>
 
-					<div class="box-body">
+						<div class="form-group-sm">	
+							<label for="costo_total">Valor Cotizacion</label>
+							<input class="form-control bbb" id="costo_total"  type="text" placeholder="Valor Cortizacion" onpaste="return false" tabindex="16" >
+						</div>			
+
+					<!--
 						<label>Nombre(s) y Apellido(s)</label>
 						<div class="form-group-sm">
 							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Ingrese Nombre(s) y Apelido(s)"  onpaste="return false" tabindex="10" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
@@ -177,7 +192,7 @@ ValidaSession("../login");
 
 							<div id="confirma_correo">
 								<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
-							</div>
+							</div>-->
 									
 						<!--<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
 						<label for="tabla">Unidades de negocio</label>
@@ -209,17 +224,14 @@ ValidaSession("../login");
 
 			<div class="col-md-4">
 				<div class="box-header with-border">
-					<h3 class="box-title">Entrega</h3>
+					<h3 class="box-title">Anexos</h3>
 				</div><!-- /.box-header -->
 				
 				<div class="box box-primary">
 
 					<div class="box-body">
 
-						<div class="form-group-sm">	
-							<label for="fecha2">Fecha de entrega</label>
-							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" >
-						</div>									
+												
 
 						<!--<label>Entregado por:</label>
 							<div class="form-group">
@@ -1908,7 +1920,8 @@ $("#izquierda" ).click(function() {
 				$.post( "../../controllers/mrequerimientos_controller", {
 
 					action: "add",
-					id:	$("#ideado").val(),				
+					id:	$("#ideado").val(),
+					idaccion:	$("#idaccion").val(),					
 					fecha1: $("#fecha1").val(),
 					departamento: $("#departamento").val(),
 					municipio: $("#municipio").val(),
@@ -1935,7 +1948,9 @@ $("#izquierda" ).click(function() {
 					tele2: $("#tele2").val(),
 					correo2: $("#correo2").val(),
 					region: $("#region").val(),
-					fecha2: $("#fecha2").val()
+					fecha2: $("#fecha2").val(),
+					costo_total: $("#costo_total").val()
+
 				}).done(function(data){
 
 					var parsedJson = $.parseJSON(data);
