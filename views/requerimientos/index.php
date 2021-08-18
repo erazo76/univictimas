@@ -14,7 +14,7 @@ ValidaSession("../login");
 		<div class="col-md-12">
 			
 				<div class="box-header with-border">
-					<h3 class="box-title">Entregas</h3>
+					<h3 class="box-title">Cotizaciones</h3>
 				</div><!-- /.box-header -->
 			<div class="box box-primary"  >		
 				<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
