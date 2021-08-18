@@ -357,10 +357,10 @@ case 'get_search':
   @$data = Grupo::find('all',array('conditions' => array('id=?',intval($grupo))));
 
       if($data !=null){
-               $resp = '<option value="">Indique el grupo, área, equipo o dependencia</option>';
+              
             foreach($data as $rs){
-              $resp .= '<option value="'.$rs->id.'">'.$rs->nombre.'</option>';
-              $resp .= '<hidden>';
+              @$resp .= '<option value="'.$rs->id.'">'.$rs->nombre.'</option>';
+              @$resp .= '<hidden>';
             }
 
        }else{
