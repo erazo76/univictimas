@@ -419,9 +419,7 @@ ValidaSession("../login");
 	$("#ptotal").html(ptotal);
 	
 
-	var bdep =parsedJson.departamento;
-	var bmun =parsedJson.municipio;
-	var bcpo =parsedJson.cpoblado;
+	
 
 	var n1t=parsedJson.rt_nombre1;
 	var n2t=parsedJson.rt_nombre2;
@@ -459,20 +457,10 @@ ValidaSession("../login");
 	
 	$("#responsablesub2").html(respot);
 
-		
-	var fecha =parsedJson.fecha2;
-	var separa = explode("-",fecha);
-	var mes = separa[0];
-	var dia = separa[1];
-	var ano = separa[2];
+	var bdep =parsedJson.departamento;
+	var bmun =parsedJson.municipio;
+	var bcpo =parsedJson.cpoblado;
 	
-	$("#dia").html(dia);
-	$("#mes").html(mes);
-	$("#ano").html(ano);
-
-
-
-
 	$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos_e",departamento:bdep}).done(function( data ) {
 
 		$("#departamento" ).html( data );
@@ -492,11 +480,35 @@ ValidaSession("../login");
 		$("#cpoblado" ).html( data );
 	
 	});	
-	$.post( "../../controllers/grupos_controller", { action: "get_grupo",grupo:grup}).done(function( data ) {
 
+	var grup=parsedJson.grupo;
+
+	//alert(grup);
+	$.post( "../../controllers/grupos_controller", { action: "get_search",grupo:grup}).done(function( data ) {
+		//alert(data);
 $("#grupo").html( data );
 
 });	
+		
+	var fecha =parsedJson.fecha2;
+	//alert(fecha);
+	
+	var elem = fecha.split('-');
+
+		dia = elem[0];
+		$("#dia").html(dia);
+		//alert(dia);
+		mes = elem[1];
+		$("#mes").html(mes);
+		//alert(mes);
+		ano = elem[2];
+		$("#ano").html(ano);
+		//alert(ano);
+
+		
+
+
+	
 
 	var d_aprima =parsedJson.a_primario;
 	var d_acc1 =parsedJson.acceso1;
@@ -562,8 +574,7 @@ $("#grupo").html( data );
 	$("#contacto_t").html(tel1);
 	$("#contacto_c").html(email);
 
-	var grup=parsedJson.grupo;
-
+	
 
 	  
 
@@ -761,20 +772,21 @@ $("#grupo").html( data );
 							}
 
 					var r_observaciones =parsedJson.observaciones;	
-
+					//alert(r_dia);
 					switch (r_tipo) {
-						case 0:	
+						case 0:
+							//alert(r_dia);
 						//insertar div de SALONES						
 						//$('#salones').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#a-1').append('<div  class="caja2 " >'+r_concepto+'</div>');
-						//alert(r_dia);
-						    if(r_dia=="previo 3            "){
+						
+						    if(r_dia=="previo 3"){
 
 						      $('#a-2').append(
 							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							 );
 
-							 }else if(r_dia=="previo 2            "){
+							 }else if(r_dia=="previo 2"){
 						      $('#a-2').append(
 							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							  );
@@ -783,22 +795,22 @@ $("#grupo").html( data );
 						      $('#a-2').append(
 							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							 );
-							}else if(r_dia=="Dia 1               "){
+							}else if(r_dia=="Dia 1"){
 						    
 						      $('#a-2').append(
 							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							 );
-							}else if(r_dia=="Dia 2               "){
+							}else if(r_dia=="Dia 2"){
 
 						    $('#a-2').append(
 							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							 );
-							}else if(r_dia=="Dia 3               "){
+							}else if(r_dia=="Dia 3"){
 						    
 						      $('#a-2').append(
 							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							 );
-							}else if(r_dia=="Dia posterior       "){
+							}else if(r_dia=="Dia posterior"){
 						     
 						      $('#a-2').append(
 							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong>'+r_cantidad+'</strong></div></div>'
@@ -835,7 +847,7 @@ $("#grupo").html( data );
 						      $('#l-2').append(
 							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							 );
-							}else if(r_dia=="Dia 1               "){
+							}else if(r_dia=="Dia 1"){
 						    
 						      $('#l-2').append(
 							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
@@ -872,13 +884,13 @@ $("#grupo").html( data );
 						//$('#materiales').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#ad-1').append('<div class="caja2 "  >'+r_concepto+'</div>');
 						//alert(r_dia);
-						    if(r_dia=="previo 3            "){
+						    if(r_dia=="previo 3"){
 
 						      $('#ad-2').append(
 							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							 );
 
-							 }else if(r_dia=="previo 2            "){
+							 }else if(r_dia=="previo 2"){
 						      $('#ad-2').append(
 							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							  );
@@ -887,22 +899,22 @@ $("#grupo").html( data );
 						      $('#ad-2').append(
 							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							 );
-							}else if(r_dia=="Dia 1               "){
+							}else if(r_dia=="Dia 1"){
 						    
 						      $('#ad-2').append(
 							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							 );
-							}else if(r_dia=="Dia 2               "){
+							}else if(r_dia=="Dia 2"){
 
 						    $('#ad-2').append(
 							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							 );
-							}else if(r_dia=="Dia 3               "){
+							}else if(r_dia=="Dia 3"){
 						    
 						      $('#ad-2').append(
 							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
 							 );
-							}else if(r_dia=="Dia posterior       "){
+							}else if(r_dia=="Dia posterior"){
 						     
 						      $('#ad-2').append(
 							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong>'+r_cantidad+'</strong></div></div>'

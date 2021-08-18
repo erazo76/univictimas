@@ -1422,6 +1422,10 @@ var ideco=$("#ideado").val();
 				break;
 	}
 
+
+
+
+
 });
 
 
@@ -3240,7 +3244,7 @@ $("#tele1").val(parsedJson.rs_tele);
 
 
 		$.post( "../../controllers/msolicitudes_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
-		
+		alert(data);
 		var parsedJson = $.parseJSON(data);
 
 		$("#n_accion").val(parsedJson.id);
@@ -3254,10 +3258,9 @@ $("#tele1").val(parsedJson.rs_tele);
 		//alert($("#hsoli").val());
 		//alert($("#hora1").val());
 		//alert($("#hora1").val());
-		var bdep =parsedJson.departamentos_id;
-		var bmun =parsedJson.municipios_id;
-		var bcpo =parsedJson.cpoblado_id;
-		var bgrup =parsedJson.grupos_id;
+		var bdep =parsedJson.departamento;
+		var bmun =parsedJson.municipio;
+		var bcpo =parsedJson.cpoblado;
 
 		$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos_f",departamento:bdep}).done(function( data ) {
 			
@@ -3272,9 +3275,16 @@ $("#tele1").val(parsedJson.rs_tele);
 
 		});
 		
+		$.post( "../../controllers/mgeograficas_controller", {action: "get_cpoblado_f",municipio: bmun,cpoblado: bcpo}).done(function( data ) {
 
+			$("#cpoblado").html(data);
+
+		});	
+
+		var bgrup =parsedJson.grupo;
+		//alert(bgrup);
 		$.post( "../../controllers/grupos_controller", { action: "get_search",grupo:bgrup}).done(function( data ) {
-			
+			//alert(data);
 			$("#grupo").html(data);
 			//alert($("#grupo").val());
 
@@ -3314,7 +3324,7 @@ $("#tele1").val(parsedJson.rs_tele);
 
 	
 
-});
+},"json");
 
 
 //################################  VALIDACIONES############################################
