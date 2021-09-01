@@ -5,6 +5,8 @@ session_start([
   'read_and_close' => true,
 ]);
 @$usuario_id = $_SESSION['idusuariox'];
+require_once '../mail/class.phpmailer.php';
+require_once '../mail/class.smtp.php';
 
 require_once '../models/Mrequerimiento.php';
 require_once '../models/Madjunto.php';
@@ -41,6 +43,9 @@ date_default_timezone_set('America/Bogota');
 @$fecha3 = ($_POST["fecha3"]);
 @$hora1 = ($_POST["hora1"]);
 @$hora2 = ($_POST["hora2"]);
+
+@$a_supe = ($_POST["a_supe"]);
+@$a_supeo= ($_POST["a_supeo"]);
 /***********************************/
 
 @$rt_nombre1 = ($_POST["rt_nombre1"]);
@@ -436,6 +441,9 @@ break;
             $alia->rt_nombre1 = $rt_nombre1;
             $alia->rt_nombre2 = $rt_nombre2;
 
+            $alia->a_supe = $a_supe;
+            $alia->a_supeo = $a_supeo;
+
             $alia->rt_tdoc = $rt_tdoc;
             $alia->rt_num_doc = $rt_num_doc;
             $alia->tele1 = $tele1;
@@ -450,6 +458,59 @@ break;
             $alia->status = 1;
 
              if($alia->save()){ // da el mensaje de guardado...
+              $mail = new PHPMailer();
+              $mail->IsSMTP(); // telling the class to use SMTP
+              $mail->Host          = "ssl://smtp.mi.com.co";
+              $mail->SMTPAuth      = true;                  // enable SMTP authentication
+              $mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent
+              //$mail->Host          = "ssl://smtp.mi.com.co"; // sets the SMTP server
+              $mail->Port          = 465;                    // set the SMTP port for the GMAIL server
+              $mail->Username      = "servicio@univictimas.com.co"; // SMTP account username
+              $mail->Password      = "Servicio1";        // SMTP account password
+              $mail->SetFrom('servicio@univictimas.com.co', 'UNIVICTIMAS');
+              $mail->AddReplyTo('servicio@univictimas.com.co', 'UNIVICTIMAS');
+              $mail->Subject       = "NUEVA COTIZACION REGISTRADA";
+              $body                = '<div class="container-fluid">
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>COTIZACION REGISTRADA</center></div>  
+                                      </div> 
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>NUMERO DE COTIZACION</center></div> 
+                                      <div class="col-sm-8"><center>'.$idaccion.'</center></div> 
+                                      </div> 
+                                      <hr>
+                                      
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>FECHA DE REGISTRO</center></div>
+                                      <div class="col-sm-8"><center>FECHA: '.$fecha2.'  FECHA ENTREGA: '.$fecha2.'</center></div>  
+                                      </div> 
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>VALOR COTIZACION</center></div>
+                                      <div class="col-sm-8"><center> '.$costo_total.'</center></div>  
+                                      </div> 
+                                      <hr>
+                                      
+                                      
+                                      <div class="row">
+                                      <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
+                                      </div>
+                                      </div>';
+                $body             = preg_replace("~/~",'',$body);
+                $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+                $mail->MsgHTML($body);
+                $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
+                if(!$mail->Send()) {
+                  echo "Mailer Error ".$mail->ErrorInfo .'<br />';
+                }  else {
+                  echo "Message sent to :" ;
+                }
+                // Clear all addresses and attachments for next loop
+                $mail->ClearAddresses();
+                $mail->ClearAttachments(); 
+              
+              echo $body;
 
                 $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -618,6 +679,70 @@ break;
 
     }else{  //(A)
 
+
+     /* if($a_supe==1){
+
+        $mail = new PHPMailer();
+              $mail->IsSMTP(); // telling the class to use SMTP
+              $mail->Host          = "ssl://smtp.mi.com.co";
+              $mail->SMTPAuth      = true;                  // enable SMTP authentication
+              $mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent
+              //$mail->Host          = "ssl://smtp.mi.com.co"; // sets the SMTP server
+              $mail->Port          = 465;                    // set the SMTP port for the GMAIL server
+              $mail->Username      = "servicio@univictimas.com.co"; // SMTP account username
+              $mail->Password      = "Servicio1";        // SMTP account password
+              $mail->SetFrom('servicio@univictimas.com.co', 'UNIVICTIMAS');
+              $mail->AddReplyTo('servicio@univictimas.com.co', 'UNIVICTIMAS');
+    $mail->Subject       = "COTIZACION APROBADA";
+    $body                = '<div class="container-fluid">
+                            <div class="row">
+                            <div class="col-sm-8"><center>COTIZACION APROBADA</center></div>  
+                            </div> 
+                            <hr>
+                            <div class="row">
+                            <div class="col-sm-8"><center>NUMERO DE COTIZACION</center></div> 
+                            <div class="col-sm-8"><center>'.$idaccion.'</center></div> 
+                            </div> 
+                            <hr>
+                            
+                            <div class="row">
+                            <div class="col-sm-8"><center>FECHA DE REGISTRO</center></div>
+                            <div class="col-sm-8"><center>FECHA: '.$fecha2.'  FECHA ENTREGA: '.$fecha2.'</center></div>  
+                            </div> 
+                            <hr>
+                            <div class="row">
+                            <div class="col-sm-8"><center>VALOR COTIZACION</center></div>
+                            <div class="col-sm-8"><center> '.$costo_total.'</center></div>  
+                            </div> 
+                            <hr>
+                            <div class="row">
+                            <div class="col-sm-8"><center>OBSERVACIOES DE APROBACION</center></div>
+                            <div class="col-sm-8"><center> '.$a_supeo.'</center></div>  
+                            </div> 
+                            <hr>
+                            
+                            
+                            <div class="row">
+                            <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
+                            </div>
+                            </div>';
+      $body             = preg_replace("~/~",'',$body);
+      $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+      $mail->MsgHTML($body);
+      $mail->AddAddress('jpmora54@gmail.com');
+        echo "Mailer Error ".$mail->ErrorInfo .'<br />';
+      }  else {
+        echo "Message sent to :" ;
+      }
+      // Clear all addresses and attachments for next loop
+      $mail->ClearAddresses();
+      $mail->ClearAttachments(); 
+    
+    echo $body;
+
+
+      }*/
+
           //session_start();
           //@$usuario_id = $_SESSION['idusuariox'];
           $hoy = date('d-m-Y');
@@ -638,6 +763,9 @@ break;
           $alia->rt_nombre1 = $rt_nombre1;
           $alia->rt_nombre2 = $rt_nombre2;
 
+          $alia->a_supe = $a_supe;
+          $alia->a_supeo = $a_supeo;
+
           $alia->rt_tdoc = $rt_tdoc;
           $alia->rt_num_doc = $rt_num_doc;
           $alia->tele1 = $tele1;
@@ -652,6 +780,9 @@ break;
           $alia->status = 1;
 
            if($alia->save()){ // da el mensaje de guardado...
+
+            
+                
 
               $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
                   <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -674,6 +805,7 @@ break;
                 Error al registrar los datos.
                 </div>');
 
+              
 
           }
 
@@ -1705,6 +1837,7 @@ case 'aprobar':
                     "fecha1"=>(string)$rs->fecha1->format("d-m-Y"),
                     "fecha2"=>(string)$rs->fecha2->format("d-m-Y"),
                     "departamento"=>$rs->mdepartamentos_id,
+                    "idaccion"=>$rs->idaccion,
                     "municipio"=>$rs->mmunicipios_id,
                     "cpoblado"=>$rs->mcpoblado_id,
                     "costo_total"=>$rs->costo_total,
@@ -1720,6 +1853,9 @@ case 'aprobar':
   
                     "rt_nombre1"=>$rs->rt_nombre1,
                     "rt_nombre2"=>$rs->rt_nombre2,
+
+                    "a_supe"=>$rs->a_supe,
+                    "a_supeo"=>$rs->a_supeo,
 
                     "rt_tdoc"=>$rs->rt_tdoc,
                     "rt_num_doc"=>$rs->rt_num_doc,

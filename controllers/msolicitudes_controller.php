@@ -5,15 +5,14 @@ session_start([
   'read_and_close' => true,
 ]);
 @$usuario_id = $_SESSION['idusuariox'];
-
+require_once '../mail/class.phpmailer.php';
+require_once '../mail/class.smtp.php';
 require_once '../models/Msolicitude.php';
 require_once '../models/Madjunto.php';
 require_once '../models/Mdetalle.php';
 require_once '../models/Mdepartamento.php';
 require_once '../models/Mmunicol.php';
 require_once '../models/Mcpoblado.php';
-
-date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
 @$id = ($_POST["id"]);
@@ -388,7 +387,7 @@ break;
              Indique fecha de inicio del evento.
             </div>');
 
-      }else if($fecha4 >= $fecha5){
+      }/*else if($fecha4 >= $fecha5){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -399,7 +398,7 @@ break;
              Fecha Fuera de Rango selecciones una fecha de inicio menor.
             </div>');
 
-      }else if($fecha3 ==""){
+      }*/else if($fecha3 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -567,8 +566,8 @@ break;
               $t_trans1 = null;
             }
             
-
-            $alia = Msolicitude::find($id);     
+            
+            $alia = Msolicitude::find($id);    
             $alia->nombre = $nombre;
             $alia->fecha1 = $hoy;
             $alia->hsoli = $hsoli;
@@ -642,6 +641,80 @@ break;
 
              if($alia->save()){ // da el mensaje de guardado...
 
+              $mail = new PHPMailer();
+              $mail->IsSMTP(); // telling the class to use SMTP
+              $mail->Host          = "ssl://smtp.mi.com.co";
+              $mail->SMTPAuth      = true;                  // enable SMTP authentication
+              $mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent
+              //$mail->Host          = "ssl://smtp.mi.com.co"; // sets the SMTP server
+              $mail->Port          = 465;                    // set the SMTP port for the GMAIL server
+              $mail->Username      = "servicio@univictimas.com.co"; // SMTP account username
+              $mail->Password      = "Servicio1";        // SMTP account password
+              $mail->SetFrom('servicio@univictimas.com.co', 'UNIVICTIMAS');
+              $mail->AddReplyTo('servicio@univictimas.com.co', 'UNIVICTIMAS');
+              $mail->Subject       = "Nueva solicitud registrada";
+              $body                = '<div class="container-fluid">
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>SOLICITUD REGISTRADA</center></div>  
+                                      </div> 
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>NOMBRE SOLICITUD</center></div> 
+                                      <div class="col-sm-8"><center>'.$nombre.'</center></div> 
+                                      </div> 
+                                      <hr>
+                                      
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>FECHA DEL EVENTO</center></div>
+                                      <div class="col-sm-8"><center>FECHA INICIO: '.$fecha2.'  FECHA FIN: '.$fecha3.'</center></div>  
+                                      </div> 
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>RESPONSABLE DEL EVENTO</center></div>
+                                      <div class="col-sm-8"><center> '.$rn_nombre1.' '.$rn_nombre2.' '.$rn_apellido1.'</center></div>  
+                                      </div> 
+                                      <hr>
+                                      
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>SUBDIRECCION RESPONSABLE</center></div>
+                                      <div class="col-sm-8"><center>'.$rt_nombre1.' '.$rt_nombre2.' '.$rt_apellido1.'</center></div>  
+                                      </div>
+                                      <hr>
+                                      
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>NUMERO DE PARTICIPANTES</center></div>
+                                      <div class="col-sm-8"><center>FUNCIONARIOS: '.$entidad.'  VICTIMAS: '.$num_vic.'</center></div>  
+                                      </div>
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>DESCRIPCION</center></div>
+                                      <div class="col-sm-8"><center>'.$descripcion.'</center></div>  
+                                      </div>
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>RECOMENDACION</center></div>
+                                      <div class="col-sm-8"><center>'.$recomendaciones.'</center></div>  
+                                      </div>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
+                                      </div>
+                                      </div>';
+                $body             = preg_replace("~/~",'',$body);
+                $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+                $mail->MsgHTML($body);
+                $mail->AddAddress($correo2);
+                if(!$mail->Send()) {
+                  echo "Mailer Error ".$mail->ErrorInfo .'<br />';
+                }  else {
+                  echo "Message sent to :" ;
+                }
+                // Clear all addresses and attachments for next loop
+                $mail->ClearAddresses();
+                $mail->ClearAttachments(); 
+              
+              echo $body;
+
+              
                 $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
                     <h4>
