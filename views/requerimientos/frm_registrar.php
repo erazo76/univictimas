@@ -149,7 +149,28 @@ ValidaSession("../login");
 							<label for="costo_total">Valor Cotizacion</label>
 							<input class="form-control bbb" id="costo_total"  type="text" placeholder="Valor Cortizacion" onpaste="return false" tabindex="16" >
 						</div>			
+						<div class="form-group-sm">
+						<HR><h3 class="box-title">Aprobaciones</h3><HR>
+						
+							<?php 
+							
+							 if($_SESSION['rolx']==7 || $_SESSION['rolx']==4){
+							
+							?>
 
+								<label>Nivel supervisor</label>
+								<div class="input-group" >
+									<span class="input-group-addon" >
+										<input type="checkbox" id="a_supe">
+									</span>
+									<input type="text" class="form-control ccc" id="a_supeo" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
+								</div>
+																
+								<?php 
+							 }else{
+							}
+							?>
+							</div>
 					<!--
 						<label>Nombre(s) y Apellido(s)</label>
 						<div class="form-group-sm">
@@ -548,6 +569,7 @@ $('#tele2').mask('A000-000-0000', {
     	
 
   });
+  
 
 
 var tick=0;
@@ -761,6 +783,15 @@ $("#izquierda" ).click(function() {
 		}).blur(function() {
 			$('#confirma_correo3').hide();
 		});		
+
+
+		$("#a_supe" ).change(function() {
+			if( $('#a_supe').prop('checked')== true ) {
+				$("#a_supe").val(1);  
+			}else{
+				$("#a_supe").val(0); 
+			}
+		});				
 
 
 		$('.base').unslider({
@@ -1941,6 +1972,10 @@ $("#izquierda" ).click(function() {
 					rt_num_doc: $("#rt_num_doc").val(),
 					tele1: $("#tele1").val(),
 					correo1: $("#correo1").val(),
+
+					a_supe: $("#a_supe").val(),
+					a_supeo: $("#a_supeo").val(),
+
 
 					rn_nombre1: $("#rn_nombre1").val(),
 					rn_tdoc: $("#rn_tdoc").val(),
