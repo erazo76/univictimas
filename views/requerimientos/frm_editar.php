@@ -1315,7 +1315,7 @@ $("#izquierda" ).click(function() {
 			var identico2 = <?php echo intval($_GET["record"]); ?>;
 							var table = $('#tabla').dataTable({
 										  	
-											  //"destroy": true,
+											  "destroy": true,
 	
 											  "ajax": {
 												"url": "../../data_json/data_mequipos?este="+identico2,
@@ -1364,7 +1364,7 @@ $("#izquierda" ).click(function() {
 
 							var table2 = $('#tabla2').dataTable({
 										  	
-											  //"destroy": true,
+											  "destroy": true,
 	
 											  "ajax": {
 												"url": "../../data_json/data_mvictimas",
@@ -1409,7 +1409,7 @@ $("#izquierda" ).click(function() {
 
 								var table5 = $('#tabla5').dataTable({
 										  	
-											  //"destroy": true,
+											  "destroy": true,
 	
 											  "ajax": {
 												"url": "../../data_json/data_mtransportes",
@@ -1735,7 +1735,7 @@ $("#izquierda" ).click(function() {
 									confirm: function(){
 
 										$.post( "../../controllers/madjuntos_controller", {action:"delete",record:value}).done(function( data ) {
-											//$(".message").html(data);
+											$(".message").html(data);
 											var parsedJson = $.parseJSON(data);
 											$(".message").html(parsedJson.mensaje);
 
@@ -1783,7 +1783,7 @@ $("#izquierda" ).click(function() {
 									confirm: function(){
 
 										$.post( "../../controllers/mvictimas_controller", {action:"delete",record:value2}).done(function( data ) {
-											//$(".message").html(data);
+											$(".message").html(data);
 											var parsedJson = $.parseJSON(data);
 											$(".message").html(parsedJson.mensaje);
 
