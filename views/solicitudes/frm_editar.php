@@ -2488,7 +2488,7 @@ $("#izquierda" ).click(function() {
 								
 										var table = $('#tabla').dataTable({
 										  	
-											  //"destroy": true,
+											  "destroy": true,
 	
 											  "ajax": {
 												"url": "../../data_json/data_mdetalles?este="+este,
@@ -2538,7 +2538,7 @@ $("#izquierda" ).click(function() {
 								
 											var table2 = $('#tabla2').dataTable({
 												  
-												  //"destroy": true,
+												  "destroy": true,
 		
 												  "ajax": {
 													"url": "../../data_json/data_mvictimas?este="+este,
@@ -2583,7 +2583,7 @@ $("#izquierda" ).click(function() {
 
 									var table = $('#tabla30').dataTable({
 										  
-										  //"destroy": true,
+										  "destroy": true,
 
 										  "ajax": {
 											"url": "../../data_json/data_mequiposo?este="+este,
@@ -2625,7 +2625,7 @@ $("#izquierda" ).click(function() {
 
 							var table40 = $('#tabla40').dataTable({
 										  
-										  //"destroy": true,
+										  "destroy": true,
 
 										  "ajax": {
 											"url": "../../data_json/data_mexcel?este="+este,
@@ -2763,7 +2763,7 @@ $("#izquierda" ).click(function() {
 									confirm: function(){
 
 										$.post( "../../controllers/mvictimas_controller", {action:"delete",record:value2}).done(function( data ) {
-											//$(".message").html(data);
+											$(".message").html(data);
 											var parsedJson = $.parseJSON(data);
 											$(".message").html(parsedJson.mensaje);
 
@@ -3145,7 +3145,7 @@ $("#tele1").val(parsedJson.rs_tele);
 			var identico2 = <?php echo intval($_GET["record"]); ?>;
 							var table = $('#tabla30').dataTable({
 										  	
-											  //"destroy": true,
+											  "destroy": true,
 	
 											  "ajax": {
 												"url": "../../data_json/data_mequipos?este="+identico2,
@@ -3195,7 +3195,7 @@ $("#tele1").val(parsedJson.rs_tele);
 								var identico3 = <?php echo intval($_GET["record"]); ?>;
 							var table = $('#tabla').dataTable({
 										  	
-											  //"destroy": true,
+											  "destroy": true,
 	
 											  "ajax": {
 												"url": "../../data_json/data_mdetalles?este="+identico3,
@@ -3244,7 +3244,7 @@ $("#tele1").val(parsedJson.rs_tele);
 
 
 		$.post( "../../controllers/msolicitudes_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
-		alert(data);
+
 		var parsedJson = $.parseJSON(data);
 
 		$("#n_accion").val(parsedJson.id);
