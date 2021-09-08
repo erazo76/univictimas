@@ -113,7 +113,7 @@ switch ($action){
      if($data !=null){
       $contados= $data->id;        
      }else{
-      $contados= $data->id;
+      $contados= 1;
      }
   
 
@@ -292,7 +292,7 @@ case 'crear':
   $alia->user_create = $usuario_id;
   $alia->status = 0;
  
-  $alia->save();    
+//  $alia->save();    
 break;
 
 /******************************************** ADD *************************************** */
