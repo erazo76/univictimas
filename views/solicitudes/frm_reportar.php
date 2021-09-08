@@ -224,8 +224,8 @@ ValidaSession("../login");
 							</div>							
 							<div class="rl-3  ig-3536">
 								<div class="linea ce"></div>	
-								<div id="">Isaias Lozano Vera</div>
-								<div class="ce deco">Supervisión del contrato <div id="">Isaias Lozano Vera</div></div> 
+								<div id="">Aura Helena Acevedo Vargas</div>
+								<div class="ce deco">Supervisión del contrato <div id="">Aura Helena Acevedo Vargas</div></div> 
 								<div class="rl-3">
 									<div class="ro_base">
 										<!--<div class="f_s iz rl-1">Vo Bo: </div>

@@ -529,7 +529,8 @@ VerificarAdmin($_SESSION['rolx']);
 														
 							
     							<label for="descripcion">Descripción breve</label>
-    							<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return false" tabindex="0" onkeypress="return esdescri(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
+    						<!--	<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return false" tabindex="0" onkeypress="return esdescri(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>-->
+    							<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return true" tabindex="0"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
   							
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_descripcion' class="aaa"><p></p></div>
 							   
@@ -548,7 +549,9 @@ VerificarAdmin($_SESSION['rolx']);
 								</div>-->
 
 								<label for="recomendaciones">Recomendaciones u observaciones</label>
-    							<textarea class="form-control ccc" id="recomendaciones" rows="4" placeholder="Redacte recomendaciones de la actividad"  onpaste="return false" tabindex="0" onkeypress="return esrecom(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
+    							<textarea class="form-control ccc" id="recomendaciones" rows="4" placeholder="Redacte recomendaciones de la actividad"  onpaste="return true" tabindex="0"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
+    						<!--	<textarea class="form-control ccc" id="recomendaciones" rows="4" placeholder="Redacte recomendaciones de la actividad"  onpaste="return false" tabindex="0" onkeypress="return esrecom(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>-->
+                                                        
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_recom' class="aaa"><p></p></div>
 						</div>
 						</div><!-- /.box-body -->
@@ -1703,7 +1706,7 @@ $("#izquierda" ).click(function() {
 		$("#fecha1").datepicker("setDate", new Date());
 		
 		$('#fecha2').datepicker({
-			startDate: '+0d',
+		//	startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1715,7 +1718,7 @@ $("#izquierda" ).click(function() {
 		
 
 		$('#fecha3').datepicker({
-			startDate: '+0d',
+                //startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1726,7 +1729,7 @@ $("#izquierda" ).click(function() {
 
 
 		$('#f_ida').datepicker({
-			startDate: '+0d',
+		//	startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1736,7 +1739,7 @@ $("#izquierda" ).click(function() {
 		});
 
 		$('#f_vuelta').datepicker({
-			startDate: '+0d',
+		//	startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1746,7 +1749,7 @@ $("#izquierda" ).click(function() {
 		});
 
 		$('#f_aloja').datepicker({
-			startDate: '+0d',
+		//	startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1956,7 +1959,7 @@ $("#izquierda" ).click(function() {
 						    confirm: function(){
 								var idea4=$("#ideado").val();
 								
-								$.post( "../../controllers/msolicitudes_controller", {action: "del_temp",regis4:idea4}).done(function(data){},"json");
+								//$.post( "../../controllers/msolicitudes_controller", {action: "del_temp",regis4:idea4}).done(function(data){},"json");
 
 						    	setTimeout(function(){
 
