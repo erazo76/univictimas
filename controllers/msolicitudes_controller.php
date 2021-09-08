@@ -112,6 +112,7 @@ switch ($action){
 
      if($data !=null){
       $contados= $data->id;        
+      $contados=$contados+1;
      }else{
       $contados= 1;
      }
