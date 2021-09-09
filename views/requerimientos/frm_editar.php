@@ -3,7 +3,7 @@
 include("../../lib/validar_session.php");
 
 ValidaSession("../login");
-VerificarAdmin($_SESSION['rolx']);
+//VerificarAdmin($_SESSION['rolx']);
 
 ?>
 
@@ -14,22 +14,14 @@ VerificarAdmin($_SESSION['rolx']);
 
 <form id="form" role="form" enctype="multipart/form-data">
 
-<div class="base">
-
-	<ul>
- 		<li id="uno"> <!--################################## Información General del Evento ##################################  -->
-
-			<!--<div class="col-md-4">
-				<div class="box-header with-border" tabindex="-1">
-					 	<h3 class="box-title">Información General del Evento</h3>
-				</div> 
-			</div>-->
+<div  class="row">
 
 			<div class="col-md-4">
 				<div class="box-header with-border" tabindex="-1">
-					 	<h3 class="box-title">Información General del Evento</h3>
+					 	<h3 class="box-title">Entrega Nro: <label id="n_accion"></label></h3>
 				</div><!-- /.box-header -->
 		  		<div class="box box-primary">
+				  		<input type="hidden" id="idea" value="<?php echo intval($_GET["record"]); ?>">
 						<input type="hidden" id="distribuidora" value="<?php echo intval($_SESSION['distribuidora']); ?>">
 						<input type="hidden" id="region">
 						<input type="hidden" id="lata" value=6.12>
@@ -39,80 +31,42 @@ VerificarAdmin($_SESSION['rolx']);
 						<input type="hidden" id="aloja" value=0>
 						<input type="hidden" id="arutaval" value=0>
 						<input type="hidden" id="apircval" value=0>
-						<input type="hidden" id="v_terr" value=0>
-						<input type="hidden" id="v_naci" value=0>
-						<input type="hidden" id="v_func" value=0>
-						<input type="hidden" id="v_supe" value=0>
-				
-						
+
 						<div class="box-body">
 
 						 	<div class="form-group-sm">
-							  <label for="n_accion">Nro. de Evento</label>
-							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de evento"  onpaste="return false" tabindex="1" disabled>
+							  <label for="fecha1">Fecha </label> 	   
+					          <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" disabled="true">
 							</div>
 
 							<div class="form-group-sm">
-							  <label for="nombre">Nombre del Evento</label>
-							  <input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad"  onpaste="return false" tabindex="2" onkeypress="return esnombre(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' class="aaa"><p></p></div>
-							</div>
-									
-							<div class="form-group-sm">
-								<label for="fecha1">Fecha y hora de la solicitud</label>
-								<div class="input-group">	
-												  
-									<input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="3" disabled="true">
-										<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-									<input class="form-control bbb" id="hsoli" type="time" disabled="true">														  
-								</div>								
-							</div>
-
-							<div class="form-group-sm">
-								<label>Dirección Territorial</label>
-								<select name="depar" id="departamento" class="form-control bbb" tabindex="4">
+								<label>Departamento</label>
+								<select name="depar" id="departamento" class="form-control bbb" tabindex="1" >
 								<option></option>
 								</select>
 							</div>
 
 							<div class="form-group-sm">
-							  <label for="depa">Departamento</label>
-							  <input type="text" class="form-control bbb" id="depa" placeholder="Departamento"  onpaste="return false" tabindex="5" disabled="true">
+								<label>Municipio</label>
+								<select name="munir" id="municipio" class="form-control bbb" tabindex="2" >
+								<option></option>
+								</select>
 							</div>
 
 							<div class="form-group-sm">
-								<label>Municipio</label>
-								<select name="munir" id="municipio" class="form-control bbb" tabindex="6">
+								<label>Centro Poblado</label>
+								<select id="cpoblado" class="form-control bbb" tabindex="3">
 								<option></option>
 								</select>
 							</div>
 
 							<!--<div class="form-group-sm">
-								<label>Centro Poblado</label>
-								<select id="cpoblado" class="form-control bbb" tabindex="7">
-								<option></option>
-								</select>
-							</div>-->
-
-
-
-					</div>
-						 
-		  		</div>
-
-				  <!--<div class="box-header with-border" tabindex="-1">
-				<h3 class="box-title">Ubicación del Evento</h3>
-			</div> 		  
-
-		 	 <div class="box box-primary">
-				<div class="box-body">
-					<div class="form-group-sm">
-							<label >Dirección</label>
+								<label >Dirección</label>
 							
 								<div class = "input-group">
 
 									<span class="input-group-btn">
-										<select id="a_primario" class="btn-sm"  tabindex="8"  >
+										<select id="a_primario" class="btn-sm"  tabindex="4"  >
 											<option value="0">Avenida</option>
 											<option value="1">Calle</option>
 											<option value="2">Carrera</option>
@@ -122,151 +76,184 @@ VerificarAdmin($_SESSION['rolx']);
 											<option value="6">Autopista</option>
 										</select>
 									</span>
-										<input type="text" id="acceso1" class="form-control bbb" placeholder="Principal"  onpaste="return false" tabindex="9" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
+										<input type="text" id="acceso1" class="form-control bbb" placeholder="Principal"  onpaste="return false" tabindex="5" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
 									
 								</div>
-								
-						
 
 								<div class="input-group">
 									<span class="input-group-addon"><span class="fa fa-slack"></span></span>
-									<input type="text" id="acceso2" class="form-control bbb" placeholder="Secundario"  onpaste="return false" tabindex="10" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
+									<input type="text" id="acceso2" class="form-control bbb" placeholder="Secundario"  onpaste="return false" tabindex="6" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
 									<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
 									<span class="input-group-addon"><span class="fa fa-minus"></span></span>
-									<span><input type="text" id="num_dir" class="form-control bbb" placeholder="Numero"  onpaste="return false" tabindex="11" onkeypress="return esnumdir(event);" onblur="alsalir(this.id)">
+									<span><input type="text" id="num_dir" class="form-control bbb" placeholder="Numero"  onpaste="return false" tabindex="7" onkeypress="return esnumdir(event);" onblur="alsalir(this.id)">
 										
 								</div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso2' class="aaa"><p></p></div>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_dir' class="aaa"><p></p></div>
-					</div>
+							</div>
 
-					<div class="form-group-sm">
-							<label >Referencia</label>
-								<div class = "input-group">
-									<span class="input-group-btn">
-										<select id="a_referencia" class="btn-sm"  tabindex="12"  >
-											<option value="0">Al lado</option>
-											<option value="1">Cerca</option>
-											<option value="2">Frente</option>
-											<option value="3">Diagonal</option>
-											<option value="4">Detras</option>
-											<option value="5">Via</option>
-											<option value="6">Dentro</option>
-										</select>
-									</span>
-									<input type="text" class="form-control bbb" id="referencia" placeholder="Ingrese una referencia"  onpaste="return false" tabindex="13" onkeypress="return esreferencia(event);" onblur="alsalir(this.id)">
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_referencia' class="aaa"><p></p></div>
-					</div>				
+							<div class="form-group-sm">
+									<label >Referencia</label>
+										<div class = "input-group">
+											<span class="input-group-btn">
+												<select id="a_referencia" class="btn-sm"  tabindex="8"  >
+													<option value="0">Al lado</option>
+													<option value="1">Cerca</option>
+													<option value="2">Frente</option>
+													<option value="3">Diagonal</option>
+													<option value="4">Detras</option>
+													<option value="5">Via</option>
+													<option value="6">Dentro</option>
+												</select>
+											</span>
+											<input type="text" class="form-control bbb" id="referencia" placeholder="Ingrese una referencia"  onpaste="return false" tabindex="9" onkeypress="return esreferencia(event);" onblur="alsalir(this.id)">
+										</div>
+										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_referencia' class="aaa"><p></p></div>
+							</div>-->	
+
+						</div>
+
+						<!--<div class="box-body">
+
+							<div class="form-group-sm">
+								<label>Asignado por:</label>
+								<input type="text" class="form-control bbb" id="rt_nombre2" value="<?php echo($_SESSION['nombresx']); ?>"  onpaste="return false"  onblur="alsalir(this.id)"  autocomplete="off" disabled="true">
+							</div>
+						</div>-->
+						<div class="box-footer">
+						</div>
 
 				</div>
-			</div>-->	
+
 			</div>
 
-		  <div class="col-md-4">
-
-
-
-			<div class="box-header with-border">
-					<h3 class="box-title">Inicio y Final del Evento</h3>
-			</div><!-- /.box-header -->	
-
-			<div class="box box-primary">
-			  <div class="box-body">
-				<div class="form-group-sm">
-						  
-					<div class="row">
-
-						<div class="col-sm-6">
-							
-								<label for="fecha2">Fecha Inicio</label>
-								<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="14">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha2' class="aaa"><p></p></div>
-													
-						</div>
-
-						<div class="col-sm-6">
-							
-								<label for="fecha3">Fecha Final</label>
-								<input class="form-control bbb" id="fecha3" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="15">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha3' class="aaa"><p></p></div>
-													
-						</div>
-					</div>							   
-					
-				</div>
-
-				<div class="form-group-sm">
-						  
-					<div class="row">
-
-						<div class="col-sm-6">
-							
-								<label for="hora1">Hora Inicio</label>
-								<input class="form-control bbb" id="hora1" type="time" onpaste="return false" tabindex="16" min="05:00" max="22:00">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_hora1' class="aaa"><p></p></div>
-													
-						</div>
-
-						<div class="col-sm-6">
-							
-								<label for="hora2">Hora Final</label>
-								<input class="form-control bbb" id="hora2" type="time" onpaste="return false" tabindex="17" min="05:00" max="22:00">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_hora2' class="aaa"><p></p></div>
-													
-						</div>
-					</div>							   
-					
-				</div>
-			  </div>
-			</div>
-
-				<div class="box-header with-border">
-					<h3 class="box-title">Responsable del evento</h3>
+		  	<div class="col-md-4">
+	
+		 		<div class="box-header with-border">
+					<h3 class="box-title">Entrega</h3>
 				</div><!-- /.box-header -->	
 
 				<div class="box box-primary">
 
 					<div class="box-body">
-					
-							<label>Nombres</label>
-							<div class="input-group">
-								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="1er nombre"  onpaste="return false" tabindex="260" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control" id="rn_nombre2" placeholder="2do. nombre"  onpaste="return false" tabindex="270" onkeypress="return esnombre3(event);" autocomplete="off">
+						<div class="form-group-sm">	
+							<label for="fecha2">Fecha de entrega</label>
+							<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="16" >
+						</div>
+						
+						<div class="form-group-sm">	
+							<label for="costo_total">Valor Cotizacion</label>
+							<input class="form-control bbb" id="costo_total"  type="text" placeholder="Valor Cortizacion" onpaste="return false" tabindex="16" >
+						</div>
+						<!--<label>Nombre(s) y Apellido(s)</label>
+						<div class="form-group-sm">
+							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Ingrese Nombre(s) y Apelido(s)"  onpaste="return false" tabindex="10" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
+						</div>
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_nombre1' class="aaa"><p></p></div>
+			
+						<div class="form-group-sm">
+							<label >Documento de Identidad</label>
+								<div class = "input-group">
+
+									<span class="input-group-btn">
+										<select id="rt_tdoc" class="btn-sm"  tabindex="11"  >
+											<option value="0">CC</option>
+											<option value="1">CE</option>
+											<option value="2">PA</option>
+										</select>
+									</span>
+
+									<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="12" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off" >
+								</div>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_num_doc' class="aaa"><p></p></div>
+						</div>	
+
+						<div class="form-group-sm">
+							<label for="tele1">Teléfono de contacto</label>
+							<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="13" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off" >
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
+						</div>
+
+							<div id="confirma_telefono">
+								<ul><li id="conf_tel" style="color:#fff;text-align:center" ></li></ul>
+							</div>
+
+						<div class="form-group-sm">
+							<label for="correo1">Correo electrónico</label>
+							<input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="14" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off" >
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' class="aaa"></div>
+						</div>
+
+							<div id="confirma_correo">
+								<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
+							</div>-->
+									
+						<!--<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+						<label for="tabla">Unidades de negocio</label>
+								<table id="tabla" class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>Id</th>										
+											<th>Unidad</th>
+											<th>Marca</th>
+											<th>Modelo</th>
+											<th>Serial</th>											
+											<th>Observaciones</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+						</div>
+				
+						<div class="box-footer">
+							<button id="agregar" type="button" class="btn btn-primary sm" tabindex="15"><i class="fa fa-fw fa-plus"></i>Agregar</button>
+							<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+						</div>-->
+					</div>	
+						
+				</div><!-- /.box -->
+
+			</div>
+
+			<div class="col-md-4">
+				<div class="box-header with-border">
+					<h3 class="box-title">Anexos</h3>
+				</div><!-- /.box-header -->
+				
+				<div class="box box-primary">
+
+					<div class="box-body">
+
+						
+
+						<!--<label>Entregado por:</label>
+							<div class="form-group">
+								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="Ingrese Nombres(s) y Apellido(s)"  onpaste="return false" tabindex="17" onkeypress="return esnombre3(event);"  onblur="alsalir(this.id)" autocomplete="off" disabled>
 							</div>
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_nombre1' class="aaa"><p></p></div>
-							
-							<label>Apellidos</label>
-							<div class="input-group">
-								<input type="text" class="form-control ddd" id="rn_apellido1" placeholder="1er. apellido"  onpaste="return false" tabindex="280" onkeypress="return esapellido2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control" id="rn_apellido2" placeholder="2do. apellido"  onpaste="return false" tabindex="290" onkeypress="return esapellido2(event);" autocomplete="off">
-							</div>
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_apellido1' class="aaa"><p></p></div>
-							
-							
-							<!--<div class="form-group-sm">
+
+							<div class="form-group-sm">
 								<label >Documento de Identidad</label>
 									<div class = "input-group">
 
 										<span class="input-group-btn">
-											<select id="rn_tdoc" class="btn-sm"  tabindex="300"  >
+											<select id="rn_tdoc" class="btn-sm"  tabindex="18"  disabled>
 												<option value="0">CC</option>
 												<option value="1">CE</option>
 												<option value="2">PA</option>
 											</select>
-										</span>-->
+										</span>
 
-										<!--<input type="text" class="form-control ddd" id="rn_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="310" onkeypress="return escedula2(event);" onblur="alsalira(this.id)">
+										<input type="text" class="form-control ddd" id="rn_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="19" onkeypress="return escedula2(event);" onblur="alsalira(this.id)" disabled>
 									</div>
 									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_num_doc' class="aaa"><p></p></div>
-							</div>-->	
+							</div>	
 
 							<div class="form-group-sm">
 							<label for="tele2">Teléfono de contacto</label>
-							<input type="text" class="form-control ddd" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="320" onkeypress="return estele2(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<input type="text" class="form-control ddd" id="tele2" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="20" onkeypress="return estele2(event);" onblur="alsalir2(this.id)" autocomplete="off" disabled>
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele2' class="aaa"></div>
 							</div>
 
@@ -276,494 +263,25 @@ VerificarAdmin($_SESSION['rolx']);
 
 							<div class="form-group-sm">
 							<label for="correo2">Correo electrónico</label>
-							<input type="text" class="form-control ddd" id="correo2" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="330" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off">
+							<input type="text" class="form-control ddd" id="correo2" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="21" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off" disabled>
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo2' class="aaa"></div>
 							</div>
 
-								<div id="confirma_correo2">
-									<ul><li id="conf_cor2" style="color:#fff;text-align:center" ></li></ul>
-								</div>		
-
-							<div class="focusguard" id="guardia1" tabindex="36"></div>							
-					</div>
-				</div>	
-
-
-
-
-
-		  </div>
-
-		  <div class="col-md-4">
-
-		  <div class="box-header with-border">
-					<h3 class="box-title">Grupo/Área/Equipo/Dependencia</h3>
-				</div><!-- /.box-header -->	
-				<div class="box box-primary">
-
-					<div class="box-body">
-						<div class="form-group-sm">									
-									<select name = "grup" id="grupo" class="form-control bbb" tabindex="35">
-									<option></option>
-									</select>
-								</div>
-						</div>
-				</div>
-	
-		 		<div class="box-header with-border">
-					<h3 class="box-title">Subdirección Responsable</h3>
-				</div><!-- /.box-header -->	
-
-				<div class="box box-primary">
-
-					<div class="box-body">
-						<label>Nombres</label>
-						<div class="input-group">
-							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Primer nombre"  onpaste="return false" tabindex="18" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off">
-							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control" id="rt_nombre2" placeholder="Segundo nombre"  onpaste="return false" tabindex="19" onkeypress="return esnombre2(event);"   autocomplete="off">
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_nombre1' class="aaa"><p></p></div>
-						
-						<label>Apellidos</label>
-						<div class="input-group">
-							<input type="text" class="form-control bbb" id="rt_apellido1" placeholder="Primer apellido"  onpaste="return false" tabindex="20" onkeypress="return esapellido1(event);" onblur="alsalir(this.id)" autocomplete="off">
-							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control" id="rt_apellido2" placeholder="Segundo apellido"  onpaste="return false" tabindex="21" onkeypress="return esapellido1(event);" autocomplete="off" >
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_apellido1' class="aaa"><p></p></div>
-													
-						<!--<div class="form-group-sm">
-							<label >Documento de Identidad</label>
-								<div class = "input-group">
-
-									<span class="input-group-btn">
-										<select id="rt_tdoc" class="btn-sm"  tabindex="22"  >
-											<option value="0">CC</option>
-											<option value="1">CE</option>
-											<option value="2">PA</option>
-										</select>
-									</span>
-
-									<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="23" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off">
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_num_doc' class="aaa"><p></p></div>
-						</div>-->	
-
-						<div class="form-group-sm">
-						<label for="tele1">Teléfono de contacto</label>
-						<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
-						</div>
-
-							<div id="confirma_telefono">
-								<ul><li id="conf_tel" style="color:#fff;text-align:center" ></li></ul>
-							</div>
-
-						<div class="form-group-sm">
-						<label for="correo1">Correo electrónico</label>
-						<input type="text" class="form-control bbb" id="correo1" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="25" onkeypress="return escorreo1(event);" onblur="alsalir2(this.id)" autocomplete="off">
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo1' class="aaa"></div>
-						</div>
-
-							<div id="confirma_correo">
-								<ul><li id="conf_cor" style="color:#fff;text-align:center" ></li></ul>
-							</div>
-							
-
-
-							<div class="focusguard" id="guardia1" tabindex="36"></div>							
-					</div>
-				</div>
-			
-			</div>
-		</li>
-
-		<li id="dos"> <!--################################## INFORMACIÓN RELACIONADA CON EL TIPO DE ACTIVIDAD ##################################  -->
-
-			<div class="col-md-4">
-
-				<div class="box-header with-border">
-					 	<h3 class="box-title" id="guardia78" tabindex="0">Tipo de Evento</h3>
-				</div><!-- /.box-header -->
-
-		  		<div class="box box-primary">
-						<!-- form start -->
-						<div class="box-body" >
-								<!--<select id="activity" class="form-control" tabindex="0">
-									<option value="" selected disabled hidden>Indique el tipo de evento:</option>
-									<option value="0">INDIVIDUAL</option>
-									<option value="1">RETORNOS Y REUBICACIONES</option>
-									<option value="2">COLECTIVA</option>
-								</select>-->
-								
-						<input type="text" class="form-control bbb" id="tipo1" placeholder="Ingrese el tipo de evento"  onpaste="return false" tabindex="24" autocomplete="off">
-						
-
-						<div class="box-body" id="actv_1" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
-							<div class="form-group-sm" >
-								<label ></label></br>
-								<select  class="form-control" tabindex="0">
-									
-									<option value="0">Jornada Diferencial</option>
-									<option value="1">Feria de Servicios</option>
-									<option value="2">Conmemoración</option>
-									<option value="3">Iniciativa Local de Memoria</option>
-									<option value="4">Acto de Reconocimiento u Orden Judicial</option>
-									<option value="5">Taller por Linea de Inversion</option>
-									<option value="6">Entrega digna de cadáveres</option>
-									<option value="7">Charla de educación financiera </option>	
-									<option value="8">Otro</option>		
-									<option value="9" selected hidden>Indique si el evento corresponde a:</option>						
-								</select>
-								
-							</div>
-								<div id="otro1a" style='display:none;'>
-								<div class="form-group-sm">								
-									<label for="Otro1">Otro</label>
-							  		<input type="text" class="form-control" id="otro1" placeholder="Indique otro tipo de actividad"  onpaste="return false" tabindex="0" onkeypress="return esotro1(event);" onblur="return alsalir(this.id)" autocomplete="off">
-							  		<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_otro1' ></div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="box-body" id="actv_2" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
-							<div class="form-group-sm">
-								<label class="guardia80" tabindex="0"></label></br>
-								<select id="tipo2" class="form-control"  tabindex="0">
-								
-									<option value="0">Integración Comunitaria</option>
-									<option value="1">Retorno</option>
-									<option value="2">Reubicacion</option>
-									<option value="3">Esquemas Especiales de Acompañamiento</option>
-									<option value="4">Casos Emblemáticos</option>
-									<option value="5">Seguimiento procesos Retornos y Reubicaciones</option>
-									<option value="6" selected hidden>Indique si el evento corresponde a:</option>
-								</select>
-							</div>
+							<div id="confirma_correo2">
+								<ul><li id="conf_cor2" style="color:#fff;text-align:center" ></li></ul>
+							</div>-->							
+						<br>
+						<label id="prueba">Soportes Adjuntos </label> 
+						<div class="form-group-sm pull-right">							
+							<button id="agregar" type="button" class="btn btn-success btn-xs " tabindex="15"><i class="fa fa-fw fa-plus"></i></button>
+							<button id="anex" type="button" class="btn btn-primary btn-xs " tabindex="22" ><i class="fa fa-fw fa-eye" ></i></button>
+							<button id="quitar" type="button" class="btn btn-danger btn-xs "><i class="fa fa-fw fa-trash"></i></button><br>						
+							<!--<ul class="list-group" style="height: 130px;overflow:auto;" id="ul_adj"></ul>-->							
 						</div>	
 
-						<div class="box-body" id="actv_3" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
-							<label>COLECTIVA</label></br>
-						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #bdd3ff; background-color: #E8F0FF">	
-							<div class="form-group-sm">
-
-								<label>Pertenencia étnica comunitaria</label></br>
-
-								<select id="tipo3" class="form-control" tabindex="0">
-									
-									<option value="0">Comunidad</option>
-									<option value="1">Comunidad Campesina</option>
-									<option value="2">Grupo</option>
-									<option value="3">Organizaciones</option>
-									<option value="4">Organización de Mujeres</option>
-									<option value="5" selected  hidden>Indique el sujeto "no étnico" </option>
-								</select>
-
-								<select id="tipo4" class="form-control" tabindex="0">
-									<option value="" selected disabled hidden>Indique el sujeto "étnico" </option>
-									<option value="0">Indígena</option>
-									<option value="1">Ancestral</option>
-									<option value="2">RROM o Gitano</option>
-									<option value="3">Afrocolombiana</option>
-									<option value="4">Negra</option>
-									<option value="5" selected hidden>Indique el sujeto "étnico" </option>
-								</select>								
-							</div>
-
-						    <div class="form-group-sm">
-							  <label>Actividad de ruta</label>
-	                            <div class = "input-group">
-								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="0" id="aruta">
-									  </span>
-									  <input type="text" class="form-control " id="afase" placeholder="Indique la fase en que se ecuentra"  onpaste="return false" tabindex="0" onkeypress="return esafase(event);" onblur="return alsalir(this.id);" disabled>
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_afase' ></div>
-							</div>
-						</div>
-						<div class="box-body" style="border-width:1px;border-style:solid; border-color: #bdd3ff; background-color: #E8F0FF">
-							<label>ID del Sujeto de Reparación</label></br>
-						    <div class="form-group-sm">
-							  <label>Implementación del PIRC aprobado</label>
-	                            <div class = "input-group">
-								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="0" id="apirc">
-									  </span>
-									  <input type="text" class="form-control " id="amedida" placeholder="Indique el tipo de medida"  onpaste="return false" tabindex="0" onkeypress="return esamedida(event);" onblur="return alsalir(this.id);" disabled>
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_amedida' ></div>
-									<div>
-										<label class="guardia79" tabindex="0" style="color: #E8F0FF">.</label>
-									</div>
-									<div id="idacc" style='display:none;'>
-										<label for="idaccion" class="guardia77" tabindex="0">Id Acción</label>
-										<input type="text" class="form-control " id="idaccion" placeholder="Indique Id de la accion"  onpaste="return false" tabindex="0" onkeypress="return esidaccion(event);" onblur="return alsalir(this.id);" >
-										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_idaccion' ></div>
-									</div>							
-							</div>
-						</div>	
-						</div>
-						</div><!-- /.box-body -->
-				 </div><!-- /.box -->
-				 
-				 <div class="box-header with-border">
-					 	<h3 class="box-title">Descripción de la actividad</h3>
-				</div><!-- /.box-header -->
-
-				<div class="box box-primary">
-						<!-- form start -->
-						<div class="box-body">
-						<div class="form-group-sm">
-							
-								<label>Número de funcionarios participantes</label>
-								<input type="text" class="form-control ccc" id="entidad" placeholder="Indique el numero de entidades participantes"  onpaste="return false" tabindex="0" onkeypress="return esentidad(event);"  onblur="alsalir(this.id);"  autocomplete="off">
-							
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_entidad' class="aaa"><p></p></div>
-							
-							
-								<label>Número de víctimas participantes</label>
-								<input type="text" class="form-control ccc" id="num_vic" placeholder="Indique el número de víctimas"  onpaste="return false" tabindex="0" onkeypress="return esvictimas(event);"  onblur="alsalir(this.id);"  autocomplete="off">
-							
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_vic' class="aaa"><p></p></div>
-														
-							
-    							<label for="descripcion">Descripción breve</label>
-    						<!--	<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return false" tabindex="0" onkeypress="return esdescri(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>-->
-    							<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return true" tabindex="0"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
-  							
-							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_descripcion' class="aaa"><p></p></div>
-							   
-							    <!--<label>Focalización</label>								
-								<div class="form-group-sm">
-										<select id="foca"   class="form-control" >
-											<option value="" selected disabled hidden>Indique tipo de focalización </option>
-											<option value="0">Asistencia</option>
-											<option value="1">Atención</option>
-											<option value="2">Prevención</option>
-											<option value="3">Protección</option>
-											<option value="4">Reparación Integral</option>
-											<option value="5">Verdad</option>
-											<option value="6">Justicia</option>
-										</select>
-								</div>-->
-
-								<label for="recomendaciones">Recomendaciones u observaciones</label>
-    							<textarea class="form-control ccc" id="recomendaciones" rows="4" placeholder="Redacte recomendaciones de la actividad"  onpaste="return true" tabindex="0"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
-    						<!--	<textarea class="form-control ccc" id="recomendaciones" rows="4" placeholder="Redacte recomendaciones de la actividad"  onpaste="return false" tabindex="0" onkeypress="return esrecom(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>-->
-                                                        
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_recom' class="aaa"><p></p></div>
-						</div>
-						</div><!-- /.box-body -->
-
-
-
-				 </div><!-- /.box -->	
-
-				
-
-			</div>
-
-			<div class="col-md-4">
-
-
-				 <!-- <div class="box-header with-border">
-					 	<h3 id="jump1" tabindex="0" class="box-title">Participantes del evento</h3>
-				</div>
-
-				<div class="box box-primary" >			
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-					<table id="tabla40" class="table table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>Id</th>										
-											<th>Adjunto</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-					</div>
-				
-					<div class="box-footer">
-						<button id="anex2" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Adjuntar</button>
-						<button id="quitar2" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
-					</div>
-				</div>-->				
-
-				<div class="box-header with-border">
-					<h3 id="jump3" tabindex="0" class="box-title">Detalle especifico del requerimiento</h3>
-				</div><!-- /.box-header -->
-
-				<div class="box box-primary" >			
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-							<table id="tabla" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Día</th>
-										<th>Tipo</th>
-										<th>Concepto</th>
-										<th>Cantidad</th>
-										<th>Medida</th>
-										<th>Costo Unitario</th>
-										<th>Observaciones</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-					</div>
-				
-					<div class="box-footer">
-						<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
-						<!--<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>-->
-					</div>
-				</div>	
-				<div class="box-header with-border">
-					 	<h3 class="box-title">Aprobaciones</h3>
-				</div><!-- /.box-header -->
-
-				<div class="box box-primary">
-						<!-- form start -->
-						<div class="box-body">
-							<div class="form-group-sm">
-							<?php 
-							if($_SESSION['rolx']==2 || $_SESSION['rolx']==4){
-							
-							?>
-
-								<label>Nivel territorial</label>
-								<div class="input-group" >
-									<span class="input-group-addon" >
-										<input disabled type="checkbox" id="a_terr">
-									</span>
-									<input disabled type="text" class="form-control ccc" id="a_terro" placeholder="Observación"  onpaste="return false" tabindex="0" autocomplete="off">
-								</div>								
-								<?php 
-							 }elseif($_SESSION['rolx']==5 || $_SESSION['rolx']==4){
-							
-							?>
-								<label>Nivel nacional</label>
-								<div class="input-group" >
-									<span class="input-group-addon">
-										<input disabled type="checkbox" id="a_naci">
-									</span>
-									<input disabled type="text" class="form-control ccc" id="a_nacio" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
-								</div>	
-								<?php 
-							 }elseif($_SESSION['rolx']==6 || $_SESSION['rolx']==4){
-							
-							?>							
-								<label>Nivel Funcionario</label>
-								<div class="input-group" >
-									<span class="input-group-addon" >
-										<input disabled type="checkbox" id="a_func">
-									</span>
-									<input disabled type="text" class="form-control ccc" id="a_funco" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
-								</div>
-								<?php 
-							 }elseif($_SESSION['rolx']==7 || $_SESSION['rolx']==4){
-							
-							?>
-
-								<label>Nivel supervisor</label>
-								<div class="input-group" >
-									<span class="input-group-addon" >
-										<input type="checkbox" id="a_supe">
-									</span>
-									<input type="text" class="form-control ccc" id="a_supeo" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
-								</div>								
-								<?php 
-							 }else{
-							}
-							?>																					
-
-						</div>
-						</div><!-- /.box-body -->
-				 </div><!-- /.box -->	
-
-			</div>
-
-			<div class="col-md-4">
-
-
-
-				<div class="box-header with-border">
-					 	<h3 class="box-title">Alojamiento y Transporte</h3>
-				</div><!-- /.box-header -->
-
-		  		<div class="box box-primary">
-
-						<!-- form start -->
-						<div class="box-body">
-
-								<label>Requerimiento de Alojamiento</label>
-	                            <div class = "input-group">
-								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="50" id="alojamiento">
-									  </span>
-									  <input type="text" class="form-control" id="msg_aloja" value="No requiere Alojamiento" disabled>
-								</div>
-								
-								<label>Requerimiento de Transporte</label>
-	                            <div class = "input-group">
-								      <span class = "input-group-addon">
-	                                     <input type = "checkbox" tabindex="51" id="transporte">
-									  </span>
-									  <input type="text" class="form-control" id="msg_trans" value="No requiere transporte" disabled>
-								</div>
-
-								<div class="form-group" id="noveo" style="display:none;">
-									<label id="jump2"  tabindex="52">Tipo de transporte </label></br>
-									<select id="t_trans" class="form-control" multiple="multiple" tabindex="53">
-										<option value="0">Aéreo</option>
-										<option value="1">Terrestre/fluvial intermunicipal</option>
-										<option value="2">Terrestre urbano</option>
-									</select>
-								</div>								
-									<button id="a_tra" type="button" class="btn btn-primary " tabindex="53" style="width: 100%;display: none;" disabled><i  class="fa fa-fw  fa-hotel"></i>|<i  class="fa fa-fw  fa-plane"></i>Asignación transporte/alojamiento</button>
-									
-								<label class="guardia81" tabindex="0" style="color: #FFF">.</label>
-							
-						
-						</div><!-- /.box-body -->
-
-				 </div><!-- /.box -->
-				 
-				 <div class="box-header with-border">
-					<h3 class="box-title">Resumen de costo presupuestal</h3>
-				</div><!-- /.box-header -->
-				<div class="box box-primary">
-				
-					<div class="box-body">	
-
-						<label>Componente presupuestal</label>
-						<div class="form-group-sm">
-								<select id="presup"   class="form-control" >
-									<option value="" selected disabled hidden>Indique componente presupuestal </option>
-									<option value="0">CDP</option>
-									<option value="1">Soporte de anticipos</option>
-									<option value="2">Soportes de excedentes</option>
-								</select>
-						</div>
-
-						<label>Total</label>
-						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="totalite" disabled>
-						</div>
-
-
-					</div>
-				</div>
-
-				 <div class="box box-primary">
-
-					<div class="box-body">
-
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+						<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
 						<!--<label for="tabla">Soportes adjuntos</label>-->
-								<table id="tabla30" class="table table-bordered table-hover">
+								<table id="tabla" class="table table-bordered table-hover">
 									<thead>
 										<tr>
 											<th>Id</th>										
@@ -773,275 +291,20 @@ VerificarAdmin($_SESSION['rolx']);
 									<tbody>
 									</tbody>
 								</table>
-						</div>
-						
+						</div>						
 
 					</div>
 
 					<div class="box-footer">
-						<button id="save" type="button" class="btn btn-success " tabindex="54" style="width: 97px;" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
-						<button id="anex" type="button" class="btn btn-success " tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button>
-						<button id="exit" type="button" class="btn btn-primary " tabindex="56" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
-						<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
-					</div>				
-					<div class="focusguard" id="guardia2" tabindex="57"></div>
-				</div><!-- /.box-body -->
+					<button id="exit" type="button" class="btn btn-primary pull-left "  ><i class="fa fa-fw fa-reply"></i>Regresar</button>
+					<button id="save" type="button" class="btn btn-success pull-right" tabindex="23"><i class="fa fa-fw fa-save"></i>Guardar</button>					
+					<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
+					</div>			
 
-
-			</div>
-		</li>
-
-		<li id="tres"><!--################################## DATOS ALOJAMIENTO Y TRANSPORTE ##################################  -->
-
-			<div class="col-md-4" style="display: none;">
-				<div class="box-header with-border">
-					<h3 class="box-title">Datos del personal</h3>
-				</div><!-- /.box-header -->
-				<div class="box box-primary">
-					<div class="box-body">			
-					
-						<div class="form-group-sm">
-							<label>Nombre del personal</label>
-							<input type="text" class="form-control" id="nomb_p" placeholder="Nombre completo"  onpaste="return false" tabindex="550" onkeypress="return esnombre5(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nomb_p'><p></p></div>
-						</div>
-						
-						<div class="form-group-sm">
-							<label >Documento de Identidad</label>
-								<div class = "input-group">
-
-									<span class="input-group-btn">
-										<select id="t_doc_p" class="btn-sm"  tabindex="555"  >
-											<option value="0">CC</option>
-											<option value="1">CE</option>
-											<option value="2">PA</option>
-										</select>
-									</span>
-
-									<input type="text" class="form-control" id="num_doc_p" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="560" onkeypress="return escedula5(event);" onblur="alsalira(this.id)">
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_doc_p'><p></p></div>
-						</div>	
-
-						<div class="form-group-sm">
-							<label for="tele22">Teléfono de contacto</label>
-							<input type="text" class="form-control" id="tele5" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="565" onkeypress="return estele5(event);" onblur="alsalir2(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele5' class="aaa"></div>
-						</div>
-
-							<div id="confirma_telefono5">
-								<ul><li id="conf_tel5" style="color:#fff;text-align:center" ></li></ul>
-							</div>	
-
-							<div class="form-group-sm">
-							  <label for="depa2">Departamento</label>
-							  <input type="text" class="form-control" id="depa2" placeholder="Departamento"  onpaste="return false" disabled="true">
-							</div>
-
-							<div class="form-group-sm">
-							  <label for="muni2">Municipio</label>
-							  <input type="text" class="form-control" id="muni2" placeholder="Municipio"  onpaste="return false" disabled="true">
-							</div>
-
-					</div>
-				</div>
-
-				<div class="box-header with-border">
-					<h3 class="box-title">Lista de personal</h3>
-				</div><!-- /.box-header -->
-
-				<div class="box box-primary" >			
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-							<table id="tabla5" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Nombre y apellido </th>
-										<th>Nro. Documento</th>
-										<th>teléfono</th>
-										<th>Correo-e</th>
-										<th>Departamento</th>
-										<th>Municipio</th>
-										<th>Ruta aérea</th>
-										<th>Costo aéreo</th>
-										<th>Ruta T./F. intermunicipal</th>
-										<th>Costo T./F intermunicipal</th>
-										<th>Ruta T. urbana </th>																		
-										<th>Costo T. urbana</th>
-										<th>Alojamiento</th>
-										<th>Costo Alojamiento</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-					</div>
+				</div><!-- /.box-body -->	
 				
-					<div class="box-footer">
-						<button id="quitar5" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
-					</div>
-				</div>
 			</div>
-
-			<div class="col-md-4" id="t_oculto" style="display: none;">
-				<div class="box-header with-border">
-					<h3 class="box-title">Transporte</h3>
-				</div><!-- /.box-header -->
-				<div class="box box-primary">
-					<div class="box-body">
-
-					<div id="ta_dido" style="display:none;">	
-						<div class="form-group-sm">
-							<label>Ruta Aérea</label>
-							<input type="text" class="form-control" id="r_aereo" placeholder="Ruta aérea"  onpaste="return false" tabindex="570" onkeypress="return esruta3(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_aereo'><p></p></div>
-						</div>
-
-						<label>Salida y llegada</label>
-						<div class="input-group">
-							<input class="form-control" id="f_ida" data-date-format="dd-mm-yyyy" placeholder="Fecha de salida" type="text" onpaste="return false" tabindex="575">	
-							<span class="input-group-btn" tabindex="-1" style="width:40px;"></span>
-							<input class="form-control" id="h_ida" type="time" onpaste="return false" tabindex="576" min="05:00" max="22:00">
-						</div>
-						<div class="input-group">
-							<input class="form-control" id="f_vuelta" data-date-format="dd-mm-yyyy" placeholder="Fecha de llegada" type="text" onpaste="return false" tabindex="580">
-							<span class="input-group-btn" tabindex="-1" style="width:40px;"></span>
-							<input class="form-control" id="h_vuelta" type="time" onpaste="return false" tabindex="582" min="05:00" max="22:00">
-						</div>
-
-						<label>Costo ida/vuelta</label>
-						<div class="input-group">
-							<input type="text" class="form-control pesos" id="a_ida" placeholder="Costo de ida"  onpaste="return false" tabindex="583" onblur="alsalir(this.id)" autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control pesos" id="a_vuelta" placeholder="Costo de vuelta"  onpaste="return false" tabindex="584" onblur="alsalir(this.id)" autocomplete="off">
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_ida'><p></p></div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_vuelta'><p></p></div>				
-						<div class="form-group-sm">
-
-							<label>Costo transporte aéreo</label>
-							<input type="text" class="form-control pesos" id="a_total" placeholder="Costo Total"  onpaste="return false" tabindex="585" onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_total'><p></p></div>
-						</div>
-					</div>
-
-					<div id="tm_dido" style="display:none;">	
-						<div class="form-group-sm">
-							<label>Ruta terrestre/fluvial intermunicipal</label>
-							<input type="text" class="form-control" id="r_terrestre" placeholder="Ruta terreste o fluvial"  onpaste="return false" tabindex="670" onkeypress="return esruta1(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nomb_p'><p></p></div>
-						</div>
-
-						<label>Costo ida/vuelta</label>
-						<div class="input-group">
-							<input type="text" class="form-control pesos" id="r_ida" placeholder="Costo de ida"  onpaste="return false" tabindex="675" onblur="alsalir(this.id)" autocomplete="off">
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control pesos" id="r_vuelta" placeholder="Costo de vuelta"  onpaste="return false" tabindex="680" onblur="alsalir(this.id)" autocomplete="off">
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_ida'><p></p></div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_vuelta'><p></p></div>
-					
-						<div class="form-group-sm">
-							<label>Costo transporte terrestre/fluvial</label>
-							<input type="text" class="form-control pesos" id="r_total" placeholder="Costo Total"  onpaste="return false" tabindex="685" onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_r_total'><p></p></div>
-						</div>
-					</div>
-
-					<div id="tu_dido" style="display:none;">	
-						<div class="form-group-sm">
-							<label>Ruta terrestre urbana</label>
-							<input type="text" class="form-control" id="u_terrestre" placeholder="Ruta urbana"  onpaste="return false" tabindex="870" onkeypress="return esruta2(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_terrestre'><p></p></div>
-						</div>
-
-						<label>Costo ida/vuelta</label>
-						<div class="input-group">
-							<input type="text" class="form-control pesos" id="u_ida" placeholder="Costo de ida"  onpaste="return false" tabindex="875" onblur="alsalir(this.id)" autocomplete="off">
-							<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control pesos" id="u_vuelta" placeholder="Costo de vuelta"  onpaste="return false" tabindex="880" onblur="alsalir(this.id)" autocomplete="off">
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_ida'><p></p></div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_vuelta'><p></p></div>
-						
-						<div class="form-group-sm">
-							<label>Costo transporte urbano</label>
-							<input type="text" class="form-control pesos" id="u_total" placeholder="Costo Total"  onpaste="return false" tabindex="885" onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_u_total'><p></p></div>
-						</div>
-					</div>
-					<button id="t_guarda1" type="button" class="btn btn-success t_ocu1 t_guarda1"><i class="fa fa-fw fa-save"></i>Agregar</button>
-					<button id="t_ocul" type="button" class="btn btn-primary pull-right t_ocu1"><i class="fa fa-fw fa-reply"></i>Regresar</button>
-											
-					</div>
-				</div>
-			</div>
-
-		 	
-
-			<div class="col-md-4" style="display: none;">
-				<div id="a_oculto" style="display: none;">
-				<div class="box-header with-border">
-					<h3 class="box-title">Alojamiento</h3>
-				</div><!-- /.box-header -->
-				<div class="box box-primary">
-
-
-					<div class="box-body">		
-
-						<label>Arribo/Nro. de Noches </label>
-						<div class="input-group">
-							<input class="form-control" id="f_aloja" data-date-format="dd-mm-yyyy" placeholder="Fecha de arribo" type="text" onpaste="return false" tabindex="900">	
-								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-							<input type="text" class="form-control" id="n_aloja" placeholder="Nro. de noches"  onpaste="return false" tabindex="905" onblur="alsalir(this.id)" autocomplete="off">
-						</div>
-						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_n_aloja'><p></p></div>
-
-
-						<div class="form-group-sm">
-							<label>Costo de alojamiento</label>
-							<input type="text" class="form-control pesos" id="aloja_total" placeholder="Costo Total"  onpaste="return false" tabindex="910" onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_aloja_total'><p></p></div>
-						</div>
-
-					<button id="t_guarda2" type="button" class="btn btn-success t_guarda1"><i class="fa fa-fw fa-save"></i>Agregar</button>
-					<button id="t_ocu2" type="button" class="btn btn-primary pull-right"><i class="fa fa-fw fa-reply"></i>Regresar</button>		
-					</div>
-				</div>
-				</div>
-				<div class="box-header with-border">
-					<h3 class="box-title">Resumen de costo</h3>
-				</div><!-- /.box-header -->
-				<div class="box box-primary">
-					<div class="box-body">	
-
-						<label>Personal</label>
-						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="total_total1" disabled>
-						</div>
-						<label>Sub-total Transporte </label>
-						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="total_t" disabled>
-						</div>
-
-						<label>Sub-total alojamiento </label>
-						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="total_a" disabled>
-						</div>
-
-						<label>Total</label>
-						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="total_total" disabled>
-						</div>
-
-					</div>
-				</div>
-			</div>		 
-
-	    </li>
-	</ul>
-</div>
-
+	</div>
 </form>
 
 <!-- Modal 1 -->
@@ -1051,7 +314,7 @@ VerificarAdmin($_SESSION['rolx']);
     <div class="modal-content">
       <div class="modal-body">
         <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Detalle especifico del requerimiento</h4>
+         <h4 class="modal-title" id="myModalLabel1">Asignación para entrega de unidades</h4>
 			<div class="message1"></div>
 			<div class="row">
 				<!-- left column -->
@@ -1063,67 +326,31 @@ VerificarAdmin($_SESSION['rolx']);
 					<!-- form start -->
 					  <div class="box-body">
 
-					  <div class="form-group-sm">
-								<label>Selecionar día</label>
-								<select id="dia"   class="form-control" >
-									<option value="" selected disabled hidden>Indique día de requerimiento </option>
-									<option value="previo 3">previo 3</option>
-									<option value="previo 2">previo 2</option>
-									<option value="previo 1">previo 1</option>
-									<option value="Dia 1">Día 1</option>
-									<option value="Dia 2">Día 2</option>
-									<option value="Dia 3">Día 3</option>
-									<option value="Dia posterior">Día posterior</option>
+							<div class="form-group-sm">
+								<label>Unidad de negocio</label>								
+								<select name="a_equipo" id="a_equipo" class="form-control bbb" tabindex="100">
+								<option></option>								
 								</select>
 							</div>
-
 							<div class="form-group-sm">
-								<label>Tipo</label>
-								<select id="d_tipo"   class="form-control" >
-									<option value="" selected disabled hidden>Indique tipo de requerimiento </option>
-									<option value="0">Salones</option>
-									<option value="1">Alimentación</option>
-									<option value="2">Materiales</option>
-									<option value="3">Cotizables</option>
-									<option value="4">Personal</option>
-									<option value="5">Tiquetes aéreos</option>
-									<option value="6">Reembolso de transporte</option>
-									<option value="6">Alojamiento</option>
-								</select>
+								<label>Marca</label>
+								<input type="text"  class="form-control" id="a_marca"    onpaste="return false" disabled>
+							</div>
+							<div class="form-group-sm">
+								<label>Modelo</label>
+								<input type="text"  class="form-control" id="a_modelo"    onpaste="return false" disabled>
 							</div>
 
 							<div class="form-group-sm">
-								<label>Concepto</label>
-								<input type="text"  class="form-control" id="d_concepto"  placeholder="Describa el concepto"  onpaste="return false" onkeypress="return esdconcepto(event);" onblur="alsalir(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_concepto' ></div>
-							</div>
-
-							<div class="form-group-sm">
-								<label>Cantidad</label>
-								<input type="text"  class="form-control" id="d_cantidad"  placeholder="Indique la cantidad"  onpaste="return false" onkeypress="return esdcantidad(event);" onblur="alsalir(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_cantidad' ></div>
-							</div>
-
-							<div class="form-group-sm">
-								<label>Medida</label>
-								<select id="d_medida"   class="form-control" >
-									<option value="" selected disabled hidden>Indique tipo de medida </option>
-									<option value="0">Metros</option>
-									<option value="1">Unidades</option>
-									<option value="7">Litros</option>
-								</select>
-							</div>
-
-							<div class="form-group-sm">
-								<label>Costo unitario</label>
-								<input type="text"  class="form-control" id="d_costo"  placeholder="Indique el costo"  onpaste="return false" onkeypress="return esdcantidad2(event);" onblur="alsalir(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_costo' ></div>
+								<label>Serial</label>
+								<input type="text"  class="form-control" id="a_serial"  placeholder="Indique el serial del equipo" tabindex="200" onpaste="return false">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_serial' class="aaa"><p></p></div>
 							</div>
 
 							<div class="form-group-sm">
 							  <label>Observaciones</label>
-							  <textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características"  onpaste="return false" onkeypress="return esdobs(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
-  							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_obs' class="aaa"><p></p></div>
+							  <textarea class="form-control" id="a_obs" rows="4" placeholder="Redacte un resumen de características"  onpaste="return false" onkeypress="return esdobs(event);"  onblur="alsalir(this.id);"  autocomplete="off" tabindex="300"></textarea>
+  							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_a_obs' class="aaa"><p></p></div>
 							</div>
 
 					  </div><!-- /.box-body -->
@@ -1133,89 +360,8 @@ VerificarAdmin($_SESSION['rolx']);
 				</div>
 			</div>
 							      <div class="modal-footer">
-							      		<button id="close1" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Incluir</button>
+							      		<button id="close1" type="button" class="btn btn-success" tabindex="400"><i class="fa fa-fw fa-save"></i>Incluir</button>
 							      		<button id="cancelar2" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
-
-							      </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>                   
-</div>
-
-<!-- Modal 2 -->
-<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-<form id="form" role="form" enctype="multipart/form-data" >
-  <div class="modal-dialog modal-lm">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Participantes del evento</h4>
-			<div class="message1"></div>
-			<div class="row">
-				<!-- left column -->
-				<div class="col-md-12">
-				  <!-- general form elements -->
-				  <div class="box box-primary">
-
-					<div class="box-header with-border"></div><!-- /.box-header -->
-					<!-- form start -->
-					  <div class="box-body">
-
-					 	 <div class="form-group-sm">
-					 	 	<label>Nombre del participante</label>
-							<input type="text" class="form-control" id="nombre2" placeholder="Nombre completo"  onpaste="return false" tabindex="260" onkeypress="return esnombre4(event);"  onblur="alsalir(this.id)" autocomplete="off">
-							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre2'><p></p></div>
-					 	 </div>
-							
-							
-							<div class="form-group-sm">
-								<label >Documento de Identidad</label>
-									<div class = "input-group">
-
-										<span class="input-group-btn">
-											<select id="t_doc2" class="btn-sm"  tabindex="300"  >
-												<option value="0">CC</option>
-												<option value="1">CE</option>
-												<option value="2">PA</option>
-											</select>
-										</span>
-
-										<input type="text" class="form-control" id="num_doc2" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="310" onkeypress="return escedula3(event);" onblur="alsalira(this.id)">
-									</div>
-									<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_doc2'><p></p></div>
-							</div>	
-
-							<div class="form-group-sm">
-								<label for="tele3">Teléfono de contacto</label>
-								<input type="text" class="form-control" id="tele3" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="320" onkeypress="return estele3(event);" onblur="alsalir2(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele3' class="aaa"></div>
-							</div>
-
-								<div id="confirma_telefono3">
-									<ul><li id="conf_tel3" style="color:#fff;text-align:center" ></li></ul>
-								</div>
-
-							<div class="form-group-sm">
-								<label for="correo3">Correo electrónico</label>
-								<input type="text" class="form-control" id="correo3" placeholder="Ingrese un correo electrónico"  onpaste="return false" tabindex="330" onkeypress="return escorreo3(event);" onblur="alsalir2(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo3' class="aaa"></div>
-							</div>
-
-								<div id="confirma_correo3">
-									<ul><li id="conf_cor3" style="color:#fff;text-align:center" ></li></ul>
-								</div>			
-
-					  </div><!-- /.box-body -->
-
-				  </div><!-- /.box -->
-
-				</div>
-			</div>
-							      <div class="modal-footer">
-							      		<button id="close2" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Incluir</button>
-							      		<button id="cancelar3" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
 
 							      </div>
         </div>
@@ -1232,7 +378,7 @@ VerificarAdmin($_SESSION['rolx']);
     <div class="modal-content">
       <div class="modal-body">
         <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Anexos</h4>
+         <h4 class="modal-title" id="myModalLabel1">Soportes adjuntos</h4>
 			<div class="message1"></div>
 			<div class="row">
 				<!-- left column -->
@@ -1274,59 +420,7 @@ VerificarAdmin($_SESSION['rolx']);
 </form>                   
 </div>
 
-<!-- Modal 3 -->
-<div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-<form id="form" role="form" enctype="multipart/form-data" >
-  <div class="modal-dialog modal-lm">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Adjuntar</h4>
-			<div class="message1"></div>
-			<div class="row">
-				<!-- left column -->
-				<div class="col-md-12">
-				  <!-- general form elements -->
-				  <div class="box box-primary">
 
-					<div class="box-header with-border"></div><!-- /.box-header -->
-					<!-- form start -->
-					  <div class="box-body">
-
-
-						
-
-						<div class="form-group">
-							<label for="exampleInputFile">Adjuntar archivo Excel.</label>
-							<input type="file" id="InputFile" tabindex="900">
-						</div>
-
-					  </div><!-- /.box-body -->
-
-				  </div><!-- /.box -->
-
-				</div>
-			</div>
-							      <div class="modal-footer">
-										<button id="close111" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Adjuntar</button>
-										
-							      		<button id="cancelar222" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
-
-							      </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>                   
-</div>
-
-
-
-						  <div class="box-footer">
-							<button id="izquierda" type="button" class="btn btn-primary" disabled tabindex="-1"><i class="fa fa-arrow-left"></i>Anterior</button>
-							
-							<button id="derecha" type="button" class="btn btn-primary pull-right" tabindex="-1">Siguiente<i class="fa fa-arrow-right"></i></button>
-						  </div>
 
 <script language="JavaScript" src="../../plugins/maxLength/maxLength.js"></script>
 <script type="text/javascript" src="../../plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -1358,73 +452,144 @@ VerificarAdmin($_SESSION['rolx']);
  <script type="text/javascript">
 
 $(document).ready(function() {
-	var ahora = new Date();
-	var hora = ahora.getHours() + ':' + ahora.getMinutes();
-	//alert(hora);
-              $('#hsoli').val(hora);
-//alert( $('#hsoli').val());
-/*	$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
+
+	document.getElementById("anex").disabled=false;
+	/*$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-*/
-setTimeout(function() {	
-	$.post( "../../controllers/msolicitudes_controller", { action: "contar_id"}).done(function( data ) {
+
+	$.post( "../../controllers/mrequerimientos_controller", { action: "contar_id"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
 		var numstring=parsedJson.toString();
 		var res = numstring.padStart(4, 0);
-		
 //alert(parsedJson);
 		$("#n_accion").val( res );
 		$("#ideado").val( numstring );
 	},"json");
 
-}, 2500);
-
-setTimeout(function() {	
-var ideco=$("#ideado").val();
-	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo", ideco:ideco}).done(function( data ) {
+	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
 		var cos_tot=parsedJson;
 		$("#totalite").val( cos_tot );
-	},"json");
-}, 3000);
-	var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
-//alert(desh);
-		switch (desh) {
+	},"json");*/
 
-		case 4:	document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
-			    break;					
-		case 2:	document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;		
-			    break;
-		case 3:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				break;	
-		case 5:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				break;			
-		case 6:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				break;
-		case 7:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
-				break;
-	}
+		$("#izquierda").css("display", "none");
+
+// para consultar y cargar los datos geograficos ***********************************************************
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos"}).done(function( data ) {
+				$("#departamento" ).html( data );
+		
+		});
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios"}).done(function( data ) {
+			 $("#municipio" ).html( data );
+
+		});
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
+			 $("#cpoblado" ).html( data );
+
+		});	
+
+		$('#departamento').change(function(event) {
+			
+			
+			$("#depa" ).val($('select[name="depar"] option:selected').text());
+			$("#depa2" ).val($('select[name="depar"] option:selected').text());
+				
+				$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios",departamento: $("#departamento").val()}).done(function( data ) {
+					 $("#municipio" ).html( data );
+
+				});
+
+				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
+					 $("#cpoblado" ).html( data );
+
+				});	
+
+				$.post( "../../controllers/mregiones_controller", { action: "get_regi",departamento:$("#departamento").val()}).done(function( data ) {
+					 var parsedJson = $.parseJSON(data);
+					
+					 $("#region").val( parsedJson );	
+		
+					alert($("#region").val());
+
+				});				
+				
+		});
+
+
+		$('#municipio').change(function(event) {
+			$("#muni2" ).val($('select[name="munir"] option:selected').text());
+				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias",municipio: $("#municipio").val()}).done(function( data ) {
+					 $("#cpoblado" ).html( data );
+
+				});
+
+				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
+					 $("#cpoblado" ).html( data );
+
+				});	
+
+		});
+
+
+	$.post( "../../controllers/mrequerimientos_controller", { action: "search_a",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+		
+		var parsedJson = $.parseJSON(data);
+
+		var idd=parsedJson.id.toString();
+
+		$("#n_accion").text(idd.padStart(4, 0));
+	
+		$("#fecha1").val(parsedJson.fecha1);
+		$("#fecha2").val(parsedJson.fecha2);
+		$("#costo_total").val(parsedJson.costo_total);
+
+		var bdep =parsedJson.departamento;
+		var bmun =parsedJson.municipio;
+		var bcpo =parsedJson.cpoblado;
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos_f",departamento:bdep}).done(function( data ) {
+			
+			$("#departamento").html(data);
+			$("#depa" ).val( $("#departamento option:selected").text());
+
+		});	
+
+		$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios_f",departamento:bdep,municipio: bmun}).done(function( data ) {
+			
+			$("#municipio").html(data);
+
+		});
+		
+		$.post( "../../controllers/mgeograficas_controller", {action: "get_cpoblado_f",municipio: bmun,cpoblado: bcpo}).done(function( data ) {
+
+			$("#cpoblado").html(data);
+
+		});	
+	
+		$("#a_primario").val(parsedJson.a_primario);
+		$("#acceso1").val(parsedJson.acceso1);
+		$("#acceso2").val(parsedJson.acceso2);
+		$("#num_dir").val(parsedJson.num_dir);
+		$("#a_referencia").val(parsedJson.a_referencia);
+		$("#referencia").val(parsedJson.referencia);
+
+		$("#rt_nombre1").val(parsedJson.rt_nombre1);
+		$("#rt_nombre2").val(parsedJson.rt_nombre2);
+
+		$("#rt_tdoc").val(parsedJson.rt_tdoc);
+		$("#rt_num_doc").val(parsedJson.rt_num_doc);
+		$("#tele1").val(parsedJson.tele1);
+		$("#correo1").val(parsedJson.correo1);
+
+
+	},"json");	
 
 });
+
 
 
 
@@ -1464,13 +629,13 @@ translation: {
 
 });
 
-$('#tele2').mask('A00-000-0000', {
+$('#tele2').mask('A000-000-0000', {
 
     	translation: {
 
     		 'A': {
 
-        			pattern: /[03]/, optional: false
+        			pattern: /[0]/, optional: true
 
      		        }
 
@@ -1703,10 +868,10 @@ $("#izquierda" ).click(function() {
 		});
 
 
-		$("#fecha1").datepicker("setDate", new Date());
+		//$("#fecha1").datepicker("setDate", new Date());
 		
 		$('#fecha2').datepicker({
-		//	startDate: '+0d',
+			
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1715,10 +880,8 @@ $("#izquierda" ).click(function() {
 
 		});
 
-		
-
 		$('#fecha3').datepicker({
-                //startDate: '+0d',
+			startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1729,7 +892,7 @@ $("#izquierda" ).click(function() {
 
 
 		$('#f_ida').datepicker({
-		//	startDate: '+0d',
+			startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1739,7 +902,7 @@ $("#izquierda" ).click(function() {
 		});
 
 		$('#f_vuelta').datepicker({
-		//	startDate: '+0d',
+			startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1749,7 +912,7 @@ $("#izquierda" ).click(function() {
 		});
 
 		$('#f_aloja').datepicker({
-		//	startDate: '+0d',
+			startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1824,15 +987,11 @@ $("#izquierda" ).click(function() {
 		});
 
 		$('.guardia80').on('focus', function() {
-			$('#tipo1').dropdown('toggle');
+			$('#tipo2').dropdown('toggle');
 		});
 
 		$('.guardia81').on('focus', function() {
 			$('#guardia2').dropdown('toggle');
-		});
-
-		$('.guardia90').on('focus', function() {
-			$('#recomendacion').dropdown('toggle');
 		});
 
 		$('#guardia2').on('focus', function() {
@@ -1902,7 +1061,7 @@ $("#izquierda" ).click(function() {
 
 
 		
-		/*$('#tipo1').on('change', function () {
+		$('#tipo1').on('change', function () {
 
      		var selectVal = $("#tipo1 option:selected").val();
 			
@@ -1944,41 +1103,19 @@ $("#izquierda" ).click(function() {
 
 			}
 		
-		});*/
+		});
 
 		$("#exit" ).click(function() {
 
-						$.confirm({
-						    title: '¡Esta acción lo llevará al listado de requerimientos y borrará los datos no registrados!.¿Desea continuar?',
-						    content:false,
-						    confirmButton: 'Si',
-						    cancelButton: 'No',
-						    confirmButtonClass: 'btn-primary',
-    						    cancelButtonClass: 'btn-success',
+			setTimeout(function(){
 
-						    confirm: function(){
-								var idea4=$("#ideado").val();
-								
-								//$.post( "../../controllers/msolicitudes_controller", {action: "del_temp",regis4:idea4}).done(function(data){},"json");
+				$(location).attr('href','../requerimientos/');
 
-						    	setTimeout(function(){
-
-						                  $(location).attr('href','../solicitudes/');
-                  
-						        }, 1000);
-							},
-
-						    cancel: function(){
-
-							}
-						});				
+			}, 1000);			
 			
 		});
 
 		// ********************************************************************************************
-
-
-
 
 		$("#a_tra" ).click(function(){
 
@@ -2120,37 +1257,7 @@ $("#izquierda" ).click(function() {
 
 		});
 
-		$("#a_terr" ).change(function() {
-			if( $('#a_terr').prop('checked')== true ) {
-				$("#v_terr").val(1);  
-			}else{
-				$("#v_terr").val(0); 
-			}
-		});
-
-		$("#a_naci" ).change(function() {
-			if( $('#a_naci').prop('checked')== true ) {
-				$("#v_naci").val(1);  
-			}else{
-				$("#v_naci").val(0); 
-			}
-		});
-
-		$("#a_func" ).change(function() {
-			if( $('#a_func').prop('checked')== true ) {
-				$("#v_func").val(1);  
-			}else{
-				$("#v_func").val(0); 
-			}
-		});
-
-		$("#a_supe" ).change(function() {
-			if( $('#a_supe').prop('checked')== true ) {
-				$("#v_supe").val(1);  
-			}else{
-				$("#v_supe").val(0); 
-			}
-		});				
+		
 
 		$("#aruta" ).change(function() {
 
@@ -2203,18 +1310,163 @@ $("#izquierda" ).click(function() {
 			}
 
 		});
-		
 	
+		//setTimeout(function() {	
+			var identico2 = <?php echo intval($_GET["record"]); ?>;
+							var table = $('#tabla').dataTable({
+										  	
+											  //"destroy": true,
+	
+											  "ajax": {
+												"url": "../../data_json/data_mequipos?este="+identico2,
+												"dataSrc": ""
+											  },
+											  "scrollX": true,
+											  "scrollY": "120px",
+											  "columns": [
+												{ "data": "id" },	
+												{ "data": "anexo" }													
+													
+												],
+												"aoColumnDefs": [
+												{
+													"width": "20px",
+													"aTargets": [0]
+												}
+											],
+											//"order": [[ 0, "asc" ]],
+											"bPaginate": false,
+											"info":     false,
+											"bFilter": false,
+											"fnDrawCallback": function () {
+													var rows = this.fnGetData();
+													
+													if ( rows.length === 0 ) {
+														document.getElementById("anex").disabled=true;
+													}
+											}
+	
+											  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
+										});
+	
+	
+								$('#tabla tbody').on( 'click', 'tr', function () {
+	
+									if ( $(this).hasClass('selected') ) {
+										$(this).removeClass('selected');
+									}
+									else {
+										table.$('tr.selected').removeClass('selected');
+										$(this).addClass('selected');
+									}
+								});
+		//}, 3000);
+
+							var table2 = $('#tabla2').dataTable({
+										  	
+											  //"destroy": true,
+	
+											  "ajax": {
+												"url": "../../data_json/data_mvictimas",
+												"dataSrc": ""
+											  },
+											  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
+
+														$('td:eq(0)', nRow).css('opacity','0');
+
+														return nRow;
+														},
+											  "scrollX": true,
+											  "scrollY": "130px",
+											  "columns": [
+													{ "data": "id" },
+													{ "data": "nombre" },
+													{ "data": "documento" },
+													{ "data": "correo" },
+													{ "data": "telefono" }
+													
+												],
+											//"order": [[ 0, "asc" ]],
+											"bPaginate": false,
+											"info":     false,
+											"bFilter": false
+	
+											  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
+										});
+	
+	
+								$('#tabla2 tbody').on( 'click', 'tr', function () {
+	
+									if ( $(this).hasClass('selected') ) {
+										$(this).removeClass('selected');
+									}
+									else {
+										table.$('tr.selected').removeClass('selected');
+										$(this).addClass('selected');
+									}
+								});
+
+
+								var table5 = $('#tabla5').dataTable({
+										  	
+											  //"destroy": true,
+	
+											  "ajax": {
+												"url": "../../data_json/data_mtransportes",
+												"dataSrc": ""
+											  },
+											  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
+
+														$('td:eq(0)', nRow).css('opacity','0');
+
+														return nRow;
+														},
+											  "scrollX": true,
+											  "scrollY": "130px",
+											  "columns": [			
+													{ "data": "id" },
+													{ "data": "nombre" },
+													{ "data": "documento" },
+													{ "data": "telefono" },
+													{ "data": "correo" },
+													{ "data": "departamento" },
+													{ "data": "municipio" },
+													{ "data": "aerea" },
+													{ "data": "c_aerea" },
+													{ "data": "terflu" },
+													{ "data": "c_terflu" },
+													{ "data": "turba" },
+													{ "data": "c_turba" },
+													{ "data": "alojam" },
+													{ "data": "c_alojam" }													
+												],
+											//"order": [[ 0, "asc" ]],
+											"bPaginate": false,
+											"info":     false,
+											"bFilter": false
+	
+											  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
+										});
+	
+	
+								$('#tabla5 tbody').on( 'click', 'tr', function () {
+	
+									if ( $(this).hasClass('selected') ) {
+										$(this).removeClass('selected');
+									}
+									else {
+										table.$('tr.selected').removeClass('selected');
+										$(this).addClass('selected');
+									}
+								});
 
 
 
 		$("#close1").click(function() {
-			var ideco2=$("#ideado").val();
+
 				$.post( "../../controllers/mdetalles_controller", {
 
 					action: "temporal",
-					idea:$('#ideado').val(),
-					dia: $('#dia').val(),
 					tipo: $('#d_tipo').val(),
 					concepto: $('#d_concepto').val(),
 					cantidad: $('#d_cantidad').val(),
@@ -2239,12 +1491,12 @@ $("#izquierda" ).click(function() {
 							$("#d_obs").val(null);
 							$("#d_costo").val(null);
 
-							//$('#tabla').DataTable().ajax.reload();
+							$('#tabla').DataTable().ajax.reload();
  							$(".alert").alert('close');
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
 
-							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",ideco:ideco2}).done(function( data ) {
+							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
 								var parsedJson = $.parseJSON(data);
 								var cos_tot=parsedJson;
 								$("#totalite").val( cos_tot );
@@ -2258,9 +1510,7 @@ $("#izquierda" ).click(function() {
 
 				},"json");
 		    //$('#activo').focus();
-			setTimeout(function(){
-				$('#tabla').DataTable().ajax.reload();
-			}, 3000);
+
 		});
 
 		$(".t_guarda1").click(function() {
@@ -2358,7 +1608,6 @@ $("#izquierda" ).click(function() {
 			$.post( "../../controllers/mvictimas_controller", {
 
 				action: "temporal",
-				idea:$('#ideado').val(),
 				nombre2: $('#nombre2').val(),
 				t_doc2: $('#t_doc2').val(),
 				num_doc2: $('#num_doc2').val(),
@@ -2380,7 +1629,8 @@ $("#izquierda" ).click(function() {
 						$("#num_doc2").val(null);
 						$("#tele3").val(null);
 						$("#correo3").val(null);
-						
+
+						$('#tabla2').DataTable().ajax.reload();
 						$(".alert").alert('close');
 						$('#modal2').modal('toggle');
 						$("#agregar2").focus();
@@ -2393,18 +1643,16 @@ $("#izquierda" ).click(function() {
 
 			},"json");
 			//$('#activo').focus();
-			setTimeout(function(){
-				$('#tabla2').DataTable().ajax.reload();
-			}, 3000);	
 
 		});	
 
 		$("#close11").click(function() {
-			
+			var mio = <?php echo intval($_GET["record"]); ?>;
+			//alert(mio);
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
-			formData.append('action', 'temporal_reg');
-			formData.append('idea', $("#ideado").val());
+			formData.append('action', 'temporal');
+			formData.append('idea', mio);
 
 			$.ajax({
 				url: "../../controllers/madjuntos_controller",
@@ -2420,7 +1668,7 @@ $("#izquierda" ).click(function() {
 
 							$('#modal3').scrollTop(0);
 								
-							setTimeout(function(){
+							setTimeout(function(){ 
 
 								$("#InputFile").val(null);
 								$("#file_url").attr('src', '');
@@ -2428,242 +1676,35 @@ $("#izquierda" ).click(function() {
 								$(".alert").alert('close');
 								$('#modal3').modal('toggle');
 								$("#anex").focus();
+
 							}, 2500);
 
 				}
 			});
 
 			setTimeout(function(){
-				$('#tabla30').DataTable().ajax.reload();
+				$('#tabla').DataTable().ajax.reload();
+				
 			}, 3000);
 
 		});		
-		
-		$("#close111").click(function() {
-			
-			var formData = new FormData();
-			formData.append('file', $('input[type=file]')[0].files[0]);
-			formData.append('action', 'temporal_reg');
-			formData.append('idea', $("#ideado").val());
 
-			$.ajax({
-				url: "../../controllers/madjuntosexcel_controller",
-				type: "POST",
-				data: formData,
-				contentType: false,
-				cache: false,
-				processData:false,
-				success: function(data)
-				{
-						
-					$(".message1").html(data);
+  /*######################################### CREAR LISTA DE DOCUMENTOS CARGADAS EN BD #############################*/
+  
+		var guarda = $("#idea").val();
+		$.post( "../../controllers/madjuntos_controller", { action: "contar_id2",guarda:guarda}).done(function( data ) {
 
-							$('#modal4').scrollTop(0);
-								
-							setTimeout(function(){
+			var parsedJson = $.parseJSON(data);
+			$('#ul_adj li').remove();
+			parsedJson.forEach(function(parsedJson, index) {
+				var imagen =parsedJson.imagen;
+				//alert(imagen);
+				
+				$('#ul_adj').append('<li class="list-group-item">'+imagen+'</li>');
 
-								$("#InputFile").val(null);
-								$("#file_url").attr('src', '');
+			});	
 
-								$(".alert").alert('close');
-								$('#modal4').modal('toggle');
-								$("#anex2").focus();
-							}, 2500);
-
-				}
-			});
-
-			setTimeout(function(){
-				$('#tabla40').DataTable().ajax.reload();
-			}, 3000);
-
-		});	
-
-
-		setTimeout(function() {	
-								var este = document.getElementById("ideado").value;
-
-								
-										var table = $('#tabla').dataTable({
-										  	
-											  //"destroy": true,
-	
-											  "ajax": {
-												"url": "../../data_json/data_mdetalles?este="+este,
-												"dataSrc": ""
-											  },
-	
-											  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
-	
-												$('td:eq(0)', nRow).css('opacity','0');
-		
-												return nRow;
-												},
-											  "scrollX": true,
-											  "scrollY": "130px",
-											  "columns": [
-													{ "data": "id" },
-													{ "data": "dia" },
-													{ "data": "tipo" },
-													{ "data": "concepto" },
-													{ "data": "cantidad" },
-													{ "data": "medida" },
-													{ "data": "costo" },
-													{ "data": "observaciones" }
-													
-													
-												],
-											//"order": [[ 0, "asc" ]],
-											"bPaginate": false,
-											"info":     false,
-											"bFilter": false
-	
-											  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
-										});
-	
-	
-								$('#tabla tbody').on( 'click', 'tr', function () {
-	
-									if ( $(this).hasClass('selected') ) {
-										$(this).removeClass('selected');
-									}
-									else {
-										table.$('tr.selected').removeClass('selected');
-										$(this).addClass('selected');
-									}
-								});
-					
-								
-											var table2 = $('#tabla2').dataTable({
-												  
-												  //"destroy": true,
-		
-												  "ajax": {
-													"url": "../../data_json/data_mvictimas?este="+este,
-													"dataSrc": ""
-												  },
-												  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
-	
-															$('td:eq(0)', nRow).css('opacity','0');
-	
-															return nRow;
-															},
-												  "scrollX": true,
-												  "scrollY": "130px",
-												  "columns": [
-														{ "data": "id" },
-														{ "data": "nombre" },
-														{ "data": "documento" },
-														{ "data": "correo" },
-														{ "data": "telefono" }
-														
-													],
-												//"order": [[ 0, "asc" ]],
-												"bPaginate": false,
-												"info":     false,
-												"bFilter": false
-		
-												  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
-											});
-		
-		
-									$('#tabla2 tbody').on( 'click', 'tr', function () {
-		
-										if ( $(this).hasClass('selected') ) {
-											$(this).removeClass('selected');
-										}
-										else {
-											table.$('tr.selected').removeClass('selected');
-											$(this).addClass('selected');
-										}
-									});
-
-
-									var table = $('#tabla30').dataTable({
-										  
-										  //"destroy": true,
-
-										  "ajax": {
-											"url": "../../data_json/data_mequiposo?este="+este,
-											"dataSrc": ""
-										  },
-										  "scrollX": true,
-										  "scrollY": "120px",
-										  "columns": [
-												{ "data": "id" },	
-												{ "data": "anexo" }						
-											],
-											"aoColumnDefs": [
-											{
-												"width": "20px",
-												"aTargets": [0]
-											}
-										],
-										//"order": [[ 0, "asc" ]],
-										"bPaginate": false,
-										"info":     false,
-										"bFilter": false
-
-										  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
-									});
-
-									
-										
-
-							$('#tabla30 tbody').on( 'click', 'tr', function () {
-
-								if ( $(this).hasClass('selected') ) {
-									$(this).removeClass('selected');
-								}
-								else {
-									table.$('tr.selected').removeClass('selected');
-									$(this).addClass('selected');
-								}
-							});
-
-							var table40 = $('#tabla40').dataTable({
-										  
-										  //"destroy": true,
-
-										  "ajax": {
-											"url": "../../data_json/data_mexcel?este="+este,
-											"dataSrc": ""
-										  },
-										  "scrollX": true,
-										  "scrollY": "120px",
-										  "columns": [
-												{ "data": "id" },	
-												{ "data": "adjunto" }						
-											],
-											"aoColumnDefs": [
-											{
-												"width": "20px",
-												"aTargets": [0]
-											}
-										],
-										//"order": [[ 0, "asc" ]],
-										"bPaginate": false,
-										"info":     false,
-										"bFilter": false
-
-										  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
-									});
-								$('#tabla40 tbody').on( 'click', 'tr', function () {
-
-								if ( $(this).hasClass('selected') ) {
-									$(this).removeClass('selected');
-								}
-								else {
-									table.$('tr.selected').removeClass('selected');
-									$(this).addClass('selected');
-								}
-							});
-
-							}, 3000);
-
-
-							
-
+		},"json");
 
 			$('#quitar').click( function () {
 
@@ -2672,65 +1713,46 @@ $("#izquierda" ).click(function() {
 				if(!value){
 
 						$.alert({
-						    title: '!Seleccione el item a desincorporar!',
-						    content: false,
-						    confirmButton: true, // hides the confirm button.
-						    closeIcon: false,
-						    confirmButton: 'cerrar',
-						    confirmButtonClass: 'btn-success'
+							title: '!Seleccione el archivo a eliminar!',
+							content: false,
+							confirmButton: true, // hides the confirm button.
+							closeIcon: false,
+							confirmButton: 'cerrar',
+							confirmButtonClass: 'btn-success'
 						});
 
 				}else{
 
 						$.confirm({
 
-								    title: '¿Desea desincorporar este item?!',
-								    content:false,
-								    confirmButton: 'Si',
-								    cancelButton: 'No',
-								    confirmButtonClass: 'btn-primary',
-		    						    cancelButtonClass: 'btn-success',
+									title: '¿Desea eliminar este archivo del listado?!',
+									content:false,
+									confirmButton: 'Si',
+									cancelButton: 'No',
+									confirmButtonClass: 'btn-primary',
+										cancelButtonClass: 'btn-success',
 
-						    		confirm: function(){
+									confirm: function(){
 
-										$.post( "../../controllers/mdetalles_controller", {action:"delete",record:value}).done(function( data ) {
+										$.post( "../../controllers/madjuntos_controller", {action:"delete",record:value}).done(function( data ) {
 											//$(".message").html(data);
 											var parsedJson = $.parseJSON(data);
 											$(".message").html(parsedJson.mensaje);
 
-									    	setTimeout(function(){
-
-												$(".alert").alert('close');
-												//$('#tabla').dataTable();
-												 
-
-													  	$.post( "../../controllers/mdetalles_controller", { action: "search_act"}).done(function( data ) {
-																
-																var parsedJson = $.parseJSON(data);
-
-																		if(parsedJson == 'si'){
-																		
-																			$('#tabla').DataTable().ajax.reload();
-
-																		}else{
-
-																			$('#tabla').DataTable().ajax.reload();
-																		}
-
-														},"json");	
-
-									        }, 3000);
+											setTimeout(function(){
+												$('#tabla').DataTable().ajax.reload();
+											}, 3000);
 										});		
 
 									},
 
-								 	cancel: function(){
+									cancel: function(){
 
 									}
 						});
 
 				}
-			});		
+				});		
 
 			$('#quitar2').click( function () {
 
@@ -2823,15 +1845,6 @@ $("#izquierda" ).click(function() {
 
 		});
 
-		$("#cancelar222").click(function() {
-
-		$('#modal4').modal('toggle');
-		$("#InputFile").val(null);
-		$("#file_url").attr('src', '');
-		$("#anex2").focus();
-
-		});
-
 		$("#cancelar3").click(function() {
 
 			$('#modal2').modal('toggle');
@@ -2853,7 +1866,7 @@ $("#izquierda" ).click(function() {
     	 });
 
 		$("#agregar").click(function() {
-			$('#modal1').modal({backdrop: 'static',keyboard: false});
+			$('#modal3').modal({backdrop: 'static',keyboard: false});	
 			
 		});
 
@@ -2864,76 +1877,25 @@ $("#izquierda" ).click(function() {
 		});
 
 		$("#anex").click(function() {
-			$('#modal3').modal({backdrop: 'static',keyboard: false});
+			//$('#modal3').modal({backdrop: 'static',keyboard: false});
 			
-			
+			var value= table.$('tr.selected').children('td:first').text();
+				//alert(value);
+				if(!value){
+
+						$.alert({
+							title: '!Seleccione el archivo a visualizar!',
+							content: false,
+							confirmButton: true, // hides the confirm button.
+							closeIcon: false,
+							confirmButton: 'cerrar',
+							confirmButtonClass: 'btn-success'
+						});
+			}else{
+			$(location).attr('href','frm_adjuntados?record='+$("#idea").val()+'&origin=2');
+		}
 		});
 
-		$("#anex2").click(function() {
-             $('#modal4').modal({backdrop: 'static',keyboard: false});
-			
-		});
-// para consultar y cargar los datos geograficos ***********************************************************
-
-		$.post( "../../controllers/mgeograficas_controller", { action: "get_departamentos"}).done(function( data ) {
-			 $("#departamento" ).html( data );
-			
-
-		});
-
-		$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios"}).done(function( data ) {
-			 $("#municipio" ).html( data );
-
-		});
-
-		$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
-			 $("#cpoblado" ).html( data );
-
-		});	
-
-		$('#departamento').change(function(event) {
-			
-			
-			$("#depa" ).val($('select[name="depar"] option:selected').text());
-			//alert($("#depa").val());
-			$("#depa2" ).val($('select[name="depar"] option:selected').text());
-				
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_municipios",departamento: $("#departamento").val()}).done(function( data ) {
-					 $("#municipio" ).html( data );
-					 //alert($(data).val());
-
-				});
-
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
-					 $("#cpoblado" ).html( data );
-
-				});	
-
-				$.post( "../../controllers/mregiones_controller", { action: "get_regi",departamento:$("#departamento").val()}).done(function( data ) {
-					 var parsedJson = $.parseJSON(data);
-					
-					 $("#region").val( parsedJson );	
-		
-					// alert($("#region").val());
-
-				});				
-				
-		});
-
-
-		$('#municipio').change(function(event) {
-			$("#muni2" ).val($('select[name="munir"] option:selected').text());
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias",municipio: $("#municipio").val()}).done(function( data ) {
-					 $("#cpoblado" ).html( data );
-
-				});
-
-				$.post( "../../controllers/mgeograficas_controller", { action: "get_parroquias"}).done(function( data ) {
-					 $("#cpoblado" ).html( data );
-
-				});	
-
-		});
 
 
 // para consultar y cargar los segmentos ***********************************************************
@@ -2968,27 +1930,6 @@ $("#izquierda" ).click(function() {
 
 		});
 
-		
-		$('#grupo').change(function(event) {
-
-		$.post( "../../controllers/grupos_controller", { action: "get_grupos",grupo:$("#grupo").val()}).done(function( data ) {
-
-			var parsedJson = $.parseJSON(data);
-
-$("#rt_nombre1").val(parsedJson.rs_nombre1);
-$("#rt_nombre2").val(parsedJson.rs_nombre2);
-$("#rt_apellido1").val(parsedJson.rs_apellido1);
-$("#rt_apellido2").val(parsedJson.rs_apellido2);
-$("#correo1").val(parsedJson.rs_correo);
-$("#tele1").val(parsedJson.rs_tele);
-					//alert( $("#correo2").val());
-					//alert( $("#tele2").val());
-					 
-					
-				});
-				
-				});
-
 		/*$.post( "../../controllers/mdistribuidoras_controller", { action: "get_distri"}).done(function( data ) {
 			 $("#distribuidora" ).html( data );
 
@@ -3000,16 +1941,14 @@ $("#tele1").val(parsedJson.rs_tele);
 		});*/
 
 		//** enviar los datos al controlador ***********************************************************
-		$("#save" ).click(function() {
+		$("#save").click(function() {
 				//alert($("#t_trans").val());
 				
-				$.post( "../../controllers/msolicitudes_controller", {
+				$.post( "../../controllers/mrequerimientos_controller", {
 
-					action: "add",
-					id:	$("#ideado").val(),
-					nombre: $("#nombre").val(),
+					action: "add_edit",
+					id:	$("#idea").val(),				
 					fecha1: $("#fecha1").val(),
-					hsoli: $("#hsoli").val(),
 					departamento: $("#departamento").val(),
 					municipio: $("#municipio").val(),
 					cpoblado: $("#cpoblado").val(),
@@ -3020,113 +1959,35 @@ $("#tele1").val(parsedJson.rs_tele);
 					num_dir: $("#num_dir").val(),
 					a_referencia: $("#a_referencia").val(),
 					referencia: $("#referencia").val(),
-					fecha2: $("#fecha2").val(),
-					fecha3: $("#fecha3").val(),
-					hora1: $("#hora1").val(),
-					hora2: $("#hora2").val(),
 
 					rt_nombre1: $("#rt_nombre1").val(),
 					rt_nombre2: $("#rt_nombre2").val(),
-					rt_apellido1: $("#rt_apellido1").val(),
-					rt_apellido2: $("#rt_apellido2").val(),
+
 					rt_tdoc: $("#rt_tdoc").val(),
 					rt_num_doc: $("#rt_num_doc").val(),
 					tele1: $("#tele1").val(),
 					correo1: $("#correo1").val(),
-					grupo: $("#grupo").val(),
-					otro1: $("#otro1").val(),
 
 					rn_nombre1: $("#rn_nombre1").val(),
-					rn_nombre2: $("#rn_nombre2").val(),
-					rn_apellido1: $("#rn_apellido1").val(),
-					rn_apellido2: $("#rn_apellido2").val(),
 					rn_tdoc: $("#rn_tdoc").val(),
 					rn_num_doc: $("#rn_num_doc").val(),
 					tele2: $("#tele2").val(),
-					correo2: $("#correo2").val(),
-
-					tipo1: $("#tipo1").val(),
-					tipo2: $("#tipo2").val(),
-					tipo3: $("#tipo3").val(),
-					tipo4: $("#tipo4").val(),
-					foca: $("#foca").val(),
-					
-					v_terr: $("#v_terr").val(),
-					v_naci: $("#v_naci").val(),
-					v_func: $("#v_func").val(),
-					v_supe: $("#v_supe").val(),	
-					a_terro: $("#a_terro").val(),
-					a_nacio: $("#a_nacio").val(),
-					a_funco: $("#a_funco").val(),
-					a_supeo: $("#a_supeo").val(),	
-
-					arutaval: $("#arutaval").val(),
-					apircval: $("#apircval").val(),
-					afase: $("#afase").val(),
-					amedida: $("#amedida").val(),
-					idaccion: $("#idaccion").val(),
-					entidad: $("#entidad").val(),
-					num_vic: $("#num_vic").val(),
-					descripcion: $("#descripcion").val(),
-					recomendaciones: $("#recomendaciones").val(),
-					aloja: $("#aloja").val(),
-					trans: $("#trans").val(),
-					t_trans: $("#t_trans").val(),					
-					to_total:$("#totalite").val(),
-					presup:$("#presup").val(),
-					region: $("#region").val()
+					correo2: $("#correo2").val(),					
+					fecha2: $("#fecha2").val(),
+					costo_total: $("#costo_total").val()
 
 				}).done(function(data){
 
 					var parsedJson = $.parseJSON(data);
 					$(".message").html(parsedJson.mensaje);
 
-					switch(parsedJson.deslizador){
-
-						case "1":
-							$('.base').unslider('animate:0');
-							tick=0;
-							document.getElementById('izquierda').disabled = true;
-							$("#izquierda").css("display", "none");
-							document.getElementById('derecha').disabled = false;
-							$("#derecha").css("display", "block");
-						break;
-
-						case "2":
-							$('.base').unslider('animate:1');
-							tick=1;
-							document.getElementById('izquierda').disabled = false;
-							$("#izquierda").css("display", "block");
-							document.getElementById('derecha').disabled = true;
-							$("#derecha").css("display", "none");
-						break;
-
-					}
-
 					if(parsedJson.resultado != 'error'){
-
-					/*$.post( "../../controllers/mdetalles_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-						$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});
-
-					$.post( "../../controllers/mvictimas_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-						$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});		
-
-					$.post( "../../controllers/madjuntos_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-						$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});		*/		
-
-						$('.base').unslider('animate:0');
-							valore=$("#ideado").val();
-							//alert(valore);
+				
 					    	setTimeout(function(){
 
-					                //  $(location).attr('href','../requerimientos/frm_registrar');
-					                 //$('#nombre').focus();
-								   $(location).attr('href','frm_reportar?record='+valore);
+								$(location).attr('href','index');
 
-					              }, 1500);
+					        }, 1500);
 
 					}
 
@@ -3164,12 +2025,14 @@ function menor(){
 
 		}
 }
-//################################  VALIDACIONES############################################
+//################################  VALIDACIONES  ############################################
 
           //****longitud de campos********************************************
 
 	$(function(){
+
 		$('#tele3').maxLength(15);
+
 		$("#nombre").maxLength(200);
 		$("#acceso1").maxLength(100);
 		$("#acceso2").maxLength(100);
@@ -3196,7 +2059,6 @@ function menor(){
 		$("#entidad").maxLength(100);
 		$("#num_vic").maxLength(5);
 		$("#descripcion").maxLength(200);
-		$("#recomendaciones").maxLength(200);
 		$("#d_concepto").maxLength(150);
 		$("#d_cantidad").maxLength(8);
 		$("#d_costo").maxLength(15);
@@ -3579,9 +2441,6 @@ function escorreo1(e) {
 
 }
 
-
-
-
 function escorreo2(e) {
 
 k = (document.all) ? e.keyCode : e.which;
@@ -3645,28 +2504,6 @@ function esdescri(e) {
                        	return patron.test(n);
 
                     }
-
-}
-
-function esrecom(e) {
-
-k = (document.all) ? e.keyCode : e.which;
-if (k==8 || k==0 || k==13) return true;
-patron = /^[A-ZÑ0-9\ \.\-]$/;
-n = String.fromCharCode(k);
-
-				if(patron.test(n)==''){
-
-					document.getElementById('ms_recom').style.display = 'block';
-					   document.getElementById("ms_recom").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
-						return patron.test(n);
-
-				}else{
-
-					   document.getElementById("ms_recom").innerHTML = '';
-					   return patron.test(n);
-
-				}
 
 }
 
@@ -4101,10 +2938,5 @@ function esidaccion(e) {
 				}
 			}
 
-
-			
-
  </script>
-
-
  <?php include_once("../layouts/pie.php") ?>

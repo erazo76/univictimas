@@ -493,7 +493,7 @@ $(document).ready(function() {
 
 setTimeout(function() {
 
-	$.post( "../../controllers/mrequerimientos_controller", { action: "contar_id"}).done(function( data ) {
+	$.post( "../../controllers/mrequerimientos_controller", { action: "contar_maxid"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
 		var numstring=parsedJson.toString();
 		var res = numstring.padStart(4, 0);

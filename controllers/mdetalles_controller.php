@@ -28,7 +28,11 @@ date_default_timezone_set('America/Bogota');
 switch ($action){
   
     case 'sumar_costo':
-
+      if ($ideco!=null){
+        $ideco=$ideco;
+      }else{
+        $ideco=0;
+      }
       @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = '.$ideco.' and status = 1');
 
     if($data !=null){
@@ -39,6 +43,8 @@ switch ($action){
         $contados = $rs->tot_cos;      
         }
       }        
+    }else{
+      $contados=0;
     }
 
       

@@ -96,19 +96,34 @@ date_default_timezone_set('America/Bogota');
 
 switch ($action){
 
-  case 'contar_id':
+  case 'contar_maxid':
 //contar cuantos usuarios hay conectados
     @$data = Mrequerimiento::find('last');
 
    if($data !=null){
-    $contados= $data->id;      
+    $contados= $data->id;   
+    $contados=$contados+1;   
    }else{
-    $contados= $data->id;
+    $contados=1;
    }
 
      
      echo json_encode($contados);
 break;
+
+case 'contar_id':
+  //contar cuantos usuarios hay conectados
+      @$data = Mrequerimiento::find('last');
+  
+     if($data !=null){
+      $contados= $data->id;      
+     }else{
+      $contados= $data->id;
+     }
+  
+       
+       echo json_encode($contados);
+  break;
 
 #******************************************************************************
   case 'add_temp1':
@@ -281,7 +296,7 @@ break;
     $alia->user_create = $usuario_id;
     $alia->status = 0;
    
-    $alia->save();    
+    //$alia->save();    
   break;
 
 /******************************************** ADD *************************************** */
@@ -425,8 +440,8 @@ break;
             //@$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
-           //$alia = new Mrequerimiento();    
-            $alia = Mrequerimiento::find($id);
+            $alia = new Mrequerimiento();    
+           // $alia = Mrequerimiento::find($id);
             $alia->fecha1 = $hoy;
             $alia->mdepartamentos_id = $departamento;
             $alia->mmunicipios_id = $municipio;
@@ -500,7 +515,9 @@ break;
                 $body             = preg_replace("~/~",'',$body);
                 $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
                 $mail->MsgHTML($body);
-                $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
+ //               $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
+                  $mail->AddAddress('yonnyg@gmail.com');
+
                 if(!$mail->Send()) {
                   echo "Mailer Error ".$mail->ErrorInfo .'<br />';
                 }  else {
