@@ -1257,7 +1257,7 @@ break;
 
 
           if($alia->save()){ // da el mensaje de guardado...
-
+/*
             $mail = new PHPMailer();
             $mail->IsSMTP(); // telling the class to use SMTP
             $mail->Host          = "ssl://smtp.mi.com.co";
@@ -1328,7 +1328,7 @@ break;
               // Clear all addresses and attachments for next loop
               $mail->ClearAddresses();
               $mail->ClearAttachments(); 
-            
+        */    
             echo $body;
 
             
