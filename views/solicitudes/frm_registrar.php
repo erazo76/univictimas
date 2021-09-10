@@ -1958,8 +1958,10 @@ $("#izquierda" ).click(function() {
 
 						    confirm: function(){
 								var idea4=$("#ideado").val();
-								
-								//$.post( "../../controllers/msolicitudes_controller", {action: "del_temp",regis4:idea4}).done(function(data){},"json");
+
+								// $.post( "../../controllers/msolicitudes_controller", {action: "del_temp",regis4:idea4}).done(function(data){},"json");								
+								$.post( "../../controllers/msolicitudes_controller", {action: "del_temp_delete",idea4}).done(function(data){},"json");
+							
 
 						    	setTimeout(function(){
 
@@ -2443,7 +2445,7 @@ $("#izquierda" ).click(function() {
 			
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
-			formData.append('action', 'temporal_reg');
+			//formData.append('action', 'temporal_reg');
 			formData.append('idea', $("#ideado").val());
 
 			$.ajax({
@@ -2486,7 +2488,7 @@ $("#izquierda" ).click(function() {
 								
 										var table = $('#tabla').dataTable({
 										  	
-											  //"destroy": true,
+											  "destroy": true,
 	
 											  "ajax": {
 												"url": "../../data_json/data_mdetalles?este="+este,
@@ -2581,7 +2583,7 @@ $("#izquierda" ).click(function() {
 
 									var table = $('#tabla30').dataTable({
 										  
-										  //"destroy": true,
+										  "destroy": true,
 
 										  "ajax": {
 											"url": "../../data_json/data_mequiposo?este="+este,

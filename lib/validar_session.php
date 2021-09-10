@@ -18,16 +18,22 @@ return true;
 }
 
 
+// function VerificarAdmin($rol){//
+// 	if($rol > 1 && $rol < 4){
+// 		header("Location:../inicio/denegado");
+// 		die();
+// 	}
+// }
+
 function VerificarAdmin($rol){//
-	if($rol > 1 && $rol < 4){
+	if($rol !=2  && $rol !=4 && $rol !=7){
 		header("Location:../inicio/denegado");
 		die();
 	}
 }
 
-
 function VerificarAdminNavegador($rol){
-	if($rol !=2  && $rol !=4){
+	if($rol !=2  && $rol !=4 && $rol !=7){
 		header("Location:../views/inicio/denegado");
 		die();
 	}
@@ -36,7 +42,7 @@ function VerificarAdminNavegador($rol){
 
 
 function VerificarAdminDigitalizacion($rol){
-	if($rol <> 2){
+	if($rol <> 2 && $rol !=7){
 		header("Location:../views/inicio/denegado");
 		die();
 	}

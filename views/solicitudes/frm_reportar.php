@@ -396,7 +396,6 @@ ValidaSession("../login");
 
 		$.post( "../../controllers/msolicitudes_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 
-//alert(data);
 	var parsedJson = $.parseJSON(data);
 
 	var idd=parsedJson.id.toString();

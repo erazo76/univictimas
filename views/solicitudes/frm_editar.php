@@ -2625,7 +2625,7 @@ $("#izquierda" ).click(function() {
 
 							var table40 = $('#tabla40').dataTable({
 										  
-										  "destroy": true,
+										 // "destroy": true,
 
 										  "ajax": {
 											"url": "../../data_json/data_mexcel?este="+este,
@@ -2865,10 +2865,29 @@ $("#izquierda" ).click(function() {
 			
 		});
 
+		// $("#anex").click(function() {
+		// 	$('#modal3').modal({backdrop: 'static',keyboard: false});
+			
+			
+		// });
 		$("#anex").click(function() {
-			$('#modal3').modal({backdrop: 'static',keyboard: false});
+			//$('#modal3').modal({backdrop: 'static',keyboard: false});
 			
-			
+			var value= table.$('tr.selected').children('td:first').text();
+				//alert(value);
+				if(!value){
+
+						$.alert({
+							title: '!Seleccione el archivo a visualizar!',
+							content: false,
+							confirmButton: true, // hides the confirm button.
+							closeIcon: false,
+							confirmButton: 'cerrar',
+							confirmButtonClass: 'btn-success'
+						});
+			}else{
+			$(location).attr('href','frm_adjuntados?record='+$("#idea").val()+'&origin=2');
+		}
 		});
 
 		$("#anex2").click(function() {
@@ -3145,7 +3164,7 @@ $("#tele1").val(parsedJson.rs_tele);
 			var identico2 = <?php echo intval($_GET["record"]); ?>;
 							var table = $('#tabla30').dataTable({
 										  	
-											  "destroy": true,
+											  //"destroy": true,
 	
 											  "ajax": {
 												"url": "../../data_json/data_mequipos?este="+identico2,
@@ -3195,7 +3214,7 @@ $("#tele1").val(parsedJson.rs_tele);
 								var identico3 = <?php echo intval($_GET["record"]); ?>;
 							var table = $('#tabla').dataTable({
 										  	
-											  "destroy": true,
+											  //"destroy": true,
 	
 											  "ajax": {
 												"url": "../../data_json/data_mdetalles?este="+identico3,
