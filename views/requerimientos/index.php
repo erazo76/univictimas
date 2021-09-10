@@ -167,7 +167,8 @@ ValidaSession("../login");
 
 			$("#add" ).click(function() {
 
-				//$.post( "../../controllers/mrequerimientos_controller", {action: "del_temp_null"}).done(function(data){},"json");
+				$.post( "../../controllers/mrequerimientos_controller", {action: "del_temp"}).done(function(data){},"json");
+				$.post( "../../controllers/mrequerimientos_controller", {action: "del_temp_null"}).done(function(data){},"json");
 				$.post( "../../controllers/mrequerimientos_controller", {action: "crear"}).done(function(data){},"json");
 
 				setTimeout(function() {       
