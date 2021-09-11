@@ -1,12 +1,15 @@
 <?php
 require_once '../models/Mdetalle.php';
+require_once '../models/Mdetalle_TEMP.php';
+
+
 date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
 @$id = ($_POST["id"]);
 @$idea = ($_POST["idea"]);
 @$ideco = ($_POST["ideco"]);
-
+@$ideco2_temp = ($_POST["ideco2_temp"]);
 @$record = ($_POST["record"]);
 @$recordado = ($_POST["recordado"]);
 @$recordatorio = ($_POST["recordatorio"]);
@@ -27,6 +30,32 @@ date_default_timezone_set('America/Bogota');
 
 switch ($action){
   
+
+  case 'sumar_costo_TEMP':
+    if ($ideco!=null){
+      $ideco=$ideco;
+    }else{
+      $ideco=0;
+    }
+    @$data = Mdetalle_TEPM::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles_TEMP where mrequerimientos_id = '.$ideco2_temp.' and status = 1');
+
+  if($data !=null){
+    foreach($data as $rs){
+      if($rs->tot_cos==null){
+        $contados=0;
+      }else{
+      $contados = $rs->tot_cos;      
+      }
+    }        
+  }else{
+    $contados=0;
+  }
+
+    
+    echo json_encode($contados);
+break;
+
+
     case 'sumar_costo':
       if ($ideco!=null){
         $ideco=$ideco;
@@ -572,8 +601,7 @@ switch ($action){
             session_start();
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
-
-            $tempo = new Mdetalle();
+            $tempo = new Mdetalle_TEMP();
             $tempo->dia = $dia;
             $tempo->d_tipo = $tipo;
             $tempo->d_concepto = $concepto;
@@ -585,6 +613,7 @@ switch ($action){
             $tempo->mrequerimientos_id = $idea;
             $tempo->user_create = $usuario_id;
             $tempo->created = $hoy;
+
                   if($tempo->save()){
 
                     $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
@@ -872,7 +901,7 @@ switch ($action){
         }
 
 
-          //echo json_encode($respuesta);
+          echo json_encode($respuesta);
 
   }
   break;  
