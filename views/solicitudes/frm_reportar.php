@@ -756,6 +756,13 @@ $("#grupo").html( data );
 					var r_cantidad =parsedJson.cantidad;
 					var r_costo =parsedJson.costo;
 					var r_medida =parsedJson.medida;
+					var fecha2 =parsedJson.fecha2;
+					var fecha3 =parsedJson.fecha3;
+					var fecha2 =parsedJson.fecha2;
+					var hora1 =parsedJson.hora1;
+					var hora2 =parsedJson.hora2;
+				
+					
 
 
 							switch (r_medida) {
@@ -776,7 +783,7 @@ $("#grupo").html( data );
 						case 0:
 							//alert(r_dia);
 						//insertar div de SALONES						
-						//$('#salones').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#salones').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#a-1').append('<div  class="caja2 " >'+r_concepto+'</div>');
 						
 						    if(r_dia=="previo 3"){
@@ -828,7 +835,7 @@ $("#grupo").html( data );
 						break;
 						case 1:	
 						//insertar div de ALIMENTACION
-						//$('#alimentos').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#alimentos').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#l-1').append('<div  class="caja2 ">'+r_concepto+'</div>');
 						//alert(r_dia);
 						    if(r_dia=="previo 3"){
@@ -880,7 +887,7 @@ $("#grupo").html( data );
 						break;
 						case 2:	
 						//insertar div de MATERIALES
-						//$('#materiales').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#materiales').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#ad-1').append('<div class="caja2 "  >'+r_concepto+'</div>');
 						//alert(r_dia);
 						    if(r_dia=="previo 3"){

@@ -2240,13 +2240,13 @@ $("#izquierda" ).click(function() {
 							$("#d_medida").val(null);
 							$("#d_obs").val(null);
 							$("#d_costo").val(null);
-
-							//$('#tabla').DataTable().ajax.reload();
+                            //Pendiente de esta parte
+							$('#tabla').DataTable().ajax.reload();
  							$(".alert").alert('close');
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
 
-							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",ideco:ideco2}).done(function( data ) {
+							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo_TEMP",ideco:ideco2}).done(function( data ) {
 								var parsedJson = $.parseJSON(data);
 								var cos_tot=parsedJson;
 								$("#totalite").val( cos_tot );

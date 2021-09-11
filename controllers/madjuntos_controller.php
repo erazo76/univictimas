@@ -8,6 +8,8 @@ session_start([
 
 require_once '../models/Madjunto.php';
 require_once '../models/Madjuntado.php';
+require_once '../models/Madjuntado_TEMP.php';
+
 require_once '../models/Mrequerimiento.php';
 date_default_timezone_set('America/Bogota');
 
@@ -608,7 +610,7 @@ case 'temporal_reg':
 
   @$comodin=$id."_".($_FILES['file']['name']);
   @$blanco=($_FILES['file']['name']);
-  @$consulta1 = Madjuntado::find('all',array('conditions' => array('imagen=?',$comodin)));
+  @$consulta1 = Madjuntado_TEMP::find('all',array('conditions' => array('imagen=?',$comodin)));
 
   if($consulta1 == null && $blanco != ''){
 
@@ -625,7 +627,7 @@ case 'temporal_reg':
         }else{ //si no cargaron nada
           @$nombre_imagen = "";
         }
-        $tempo = new Madjuntado();
+        $tempo = new Madjuntado_TEMP();
 
         $tempo->imagen = $nombre_imagen;
         $tempo->mrequerimientos_id = $id;

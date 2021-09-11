@@ -833,7 +833,25 @@ break;
 break;
 
     #*******************************************************************************
+   
+    case 'del_temp_null_detalles':
+
+      //session_start();
+      @$usuario_id = $_SESSION['idusuariox'];
+      
+      $data = Msolicitude::find('all',array('conditions' => array('status=? AND user_create=?',0,$usuario_id)));
   
+      foreach($data as $rs){
+          
+                   
+          $rs->delete();           
+        
+      }
+  
+      
+  break;
+  
+      #*******************************************************************************
   case 'get_recuperados':
 
        // session_start();

@@ -1224,7 +1224,7 @@ VerificarAdmin($_SESSION['rolx']);
 </div>
 
 <!-- Modal 3 -->
-<div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+<div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="false">
 <form id="form" role="form" enctype="multipart/form-data" >
   <div class="modal-dialog modal-lm">
     <div class="modal-content">
@@ -2865,30 +2865,30 @@ $("#izquierda" ).click(function() {
 			
 		});
 
+		 $("#anex").click(function() {
+		 	$('#modal3').modal({backdrop: 'static',keyboard: false});
+			
+			
+		 });
 		// $("#anex").click(function() {
-		// 	$('#modal3').modal({backdrop: 'static',keyboard: false});
+		// 	//$('#modal3').modal({backdrop: 'static',keyboard: false});
 			
-			
-		// });
-		$("#anex").click(function() {
-			//$('#modal3').modal({backdrop: 'static',keyboard: false});
-			
-			var value= table.$('tr.selected').children('td:first').text();
-				//alert(value);
-				if(!value){
+		// 	var value= table.$('tr.selected').children('td:first').text();
+		// 		//alert(value);
+		// 		if(!value){
 
-						$.alert({
-							title: '!Seleccione el archivo a visualizar!',
-							content: false,
-							confirmButton: true, // hides the confirm button.
-							closeIcon: false,
-							confirmButton: 'cerrar',
-							confirmButtonClass: 'btn-success'
-						});
-			}else{
-			$(location).attr('href','frm_adjuntados?record='+$("#idea").val()+'&origin=2');
-		}
-		});
+		// 				$.alert({
+		// 					title: '!Seleccione el archivo a visualizar!',
+		// 					content: false,
+		// 					confirmButton: true, // hides the confirm button.
+		// 					closeIcon: false,
+		// 					confirmButton: 'cerrar',
+		// 					confirmButtonClass: 'btn-success'
+		// 				});
+		// 	}else{
+		// 	$(location).attr('href','frm_adjuntados?record='+$("#idea").val()+'&origin=2');
+		// }
+		// });
 
 		$("#anex2").click(function() {
              $('#modal4').modal({backdrop: 'static',keyboard: false});
@@ -3191,7 +3191,7 @@ $("#tele1").val(parsedJson.rs_tele);
 													var rows = this.fnGetData();
 													
 													if ( rows.length === 0 ) {
-														document.getElementById("anex").disabled=true;
+														document.getElementById("anex").disabled=false;
 													}
 											}
 	

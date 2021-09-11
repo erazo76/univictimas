@@ -1,7 +1,10 @@
 <?php
 require_once '../models/Mdetalle.php';
-require_once '../models/Mdetalle_TEMP.php';
-
+require_once '../models/MdetallesTemp.php';
+ 
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 date_default_timezone_set('America/Bogota');
 
@@ -24,7 +27,6 @@ date_default_timezone_set('America/Bogota');
 @$medida = ($_POST["medida"]);
 @$costo = ($_POST["costo"]);
 @$observaciones = ($_POST["observaciones"]);
-//@$distribuidora = ($_POST["distribuidora"]);
 @$busco = ($_POST["busco"]);
 /**********************************/
 
@@ -37,7 +39,7 @@ switch ($action){
     }else{
       $ideco=0;
     }
-    @$data = Mdetalle_TEPM::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles_TEMP where mrequerimientos_id = '.$ideco2_temp.' and status = 1');
+    @$data = mdetalles_TEMP::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles_TEMP where mrequerimientos_id = '.$ideco2_temp.' and status = 1');
 
   if($data !=null){
     foreach($data as $rs){
@@ -601,7 +603,7 @@ break;
             session_start();
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
-            $tempo = new Mdetalle_TEMP();
+            $tempo = new MdetallesTemp();
             $tempo->dia = $dia;
             $tempo->d_tipo = $tipo;
             $tempo->d_concepto = $concepto;
@@ -613,7 +615,8 @@ break;
             $tempo->mrequerimientos_id = $idea;
             $tempo->user_create = $usuario_id;
             $tempo->created = $hoy;
-
+        
+           
                   if($tempo->save()){
 
                     $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
