@@ -3,6 +3,7 @@ require_once '../models/Mdetalle.php';
 date_default_timezone_set('America/Bogota');
 session_start();
 @$usuario_id = $_SESSION['idusuariox'];
+@$id_sesion_usuario = $_SESSION['instante'];
 @$action = ($_POST["action"]);
 @$id = ($_POST["id"]);
 @$idea = ($_POST["idea"]);
@@ -706,6 +707,10 @@ switch ($action){
             $hoy = date('d-m-Y');
 
             $tempo = new Mdetalle();
+
+            if(!$id_sesion_usuario){
+              $id_sesion_usuario=1;
+            }
             $tempo->dia = $dia;
             $tempo->d_tipo = $tipo;
             $tempo->d_concepto = $concepto;

@@ -561,8 +561,9 @@ break;
 
        
 
-           /* session_start();
-            @$usuario_id = $_SESSION['idusuariox'];*/
+            session_start();
+            @$usuario_id = $_SESSION['idusuariox'];
+          $id_sesion_usuario = $_SESSION['instante'];
             $hoy = date('d-m-Y');
 
             if($t_trans != null){
@@ -572,7 +573,7 @@ break;
             }
             
             
-            $alia = Msolicitude::find($id);    
+            $alia = new Msolicitude();
             $alia->nombre = $nombre;
             $alia->fecha1 = $hoy;
             $alia->hsoli = $hsoli;
@@ -642,9 +643,44 @@ break;
             $alia->created = $hoy;
             $alia->completado = 1;
             $alia->status = 1;
+            $alia->reg_temp='false';
 
 
-             if($alia->save()){ // da el mensaje de guardado...
+             if($alia->save()){
+ 
+                $data_search = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud 
+                FROM Msolicitudes 
+                                  WHERE status=1 and id_sesion_usuario=id_sesion_usuario 
+                                                 and reg_temp=false and user_create=$alia->user_create; ");
+                
+                $data_search_detalle = Mdetalle::find_by_sql("SELECT id as id_detalles
+                                FROM Mdetalles 
+                                                  WHERE status=1  
+                                                                 and reg_temp=true and mrequerimientos_id is null
+                                                                 and user_create=$alia->user_create; ");
+                  
+                          
+                foreach ($data_search as $acti) {
+                  $num_solicitud=$acti->num_solicitud;
+                   }
+
+                   if($data_search_detalle !=null){
+                    foreach ($data_search_detalle as $detalles_solicitud) {
+                      $reg = Mdetalle::find($detalles_solicitud->id_detalles);
+            
+                        $reg->mrequerimientos_id = $num_solicitud;
+                        $reg ->reg_temp = 'false';
+                        //$reg ->id=$detalles_solicitud->id;
+      
+                        $reg ->save();
+              
+                       }
+
+                     }
+                      
+              
+              
+              // da el mensaje de guardado...
 
               // $mail = new PHPMailer();
               // $mail->IsSMTP(); // telling the class to use SMTP

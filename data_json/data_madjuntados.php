@@ -5,7 +5,9 @@ require_once '../models/Msolicitude.php';
 $unid=$_GET["este"];
 session_start();
 $id_sesion_usuario = $_SESSION['instante'];
-
+if(!$id_sesion_usuario){
+	$id_sesion_usuario=1;
+}
 	$result = array();
 
 
