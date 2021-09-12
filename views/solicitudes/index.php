@@ -2,8 +2,8 @@
 
 include("../../lib/validar_session.php");
 
-ValidaSession("../login");
-//VerificarAdmin($_SESSION['rolx']);
+// ValidaSession("../login");
+// //VerificarAdmin($_SESSION['rolx']);
 
 ?>
 <?php include("../layouts/constantes.php") ?>
