@@ -52,7 +52,15 @@ ValidaSession("../login");
 <script type="text/javascript" src="../../plugins/confirma/jquery-confirm.min.js"></script>
 <link rel="stylesheet" href="../../plugins/confirma/jquery-confirm.min.css" type="text/css"/>
  <script type="text/javascript">
-	$(document).ready(function() {
+
+var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
+
+if ((desh==3)||(desh==4)){
+	document.getElementById("delete").disabled=true;
+}
+
+
+$(document).ready(function() {
 
 		var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 		
@@ -215,8 +223,9 @@ ValidaSession("../login");
 
 			$("#add" ).click(function() {
 				
-				//$.post( "../../controllers/msolicitudes_controller", {action: "del_temp_delete"}).done(function(data){},"json");
-				$.post( "../../controllers/msolicitudes_controller", {action: "del_temp_null"}).done(function(data){},"json");
+				// $.post( "../../controllers/msolicitudes_controller", {action: "del_temp"}).done(function(data){},"json");
+				// $.post( "../../controllers/msolicitudes_controller", {action: "del_temp_null"}).done(function(data){},"json");
+				$.post( "../../controllers/msolicitudes_controller", {action: "del_temp_delete"}).done(function(data){},"json");
 				$.post( "../../controllers/msolicitudes_controller", {action: "crear"}).done(function(data){},"json");
 
 				setTimeout(function() {       
@@ -226,6 +235,8 @@ ValidaSession("../login");
 
 			$('#edit').click( function () {
 				var value= table.$('tr.selected').children('td:first').text();
+				// value=parseFloa(value);
+				// alert(value);
 				if(!value){
 
 						$.alert({
@@ -270,11 +281,11 @@ ValidaSession("../login");
 
 						    		confirm: function(){
 
-										$.post( "../../controllers/mrequerimientos_controller", { action: "delete",record:value}).done(function( data ) {
+										$.post( "../../controllers/msolicitudes_controller", { action: "delete",record:value}).done(function( data ) {
 											//$(".message").html(data);
 											var parsedJson = $.parseJSON(data);
 											$(".message").html(parsedJson.mensaje);
-											window.setTimeout('location.reload()', 3000);
+											window.setTimeout('location.reload()', 500);
 										});						    			
 
 									},

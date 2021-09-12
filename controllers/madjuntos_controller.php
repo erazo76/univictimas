@@ -8,8 +8,6 @@ session_start([
 
 require_once '../models/Madjunto.php';
 require_once '../models/Madjuntado.php';
-require_once '../models/Madjuntado_TEMP.php';
-
 require_once '../models/Mrequerimiento.php';
 date_default_timezone_set('America/Bogota');
 
@@ -25,6 +23,7 @@ date_default_timezone_set('America/Bogota');
 /***********************************/
 //@$distribuidora = ($_POST["distribuidora"]);
 @$id = ($_POST["idea"]);
+@$idea = ($_POST["idea"]);
 @$idea3 = ($_POST["regis3"]);
 @$guarda = ($_POST["guarda"]);
 
@@ -550,16 +549,17 @@ break;
 
  #******************************************************************************
 
-    case 'temporal':
-
+    case 'temporal_reg_solicitud':
+       
       @$comodin=$id."_".($_FILES['file']['name']);
       @$blanco=($_FILES['file']['name']);
       @$consulta1 = Madjunto::find('all',array('conditions' => array('imagen=?',$comodin)));
 
       if($consulta1 == null && $blanco != ''){
 
-            //session_start();
-            //$usuario_id = $_SESSION['idusuariox'];
+        session_start();
+        $usuario_id = $_SESSION['idusuariox'];
+        $id_sesion_usuario = $_SESSION['instante'];
 
             $hoy = date("d-m-Y");
 
@@ -571,11 +571,14 @@ break;
             }else{ //si no cargaron nada
               @$nombre_imagen = "";
             }
+
+         
             $tempo = new Madjunto();
  
             $tempo->imagen = $nombre_imagen;
-            $tempo->mrequerimientos_id = $id;
+           // $tempo->mrequerimientos_id = $id;
             $tempo->user_create = $usuario_id;
+            $tempo->id_sesion_usuario = $id_sesion_usuario;
             $tempo->created = $hoy;
 
                   if($tempo->save()){
@@ -610,7 +613,7 @@ case 'temporal_reg':
 
   @$comodin=$id."_".($_FILES['file']['name']);
   @$blanco=($_FILES['file']['name']);
-  @$consulta1 = Madjuntado_TEMP::find('all',array('conditions' => array('imagen=?',$comodin)));
+  @$consulta1 = Madjuntado::find('all',array('conditions' => array('imagen=?',$comodin)));
 
   if($consulta1 == null && $blanco != ''){
 
@@ -627,10 +630,10 @@ case 'temporal_reg':
         }else{ //si no cargaron nada
           @$nombre_imagen = "";
         }
-        $tempo = new Madjuntado_TEMP();
+        $tempo = new Madjuntado();
 
         $tempo->imagen = $nombre_imagen;
-        $tempo->mrequerimientos_id = $id;
+        $tempo->mrequerimientos_id = $idea;
         $tempo->user_create = $usuario_id;
         $tempo->created = $hoy;
 

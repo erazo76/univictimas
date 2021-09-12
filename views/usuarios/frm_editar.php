@@ -36,12 +36,12 @@ ValidaSession("../login");
 					</select>
 				</div>
 
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="distribuidora">Departamento</label>
 					<select id="distribuidora" class="form-control" tabindex="3">
 					<option></option>
 					</select>
-				</div>
+				</div> -->
 
 				<div class="form-group">
 				  <label for="password1">Contraseña</label>
@@ -122,9 +122,9 @@ ValidaSession("../login");
 		});
 
 		// ***********************************************************************************************
-		$.post( "../../controllers/musuarios_controller", { action: "get_distribuidoras"}).done(function( data ) {
-			 $("#distribuidora" ).html( data );
-		});
+		// $.post( "../../controllers/musuarios_controller", { action: "get_distribuidoras"}).done(function( data ) {
+		// 	 $("#distribuidora" ).html( data );
+		// });
 
 		//cargar datos del formulario ********************************************************************
 		$.post( "../../controllers/musuarios_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
@@ -138,9 +138,9 @@ ValidaSession("../login");
 			$("#nombre").val(parsedJson.nombre);
 			$("#email").val(parsedJson.email);
 			$("#act_email").val(parsedJson.act_email);
-			setTimeout(function() {
-			$('#distribuidora option[value='+parsedJson.distribuidora+']').attr('selected','selected');
-			 }, 100);
+			// setTimeout(function() {
+			// $('#distribuidora option[value='+parsedJson.distribuidora+']').attr('selected','selected');
+			//  }, 100);
 			$('.imgusr').attr('src','../../dist/img/fotos_usuarios/'+parsedJson.imagen);
 
 			var st_mail = $("#act_email").val();
@@ -185,26 +185,26 @@ ValidaSession("../login");
 
 		});
 
-		$("#rol" ).change(function() {
+		// $("#rol" ).change(function() {
 
-			var role = $("#rol" ).val();
+		// 	var role = $("#rol" ).val();
 
-			if(role == 4 || role ==1){
+		// 	if(role == 4 || role ==1){
 
-				 $('label[for="distribuidora"]').hide();
-				 $('#distribuidora').hide();
-				  $('#distribuidora').val(1);
-
-
-			}else{
-
-				 $('label[for="distribuidora"]').show();
-				 $('#distribuidora').show();
-
-			}
+		// 		 $('label[for="distribuidora"]').hide();
+		// 		 $('#distribuidora').hide();
+		// 		  $('#distribuidora').val(1);
 
 
-		});
+		// 	}else{
+
+		// 		 $('label[for="distribuidora"]').show();
+		// 		 $('#distribuidora').show();
+
+		// 	}
+
+
+		// });
 
 
 		//** enviar los datos al controlador ***********************************************************

@@ -146,6 +146,30 @@ ValidaSession("../login");
 							<label for="costo_total">Valor Cotizacion</label>
 							<input class="form-control bbb" id="costo_total"  type="text" placeholder="Valor Cortizacion" onpaste="return false" tabindex="16" >
 						</div>
+
+						<div class="form-group-sm">
+						<HR><h3 class="box-title">Aprobaciones</h3><HR>
+						
+							<?php 
+							
+							 if($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
+							
+							?>
+
+								<label>Nivel supervisor</label>
+								<div class="input-group" >
+									<span class="input-group-addon" >
+									<label>Aprobado</label>
+										<input type="checkbox" id="a_supe">
+									</span>
+									<input type="text" class="form-control ccc" id="a_supeo" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
+								</div>
+															
+								<?php 
+							 }else{
+							}
+							?>
+							</div>
 						<!--<label>Nombre(s) y Apellido(s)</label>
 						<div class="form-group-sm">
 							<input type="text" class="form-control bbb" id="rt_nombre1" placeholder="Ingrese Nombre(s) y Apelido(s)"  onpaste="return false" tabindex="10" onkeypress="return esnombre2(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
@@ -546,6 +570,9 @@ $(document).ready(function() {
 		$("#fecha1").val(parsedJson.fecha1);
 		$("#fecha2").val(parsedJson.fecha2);
 		$("#costo_total").val(parsedJson.costo_total);
+		$("#a_supe").val(parsedJson.a_supe);
+		$("#a_supeo").val(parsedJson.a_supeo);
+
 
 		var bdep =parsedJson.departamento;
 		var bmun =parsedJson.municipio;
@@ -590,7 +617,14 @@ $(document).ready(function() {
 
 });
 
-
+$("#a_supe" ).click(function() {
+			if( $('#a_supe').prop('checked')== true ) {
+				$("#a_supe").val(1);  
+				document.getElementById('a_supeo').disabled = false;
+			}else{
+				$("#a_supe").val(0); 
+			}
+		});
 
 
 //MASCARAS DE VALIDACION ########################################
@@ -1974,6 +2008,8 @@ $("#izquierda" ).click(function() {
 					tele2: $("#tele2").val(),
 					correo2: $("#correo2").val(),					
 					fecha2: $("#fecha2").val(),
+					a_supeo: $("#a_supe").val(),
+					a_supeo: $("#a_supeo").val(),
 					costo_total: $("#costo_total").val()
 
 				}).done(function(data){

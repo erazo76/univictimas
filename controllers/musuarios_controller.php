@@ -59,6 +59,17 @@ switch ($action){
 		 }
 	break;
 
+	case 'get_departamento':
+		$data = Mdistribuidora::find('all',array('conditions' => array('status=?',1),'order' => 'id desc'));
+		$resp  = '';
+		if(!empty($data)){
+			foreach($data as $rs){
+				$resp .= '<option value="'.$rs->id.'">'.$rs->nombre.'</option>';
+			}
+			echo $resp;
+		 }
+	break;
+
 	case 'search':
 
 		if(!empty($record)){
@@ -702,21 +713,21 @@ switch ($action){
 
 
 				foreach($consulta as $rs){
-					$dis_t=$rs->mdistribuidoras_id;
-							if($dis_t==null){
-								$dis_t==0;
-							}
-					@$consulta2 = Mdistribuidora::find('all',array('conditions' => array('id=?',$dis_t)));
+					// $dis_t=$rs->mdistribuidoras_id;
+					// 		if($dis_t==null){
+					// 			$dis_t==0;
+					// 		}
+					// @$consulta2 = Mdistribuidora::find('all',array('conditions' => array('id=?',$dis_t)));
 
-					foreach($consulta2 as $rm){
+					// foreach($consulta2 as $rm){
 
-						$region=$rm->mregiones_id;
-							if($region==null){
-								$region==0;
-							}
+					// 	$region=$rm->mregiones_id;
+					// 		if($region==null){
+					// 			$region==0;
+					// 		}
 
 
-					}
+					// }
 
 					if($rs->act_clave == 0){
 
@@ -731,8 +742,8 @@ switch ($action){
 						 $_SESSION['imagen_perfilx']= $rs->imagen;
 						 $_SESSION['nombre_rolx']= $rs->descripcion;
 						 $_SESSION['creadox']= ($rs->created->format('d-m-Y'));
-						 $_SESSION['distribuidora']= $dis_t;
-						 $_SESSION['region']= $region;
+						// $_SESSION['distribuidora']= $dis_t;
+						// $_SESSION['region']= $region;
 //echo($_SESSION['distribuidora']);
 						header("Location: ../views/act_pass/");
 						exit();
@@ -748,8 +759,8 @@ switch ($action){
 						 $_SESSION['imagen_perfilx']= $rs->imagen;
 						 $_SESSION['nombre_rolx']= $rs->descripcion;
 						 $_SESSION['creadox']= ($rs->created->format('d-m-Y'));
-						 $_SESSION['distribuidora']= $dis_t;
-						 $_SESSION['region']=$region;
+						//  $_SESSION['distribuidora']= $dis_t;
+						//  $_SESSION['region']=$region;
 //echo($_SESSION['distribuidora']);exit();
 					}
 				}

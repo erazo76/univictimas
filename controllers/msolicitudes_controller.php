@@ -284,21 +284,20 @@ break;
 /***************************************** CREAR ****************************************** */
 case 'crear':
   //session_start();
-  @$usuario_id = $_SESSION['idusuariox'];
-  $hoy = date('d-m-Y');
-  $alia = new Msolicitude();  
-  $alia->created = $hoy;
-  //$alia->completado = 3;
-  $alia->mdepartamentos_id = 5;
-  $alia->mmunicipios_id = 5045;
-  $alia->fecha2=  $hoy;
-  $alia->rt_nombre1 = 1;
-  $alia->rt_nombre2 = 1;
-  $alia->rn_nombre1 = 1;
-  $alia->user_create = $usuario_id;
-  $alia->status = 0;
- 
-//  $alia->save();    
+  // @$usuario_id = $_SESSION['idusuariox'];
+  // $hoy = date('d-m-Y');
+  // $alia = new Msolicitude();  
+  // $alia->created = $hoy;
+  // //$alia->completado = 3;
+  // $alia->mdepartamentos_id = 5;
+  // $alia->mmunicipios_id = 5045;
+  // $alia->fecha2=  $hoy;
+  // $alia->rt_nombre1 = 1;
+  // $alia->rt_nombre2 = 1;
+  // $alia->rn_nombre1 = 1;
+  // $alia->user_create = $usuario_id;
+  // $alia->status = 0; 
+ // $alia->save();    
 break;
 
 /******************************************** ADD *************************************** */
@@ -780,26 +779,20 @@ break;
   case 'del_temp_delete':
 
 
-     $dataA = Madjuntado::find('all',array('conditions' => array('mrequerimientos_id='.$idea4.' AND mrequerimientos_id not in (select id from msolicitudes where id='.$idea4.')')));
+     $dataA = Madjuntado::find('all',array('conditions' => array('id=? and reg_temp=true and user_create=?',$regis4,$usuario_id)));
      foreach($dataA as $rs){
                         
       $rs->delete();          
     
   }
-     $dataB = Mdetalle::find('all',array('conditions' => array('mrequerimientos_id='.$idea4.' AND mrequerimientos_id not in (select id from msolicitudes where id='.$idea4.')')));
+     $dataB = Mdetalle::find('all',array('conditions' => array(' reg_temp=true and user_create=?',$regis4,$usuario_id)));
      foreach($dataB as $rs){
                         
       $rs->delete();          
     
   }
 
-     $data = Msolicitude::find('all',array('conditions' => array('id=? AND user_create=?',$regis4,$usuario_id)));
-
-    foreach($data as $rs){
-                        
-        $rs->delete();          
       
-    }      
              
         @$data2 = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=?',$regis4)));
 
@@ -1703,6 +1696,7 @@ case 'aprobar':
 
           $resp = array(
                   "id"=>$rs->id,
+                  "cid"=>$rs->cid,
                   "nombre"=>$rs->nombre,
                   "fecha1"=>(string)$rs->fecha1->format("d-m-Y"),
                   "hsoli"=>$rs->hsoli,

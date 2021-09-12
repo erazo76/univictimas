@@ -1,18 +1,13 @@
 <?php
 require_once '../models/Mdetalle.php';
-require_once '../models/MdetallesTemp.php';
- 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
 date_default_timezone_set('America/Bogota');
-
+session_start();
+@$usuario_id = $_SESSION['idusuariox'];
 @$action = ($_POST["action"]);
 @$id = ($_POST["id"]);
 @$idea = ($_POST["idea"]);
 @$ideco = ($_POST["ideco"]);
-@$ideco2_temp = ($_POST["ideco2_temp"]);
+
 @$record = ($_POST["record"]);
 @$recordado = ($_POST["recordado"]);
 @$recordatorio = ($_POST["recordatorio"]);
@@ -27,44 +22,16 @@ date_default_timezone_set('America/Bogota');
 @$medida = ($_POST["medida"]);
 @$costo = ($_POST["costo"]);
 @$observaciones = ($_POST["observaciones"]);
+//@$distribuidora = ($_POST["distribuidora"]);
 @$busco = ($_POST["busco"]);
+
 /**********************************/
 
 switch ($action){
   
-
-  case 'sumar_costo_TEMP':
-    if ($ideco!=null){
-      $ideco=$ideco;
-    }else{
-      $ideco=0;
-    }
-    @$data = mdetalles_TEMP::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles_TEMP where mrequerimientos_id = '.$ideco2_temp.' and status = 1');
-
-  if($data !=null){
-    foreach($data as $rs){
-      if($rs->tot_cos==null){
-        $contados=0;
-      }else{
-      $contados = $rs->tot_cos;      
-      }
-    }        
-  }else{
-    $contados=0;
-  }
-
-    
-    echo json_encode($contados);
-break;
-
-
     case 'sumar_costo':
-      if ($ideco!=null){
-        $ideco=$ideco;
-      }else{
-        $ideco=0;
-      }
-      @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = '.$ideco.' and status = 1');
+
+      @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where id_sesion_usuario = '.$usuario_id.' and reg_temp=true and status = 1');
 
     if($data !=null){
       foreach($data as $rs){
@@ -74,8 +41,6 @@ break;
         $contados = $rs->tot_cos;      
         }
       }        
-    }else{
-      $contados=0;
     }
 
       
@@ -517,9 +482,144 @@ break;
          echo $resp;
     break;
 
+
+  #******************************************************************************
+
+  case 'update_reg_solicitud':
+
+    if($dia ==""){
+
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese el día de item.
+          </div>');
+
+    }else if($tipo ==""){
+
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese el tipo de item.
+          </div>');
+
+    }else if($concepto ==""){
+
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese concepto del item.
+          </div>');
+
+    }else if($cantidad ==""){
+
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese la cantidad de items.
+          </div>');
+
+    }else  if($medida ==""){
+
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese la unidad de medida del item.
+          </div>');
+
+    }else  if($costo ==""){
+
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese el costo del item.
+          </div>');
+
+    }else  if($observaciones ==""){
+
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese el las observaciones.
+          </div>');
+
+    }else{
+
+          session_start();
+          $usuario_id = $_SESSION['idusuariox'];
+          $id_sesion_usuario = $_SESSION['instante'];
+          $hoy = date('d-m-Y');
+
+          $tempo = new Mdetalle();
+          $tempo->dia = $dia;
+          $tempo->d_tipo = $tipo;
+          $tempo->d_concepto = $concepto;
+          $tempo->d_cantidad = $cantidad;
+          $tempo->d_medida = $medida;
+          $tempo->d_costo = $costo;
+          $tempo->d_costo_t = $costo*$cantidad;
+          $tempo->d_obs = $observaciones;
+          $tempo->mrequerimientos_id =$idea;
+          $tempo->user_create = $usuario_id;
+          $tempo->id_sesion_usuario = $id_sesion_usuario;
+          $tempo->reg_temp = 'false';
+
+          $tempo->created = $hoy;
+                if($tempo->save()){
+
+                  $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
+                      <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                      <h4>
+                      <i class="icon fa fa-check"></i>
+                      Alerta!
+                      </h4>
+                      Se registro el item exitosamente !.
+                      </div>');
+
+                }else{
+
+
+                  $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
+                      <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                      <h4>
+                      <i class="icon fa fa-ban"></i>
+                      Alerta!
+                      </h4>
+                      Error al registrar el item.
+                      </div>');
+
+                }
+    }
+      echo json_encode($respuesta);
+    break;
+
+#******************************************************************************
+ 
+    
  #******************************************************************************
 
-    case 'temporal':
+    case 'detalles_temporal':
 
       if($dia ==""){
 
@@ -602,8 +702,10 @@ break;
 
             session_start();
             $usuario_id = $_SESSION['idusuariox'];
+            $id_sesion_usuario = $_SESSION['instante'];
             $hoy = date('d-m-Y');
-            $tempo = new MdetallesTemp();
+
+            $tempo = new Mdetalle();
             $tempo->dia = $dia;
             $tempo->d_tipo = $tipo;
             $tempo->d_concepto = $concepto;
@@ -612,11 +714,10 @@ break;
             $tempo->d_costo = $costo;
             $tempo->d_costo_t = $costo*$cantidad;
             $tempo->d_obs = $observaciones;
-            $tempo->mrequerimientos_id = $idea;
+            // $tempo->mrequerimientos_id = $idea;
             $tempo->user_create = $usuario_id;
+            $tempo->id_sesion_usuario = $id_sesion_usuario;
             $tempo->created = $hoy;
-        
-           
                   if($tempo->save()){
 
                     $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
@@ -904,7 +1005,7 @@ break;
         }
 
 
-          echo json_encode($respuesta);
+          //echo json_encode($respuesta);
 
   }
   break;  

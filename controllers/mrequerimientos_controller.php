@@ -1627,7 +1627,68 @@ case 'aprobar':
 
     break;
 
+  case 'delete_cotizacion':
 
+      if($record !=null){
+
+        //session_start();
+        //@$usuario_id = $_SESSION['idusuariox'];
+        $rol = $_SESSION['rolx'];
+        $hoy = date("d-m-Y");
+
+        if($usuario_id !="" /*&& ($rol ==1 || $rol==4)*/){
+
+                  $alia= Mrequerimiento::find($record);
+                  $alia->user_modify = $usuario_id;
+                  $alia->updated = $hoy;
+                  $alia->status = 0;
+
+                  if($alia->save()){
+
+                    $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
+                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                        <h4>
+                        <i class="icon fa fa-check"></i>
+                        Alerta!
+                        </h4>
+                        Registro eliminado exitosamente !.
+                        </div>');
+
+                  }else{
+
+
+                    $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
+                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                        <h4>
+                        <i class="icon fa fa-ban"></i>
+                        Alerta!
+                        </h4>
+                        Error al eliminar el registro.
+                        </div>');
+
+                  }
+
+        }else{
+
+              $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
+                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                  <h4>
+                  <i class="icon fa fa-ban"></i>
+                  Alerta!
+                  </h4>
+                  Transacción denegada !
+                  </div>');
+
+        }
+
+
+          echo json_encode($respuesta);
+
+  }
+  break;
+
+
+#*******************************************************************************
   case 'delete':
 
       if($record !=null){

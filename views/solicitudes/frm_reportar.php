@@ -394,7 +394,7 @@ ValidaSession("../login");
 		}*/
 
 
-		$.post( "../../controllers/msolicitudes_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+		$.post( "../../controllers/msolicitudes_controller", { action: "search_reporte_solicitud",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 
 	var parsedJson = $.parseJSON(data);
 

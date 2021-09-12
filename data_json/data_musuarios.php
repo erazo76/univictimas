@@ -1,20 +1,20 @@
 <?php
 require_once '../models/Musuario.php';
 	$result = array();
-	@$data = Vusuario::find_by_sql("select cid,username,name,email,descripcion,nombre,mroles_id from vusuarios;");
+	@$data = Vusuario::find_by_sql("select cid,username,name,email,descripcion,mroles_id from vusuarios;");
 	$items = 0;
 	foreach ($data as &$rs) {
 
 		@$ema=$rs->email;
 		@$rolet=$rs->mroles_id;
-		@$nomper=$rs->nombre;
+		@$nomper=$nomper='SOPORTE';
 
 		if($rolet==1 || $rolet==4){
 
 				$nomper='SOPORTE';
 
 			}
-		if($rolet==2 || $rolet==5 || $rolet==6 || $rolet==7){
+		if($rolet==2 ){
 
 				$nomper='SUPERVISiÓN';
 

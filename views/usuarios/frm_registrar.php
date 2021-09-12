@@ -34,12 +34,12 @@ ValidaSession("../login");
 					</select>
 				</div>
 
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="distribuidora">Departamento</label>
 					<select id="distribuidora" class="form-control" tabindex="3">
 					<option></option>
 					</select>
-				</div>
+				</div> -->
 
 				<div class="form-group">
 				  <label for="password1">Contraseña</label>

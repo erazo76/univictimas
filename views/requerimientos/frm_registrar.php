@@ -154,7 +154,7 @@ ValidaSession("../login");
 						
 							<?php 
 							
-							 if($_SESSION['rolx']==7 || $_SESSION['rolx']==4){
+							 if($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
 							
 							?>
 

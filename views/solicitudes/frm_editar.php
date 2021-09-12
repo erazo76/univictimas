@@ -3,7 +3,8 @@
 include("../../lib/validar_session.php");
 
 ValidaSession("../login");
-VerificarAdmin($_SESSION['rolx']);
+@$id_global = ($_POST["value"]);
+
 
 ?>
 
@@ -627,7 +628,7 @@ VerificarAdmin($_SESSION['rolx']);
 						<div class="box-body">
 							<div class="form-group-sm">
 							<?php 
-							if($_SESSION['rolx']==2 || $_SESSION['rolx']==4){
+							if($_SESSION['rolx']==2 || $_SESSION['rolx']==1){
 							
 							?>
 
@@ -639,7 +640,7 @@ VerificarAdmin($_SESSION['rolx']);
 									<input disabled type="text" class="form-control ccc" id="a_terro" placeholder="Observación"  onpaste="return false" tabindex="0" autocomplete="off">
 								</div>								
 								<?php 
-							 }elseif($_SESSION['rolx']==5 || $_SESSION['rolx']==4){
+							 }elseif($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
 							
 							?>
 								<label>Nivel nacional</label>
@@ -650,7 +651,7 @@ VerificarAdmin($_SESSION['rolx']);
 									<input disabled type="text" class="form-control ccc" id="a_nacio" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
 								</div>	
 								<?php 
-							 }elseif($_SESSION['rolx']==6 || $_SESSION['rolx']==4){
+							 }elseif($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
 							
 							?>							
 								<label>Nivel Funcionario</label>
@@ -661,7 +662,7 @@ VerificarAdmin($_SESSION['rolx']);
 									<input disabled type="text" class="form-control ccc" id="a_funco" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
 								</div>
 								<?php 
-							 }elseif($_SESSION['rolx']==7 || $_SESSION['rolx']==4){
+							 }elseif($_SESSION['rolx']==1 || $_SESSION['rolx']==1){
 							
 							?>
 
@@ -748,7 +749,9 @@ VerificarAdmin($_SESSION['rolx']);
 
 						<label>Total</label>
 						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="totalite" disabled>
+							<!-- <input type="text" class="form-control pesos" id="totalite" disabled> -->
+							<input type="text" class="form-control pesos" id="totalite" >
+
 						</div>
 
 
@@ -1365,21 +1368,23 @@ $(document).ready(function() {
 	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 */
-setTimeout(function() {	
-	$.post( "../../controllers/msolicitudes_controller", { action: "contar_id"}).done(function( data ) {
-		var parsedJson = $.parseJSON(data);
-		var numstring=parsedJson.toString();
-		var res = numstring.padStart(4, 0);
+// setTimeout(function() {	
+// 	$.post( "../../controllers/msolicitudes_controller", { action: "contar_id"}).done(function( data ) {
+// 		var parsedJson = $.parseJSON(data);
+// 		var numstring=parsedJson.toString();
+// 		var res = numstring.padStart(4, 0);
+// 		var global=<?php echo $id_global;  ?>;
 		
-//alert(parsedJson);
-		//$("#n_accion").val( res );
-		$("#ideado").val( numstring );
-	},"json");
+// //alert(parsedJson);
+// 		//S$("#n_accion").val( res );
+// 		$("#ideado").val( global );
+// 		//$("#id_req").val( id_global );
+// 	},"json");
 
-}, 2500);
+// }, 2500);
 
 setTimeout(function() {	
-var ideco=$("#ideado").val();
+var ideco=$("#idea").val();
 	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo", ideco:ideco}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
 		var cos_tot=parsedJson;
@@ -1390,7 +1395,7 @@ var ideco=$("#ideado").val();
 //alert(desh);
 		switch (desh) {
 
-		case 4:	document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
+		case 1:	document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
 				document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
 				document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
 				document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
@@ -1400,26 +1405,26 @@ var ideco=$("#ideado").val();
 				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
 				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;		
 			    break;
-		case 3:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				break;	
-		case 5:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				break;			
-		case 6:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				break;
-		case 7:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
-				break;
+		// case 3:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+		// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
+		// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
+		// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
+		// 		break;	
+		// case 5:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+		// 		document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
+		// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
+		// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
+		// 		break;			
+		// case 6:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+		// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
+		// 		document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
+		// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
+		// 		break;
+		// case 7:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+		// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
+		// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
+		// 		document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
+		// 		break;
 	}
 
 
@@ -2211,11 +2216,13 @@ $("#izquierda" ).click(function() {
 
 
 		$("#close1").click(function() {
-			var ideco2=$("#ideado").val();
+			//var ideco2=$("#n_accion").val();
+
+		
 				$.post( "../../controllers/mdetalles_controller", {
 
-					action: "temporal",
-					idea:$('#ideado').val(),
+					action: "update_reg_solicitud",
+					idea:$('#idea').val(),					
 					dia: $('#dia').val(),
 					tipo: $('#d_tipo').val(),
 					concepto: $('#d_concepto').val(),
@@ -2223,6 +2230,7 @@ $("#izquierda" ).click(function() {
 					medida: $('#d_medida').val(),
 					costo: $('#d_costo').val(),
 					observaciones: $('#d_obs').val()
+				
 
 				}).done(function(data){
 
@@ -2246,7 +2254,7 @@ $("#izquierda" ).click(function() {
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
 
-							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",ideco:ideco2}).done(function( data ) {
+							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",idea}).done(function( data ) {
 								var parsedJson = $.parseJSON(data);
 								var cos_tot=parsedJson;
 								$("#totalite").val( cos_tot );
@@ -2360,7 +2368,7 @@ $("#izquierda" ).click(function() {
 			$.post( "../../controllers/mvictimas_controller", {
 
 				action: "temporal",
-				idea:$('#ideado').val(),
+				idea:$('#idea').val(),
 				nombre2: $('#nombre2').val(),
 				t_doc2: $('#t_doc2').val(),
 				num_doc2: $('#num_doc2').val(),
@@ -2406,7 +2414,7 @@ $("#izquierda" ).click(function() {
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
 			formData.append('action', 'temporal_reg');
-			formData.append('idea', $("#ideado").val());
+			formData.append('idea', $("#idea").val());
 
 			$.ajax({
 				url: "../../controllers/madjuntos_controller",
@@ -2483,7 +2491,7 @@ $("#izquierda" ).click(function() {
 
 
 		setTimeout(function() {	
-								var este = document.getElementById("ideado").value;
+								var este = document.getElementById("idea").value;
 
 								
 										var table = $('#tabla').dataTable({
@@ -2491,7 +2499,7 @@ $("#izquierda" ).click(function() {
 											  "destroy": true,
 	
 											  "ajax": {
-												"url": "../../data_json/data_mdetalles?este="+este,
+												"url": "../../data_json/data_mdetalles?este="+res,
 												"dataSrc": ""
 											  },
 	
@@ -3265,8 +3273,8 @@ $("#tele1").val(parsedJson.rs_tele);
 		$.post( "../../controllers/msolicitudes_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 
 		var parsedJson = $.parseJSON(data);
-
-		$("#n_accion").val(parsedJson.id);
+         
+		$("#n_accion").val(parsedJson.cid);
 		$("#nombre").val(parsedJson.nombre);
 		$("#fecha1").val(parsedJson.fecha1);
 		$("#hsoli").val(parsedJson.hsoli);

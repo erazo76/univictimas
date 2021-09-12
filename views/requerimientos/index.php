@@ -37,9 +37,9 @@ ValidaSession("../login");
 					<button id="add" class="btn btn-primary" type="button"><i class="fa fa-fw fa-plus"></i> Agregar</button>
 					<button id="edit" class="btn btn-primary" type="button"><i  class="fa fa-fw fa-pencil"></i> Editar</button>
 					<button id="see" class="btn btn-primary" type="button"><i  class="fa fa-fw fa-eye"></i> Ver</button>
-					<!--<button id="delete" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> Eliminar</button>
-					<button id="repo" class="btn btn-primary" type="button"><i class="fa fa-fw fa-eye"></i>Vista previa</button>
-					-->
+					<button id="delete" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> Eliminar</button>
+					<!--<button id="repo" class="btn btn-primary" type="button"><i class="fa fa-fw fa-eye"></i>Vista previa</button>-->
+					
 				</div>
 			</div>
 		</div>
@@ -69,9 +69,9 @@ ValidaSession("../login");
 				  },
 				  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
 
-						if ((mData.aprobado)== 3){
+						if ((mData.a_supe)== 1){
 
-							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/asignado.png),radial-gradient(white, yellow)');
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/aprobado1.png),radial-gradient(white,white )');
 							$('td:eq(0)', nRow).css('background-size','70px 25px');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
@@ -81,7 +81,7 @@ ValidaSession("../login");
 
 						}else{
 								
-							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/despachado.png),radial-gradient(yellow, white)');
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/asignado.png),radial-gradient(white, white)');
 							$('td:eq(0)', nRow).css('background-size','70px 25px');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
@@ -102,6 +102,7 @@ ValidaSession("../login");
 						{ "data": "fecha" },
 						{ "data": "costo_total" },						
 						{ "data": "aprobado" },
+						
 						
 					],
 			       // fixedColumns: false,
@@ -217,6 +218,49 @@ ValidaSession("../login");
 
 				}
 			} );
+
+			$('#delete').click( function () {
+				var value= table.$('tr.selected').children('td:first').text();
+				if(!value){
+
+						$.alert({
+						    title: '!Seleccione el registro a eliminar !',
+						    content: false,
+						    confirmButton: true, // hides the confirm button.
+						    closeIcon: false,
+						    confirmButton: 'cerrar',
+						    confirmButtonClass: 'btn-success'
+						});
+
+				}else{
+
+						$.confirm({
+
+								    title: '¿Desea eliminar este registro?!',
+								    content:false,
+								    confirmButton: 'Si',
+								    cancelButton: 'No',
+								    confirmButtonClass: 'btn-primary',
+		    						    cancelButtonClass: 'btn-success',
+
+						    		confirm: function(){
+
+										$.post( "../../controllers/mrequerimientos_controller", { action: "delete_cotizacion",record:value}).done(function( data ) {
+											//$(".message").html(data);
+											var parsedJson = $.parseJSON(data);
+											$(".message").html(parsedJson.mensaje);
+											window.setTimeout('location.reload()', 500);
+										});						    			
+
+									},
+								 	cancel: function(){
+
+									}
+						});
+
+				}
+			});
+
 
 			$('#repo').click( function () {
 				var value= table.$('tr.selected').children('td:first').text();

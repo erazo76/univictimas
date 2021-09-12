@@ -5,9 +5,7 @@
 @$id_sesion = $_SESSION['idsessionx'];
 @$rol = $_SESSION['rolx'];
 
-if(!empty($id_sesion) && ($rol==4 )){//privilegios del programador
-
-
+	if(!empty($id_sesion) && ($rol<=2)){//privilegios del programador y Supervisor
 
 	echo '<ul class="sidebar-menu nav">';
 
@@ -37,35 +35,27 @@ if(!empty($id_sesion) && ($rol==4 )){//privilegios del programador
 
 	
 
-}
-
-
-if(!empty($id_sesion) && ($rol == 1)){//privilegios de administrador
-
-	echo '<ul class="sidebar-menu">';
-		echo ' <li class="header">MENU</li>';
-		echo ' <li class="treeview"><a href="#"><i class="fa fa-wrench fa-lg"></i> <span>Administrador</span> <i class="fa fa-angle-left pull-right"></i></a><ul class="treeview-menu">';
-			echo '<li><a href="../usuarios/"><i class="fa fa-users"></i> <span>Usuarios</span></a></li>';
-			//echo '<li><a href="../grupos/"><i class="fa fa-bookmark"></i> <span>Dependencias</span></a></li>';
-			//echo '<li><a href="../regiones/"><i class="fa fa-globe"></i> <span>Regiones</span></a></li>';
-			//echo '<li><a href="../distribuidoras/"><i class="fa fa-truck"></i> <span>Departamentos</span></a></li>';
-			echo '</ul>';
-		echo '</li>';
-	
-	echo '</ul>';
-
-}
-
-if(!empty($id_sesion) && ($rol==3)){ //privilegios de colaborador
+}else if(!empty($id_sesion) && (($rol==3)||($rol==4))){ //privilegios de SUBDIRECTOR Y ENLACE
 
 	echo '<ul class="sidebar-menu nav">';
 
 		echo ' <li class="header">MENU</li>';
 		echo ' <li class="treeview"><a href="#"><i class="fa fa-link"></i> <span>Procesos</span> <i class="fa fa-angle-left pull-right"></i></a><ul class="treeview-menu">';
-			//echo '<li><a href="../aliados/"><i class="fa fa-link"></i> <span>Registro de Aliado Comercial</span></a></li>';
-			echo '<li><a href="../requerimientos/"><i class="fa fa-certificate "></i> <span>Cotizaciones</span></a></li>';
 			echo '<li><a href="../solicitudes/"><i class="fa fa-certificate "></i> <span>Requerimientos</span></a></li>';
-			//echo '<li><a href="../mapa/"><i class="fa fa-link"></i> <span>Geolocalización</span></a></li>';
+		echo '</ul>';
+		echo '</li>';
+
+
+
+	echo '</ul>';
+
+}else if(!empty($id_sesion) && ($rol==5)){ //privilegios de OPERADOR LOGISTICO
+
+	echo '<ul class="sidebar-menu nav">';
+
+		echo ' <li class="header">MENU</li>';
+		echo ' <li class="treeview"><a href="#"><i class="fa fa-link"></i> <span>Procesos</span> <i class="fa fa-angle-left pull-right"></i></a><ul class="treeview-menu">';
+		echo '<li><a href="../requerimientos/"><i class="fa fa-certificate "></i> <span>Cotizaciones</span></a></li>';
 		echo '</ul>';
 		echo '</li>';
 
@@ -75,7 +65,12 @@ if(!empty($id_sesion) && ($rol==3)){ //privilegios de colaborador
 
 }
 
-if(!empty($id_sesion) && (($rol==2 ) || ($rol==5 ) || ($rol==6 ) || ($rol==7 ))){//privilegios de supervisor
+
+
+
+
+
+else if(!empty($id_sesion) && (($rol==2 ) || ($rol==5 ) || ($rol==6 ) || ($rol==7 ))){//privilegios de supervisor
 
 	echo '<ul class="sidebar-menu nav">';
 

@@ -3,7 +3,7 @@
 include("../../lib/validar_session.php");
 
 ValidaSession("../login");
-//VerificarAdmin($_SESSION['rolx']);
+// VerificarAdmin($_SESSION['rolx']);
 
 ?>
 <?php include("../layouts/constantes.php")?>
@@ -25,7 +25,7 @@ ValidaSession("../login");
 									<th>Nombre y Apellido</th>
 									<th>Correo</th>
 									<th>Perfil</th>
-									<th>Departamento</th>
+									
 
 								</tr>
 							</thead>
@@ -38,7 +38,7 @@ ValidaSession("../login");
 									<th>Nombre y Apellido</th>
 									<th>Correo</th>
 									<th>Perfil</th>
-									<th>Departamento</th>
+									
 								</tr>
 							</tfoot>
 						</table>
@@ -70,8 +70,7 @@ ValidaSession("../login");
 						{ "data": "username" },
 						{ "data": "name" },
 						{ "data": "email" },
-						{ "data": "descripcion" },
-						{"data":"distribuidora"}
+						{ "data": "descripcion" }
 					],
 					 "order": [[ 0, "asc" ]]
 			});

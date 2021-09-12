@@ -1,9 +1,23 @@
 <?php
 require_once '../models/Mdetalle.php';
+require_once '../models/Msolicitude.php';
+
 $unid=$_GET["este"];
+session_start();
+$id_sesion_usuario = $_SESSION['instante'];
 
 	$result = array();
-	$data = Mdetalle::find_by_sql("select id,cid,d_tipo,d_concepto,d_cantidad,d_medida,d_costo,d_obs,mrequerimientos_id,status,dia from mdetalles WHERE status=1 AND mrequerimientos_id=".$unid." order by id desc;");
+	$data_search = Msolicitude::find_by_sql("SELECT id FROM Msolicitudes WHERE status=1 and id=$unid ");
+  
+	$cadena='AND reg_temp=true and id_sesion_usuario='.$id_sesion_usuario.'';
+
+	if($data_search !=null){
+		$cadena='AND reg_temp=false and mrequerimientos_id='.$unid.' ';
+	   }
+
+
+
+	$data = Mdetalle::find_by_sql("select id,cid,d_tipo,d_concepto,d_cantidad,d_medida,d_costo,d_obs,mrequerimientos_id,status,dia from mdetalles WHERE status=1 $cadena order by id desc;");
 	$items = 0;
 
 	foreach ($data as &$rs) {

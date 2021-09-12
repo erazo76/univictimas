@@ -3,7 +3,10 @@
 include("../../lib/validar_session.php");
 
 ValidaSession("../login");
-VerificarAdmin($_SESSION['rolx']);
+//VerificarAdmin($_SESSION['rolx']);
+session_start();
+$_SESSION['instante']   = time();
+
 
 ?>
 
@@ -333,24 +336,7 @@ VerificarAdmin($_SESSION['rolx']);
 						</div>
 						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_apellido1' class="aaa"><p></p></div>
 													
-						<!--<div class="form-group-sm">
-							<label >Documento de Identidad</label>
-								<div class = "input-group">
-
-									<span class="input-group-btn">
-										<select id="rt_tdoc" class="btn-sm"  tabindex="22"  >
-											<option value="0">CC</option>
-											<option value="1">CE</option>
-											<option value="2">PA</option>
-										</select>
-									</span>
-
-									<input type="text" class="form-control bbb" id="rt_num_doc" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="23" onkeypress="return escedula1(event);" onblur="alsalira(this.id)" autocomplete="off">
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rt_num_doc' class="aaa"><p></p></div>
-						</div>-->	
-
-						<div class="form-group-sm">
+					<div class="form-group-sm">
 						<label for="tele1">Teléfono de contacto</label>
 						<input type="text" class="form-control bbb" id="tele1" placeholder="Ingrese un número telefónico"  onpaste="return false" tabindex="24" onkeypress="return estele1(event);" onblur="alsalir2(this.id)" autocomplete="off">
 						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_tele1' class="aaa"></div>
@@ -629,7 +615,7 @@ VerificarAdmin($_SESSION['rolx']);
 						<div class="box-body">
 							<div class="form-group-sm">
 							<?php 
-							if($_SESSION['rolx']==2 || $_SESSION['rolx']==4){
+							if($_SESSION['rolx']==1 || $_SESSION['rolx']==1){
 							
 							?>
 
@@ -641,7 +627,7 @@ VerificarAdmin($_SESSION['rolx']);
 									<input disabled type="text" class="form-control ccc" id="a_terro" placeholder="Observación"  onpaste="return false" tabindex="0" autocomplete="off">
 								</div>								
 								<?php 
-							 }elseif($_SESSION['rolx']==5 || $_SESSION['rolx']==4){
+							 }elseif($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
 							
 							?>
 								<label>Nivel nacional</label>
@@ -652,7 +638,7 @@ VerificarAdmin($_SESSION['rolx']);
 									<input disabled type="text" class="form-control ccc" id="a_nacio" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
 								</div>	
 								<?php 
-							 }elseif($_SESSION['rolx']==6 || $_SESSION['rolx']==4){
+							 }elseif($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
 							
 							?>							
 								<label>Nivel Funcionario</label>
@@ -663,7 +649,7 @@ VerificarAdmin($_SESSION['rolx']);
 									<input disabled type="text" class="form-control ccc" id="a_funco" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
 								</div>
 								<?php 
-							 }elseif($_SESSION['rolx']==7 || $_SESSION['rolx']==4){
+							 }elseif($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
 							
 							?>
 
@@ -750,7 +736,7 @@ VerificarAdmin($_SESSION['rolx']);
 
 						<label>Total</label>
 						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="totalite" disabled>
+							<input type="text" class="form-control pesos" id="totalite" >
 						</div>
 
 
@@ -1031,7 +1017,9 @@ VerificarAdmin($_SESSION['rolx']);
 
 						<label>Total</label>
 						<div class="form-group-sm">
-							<input type="text" class="form-control pesos" id="total_total" disabled>
+							<!-- <input type="text" class="form-control pesos" id="total_total" disabled> -->
+							<input type="text" class="form-control pesos" id="total_total" >
+
 						</div>
 
 					</div>
@@ -1392,7 +1380,7 @@ var ideco=$("#ideado").val();
 //alert(desh);
 		switch (desh) {
 
-		case 4:	document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
+		case 1:	document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
 				document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
 				document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
 				document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
@@ -1402,26 +1390,26 @@ var ideco=$("#ideado").val();
 				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
 				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;		
 			    break;
-		case 3:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				break;	
-		case 5:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				break;			
-		case 6:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				break;
-		case 7:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
-				break;
+		// case 3:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+		// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
+		// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
+		// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
+		// 		break;	
+		// case 5:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+		// 		document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
+		// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
+		// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
+		// 		break;			
+		// case 6:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+		// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
+		// 		document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
+		// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
+		// 		break;
+		// case 7:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
+		// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
+		// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
+		// 		document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
+		// 		break;
 	}
 
 });
@@ -2208,13 +2196,11 @@ $("#izquierda" ).click(function() {
 		
 	
 
-
-
 		$("#close1").click(function() {
 			var ideco2=$("#ideado").val();
 				$.post( "../../controllers/mdetalles_controller", {
 
-					action: "temporal",
+					action: "detalles_temporal",
 					idea:$('#ideado').val(),
 					dia: $('#dia').val(),
 					tipo: $('#d_tipo').val(),
@@ -2246,7 +2232,7 @@ $("#izquierda" ).click(function() {
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
 
-							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo_TEMP",ideco:ideco2}).done(function( data ) {
+							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",idea}).done(function( data ) {
 								var parsedJson = $.parseJSON(data);
 								var cos_tot=parsedJson;
 								$("#totalite").val( cos_tot );
@@ -2255,7 +2241,7 @@ $("#izquierda" ).click(function() {
 					    }, 3000);
 
 					}else{
-
+                    alert('Hay Un Error');
 					}
 
 				},"json");
@@ -2264,6 +2250,61 @@ $("#izquierda" ).click(function() {
 				$('#tabla').DataTable().ajax.reload();
 			}, 3000);
 		});
+
+		// $("#close1").click(function() {
+		// 	var ideco2=$("#ideado").val();
+		// 		$.post( "../../controllers/mdetalles_controller", {
+
+		// 			action: "detalles_temporal",
+		// 			idea:$('#ideado').val(),
+		// 			dia: $('#dia').val(),
+		// 			tipo: $('#d_tipo').val(),
+		// 			concepto: $('#d_concepto').val(),
+		// 			cantidad: $('#d_cantidad').val(),
+		// 			medida: $('#d_medida').val(),
+		// 			costo: $('#d_costo').val(),
+		// 			observaciones: $('#d_obs').val()
+
+		// 		}).done(function(data){
+
+		// 			var parsedJson = $.parseJSON(data);
+		// 			$(".message1").html(parsedJson.mensaje);
+
+		// 			if(parsedJson.resultado != 'error'){
+
+						
+		// 			    setTimeout(function(){
+
+		// 					$("#d_tipo").val(null);
+		// 					$("#d_concepto").val(null);
+		// 					$("#d_cantidad").val(null);
+		// 					$("#d_medida").val(null);
+		// 					$("#d_obs").val(null);
+		// 					$("#d_costo").val(null);
+        //                     //Pendiente de esta parte
+		// 					$('#tabla').DataTable().ajax.reload();
+ 		// 					$(".alert").alert('close');
+		// 			      	$('#modal1').modal('toggle');
+		// 					$("#agregar").focus();
+
+		// 					$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",idea}).done(function( data ) {
+		// 						var parsedJson = $.parseJSON(data);
+		// 						var cos_tot=parsedJson;
+		// 						$("#totalite").val( cos_tot );
+		// 					},"json");
+
+		// 			    }, 3000);
+
+		// 			}else{
+        //             alert('Hay Un Error');
+		// 			}
+
+		// 		},"json");
+		//     //$('#activo').focus();
+		// 	setTimeout(function(){
+		// 		$('#tabla').DataTable().ajax.reload();
+		// 	}, 3000);
+		// });
 
 		$(".t_guarda1").click(function() {
 
@@ -2405,7 +2446,7 @@ $("#izquierda" ).click(function() {
 			
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
-			formData.append('action', 'temporal_reg');
+			formData.append('action', 'temporal_reg_solicitud');
 			formData.append('idea', $("#ideado").val());
 
 			$.ajax({
@@ -2445,7 +2486,7 @@ $("#izquierda" ).click(function() {
 			
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
-			//formData.append('action', 'temporal_reg');
+			formData.append('action', 'temporal_reg');
 			formData.append('idea', $("#ideado").val());
 
 			$.ajax({
@@ -2491,7 +2532,7 @@ $("#izquierda" ).click(function() {
 											  "destroy": true,
 	
 											  "ajax": {
-												"url": "../../data_json/data_mdetalles?este="+este,
+												 "url": "../../data_json/data_mdetalles?este="+este,
 												"dataSrc": ""
 											  },
 	
@@ -2541,7 +2582,7 @@ $("#izquierda" ).click(function() {
 												  //"destroy": true,
 		
 												  "ajax": {
-													"url": "../../data_json/data_mvictimas?este="+este,
+													 "url": "../../data_json/data_mvictimas?este="+este,
 													"dataSrc": ""
 												  },
 												  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
@@ -2586,7 +2627,9 @@ $("#izquierda" ).click(function() {
 										  "destroy": true,
 
 										  "ajax": {
-											"url": "../../data_json/data_mequiposo?este="+este,
+											//  "url": "../../data_json/data_mequiposo?este="+este,
+											 "url": "../../data_json/data_madjuntados?este="+este,
+
 											"dataSrc": ""
 										  },
 										  "scrollX": true,
@@ -2628,7 +2671,7 @@ $("#izquierda" ).click(function() {
 										  //"destroy": true,
 
 										  "ajax": {
-											"url": "../../data_json/data_mexcel?este="+este,
+											 "url": "../../data_json/data_mexcel?este="+este,
 											"dataSrc": ""
 										  },
 										  "scrollX": true,
@@ -2802,7 +2845,8 @@ $("#izquierda" ).click(function() {
 			});		
 
 
-		$("#cancelar2").click(function() {
+		
+			$("#cancelar2").click(function() {
 
 			$('#modal1').modal('toggle');
 			$("#alojamiento").focus();
