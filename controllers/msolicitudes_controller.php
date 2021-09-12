@@ -644,6 +644,7 @@ break;
             $alia->completado = 1;
             $alia->status = 1;
             $alia->reg_temp='false';
+            $alia->status = $id_sesion_usuario;
 
 
              if($alia->save()){
