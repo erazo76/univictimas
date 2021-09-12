@@ -5,11 +5,7 @@ require_once '../php-activerecord/ActiveRecord.php';
 ActiveRecord\Config::initialize(function($cfg)
 {
     $cfg->set_model_directory('../models/');
-    $cfg->set_connections(array('development' => 'pgsql://postgres:postgres@127.0.0.1/univictimas'));
-    //$cfg->set_connections(array('development' => 'pgsql://postgres:postgres@127.0.0.1/censo_dev2'));
- 	//$cfg->set_connections(array('development' => 'pgsql://gerazo:13264983@130.11.151.202/censo_dev'));
-	// you can change the default connection with the below
-    //$cfg->set_default_connection('production');
+    $cfg->set_connections(array('development' => 'pgsql://postgres:postgresbd2021@127.0.0.1/univictimas_prd'));
 });
 
 //ActiveRecord\Config::Config::instance();
