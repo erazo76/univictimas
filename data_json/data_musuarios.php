@@ -9,17 +9,20 @@ require_once '../models/Musuario.php';
 		@$rolet=$rs->mroles_id;
 		@$nomper=$nomper='SOPORTE';
 
-		if($rolet==1 || $rolet==4){
+		if($rolet==1 || $rolet==1){
 
 				$nomper='SOPORTE';
 
-			}
-		if($rolet==2 ){
+			}else if($rolet==2 ){
 
 				$nomper='SUPERVISiÓN';
 
+			}else {
+
+				$nomper='DATOS';
+
 			}
-		if($ema==''){
+			if($ema==''){
 
 			$ema='SIN CORREO';
 

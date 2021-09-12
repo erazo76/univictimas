@@ -3,7 +3,7 @@
 include("../../lib/validar_session.php");
 ValidaSession("../login");
 
-VerificarAdmin($_SESSION['rolx']);
+//VerificarAdmin($_SESSION['rolx']);
 
 ?>
 

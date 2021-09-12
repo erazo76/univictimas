@@ -1,6 +1,6 @@
 <?php
 include("../../lib/validar_session.php");
-ValidaSession("../login");
+// ValidaSession("../login");
 
 include("../layouts/constantes.php");
 include_once("../layouts/cabezera.php");

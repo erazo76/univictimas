@@ -1,6 +1,6 @@
 <?php
 include("../../lib/validar_session.php");
-ValidaSession("../login");
+// ValidaSession("../login");
 
 @$username = $_SESSION['usuariox'];
 
@@ -137,7 +137,7 @@ switch ($mensaje){
       <div class="login-box-body">
 	  <div class="login-logo">
        <!-- <a href="#"><b>Admin</b>LTE</a>-->
-	   <a href="https://www.unidadvictimas.gov.co/fr"><img src="../../dist/img/logo_sirelog.png" alt="Unidad para las Victimas" height="175" width="350"></a>
+	   <a href="https://app.unidadvictimas.gov.co/fr"><img src="../../dist/img/logo_sirelog.png" alt="Unidad para las Victimas" height="175" width="350"></a>
       </div><!-- /.login-logo -->
 	        <p class="login-box-msg">Actualizar clave</p>
        <form action="../../controllers/musuarios_controller" method="post">
