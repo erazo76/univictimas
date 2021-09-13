@@ -1123,7 +1123,7 @@ ValidaSession("../login");
 
 							<div class="form-group-sm">
 							  <label>Observaciones</label>
-							  <textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características"  onpaste="return false" onkeypress="return esdobs(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
+							  <textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características"  onpaste="return true" onkeypress="return esdobs(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
   							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_obs' class="aaa"><p></p></div>
 							</div>
 
@@ -2413,7 +2413,7 @@ $("#izquierda" ).click(function() {
 			
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
-			formData.append('action', 'temporal_reg');
+			formData.append('action', 'temporal_reg_adjuntos');
 			formData.append('idea', $("#idea").val());
 
 			$.ajax({
@@ -2499,7 +2499,7 @@ $("#izquierda" ).click(function() {
 											  "destroy": true,
 	
 											  "ajax": {
-												"url": "../../data_json/data_mdetalles?este="+res,
+												"url": "../../data_json/data_mdetalles?este="+este,
 												"dataSrc": ""
 											  },
 	
@@ -2594,7 +2594,7 @@ $("#izquierda" ).click(function() {
 										  "destroy": true,
 
 										  "ajax": {
-											"url": "../../data_json/data_mequiposo?este="+este,
+											"url": "../../data_json/data_madjuntos?este="+este,
 											"dataSrc": ""
 										  },
 										  "scrollX": true,
@@ -3175,7 +3175,9 @@ $("#tele1").val(parsedJson.rs_tele);
 											  //"destroy": true,
 	
 											  "ajax": {
-												"url": "../../data_json/data_mequipos?este="+identico2,
+												// "url": "../../data_json/data_mequipos?este="+identico2,
+												"url": "../../data_json/data_madjuntos?este="+identico2,
+
 												"dataSrc": ""
 											  },
 											  "scrollX": true,
@@ -3318,6 +3320,11 @@ $("#tele1").val(parsedJson.rs_tele);
 		});
 
 		$.post( "../../controllers/mdetalles_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+			var parsedJson = $.parseJSON(data);
+		$("#dia").val(parsedJson.dia);
+		});	
+
+		$.post( "../../controllers/madjuntos_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 			var parsedJson = $.parseJSON(data);
 		$("#dia").val(parsedJson.dia);
 		});	

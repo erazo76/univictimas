@@ -5,7 +5,7 @@ include("../../lib/validar_session.php");
 ValidaSession("../login");
 //VerificarAdmin($_SESSION['rolx']);
 session_start();
-$_SESSION['instante']   = time();
+
 
 
 ?>
@@ -1110,7 +1110,7 @@ $_SESSION['instante']   = time();
 
 							<div class="form-group-sm">
 							  <label>Observaciones</label>
-							  <textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características"  onpaste="return false" onkeypress="return esdobs(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
+							  <textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características"  onpaste="return true" onkeypress="return esdobs(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
   							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_obs' class="aaa"><p></p></div>
 							</div>
 
@@ -2446,7 +2446,7 @@ $("#izquierda" ).click(function() {
 			
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
-			formData.append('action', 'temporal_reg_solicitud');
+			formData.append('action', 'temporal_reg');
 			formData.append('idea', $("#ideado").val());
 
 			$.ajax({
@@ -2628,7 +2628,7 @@ $("#izquierda" ).click(function() {
 
 										  "ajax": {
 											//  "url": "../../data_json/data_mequiposo?este="+este,
-											 "url": "../../data_json/data_madjuntados?este="+este,
+											 "url": "../../data_json/data_madjuntos?este="+este,
 
 											"dataSrc": ""
 										  },
@@ -4005,7 +4005,7 @@ function esvictimas(e) {
 
 						if(patron.test(n)==''){
 
-							document.getElementById('ms_rn_nombre1').style.display = 'block';
+							document.getElementById('ms_rn_nombre1').style.display = 'block';							
 							document.getElementById("ms_rn_nombre1").innerHTML = 'Use mayusculas y no incluya caractéres especiales';
 								return patron.test(n);
 

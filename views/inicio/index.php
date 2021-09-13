@@ -2,6 +2,8 @@
 
 include("../../lib/validar_session.php");
 ValidaSession("../login");
+session_start();
+$_SESSION['instante']   = time();
 
 //VerificarAdmin($_SESSION['rolx']);
 
