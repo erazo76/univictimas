@@ -2446,7 +2446,7 @@ $("#izquierda" ).click(function() {
 			
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
-			formData.append('action', 'temporal_reg');
+			formData.append('action', 'temporal_adjunto');
 			formData.append('idea', $("#ideado").val());
 
 			$.ajax({

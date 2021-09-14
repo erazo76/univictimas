@@ -2413,7 +2413,7 @@ $("#izquierda" ).click(function() {
 			
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
-			formData.append('action', 'temporal_reg_adjuntos');
+			formData.append('action', 'permanente_adjunto');
 			formData.append('idea', $("#idea").val());
 
 			$.ajax({

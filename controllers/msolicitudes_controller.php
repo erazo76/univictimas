@@ -650,6 +650,8 @@ break;
 
              if($alia->save()){
  
+////################### GUARDA LOS DETALLES TEMPORALES 
+          
                 $data_search = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud 
                 FROM Msolicitudes 
                                   WHERE status=1 and id_sesion_usuario=id_sesion_usuario 
@@ -679,7 +681,42 @@ break;
                        }
 
                      }
-                      
+                  
+/////####################  GUARDA LOS ADJUNTOS TEMPORALES   ########################################################
+
+$data_search_adjunto = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud 
+                FROM Msolicitude 
+                                  WHERE status=1 and id_sesion_usuario=id_sesion_usuario 
+                                                 and reg_temp=false and user_create=$alia->user_create; ");
+                
+                $data_search_adjunto_all = Madjunto::find_by_sql("SELECT id as id_adjunto
+                                FROM Madjuntos 
+                                                  WHERE status=1  
+                                                                 and reg_temp=true and mrequerimientos_id is null
+                                                                 and user_create=$alia->user_create; ");
+                  
+                          
+                foreach ($data_search_adjunto as $acti) {
+                  $num_solicitud=$acti->num_solicitud;
+                   }
+
+                   if($data_search_adjunto_all !=null){
+                    foreach ($data_search_adjunto_all as $detalles_solicitud) {
+                      $reg_2 = Madjunto::find($detalles_solicitud->id_adjunto);
+            
+                        $reg->mrequerimientos_id = $num_solicitud;
+                        $reg_2 ->reg_temp = 'false';
+      
+                        $reg_2 ->save();
+              
+                       }
+                      }
+
+/////#############################################################################
+
+
+
+
               
               
               // da el mensaje de guardado...

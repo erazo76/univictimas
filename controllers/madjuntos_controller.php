@@ -23,7 +23,6 @@ date_default_timezone_set('America/Bogota');
 /***********************************/
 //@$distribuidora = ($_POST["distribuidora"]);
 @$id = ($_POST["idea"]);
-@$idea = ($_POST["idea"]);
 @$idea3 = ($_POST["regis3"]);
 @$guarda = ($_POST["guarda"]);
 
@@ -549,8 +548,8 @@ break;
 
  #******************************************************************************
 
-    case 'temporal_reg_adjuntos':
-       
+    case 'permanente_adjunto':
+
       @$comodin=$id."_".($_FILES['file']['name']);
       @$blanco=($_FILES['file']['name']);
       @$consulta1 = Madjunto::find('all',array('conditions' => array('imagen=?',$comodin)));
@@ -560,75 +559,37 @@ break;
         session_start();
         $usuario_id = $_SESSION['idusuariox'];
         $id_sesion_usuario = $_SESSION['instante'];
-        if(!$id_sesion_usuario){
-          $id_sesion_usuario=1;
-        }
-
-            $hoy = date("d-m-Y");
+        $hoy = date('d-m-Y');
 
             if($sourcePath){//si cargaron el archivo
-              if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf") || ($tipo_archivo == "application/odt") ){
+              if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf")){
                 move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
                 @$nombre_imagen = $id."_".($_FILES['file']['name']);
               }
-
-
-              $data_search = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud 
-              FROM Msolicitudes 
-                WHERE status=1 and id=$idea; ");
-      
-                        $num_solicitud=0;
-                        $reg_temp ='true';
-                          if($data_search !=null){
-
-                            foreach ($data_search as $id_solicitud) {
-
-                            $num_solicitud=$id_solicitud->num_solicitud;
-                            $reg_temp = 'false';
-                        
-
-                            }   
-                          }      
-
-
-                  $tempo = new Madjunto(); 
-                  $tempo->imagen = $nombre_imagen;     
-                  $tempo->user_create = $usuario_id;
-                  $tempo->id_sesion_usuario = $id_sesion_usuario;
-                  $tempo->created = $hoy;
-                  $tempo->mrequerimientos_id = $num_solicitud;
-                  $num_solicitud=$id_solicitud->num_solicitud;
-                  $reg_temp=$reg_temp;
-
-                      if($tempo->save()){
-
-                      echo'<div class="alert alert-success alert-dismissable">
-                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                            <h4>
-                            <i class="icon fa fa-check"></i>
-                            Alerta!
-                            </h4>
-                            Se Adjunto la imagen exitosamente !.
-                            </div>';
-
-                      }
-
-
-
             }else{ //si no cargaron nada
-              echo'<div class="alert alert-danger alert-dismissable">
-                      <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                      <h4>
-                      <i class="icon fa fa-ban"></i>
-                      Alerta!
-                      </h4>
-                      La imagen ['.$comodin.'] Formato no Validos intente de nuevo.
-                      </div>';
-            
+              @$nombre_imagen = "";
             }
+            $tempo = new Madjunto();
  
-            
-  
+            $tempo->imagen = $nombre_imagen;
+            $tempo->mrequerimientos_id = $id;
+            $tempo->user_create = $usuario_id;
+            $tempo->created = $hoy;
+            $tempo->id_sesion_usuario = $id_sesion_usuario;
+            $tempo->reg_temp = 'false';
+
+                  if($tempo->save()){
+
+                   echo'<div class="alert alert-success alert-dismissable">
+                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                        <h4>
+                        <i class="icon fa fa-check"></i>
+                        Alerta!
+                        </h4>
+                        Se Adjunto la imagen exitosamente !.
+                        </div>';
+
+                  }
       }else{
                   echo'<div class="alert alert-danger alert-dismissable">
                       <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -644,7 +605,11 @@ break;
 
 
 #******************************************************************************
-case 'Reg_Adjunto_Permanente':
+
+
+ #******************************************************************************
+
+ case 'temporal_adjunto':
 
   @$comodin=$id."_".($_FILES['file']['name']);
   @$blanco=($_FILES['file']['name']);
@@ -652,31 +617,27 @@ case 'Reg_Adjunto_Permanente':
 
   if($consulta1 == null && $blanco != ''){
 
-            session_start();
-            $usuario_id = $_SESSION['idusuariox'];
-            $id_sesion_usuario = $_SESSION['instante'];
-            if($id_sesion_usuario==null){
-              $id_sesion_usuario=1;
-            }
-
-        $hoy = date("d-m-Y");
+    session_start();
+    $usuario_id = $_SESSION['idusuariox'];
+    $id_sesion_usuario = $_SESSION['instante'];
+    $hoy = date('d-m-Y');
 
         if($sourcePath){//si cargaron el archivo
-          if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf") || ($tipo_archivo == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")){
-            move_uploaded_file($sourcePath,$targetPathReg) ; // Mover archivo subido
+          if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf")){
+            move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
             @$nombre_imagen = $id."_".($_FILES['file']['name']);
           }
         }else{ //si no cargaron nada
-          @$nombre_imagen = "ARCHIVO NO SOPORTADO ";
+          @$nombre_imagen = "";
         }
         $tempo = new Madjunto();
 
         $tempo->imagen = $nombre_imagen;
-        $tempo->mrequerimientos_id = $idea;
+        $tempo->mrequerimientos_id = 0;
         $tempo->user_create = $usuario_id;
         $tempo->created = $hoy;
         $tempo->id_sesion_usuario = $id_sesion_usuario;
-        $tempo->reg_temp = false;
+        
 
               if($tempo->save()){
 
@@ -690,7 +651,7 @@ case 'Reg_Adjunto_Permanente':
                     </div>';
 
               }
-            }else{
+  }else{
               echo'<div class="alert alert-danger alert-dismissable">
                   <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
                   <h4>
@@ -704,102 +665,11 @@ case 'Reg_Adjunto_Permanente':
   break;
 
 
-
-case 'XXXXXXXXXXXXXXXXXXX':
-
-  @$comodin=$id."_".($_FILES['file']['name']);
-  @$blanco=($_FILES['file']['name']);
-  @$consulta1 = Madjunto::find('all',array('conditions' => array('imagen=?',$comodin)));
-
-  if($consulta1 == null && $blanco != ''){
-
-        //session_start();
-        //$usuario_id = $_SESSION['idusuariox'];
-        session_start();
-        $usuario_id = $_SESSION['idusuariox'];
-        $id_sesion_usuario = $_SESSION['instante'];
-        if($id_sesion_usuario==null){
-          $id_sesion_usuario=1;
-        }
-
-        $hoy = date("d-m-Y");
-
-        if($sourcePath){//si cargaron el archivo
-          if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf") ){
-            move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
-            @$nombre_imagen = $id."_".($_FILES['file']['name']);
-          }
-        
-        
-          $tempo = new Madjunto();
-
-          $tempo->imagen = $nombre_imagen;
-          $tempo->mrequerimientos_id = $idea;
-          $tempo->user_create = $usuario_id;
-          $tempo->created = $hoy;
-          $tempo->id_sesion_usuario = $id_sesion_usuario;
-          $tempo->reg_temp = false;
-  
-                if($tempo->save()){
-  
-                 echo'<div class="alert alert-success alert-dismissable">
-                      <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                      <h4>
-                      <i class="icon fa fa-check"></i>
-                      Alerta!
-                      </h4>
-                      Se Adjunto la imagen exitosamente !.
-                      </div>';
-  
-                }else{ //si no cargaron nada
-                  echo'<div class="alert alert-danger alert-dismissable">
-                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                  <h4>
-                  <i class="icon fa fa-ban"></i>
-                  Alerta!
-                  </h4>
-                  La imagen ['.$comodin.'] La Imagen No se Pudo Cargar... intente de nuevo.
-                  </div>';
-                }
-
-              }else{
-                echo'<div class="alert alert-danger alert-dismissable">
-                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                    <h4>
-                    <i class="icon fa fa-ban"></i>
-                    Alerta!
-                    </h4>
-                    La imagen ['.$comodin.'] ya está incluida. cambie el nombre del archivo e intente de nuevo.
-                    </div>';
-    
-        
-                }
-              
-        
-        }else{ //si no cargaron nada
-          echo'<div class="alert alert-danger alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-ban"></i>
-          Alerta!
-          </h4>
-          La imagen ['.$comodin.'] Error al Intentar Cargar el Archivo... intente de nuevo.
-          </div>';
-          }
-
-  break;
+#******************************************************************************
 
 
 
-
-
-
-
-
-
-
-
-  case 'temporal_reg':
+case 'temporal_reg':
 
   @$comodin=$id."_".($_FILES['file']['name']);
   @$blanco=($_FILES['file']['name']);
@@ -823,7 +693,7 @@ case 'XXXXXXXXXXXXXXXXXXX':
         $tempo = new Madjuntado();
 
         $tempo->imagen = $nombre_imagen;
-        $tempo->mrequerimientos_id = $idea;
+        $tempo->mrequerimientos_id = $id;
         $tempo->user_create = $usuario_id;
         $tempo->created = $hoy;
 
