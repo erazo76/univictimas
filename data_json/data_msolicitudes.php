@@ -6,7 +6,10 @@ require_once '../models/Musuario.php';
 session_start();
 //$toca=0;
 	//muestra toda la data
-		$data = Msolicitude::find_by_sql("SELECT id,cid,nombre,mdepartamentos_id,mmunicipios_id,fecha2,rt_nombre1,rt_apellido1,updated,created,user_create,user_modify,rn_nombre1,rn_apellido1,completado FROM Msolicitudes WHERE id>1 and id<20  order by id desc;");
+		$data = Msolicitude::find_by_sql("SELECT id,cid,nombre,mdepartamentos_id,mmunicipios_id,fecha2,
+		                              rt_nombre1,rt_apellido1,updated,created,user_create,
+									  user_modify,rn_nombre1,rn_apellido1,completado
+		                                    FROM Msolicitudes WHERE id>0 and id<20  order by id asc;");
 
 		$result = array();
 	
@@ -71,16 +74,18 @@ session_start();
 			array_push($result,array(
 							
 								"id"=>$rs->id,
-								"nombre"=>$rs->nombre,
+								// "nombre"=>$rs->nombre,
 								"departamento"=>$dep,
 								"municipio"=>$mun,
 								"fecha"=>$rs->fecha2->format("d-m-Y"),
-								"responsable"=>$responsable,
+								"responsable"=>$resp_aprob,
+								// "responsable"=>$responsable,
 								"created"=>$rs->created->format("d-m-Y"), 
-								"usercreate"=>$usercreated, 
+								// "usercreate"=>$usercreated, 
 								"updated"=>$updated, 
-								"userupdate"=>$userupdate, 
-								"resp_aprob"=>$resp_aprob, 
+								// "userupdate"=>$userupdate, 
+								// "resp_aprob"=>$resp_aprob, 
+								"resp_aprob"=>$responsable, 
 								"aprobado"=>$rs->completado																
 	
 			 ));

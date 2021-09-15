@@ -22,15 +22,15 @@ include("../../lib/validar_session.php");
 							<thead>
 								<tr>
 								<th>Nro. Evento</th>
-									<th>Nombre del Evento</th>
+									<!-- <th>Nombre del Evento</th> -->
 									<th>Dirección Territorial</th>
 									<th>Municipio</th>
 									<th>Fecha de inicio</th>
 									<th>Responsable del Evento</th>
-									<th>Solicitado el:</th>
-									<th>Usuario Solic.:</th>
-									<th>Modificado el:</th>
-									<th>Usuario modif.</th>
+									<th>Solicitado:</th>
+									<!-- <th>Usuario Solic.:</th> -->
+									<th>Modificado:</th>
+									<!-- <th>Usuario modif.</th> -->
 									<th>Aprobado por:</th>
 									<th></th>
 								</tr>
@@ -102,15 +102,15 @@ $(document).ready(function() {
 						"scrollCollapse": true,
 						"columns": [
 							{ "data": "id" },
-							{ "data": "nombre" },
+							// { "data": "nombre" },
 							{ "data": "departamento" },
 							{ "data": "municipio" },
 							{ "data": "fecha" },
 							{ "data": "responsable" },
 							{ "data": "created" },
-							{ "data": "usercreate" },
+							// { "data": "usercreate" },
 							{ "data": "updated" },
-							{ "data": "userupdate" },
+							// { "data": "userupdate" },
 							{ "data": "resp_aprob" },
 							{ "data": "aprobado" }
 						],
@@ -155,23 +155,25 @@ $(document).ready(function() {
 							{
 							"width": "140px",
 							"aTargets": [7]
-							},
-							{
-							"width": "100px",
-							"aTargets": [8]
-							},
-							{
-							"width": "140px",
-							"aTargets": [9]
-							},
-							{
-							"width": "140px",
-							"aTargets": [10]
-							},
-							{
-							"width": "1px",
-							"aTargets": [11]
-							}						
+							}
+							// ,
+							// {
+							// "width": "100px",
+							// "aTargets": [8]
+							// }
+							// ,
+							// {
+							// "width": "140px",
+							// "aTargets": [9]
+							// },
+							// {
+							// "width": "140px",
+							// "aTargets": [10]
+							// },
+							// {
+							// "width": "1px",
+							// "aTargets": [11]
+							// }						
 
 						]
 				//"order": [[ 0, "asc" ]]
