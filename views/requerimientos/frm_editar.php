@@ -1352,7 +1352,7 @@ $("#izquierda" ).click(function() {
 											  //"destroy": true,
 	
 											  "ajax": {
-												"url": "../../data_json/data_mequipos?este="+identico2,
+												"url": "../../data_json/data_madjuntados?este="+identico2,
 												"dataSrc": ""
 											  },
 											  "scrollX": true,
@@ -1685,7 +1685,7 @@ $("#izquierda" ).click(function() {
 			//alert(mio);
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
-			formData.append('action', 'temporal');
+			formData.append('action', 'permanente_adjuntado');
 			formData.append('idea', mio);
 
 			$.ajax({
@@ -1698,7 +1698,7 @@ $("#izquierda" ).click(function() {
 				success: function(data)
 				{
 						
-					$(".message1").html(data);
+					      $(".message1").html(data);
 
 							$('#modal3').scrollTop(0);
 								
@@ -1768,14 +1768,14 @@ $("#izquierda" ).click(function() {
 
 									confirm: function(){
 
-										$.post( "../../controllers/madjuntos_controller", {action:"delete",record:value}).done(function( data ) {
+										$.post( "../../controllers/madjuntos_controller", {action:"delete_adjuntado",record:value}).done(function( data ) {
 											//$(".message").html(data);
 											var parsedJson = $.parseJSON(data);
 											$(".message").html(parsedJson.mensaje);
 
 											setTimeout(function(){
 												$('#tabla').DataTable().ajax.reload();
-											}, 3000);
+											}, 1000);
 										});		
 
 									},

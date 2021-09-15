@@ -1275,7 +1275,7 @@ $("#izquierda" ).click(function() {
 										  //"destroy": true,
 
 										  "ajax": {
-											"url": "../../data_json/data_mequipos?este="+este,
+											"url": "../../data_json/data_madjuntados?este="+este,
 											"dataSrc": ""
 										  },
 										  "scrollX": true,
@@ -1594,7 +1594,7 @@ $("#izquierda" ).click(function() {
 			var idea3=$("#ideado").val();
 			var formData = new FormData();
 			formData.append('file', $('input[type=file]')[0].files[0]);
-			formData.append('action', 'temporal');
+			formData.append('action', 'temporal_adjuntado');
 			formData.append('idea', $("#ideado").val());
 			$.ajax({
 				url: "../../controllers/madjuntos_controller",

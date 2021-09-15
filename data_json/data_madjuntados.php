@@ -1,44 +1,55 @@
 <?php
 require_once '../models/Madjuntado.php';
-require_once '../models/Msolicitude.php';
 
 $unid=$_GET["este"];
+$result = array();
+
 session_start();
 $id_sesion_usuario = $_SESSION['instante'];
-if(!$id_sesion_usuario){
+
+if($id_sesion_usuario==null){
 	$id_sesion_usuario=1;
 }
-	$result = array();
 
-
-
-	$data_search = Msolicitude::find_by_sql("SELECT id FROM Msolicitudes WHERE status=1 and id=$unid ");
-  
-	$cadena='AND reg_temp=true and id_sesion_usuario='.$id_sesion_usuario.'';
-
-	if($data_search !=null){
-		$cadena='AND reg_temp=false and mrequerimientos_id='.$unid.' ';
-	   }
-
-	$result = array();
-	//echo($unid);exit();	
-	$data = Madjuntado::find_by_sql("select id,cid,imagen,mrequerimientos_id,status from madjuntados WHERE status=1 $cadena order by id desc;");
+	$data = Madjuntado::find_by_sql("select id,cid,imagen,mrequerimientos_id,status 
+	                            from madjuntados WHERE status=1 AND mrequerimientos_id=".$unid." order by id desc;");
 	$items = 0;
-
-	foreach ($data as &$rs) {
+	
+	if($data !=null){
+		foreach ($data as &$rs) {
 
 		
-		array_push($result,array(			
-			"id"=>$rs->id,
-			"anexo"=>$rs->imagen
-				));
+			array_push($result,array(			
+												 "id"=>$rs->id,
+												 "anexo"=>$rs->imagen
+									 ));
+	
+			$items++;
+	
+		}
+		
+	   }else{
+		
+		$data_1 = Madjuntado::find_by_sql("select id,cid,imagen
+		                   from madjuntados WHERE status=1 
+						   AND reg_temp=true
+						   AND id_sesion_usuario=$id_sesion_usuario order by id desc;");
 
-		$items++;
+		
+			foreach ($data_1 as &$rs_1) {
+	
+			
+		      array_push($result,array(			
+												"id"=>$rs_1->id,
+												"anexo"=>$rs_1->imagen
+										 ));
+		
+				$items++;
+		
+			}
+			
 
-	}
+		   }
 
-
-
-//echo($data);exit();
 	print_r(json_encode($result));
 ?>
