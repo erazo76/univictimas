@@ -3050,7 +3050,7 @@ $("#tele1").val(parsedJson.rs_tele);
 				//alert($("#t_trans").val());
 				
 				$.post( "../../controllers/msolicitudes_controller", {
-
+                    
 					action: "add",
 					id:	$("#ideado").val(),
 					nombre: $("#nombre").val(),
@@ -3123,7 +3123,7 @@ $("#tele1").val(parsedJson.rs_tele);
 					region: $("#region").val()
 
 				}).done(function(data){
-
+                    document.getElementById("save").disabled=true;
 					var parsedJson = $.parseJSON(data);
 					$(".message").html(parsedJson.mensaje);
 

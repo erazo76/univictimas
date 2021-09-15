@@ -685,7 +685,7 @@ break;
 /////####################  GUARDA LOS ADJUNTOS TEMPORALES   ########################################################
 
 $data_search_adjunto = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud 
-                FROM Msolicitude 
+                FROM Msolicitudes 
                                   WHERE status=1 and id_sesion_usuario=id_sesion_usuario 
                                                  and reg_temp=false and user_create=$alia->user_create; ");
                 
