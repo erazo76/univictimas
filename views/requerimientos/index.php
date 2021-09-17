@@ -68,7 +68,7 @@ ValidaSession("../login");
 					"dataSrc": ""
 				  },
 				  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
-
+                         
 						if ((mData.a_supe)== 1){
 
 							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/aprobado1.png),radial-gradient(white,white )');
@@ -79,7 +79,7 @@ ValidaSession("../login");
 							$('td:eq(0)', nRow).css('background-position','bottom center');
 							$('td:eq(5)', nRow).css('opacity','0');
 
-						} 	if ((mData.a_supe)== 2){
+						} else	if ((mData.a_supe)== 2){
 
 							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/rechazado.jpeg),radial-gradient(white,white )');
 							$('td:eq(0)', nRow).css('background-size','70px 35px');
