@@ -150,13 +150,18 @@ ValidaSession("../login");
 							<input class="form-control bbb" id="costo_total"  type="text" placeholder="Valor Cortizacion" onpaste="return false" tabindex="16" >
 						</div>			
 						<div class="form-group-sm">
-						<HR><h3 class="box-title">Aprobaciones</h3><HR>
-						
-							<?php 
+
+						<?php 
 							
-							 if($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
-							
+							if($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
+						   
 							?>
+									<!-- <HR><h3 class="box-title">Aprobaciones</h3><HR> -->
+									<span class="input-group-addon" >
+										<label>APROBACIONES</label>
+										</span>
+						
+						
 
 								<label>Nivel supervisor</label>
 								<div class="input-group" >

@@ -30,9 +30,34 @@ session_start();
 
 switch ($action){
   
-    case 'sumar_costo':
 
-      @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where id_sesion_usuario = '.$usuario_id.' and reg_temp=true and status = 1');
+  case 'sumar_costo':
+      
+    $usuario_id = $_SESSION['idusuariox'];
+    $id_sesion_usuario = $_SESSION['instante'];
+    $int = floatval($ideco);
+    @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = '.$int.'  and status = 1');
+
+  if($data !=null){
+    foreach($data as $rs){
+      if($rs->tot_cos==null){
+        $contados=0;
+      }else{
+      $contados = $rs->tot_cos;      
+      }
+    }        
+  }
+
+    
+    echo json_encode($contados);
+break;
+    
+    case 'sumar_costo_temporal':
+      
+      $usuario_id = $_SESSION['idusuariox'];
+      $id_sesion_usuario = $_SESSION['instante'];
+
+      @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where id_sesion_usuario = '.$id_sesion_usuario.' and reg_temp=true and status = 1');
 
     if($data !=null){
       foreach($data as $rs){

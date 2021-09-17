@@ -1370,9 +1370,9 @@ setTimeout(function() {
 
 setTimeout(function() {	
 var ideco=$("#ideado").val();
-	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo", ideco:ideco}).done(function( data ) {
+	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo_temporal", ideco:ideco}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
-		var cos_tot=parsedJson;
+		var cos_tot=parsedJson;		
 		$("#totalite").val( cos_tot );
 	},"json");
 }, 3000);
@@ -2208,7 +2208,8 @@ $("#izquierda" ).click(function() {
 					cantidad: $('#d_cantidad').val(),
 					medida: $('#d_medida').val(),
 					costo: $('#d_costo').val(),
-					observaciones: $('#d_obs').val()
+					observaciones: $('#d_obs').val(),
+					
 
 				}).done(function(data){
 
@@ -2232,7 +2233,7 @@ $("#izquierda" ).click(function() {
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
 
-							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",idea}).done(function( data ) {
+							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo_temporal",idea}).done(function( data ) {
 								var parsedJson = $.parseJSON(data);
 								var cos_tot=parsedJson;
 								$("#totalite").val( cos_tot );
@@ -2245,7 +2246,17 @@ $("#izquierda" ).click(function() {
 					}
 
 				},"json");
-		    //$('#activo').focus();
+		   
+				setTimeout(function() {	
+				var ideco=$("#ideado").val();
+					$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo_temporal", ideco:ideco}).done(function( data ) {
+						var parsedJson = $.parseJSON(data);
+						var cos_tot=parsedJson;		
+						$("#totalite").val( cos_tot );
+					},"json");
+				}, 3000);
+
+
 			setTimeout(function(){
 				$('#tabla').DataTable().ajax.reload();
 			}, 3000);

@@ -44,6 +44,7 @@ date_default_timezone_set('America/Bogota');
 @$hora1 = ($_POST["hora1"]);
 @$hora2 = ($_POST["hora2"]);
 
+@$r_supe = ($_POST["r_supe"]);
 @$a_supe = ($_POST["a_supe"]);
 @$a_supeo= ($_POST["a_supeo"]);
 /***********************************/
@@ -764,7 +765,17 @@ case 'contar_id':
           //@$usuario_id = $_SESSION['idusuariox'];
           $hoy = date('d-m-Y');
 
-         //$alia = new Mrequerimiento();    
+         //$alia = new Mrequerimiento();
+         if($a_supe==0){
+          if($r_supe==0){
+            $a_supe=0;
+           }else{
+            $a_supe=2;
+           }  
+         
+         }else{
+          $a_supe=1;
+         }    
           $alia = Mrequerimiento::find($id);
           $alia->fecha1 = $hoy;
           $alia->mdepartamentos_id = $departamento;
@@ -779,7 +790,7 @@ case 'contar_id':
          
           $alia->rt_nombre1 = $rt_nombre1;
           $alia->rt_nombre2 = $rt_nombre2;
-
+   
           $alia->a_supe = $a_supe;
           $alia->a_supeo = $a_supeo;
 

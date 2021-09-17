@@ -146,24 +146,35 @@ ValidaSession("../login");
 							<label for="costo_total">Valor Cotizacion</label>
 							<input class="form-control bbb" id="costo_total"  type="text" placeholder="Valor Cortizacion" onpaste="return false" tabindex="16" >
 						</div>
+					
 
 						<div class="form-group-sm">
-						<HR><h3 class="box-title">Aprobaciones</h3><HR>
-						
-							<?php 
+						<?php 
 							
-							 if($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
-							
-							?>
+							if($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
+						   
+						   ?>
+						<!-- <HR><h3 class="box-title">Aprobaciones</h3><HR> -->
+						<span class="input-group-addon" >
+						<label>APROBACIONES</label>
+						</span>
+
 
 								<label>Nivel supervisor</label>
 								<div class="input-group" >
 									<span class="input-group-addon" >
 									<label>Aprobado</label>
-										<input type="checkbox" id="a_supe">
+									<input type="checkbox" id="a_supe" >
+									
+									<label>Rechazado</label>
+										<input type="checkbox" id="r_supe" >
 									</span>
-									<input type="text" class="form-control ccc" id="a_supeo" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
-								</div>
+									</div>
+									<label for="a_supeo">observaciones</label>
+    							<textarea class="form-control ccc" id="a_supeo" rows="3" placeholder="Redacte sus observaciones"  onpaste="return true" tabindex="0"  onblur="alsalir(this.id);"    autocomplete="off"></textarea>
+								<!-- <div class="input-group" >
+									<input type="text" class="form-control ccc" id="a_supeo" placeholder="Observación" tabindex="13" onpaste="return false"   autocomplete="off">
+								</div> -->
 															
 								<?php 
 							 }else{
@@ -573,6 +584,23 @@ $(document).ready(function() {
 		$("#a_supe").val(parsedJson.a_supe);
 		$("#a_supeo").val(parsedJson.a_supeo);
 
+		var a_supe =parsedJson.a_supe;	
+       if(a_supe==0){
+		        $("#a_supe").val(0);  
+		        $("#a_supe").val(0);    
+				document.getElementById('a_supe').checked = false;
+				document.getElementById('r_supe').checked = false;
+	   }else if(a_supe==1){
+		        $("#r_supe").val(0);  
+		        $("#a_supe").val(1);    
+				document.getElementById('r_supe').checked = false;
+				document.getElementById('a_supe').checked = true;
+	   }else if(a_supe==2){
+		        $("#r_supe").val(1);  
+		        $("#a_supe").val(0);    
+				document.getElementById('a_supe').checked = false;
+				document.getElementById('r_supe').checked = true;
+	   }
 
 		var bdep =parsedJson.departamento;
 		var bmun =parsedJson.municipio;
@@ -611,6 +639,7 @@ $(document).ready(function() {
 		$("#rt_num_doc").val(parsedJson.rt_num_doc);
 		$("#tele1").val(parsedJson.tele1);
 		$("#correo1").val(parsedJson.correo1);
+		
 
 
 	},"json");	
@@ -619,12 +648,37 @@ $(document).ready(function() {
 
 $("#a_supe" ).click(function() {
 			if( $('#a_supe').prop('checked')== true ) {
-				$("#a_supe").val(1);  
-				document.getElementById('a_supeo').disabled = false;
+				$("#r_supe").val(0);  
+		        $("#a_supe").val(1);    
+				document.getElementById('a_supe').checked = true;
+				document.getElementById('r_supe').checked = false;
+
 			}else{
 				$("#a_supe").val(0); 
+				$("#a_supe").val(0); 
+				document.getElementById('a_supe').checked = false;
+				document.getElementById('r_supe').checked = false;				
+
 			}
-		});
+			
+});
+
+$("#r_supe" ).click(function() {
+			if( $('#r_supe').prop('checked')== true ) {
+				$("#a_supe").val(0);  
+		        $("#r_supe").val(1);    
+				document.getElementById('a_supe').checked = false;
+				document.getElementById('r_supe').checked = true;
+
+			}else{
+				$("#a_supe").val(0); 
+				$("#a_supe").val(0); 
+				document.getElementById('a_supe').checked = false;
+				document.getElementById('r_supe').checked = false;				
+
+			}
+			
+});
 
 
 //MASCARAS DE VALIDACION ########################################
@@ -1976,7 +2030,6 @@ $("#izquierda" ).click(function() {
 
 		//** enviar los datos al controlador ***********************************************************
 		$("#save").click(function() {
-				//alert($("#t_trans").val());
 				
 				$.post( "../../controllers/mrequerimientos_controller", {
 
@@ -2008,9 +2061,11 @@ $("#izquierda" ).click(function() {
 					tele2: $("#tele2").val(),
 					correo2: $("#correo2").val(),					
 					fecha2: $("#fecha2").val(),
-					a_supeo: $("#a_supe").val(),
+					r_supe: $("#r_supe").val(),
+					a_supe: $("#a_supe").val(),
 					a_supeo: $("#a_supeo").val(),
 					costo_total: $("#costo_total").val()
+					
 
 				}).done(function(data){
 
