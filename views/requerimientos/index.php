@@ -79,7 +79,17 @@ ValidaSession("../login");
 							$('td:eq(0)', nRow).css('background-position','bottom center');
 							$('td:eq(5)', nRow).css('opacity','0');
 
-						}else{
+						} 	if ((mData.a_supe)== 2){
+
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/rechazado.jpeg),radial-gradient(white,white )');
+							$('td:eq(0)', nRow).css('background-size','70px 35px');
+							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
+							$('td:eq(0)', nRow).css('font-weight','bold');
+							$('td:eq(0)', nRow).css('text-align','left');
+							$('td:eq(0)', nRow).css('background-position','bottom center');
+							$('td:eq(5)', nRow).css('opacity','0');
+
+							} else{
 								
 							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/asignado.png),radial-gradient(white, white)');
 							$('td:eq(0)', nRow).css('background-size','70px 25px');
@@ -119,7 +129,7 @@ ValidaSession("../login");
 							"aTargets": [5]
 						}	
 					],
-				"order": [[ 0, "desc" ]]
+				"order": [[ 0, "asc" ]]
 
 			});
 
@@ -135,35 +145,6 @@ ValidaSession("../login");
 				}
 			} );
 
-		/*	$('#tabla tbody').on( 'dblclick', 'tr', function () {
-
-					table.$('tr.selected').removeClass('selected');
-					$(this).addClass('selected');
-
-				var value= table.$('tr.selected').children('td:first').text();
-				//var completo=table.$('tr.selected').children('td:last').text();
-
-
-				if(!value){
-
-						$.confirm({
-						    title: '¡Seleccione el registro a editar !', // hides the title.
-						    cancelButton: false, // hides the cancel button.
-						    confirmButton: true, // hides the confirm button.
-						    closeIcon: false,
-						    confirmButton: 'cerrar',
-						    confirmButtonClass: 'btn-success',
-						    content: false// hides content block.
-						});
-
-				}else{
-
-					$(location).attr('href','frm_editar?record='+value);
-
-				}
-
-
-			});*/
 
 
 			$("#add" ).click(function() {
