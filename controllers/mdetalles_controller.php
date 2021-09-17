@@ -8,6 +8,7 @@ session_start();
 @$id = ($_POST["id"]);
 @$idea = ($_POST["idea"]);
 @$ideco = ($_POST["ideco"]);
+@$ideco2 = ($_POST["ideco2"]);
 
 @$record = ($_POST["record"]);
 @$recordado = ($_POST["recordado"]);
@@ -35,8 +36,8 @@ switch ($action){
       
     $usuario_id = $_SESSION['idusuariox'];
     $id_sesion_usuario = $_SESSION['instante'];
-    $int = floatval($ideco);
-    @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = '.$int.'  and status = 1');
+     //$int = intval( strval(($ideco)));
+    @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = '.$ideco2.'  and status = 1');
 
   if($data !=null){
     foreach($data as $rs){
@@ -346,6 +347,47 @@ break;
   }
   
   break;
+
+
+#*******************************************************************************
+case 'search_reporte':
+  if($record !=null){
+
+      session_start();
+      $usuario_id = $_SESSION['idusuariox'];
+      $rol = $_SESSION['rolx'];
+      $hoy = date("d-m-Y");
+      $record=(int)($record);
+    @$data = Mdetalle::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
+
+    if($data !=null){
+
+      foreach($data as $rs){
+
+          $resp[] = array(
+                "dia"=>$rs->dia,
+                "tipo"=>$rs->d_tipo,
+                "concepto"=>$rs->d_concepto,
+                "cantidad"=>$rs->d_cantidad,
+                "medida"=>$rs->d_medida,
+                "costo"=>$rs->d_costo,
+                "observaciones"=>$rs->d_obs
+
+          );
+
+      }
+     // print_r($resp);exit();
+      echo json_encode($resp);
+    }else{
+      $resp[] = array();
+      echo json_encode($resp);
+    }
+
+  }
+break;
+
+#*******************************************************************************
+
 #*******************************************************************************
   case 'search':
     if($record !=null){

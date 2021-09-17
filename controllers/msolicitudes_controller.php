@@ -1853,6 +1853,125 @@ case 'aprobar':
     break;
 
  //########################################################################################################################
+
+    case 'search_reporte_solicitud':
+
+      if($record !=null){
+  
+         /* session_start();
+          @$usuario_id = $_SESSION['idusuariox'];*/
+          
+  //echo($usuario_id);exit();
+          $rol = $_SESSION['rolx'];
+          $hoy = date("d-m-Y");
+  
+        @$data = Msolicitude::find('all',array('conditions' => array('id=?',$record)));
+
+       
+  
+        if($data !=null){
+  
+          foreach($data as $rs){
+            $int = floatval($ideco);
+            @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = '.$rs->id.'  and status = 1');
+        
+          if($data !=null){
+            foreach($data as $rs_d){
+              if($rs_d->tot_cos==null){
+                $contados=0;
+              }else{
+              $contados = $rs_d->tot_cos;      
+              }
+            }        
+          }
+          $rs->costo_total= $contados;   
+  
+            $resp = array(
+                    "id"=>$rs->id,
+                    "cid"=>$rs->cid,
+                    "nombre"=>$rs->nombre,
+                    "fecha1"=>(string)$rs->fecha1->format("d-m-Y"),
+                    "hsoli"=>$rs->hsoli,
+                    "departamento"=>$rs->mdepartamentos_id,
+                    "municipio"=>$rs->mmunicipios_id,
+                    "cpoblado"=>$rs->mcpoblado_id,
+  
+                    "a_primario"=>$rs->a_primario,
+                    "acceso1"=>$rs->acceso1,
+                    "acceso2"=>$rs->acceso2,
+                    "num_dir"=>$rs->num_dir,
+                    "a_referencia"=>$rs->a_referencia,
+                    "referencia"=>$rs->referencia,
+  
+                    "fecha2"=>(string)$rs->fecha2->format("d-m-Y"),
+                    "fecha3"=>(string)$rs->fecha3->format("d-m-Y"),
+                    "hora1"=>$rs->hora1,
+                    "hora2"=>$rs->hora2,
+  
+                    "rt_nombre1"=>$rs->rt_nombre1,
+                    "rt_nombre2"=>$rs->rt_nombre2,
+                    "rt_apellido1"=>$rs->rt_apellido1,
+                    "rt_apellido2"=>$rs->rt_apellido2,
+                    "rt_tdoc"=>$rs->rt_tdoc,
+                    "rt_num_doc"=>$rs->rt_num_doc,
+                    "tele1"=>$rs->tele1,
+                    "correo1"=>$rs->correo1,
+  
+                    "rn_nombre1"=>$rs->rn_nombre1,
+                    "rn_nombre2"=>$rs->rn_nombre2,
+                    "rn_apellido1"=>$rs->rn_apellido1,
+                    "rn_apellido2"=>$rs->rn_apellido2,
+                    "rn_tdoc"=>$rs->rt_tdoc,
+                    "rn_num_doc"=>$rs->rt_num_doc,
+                    "tele2"=>$rs->tele2,
+                    "correo2"=>$rs->correo2,
+  
+                    "grupo"=>$rs->grupos_id,
+                    "otro1"=>$rs->otro1,
+  
+                    "tipo1"=>$rs->tipo1,
+                    "tipo2"=>$rs->tipo2,
+                    "tipo3"=>$rs->tipo3,
+                    "tipo4"=>$rs->tipo4,
+                    
+                    "foca"=>$rs->foca,
+                    "v_terr"=>$rs->v_terri,
+                    "v_naci"=>$rs->v_naci,
+                    "v_func"=>$rs->v_func,
+                    "v_supe"=>$rs->v_supe,
+                    "a_terro"=>$rs->a_terro,
+                    "a_nacio"=>$rs->a_nacio,
+                    "a_funco"=>$rs->a_funco,
+                    "a_supeo"=>$rs->a_supeo,
+  
+                    "arutaval"=>$rs->arutaval,
+                    "apircval"=>$rs->apircval,
+                    "afase"=>$rs->afase,
+                    "amedida"=>$rs->amedida,
+                    "idaccion"=>$rs->idaccion,
+                    "entidad"=>$rs->entidad,
+                    "num_vic"=>$rs->num_vic,
+                    "descripcion"=>$rs->descripcion,
+                    "recomendaciones"=>$rs->recomendaciones,
+                    "aloja"=>$rs->aloja,
+                    "trans"=>$rs->trans,
+                    "t_trans"=>$rs->t_trans,
+                    "costo_total"=>$rs->costo_total,
+                    "presup"=>$rs->presup,
+                    "region"=>$rs->mregiones_id,
+                    "completado"=>$rs->completado
+                   );
+          }
+  
+          echo json_encode($resp);
+         }
+  
+      }
+      break;
+  
+
+
+ //########################################################################################################################
  case 'search_a':
 
   if($record !=null){

@@ -1384,8 +1384,10 @@ $(document).ready(function() {
 // }, 2500);
 
 setTimeout(function() {	
-var ideco=$("#idea").val();
-	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo", ideco:ideco}).done(function( data ) {
+	var ideco2=$("#n_accion").val();
+	ideco2=parseInt(ideco2);
+	//alert(ideco2);
+	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo", ideco2}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
 		var cos_tot=parsedJson;
 		$("#totalite").val( cos_tot );
@@ -2216,8 +2218,11 @@ $("#izquierda" ).click(function() {
 
 
 		$("#close1").click(function() {
-			//var ideco2=$("#n_accion").val();
 
+			var ideco2=parseInt($("#n_accion").val());
+			
+			//ideco2=parseInt(ideco2);
+           
 		
 				$.post( "../../controllers/mdetalles_controller", {
 
@@ -2254,7 +2259,7 @@ $("#izquierda" ).click(function() {
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
 
-							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",idea}).done(function( data ) {
+							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",ideco2}).done(function( data ) {
 								var parsedJson = $.parseJSON(data);
 								var cos_tot=parsedJson;
 								$("#totalite").val( cos_tot );
@@ -2267,10 +2272,18 @@ $("#izquierda" ).click(function() {
 					}
 
 				},"json");
+				setTimeout(function() {	
+				
+					$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo", ideco2}).done(function( data ) {
+						var parsedJson = $.parseJSON(data);
+						var cos_tot=parsedJson;		
+						$("#totalite").val( cos_tot );
+					},"json");
+				}, 3000);
 		    //$('#activo').focus();
-			setTimeout(function(){
-				$('#tabla').DataTable().ajax.reload();
-			}, 3000);
+			// setTimeout(function(){
+			// 	$('#tabla').DataTable().ajax.reload();
+			// }, 3000);
 		});
 
 		$(".t_guarda1").click(function() {
@@ -3151,13 +3164,12 @@ $("#tele1").val(parsedJson.rs_tele);
 					});		*/		
 
 						$('.base').unslider('animate:0');
-							valore=$("#ideado").val();
+							//valore=$("#ideado").val();
 							//alert(valore);
 					    	setTimeout(function(){
 
-					                //  $(location).attr('href','../requerimientos/frm_registrar');
-					                 //$('#nombre').focus();
-								   $(location).attr('href','frm_reportar?record='+valore);
+								var ideco2=parseInt($("#n_accion").val());
+								   $(location).attr('href','frm_reportar?record='+ideco2);
 
 					              }, 1500);
 

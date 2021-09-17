@@ -490,7 +490,7 @@ $("#grupo").html( data );
 });	
 		
 	var fecha =parsedJson.fecha2;
-	//alert(fecha);
+	
 	
 	var elem = fecha.split('-');
 
@@ -741,7 +741,7 @@ $("#grupo").html( data );
 
 //#########################################INSERTAR LOS DIVS CON LA COSNSULA DE  LA TABLA DETALLES#####################################
 
-		$.post( "../../controllers/mdetalles_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+		$.post( "../../controllers/mdetalles_controller", { action: "search_reporte",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
 			//alert(data);
 			var parsedJson = $.parseJSON(data);
 
