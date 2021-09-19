@@ -1,7 +1,7 @@
 <?php
 require_once '../models/Musuario.php';
 	$result = array();
-	@$data = Vusuario::find_by_sql("select cid,username,name,email,descripcion,mroles_id from vusuarios;");
+	@$data = Vusuario::find_by_sql("select cid,username,name,email,descripcion,mroles_id from vusuarios where id<>11;");
 	$items = 0;
 	foreach ($data as &$rs) {
 

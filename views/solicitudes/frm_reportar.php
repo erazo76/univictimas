@@ -24,7 +24,7 @@ ValidaSession("../login");
 	<div class="col-md-1">
 		<div class="flotante">
 			<button id="print" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw fa-print"></i></button>
-			<!--<button id="aprobar" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw  fa-check-square-o"></i></button>-->	
+			<button id="aprobar" class="btn btn-primary oculto-impresion " type="button" style="width:60px;height:60px;font-size:x-large;"><i class="fa fa-fw  fa-check-square-o"></i></button>	
 			<button id="edit" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw fa-edit"></i>  </button>
 			<button id="victim" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;font-size:x-large;"><i  class="fa fa-fw  fa-users"></i></button>
 			<!--<button id="ayt" class="btn btn-primary oculto-impresion" type="button" style="width:60px;height:60px;"><i  class="fa fa-fw  fa-hotel"></i>|<i  class="fa fa-fw  fa-plane"></i></button>-->	
@@ -107,11 +107,11 @@ ValidaSession("../login");
 						</div>						
 					</div>
 					<div class="caja1 ce ig-1618 igr-18">SUPERVISOR DEL CONTRATO</div>
-					<div class="caja1 ce ig-1618 igr-813" >ISAIAS LOZANO VARE</div>
+					<div class="caja1 ce ig-1618 igr-813" >Aura Helena Acevedo Vargas</div>
 					<div class="caja1 ce_iz f_s2 ig-1617 igr-1316 ">EMAIL</div>
 					<div class="caja1 ce_iz f_s2 ig-1718 igr-1316">TELÉFONO</div>
-					<div class="caja1 ce_iz f_s2 ig-1617 igr-1621">isaias.lozano@unidadvictimas.gov.co</div>
-					<div class="caja1 ce_iz f_s2 ig-1718 igr-1621">311 8660348</div>
+					<div class="caja1 ce_iz f_s2 ig-1617 igr-1621">aura.acevedo@unidadvictimas.gov.co</div>
+					<div class="caja1 ce_iz f_s2 ig-1718 igr-1621">3164784987</div>
 
 					<div class="caja1 ce ig-1820 igr-18">SUB-DIRECTOR(A) SOLICITANTE</div>
 					<div class="caja1 ce ig-1820 igr-813" id="responsablesub"><strong>Yanny Zambrano Díaz</strong></div>
@@ -385,13 +385,13 @@ ValidaSession("../login");
 
 	$(document).ready(function() {
 
-		/*var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
+		var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
-		if (desh==2 || desh==4){ //si el rol del usuario es SUPERVISOR... o programador
+		if (desh==1 || desh==2){ //si el rol del usuario es SUPERVISOR... o programador
 			document.getElementById('aprobar').style.display = 'block';	
 		}else{
 			document.getElementById('aprobar').style.display = 'none';	
-		}*/
+		}
 
 
 		$.post( "../../controllers/msolicitudes_controller", { action: "search_reporte_solicitud",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
@@ -986,6 +986,16 @@ $("#grupo").html( data );
 			$(location).attr('href','frm_adjuntados?record='+$("#idea").val()+'&origin=1');
 
 		});	
+
+		$('#edit').click( function () {
+
+					$(location).attr('href','frm_editar?record='+$("#idea").val()+'&origin=1');
+
+				
+			} );
+
+
+
 
 });	
 

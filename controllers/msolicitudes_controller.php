@@ -14,6 +14,8 @@ require_once '../models/Mdepartamento.php';
 require_once '../models/Mmunicol.php';
 require_once '../models/Mcpoblado.php';
 require_once '../models/Madjuntado.php';
+require_once '../models/Musuario.php';
+
 
 
 @$action = ($_POST["action"]);
@@ -563,7 +565,7 @@ break;
 
             session_start();
             @$usuario_id = $_SESSION['idusuariox'];
-          $id_sesion_usuario = $_SESSION['instante'];
+            $id_sesion_usuario = $_SESSION['instante'];
             $hoy = date('d-m-Y');
 
             if($t_trans != null){
@@ -694,8 +696,14 @@ $data_search_adjunto = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud
                                                   WHERE status=1  
                                                                  and reg_temp=true and mrequerimientos_id is null
                                                                  and user_create=$alia->user_create; ");
-                  
-                          
+
+$data_credencial = Musuario::find_by_sql("SELECT email, clave_email 
+                      FROM Musuarios  WHERE status=1 and id=11"); 
+       foreach ($data_credencial as $user) {
+        $remitente=$user->email;
+        $clave_email=$user->clave_email;
+         }               
+                                  
                 foreach ($data_search_adjunto as $acti) {
                   $num_solicitud=$acti->num_solicitud;
                    }
@@ -721,76 +729,73 @@ $data_search_adjunto = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud
               
               // da el mensaje de guardado...
 
-              // $mail = new PHPMailer();
-              // $mail->IsSMTP(); // telling the class to use SMTP
-              // $mail->Host          = "ssl://smtp.mi.com.co";
-              // $mail->SMTPAuth      = true;                  // enable SMTP authentication
-              // $mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent
-              // //$mail->Host          = "ssl://smtp.mi.com.co"; // sets the SMTP server
-              // $mail->Port          = 465;                    // set the SMTP port for the GMAIL server
-              // $mail->Username      = "servicio@univictimas.com.co"; // SMTP account username
-              // $mail->Password      = "Servicio1";        // SMTP account password
-              // $mail->SetFrom('servicio@univictimas.com.co', 'UNIVICTIMAS');
-              // $mail->AddReplyTo('servicio@univictimas.com.co', 'UNIVICTIMAS');
-              // $mail->Subject       = "Nueva solicitud registrada";
-              // $body                = '<div class="container-fluid">
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>SOLICITUD REGISTRADA</center></div>  
-              //                         </div> 
-              //                         <hr>
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>NOMBRE SOLICITUD</center></div> 
-              //                         <div class="col-sm-8"><center>'.$nombre.'</center></div> 
-              //                         </div> 
-              //                         <hr>
+ 
+              $mail = new PHPMailer();
+              $mail->IsSMTP(); // telling the class to use SMTP
+              $mail->Host          = "smtp.gmail.com";
+              $mail->SMTPSecure = 'tls';
+              $mail->SMTPAuth      = true;                  // enable SMTP authentication
+              //$mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent           
+              $mail->Port          = 587;                    // set the SMTP port for the GMAIL server
+              $mail->Username      = $remitente; // SMTP account username
+              $mail->Password      = $clave_email;        // SMTP account password
+              $mail->SetFrom('app.univictimas@gmail.com', 'UNIVICTIMAS');
+              $mail->AddReplyTo('app.univictimas@gmail.com', 'UNIVICTIMAS');
+              $mail->Subject       = "Nueva solicitud registrada";
+              $body                = '<div class="container-fluid">
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>SOLICITUD REGISTRADA</center></div>  
+                                      </div> 
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center> NOMBRE DE LA SOLICITUD</center></div> 
+                                      <div class="col-sm-8"><left>'.$nombre.'</left></div> 
+                                      </div> 
+                                      <hr>
                                       
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>FECHA DEL EVENTO</center></div>
-              //                         <div class="col-sm-8"><center>FECHA INICIO: '.$fecha2.'  FECHA FIN: '.$fecha3.'</center></div>  
-              //                         </div> 
-              //                         <hr>
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>RESPONSABLE DEL EVENTO</center></div>
-              //                         <div class="col-sm-8"><center> '.$rn_nombre1.' '.$rn_nombre2.' '.$rn_apellido1.'</center></div>  
-              //                         </div> 
-              //                         <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>FECHA DEL EVENTO</center></div>
+                                      <div class="col-sm-8"><left>FECHA INICIO: '.$fecha2.'  FECHA FIN: '.$fecha3.'</left></div>  
+                                      </div> 
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>RESPONSABLE DEL EVENTO</center></div>
+                                      <div class="col-sm-8"><left> '.$rn_nombre1.' '.$rn_nombre2.' '.$rn_apellido1.'</left></div>  
+                                      </div> 
+                                      <hr>
                                       
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>SUBDIRECCION RESPONSABLE</center></div>
-              //                         <div class="col-sm-8"><center>'.$rt_nombre1.' '.$rt_nombre2.' '.$rt_apellido1.'</center></div>  
-              //                         </div>
-              //                         <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>SUBDIRECCION RESPONSABLE</center></div>
+                                      <div class="col-sm-8"><left>'.$rt_nombre1.' '.$rt_nombre2.' '.$rt_apellido1.'</left></div>  
+                                      </div>
+                                      <hr>
                                       
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>NUMERO DE PARTICIPANTES</center></div>
-              //                         <div class="col-sm-8"><center>FUNCIONARIOS: '.$entidad.'  VICTIMAS: '.$num_vic.'</center></div>  
-              //                         </div>
-              //                         <hr>
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>DESCRIPCION</center></div>
-              //                         <div class="col-sm-8"><center>'.$descripcion.'</center></div>  
-              //                         </div>
-              //                         <hr>
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>RECOMENDACION</center></div>
-              //                         <div class="col-sm-8"><center>'.$recomendaciones.'</center></div>  
-              //                         </div>
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
-              //                         </div>
-              //                         </div>';
-              //   $body             = preg_replace("~/~",'',$body);
-              //   $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-              //   $mail->MsgHTML($body);
-              //   $mail->AddAddress($correo2);
-              //   if(!$mail->Send()) {
-              //     echo "Mailer Error ".$mail->ErrorInfo .'<br />';
-              //   }  else {
-              //     echo "Message sent to :" ;
-              //   }
-              //   // Clear all addresses and attachments for next loop
-              //   $mail->ClearAddresses();
-              //   $mail->ClearAttachments(); 
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>NUMERO DE PARTICIPANTES</center></div>
+                                      <div class="col-sm-8"><left>FUNCIONARIOS: '.$entidad.'  VICTIMAS: '.$num_vic.'</left></div>  
+                                      </div>
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>DESCRIPCION</center></div>
+                                      <div class="col-sm-8"><left>'.$descripcion.'</left></div>  
+                                      </div>
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>RECOMENDACION</center></div>
+                                      <div class="col-sm-8"><left>'.$recomendaciones.'</left></div>  
+                                      </div>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
+                                      </div>
+                                      </div>';
+                $body             = preg_replace("~/~",'',$body);
+                $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+                $mail->MsgHTML($body);
+                $mail->AddAddress($correo1);
+                $mail->Send();
+
+                $mail->ClearAddresses();
+                $mail->ClearAttachments(); 
               
               // echo $body;
 
@@ -1311,7 +1316,8 @@ break;
           }else{
             $t_trans1 = null;
           }
-          
+         
+        
 
           $alia = Msolicitude::find($id);     
           $alia->nombre = $nombre;
@@ -1386,79 +1392,86 @@ break;
 
 
           if($alia->save()){ // da el mensaje de guardado...
-
-            // $mail = new PHPMailer();
-            // $mail->IsSMTP(); // telling the class to use SMTP
-            // $mail->Host          = "ssl://smtp.mi.com.co";
-            // $mail->SMTPAuth      = true;                  // enable SMTP authentication
-            // $mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent
-            // //$mail->Host          = "ssl://smtp.mi.com.co"; // sets the SMTP server
-            // $mail->Port          = 465;                    // set the SMTP port for the GMAIL server
-            // $mail->Username      = "servicio@univictimas.com.co"; // SMTP account username
-            // $mail->Password      = "Servicio1";        // SMTP account password
-            // $mail->SetFrom('servicio@univictimas.com.co', 'UNIVICTIMAS');
-            // $mail->AddReplyTo('servicio@univictimas.com.co', 'UNIVICTIMAS');
-            // $mail->Subject       = "Nueva solicitud registrada";
-            // $body                = '<div class="container-fluid">
-            //                         <div class="row">
-            //                         <div class="col-sm-8"><center>SOLICITUD REGISTRADA</center></div>  
-            //                         </div> 
-            //                         <hr>
-            //                         <div class="row">
-            //                         <div class="col-sm-8"><center>NOMBRE SOLICITUD</center></div> 
-            //                         <div class="col-sm-8"><center>'.$nombre.'</center></div> 
-            //                         </div> 
-            //                         <hr>
-                                    
-            //                         <div class="row">
-            //                         <div class="col-sm-8"><center>FECHA DEL EVENTO</center></div>
-            //                         <div class="col-sm-8"><center>FECHA INICIO: '.$fecha2.'  FECHA FIN: '.$fecha3.'</center></div>  
-            //                         </div> 
-            //                         <hr>
-            //                         <div class="row">
-            //                         <div class="col-sm-8"><center>RESPONSABLE DEL EVENTO</center></div>
-            //                         <div class="col-sm-8"><center> '.$rn_nombre1.' '.$rn_nombre2.' '.$rn_apellido1.'</center></div>  
-            //                         </div> 
-            //                         <hr>
-                                    
-            //                         <div class="row">
-            //                         <div class="col-sm-8"><center>SUBDIRECCION RESPONSABLE</center></div>
-            //                         <div class="col-sm-8"><center>'.$rt_nombre1.' '.$rt_nombre2.' '.$rt_apellido1.'</center></div>  
-            //                         </div>
-            //                         <hr>
-                                    
-            //                         <div class="row">
-            //                         <div class="col-sm-8"><center>NUMERO DE PARTICIPANTES</center></div>
-            //                         <div class="col-sm-8"><center>FUNCIONARIOS: '.$entidad.'  VICTIMAS: '.$num_vic.'</center></div>  
-            //                         </div>
-            //                         <hr>
-            //                         <div class="row">
-            //                         <div class="col-sm-8"><center>DESCRIPCION</center></div>
-            //                         <div class="col-sm-8"><center>'.$descripcion.'</center></div>  
-            //                         </div>
-            //                         <hr>
-            //                         <div class="row">
-            //                         <div class="col-sm-8"><center>RECOMENDACION</center></div>
-            //                         <div class="col-sm-8"><center>'.$recomendaciones.'</center></div>  
-            //                         </div>
-            //                         <div class="row">
-            //                         <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
-            //                         </div>
-            //                         </div>';
-            //   $body             = preg_replace("~/~",'',$body);
-            //   $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-            //   $mail->MsgHTML($body);
-            //   $mail->AddAddress($correo2);
-            //   if(!$mail->Send()) {
-            //     echo "Mailer Error ".$mail->ErrorInfo .'<br />';
-            //   }  else {
-            //     echo "Message sent to :" ;
-            //   }
-            //   // Clear all addresses and attachments for next loop
-            //   $mail->ClearAddresses();
-            //   $mail->ClearAttachments(); 
            
-            // echo $body;
+           
+          //  if($a_supeo==1){
+              if(1==1){
+
+                    $data_credencial = Musuario::find_by_sql("SELECT email, clave_email 
+                    FROM Musuarios  WHERE status=1 and id=11"); 
+                        foreach ($data_credencial as $user) {
+                        $remitente=$user->email;
+                        $clave_email=$user->clave_email;
+                        } 
+
+
+            $mail = new PHPMailer();
+            $mail->IsSMTP(); // telling the class to use SMTP
+            $mail->Host          = "smtp.gmail.com";
+            $mail->SMTPSecure = 'tls';
+            $mail->SMTPAuth      = true;                  // enable SMTP authentication
+            //A$mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent           
+            $mail->Port          = 587;                    // set the SMTP port for the GMAIL server
+            $mail->Username      = $remitente; // SMTP account username
+            $mail->Password      = $clave_email;         // SMTP account password
+            $mail->SetFrom('app.univictimas@gmail.com', 'UNIVICTIMAS');
+            $mail->AddReplyTo('app.univictimas@gmail.com', 'UNIVICTIMAS');
+            $mail->Subject       = "Aprobacion de Solicitud";
+            $body                = '<div class="container-fluid">
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>SOLICITUD APROBADA</center></div>  
+                                    </div> 
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>NOMBRE SOLICITUD</center></div> 
+                                    <div class="col-sm-8"><left>'.$nombre.'</left></div> 
+                                    </div> 
+                                    <hr>
+                                    
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>FECHA DEL EVENTO</center></div>
+                                    <div class="col-sm-8"><left>FECHA INICIO: '.$fecha2.'  FECHA FIN: '.$fecha3.'</left></div>  
+                                    </div> 
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>RESPONSABLE DEL EVENTO</center></div>
+                                    <div class="col-sm-8"><left> '.$rn_nombre1.' '.$rn_nombre2.' '.$rn_apellido1.'</left></div>  
+                                    </div> 
+                                    <hr>
+                                    
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>SUBDIRECCION RESPONSABLE</center></div>
+                                    <div class="col-sm-8"><left>'.$rt_nombre1.' '.$rt_nombre2.' '.$rt_apellido1.'</left></div>  
+                                    </div>
+                                    <hr>
+                                    
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>NUMERO DE PARTICIPANTES</center></div>
+                                    <div class="col-sm-8"><left>FUNCIONARIOS: '.$entidad.'  VICTIMAS: '.$num_vic.'</left></div>  
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>DESCRIPCION</center></div>
+                                    <div class="col-sm-8"><left>'.$descripcion.'</left></div>  
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>RECOMENDACION</center></div>
+                                    <div class="col-sm-8"><left>'.$recomendaciones.'</left></div>  
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
+                                    </div>
+                                    </div>';
+              $body             = preg_replace("~/~",'',$body);
+              $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+              $mail->MsgHTML($body);
+              $mail->AddAddress("isaias.lozano@unidadvictimas.gov.co");               
+              $mail->Send();
+              $mail->ClearAddresses();
+              $mail->ClearAttachments(); 
+           
+          }
 
             
               $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">

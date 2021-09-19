@@ -615,7 +615,7 @@ session_start();
 						<div class="box-body">
 							<div class="form-group-sm">
 							<?php 
-							if($_SESSION['rolx']==1 || $_SESSION['rolx']==1){
+							if($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
 							
 							?>
 
@@ -3059,7 +3059,7 @@ $("#tele1").val(parsedJson.rs_tele);
 		//** enviar los datos al controlador ***********************************************************
 		$("#save" ).click(function() {
 				//alert($("#t_trans").val());
-				
+				document.getElementById('save').disabled = true;
 				$.post( "../../controllers/msolicitudes_controller", {
                     
 					action: "add",
@@ -3134,7 +3134,7 @@ $("#tele1").val(parsedJson.rs_tele);
 					region: $("#region").val()
 
 				}).done(function(data){
-                    document.getElementById("save").disabled=true;
+					document.getElementById('save').disabled = false;
 					var parsedJson = $.parseJSON(data);
 					$(".message").html(parsedJson.mensaje);
 
@@ -3161,7 +3161,7 @@ $("#tele1").val(parsedJson.rs_tele);
 					}
 
 					if(parsedJson.resultado != 'error'){
-
+                   
 					/*$.post( "../../controllers/mdetalles_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
 						$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 					});
