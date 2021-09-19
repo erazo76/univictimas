@@ -52,10 +52,11 @@ session_start();
 	
 
 			
-			$responsable=$rs->rt_nombre1.' '.$rs->rt_apellido1;
+			$responsable=$rs->rn_nombre1.' '.$rs->rn_apellido1;
 			
 			if($rs->rn_nombre1 != null){
-				$resp_aprob=$rs->rn_nombre1.' '.$rs->rn_apellido1;
+				$resp_aprob=$rs->rt_nombre1.' '.$rs->rt_apellido1;  
+				
 			}else{
 				$resp_aprob='Por aprobar';
 			}
