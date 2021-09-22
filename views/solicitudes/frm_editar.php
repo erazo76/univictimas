@@ -3187,9 +3187,7 @@ $("#tele1").val(parsedJson.rs_tele);
 											  //"destroy": true,
 	
 											  "ajax": {
-												// "url": "../../data_json/data_mequipos?este="+identico2,
 												"url": "../../data_json/data_madjuntos?este="+identico2,
-
 												"dataSrc": ""
 											  },
 											  "scrollX": true,

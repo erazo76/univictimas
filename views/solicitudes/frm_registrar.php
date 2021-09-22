@@ -2637,10 +2637,8 @@ $("#izquierda" ).click(function() {
 										  
 										  "destroy": true,
 
-										  "ajax": {
-											//  "url": "../../data_json/data_mequiposo?este="+este,
+										  "ajax": {											
 											 "url": "../../data_json/data_madjuntos?este="+este,
-
 											"dataSrc": ""
 										  },
 										  "scrollX": true,
