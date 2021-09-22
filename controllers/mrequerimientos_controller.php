@@ -529,8 +529,7 @@ case 'contar_id':
                 $mail->Send();
                 $mail->ClearAddresses();
                 $mail->ClearAttachments(); 
-              
-              echo $body;
+
 
                 $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
