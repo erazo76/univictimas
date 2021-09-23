@@ -59,6 +59,46 @@ ValidaSession("../login");
 							  <input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad"  onpaste="return false" tabindex="2" onkeypress="return esnombre(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' class="aaa"><p></p></div>
 							</div>
+
+							  <div class="form-group-sm">
+								<label>Modalidad del Evento</label>
+								<div class="input-group">
+
+									<span class="input-group-btn">
+										<select id="modalidad_evento" class="btn-sm" tabindex="450">
+											<option value="Presencial">Presencial</option>
+											<option value="Virtual">Virtual</option>
+
+										</select>
+									</span>
+								</div>
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='modalidad_evento'>
+									<p></p>
+								</div>
+							</div>
+
+							<div class="form-group-sm">
+								<label>Actividad Plan de Acción</label>
+								<div class="input-group">
+
+									<span class="input-group-btn">
+										<select id="plan_accion" class="btn-sm" tabindex="555">
+											<option value="Plan de acción 2021">Plan de acción 2021</option>
+											<option value="Plan de trabajo DGI 2021">Plan de trabajo DGI 2021</option>
+											<option value="Plan de trabajo DGI 2021">Plan de Trabajo Mesa Nacional</option>
+
+
+										</select>
+									</span>
+
+									<!-- <input type="text" class="form-control" id="num_doc_p" placeholder="Ingrese el numero del documento"  onpaste="return false" tabindex="560" onkeypress="return escedula5(event);" onblur="alsalira(this.id)"> -->
+								</div>
+								<!-- <div style="background-color:#F39C12;color:#fff;text-align:center" id='plan_accion'>
+									<p></p>
+								</div> -->
+							</div>
+
+
 									
 							<div class="form-group-sm">
 								<label for="fecha1">Fecha y hora de la solicitud</label>
@@ -290,13 +330,23 @@ ValidaSession("../login");
 					</div>
 				</div>	
 
-
-
-
-
 		  </div>
 
 		  <div class="col-md-4">
+
+		  <div class="box-header with-border">
+		  <h3 class="box-title">Subdireccion que Ejecuta</h3>
+					</div><!-- /.box-header -->
+					<div class="box box-primary">
+
+						<div class="box-body">
+							<div class="form-group-sm">
+								<select name="grup_financ" id="grup_financ" class="form-control bbb" tabindex="35">
+									<option></option>
+								</select>
+							</div>
+						</div>
+					</div>
 
 		  <div class="box-header with-border">
 					<h3 class="box-title">Grupo/Área/Equipo/Dependencia</h3>
@@ -564,31 +614,7 @@ ValidaSession("../login");
 			</div>
 
 			<div class="col-md-4">
-
-
-				 <!-- <div class="box-header with-border">
-					 	<h3 id="jump1" tabindex="0" class="box-title">Participantes del evento</h3>
-				</div>
-
-				<div class="box box-primary" >			
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-					<table id="tabla40" class="table table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>Id</th>										
-											<th>Adjunto</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-					</div>
-				
-					<div class="box-footer">
-						<button id="anex2" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Adjuntar</button>
-						<button id="quitar2" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
-					</div>
-				</div>-->				
+			
 
 				<div class="box-header with-border">
 					<h3 id="jump3" tabindex="0" class="box-title">Detalle especifico del requerimiento</h3>
@@ -747,12 +773,14 @@ ValidaSession("../login");
 								</select>
 						</div>
 
-						<label>Total</label>
-						<div class="form-group-sm">
-							<!-- <input type="text" class="form-control pesos" id="totalite" disabled> -->
-							<input type="text" class="form-control pesos" id="totalite" >
-
-						</div>
+						<label>Total Presupuestado</label>
+							<div class="form-group-sm">
+								<input type="text" class="form-control pesos" id="totalite" disabled="true">
+							</div>
+							<label>Total Ejecutado</label>
+							<div class="form-group-sm">
+								<input type="text" class="form-control pesos" id="total_ejecutado" onkeypress="return esnumero(event);">
+							</div>
 
 
 					</div>
@@ -1384,13 +1412,14 @@ $(document).ready(function() {
 // }, 2500);
 
 setTimeout(function() {	
-	var ideco2=$("#n_accion").val();
+	var ideco2 = <?php echo intval($_GET["record"]); ?>;
 	ideco2=parseInt(ideco2);
-	//alert(ideco2);
+	
 	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo", ideco2}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
-		var cos_tot=parsedJson;
-		$("#totalite").val( cos_tot );
+		var cos_tot = parsedJson;
+		cos_tot = formato_numero(cos_tot, 2, ',', '.');
+		$("#totalite").val(cos_tot);
 	},"json");
 }, 3000);
 	var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
@@ -1774,9 +1803,7 @@ $("#izquierda" ).click(function() {
 		$('#guardia1').on('focus', function() {
 			$('#pertenencia').focus();
 				var cont_alert2 =$('.bbb').filter(function() { return $(this).val() == ""; }).size();
-				//var cont_alert = $('.aaa p:contains("") ').size();
-		//alert(cont_alert2);
-				//if(cont_alert2!=0){
+				
 					if(cont_alert2  > 30 ){
 						
 						$.confirm({
@@ -1910,50 +1937,6 @@ $("#izquierda" ).click(function() {
 		});
 
 
-		
-		/*$('#tipo1').on('change', function () {
-
-     		var selectVal = $("#tipo1 option:selected").val();
-			
-			 if(selectVal==8){
-				//alert(selectVal);
-				$("#otro1a").css("display", "block");
-				
-				$("#otro1").focus();
-
-			}else{
-
-				$("#otro1a").css("display", "none");		
-				$("#otro1").val("");
-
-			}
-		});
-
-		$('#activity').on('change', function () {
-
-			var selectVal = $("#activity option:selected").val();
-
-			if(selectVal==0){
-
-					$("#actv_1").css("display", "block");
-					$("#actv_2").css("display", "none");
-					$("#actv_3").css("display", "none");
-
-			}else if(selectVal==1){
-
-				    $("#actv_1").css("display", "none");
-					$("#actv_2").css("display", "block");
-					$("#actv_3").css("display", "none");
-
-			}else{
-
-					$("#actv_1").css("display", "none");
-					$("#actv_2").css("display", "none");
-					$("#actv_3").css("display", "block");
-
-			}
-		
-		});*/
 
 		$("#exit" ).click(function() {
 
@@ -2261,8 +2244,9 @@ $("#izquierda" ).click(function() {
 
 							$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",ideco2}).done(function( data ) {
 								var parsedJson = $.parseJSON(data);
-								var cos_tot=parsedJson;
-								$("#totalite").val( cos_tot );
+								var cos_tot = parsedJson;
+								cos_tot = formato_numero(cos_tot, 2, ',', '.');
+								$("#totalite").val(cos_tot);
 							},"json");
 
 					    }, 3000);
@@ -2276,8 +2260,9 @@ $("#izquierda" ).click(function() {
 				
 					$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo", ideco2}).done(function( data ) {
 						var parsedJson = $.parseJSON(data);
-						var cos_tot=parsedJson;		
-						$("#totalite").val( cos_tot );
+						var cos_tot = parsedJson;
+						cos_tot = formato_numero(cos_tot, 2, ',', '.');
+						$("#totalite").val(cos_tot);
 					},"json");
 				}, 3000);
 		    //$('#activo').focus();
@@ -2691,7 +2676,6 @@ $("#izquierda" ).click(function() {
 			$('#quitar').click( function () {
 
 				var value= table.$('tr.selected').children('td:first').text();
-				//alert(value);
 				if(!value){
 
 						$.alert({
@@ -3010,40 +2994,32 @@ $("#izquierda" ).click(function() {
 
 		});
 
+		$.post( "../../controllers/grupos_controller", { action: "get_marcas"}).done(function( data ) {
+			 $("#grup_financ" ).html( data );
+
+		});
+
 		
 		$('#grupo').change(function(event) {
 
-$.post( "../../controllers/grupos_controller", { action: "get_grupos",grupo:$("#grupo").val()}).done(function( data ) {
+				$.post( "../../controllers/grupos_controller", { action: "get_grupos",grupo:$("#grupo").val()}).done(function( data ) {
 
-	var parsedJson = $.parseJSON(data);
+					var parsedJson = $.parseJSON(data);
 
-$("#rt_nombre1").val(parsedJson.rs_nombre1);
-$("#rt_nombre2").val(parsedJson.rs_nombre2);
-$("#rt_apellido1").val(parsedJson.rs_apellido1);
-$("#rt_apellido2").val(parsedJson.rs_apellido2);
-$("#correo1").val(parsedJson.rs_correo);
-$("#tele1").val(parsedJson.rs_tele);
-			//alert( $("#correo2").val());
-			//alert( $("#tele2").val());
-			 
-			
-		});
+				$("#rt_nombre1").val(parsedJson.rs_nombre1);
+				$("#rt_nombre2").val(parsedJson.rs_nombre2);
+				$("#rt_apellido1").val(parsedJson.rs_apellido1);
+				$("#rt_apellido2").val(parsedJson.rs_apellido2);
+				$("#correo1").val(parsedJson.rs_correo);
+				$("#tele1").val(parsedJson.rs_tele);
+					//alert( $("#correo2").val());
+					//alert( $("#tele2").val());
+					
+					
+				});
+				
+				});
 		
-		});
-		
-
-
-
-		/*$.post( "../../controllers/mdistribuidoras_controller", { action: "get_distri"}).done(function( data ) {
-			 $("#distribuidora" ).html( data );
-
-		});*/
-
-		/*$.post( "../../controllers/mregiones_controller", { action: "get_regi",departamento:$("#departamento").val()}).done(function( data ) {
-			 $("#region" ).html( data );
-				alert( $("#region" ).val());
-		});*/
-
 		//** enviar los datos al controlador ***********************************************************
 		$("#save" ).click(function() {
 				//alert($("#t_trans").val());
@@ -3120,7 +3096,12 @@ $("#tele1").val(parsedJson.rs_tele);
 					t_trans: $("#t_trans").val(),					
 					to_total:$("#totalite").val(),
 					presup:$("#presup").val(),
-					region: $("#region").val()
+					region: $("#region").val(),
+					// Agregado para cumplir con los nuevos ajustes
+					grup_financ: $("#grup_financ").val(),
+					total_ejecutado: $("#total_ejecutado").val(),
+					modalidad_evento: $("#modalidad_evento").val(),
+					plan_accion: $("#plan_accion").val()
 
 				}).done(function(data){
 
@@ -3283,7 +3264,7 @@ $("#tele1").val(parsedJson.rs_tele);
 
 
 		$.post( "../../controllers/msolicitudes_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
-
+        //alert($(data).val());
 		var parsedJson = $.parseJSON(data);
          
 		$("#n_accion").val(parsedJson.cid);
@@ -3294,9 +3275,6 @@ $("#tele1").val(parsedJson.rs_tele);
 		$("#fecha3").val(parsedJson.fecha3);
 		$("#hora1").val(parsedJson.hora1);
 		$("#hora2").val(parsedJson.hora2);
-		//alert($("#hsoli").val());
-		//alert($("#hora1").val());
-		//alert($("#hora1").val());
 		var bdep =parsedJson.departamento;
 		var bmun =parsedJson.municipio;
 		var bcpo =parsedJson.cpoblado;
@@ -3365,6 +3343,17 @@ $("#tele1").val(parsedJson.rs_tele);
 		$("#num_vic").val(parsedJson.num_vic);
 		$("#descripcion").val(parsedJson.descripcion);
 		$("#recomendaciones").val(parsedJson.recomendaciones);
+
+		var grup_financ =parsedJson.grup_financ;
+		$.post( "../../controllers/grupos_controller", { action: "get_search",grup_financ}).done(function( data ) {
+			$("#grup_financ").html(data);
+
+		});
+
+		
+		$("#total_ejecutado").val(parsedJson.total_ejecutado);
+		$("#total_ejecutado").html(val(parsedJson.modalidad_evento));		
+		$("#plan_accion").val(parsedJson.plan_accion);
 
 	
 
@@ -4337,7 +4326,32 @@ function esidaccion(e) {
 				}
 			}
 
+	//// Agregada 19-09-2021 por Ing. Yonny Ramirez
 
+	function formato_numero(numero, decimales, separador_decimal, separador_miles) {
+		numero = parseFloat(numero);
+		if (isNaN(numero)) {
+			return "";
+		}
+
+		if (decimales !== undefined) {
+			// Redondeamos
+			numero = numero.toFixed(decimales);
+		}
+
+		// Convertimos el punto en separador_decimal
+		numero = numero.toString().replace(".", separador_decimal !== undefined ? separador_decimal : ",");
+
+		if (separador_miles) {
+			// Añadimos los separadores de miles
+			var miles = new RegExp("(-?[0-9]+)([0-9]{3})");
+			while (miles.test(numero)) {
+				numero = numero.replace(miles, "$1" + separador_miles + "$2");
+			}
+		}
+
+		return numero;
+	}
 			
 
  </script>

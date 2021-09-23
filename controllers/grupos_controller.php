@@ -8,6 +8,8 @@ date_default_timezone_set('America/Bogota');
 /***********************************/
 @$nombre = ($_POST["nombre"]);
 @$grupo = ($_POST["grupo"]);
+@$grup_financ = ($_POST["grup_financ"]);
+
 /**********************************/
 
 switch ($action){
@@ -354,7 +356,13 @@ break;
 
 case 'get_search':
 
-  @$data = Grupo::find('all',array('conditions' => array('id=?',intval($grupo))));
+  if ($grupo!=null){
+ $valor=$grupo;
+  }else if ($grup_financ!=null){
+    $valor=$grup_financ;
+     }
+
+  @$data = Grupo::find('all',array('conditions' => array('id=?',intval($valor))));
 
       if($data !=null){
               

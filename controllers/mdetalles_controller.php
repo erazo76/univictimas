@@ -36,8 +36,14 @@ switch ($action){
       
     $usuario_id = $_SESSION['idusuariox'];
     $id_sesion_usuario = $_SESSION['instante'];
-     //$int = intval( strval(($ideco)));
-    @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = '.$ideco2.'  and status = 1');
+     if ($ideco2>0){
+       $valor=$ideco2;
+       $cadena= "mrequerimientos_id = $valor and";
+     }else{
+      $valo=0;
+      $cadena="";
+     }
+    @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where '.$cadena.' status = 1');
 
   if($data !=null){
     foreach($data as $rs){

@@ -9,6 +9,11 @@ if(!$id_sesion_usuario){
 	$id_sesion_usuario=1;
 }
 	$result = array();
+
+	
+	$data_delete = Mdetalle::find_by_sql("delete from mdetalles where reg_temp=true and id_sesion_usuario=1;");
+
+ 
 	$data_search = Msolicitude::find_by_sql("SELECT id FROM Msolicitudes WHERE status=1 and id=$unid ");
 
 

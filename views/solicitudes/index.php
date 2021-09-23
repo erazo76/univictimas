@@ -236,7 +236,7 @@ $(document).ready(function() {
 			$('#edit').click( function () {
 				var value= table.$('tr.selected').children('td:first').text();
 				// value=parseFloa(value);
-				// alert(value);
+				 alert(value);
 				if(!value){
 
 						$.alert({

@@ -107,6 +107,13 @@ $fecha5= date("d-m-Y",strtotime($fecha_actual."+ 10 days"));
 @$regis4 = ($_POST["regis4"]);
 @$idea4 = ($_POST["idea4"]);
 
+///*********************** */
+
+@$grup_financ = ($_POST["grup_financ"]);
+@$total_ejecutado = ($_POST["total_ejecutado"]);
+@$modalidad_evento = ($_POST["modalidad_evento"]);
+@$plan_accion = ($_POST["plan_accion"]);
+
 
 /***********************************/
 
@@ -648,6 +655,12 @@ break;
             $alia->reg_temp='false';
             
             $alia->id_sesion_usuario = $id_sesion_usuario;
+
+
+            @$grup_financ_id = ($_POST["grup_financ"]);
+            @$total_ejecutado = ($_POST["total_ejecutado"]);
+            @$modalidad_evento = ($_POST["modalidad_evento"]);
+            @$plan_accion = ($_POST["plan_accion"]);
 
 
              if($alia->save()){
@@ -1855,7 +1868,13 @@ case 'aprobar':
                   "costo_total"=>$rs->costo_total,
                   "presup"=>$rs->presup,
                   "region"=>$rs->mregiones_id,
-                  "completado"=>$rs->completado
+                  "completado"=>$rs->completado,
+                  "grup_financ"=>$rs->grup_financ_id,
+                  "total_ejecutado"=>$rs->total_ejecutado,
+                  "modalidad_evento"=>$rs->modalidad_evento,
+                  "plan_accion"=>$rs->plan_accion
+
+
                  );
         }
 
@@ -2037,7 +2056,8 @@ case 'aprobar':
      }
 
   }
-  break;   
+  break;    
+
 
 
 }//end switch
