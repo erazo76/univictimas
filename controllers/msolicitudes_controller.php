@@ -581,7 +581,8 @@ break;
               $t_trans1 = null;
             }
             
-            
+            $to_total = str_replace("$ ", "", $to_total);
+         
             $alia = new Msolicitude();
             $alia->nombre = $nombre;
             $alia->fecha1 = $hoy;
@@ -736,9 +737,6 @@ $data_credencial = Musuario::find_by_sql("SELECT email, clave_email
 /////#############################################################################
 
 
-
-
-              
               
               // da el mensaje de guardado...
 
@@ -1330,8 +1328,8 @@ break;
             $t_trans1 = null;
           }
          
-        
-
+          $to_total = str_replace("$ ", "", $to_total);
+         
           $alia = Msolicitude::find($id);     
           $alia->nombre = $nombre;
           $alia->fecha1 = $hoy;

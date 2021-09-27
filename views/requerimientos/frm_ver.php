@@ -1313,7 +1313,9 @@ $("#izquierda" ).click(function() {
 											  //"destroy": true,
 	
 											  "ajax": {
-												"url": "../../data_json/data_mequipos?este="+identico2,
+												// "url": "../../data_json/data_mequipos?este="+identico2,
+												"url": "../../data_json/data_madjuntados?este="+identico2,
+
 												"dataSrc": ""
 											  },
 											  "fnDrawCallback": function () {

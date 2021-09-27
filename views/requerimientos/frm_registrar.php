@@ -1938,21 +1938,11 @@ $("#izquierda" ).click(function() {
 
 		});
 
-		/*$.post( "../../controllers/mdistribuidoras_controller", { action: "get_distri"}).done(function( data ) {
-			 $("#distribuidora" ).html( data );
-
-		});*/
-
-		/*$.post( "../../controllers/mregiones_controller", { action: "get_regi",departamento:$("#departamento").val()}).done(function( data ) {
-			 $("#region" ).html( data );
-				alert( $("#region" ).val());
-		});*/
-
 		//** enviar los datos al controlador ***********************************************************
 		$("#save" ).click(function() {
-				//alert($("#t_trans").val());
-				
-				
+				//alert($("#t_trans").val());	
+				document.getElementById('save').disabled = true;
+			
 				$.post( "../../controllers/mrequerimientos_controller", {
 
 					action: "add",
@@ -1992,7 +1982,7 @@ $("#izquierda" ).click(function() {
 					costo_total: $("#costo_total").val()
 
 				}).done(function(data){
-
+					document.getElementById('save').disabled = true;
 					var parsedJson = $.parseJSON(data);
 					$(".message").html(parsedJson.mensaje);
 
@@ -2000,7 +1990,7 @@ $("#izquierda" ).click(function() {
 
 					    	setTimeout(function(){
 
-								$(location).attr('href','index');
+								$(location).attr('href','frm_registrar');
 
 					        }, 1500);	
 

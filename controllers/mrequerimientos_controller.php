@@ -1,15 +1,18 @@
 <?php
-//session_start();
+
 session_start([
   'cache_limiter' => 'private',
   'read_and_close' => true,
 ]);
+
+
 @$usuario_id = $_SESSION['idusuariox'];
 require_once '../mail/class.phpmailer.php';
 require_once '../mail/class.smtp.php';
 
 require_once '../models/Mrequerimiento.php';
 require_once '../models/Madjunto.php';
+require_once '../models/Madjuntado.php';
 require_once '../models/Mdetalle.php';
 require_once '../models/Mdepartamento.php';
 require_once '../models/Mmunicol.php';
@@ -326,95 +329,7 @@ case 'contar_id':
             Seleccione un municipio.
             </div>');
 
-      }/*else if($acceso1 ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique el acceso principal.
-            </div>');
-
-      }else if($acceso2 ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique el acceso secundario.
-            </div>');
-
-      }else if($num_dir ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique el numero de dirección.
-            </div>');
-
-      }else if($a_referencia ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-             Indique un lugar de referencia.
-            </div>');
-
-      }else if($rt_nombre1 ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique nombre completo del Beneficiario.
-            </div>');
-
-      }else if($rt_num_doc ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique el número del documento de identidad.
-            </div>');
-
-      }else if($tele1 ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique un teléfono de contacto.
-            </div>');
-
-      }else if($correo1 ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique un correo electrónico.
-            </div>');
-
-      }*/else if($fecha2 ==""){
+      }else if($fecha2 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -438,9 +353,10 @@ case 'contar_id':
 
       }else{  //(A)
 
-            //session_start();
-            //@$usuario_id = $_SESSION['idusuariox'];
-            $hoy = date('d-m-Y');
+          session_start();
+          @$usuario_id = $_SESSION['idusuariox'];
+          $id_sesion_usuario = $_SESSION['instante'];
+          $hoy = date('d-m-Y');
 
             $alia = new Mrequerimiento();    
            // $alia = Mrequerimiento::find($id);
@@ -472,17 +388,56 @@ case 'contar_id':
             $alia->fecha2 = $fecha2;
             $alia->costo_total = $costo_total;
             $alia->idaccion = $idaccion;
-            $alia->status = 1;
+            $alia->status = 1;           
+            $alia->reg_temp='false';            
+            $alia->id_sesion_usuario = $id_sesion_usuario;
 
              if($alia->save()){ // da el mensaje de guardado...
 
+               
+              $data_search_adjunto = Mrequerimiento::find_by_sql("SELECT max(id) as num_req 
+                FROM Mrequerimientos 
+                                  WHERE status=1 and id_sesion_usuario=id_sesion_usuario 
+                                                 and reg_temp=false and user_create=$alia->user_create; ");
+
+              $data_search_adjunto_all = Madjuntado::find_by_sql("SELECT id as id_adjunto
+              FROM Madjuntados 
+                    WHERE status=1  
+                          and reg_temp=true and mrequerimientos_id=0 and id_sesion_usuario=id_sesion_usuario
+                          and user_create=$alia->user_create; ");
+                     $num_req=0;
+                    if($data_search_adjunto !=null){
+                    
+                    foreach ($data_search_adjunto as $acti) {
+                        $num_req=$acti->num_req;
+                         }
+                        }
+
+                  if($data_search_adjunto_all !=null){
+                    foreach ($data_search_adjunto_all as $detalles_requer) {
+                      $reg_2 = Madjuntado::find($detalles_requer->id_adjunto);
+
+                        $reg_2->mrequerimientos_id = $num_req;
+                        $reg_2 ->reg_temp = 'false';
+
+                        $reg_2 ->save();
+
+                      }
+                      }
+
+
+
             $data_credencial = Musuario::find_by_sql("SELECT email, clave_email 
-                                  FROM Musuarios  WHERE status=1 and id=11"); 
+                                  FROM Musuarios  WHERE status=1 and id=11 ;"); 
+
+              if($data_credencial !=null){
                   foreach ($data_credencial as $user) {
                     $remitente=$user->email;
                     $clave_email=$user->clave_email;
                     }  
-    
+                  }
+              
+                  
               $mail = new PHPMailer();
               $mail->IsSMTP(); // telling the class to use SMTP
               $mail->Host          = "smtp.gmail.com";
@@ -586,95 +541,7 @@ case 'contar_id':
           Seleccione un municipio.
           </div>');
 
-    }/*else if($acceso1 ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Indique el acceso principal.
-          </div>');
-
-    }else if($acceso2 ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Indique el acceso secundario.
-          </div>');
-
-    }else if($num_dir ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Indique el numero de dirección.
-          </div>');
-
-    }else if($a_referencia ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-           Indique un lugar de referencia.
-          </div>');
-
-    }else if($rt_nombre1 ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Indique nombre completo del Beneficiario.
-          </div>');
-
-    }else if($rt_num_doc ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Indique el número del documento de identidad.
-          </div>');
-
-    }else if($tele1 ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Indique un teléfono de contacto.
-          </div>');
-
-    }else if($correo1 ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Indique un correo electrónico.
-          </div>');
-
-    }*/else if($fecha2 ==""){
+    }else if($fecha2 ==""){
 
       $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>

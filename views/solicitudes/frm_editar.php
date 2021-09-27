@@ -66,13 +66,14 @@ ValidaSession("../login");
 
 									<span class="input-group-btn">
 										<select id="modalidad_evento" class="btn-sm" tabindex="450">
-											<option value="Presencial">Presencial</option>
-											<option value="Virtual">Virtual</option>
+										<option value="0"></option>
+									    <option value="1">Presencial</option>
+										<option value="2">Virtual</option>
 
 										</select>
 									</span>
 								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='modalidad_evento'>
+								 <div style="background-color:#F39C12;color:#fff;text-align:center" id='modalidad_evento'>
 									<p></p>
 								</div>
 							</div>
@@ -83,9 +84,9 @@ ValidaSession("../login");
 
 									<span class="input-group-btn">
 										<select id="plan_accion" class="btn-sm" tabindex="555">
-											<option value="Plan de acción 2021">Plan de acción 2021</option>
-											<option value="Plan de trabajo DGI 2021">Plan de trabajo DGI 2021</option>
-											<option value="Plan de trabajo DGI 2021">Plan de Trabajo Mesa Nacional</option>
+											<option value="1">Plan de acción 2021</option>
+											<option value="2">Plan de trabajo DGI 2021</option>
+											<option value="3">Plan de Trabajo Mesa Nacional</option>
 
 
 										</select>
@@ -642,7 +643,7 @@ ValidaSession("../login");
 				
 					<div class="box-footer">
 						<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
-						<!--<button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>-->
+						<button id="quitar" type="button" class="btn btn-danger sm" tabindex="50"><i class="fa fa-fw fa-minus"></i>Quitar</button>
 					</div>
 				</div>	
 				<div class="box-header with-border">
@@ -773,9 +774,9 @@ ValidaSession("../login");
 								</select>
 						</div>
 
-						<label>Total Presupuestado</label>
+						<label>Total Presupuestado</label>S
 							<div class="form-group-sm">
-								<input type="text" class="form-control pesos" id="totalite" disabled="true">
+							<input type="text" class="form-control pesos"  id="totalite" disabled="true">
 							</div>
 							<label>Total Ejecutado</label>
 							<div class="form-group-sm">
@@ -1419,7 +1420,7 @@ setTimeout(function() {
 		var parsedJson = $.parseJSON(data);
 		var cos_tot = parsedJson;
 		cos_tot = formato_numero(cos_tot, 2, ',', '.');
-		$("#totalite").val(cos_tot);
+		$("#totalite").val('$ '+cos_tot);
 	},"json");
 }, 3000);
 	var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
@@ -2246,7 +2247,8 @@ $("#izquierda" ).click(function() {
 								var parsedJson = $.parseJSON(data);
 								var cos_tot = parsedJson;
 								cos_tot = formato_numero(cos_tot, 2, ',', '.');
-								$("#totalite").val(cos_tot);
+								$("#totalite").val('$ '+cos_tot);
+						
 							},"json");
 
 					    }, 3000);
@@ -2262,7 +2264,8 @@ $("#izquierda" ).click(function() {
 						var parsedJson = $.parseJSON(data);
 						var cos_tot = parsedJson;
 						cos_tot = formato_numero(cos_tot, 2, ',', '.');
-						$("#totalite").val(cos_tot);
+						// $("#totalite").val(cos_tot);
+						$("#totalite").val('$ '+cos_tot);
 					},"json");
 				}, 3000);
 		    //$('#activo').focus();
@@ -3352,7 +3355,7 @@ $("#izquierda" ).click(function() {
 
 		
 		$("#total_ejecutado").val(parsedJson.total_ejecutado);
-		$("#total_ejecutado").html(val(parsedJson.modalidad_evento));		
+		$("#modalidad_evento").val(parsedJson.modalidad_evento);		
 		$("#plan_accion").val(parsedJson.plan_accion);
 
 	

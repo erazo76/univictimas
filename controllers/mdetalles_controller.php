@@ -305,11 +305,9 @@ break;
         if($usuario_id !="" /*&& ($rol ==1 || $rol==4)*/){
 
                   $acti= Mdetalle::find($record);
-                  $acti->user_modify = $usuario_id;
-                  $acti->updated = $hoy;
-                  $acti->status = 0;
+                
 
-                  if($acti->save()){
+                  if($acti->delete()){
 
                     $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
                         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>

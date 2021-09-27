@@ -1592,8 +1592,6 @@ $("#izquierda" ).click(function() {
 
 					    }, 3000);
 
-					}else{
-
 					}
 
 				},"json");
@@ -1968,7 +1966,7 @@ $("#izquierda" ).click(function() {
 			//$('#modal3').modal({backdrop: 'static',keyboard: false});
 			
 			var value= table.$('tr.selected').children('td:first').text();
-				//alert(value);
+				// alert(value);
 				if(!value){
 
 						$.alert({
@@ -1980,7 +1978,10 @@ $("#izquierda" ).click(function() {
 							confirmButtonClass: 'btn-success'
 						});
 			}else{
-			$(location).attr('href','frm_adjuntados?record='+$("#idea").val()+'&origin=2');
+				var record = <?php echo intval($_GET["record"]); ?>;
+	
+			 $(location).attr('href','frm_adjuntados?id_adj='+value+'&record='+record);
+
 		}
 		});
 

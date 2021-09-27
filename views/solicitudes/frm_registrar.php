@@ -1521,7 +1521,9 @@ session_start();
 				var parsedJson = $.parseJSON(data);
 				var cos_tot = parsedJson;
 				cos_tot = formato_numero(cos_tot, 2, ',', '.');
-				$("#totalite").val(cos_tot);
+				//$("#totalite").val(cos_tot);
+				$("#totalite").val('$ '+cos_tot);
+
 			}, "json");
 		}, 3000);
 
@@ -2471,7 +2473,9 @@ session_start();
 						var parsedJson = $.parseJSON(data);
 						var cos_tot = parsedJson;
 						cos_tot = formato_numero(cos_tot, 2, ',', '.');
-						$("#totalite").val(cos_tot);
+						//$("#totalite").val(cos_tot);
+						$("#totalite").val('$ '+cos_tot);
+
 					}, "json");
 
 				}, 3000);
@@ -2491,7 +2495,9 @@ session_start();
 				var parsedJson = $.parseJSON(data);
 				var cos_tot = parsedJson;
 				cos_tot = formato_numero(cos_tot, 2, ',', '.');
-				$("#totalite").val(cos_tot);
+				//$("#totalite").val(cos_tot);
+				$("#totalite").val('$ '+cos_tot);
+
 			}, "json");
 		}, 3000);
 

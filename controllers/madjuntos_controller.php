@@ -14,6 +14,7 @@ date_default_timezone_set('America/Bogota');
 @$action = ($_POST["action"]);
 
 @$record = ($_POST["record"]);
+@$origen = ($_POST["record"]);
 @$recordado = ($_POST["recordado"]);
 @$recordatorio = ($_POST["recordatorio"]);
 @$l_recordado = ($_POST["l_recordado"]);
@@ -451,6 +452,68 @@ case 'delete_adjuntado':
   break;
 
 #*******************************************************************************
+#*******************************************************************************
+case 'search_adjuntados':
+  if($record !=null){
+
+      //session_start();
+      //$usuario_id = $_SESSION['idusuariox'];
+      $rol = $_SESSION['rolx'];
+      $hoy = date("d-m-Y");
+
+    @$data = Madjuntado::find('all',array('conditions' => array('id=?',intval($origen))));
+
+    if($data !=null){
+
+      foreach($data as $rs){
+
+          $resp[] = array(
+                "imagen"=>$rs->imagen,
+          );
+
+      }
+     // print_r($resp);exit();
+      echo json_encode($resp);
+    }else{
+      $resp[] = array( );
+      echo json_encode($resp);
+    }
+
+  }
+break;
+
+#*******************************************************************************
+
+
+#*******************************************************************************
+
+
+
+case 'buscar_id_requerimiento':
+  if($record !=null){
+
+      //session_start();
+      //$usuario_id = $_SESSION['idusuariox'];
+      $rol = $_SESSION['rolx'];
+      $hoy = date("d-m-Y");
+
+      @$data = Madjuntado::find('all',array('conditions' => array('id=?',intval($record))));
+
+    if($data !=null){
+
+      foreach($data as $rs){
+
+        $resp=$rs->mrequerimientos_id;
+         
+
+      }
+     // print_r($resp);exit();
+      echo json_encode($resp);
+    }
+
+  }
+break;
+
 case 'search_reg':
   if($record !=null){
 
@@ -479,6 +542,8 @@ case 'search_reg':
 
   }
 break;
+
+
 
 #*******************************************************************************
   case 'search_act':
