@@ -336,7 +336,7 @@ ValidaSession("../login");
 		  <div class="col-md-4">
 
 		  <div class="box-header with-border">
-		  <h3 class="box-title">Subdireccion que Ejecuta</h3>
+		  <h3 class="box-title">Subdirección que Financia la Actividad</h3>
 					</div><!-- /.box-header -->
 					<div class="box box-primary">
 
@@ -350,7 +350,7 @@ ValidaSession("../login");
 					</div>
 
 		  <div class="box-header with-border">
-					<h3 class="box-title">Grupo/Área/Equipo/Dependencia</h3>
+					<h3 class="box-title">Subdirección que Ejecuta la Actividad </h3>
 				</div><!-- /.box-header -->	
 				<div class="box box-primary">
 

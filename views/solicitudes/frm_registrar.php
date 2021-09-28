@@ -373,7 +373,7 @@ session_start();
 					</div>
 
 					<div class="box-header with-border">
-						<h3 class="box-title">Subdireccion que Ejecuta</h3>
+					<h3 class="box-title">Subdirección que Financia la Actividad</h3>
 					</div><!-- /.box-header -->
 					<div class="box box-primary">
 
@@ -387,7 +387,7 @@ session_start();
 					</div>
 
 					<div class="box-header with-border">
-						<h3 class="box-title">Subdirección Responsable</h3>
+					<h3 class="box-title">Subdirección que Ejecuta la Actividad </h3>
 					</div><!-- /.box-header -->
 
 					<div class="box box-primary">
