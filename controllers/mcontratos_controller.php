@@ -7,7 +7,8 @@ date_default_timezone_set('America/Bogota');
 @$action = ($_POST["action"]);
 @$cos_contrato = ($_POST["cos_contrato"]);
 @$num_contrato = ($_POST["num_contrato"]);
-@$id = 2;
+@$id = ($_POST["id_contrato"]);
+@$id_contrato=($_POST["id_contrato"]);
 
 
 @$sub_participacion=($_POST["sub_participacion"]);
@@ -139,7 +140,7 @@ break;
 
   case 'add':
 
-      if($num_contrato==""){
+      if(($num_contrato=="")||($num_contrato==0)){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -170,11 +171,39 @@ break;
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
+            
+            // if($sub_participacion==""){
+            //   $sub_participacion=0;
+            // }
+            // if($dir_inter==""){
+            //   $dir_inter=0;
+            // }
+            // if($subdir_snariv==""){
+            //   $subdir_snariv=0;
+            // }
+            // if($subdir_nac==""){
+            //   $subdir_nac=0;
+            // }
+            // if($grup_proy==""){
+            //   $grup_proy=0;
+            // }
+            // if($vic_ext==""){
+            //   $vic_ext=0;
+            // }
+
             $segme = new Mcontrato();
-            $segme->num_contrato = $num_contrato;
             $segme->cos_contrato = $cos_contrato;
-            $segme->user_create = $usuario_id;
-            $segme->created = $hoy;
+            $segme->num_contrato = $num_contrato;
+            $segme->user_modify = $usuario_id;
+            $segme->updated = $hoy;
+            $segme->vigente = true;
+            
+            // $depa->sub_participacion = $sub_participacion;
+            // $depa->dir_inter         = $dir_inter;            
+            // $depa->subdir_snariv     = $subdir_snariv;
+            // $depa->subdir_nac        = $subdir_nac;
+            // $depa->grup_proy         = $grup_proy;
+            // $depa->vic_ext           = $vic_ext;
 
 
             if($segme->save()){ // da el mensaje de guardado...
@@ -250,37 +279,40 @@ break;
             $usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
 
-            if($sub_participacion==""){
-              $sub_participacion=0;
-            }
-            if($dir_inter==""){
-              $dir_inter=0;
-            }
-            if($subdir_snariv==""){
-              $subdir_snariv=0;
-            }
-            if($subdir_nac==""){
-              $subdir_nac=0;
-            }
-            if($grup_proy==""){
-              $grup_proy=0;
-            }
-            if($vic_ext==""){
-              $vic_ext=0;
-            }
+            // if($sub_participacion==""){
+            //   $sub_participacion=0;
+            // }
+            // if($dir_inter==""){
+            //   $dir_inter=0;
+            // }
+            // if($subdir_snariv==""){
+            //   $subdir_snariv=0;
+            // }
+            // if($subdir_nac==""){
+            //   $subdir_nac=0;
+            // }
+            // if($grup_proy==""){
+            //   $grup_proy=0;
+            // }
+            // if($vic_ext==""){
+            //   $vic_ext=0;
+            // }
 
-            $depa= Mcontrato::find($id);
+            //$depa= Mcontrato::find($id);
+            // $depa=Mcontrato::find('all',array('conditions' => array('num_contrato=?',$num_contrato)));
+            $depa=Mcontrato::find($id);
+
             $depa->cos_contrato = $cos_contrato;
             $depa->num_contrato = $num_contrato;
             $depa->user_modify = $usuario_id;
             $depa->updated = $hoy;
             
-            $depa->sub_participacion = $sub_participacion;
-            $depa->dir_inter = $dir_inter;            
-            $depa->subdir_snariv = $subdir_snariv;
-            $depa->subdir_nac = $subdir_nac;
-            $depa->grup_proy = $grup_proy;
-            $depa->vic_ext = $vic_ext;
+            // $depa->sub_participacion = $sub_participacion;
+            // $depa->dir_inter = $dir_inter;            
+            // $depa->subdir_snariv = $subdir_snariv;
+            // $depa->subdir_nac = $subdir_nac;
+            // $depa->grup_proy = $grup_proy;
+            // $depa->vic_ext = $vic_ext;
 
             if($depa->save()){
 
@@ -312,6 +344,95 @@ break;
      }
  
   break;
+#*******************************************************************************
+#*******************************************************************************
+case 'asignar':
+
+  if($num_contrato==""){
+
+    $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+        <h4>
+        <i class="icon fa fa-warning"></i>
+        Alerta!
+        </h4>
+        Ingrese el número de contrato.
+        </div>');
+  }else if($cos_contrato==""){
+
+    $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+        <h4>
+        <i class="icon fa fa-warning"></i>
+        Alerta!
+        </h4>
+        Ingrese la asignación del contrato.
+        </div>'); 
+
+  }else{
+
+          session_start();
+          $usuario_id = $_SESSION['idusuariox'];
+          $hoy = date('d-m-Y');
+
+          if($sub_participacion==""){
+            $sub_participacion=0;
+          }
+          if($dir_inter==""){
+            $dir_inter=0;
+          }
+          if($subdir_snariv==""){
+            $subdir_snariv=0;
+          }
+          if($subdir_nac==""){
+            $subdir_nac=0;
+          }
+          if($grup_proy==""){
+            $grup_proy=0;
+          }
+          if($vic_ext==""){
+            $vic_ext=0;
+          }
+
+          $depa=Mcontrato::find($id);
+          
+          $depa->sub_participacion = $sub_participacion;
+          $depa->dir_inter = $dir_inter;            
+          $depa->subdir_snariv = $subdir_snariv;
+          $depa->subdir_nac = $subdir_nac;
+          $depa->grup_proy = $grup_proy;
+          $depa->vic_ext = $vic_ext;
+
+          if($depa->save()){
+
+              $respuesta = array('resultado'=>'ok','message'=>'<div class="alert alert-success alert-dismissable">
+                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                  <h4>
+                  <i class="icon fa fa-check"></i>
+                  Alerta!
+                  </h4>
+                  Los datos han sido actualizados exitosamente !.
+                  </div>');
+
+          }else{
+
+
+            $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
+                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                <h4>
+                <i class="icon fa fa-ban"></i>
+                Alerta!
+                </h4>
+                Error al actualizar los datos.
+                </div>');
+
+
+          }
+          echo json_encode($respuesta);
+
+   }
+
+break;
 #*******************************************************************************
   case 'delete':
 
@@ -449,7 +570,11 @@ break;
     $usuario_id = $_SESSION['idusuariox'];
     $hoy = date("d-m-Y");
 
-    @$data = Mcontrato::find('all');
+   /// @$data = Mcontrato::find('all');
+    @$data = Mcontrato::find_by_sql(" SELECT  max(id) as id_contrato ,num_contrato,cos_contrato from mcontratos WHERE  status=1 AND vigente=true  GROUP BY num_contrato,cos_contrato limit 1;");  
+
+
+
     if($data !=null){
       foreach($data as $rs){
           @$subdi_participacion = Msolicitude::find_by_sql("SELECT sum(costo_total) as sub_part_cos from msolicitudes WHERE status=1 AND grup_financ_id=1 ;");  
@@ -466,8 +591,8 @@ break;
               }else{
               $reg1 = $r1->sub_part_cos;      
               }
-            }        
-          }
+            }      
+            }
           
           if($direc_gest_inter !=null){
             foreach($direc_gest_inter as $r2){
@@ -530,7 +655,9 @@ break;
                     "dir_cord_nac_cos"=>number_format($reg4,1,',', ' '),
                     "grup_proy"=>number_format($reg5,1,',', ' '),
                     "vict_ext_cos"=>number_format($reg6,1,',', ' '),
-                    "restan"=>number_format($reg_t,1,',', ' ')
+                    "restan"=>number_format($reg_t,1,',', ' '),
+                    "id_contrato"=>$rs->id_contrato
+                    // ,
                     // ,
                     // "sub_part_cos1"=>floatval($reg1),
                     // "dir_ges_cos"=>floatval($reg2),

@@ -4,6 +4,7 @@ include("../../lib/validar_session.php");
 
 ValidaSession("../login");
 //VerificarAdmin($_SESSION['rolx']);
+$control_total=false;
 
 ?>
 <?php include("../layouts/constantes.php") ?>
@@ -179,6 +180,7 @@ ValidaSession("../login");
                     <label>Número de contrato</label>
                     <input type="text" class="form-control" id="num_contrato" placeholder="Indique el número de contrato"  onpaste="return false" tabindex="10" onkeypress="return esnumint(event);" onblur="alsalir(this.id)" autocomplete="off">
                     <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_contrato'><p></p></div>
+                    <input type="hidden" id="id_contrato">
                   </div>
 
                   <label>Asignación presupuestal</label>
@@ -189,6 +191,19 @@ ValidaSession("../login");
                   <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_cos_contrato'><p></p></div>
                 </div>                
                 </div>
+
+                <div style="background-color:#F39C12;color:#fff;text-align:center" id='vic_ext'><p></p></div>
+                  <div class="box-footer">
+                    <button id="p_guarda" type="button" class="btn btn-success"><i class="fa fa-fw fa-save"></i>Guardar</button>
+                    <button id="p_edita" type="button" class="btn btn-success" style="display:none;"><i class="fa fa-fw fa-edit"></i>Editar</button>
+                </div>  
+                <?php 
+						   
+							if($_GET["control_total"]){
+						   
+						   ?>
+                   
+
                 <div class="box-header with-border">
                   <h3 class="box-title">ASIGNACIÓN ESPECIFICA</h3>
                   <div class="box-tools pull-right">
@@ -240,12 +255,16 @@ ValidaSession("../login");
                     <span class="input-group-addon">$</span>
                     <input type="text" class="form-control" id="vic_ext" placeholder="Indique la asignación "  onpaste="return false" tabindex="20" onkeypress="return esnum_vic_ext(event);" onblur="alsalir(this.id)" autocomplete="off">
                   </div>
-                  <div style="background-color:#F39C12;color:#fff;text-align:center" id='vic_ext'><p></p></div>
                   <div class="box-footer">
-                    <button id="p_guarda" type="button" class="btn btn-success"><i class="fa fa-fw fa-save"></i>Guardar</button>
-                    <button id="p_edita" type="button" class="btn btn-success" style="display:none;"><i class="fa fa-fw fa-edit"></i>Editar</button>
-                </div>         
-                 
+                    <button id="p_asignar" type="button" class="btn btn-success"><i class="fa fa-fw fa-save"></i>Guardar</button>
+                    <!-- <button id="p_edita" type="button" class="btn btn-success" style="display:none;"><i class="fa fa-fw fa-edit"></i>Editar</button> -->
+                </div> 
+
+             	
+              	<?php 
+							 }else{
+							}
+							?>
                 </form> 
                 <div id="chartdiv3" style="width:100%;height:300px;max-height:300px;">
                 </div>
@@ -264,12 +283,14 @@ ValidaSession("../login");
 
 $(document).ready(function() {
 
-	$.post( "../../controllers/mcontratos_controller", { action: "search_presupuesto"}).done(function( data ) {
+
+  $.post( "../../controllers/mcontratos_controller", { action: "search_presupuesto"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
     
 		var num_cont = parsedJson.num_contrato;
     var num_contrato = parsedJson.num_contrato;
     var cos_cont = parsedJson.cos_contrato;
+    var id_contrato= parsedJson.id_contrato;
 
     if(cos_cont!=null){
         cos_cont = formato_numero(cos_cont, 2, ',', '.');
@@ -296,8 +317,6 @@ $(document).ready(function() {
       }
 
 
-
-
     var vict_ext_cos = parsedJson.vict_ext_cos;
     if(vict_ext_cos!=null){
       vict_ext_cos = formato_numero(vict_ext_cos, 2, ',', '.');;
@@ -320,35 +339,97 @@ $(document).ready(function() {
     $("#dir_cord_nac_cos").html( dir_cord_nac_cos +'<sup style="font-size: 20px">$</sup>' );
     $("#vict_ext_cos").html( vict_ext_cos +'<sup style="font-size: 20px">$</sup>' );
     $("#grup_proy").html( grup_proy +'<sup style="font-size: 20px">$</sup>' );
+    $("#id_contrato").val( id_contrato );
     //  $("#cole").html( dir_cord_cos +'<sup style="font-size: 20px">$</sup>');
-        if(estato=="si"){
+        if(estato!="si"){
             $("#p_guarda").css("display", "none");
             $("#p_edita").css("display", "block");
         }
 	},"json");
 
+	// $.post( "../../controllers/mcontratos_controller", { action: "search_presupuesto_asignado",num_contrato}).done(function( data ) {
+	// 	var parsedJson = $.parseJSON(data);
+    
+	// 	var num_cont = parsedJson.num_contrato;
+  //   var num_contrato = parsedJson.num_contrato;
+  //   var cos_cont = parsedJson.cos_contrato;
+
+  //   if(cos_cont!=null){
+  //       cos_cont = formato_numero(cos_cont, 2, ',', '.');
+  //     }        
+  //   var estato = parsedJson.estado;
+  //   if(estato!=null){
+  //     estato = formato_numero(estato, 2, ',', '.');
+  //     }  
+  //   var sub_part_cos = parsedJson.sub_part_cos;  
+  //   if(sub_part_cos!=null){
+  //     sub_part_cos = formato_numero(sub_part_cos, 2, ',', '.');
+  //   }
+  //   var dir_ges_cos = parsedJson.dir_ges_cos;
+  //   if(dir_ges_cos!=null){
+  //     dir_ges_cos = formato_numero(dir_ges_cos, 2, ',', '.');
+  //     }  
+  //   var dir_cord_cos = parsedJson.dir_cord_cos;
+  //   if(dir_cord_cos!=null){
+  //     dir_cord_cos = formato_numero(dir_cord_cos, 2, ',', '.');
+  //     }  
+  //   var dir_cord_nac_cos = parsedJson.dir_cord_nac_cos;
+  //   if(dir_cord_nac_cos!=null){
+  //     dir_cord_nac_cos = formato_numero(dir_cord_nac_cos, 2, ',', '.');;
+  //     }
 
 
+
+
+  //   var vict_ext_cos = parsedJson.vict_ext_cos;
+  //   if(vict_ext_cos!=null){
+  //     vict_ext_cos = formato_numero(vict_ext_cos, 2, ',', '.');;
+  //     } 
+  //   var grup_proy = parsedJson.grup_proy;
+  //   if(grup_proy!=null){
+  //     grup_proy = formato_numero(grup_proy, 2, ',', '.');
+  //     }     
+  //   var restan = parsedJson.restan;
+  //   if(restan!=null){
+  //     restan = formato_numero(restan, 2, ',', '.');
+  //     } 
+        
+	// 	$("#num_contrato").val( num_cont );       
+	// 	$("#cos_contrato").val( cos_cont );
+  //   $("#restan").html( restan +'<sup style="font-size: 20px">$</sup>' );
+  //   $("#sub_part_cos").html( sub_part_cos +'<sup style="font-size: 20px">$</sup>' );  
+  //   $("#dir_ges_cos").html( dir_ges_cos +'<sup style="font-size: 20px">$</sup>' );
+  //   $("#dir_cord_cos").html( dir_cord_cos +'<sup style="font-size: 20px">$</sup>' );
+  //   $("#dir_cord_nac_cos").html( dir_cord_nac_cos +'<sup style="font-size: 20px">$</sup>' );
+  //   $("#vict_ext_cos").html( vict_ext_cos +'<sup style="font-size: 20px">$</sup>' );
+  //   $("#grup_proy").html( grup_proy +'<sup style="font-size: 20px">$</sup>' );
+  //   //  $("#cole").html( dir_cord_cos +'<sup style="font-size: 20px">$</sup>');
+  //       if(estato=="si"){
+  //           $("#p_guarda").css("display", "none");
+  //           $("#p_edita").css("display", "block");
+  //       }
+	// },"json");
 
 
 
 
 });
 
-$.post( "../../controllers/mcontratos_controller", { action: "search_asig_presupuesto"}).done(function( data ) {
-	var parsedJson = $.parseJSON(data);
 
-			$("#sub_participacion").val(parsedJson.sub_participacion);
-      $("#dir_inter").val(parsedJson.dir_inter);
-			$("#subdir_snariv").val(parsedJson.subdir_snariv);
-			$("#subdir_snariv").val(parsedJson.subdir_snariv);
-			$("#subdir_nac").val(parsedJson.subdir_nac);
-			$("#grup_proy").val(parsedJson.grup_proy);
-      $("#vic_ext").val(parsedJson.vic_ext);
+// $.post( "../../controllers/mcontratos_controller", { action: "search_asig_presupuesto"}).done(function( data ) {
+// 	var parsedJson = $.parseJSON(data);
+
+// 			$("#sub_participacion").val(parsedJson.sub_participacion);
+//       $("#dir_inter").val(parsedJson.dir_inter);
+// 			$("#subdir_snariv").val(parsedJson.subdir_snariv);
+// 			$("#subdir_snariv").val(parsedJson.subdir_snariv);
+// 			$("#subdir_nac").val(parsedJson.subdir_nac);
+// 			$("#grup_proy").val(parsedJson.grup_proy);
+//       $("#vic_ext").val(parsedJson.vic_ext);
      
 
 
-	});
+// 	});
 
 am4core.ready(function() {
 
@@ -508,33 +589,29 @@ var datum3 = [];
 
  chart3.data = datum3;
 
- var title3 = chart3.titles.create();
- title3.text = "Presupuesto  ejecutado por tipo de evento ($)";
- title3.fontSize = 16;
- title3.marginBottom = 30;
+//  var title3 = chart3.titles.create();
+//  title3.text = "Presupuesto  ejecutado por tipo de evento ($)";
+//  title3.fontSize = 16;
+//  title3.marginBottom = 30;
 
  // Add and configure Series
- var pieSeries2 = chart3.series.push(new am4charts.PieSeries3D());
- pieSeries2.dataFields.value = "valor";
- pieSeries2.dataFields.category = "nombre";
- pieSeries2.slices.template.stroke = am4core.color("#fff");
- pieSeries2.slices.template.strokeOpacity = 1;
- pieSeries2.labels.template.maxWidth = 120;
- pieSeries2.labels.template.wrap = true;
+//  var pieSeries2 = chart3.series.push(new am4charts.PieSeries3D());
+//  pieSeries2.dataFields.value = "valor";
+//  pieSeries2.dataFields.category = "nombre";
+//  pieSeries2.slices.template.stroke = am4core.color("#fff");
+//  pieSeries2.slices.template.strokeOpacity = 1;
+//  pieSeries2.labels.template.maxWidth = 120;
+//  pieSeries2.labels.template.wrap = true;
 
- pieSeries2.colors.list = [
-   am4core.color("#00a65a"),
-   am4core.color("#f39c12"),
-   am4core.color("#dd4b39")
- ];
+//  pieSeries2.colors.list = [
+//    am4core.color("#00a65a"),
+//    am4core.color("#f39c12"),
+//    am4core.color("#dd4b39")
+//  ];
  // This creates initial animation
 //  pieSeries.labels.template.maxWidth = 90;
 //  pieSeries.labels.template.wrap = true;
- pieSeries2.labels.template.text = "[bold font-size: 10px]{category} -> {value.percent.formatNumber('#.0')}%";
- pieSeries2.hiddenState.properties.opacity = 1;
- pieSeries2.hiddenState.properties.endAngle = -90;
- pieSeries2.hiddenState.properties.startAngle = -90;
- pieSeries2.slices.template.tooltipText = "{category}: [bold font-size: 12px]{value.value}($)";     
+//    
 
  chart3.hiddenState.properties.radius = am4core.percent(0);
 }, 1500);
@@ -552,10 +629,9 @@ var datum3 = [];
                    document.getElementById('ms_'+ e).innerHTML = '';
                 }
             }
+
             function monto_alsalir(e){
-              alert('pasa');
                var monto=document.getElementById(e).value;
-               alert(monto);
 
                 if(caso1.length < 2){
                    	document.getElementById('ms_'+ e).innerHTML = 'Debe escribir al menos 2 caractéres';
@@ -746,16 +822,61 @@ n = String.fromCharCode(k);
     }
 
 }
+
 //// **********************************************
 
-            $("#p_guarda" ).click(function() {
+$("#p_guarda" ).click(function() {
+
+$.post( "../../controllers/mcontratos_controller", {
+
+    action: "add",
+
+    num_contrato: $("#num_contrato").val(),
+    cos_contrato: $("#cos_contrato").val(),
+    // sub_participacion: $("#sub_participacion").val(),
+    // dir_inter: $("#dir_inter").val(),
+    // cos_contrato: $("#cos_contrato").val(),
+    // subdir_snariv: $("#subdir_snariv").val(),
+    // subdir_nac: $("#subdir_nac").val(),
+    // grup_proy: $("#grup_proy").val(),
+    // vic_ext: $("#vic_ext").val()
+
+
+    }).done(function(data){
+
+        var parsedJson = $.parseJSON(data);
+        $(".message").html(parsedJson.mensaje);
+
+        if(parsedJson.resultado != 'error'){
+
+            setTimeout(function(){
+
+                    $(location).attr('href','dashboard');
+
+            }, 1500);
+
+        }
+
+    },"json");
+
+});  
+
+//// **********************************************
+
+            $("#p_asignar" ).click(function() {
 
                     $.post( "../../controllers/mcontratos_controller", {
 
-                        action: "add",
+                        action: "asignar",
 
-                        num_contrato: $("#num_contrato").val(),
+                        id_contrato: $("#id_contrato").val(),
+                        sub_participacion: $("#sub_participacion").val(),
+                        dir_inter: $("#dir_inter").val(),
                         cos_contrato: $("#cos_contrato").val(),
+                        subdir_snariv: $("#subdir_snariv").val(),
+                        subdir_nac: $("#subdir_nac").val(),
+                        grup_proy: $("#grup_proy").val(),
+                        vic_ext: $("#vic_ext").val()
 
 
                         }).done(function(data){
@@ -766,6 +887,7 @@ n = String.fromCharCode(k);
                             if(parsedJson.resultado != 'error'){
 
                                 setTimeout(function(){
+                                  
 
                                         $(location).attr('href','dashboard');
 
@@ -780,21 +902,14 @@ n = String.fromCharCode(k);
  
            
               $("#p_edita" ).click(function() {
-
+           
                 $.post( "../../controllers/mcontratos_controller", {
 
                     action: "edit",
 
                     num_contrato: $("#num_contrato").val(),
                     cos_contrato: $("#cos_contrato").val(),
-
-                    sub_participacion: $("#sub_participacion").val(),
-                    dir_inter: $("#dir_inter").val(),
-                    cos_contrato: $("#cos_contrato").val(),
-                    subdir_snariv: $("#subdir_snariv").val(),
-                    subdir_nac: $("#subdir_nac").val(),
-                    grup_proy: $("#grup_proy").val(),
-                    vic_ext: $("#vic_ext").val()
+                    id_contrato: $("#id_contrato").val()
 
 
                     }).done(function(data){
@@ -805,11 +920,13 @@ n = String.fromCharCode(k);
                         if(parsedJson.resultado != 'error'){
                              
                             setTimeout(function(){
-
-                                    $(location).attr('href','dashboard');
+                              var value=true;
+                              
+                              $(location).attr('href','dashboard?control_total='+value);
+                             
 
                             }, 1500);
-
+                              
                         }
 
                     },"json");

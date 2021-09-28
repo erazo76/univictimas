@@ -11,8 +11,27 @@ if($id_sesion_usuario==null){
 	$id_sesion_usuario=1;
 }
 
+$data_delete = Madjuntado::find_by_sql("delete from madjuntados where reg_temp=true and id_sesion_usuario=1;");
+
+ 
+$data_search = Mrequerimiento::find_by_sql("SELECT id FROM Mrequerimientos WHERE status=1 and id=$unid ");
+
+
+if($data_search !=null){
+	$cadena='AND reg_temp=false and mrequerimientos_id='.$unid.' ';
+   }else{
+	if ($id_sesion_usuario>1){
+		$cadena='AND reg_temp=true and id_sesion_usuario='.$id_sesion_usuario.'';
+	
+	  }else {
+		$cadena='AND reg_temp=false ';
+	
+	  }
+   }
+
+
 	$data = Madjuntado::find_by_sql("select id,cid,imagen,mrequerimientos_id,status 
-	                            from madjuntados WHERE status=1 AND mrequerimientos_id=".$unid." order by id desc;");
+	                            from madjuntados WHERE status=1 $cadena order by id desc;");
 	$items = 0;
 	
 	if($data !=null){

@@ -509,11 +509,11 @@ setTimeout(function() {
 
 }, 2500);
 
-	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
-		var parsedJson = $.parseJSON(data);
-		var cos_tot=parsedJson;
-		$("#totalite").val( cos_tot );
-	},"json");
+	// $.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
+	// 	var parsedJson = $.parseJSON(data);
+	// 	var cos_tot=parsedJson;
+	// 	$("#totalite").val( cos_tot );
+	// },"json");
 
 	$("#izquierda").css("display", "none");
 
@@ -1941,13 +1941,13 @@ $("#izquierda" ).click(function() {
 		//** enviar los datos al controlador ***********************************************************
 		$("#save" ).click(function() {
 				//alert($("#t_trans").val());	
-				document.getElementById('save').disabled = true;
+				// document.getElementById('save').disabled = true;
 			
 				$.post( "../../controllers/mrequerimientos_controller", {
 
 					action: "add",
 					id:	$("#ideado").val(),
-					idaccion:	$("#idaccion").val(),					
+					idaccion:$("#idaccion").val(),					
 					fecha1: $("#fecha1").val(),
 					departamento: $("#departamento").val(),
 					municipio: $("#municipio").val(),
@@ -1982,7 +1982,7 @@ $("#izquierda" ).click(function() {
 					costo_total: $("#costo_total").val()
 
 				}).done(function(data){
-					document.getElementById('save').disabled = true;
+					// document.getElementById('save').disabled = true;
 					var parsedJson = $.parseJSON(data);
 					$(".message").html(parsedJson.mensaje);
 
