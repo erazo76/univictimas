@@ -582,37 +582,13 @@ session_start();
 				<div class="col-md-4">
 
 
-					<!-- <div class="box-header with-border">
-					 	<h3 id="jump1" tabindex="0" class="box-title">Participantes del evento</h3>
-				</div>
-
-				<div class="box box-primary" >			
-					<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-					<table id="tabla40" class="table table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>Id</th>										
-											<th>Adjunto</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-					</div>
-				
-					<div class="box-footer">
-						<button id="anex2" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Adjuntar</button>
-						<button id="quitar2" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button>
-					</div>
-				</div>-->
-
 					<div class="box-header with-border">
 						<h3 id="jump3" tabindex="0" class="box-title">Detalle especifico del requerimiento</h3>
 					</div><!-- /.box-header -->
 
 					<div class="box box-primary">
 						<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-							<table id="tabla" class="table table-bordered table-hover">
+							<table id="tabla100" class="table table-bordered table-hover">
 								<thead>
 									<tr>
 										<th></th>
@@ -631,15 +607,11 @@ session_start();
 						</div>
 
 						<div class="box-footer">
-							<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
-							<!-- <button id="quitar" type="button" class="btn btn-danger sm" tabindex="50"><i class="fa fa-fw fa-minus"></i>Quitar</button> -->
-
-
-
-							<!-- <button id="quitar" type="button" class="btn btn-danger sm pull-right"><i class="fa fa-fw fa-minus"></i>Quitar</button> -->
-						</div>
+						<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
+						<button id="delete" type="button" class="btn btn-danger sm" tabindex="50"><i class="fa fa-fw fa-minus"></i>Quitar</button>
 					</div>
-					<div class="box-header with-border">
+				</div>	
+				<div class="box-header with-border">
 						<h3 class="box-title">Aprobaciones</h3>
 					</div><!-- /.box-header -->
 
@@ -2517,7 +2489,7 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 					$("#d_obs").val(null);
 					$("#d_costo").val(null);
 					//Pendiente de esta parte
-					$('#tabla').DataTable().ajax.reload();
+					$('#tabla100').DataTable().ajax.reload();
 					$(".alert").alert('close');
 					$('#modal1').modal('toggle');
 					$("#agregar").focus();
@@ -2557,64 +2529,11 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 
 
 		setTimeout(function() {
-			$('#tabla').DataTable().ajax.reload();
+			$('#tabla100').DataTable().ajax.reload();
 		}, 3000);
 	});
 
-	// $("#close1").click(function() {
-	// 	var ideco2=$("#ideado").val();
-	// 		$.post( "../../controllers/mdetalles_controller", {
-
-	// 			action: "detalles_temporal",
-	// 			idea:$('#ideado').val(),
-	// 			dia: $('#dia').val(),
-	// 			tipo: $('#d_tipo').val(),
-	// 			concepto: $('#d_concepto').val(),
-	// 			cantidad: $('#d_cantidad').val(),
-	// 			medida: $('#d_medida').val(),
-	// 			costo: $('#d_costo').val(),
-	// 			observaciones: $('#d_obs').val()
-
-	// 		}).done(function(data){
-
-	// 			var parsedJson = $.parseJSON(data);
-	// 			$(".message1").html(parsedJson.mensaje);
-
-	// 			if(parsedJson.resultado != 'error'){
-
-
-	// 			    setTimeout(function(){
-
-	// 					$("#d_tipo").val(null);
-	// 					$("#d_concepto").val(null);
-	// 					$("#d_cantidad").val(null);
-	// 					$("#d_medida").val(null);
-	// 					$("#d_obs").val(null);
-	// 					$("#d_costo").val(null);
-	//                     //Pendiente de esta parte
-	// 					$('#tabla').DataTable().ajax.reload();
-	// 					$(".alert").alert('close');
-	// 			      	$('#modal1').modal('toggle');
-	// 					$("#agregar").focus();
-
-	// 					$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo",idea}).done(function( data ) {
-	// 						var parsedJson = $.parseJSON(data);
-	// 						var cos_tot=parsedJson;
-	// 						$("#totalite").val( cos_tot );
-	// 					},"json");
-
-	// 			    }, 3000);
-
-	// 			}else{
-	//             alert('Hay Un Error');
-	// 			}
-
-	// 		},"json");
-	//     //$('#activo').focus();
-	// 	setTimeout(function(){
-	// 		$('#tabla').DataTable().ajax.reload();
-	// 	}, 3000);
-	// });
+	
 
 	$(".t_guarda1").click(function() {
 
@@ -2835,7 +2754,7 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 		var este = document.getElementById("ideado").value;
 
 
-		var table = $('#tabla').dataTable({
+		var table100 = $('#tabla100').dataTable({
 
 			//"destroy": true,
 
@@ -2887,7 +2806,7 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 			//"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
 		});
 
-		$('#tabla tbody').on('click', 'tr', function() {
+		$('#tabla100 tbody').on('click', 'tr', function() {
 
 			if ($(this).hasClass('selected')) {
 				$(this).removeClass('selected');
@@ -2950,7 +2869,7 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 				$(this).addClass('selected');
 			}
 		});
-
+		
 
 		var table30 = $('#tabla30').dataTable({
 
@@ -3040,9 +2959,10 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 
 
 
-	$('#quitar').click(function() {
+	$('#delete').click(function() {
 
-		var value = table.$('tr.selected').children('td:first').text();
+			
+		var value= table100.$('tr.selected').children('td:first').text();
 
 
 		alert(value);
@@ -3092,11 +3012,11 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 
 								if (parsedJson == 'si') {
 
-									$('#tabla').DataTable().ajax.reload();
+									$('#tabla100').DataTable().ajax.reload();
 
 								} else {
 
-									$('#tabla').DataTable().ajax.reload();
+									$('#tabla100').DataTable().ajax.reload();
 								}
 
 							}, "json");
