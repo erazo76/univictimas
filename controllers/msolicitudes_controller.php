@@ -1083,62 +1083,7 @@ break;
           Seleccione una dirección territorial.
           </div>');
 
-    }/*else if($municipio ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Seleccione un municipio.
-          </div>');
-
-    }else if($acceso1 ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Indique el acceso principal.
-          </div>');
-
-    }else if($acceso2 ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Indique el acceso secundario.
-          </div>');
-
-    }else if($num_dir ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Indique el numero de dirección.
-          </div>');
-
-    }else if($a_referencia ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-           Indique un lugar de referencia.
-          </div>');
-
-    }*/else if($fecha2 =="" ){
+    }else if($fecha2 =="" ){
 
       $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -1149,18 +1094,21 @@ break;
            Indique fecha de inicio del evento.
           </div>');
 
-    }else if($fecha4 >= $fecha5){
+    }
+    // else if($fecha4 >= $fecha5){
 
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-           Fecha Fuera de Rango selecciones una fecha de inicio menor.
-          </div>');
+    //   $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+    //       <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+    //       <h4>
+    //       <i class="icon fa fa-warning"></i>
+    //       Alerta!
+    //       </h4>
+    //        Fecha Fuera de Rango selecciones una fecha de inicio menor.
+    //       </div>');
 
-    }else if($fecha3 ==""){
+    // }
+    
+    else if($fecha3 ==""){
 
       $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
