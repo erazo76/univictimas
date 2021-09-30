@@ -1231,6 +1231,8 @@ session_start();
 						<div class="box-body">
 							<div class="form-group-sm">
 								<select name="concept" id="concepto" class="form-control bbb" tabindex="36">
+								<select name="concept" id="concepto_2" class="form-control bbb" tabindex="37" disabled>
+
 									<option></option>
 								</select>
 							</div>
@@ -1659,7 +1661,11 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 						
 					});
 
-					});		
+					});	
+					
+					
+
+				
 
 	//MASCARAS DE VALIDACION ########################################
 
@@ -1682,6 +1688,9 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 
 	});
 
+
+
+	
 	$('#tele3').mask('A00-000-0000', {
 
 		translation: {
@@ -1799,6 +1808,31 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 
 		}
 
+	});
+
+	$("#tipo_tarifario").click(function() {
+		if ($("#tipo_tarifario").val()==3){
+			document.getElementById('tarifario').disabled = true;
+			document.getElementById('concepto').disabled = true;
+			document.getElementById('concepto').disabled = true;
+			document.getElementById('d_concepto').disabled = false;
+			document.getElementById('d_medida').disabled = false;
+			document.getElementById('d_costo').disabled = false;
+
+
+
+		}else{
+			document.getElementById('tarifario').disabled = false;
+			document.getElementById('concepto').disabled = false;
+			document.getElementById('concepto').disabled = false;
+
+			document.getElementById('d_concepto').disabled = true;
+			document.getElementById('d_medida').disabled = true;
+			document.getElementById('d_costo').disabled = true;
+
+
+		}
+						
 	});
 
 	$("#izquierda").click(function() {
@@ -2517,11 +2551,9 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 	$("#close1").click(function() {
 		var ideco2 = $("#ideado").val();
 		$.post("../../controllers/mdetalles_controller", {
-
 			action: "detalles_temporal",
 			idea: $('#ideado').val(),
 			dia: $('#dia').val(),
-			tipo: $('#concepto').val(),
 			concepto: $('#d_concepto').val(),
 			cantidad: $('#d_cantidad').val(),
 			medida: $('#d_medida').val(),
@@ -2565,9 +2597,7 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 
 				}, 3000);
 
-			} else {
-				alert('Hay Un Error');
-			}
+			} 
 
 		}, "json");
 
