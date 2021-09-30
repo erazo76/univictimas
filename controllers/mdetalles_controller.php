@@ -790,7 +790,7 @@ break;
             $tempo->d_costo = $costo;
             $tempo->d_costo_t = $costo*$cantidad;
             $tempo->d_obs = $observaciones;
-            // $tempo->mrequerimientos_id = $idea;
+             $tempo->mrequerimientos_id = 0;
             $tempo->user_create = $usuario_id;
             $tempo->id_sesion_usuario = $id_sesion_usuario;
             $tempo->created = $hoy;

@@ -693,7 +693,7 @@ session_start();
 
 						<div class="box-footer">
 							<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
-							<button id="quitar" type="button" class="btn btn-danger sm" tabindex="50"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+							<!-- <button id="quitar" type="button" class="btn btn-danger sm" tabindex="50"><i class="fa fa-fw fa-minus"></i>Quitar</button> -->
 
 
 
