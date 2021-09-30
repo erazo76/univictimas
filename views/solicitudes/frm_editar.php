@@ -582,7 +582,7 @@ ValidaSession("../login");
 														
 							
     							<label for="descripcion">Descripción breve</label>
-    							<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return false" tabindex="0" onkeypress="return esdescri(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
+    							<textarea class="form-control ccc" id="descripcion" rows="4" placeholder="Redacte una breve descripción de la actividad a realizar"  onpaste="return true" tabindex="0" onkeypress="return esdescri(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
   							
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_descripcion' class="aaa"><p></p></div>
 							   
@@ -601,7 +601,7 @@ ValidaSession("../login");
 								</div>-->
 
 								<label for="recomendaciones">Recomendaciones u observaciones</label>
-    							<textarea class="form-control ccc" id="recomendaciones" rows="4" placeholder="Redacte recomendaciones de la actividad"  onpaste="return false" tabindex="0" onkeypress="return esrecom(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
+    							<textarea class="form-control ccc" id="recomendaciones" rows="4" placeholder="Redacte recomendaciones de la actividad"  onpaste="return true" tabindex="0" onkeypress="return esrecom(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_recom' class="aaa"><p></p></div>
 						</div>
 						</div><!-- /.box-body -->
@@ -664,7 +664,7 @@ ValidaSession("../login");
 									<span class="input-group-addon" >
 										<input disabled type="checkbox" id="a_terr">
 									</span>
-									<input disabled type="text" class="form-control ccc" id="a_terro" placeholder="Observación"  onpaste="return false" tabindex="0" autocomplete="off">
+									<input disabled type="text" class="form-control ccc" id="a_terro" placeholder="Observación"  onpaste="return true" tabindex="0" autocomplete="off">
 								</div>								
 								<?php 
 							 }elseif($_SESSION['rolx']==1 || $_SESSION['rolx']==2){

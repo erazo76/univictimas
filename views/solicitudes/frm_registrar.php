@@ -678,7 +678,7 @@ session_start();
 									<tr>
 										<th></th>
 										<th>Día</th>
-										<th>Tipo</th>
+										<!-- <th>Tipo</th> -->
 										<th>Concepto</th>
 										<th>Cantidad</th>
 										<th>Medida</th>
@@ -1198,57 +1198,86 @@ session_start();
 											</select>
 										</div>
 
-										<div class="form-group-sm">
-											<label>Tipo</label>
-											<select id="d_tipo" class="form-control">
-												<option value="" selected disabled hidden>Indique tipo de requerimiento </option>
-												<option value="0">Salones</option>
-												<option value="1">Alimentación</option>
-												<option value="2">Materiales</option>
-												<option value="3">Cotizables</option>
-												<option value="4">Personal</option>
-												<option value="5">Tiquetes aéreos</option>
-												<option value="6">Reembolso de transporte</option>
-												<option value="6">Alojamiento</option>
-											</select>
-										</div>
+                     
+						<label>Tipo de Tarifario</label>
+							<div class="form-group-sm">
+								<select id="tipo_tarifario" class="form-control">
+									<option value="" selected disabled hidden>Indique Tipo de Tarifario </option>
+									<option value="1">Tipo de Tarifario 1,2 y 3</option>
+									<option value="2">Tipo de Tarifario 4,5 y 6</option>
+									<option value="3">Cotizables</option>
+								</select>
+							</div>
 
-										<div class="form-group-sm">
-											<label>Concepto</label>
-											<input type="text" class="form-control" id="d_concepto" placeholder="Describa el concepto" onpaste="return false" onkeypress="return esdconcepto(event);" onblur="alsalir(this.id)" autocomplete="off">
-											<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_concepto'></div>
-										</div>
+			                <div class="box-header with-border">
+		  			
 
-										<div class="form-group-sm">
-											<label>Cantidad</label>
-											<input type="text" class="form-control" id="d_cantidad" placeholder="Indique la cantidad" onpaste="return false" onkeypress="return esdcantidad(event);" onblur="alsalir(this.id)" autocomplete="off">
-											<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_cantidad'></div>
-										</div>
+						<div class="box-body">
+						<label>Filtrar por Categoria</label>
 
-										<div class="form-group-sm">
-											<label>Medida</label>
-											<select id="d_medida" class="form-control">
-												<option value="" selected disabled hidden>Indique tipo de medida </option>
-												<option value="0">Metros</option>
-												<option value="1">Unidades</option>
-												<option value="7">Litros</option>
-											</select>
-										</div>
+							<div class="form-group-sm">
+								<select name="tarifario" id="tarifario" class="form-control bbb" tabindex="35">
+									<option></option>
+								</select>
+							</div>
+						</div>
+					</div>
 
-										<div class="form-group-sm">
-											<label>Costo unitario</label>
-											<input type="text" class="form-control" id="d_costo" placeholder="Indique el costo" onpaste="return false" onkeypress="return esdcantidad2(event);" onblur="alsalir(this.id)" autocomplete="off">
-											<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_costo'></div>
-										</div>
+					<div class="box-header with-border">
+					<label>Concepto</label>
+					</div><!-- /.box-header -->
+					<div class="box box-primary">
 
-										<div class="form-group-sm">
-											<label>Observaciones</label>
-											<textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características" onpaste="return true" onkeypress="return esdobs(event);" onblur="alsalir(this.id);" autocomplete="off"></textarea>
-											<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_obs' class="aaa">
-												<p></p>
-											</div>
-										</div>
+						<div class="box-body">
+							<div class="form-group-sm">
+								<select name="concept" id="concepto" class="form-control bbb" tabindex="36">
+									<option></option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group-sm">
+								<label>Cantidad</label>
+								<input type="text"  class="form-control" id="d_cantidad"  placeholder="Indique la cantidad"  onpaste="return false" onkeypress="return esdcantidad(event);" onblur="alsalir(this.id)" autocomplete="off">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_cantidad' ></div>
+							</div>
 
+					<div class="box box-primary">
+
+						<div class="box-body">
+							
+
+							<label>Descripcion</label>  <label>..............................</label><label></label>	<label>Unidad de Medida</label><label>................</label><label></label> <label>Precio Unitario</label>
+
+							<div class="input-group">   
+								<input type="text" class="form-control bbb" id="d_concepto" placeholder="Concepto" onpaste="return false" tabindex="20"   autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:10px;"></span>
+								<input type="text" class="form-control" id="d_medida" placeholder="Unidad de Medida" onpaste="return false" tabindex="21"  autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+								<input type="text" class="form-control" id="d_costo" placeholder="Precio Unitario" onpaste="return false" tabindex="22"  autocomplete="off">
+
+							</div>
+								<p></p>
+							</div>
+							</div>
+
+
+					<div class="box box-primary">
+
+						<div class="box-body">
+							
+
+						<div class="form-group-sm">
+							<label>Observaciones</label>
+							<textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características" onpaste="return true" onkeypress="return esdobs(event);" onblur="alsalir(this.id);" autocomplete="off"></textarea>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_obs' class="aaa">
+								<p></p>
+							</div>
+									
+									</div>
+									</div>
+									
+									</div>
 									</div><!-- /.box-body -->
 
 								</div><!-- /.box -->
@@ -1492,11 +1521,15 @@ session_start();
 		var hora = ahora.getHours() + ':' + ahora.getMinutes();
 		//alert(hora);
 		$('#hsoli').val(hora);
-		//alert( $('#hsoli').val());
-		/*	$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-			$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-			$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-		*/
+		
+		$.post( "../../controllers/grupos_controller", { action: "get_marcas"}).done(function( data ) {
+			 $("#grup_financ" ).html( data );
+
+		});
+
+
+
+
 		setTimeout(function() {
 			$.post("../../controllers/msolicitudes_controller", {
 				action: "contar_id"
@@ -1552,31 +1585,81 @@ session_start();
 				document.getElementById("a_supe").disabled = true;
 				document.getElementById("a_supeo").disabled = false;
 				break;
-				// case 3:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				// 		break;	
-				// case 5:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				// 		document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
-				// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				// 		break;			
-				// case 6:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				// 		document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
-				// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-				// 		break;
-				// case 7:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-				// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				// 		document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
-				// 		break;
+	
 		}
 
 	});
 
+	$.post( "../../controllers/mtarifas_controller", { action: "get_categoria"}).done(function( data ) {
+			$("#tarifario" ).html( data );
 
+
+
+		});
+
+
+		$.post( "../../controllers/mtarifas_controller", { action: "get_categoria"}).done(function( data ) {
+			$("#tarifario" ).html( data );
+
+
+
+		});
+
+		$('#tarifario').change(function(event) {
+		$.post( "../../controllers/mtarifas_controller", {action: "get_concepto",tarifario: $("#tarifario").val(),tipo:$("#tipo_tarifario").val()}).done(function( data ) {
+			$("#concepto" ).html( data );
+			$("#concepto" ).val( data ); $("#tipo_tarifario").val()
+		
+				});
+			
+	
+				});
+
+		
+				$('#concepto').change(function(event) {
+
+					$.post( "../../controllers/mtarifas_controller", { action: "get_detalles_concepto",concepto:$("#concepto").val(),tipo:$("#tipo_tarifario").val()}).done(function( data ) {
+                      
+						var parsedJson = $.parseJSON(data);
+						$("#d_concepto").val(parsedJson.det_concepto);
+						$("#d_medida").val(parsedJson.unimed);
+						$("#d_costo").val(parsedJson.precio_unitario);
+						
+					});
+
+					});		
+//// PARA EL TARIFARIO 5,6 Y 7
+
+$.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).done(function( data ) {
+			$("#tarifario_2" ).html( data );
+
+
+
+		});
+
+		$('#tarifario_2').change(function(event) {
+		$.post( "../../controllers/mtarifas_controller", {action: "get_concepto_2",tarifario: $("#tarifario_2").val()}).done(function( data ) {
+			$("#concepto_2" ).html( data );
+			$("#concepto_2" ).val( data );
+		
+				});
+			
+	
+				});
+
+		
+				$('#concepto_2').change(function(event) {
+
+					$.post( "../../controllers/mtarifas_controller", { action: "get_detalles_concepto_2",concepto:$("#concepto_2").val()}).done(function( data ) {
+                      
+						var parsedJson = $.parseJSON(data);
+						$("#det_concepto_2").val(parsedJson.det_concepto_2);
+						$("#unimed_2").val(parsedJson.unimed_2);
+						$("#precio_unitario_2").val(parsedJson.precio_unitario_2);
+						
+					});
+
+					});		
 
 	//MASCARAS DE VALIDACION ########################################
 
@@ -2429,6 +2512,8 @@ session_start();
 
 
 
+
+
 	$("#close1").click(function() {
 		var ideco2 = $("#ideado").val();
 		$.post("../../controllers/mdetalles_controller", {
@@ -2436,7 +2521,7 @@ session_start();
 			action: "detalles_temporal",
 			idea: $('#ideado').val(),
 			dia: $('#dia').val(),
-			tipo: $('#d_tipo').val(),
+			tipo: $('#concepto').val(),
 			concepto: $('#d_concepto').val(),
 			cantidad: $('#d_cantidad').val(),
 			medida: $('#d_medida').val(),
@@ -2804,9 +2889,9 @@ session_start();
 				{
 					"data": "dia"
 				},
-				{
-					"data": "tipo"
-				},
+				// {
+				// 	"data": "tipo"
+				// },
 				{
 					"data": "concepto"
 				},
@@ -2837,27 +2922,13 @@ session_start();
 
 			if ($(this).hasClass('selected')) {
 				$(this).removeClass('selected');
-				alert('Uno');
+				
 			} else {
 				table.$('tr.selected').removeClass('selected');
 				$(this).addClass('selected');
-				alert('Uno');
+				
 			}
 		});
-
-
-		// $('#tabla tbody').on( 'click', 'tr', function () {
-
-		// 	if ( $(this).hasClass('selected') ) {
-		// 		$(this).removeClass('selected');
-		// 		document.getElementById("add").disabled=false;
-		// 	}else {
-		// 		table.$('tr.selected').removeClass('selected');
-		// 		$(this).addClass('selected');
-		// 		document.getElementById("add").disabled=true;					
-		// 	}
-		// 	} );
-
 
 		var table2 = $('#tabla2').dataTable({
 
@@ -3268,9 +3339,7 @@ session_start();
 		//alert($("#depa").val());
 		$("#depa2").val($('select[name="depar"] option:selected').text());
 
-		$.post("../../controllers/mgeograficas_controller", {
-			action: "get_municipios",
-			departamento: $("#departamento").val()
+		$.post("../../controllers/mgeograficas_controller", {action: "get_municipios",departamento: $("#departamento").val()
 		}).done(function(data) {
 			$("#municipio").html(data);
 			//alert($(data).val());
@@ -3396,15 +3465,7 @@ session_start();
 
 	});
 
-	/*$.post( "../../controllers/mdistribuidoras_controller", { action: "get_distri"}).done(function( data ) {
-		 $("#distribuidora" ).html( data );
-
-	});*/
-
-	/*$.post( "../../controllers/mregiones_controller", { action: "get_regi",departamento:$("#departamento").val()}).done(function( data ) {
-		 $("#region" ).html( data );
-			alert( $("#region" ).val());
-	});*/
+	
 
 	//** enviar los datos al controlador ***********************************************************
 	$("#save").click(function() {
