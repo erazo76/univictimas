@@ -693,29 +693,7 @@ break;
 
     case 'detalles_temporal':
 
-      if($dia ==""){
-
-        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Ingrese el día de item.
-            </div>');
-
-      }else if($tipo ==""){
-
-        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Ingrese el tipo de item.
-            </div>');
-
-      }else if($concepto ==""){
+      if($concepto ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -776,7 +754,9 @@ break;
             $usuario_id = $_SESSION['idusuariox'];
             $id_sesion_usuario = $_SESSION['instante'];
             $hoy = date('d-m-Y');
-
+             if ($tipo==""){
+              $tipo='Cotizable';
+             }
             $tempo = new Mdetalle();
 
             if(!$id_sesion_usuario){

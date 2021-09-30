@@ -116,6 +116,12 @@ case 'get_detalles_concepto':
     }
 
     echo json_encode($resp);
+   }else {
+    $resp = array(
+      "det_concepto"=>"",
+      "unimed"=>"",
+      "precio_unitario"=>"",
+     );
    }
 break;
 
