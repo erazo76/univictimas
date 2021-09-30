@@ -1656,6 +1656,46 @@ $("#tipo_tarifario").click(function() {
 						
 	});
 
+	
+	$.post( "../../controllers/mtarifas_controller", { action: "get_categoria"}).done(function( data ) {
+			$("#tarifario" ).html( data );
+
+
+
+		});
+
+
+		$.post( "../../controllers/mtarifas_controller", { action: "get_categoria"}).done(function( data ) {
+			$("#tarifario" ).html( data );
+
+
+
+		});
+
+		$('#tarifario').change(function(event) {
+		$.post( "../../controllers/mtarifas_controller", {action: "get_concepto",tarifario: $("#tarifario").val(),tipo:$("#tipo_tarifario").val()}).done(function( data ) {
+			$("#concepto" ).html( data );
+			$("#concepto" ).val( data ); $("#tipo_tarifario").val()
+		
+				});
+			
+	
+				});
+
+		
+				$('#concepto').change(function(event) {
+
+					$.post( "../../controllers/mtarifas_controller", { action: "get_detalles_concepto",concepto:$("#concepto").val(),tipo:$("#tipo_tarifario").val()}).done(function( data ) {
+                      
+						var parsedJson = $.parseJSON(data);
+						$("#d_concepto").val(parsedJson.det_concepto);
+						$("#d_medida").val(parsedJson.unimed);
+						$("#d_costo").val(parsedJson.precio_unitario);
+						
+					});
+
+					});
+
 $("#izquierda" ).click(function() {
 
 	if(tick==1){
