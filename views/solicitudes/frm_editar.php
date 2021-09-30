@@ -1075,104 +1075,140 @@ ValidaSession("../login");
 </form>
 
 <!-- Modal 1 -->
+
+
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-<form id="form" role="form" enctype="multipart/form-data" >
-  <div class="modal-dialog modal-lm">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="contenido-modal">
-         <h4 class="modal-title" id="myModalLabel1">Detalle especifico del requerimiento</h4>
-			<div class="message1"></div>
-			<div class="row">
-				<!-- left column -->
-				<div class="col-md-12">
-				  <!-- general form elements -->
-				  <div class="box box-primary">
+	<form id="form" role="form" enctype="multipart/form-data">
+		<div class="modal-dialog modal-lm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="contenido-modal">
+						<h4 class="modal-title" id="myModalLabel1">Detalle especifico del requerimiento</h4>
+						<div class="message1"></div>
+						<div class="row">
+							<!-- left column -->
+							<div class="col-md-12">
+								<!-- general form elements -->
+								<div class="box box-primary">
 
-					<div class="box-header with-border"></div><!-- /.box-header -->
-					<!-- form start -->
-					  <div class="box-body">
+									<div class="box-header with-border"></div><!-- /.box-header -->
+									<!-- form start -->
+									<div class="box-body">
 
-					  <div class="form-group-sm">
-								<label>Selecionar día</label>
-								<select id="dia"   class="form-control" >
-									<option value="" selected disabled hidden>Indique día de requerimiento </option>
-									<option value="previo 3">previo 3</option>
-									<option value="previo 2">previo 2</option>
-									<option value="previo 1">previo 1</option>
-									<option value="Día 1">Día 1</option>
-									<option value="Día 2">Día 2</option>
-									<option value="Día 3">Día 3</option>
-									<option value="Día posterior">Día posterior</option>
-								</select>
-							</div>
+										<div class="form-group-sm">
+											<label>Selecionar día</label>
+											<select id="dia" class="form-control">
+												<option value="" selected disabled hidden>Indique día de requerimiento </option>
+												<option value="previo 3">previo 3</option>
+												<option value="previo 2">previo 2</option>
+												<option value="previo 1">previo 1</option>
+												<option value="Dia 1">Día 1</option>
+												<option value="Dia 2">Día 2</option>
+												<option value="Dia 3">Día 3</option>
+												<option value="Dia posterior">Día posterior</option>
+											</select>
+										</div>
 
+                     
+						<label>Tipo de Tarifario</label>
 							<div class="form-group-sm">
-								<label>Tipo</label>
-								<select id="d_tipo"   class="form-control" >
-									<option value="" selected disabled hidden>Indique tipo de requerimiento </option>
-									<option value="0">Salones</option>
-									<option value="1">Alimentación</option>
-									<option value="2">Materiales</option>
+								<select id="tipo_tarifario" class="form-control">
+									<option value="" selected disabled hidden>Indique Tipo de Tarifario </option>
+									<option value="1">Tipo de Tarifario 1,2 y 3</option>
+									<option value="2">Tipo de Tarifario 4,5 y 6</option>
 									<option value="3">Cotizables</option>
-									<option value="4">Personal</option>
-									<option value="5">Tiquetes aéreos</option>
-									<option value="6">Reembolso de transporte</option>
-									<option value="6">Alojamiento</option>
 								</select>
 							</div>
 
-							<div class="form-group-sm">
-								<label>Concepto</label>
-								<input type="text"  class="form-control" id="d_concepto"  placeholder="Describa el concepto"  onpaste="return false" onkeypress="return esdconcepto(event);" onblur="alsalir(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_concepto' ></div>
-							</div>
+			                <div class="box-header with-border">
+		  			
+
+						<div class="box-body">
+						<label>Filtrar por Categoria</label>
 
 							<div class="form-group-sm">
+								<select name="tarifario" id="tarifario" class="form-control bbb" tabindex="35">
+									<option></option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="box-header with-border">
+					<label>Concepto</label>
+					</div><!-- /.box-header -->
+					<div class="box box-primary">
+
+						<div class="box-body">
+							<div class="form-group-sm">
+								<select name="concept" id="concepto" class="form-control bbb" tabindex="36">
+								<select name="concept" id="concepto_2" class="form-control bbb" tabindex="37" disabled>
+
+									<option></option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group-sm">
 								<label>Cantidad</label>
 								<input type="text"  class="form-control" id="d_cantidad"  placeholder="Indique la cantidad"  onpaste="return false" onkeypress="return esdcantidad(event);" onblur="alsalir(this.id)" autocomplete="off">
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_cantidad' ></div>
 							</div>
 
-							<div class="form-group-sm">
-								<label>Medida</label>
-								<select id="d_medida"   class="form-control" >
-									<option value="" selected disabled hidden>Indique tipo de medida </option>
-									<option value="0">Metros</option>
-									<option value="1">Unidades</option>
-									<option value="7">Litros</option>
-								</select>
+					<div class="box box-primary">
+
+						<div class="box-body">
+							
+
+							<label>Descripcion</label>  <label>..............................</label><label></label>	<label>Unidad de Medida</label><label>................</label><label></label> <label>Precio Unitario</label>
+
+							<div class="input-group">   
+								<input type="text" class="form-control bbb" id="d_concepto" placeholder="Concepto" onpaste="return false" tabindex="20"   autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:10px;"></span>
+								<input type="text" class="form-control" id="d_medida" placeholder="Unidad de Medida" onpaste="return false" tabindex="21"  autocomplete="off">
+								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
+								<input type="text" class="form-control" id="d_costo" placeholder="Precio Unitario" onpaste="return false" tabindex="22"  autocomplete="off">
+
+							</div>
+								<p></p>
+							</div>
 							</div>
 
-							<div class="form-group-sm">
-								<label>Costo unitario</label>
-								<input type="text"  class="form-control" id="d_costo"  placeholder="Indique el costo"  onpaste="return false" onkeypress="return esdcantidad2(event);" onblur="alsalir(this.id)" autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_costo' ></div>
+
+					<div class="box box-primary">
+
+						<div class="box-body">
+							
+
+						<div class="form-group-sm">
+							<label>Observaciones</label>
+							<textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características" onpaste="return true" onkeypress="return esdobs(event);" onblur="alsalir(this.id);" autocomplete="off"></textarea>
+							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_obs' class="aaa">
+								<p></p>
 							</div>
+									
+									</div>
+									</div>
+									
+									</div>
+									</div><!-- /.box-body -->
 
-							<div class="form-group-sm">
-							  <label>Observaciones</label>
-							  <textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características"  onpaste="return true" onkeypress="return esdobs(event);"  onblur="alsalir(this.id);"  autocomplete="off"></textarea>
-  							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_obs' class="aaa"><p></p></div>
+								</div><!-- /.box -->
+
 							</div>
+						</div>
+						<div class="modal-footer">
+							<button id="close1" type="button" class="btn btn-success"><i class="fa fa-fw fa-save"></i>Incluir</button>
+							<button id="cancelar2" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
 
-					  </div><!-- /.box-body -->
-
-				  </div><!-- /.box -->
-
+						</div>
+					</div>
 				</div>
 			</div>
-							      <div class="modal-footer">
-							      		<button id="close1" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Incluir</button>
-							      		<button id="cancelar2" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
-
-							      </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>                   
+		</div>
+	</form>
 </div>
+
 
 <!-- Modal 2 -->
 <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
@@ -1593,6 +1629,32 @@ $("#derecha" ).click(function() {
 	}
 
 });
+
+
+$("#tipo_tarifario").click(function() {
+		if ($("#tipo_tarifario").val()==3){
+			document.getElementById('tarifario').disabled = true;
+			document.getElementById('concepto').disabled = true;
+			document.getElementById('concepto').disabled = true;
+			document.getElementById('d_concepto').disabled = false;
+			document.getElementById('d_medida').disabled = false;
+			document.getElementById('d_costo').disabled = false;
+
+
+
+		}else{
+			document.getElementById('tarifario').disabled = false;
+			document.getElementById('concepto').disabled = false;
+			document.getElementById('concepto').disabled = false;
+
+			document.getElementById('d_concepto').disabled = true;
+			document.getElementById('d_medida').disabled = true;
+			document.getElementById('d_costo').disabled = true;
+
+
+		}
+						
+	});
 
 $("#izquierda" ).click(function() {
 

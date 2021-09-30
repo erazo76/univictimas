@@ -146,68 +146,7 @@ session_start();
 
 					</div>
 
-					<!--<div class="box-header with-border" tabindex="-1">
-				<h3 class="box-title">Ubicación del Evento</h3>
-			</div> 		  
-
-		 	 <div class="box box-primary">
-				<div class="box-body">
-					<div class="form-group-sm">
-							<label >Dirección</label>
-							
-								<div class = "input-group">
-
-									<span class="input-group-btn">
-										<select id="a_primario" class="btn-sm"  tabindex="8"  >
-											<option value="0">Avenida</option>
-											<option value="1">Calle</option>
-											<option value="2">Carrera</option>
-											<option value="3">Vereda</option>
-											<option value="4">Callejón</option>
-											<option value="5">Carretera</option>
-											<option value="6">Autopista</option>
-										</select>
-									</span>
-										<input type="text" id="acceso1" class="form-control bbb" placeholder="Principal"  onpaste="return false" tabindex="9" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
-									
-								</div>
-								
-						
-
-								<div class="input-group">
-									<span class="input-group-addon"><span class="fa fa-slack"></span></span>
-									<input type="text" id="acceso2" class="form-control bbb" placeholder="Secundario"  onpaste="return false" tabindex="10" onkeypress="return esacceso1(event);" onblur="alsalir(this.id)">
-									<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-									<span class="input-group-addon"><span class="fa fa-minus"></span></span>
-									<span><input type="text" id="num_dir" class="form-control bbb" placeholder="Numero"  onpaste="return false" tabindex="11" onkeypress="return esnumdir(event);" onblur="alsalir(this.id)">
-										
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso1' class="aaa"><p></p></div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_acceso2' class="aaa"><p></p></div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_dir' class="aaa"><p></p></div>
-					</div>
-
-					<div class="form-group-sm">
-							<label >Referencia</label>
-								<div class = "input-group">
-									<span class="input-group-btn">
-										<select id="a_referencia" class="btn-sm"  tabindex="12"  >
-											<option value="0">Al lado</option>
-											<option value="1">Cerca</option>
-											<option value="2">Frente</option>
-											<option value="3">Diagonal</option>
-											<option value="4">Detras</option>
-											<option value="5">Via</option>
-											<option value="6">Dentro</option>
-										</select>
-									</span>
-									<input type="text" class="form-control bbb" id="referencia" placeholder="Ingrese una referencia"  onpaste="return false" tabindex="13" onkeypress="return esreferencia(event);" onblur="alsalir(this.id)">
-								</div>
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_referencia' class="aaa"><p></p></div>
-					</div>				
-
-				</div>
-			</div>-->
+		
 				</div>
 
 				<div class="col-md-4">
