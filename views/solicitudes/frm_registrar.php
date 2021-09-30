@@ -3439,7 +3439,7 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 	//** enviar los datos al controlador ***********************************************************
 	$("#save").click(function() {
 		//alert($("#t_trans").val());
-		document.getElementById('save').disabled = true;
+		// document.getElementById('save').disabled = true;
 		$.post("../../controllers/msolicitudes_controller", {
 
 			action: "add",
@@ -3520,7 +3520,7 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 
 
 		}).done(function(data) {
-			document.getElementById('save').disabled = false;
+			// document.getElementById('save').disabled = false;
 			var parsedJson = $.parseJSON(data);
 			$(".message").html(parsedJson.mensaje);
 
