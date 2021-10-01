@@ -225,9 +225,9 @@ session_start();
 
 							<label>Nombres</label>
 							<div class="input-group">
-								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="1er nombre" onpaste="return false" tabindex="260" onkeypress="return esnombre3(event);" onblur="alsalir(this.id)" autocomplete="off">
+								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="1er nombre" onpaste="return true" tabindex="260" onkeypress="return esnombre3(event);" onblur="alsalir(this.id)" autocomplete="off">
 								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control" id="rn_nombre2" placeholder="2do. nombre" onpaste="return false" tabindex="270" onkeypress="return esnombre3(event);" autocomplete="off">
+								<input type="text" class="form-control" id="rn_nombre2" placeholder="2do. nombre" onpaste="return true" tabindex="270" onkeypress="return esnombre3(event);" autocomplete="off">
 							</div>
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_nombre1' class="aaa">
 								<p></p>
@@ -235,9 +235,9 @@ session_start();
 
 							<label>Apellidos</label>
 							<div class="input-group">
-								<input type="text" class="form-control ddd" id="rn_apellido1" placeholder="1er. apellido" onpaste="return false" tabindex="280" onkeypress="return esapellido2(event);" onblur="alsalir(this.id)" autocomplete="off">
+								<input type="text" class="form-control ddd" id="rn_apellido1" placeholder="1er. apellido" onpaste="return true" tabindex="280" onkeypress="return esapellido2(event);" onblur="alsalir(this.id)" autocomplete="off">
 								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control" id="rn_apellido2" placeholder="2do. apellido" onpaste="return false" tabindex="290" onkeypress="return esapellido2(event);" autocomplete="off">
+								<input type="text" class="form-control" id="rn_apellido2" placeholder="2do. apellido" onpaste="return true" tabindex="290" onkeypress="return esapellido2(event);" autocomplete="off">
 							</div>
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_apellido1' class="aaa">
 								<p></p>
@@ -275,7 +275,7 @@ session_start();
 
 							<div class="form-group-sm">
 								<label for="correo2">Correo electrónico</label>
-								<input type="text" class="form-control ddd" id="correo2" placeholder="Ingrese un correo electrónico" onpaste="return false" tabindex="330" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off">
+								<input type="text" class="form-control ddd" id="correo2" placeholder="Ingrese un correo electrónico" onpaste="return true" tabindex="330" onkeypress="return escorreo2(event);" onblur="alsalir2(this.id)" autocomplete="off">
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_correo2' class="aaa"></div>
 							</div>
 
