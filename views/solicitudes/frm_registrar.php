@@ -391,7 +391,7 @@ session_start();
 				<div class="col-md-4">
 
 					<div class="box-header with-border">
-						<h3 class="box-title" id="guardia78" tabindex="0">Tipo de Evento</h3>
+						<h3 class="box-title" id="guardia78" tabindex="0">Nombre del Evento</h3>
 					</div><!-- /.box-header -->
 
 					<div class="box box-primary">
@@ -547,19 +547,6 @@ session_start();
 									<p></p>
 								</div>
 
-								<!--<label>Focalización</label>								
-								<div class="form-group-sm">
-										<select id="foca"   class="form-control" >
-											<option value="" selected disabled hidden>Indique tipo de focalización </option>
-											<option value="0">Asistencia</option>
-											<option value="1">Atención</option>
-											<option value="2">Prevención</option>
-											<option value="3">Protección</option>
-											<option value="4">Reparación Integral</option>
-											<option value="5">Verdad</option>
-											<option value="6">Justicia</option>
-										</select>
-								</div>-->
 
 								<label for="recomendaciones">Recomendaciones u observaciones</label>
 								<textarea class="form-control ccc" id="recomendaciones" rows="4" placeholder="Redacte recomendaciones de la actividad" onpaste="return true" tabindex="0" onblur="alsalir(this.id);" autocomplete="off"></textarea>
@@ -593,7 +580,7 @@ session_start();
 									<tr>
 										<th></th>
 										<th>Día</th>
-										<!-- <th>Tipo</th> -->
+										<th>Tipo</th>
 										<th>Concepto</th>
 										<th>Cantidad</th>
 										<th>Medida</th>
@@ -608,7 +595,7 @@ session_start();
 
 						<div class="box-footer">
 						<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
-						<button id="delete" type="button" class="btn btn-danger sm" tabindex="50"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+						<!-- <button id="delete" type="button" class="btn btn-danger sm" tabindex="50"><i class="fa fa-fw fa-minus"></i>Quitar</button> -->
 					</div>
 				</div>	
 				<div class="box-header with-border">
@@ -1511,13 +1498,6 @@ session_start();
 		});
 
 
-		$.post( "../../controllers/mtarifas_controller", { action: "get_categoria"}).done(function( data ) {
-			$("#tarifario" ).html( data );
-
-
-
-		});
-
 		$('#tarifario').change(function(event) {
 		$.post( "../../controllers/mtarifas_controller", {action: "get_concepto",tarifario: $("#tarifario").val(),tipo:$("#tipo_tarifario").val()}).done(function( data ) {
 			$("#concepto" ).html( data );
@@ -1541,42 +1521,6 @@ session_start();
 					});
 
 					});		
-//// PARA EL TARIFARIO 5,6 Y 7
-
-$.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).done(function( data ) {
-			$("#tarifario_2" ).html( data );
-
-
-
-		});
-
-		$('#tarifario_2').change(function(event) {
-		$.post( "../../controllers/mtarifas_controller", {action: "get_concepto_2",tarifario: $("#tarifario_2").val()}).done(function( data ) {
-			$("#concepto_2" ).html( data );
-			$("#concepto_2" ).val( data );
-		
-				});
-			
-	
-				});
-
-		
-				$('#concepto_2').change(function(event) {
-
-					$.post( "../../controllers/mtarifas_controller", { action: "get_detalles_concepto_2",concepto:$("#concepto_2").val()}).done(function( data ) {
-                      
-						var parsedJson = $.parseJSON(data);
-						$("#det_concepto_2").val(parsedJson.det_concepto_2);
-						$("#unimed_2").val(parsedJson.unimed_2);
-						$("#precio_unitario_2").val(parsedJson.precio_unitario_2);
-						
-					});
-
-					});	
-					
-					
-
-				
 
 	//MASCARAS DE VALIDACION ########################################
 
@@ -2465,6 +2409,7 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 			action: "detalles_temporal",
 			idea: $('#ideado').val(),
 			dia: $('#dia').val(),
+			tipo: $('#tarifario').val(),
 			concepto: $('#d_concepto').val(),
 			cantidad: $('#d_cantidad').val(),
 			medida: $('#d_medida').val(),
@@ -3358,8 +3303,7 @@ $.post( "../../controllers/mtarifas_controller", { action: "get_categoria_2"}).d
 
 	//** enviar los datos al controlador ***********************************************************
 	$("#save").click(function() {
-		//alert($("#t_trans").val());
-		// document.getElementById('save').disabled = true;
+
 		$.post("../../controllers/msolicitudes_controller", {
 
 			action: "add",

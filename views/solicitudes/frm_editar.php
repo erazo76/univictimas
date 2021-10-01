@@ -51,7 +51,7 @@ ValidaSession("../login");
 
 						 	<div class="form-group-sm">
 							  <label for="n_accion">Nro. de Evento</label>
-							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de evento"  onpaste="return false" tabindex="1" disabled>
+							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de evento"  onpaste="return false" tabindex="1" disabled="true">
 							</div>
 
 							<div class="form-group-sm">
@@ -437,7 +437,7 @@ ValidaSession("../login");
 			<div class="col-md-4">
 
 				<div class="box-header with-border">
-					 	<h3 class="box-title" id="guardia78" tabindex="0">Tipo de Evento</h3>
+					 	<h3 class="box-title" id="guardia78" tabindex="0">Nombre del Evento</h3>
 				</div><!-- /.box-header -->
 
 		  		<div class="box box-primary">
@@ -809,12 +809,14 @@ ValidaSession("../login");
 					</div>
 
 					<div class="box-footer">
-						<button id="save" type="button" class="btn btn-success " tabindex="54" style="width: 97px;" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
-						<button id="anex" type="button" class="btn btn-success " tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button>
-						<button id="exit" type="button" class="btn btn-primary " tabindex="56" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
+					    <button id="anex" type="button" class="btn btn-success btn-xs " tabindex="55"><i class="fa fa-fw fa-plus"></i>add</button>
+				        <button id="ver" type="button" class="btn btn-primary btn-xs " tabindex="56" ><i class="fa fa-fw fa-eye" ></i>ver</button>
+						<button id="save" type="button" class="btn btn-success " tabindex="57" style="width: 97px;" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
+						<!-- <button id="anex" type="button" class="btn btn-success " tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button> -->
+						<button id="exit" type="button" class="btn btn-primary " tabindex="58" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
 						<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
 					</div>				
-					<div class="focusguard" id="guardia2" tabindex="57"></div>
+					<div class="focusguard" id="guardia2" tabindex="59"></div>
 				</div><!-- /.box-body -->
 
 
@@ -1459,6 +1461,7 @@ setTimeout(function() {
 		$("#totalite").val('$ '+cos_tot);
 	},"json");
 }, 3000);
+
 	var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 //alert(desh);
 		switch (desh) {
@@ -1847,7 +1850,7 @@ $("#izquierda" ).click(function() {
 		$("#fecha1").datepicker("setDate", new Date());
 		
 		$('#fecha2').datepicker({
-			startDate: '+0d',
+			// startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1859,7 +1862,7 @@ $("#izquierda" ).click(function() {
 		
 
 		$('#fecha3').datepicker({
-			startDate: '+0d',
+			// startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1870,7 +1873,7 @@ $("#izquierda" ).click(function() {
 
 
 		$('#f_ida').datepicker({
-			startDate: '+0d',
+			// startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1880,7 +1883,7 @@ $("#izquierda" ).click(function() {
 		});
 
 		$('#f_vuelta').datepicker({
-			startDate: '+0d',
+			// startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -1890,7 +1893,7 @@ $("#izquierda" ).click(function() {
 		});
 
 		$('#f_aloja').datepicker({
-			startDate: '+0d',
+			// startDate: '+0d',
     		todayBtn: false,
 		    todayHighlight: true,
 		    autoclose: true,
@@ -2302,13 +2305,10 @@ $("#izquierda" ).click(function() {
 	
 
 
-
 		$("#close1").click(function() {
 
 			var ideco2=parseInt($("#n_accion").val());
-			
-			//ideco2=parseInt(ideco2);
-           
+		           
 		
 				$.post( "../../controllers/mdetalles_controller", {
 
@@ -2370,10 +2370,7 @@ $("#izquierda" ).click(function() {
 						$("#totalite").val('$ '+cos_tot);
 					},"json");
 				}, 3000);
-		    //$('#activo').focus();
-			// setTimeout(function(){
-			// 	$('#tabla').DataTable().ajax.reload();
-			// }, 3000);
+		   
 		});
 
 		$(".t_guarda1").click(function() {
@@ -2980,29 +2977,36 @@ $("#izquierda" ).click(function() {
 			
 			
 		 });
-		// $("#anex").click(function() {
-		// 	//$('#modal3').modal({backdrop: 'static',keyboard: false});
-			
-		// 	var value= table.$('tr.selected').children('td:first').text();
-		// 		//alert(value);
-		// 		if(!value){
-
-		// 				$.alert({
-		// 					title: '!Seleccione el archivo a visualizar!',
-		// 					content: false,
-		// 					confirmButton: true, // hides the confirm button.
-		// 					closeIcon: false,
-		// 					confirmButton: 'cerrar',
-		// 					confirmButtonClass: 'btn-success'
-		// 				});
-		// 	}else{
-		// 	$(location).attr('href','frm_adjuntados?record='+$("#idea").val()+'&origin=2');
-		// }
-		// });
+	
 
 		$("#anex2").click(function() {
              $('#modal4').modal({backdrop: 'static',keyboard: false});
 			
+		});
+
+
+		$("#ver").click(function() {
+			//$('#modal3').modal({backdrop: 'static',keyboard: false});
+			
+			// var value= table.$('tr.selected').children('td:first').text();
+			var value=$('tr td:first a:first');
+				 alert(value);
+				if(!value){
+
+						$.alert({
+							title: '!Seleccione el archivo a visualizar!',
+							content: false,
+							confirmButton: true, // hides the confirm button.
+							closeIcon: false,
+							confirmButton: 'cerrar',
+							confirmButtonClass: 'btn-success'
+						});
+			}else{
+				var record = <?php echo intval($_GET["record"]); ?>;
+	
+			 $(location).attr('href','frm_adjuntados?id_adj='+value+'&record='+record);
+
+		}
 		});
 // para consultar y cargar los datos geograficos ***********************************************************
 
@@ -3268,7 +3272,7 @@ $("#izquierda" ).click(function() {
 
 		//setTimeout(function() {	
 			var identico2 = <?php echo intval($_GET["record"]); ?>;
-							var table = $('#tabla30').dataTable({
+							var table30 = $('#tabla30').dataTable({
 										  	
 											  //"destroy": true,
 	
