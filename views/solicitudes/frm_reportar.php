@@ -758,14 +758,13 @@ $("#grupo").html( data );
 					var hora2 =parsedJson.hora2;				
 
 					var r_observaciones =parsedJson.observaciones;	
-
-
 					 /// ************************
 
 					 var mrequerimientos_id =parsedJson.mrequerimientos_id;
                     var control=0;
 					if (mrequerimientos_id<=128){
-                    
+						
+
 
 						var r_concepto =parsedJson.d_concepto;
 						var r_medida =parsedJson.d_medida;
@@ -792,6 +791,8 @@ $("#grupo").html( data );
 						var r_concepto =parsedJson.concepto;
 						var med =parsedJson.medida;
 						var r_tipo =parsedJson.id_categoria;
+						control=0;
+					
 					}
 				
             
@@ -971,8 +972,9 @@ $("#grupo").html( data );
 					}
 				}else ////FIN CONTROL 1
                     {
+						
 						switch (r_tipo) {
-						case 0:
+						case 3:
 							//alert(r_dia);
 						//insertar div de SALONES						
 						$('#salones').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
@@ -1077,7 +1079,7 @@ $("#grupo").html( data );
 						$('#l-3').append('<div  class="caja2 ">'+r_cantidad+'</div>');
 						$('#l-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');
 						break;
-						case 2:	
+						case 5:	
 						//insertar div de MATERIALES
 						$('#materiales').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#ad-1').append('<div class="caja2 "  >'+r_concepto+'</div>');
