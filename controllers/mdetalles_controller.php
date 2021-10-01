@@ -566,29 +566,7 @@ break;
 
   case 'update_reg_solicitud':
 
-    if($dia ==""){
-
-      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Ingrese el día de item.
-          </div>');
-
-    }else if($tipo ==""){
-
-      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Ingrese el tipo de item.
-          </div>');
-
-    }else if($concepto ==""){
+     if($concepto ==""){
 
       $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
