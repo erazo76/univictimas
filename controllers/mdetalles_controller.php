@@ -79,6 +79,7 @@ break;
       
       echo json_encode($contados);
   break;
+  
   case 'add':
 
       if($nombre ==""){
@@ -361,7 +362,7 @@ case 'search_reporte':
       $usuario_id = $_SESSION['idusuariox'];
       $rol = $_SESSION['rolx'];
       $hoy = date("d-m-Y");
-      $record=(int)($record);
+      // $record=(int)($record);
     @$data = Mdetalle::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
 
     if($data !=null){
@@ -370,12 +371,18 @@ case 'search_reporte':
 
           $resp[] = array(
                 "dia"=>$rs->dia,
-                "tipo"=>$rs->d_tipo,
-                "concepto"=>$rs->d_concepto,
+                "mrequerimientos_id"=>$rs->mrequerimientos_id,
+                "tipo"=>$rs->d_tipo, 
+                "d_concepto"=>$rs->d_concepto,
                 "cantidad"=>$rs->d_cantidad,
-                "medida"=>$rs->d_medida,
+                "d_medida"=>$rs->d_medida,
+                "concepto"=>$rs->concepto,
+                "medida"=>$rs->unidad_med,
+                "id_categoria"=>$rs->id_categoria,
                 "costo"=>$rs->d_costo,
                 "observaciones"=>$rs->d_obs
+                
+                
 
           );
 
@@ -755,7 +762,7 @@ break;
             $id_sesion_usuario = $_SESSION['instante'];
             $hoy = date('d-m-Y');
              if ($tipo==""){
-              $tipo='Cotizable';
+              $tipo=8;
              }
             $tempo = new Mdetalle();
 
@@ -767,10 +774,16 @@ break;
             $tempo->d_concepto = $concepto;
             $tempo->d_cantidad = $cantidad;
             $tempo->d_medida = $medida;
+
+            $tempo->concepto = $concepto;
+            $tempo->precio_uni = $costo;
+            $tempo->unidad_med = $medida;
+
+            
             $tempo->d_costo = $costo;
             $tempo->d_costo_t = $costo*$cantidad;
             $tempo->d_obs = $observaciones;
-             $tempo->mrequerimientos_id = 0;
+            $tempo->mrequerimientos_id = 0;
             $tempo->user_create = $usuario_id;
             $tempo->id_sesion_usuario = $id_sesion_usuario;
             $tempo->created = $hoy;

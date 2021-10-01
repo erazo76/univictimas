@@ -346,51 +346,7 @@ break;
             Seleccione un municipio.
             </div>');
 
-      }/*else if($acceso1 ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique el acceso principal.
-            </div>');
-
-      }else if($acceso2 ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique el acceso secundario.
-            </div>');
-
-      }else if($num_dir ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique el numero de dirección.
-            </div>');
-
-      }else if($a_referencia ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-             Indique un lugar de referencia.
-            </div>');
-
-      }*/else if($fecha2 =="" ){
+      }else if($fecha2 =="" ){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -401,18 +357,7 @@ break;
              Indique fecha de inicio del evento.
             </div>');
 
-      }/*else if($fecha4 >= $fecha5){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-             Fecha Fuera de Rango selecciones una fecha de inicio menor.
-            </div>');
-
-      }*/else if($fecha3 ==""){
+      }else if($fecha3 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -467,18 +412,7 @@ break;
             Indique el apellido del responsable del evento.
             </div>');
 
-      }/*else if($rt_num_doc ==""){
-
-        $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-            Indique el número del documento de identidad.
-            </div>');
-
-      }*/else if($tele1 ==""){
+      }else if($tele1 ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -657,11 +591,11 @@ break;
             
             $alia->id_sesion_usuario = $id_sesion_usuario;
 
+            $alia->grup_financ_id = $grup_financ_id;
+            $alia->total_ejecutado = $total_ejecutado;
+            $alia->modalidad_evento = $modalidad_evento;
+            $alia->plan_accion = $plan_accion;
 
-            @$grup_financ_id = ($_POST["grup_financ"]);
-            @$total_ejecutado = ($_POST["total_ejecutado"]);
-            @$modalidad_evento = ($_POST["modalidad_evento"]);
-            @$plan_accion = ($_POST["plan_accion"]);
 
 
              if($alia->save()){
@@ -670,14 +604,13 @@ break;
           
                 $data_search = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud 
                 FROM Msolicitudes 
-                                  WHERE status=1 and id_sesion_usuario=id_sesion_usuario 
-                                                 and reg_temp=false and user_create=$alia->user_create; ");
+                                  WHERE status=1 and id_sesion_usuario=$id_sesion_usuario; ");
                 
                 $data_search_detalle = Mdetalle::find_by_sql("SELECT id as id_detalles
                                 FROM Mdetalles 
-                                                  WHERE status=1  
-                                                                 and reg_temp=true and mrequerimientos_id is null
-                                                                 and user_create=$alia->user_create; ");
+                                    WHERE status=1  
+                                        and reg_temp=true and mrequerimientos_id=0
+                                        and id_sesion_usuario=$id_sesion_usuario; ");
                   
                           
                 foreach ($data_search as $acti) {
@@ -689,14 +622,12 @@ break;
                       $reg = Mdetalle::find($detalles_solicitud->id_detalles);
             
                         $reg->mrequerimientos_id = $num_solicitud;
-                        $reg ->reg_temp = 'false';
-                        //$reg ->id=$detalles_solicitud->id;
-      
+                        $reg ->reg_temp = 'false';      
                         $reg ->save();
               
                        }
 
-                     }
+                }
                   
 /////####################  GUARDA LOS ADJUNTOS TEMPORALES   ########################################################
 

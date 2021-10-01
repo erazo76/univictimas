@@ -72,6 +72,9 @@ case 'get_concepto':
   }else if ($tipo_tarifario==2){
     @$data = Mtarifa::find_by_sql("select  id as id_concepto, nombre from Mtarifas where id_categoria=$tarifario ;");
 
+  }else if ($tipo_tarifario==3){
+    @$data = Mtarifa::find_by_sql("select  id as id_concepto, nombre from Mtarifas where id_categoria=$tarifario ;");
+
   }
   //@$data = Mcategoria::find_by_sql("select  id, concepto from Mcategorias ;");
 
@@ -149,89 +152,6 @@ break;
 
 #******************************************************************************     
 
-
-  #******************************************************************************
-
-
-  case 'get_categoria_2':
-
-    @$data = Mcategoria::find_by_sql("select  id, concepto from Mcategorias ;");
-  
-  
-  if($data !=null){
-    $resp = '<option value="">Indique la Categoria</option>';
-    foreach($data as $rs){
-          $resp .= '<option value="'.$rs->id.'">'.$rs->concepto.'</option>';
-          $resp .= '<hidden>';
-        }
-  
-   }else{
-    $resp = '<option value="">Indique la Categoria</option>';
-  }
-  
-     echo $resp;
-  break;
-  
-  case 'get_concepto_2':
-  
-    @$data = Mtarifa::find_by_sql("select  id as id_concepto, nombre from Mtarifas where id_categoria=$tarifario ;");
-  
-  
-  if($data !=null){
-    $resp = '<option value="">Indique el Concepto</option>';
-        foreach($data as $rs){
-          $resp .= '<option value="'.$rs->id_concepto.'">'.$rs->nombre.'</option>';
-          $resp .= '<hidden>';
-        }
-  
-   }else{
-    $resp = '<option value="">Indique el Concepto</option>';
-   }
-  
-     echo $resp;
-  break;
-  
-  
-  
-  
-  case 'get_detalles_concepto_2':
-  
-    @$data = Mtarifa::find_by_sql("select  id, nombre as det_concepto, unidad_med as unimed,precio_uni_iva as precio_unitario from Mtarifas where id=$concepto ;");
-  
-    if($data !=null){
-  
-      foreach($data as $rs){
-  
-        $resp = array(
-                "det_concepto_2"=>$rs->det_concepto,
-                "unimed_2"=>$rs->unimed,
-                "precio_unitario_2"=>$rs->precio_unitario
-               );
-      }
-  
-      echo json_encode($resp);
-     }
-  break;
-  
-  
-  case 'search_concepto_2':
-  
-    @$data = Mtarifa::find_by_sql("select  id, concepto from Mtarifas; ");
-  
-  
-  if($data !=null){
-    $resp = '<option value="">Indique el Concepto</option>';
-        foreach($data as $rs){
-          $resp .= '<option value="'.$rs->id.'">'.$rs->concepto.'</option>';
-          $resp .= '<hidden>';
-        }
-  
-   }else{
-           $resp = '<option value="">No hay Conceptos asignados</option>';
-   }
-  
-     echo $resp;
-  break;
 
 }//end switch
 ?>
