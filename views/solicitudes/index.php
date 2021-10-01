@@ -55,8 +55,10 @@ include("../../lib/validar_session.php");
 
 var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
-if ((desh==3)||(desh==4)){
+if ((desh==4)){
 	document.getElementById("delete").disabled=true;
+	document.getElementById("edit").disabled=true;
+
 }
 
 
