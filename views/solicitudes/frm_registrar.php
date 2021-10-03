@@ -69,9 +69,9 @@ session_start();
 								<div class="input-group">
 
 									<span class="input-group-btn">
-										<select id="modalidad_evento" class="btn-sm" tabindex="555">
-											<option value="Presencial">Presencial</option>
-											<option value="Virtual">Virtual</option>
+										<select id="modalidad_evento" class="btn-sm" tabindex="555">										
+									    <option value="1">Presencial</option>
+										<option value="2">Virtual</option>
 
 										</select>
 									</span>
@@ -89,9 +89,9 @@ session_start();
 
 									<span class="input-group-btn">
 										<select id="plan_accion" class="btn-sm" tabindex="555">
-											<option value="Plan de acción 2021">Plan de acción 2021</option>
-											<option value="Plan de trabajo DGI 2021">Plan de trabajo DGI 2021</option>
-											<option value="Plan de trabajo DGI 2021">Plan de Trabajo Mesa Nacional</option>
+										    <option value="1">Plan de acción 2021</option>
+											<option value="2">Plan de trabajo DGI 2021</option>
+											<option value="3">Plan de Trabajo Mesa Nacional</option>
 
 
 										</select>
@@ -598,64 +598,12 @@ session_start();
 						<!-- <button id="delete" type="button" class="btn btn-danger sm" tabindex="50"><i class="fa fa-fw fa-minus"></i>Quitar</button> -->
 					</div>
 				</div>	
-				<div class="box-header with-border">
-						<h3 class="box-title">Aprobaciones</h3>
-					</div><!-- /.box-header -->
-
+				
 					<div class="box box-primary">
 						<!-- form start -->
 						<div class="box-body">
 							<div class="form-group-sm">
-								<?php
-								if ($_SESSION['rolx'] == 1 || $_SESSION['rolx'] == 2) {
-
-								?>
-
-									<label>Nivel territorial</label>
-									<div class="input-group">
-										<span class="input-group-addon">
-											<input disabled type="checkbox" id="a_terr">
-										</span>
-										<input disabled type="text" class="form-control ccc" id="a_terro" placeholder="Observación" onpaste="return false" tabindex="0" autocomplete="off">
-									</div>
-								<?php
-								} elseif ($_SESSION['rolx'] == 1 || $_SESSION['rolx'] == 2) {
-
-								?>
-									<label>Nivel nacional</label>
-									<div class="input-group">
-										<span class="input-group-addon">
-											<input disabled type="checkbox" id="a_naci">
-										</span>
-										<input disabled type="text" class="form-control ccc" id="a_nacio" placeholder="Observación" onpaste="return false" tabindex="0" autocomplete="off">
-									</div>
-								<?php
-								} elseif ($_SESSION['rolx'] > 3) {
-
-								?>
-									<label>Nivel Funcionario</label>
-									<div class="input-group">
-										<span class="input-group-addon">
-											<input disabled type="checkbox" id="a_func">
-										</span>
-										<input disabled type="text" class="form-control ccc" id="a_funco" placeholder="Observación" onpaste="return false" tabindex="0" autocomplete="off">
-									</div>
-								<?php
-								} elseif ($_SESSION['rolx'] <= 3) {
-
-								?>
-
-									<label>Nivel supervisor</label>
-									<div class="input-group">
-										<span class="input-group-addon">
-											<input type="checkbox" id="a_supe">
-										</span>
-										<input type="text" class="form-control ccc" id="a_supeo" placeholder="Observación" onpaste="return false" tabindex="0" autocomplete="off">
-									</div>
-								<?php
-								} else {
-								}
-								?>
+								
 
 							</div>
 						</div><!-- /.box-body -->
@@ -1419,7 +1367,8 @@ session_start();
 	$(document).ready(function() {
 		var ahora = new Date();
 		var hora = ahora.getHours() + ':' + ahora.getMinutes();
-		//alert(hora);
+		document.getElementById("total_ejecutado").disabled=true;
+
 		$('#hsoli').val(hora);
 		
 		$.post( "../../controllers/grupos_controller", { action: "get_marcas"}).done(function( data ) {
@@ -3306,7 +3255,7 @@ session_start();
 	//** enviar los datos al controlador ***********************************************************
 
 	$('#save').click( function () {
-
+   
 		$.confirm({
 
 					title: '¿Esta Seguro de Guarar el Registro ?',
