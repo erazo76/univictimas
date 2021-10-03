@@ -58,7 +58,7 @@ session_start();
 
 							<div class="form-group-sm">
 								<label for="nombre">Nombre del Evento</label>
-								<input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad" onpaste="return false" tabindex="2" onkeypress="return esnombre(event);" onblur="alsalir(this.id)" autocomplete="off">
+								<input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad" onpaste="return false" tabindex="2" onblur="alsalir(this.id)" autocomplete="off">
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' class="aaa">
 									<p></p>
 								</div>
@@ -225,9 +225,9 @@ session_start();
 
 							<label>Nombres</label>
 							<div class="input-group">
-								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="1er nombre" onpaste="return true" tabindex="260" onkeypress="return esnombre3(event);" onblur="alsalir(this.id)" autocomplete="off">
+								<input type="text" class="form-control ddd" id="rn_nombre1" placeholder="1er nombre" onpaste="return true" tabindex="260"  onblur="alsalir(this.id)" autocomplete="off">
 								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control" id="rn_nombre2" placeholder="2do. nombre" onpaste="return true" tabindex="270" onkeypress="return esnombre3(event);" autocomplete="off">
+								<input type="text" class="form-control" id="rn_nombre2" placeholder="2do. nombre" onpaste="return true" tabindex="270"  autocomplete="off">
 							</div>
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_nombre1' class="aaa">
 								<p></p>
@@ -235,9 +235,9 @@ session_start();
 
 							<label>Apellidos</label>
 							<div class="input-group">
-								<input type="text" class="form-control ddd" id="rn_apellido1" placeholder="1er. apellido" onpaste="return true" tabindex="280" onkeypress="return esapellido2(event);" onblur="alsalir(this.id)" autocomplete="off">
+								<input type="text" class="form-control ddd" id="rn_apellido1" placeholder="1er. apellido" onpaste="return true" tabindex="280"  onblur="alsalir(this.id)" autocomplete="off">
 								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control" id="rn_apellido2" placeholder="2do. apellido" onpaste="return true" tabindex="290" onkeypress="return esapellido2(event);" autocomplete="off">
+								<input type="text" class="form-control" id="rn_apellido2" placeholder="2do. apellido" onpaste="return true" tabindex="290"  autocomplete="off">
 							</div>
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_rn_apellido1' class="aaa">
 								<p></p>
@@ -575,7 +575,7 @@ session_start();
 
 					<div class="box box-primary">
 						<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-							<table id="tabla100" class="table table-bordered table-hover">
+							<table id="tabla" class="table table-bordered table-hover">
 								<thead>
 									<tr>
 										<th></th>
@@ -630,7 +630,7 @@ session_start();
 										<input disabled type="text" class="form-control ccc" id="a_nacio" placeholder="Observación" onpaste="return false" tabindex="0" autocomplete="off">
 									</div>
 								<?php
-								} elseif ($_SESSION['rolx'] == 1 || $_SESSION['rolx'] == 2) {
+								} elseif ($_SESSION['rolx'] > 3) {
 
 								?>
 									<label>Nivel Funcionario</label>
@@ -641,7 +641,7 @@ session_start();
 										<input disabled type="text" class="form-control ccc" id="a_funco" placeholder="Observación" onpaste="return false" tabindex="0" autocomplete="off">
 									</div>
 								<?php
-								} elseif ($_SESSION['rolx'] == 1 || $_SESSION['rolx'] == 2) {
+								} elseif ($_SESSION['rolx'] <= 3) {
 
 								?>
 
@@ -1154,7 +1154,7 @@ session_start();
 								<span class="input-group-btn" tabindex="-1" style="width:10px;"></span>
 								<input type="text" class="form-control" id="d_medida" placeholder="Unidad de Medida" onpaste="return false" tabindex="21"  autocomplete="off">
 								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control" id="d_costo" placeholder="Precio Unitario" onpaste="return false" tabindex="22"  autocomplete="off">
+								<input type="text" class="form-control" id="d_costo" placeholder="Precio Unitario" onpaste="return false" tabindex="22" onkeypress="return esdcantidad(event);" autocomplete="off">
 
 							</div>
 								<p></p>
@@ -1169,7 +1169,7 @@ session_start();
 
 						<div class="form-group-sm">
 							<label>Observaciones</label>
-							<textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características" onpaste="return true" onkeypress="return esdobs(event);" onblur="alsalir(this.id);" autocomplete="off"></textarea>
+							<textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características" onpaste="return true"   autocomplete="off"></textarea>
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_obs' class="aaa">
 								<p></p>
 							</div>
@@ -1490,18 +1490,24 @@ session_start();
 
 	});
 
-	$.post( "../../controllers/mtarifas_controller", { action: "get_categoria"}).done(function( data ) {
+
+
+		$('#tipo_tarifario').change(function(event) {
+		$.post( "../../controllers/mtarifas_controller", {action: "get_categoria_tarifario",tipo:$("#tipo_tarifario").val()}).done(function( data ) {
 			$("#tarifario" ).html( data );
 
-
-
-		});
+		
+				});
+			
+	
+				});
 
 
 		$('#tarifario').change(function(event) {
 		$.post( "../../controllers/mtarifas_controller", {action: "get_concepto",tarifario: $("#tarifario").val(),tipo:$("#tipo_tarifario").val()}).done(function( data ) {
 			$("#concepto" ).html( data );
-			$("#concepto" ).val( data ); $("#tipo_tarifario").val()
+			$("#concepto" ).val( data ); 
+			
 		
 				});
 			
@@ -1667,9 +1673,7 @@ session_start();
 
 	$("#tipo_tarifario").click(function() {
 		if ($("#tipo_tarifario").val()==3){
-			document.getElementById('tarifario').disabled = true;
-			document.getElementById('concepto').disabled = true;
-			document.getElementById('concepto').disabled = true;
+
 			document.getElementById('d_concepto').disabled = false;
 			document.getElementById('d_medida').disabled = false;
 			document.getElementById('d_costo').disabled = false;
@@ -1678,7 +1682,6 @@ session_start();
 
 		}else{
 			document.getElementById('tarifario').disabled = false;
-			document.getElementById('concepto').disabled = false;
 			document.getElementById('concepto').disabled = false;
 
 			document.getElementById('d_concepto').disabled = true;
@@ -2414,7 +2417,7 @@ session_start();
 			cantidad: $('#d_cantidad').val(),
 			medida: $('#d_medida').val(),
 			costo: $('#d_costo').val(),
-			observaciones: $('#d_obs').val(),
+			observaciones: $('#d_obs').val()
 
 
 		}).done(function(data) {
@@ -2434,7 +2437,7 @@ session_start();
 					$("#d_obs").val(null);
 					$("#d_costo").val(null);
 					//Pendiente de esta parte
-					$('#tabla100').DataTable().ajax.reload();
+					$('#tabla').DataTable().ajax.reload();
 					$(".alert").alert('close');
 					$('#modal1').modal('toggle');
 					$("#agregar").focus();
@@ -2474,7 +2477,7 @@ session_start();
 
 
 		setTimeout(function() {
-			$('#tabla100').DataTable().ajax.reload();
+			$('#tabla').DataTable().ajax.reload();
 		}, 3000);
 	});
 
@@ -2699,7 +2702,7 @@ session_start();
 		var este = document.getElementById("ideado").value;
 
 
-		var table100 = $('#tabla100').dataTable({
+		var table = $('#tabla').dataTable({
 
 			//"destroy": true,
 
@@ -2722,9 +2725,9 @@ session_start();
 				{
 					"data": "dia"
 				},
-				// {
-				// 	"data": "tipo"
-				// },
+				{
+					"data": "tipo"
+				},
 				{
 					"data": "concepto"
 				},
@@ -2743,7 +2746,7 @@ session_start();
 
 
 			],
-			//"order": [[ 0, "asc" ]],
+			"order": [[ 0, "desc" ]],
 			"bPaginate": false,
 			"info": false,
 			"bFilter": false
@@ -2751,7 +2754,7 @@ session_start();
 			//"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
 		});
 
-		$('#tabla100 tbody').on('click', 'tr', function() {
+		$('#tabla tbody').on('click', 'tr', function() {
 
 			if ($(this).hasClass('selected')) {
 				$(this).removeClass('selected');
@@ -2909,8 +2912,6 @@ session_start();
 			
 		var value= table100.$('tr.selected').children('td:first').text();
 
-
-		alert(value);
 		if (!value) {
 
 			$.alert({
@@ -2957,11 +2958,11 @@ session_start();
 
 								if (parsedJson == 'si') {
 
-									$('#tabla100').DataTable().ajax.reload();
+									$('#tabla').DataTable().ajax.reload();
 
 								} else {
 
-									$('#tabla100').DataTable().ajax.reload();
+									$('#tabla').DataTable().ajax.reload();
 								}
 
 							}, "json");
@@ -3057,6 +3058,8 @@ session_start();
 
 		$('#modal1').modal('toggle');
 		$("#alojamiento").focus();
+		$("#categoria").val(null);
+		$("#concepto").val(null);
 
 		$("#d_tipo").val(null);
 		$("#d_concepto").val(null);
@@ -3291,8 +3294,7 @@ session_start();
 			$("#rt_apellido2").val(parsedJson.rs_apellido2);
 			$("#correo1").val(parsedJson.rs_correo);
 			$("#tele1").val(parsedJson.rs_tele);
-			//alert( $("#correo2").val());
-			//alert( $("#tele2").val());
+	
 
 
 		});
@@ -3302,7 +3304,155 @@ session_start();
 	
 
 	//** enviar los datos al controlador ***********************************************************
-	$("#save").click(function() {
+
+	$('#save').click( function () {
+
+		$.confirm({
+
+					title: '¿Esta Seguro de Guarar el Registro ?',
+					content:false,
+					confirmButton: 'Si',
+					cancelButton: 'No',
+					confirmButtonClass: 'btn-primary',
+						cancelButtonClass: 'btn-success',
+
+					confirm: function(){
+						$.post("../../controllers/msolicitudes_controller", {
+
+								action: "add",
+								id: $("#ideado").val(),
+								nombre: $("#nombre").val(),			
+								fecha1: $("#fecha1").val(),
+								hsoli: $("#hsoli").val(),
+								departamento: $("#departamento").val(),
+								municipio: $("#municipio").val(),
+								cpoblado: $("#cpoblado").val(),
+								a_primario: $("#a_primario").val(),
+								acceso1: $("#acceso1").val(),
+								acceso2: $("#acceso2").val(),
+								num_dir: $("#num_dir").val(),
+								a_referencia: $("#a_referencia").val(),
+								referencia: $("#referencia").val(),
+								fecha2: $("#fecha2").val(),
+								fecha3: $("#fecha3").val(),
+								hora1: $("#hora1").val(),
+								hora2: $("#hora2").val(),
+								rt_nombre1: $("#rt_nombre1").val(),
+								rt_nombre2: $("#rt_nombre2").val(),
+								rt_apellido1: $("#rt_apellido1").val(),
+								rt_apellido2: $("#rt_apellido2").val(),
+								rt_tdoc: $("#rt_tdoc").val(),
+								rt_num_doc: $("#rt_num_doc").val(),
+								tele1: $("#tele1").val(),
+								correo1: $("#correo1").val(),
+								grupo: $("#grupo").val(),
+								otro1: $("#otro1").val(),
+								rn_nombre1: $("#rn_nombre1").val(),
+								rn_nombre2: $("#rn_nombre2").val(),
+								rn_apellido1: $("#rn_apellido1").val(),
+								rn_apellido2: $("#rn_apellido2").val(),
+								rn_tdoc: $("#rn_tdoc").val(),
+								rn_num_doc: $("#rn_num_doc").val(),
+								tele2: $("#tele2").val(),
+								correo2: $("#correo2").val(),
+
+								tipo1: $("#tipo1").val(),
+								tipo2: $("#tipo2").val(),
+								tipo3: $("#tipo3").val(),
+								tipo4: $("#tipo4").val(),
+								foca: $("#foca").val(),
+
+								v_terr: $("#v_terr").val(),
+								v_naci: $("#v_naci").val(),
+								v_func: $("#v_func").val(),
+								v_supe: $("#v_supe").val(),
+								a_terro: $("#a_terro").val(),
+								a_nacio: $("#a_nacio").val(),
+								a_funco: $("#a_funco").val(),
+								a_supeo: $("#a_supeo").val(),
+
+								arutaval: $("#arutaval").val(),
+								apircval: $("#apircval").val(),
+								afase: $("#afase").val(),
+								amedida: $("#amedida").val(),
+								idaccion: $("#idaccion").val(),
+								entidad: $("#entidad").val(),
+								num_vic: $("#num_vic").val(),
+								descripcion: $("#descripcion").val(),
+								recomendaciones: $("#recomendaciones").val(),
+								aloja: $("#aloja").val(),
+								trans: $("#trans").val(),
+								t_trans: $("#t_trans").val(),
+								to_total: $("#totalite").val(),			
+								presup: $("#presup").val(),
+								region: $("#region").val(),
+								// Agregado para cumplir con los nuevos ajustes
+								grup_financ: $("#grup_financ").val(),
+								total_ejecutado: $("#total_ejecutado").val(),
+								modalidad_evento: $("#modalidad_evento").val(),
+								plan_accion: $("#plan_accion").val()
+
+
+
+
+
+										}).done(function(data) {
+										// document.getElementById('save').disabled = false;
+										var parsedJson = $.parseJSON(data);
+										$(".message").html(parsedJson.mensaje);
+
+										switch (parsedJson.deslizador) {
+
+											case "1":
+												$('.base').unslider('animate:0');
+												tick = 0;
+												document.getElementById('izquierda').disabled = true;
+												$("#izquierda").css("display", "none");
+												document.getElementById('derecha').disabled = false;
+												$("#derecha").css("display", "block");
+												break;
+
+											case "2":
+												$('.base').unslider('animate:1');
+												tick = 1;
+												document.getElementById('izquierda').disabled = false;
+												$("#izquierda").css("display", "block");
+												document.getElementById('derecha').disabled = true;
+												$("#derecha").css("display", "none");
+												break;
+
+										}
+
+										if (parsedJson.resultado != 'error') {
+
+
+											$('.base').unslider('animate:0');
+											valore = $("#ideado").val();
+											//alert(valore);
+											setTimeout(function() {
+
+												$(location).attr('href', 'frm_reportar?record=' + valore);
+
+											}, 1500);
+
+											}
+
+											}, "json");				
+					
+					},
+
+					 cancel: function(){
+
+					}
+		});
+
+
+});	
+
+
+
+
+	$("#save_def").click(function() {
 
 		$.post("../../controllers/msolicitudes_controller", {
 
@@ -3411,26 +3561,13 @@ session_start();
 			}
 
 			if (parsedJson.resultado != 'error') {
-
-				/*$.post( "../../controllers/mdetalles_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-					$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-				});
-
-				$.post( "../../controllers/mvictimas_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-					$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-				});		
-
-				$.post( "../../controllers/madjuntos_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-					$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-				});		*/
+		
 
 				$('.base').unslider('animate:0');
 				valore = $("#ideado").val();
 				//alert(valore);
 				setTimeout(function() {
 
-					//  $(location).attr('href','../requerimientos/frm_registrar');
-					//$('#nombre').focus();
 					$(location).attr('href', 'frm_reportar?record=' + valore);
 
 				}, 1500);

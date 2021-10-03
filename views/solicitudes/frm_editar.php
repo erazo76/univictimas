@@ -1112,7 +1112,7 @@ ValidaSession("../login");
 										</div>
 
                      
-						<label>Tipo de Tarifario</label>
+										<label>Tipo de Tarifario</label>
 							<div class="form-group-sm">
 								<select id="tipo_tarifario" class="form-control">
 									<option value="" selected disabled hidden>Indique Tipo de Tarifario </option>
@@ -1169,7 +1169,7 @@ ValidaSession("../login");
 								<span class="input-group-btn" tabindex="-1" style="width:10px;"></span>
 								<input type="text" class="form-control" id="d_medida" placeholder="Unidad de Medida" onpaste="return false" tabindex="21"  autocomplete="off">
 								<span class="input-group-btn" tabindex="-1" style="width:0px;"></span>
-								<input type="text" class="form-control" id="d_costo" placeholder="Precio Unitario" onpaste="return false" tabindex="22"  autocomplete="off">
+								<input type="text" class="form-control" id="d_costo" placeholder="Precio Unitario" onpaste="return false" tabindex="22" onkeypress="return esdcantidad(event);" autocomplete="off">
 
 							</div>
 								<p></p>
@@ -1184,7 +1184,7 @@ ValidaSession("../login");
 
 						<div class="form-group-sm">
 							<label>Observaciones</label>
-							<textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características" onpaste="return true" onkeypress="return esdobs(event);" onblur="alsalir(this.id);" autocomplete="off"></textarea>
+							<textarea class="form-control" id="d_obs" rows="4" placeholder="Redacte un resumen de características" onpaste="return true"   autocomplete="off"></textarea>
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_d_obs' class="aaa">
 								<p></p>
 							</div>
@@ -1329,12 +1329,12 @@ ValidaSession("../login");
 
 				</div>
 			</div>
-							      <div class="modal-footer">
-										<button id="close11" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Adjuntar</button>
-										
-							      		<button id="cancelar22" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
+		<div class="modal-footer">
+			<button id="close11" type="button" class="btn btn-success" ><i class="fa fa-fw fa-save"></i>Adjuntar</button>
+			
+			<button id="cancelar22" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
 
-							      </div>
+		</div>
         </div>
       </div>
     </div>
@@ -1360,9 +1360,6 @@ ValidaSession("../login");
 					<div class="box-header with-border"></div><!-- /.box-header -->
 					<!-- form start -->
 					  <div class="box-body">
-
-
-						
 
 						<div class="form-group">
 							<label for="exampleInputFile">Adjuntar archivo Excel.</label>
@@ -1634,51 +1631,23 @@ $("#derecha" ).click(function() {
 });
 
 
-$("#tipo_tarifario").click(function() {
-		if ($("#tipo_tarifario").val()==3){
-			document.getElementById('tarifario').disabled = true;
-			document.getElementById('concepto').disabled = true;
-			document.getElementById('concepto').disabled = true;
-			document.getElementById('d_concepto').disabled = false;
-			document.getElementById('d_medida').disabled = false;
-			document.getElementById('d_costo').disabled = false;
 
+$('#tipo_tarifario').change(function(event) {
+		$.post( "../../controllers/mtarifas_controller", {action: "get_categoria_tarifario",tipo:$("#tipo_tarifario").val()}).done(function( data ) {
+			$("#tarifario" ).html( data );
 
-
-		}else{
-			document.getElementById('tarifario').disabled = false;
-			document.getElementById('concepto').disabled = false;
-			document.getElementById('concepto').disabled = false;
-
-			document.getElementById('d_concepto').disabled = true;
-			document.getElementById('d_medida').disabled = true;
-			document.getElementById('d_costo').disabled = true;
-
-
-		}
-						
-	});
-
+		
+				});
+			
 	
-	$.post( "../../controllers/mtarifas_controller", { action: "get_categoria"}).done(function( data ) {
-			$("#tarifario" ).html( data );
+				});
 
-
-
-		});
-
-
-		$.post( "../../controllers/mtarifas_controller", { action: "get_categoria"}).done(function( data ) {
-			$("#tarifario" ).html( data );
-
-
-
-		});
 
 		$('#tarifario').change(function(event) {
 		$.post( "../../controllers/mtarifas_controller", {action: "get_concepto",tarifario: $("#tarifario").val(),tipo:$("#tipo_tarifario").val()}).done(function( data ) {
 			$("#concepto" ).html( data );
-			$("#concepto" ).val( data ); $("#tipo_tarifario").val()
+			$("#concepto" ).val( data ); 
+			
 		
 				});
 			
@@ -1697,7 +1666,32 @@ $("#tipo_tarifario").click(function() {
 						
 					});
 
-					});
+					});		
+
+
+					$("#tipo_tarifario").click(function() {
+		if ($("#tipo_tarifario").val()==3){
+
+			document.getElementById('d_concepto').disabled = false;
+			document.getElementById('d_medida').disabled = false;
+			document.getElementById('d_costo').disabled = false;
+
+
+
+		}else{
+			document.getElementById('tarifario').disabled = false;
+			document.getElementById('concepto').disabled = false;
+
+			document.getElementById('d_concepto').disabled = true;
+			document.getElementById('d_medida').disabled = true;
+			document.getElementById('d_costo').disabled = true;
+
+
+		}
+						
+	});
+
+
 
 $("#izquierda" ).click(function() {
 
@@ -2315,13 +2309,12 @@ $("#izquierda" ).click(function() {
 					action: "update_reg_solicitud",
 					idea:$('#idea').val(),					
 					dia: $('#dia').val(),
-					tipo: $('#d_tipo').val(),
+					tipo: $('#tarifario').val(),
 					concepto: $('#d_concepto').val(),
 					cantidad: $('#d_cantidad').val(),
 					medida: $('#d_medida').val(),
 					costo: $('#d_costo').val(),
 					observaciones: $('#d_obs').val()
-				
 
 				}).done(function(data){
 
@@ -2339,8 +2332,7 @@ $("#izquierda" ).click(function() {
 							$("#d_medida").val(null);
 							$("#d_obs").val(null);
 							$("#d_costo").val(null);
-
-							//$('#tabla').DataTable().ajax.reload();
+							$('#tabla').DataTable().ajax.reload();
  							$(".alert").alert('close');
 					      	$('#modal1').modal('toggle');
 							$("#agregar").focus();
@@ -2623,7 +2615,7 @@ $("#izquierda" ).click(function() {
 													
 													
 												],
-											//"order": [[ 0, "asc" ]],
+											"order": [[ 0, "desc" ]],
 											"bPaginate": false,
 											"info":     false,
 											"bFilter": false
@@ -2988,9 +2980,7 @@ $("#izquierda" ).click(function() {
 		$("#ver").click(function() {
 			//$('#modal3').modal({backdrop: 'static',keyboard: false});
 			
-			// var value= table.$('tr.selected').children('td:first').text();
-			var value=$('tr td:first a:first');
-				 alert(value);
+			var value= table30.$('tr.selected').children('td:first').text();
 				if(!value){
 
 						$.alert({
@@ -4462,6 +4452,7 @@ function esidaccion(e) {
 		return numero;
 	}
 			
+
 
  </script>
 

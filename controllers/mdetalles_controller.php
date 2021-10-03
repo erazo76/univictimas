@@ -566,7 +566,18 @@ break;
 
   case 'update_reg_solicitud':
 
-     if($concepto ==""){
+    if($dia ==""){
+
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese el día de item.
+          </div>');
+
+    }else   if($concepto ==""){
 
       $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -634,6 +645,12 @@ break;
           $tempo->d_concepto = $concepto;
           $tempo->d_cantidad = $cantidad;
           $tempo->d_medida = $medida;
+
+          $tempo->concepto = $concepto;
+          $tempo->precio_uni = $costo;
+          $tempo->unidad_med = $medida;
+          $tempo->id_categoria = $tipo;
+
           $tempo->d_costo = $costo;
           $tempo->d_costo_t = $costo*$cantidad;
           $tempo->d_obs = $observaciones;
@@ -678,7 +695,29 @@ break;
 
     case 'detalles_temporal':
 
-      if($concepto ==""){
+      if($dia ==""){
+
+        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Ingrese el día de item.
+            </div>');
+
+      }else if($tipo ==""){
+
+        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Ingrese el tipo de item.
+            </div>');
+
+      }else if($concepto ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -756,6 +795,7 @@ break;
             $tempo->concepto = $concepto;
             $tempo->precio_uni = $costo;
             $tempo->unidad_med = $medida;
+            $tempo->id_categoria = $tipo;
 
             
             $tempo->d_costo = $costo;

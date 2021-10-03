@@ -514,7 +514,7 @@ case 'buscar_id_requerimiento':
   }
 break;
 
-case 'search_reg':
+case 'search_adjuntos':
   if($record !=null){
 
       //session_start();
@@ -522,7 +522,7 @@ case 'search_reg':
       $rol = $_SESSION['rolx'];
       $hoy = date("d-m-Y");
 
-    @$data = Madjuntado::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
+    @$data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
 
     if($data !=null){
 

@@ -17,6 +17,8 @@ ValidaSession("../login");
 		<input type="hidden" id="distribuidora" value="<?php echo intval($_SESSION['distribuidora']); ?>">
 		<input type="hidden" id="region" value="<?php echo intval($_SESSION['region']); ?>">
 		<input type="hidden" id="idea" value="<?php echo intval($_GET["record"]); ?>">
+		<input type="hidden" id="id_adjuntado" value="<?php echo intval($_GET["id_adj"]); ?>">
+
 		
 	<div class="col-md-1">
 		<div class="flotante">
@@ -96,7 +98,8 @@ ValidaSession("../login");
 
 //#########################################INSERTAR LOS DIVS CON LA COSNSULA DE ADJUNTOS ##################################
 
-		$.post( "../../controllers/madjuntos_controller", { action: "search_reg",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
+		$.post( "../../controllers/madjuntos_controller", { action: "search_adjuntados",record:<?php echo intval($_GET["id_adj"]); ?>}).done(function( data ) {
+
 
 			var parsedJson = $.parseJSON(data);
 				
@@ -108,11 +111,11 @@ ValidaSession("../login");
 					
 						if(imagen != null && index > 0){
 
-							$('#docum').append('<iframe src="../../dist/img/adjuntos_reg/'+imagen+'"  width="100%" height="480px" id="ifr_bas"></iframe>');	
+							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'"  width="100%" height="480px" id="ifr_bas"></iframe>');	
 
 						}else{
 
-							$('#docum').append('<iframe src="../../dist/img/adjuntos_reg/'+imagen+'"  width="100%"  height="480px" id="ifr_bas"></iframe>');	
+							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'"  width="100%"  height="480px" id="ifr_bas"></iframe>');	
 							//$('#docum').append('<div class="col-auto bg-danger p-5 text-center">NO HAY ARCHIVOS ADJUNTOS!!</div>');	
 						
 						}	

@@ -151,7 +151,7 @@ ValidaSession("../login");
 						<div class="form-group-sm">
 						<?php 
 							
-							if($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
+							if($_SESSION['rolx']<=3 ){
 						   
 						   ?>
 						<!-- <HR><h3 class="box-title">Aprobaciones</h3><HR> -->

@@ -25,12 +25,12 @@ include("../../lib/validar_session.php");
 									<th>Nombre del Evento</th>
 									<th>Dirección Territorial</th>
 									<th>Municipio</th>
-									<th>Fecha de inicio</th>
-									<th>Responsable del Evento</th>
+									<th>Fecha de inicio</th>									
 									<th>Solicitado el:</th>
 									<th>Usuario Solic.:</th>
 									<th>Modificado el:</th>
 									<th>Usuario modif.</th>
+									<th>Responsable</th>
 									<th>Aprobado por:</th>
 									<th></th>
 								</tr>
@@ -83,36 +83,57 @@ $(document).ready(function() {
 				  },
 				  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
 
-						if ((mData.aprobado)== 2){
+                //   $responsable=mData.responsable;
 
-							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/aprobado2.png)');
-							$('td:eq(0)', nRow).css('background-size','contain');
+				//   alert( $responsable);break;
+
+					if ((mData.a_supe)== 1){
+
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/aprobado1.png),radial-gradient(white,white )');
+							$('td:eq(0)', nRow).css('background-size','70px 25px');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
+							$('td:eq(0)', nRow).css('text-align','left');
+							$('td:eq(0)', nRow).css('background-position','bottom center');
 							$('td:eq(11)', nRow).css('opacity','0');
 
-						}else{
+							} else	if ((mData.a_supe)== 2){
+
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/rechazado.jpeg),radial-gradient(white,white )');
+							$('td:eq(0)', nRow).css('background-size','70px 35px');
+							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
+							$('td:eq(0)', nRow).css('font-weight','bold');
+							$('td:eq(0)', nRow).css('text-align','left');
+							$('td:eq(0)', nRow).css('background-position','bottom center');
+							$('td:eq(11)', nRow).css('opacity','0');
+
+							} else{
 								
-							$('td:eq(0)', nRow).css('background-image','');
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/asignado.png),radial-gradient(white, white)');
+							$('td:eq(0)', nRow).css('background-size','70px 25px');
+							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
+							$('td:eq(0)', nRow).css('font-weight','bold');
+							$('td:eq(0)', nRow).css('text-align','left');
+							$('td:eq(0)', nRow).css('background-position','bottom center');							
 							$('td:eq(11)', nRow).css('opacity','0');
-						}
-
-						return nRow;
-					},
+							}
+							return nRow;
+					      },
 						"scrollX": true,
 						"scrollY": "280px",
 						"scrollCollapse": true,
-						"columns": [
+						"columns":
+						[
 							{ "data": "id" },
 							{ "data": "nombre" },
 							{ "data": "departamento" },
 							{ "data": "municipio" },
-							{ "data": "fecha" },
-							{ "data": "responsable" },
+							{ "data": "fecha" },							
 							{ "data": "created" },
 							{ "data": "usercreate" },
 							{ "data": "updated" },
 							{ "data": "userupdate" },
+							{ "data": "responsable" },
 							{ "data": "resp_aprob" },
 							{ "data": "aprobado" }
 						],
@@ -120,13 +141,13 @@ $(document).ready(function() {
 						"aoColumnDefs": [
 							{
 							"mRender": function ( data, type, row ) {
-								return pad(data,5);
+								return pad(data,4);
 							},
 							"aTargets": [ 0 ]
 
 							},
 							{
-							"width": "80px",
+							"width": "50px",
 							"aTargets": [0]
 							},
 							{
@@ -151,7 +172,7 @@ $(document).ready(function() {
 							}
 							,
 							{
-							"width": "85px",
+							"width": "100px",
 							"aTargets": [6]
 							},
 							{
@@ -175,8 +196,8 @@ $(document).ready(function() {
 							"aTargets": [11]
 							}						
 
-						]
-				//"order": [[ 0, "asc" ]]
+						],
+				"order": [[ 0, "asc" ]]
 
 			});
 

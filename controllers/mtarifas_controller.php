@@ -64,6 +64,35 @@ if($data !=null){
    echo $resp;
 break;
 
+
+case 'get_categoria_tarifario':
+
+  if ($tipo_tarifario==3){
+    @$data = Mcategoria::find_by_sql("select  id, concepto from Mcategorias where id>7 ;");
+
+  }else{
+    @$data = Mcategoria::find_by_sql("select  id, concepto from Mcategorias where id<=7 ;");
+
+  }
+
+
+
+if($data !=null){
+  $resp = '<option value="">Indique la Categoria</option>';
+  foreach($data as $rs){
+        $resp .= '<option value="'.$rs->id.'">'.$rs->concepto.'</option>';
+        $resp .= '<hidden>';
+      }
+
+ }else{
+  $resp = '<option value="">Indique la Categoria</option>';
+}
+
+   echo $resp;
+break;
+
+
+
 case 'get_concepto':
 
   if ($tipo_tarifario==1){

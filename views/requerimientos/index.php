@@ -119,7 +119,7 @@ ValidaSession("../login");
 					"aoColumnDefs": [
             			{
                 			"mRender": function ( data, type, row ) {
-								return pad(data,5);
+								return pad(data,4);
 							},
 							"aTargets": [ 0 ]
 							

@@ -6,7 +6,9 @@ require_once '../models/Musuario.php';
 session_start();
 //$toca=0;
 	//muestra toda la data
-		$data = Msolicitude::find_by_sql("SELECT id,cid,nombre,mdepartamentos_id,mmunicipios_id,fecha2,rt_nombre1,rt_apellido1,updated,created,user_create,user_modify,rn_nombre1,rn_apellido1,completado FROM Msolicitudes WHERE status=1  order by id desc;");
+		$data = Msolicitude::find_by_sql("SELECT id,cid,nombre,mdepartamentos_id,mmunicipios_id,fecha2,rt_nombre1,rt_apellido1,
+		                                         updated,created,user_create,user_modify,rn_nombre1 as nombre_responsable,rn_apellido1  as apellido_responsable,completado,a_supe 
+												   FROM Msolicitudes WHERE status=1  order by id desc;");
 
 		$result = array();
 	
@@ -49,12 +51,10 @@ session_start();
 				
 					$mun='No Asignado';
 			}
-	
 
 			
-			$responsable=$rs->rn_nombre1.' '.$rs->rn_apellido1;
 			
-			if($rs->rn_nombre1 != null){
+			if($rs->rt_nombre1 != null){
 				$resp_aprob=$rs->rt_nombre1.' '.$rs->rt_apellido1;  
 				
 			}else{
@@ -68,6 +68,11 @@ session_start();
 			}else{
 				$updated='No modificado';
 			}
+			if (strlen($rs->nombre) > 40){
+				$rs->nombre = substr($rs->nombre, 0, 40) . '...';
+					 } 
+					 $responsable=$rs->nombre_responsable.' '.$rs->apellido_responsable;
+		 
 	
 			array_push($result,array(
 							
@@ -82,7 +87,10 @@ session_start();
 								"updated"=>$updated, 
 								"userupdate"=>$userupdate, 
 								"resp_aprob"=>$resp_aprob, 
-								"aprobado"=>$rs->completado																
+								"aprobado"=>$rs->completado,
+								"a_supe"=>$rs->a_supe
+
+																								
 	
 			 ));
 			 

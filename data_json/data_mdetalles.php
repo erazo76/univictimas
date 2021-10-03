@@ -32,11 +32,14 @@ if(!$id_sesion_usuario){
 
 
 	$data = Mdetalle::find_by_sql("select id,cid,d_tipo,d_concepto,d_cantidad,d_medida,
-	                               d_costo,d_obs,mrequerimientos_id,status,dia from mdetalles
-	                                    WHERE status=1 $cadena order by id desc;");
+	                               d_costo,d_obs,mrequerimientos_id,status,dia,id_categoria,unidad_med from mdetalles
+	                                    WHERE status=1 $cadena ;");
 	$items = 0;
 
 	foreach ($data as &$rs) {
+
+       if ($rs->id_categoria==0){
+
 
 		switch ($rs->d_tipo) {
 			case '0':	$tipo='SALONES';break;
@@ -59,16 +62,38 @@ if(!$id_sesion_usuario){
 			case '7':	$tipo2='LITROS';break;	
 			case '8':	$tipo2='GALONES';break;		
 		}
+	}	else{
+
+
+		switch ($rs->d_tipo) {
+			
+			case '1':	$tipo='ALIMENTACIÓN';break;	
+			case '2':	$tipo='APOYO OPERATIVO TERRITORIAL';break;
+			case '3':	$tipo='HOSPEDAJE';	break;
+			case '4':	$tipo='LOGISTICA';	break;	
+			case '5':	$tipo='MATERIALES';	break;	
+			case '6':	$tipo='ELEMENTOS DE ASEO Y/O PROTECCION PERSONAL';break;	
+			case '7':	$tipo='ELEMENTOS DE ASEO Y/O PROTECCION PERSONAL';break;	
+			case '8':	$tipo='REEMBOLSOS';	break;				
+			case '9':	$tipo='TIQUETES AEREOS';break;
+			case '10':	$tipo='COTIZABLES';break;	
+
+		}
+		$tipo2=$rs->unidad_med;
+
+
+	}	
 
 		array_push($result,array(
 											 "id"=>$rs->id,
+											 "dia"=>$rs->dia,
 					    					 "tipo"=>$tipo,
 					     					 "concepto"=>$rs->d_concepto,
 		                            	     "cantidad"=>$rs->d_cantidad,
 											 "medida"=>$tipo2,
 											 "costo"=>$rs->d_costo,
-		                            	     "observaciones"=>$rs->d_obs,
-											 "dia"=>$rs->dia
+		                            	     "observaciones"=>$rs->d_obs
+											
 
 		                         ));
 
