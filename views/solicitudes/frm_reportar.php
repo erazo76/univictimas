@@ -433,10 +433,12 @@ ValidaSession("../login");
 	var a1s=parsedJson.rn_apellido1;
 	var a2s=parsedJson.rn_apellido2;
 	var respon=n1s+' '+n2s+' '+a1s+' '+a2s;
+	var costo=formato_numero(parsedJson.costo_total, 2, ',', '.');
+	costo='$ '+costo;
 	$("#responsableevent").html(respon);
 	$("#tele2").html(parsedJson.tele2);
 	$("#correo2").html(parsedJson.correo2);
-	$("#costo_total").html(parsedJson.costo_total);
+	$("#costo_total").html(costo);
 	$("#recomendaciones").html(parsedJson.recomendaciones);
 
 	var n1s=parsedJson.rn_nombre1;
@@ -791,7 +793,24 @@ $("#grupo").html( data );
 						var r_concepto =parsedJson.concepto;
 						var med =parsedJson.medida;
 						var r_tipo =parsedJson.id_categoria;
+						var categoria="";
 						control=0;
+						
+						if(r_tipo==3){
+							categoria=1; // Alojamiento
+						}else if ((r_tipo==4)||(r_tipo==6)||(r_tipo==1)){
+
+							categoria=2; //Logistica
+
+						} else if ((r_tipo==5)||(r_tipo==7)){
+							categoria=3; //Materiales
+						}else if ((r_tipo==2)||(r_tipo==10)||(r_tipo==8)){
+							categoria=4; //Adicionales
+						}else if(r_tipo==9){
+							categoria=5; //Tiquetes Aereos
+						}else{
+							categoria=6; //Reembolsos
+						}
 					
 					}
 				
@@ -970,11 +989,11 @@ $("#grupo").html( data );
 					
 						break;							
 					}
-				}else ////FIN CONTROL 1
+			}else ////FIN CONTROL 1
                     {
 						
-						switch (r_tipo) {
-						case 3:
+						switch (categoria) {
+						case 1:
 							//alert(r_dia);
 						//insertar div de SALONES						
 						$('#salones').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
@@ -1027,7 +1046,7 @@ $("#grupo").html( data );
 						$('#a-3').append('<div  class="caja2 " >'+r_cantidad+'</div>');
 						$('#a-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');					
 						break;
-						case 1:	
+						case 2:	
 						//insertar div de ALIMENTACION
 						$('#alimentos').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#l-1').append('<div  class="caja2 ">'+r_concepto+'</div>');
@@ -1079,7 +1098,61 @@ $("#grupo").html( data );
 						$('#l-3').append('<div  class="caja2 ">'+r_cantidad+'</div>');
 						$('#l-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');
 						break;
-						case 5:	
+
+                        case 4:	
+						//insertar div de adicionales
+						$('#adicionales').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#l-1').append('<div  class="caja2 ">'+r_concepto+'</div>');
+						//alert(r_dia);
+						    if(r_dia=="previo 3"){
+
+						      $('#l-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+
+							 }else if(r_dia=="previo 2"){
+						      $('#l-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							  );
+							 }else if(r_dia=="previo 1"){
+						   
+						      $('#l-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 1"){
+						    
+						      $('#l-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 2"){
+
+						    $('#l-2').append(
+							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 3"){
+						    
+						      $('#l-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia posterior"){
+						     
+						      $('#l-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong>'+r_cantidad+'</strong></div></div>'
+							 );
+						    }else if(r_dia==""){
+						      $('#l-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							);
+						     }else{
+						      $('#l-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							);
+						     }
+						$('#l-3').append('<div  class="caja2 ">'+r_cantidad+'</div>');
+						$('#l-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');
+						break;
+
+						case 3:	
 						//insertar div de MATERIALES
 						$('#materiales').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#ad-1').append('<div class="caja2 "  >'+r_concepto+'</div>');
@@ -1131,14 +1204,12 @@ $("#grupo").html( data );
 						$('#ad-3').append('<div  class="caja2 " >'+r_cantidad+'</div>');
 						$('#ad-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');
 						break;
-						case 3:	
+						case 5:	
 						//insertar div de CONTABLES
 						
 						$('#cotizables').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 					
-						break;
-						case 4:	
-						case 5:	
+						break;						
 						case 6:	
 						//insertar div de CONTABLES
 						$('#personal').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
@@ -1548,5 +1619,32 @@ $(function(){
 					color: '#fff'
 				} 
 			});
+
+
+			function formato_numero(numero, decimales, separador_decimal, separador_miles) {
+		numero = parseFloat(numero);
+		if (isNaN(numero)) {
+			return "";
+		}
+
+		if (decimales !== undefined) {
+			// Redondeamos
+			numero = numero.toFixed(decimales);
+		}
+
+		// Convertimos el punto en separador_decimal
+		numero = numero.toString().replace(".", separador_decimal !== undefined ? separador_decimal : ",");
+
+		if (separador_miles) {
+			// Añadimos los separadores de miles
+			var miles = new RegExp("(-?[0-9]+)([0-9]{3})");
+			while (miles.test(numero)) {
+				numero = numero.replace(miles, "$1" + separador_miles + "$2");
+			}
+		}
+
+		return numero;
+	}
+
 </script>
 <?php include_once("../layouts/pie.php") ?>

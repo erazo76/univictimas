@@ -369,6 +369,8 @@ case 'search_reporte':
 
       foreach($data as $rs){
 
+        
+
           $resp[] = array(
                 "dia"=>$rs->dia,
                 "mrequerimientos_id"=>$rs->mrequerimientos_id,
