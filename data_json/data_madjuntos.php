@@ -3,7 +3,9 @@ require_once '../models/Madjunto.php';
 
 $unid=$_GET["este"];
 $result = array();
-
+if($unid==null){
+		$unid=0;
+	}
 session_start();
 $id_sesion_usuario = $_SESSION['instante'];
 
@@ -21,8 +23,8 @@ if($id_sesion_usuario==null){
 
 		
 			array_push($result,array(			
-												 "id"=>$rs->id,
-												 "anexo"=>$rs->imagen
+									"id"=>$rs->id,
+									"anexo"=>$rs->imagen
 									 ));
 	
 			$items++;
@@ -41,9 +43,9 @@ if($id_sesion_usuario==null){
 	
 			
 		      array_push($result,array(			
-												"id"=>$rs_1->id,
-												"anexo"=>$rs_1->imagen
-										 ));
+						"id"=>$rs_1->id,
+						"anexo"=>$rs_1->imagen
+								));
 		
 				$items++;
 		

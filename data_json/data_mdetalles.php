@@ -9,9 +9,11 @@ if(!$id_sesion_usuario){
 	$id_sesion_usuario=1;
 }
 	$result = array();
-
+    if($unid==null){
+		$unid=0;
+	}
 	
-	$data_delete = Mdetalle::find_by_sql("delete from mdetalles where reg_temp=true and id_sesion_usuario=1;");
+	$data_delete = Mdetalle::find_by_sql("delete from mdetalles where reg_temp=true and id_sesion_usuario=1 ;");
 
  
 	$data_search = Msolicitude::find_by_sql("SELECT id FROM Msolicitudes WHERE status=1 and id=$unid ");
@@ -32,7 +34,8 @@ if(!$id_sesion_usuario){
 
 
 	$data = Mdetalle::find_by_sql("select id,cid,d_tipo,d_concepto,d_cantidad,d_medida,
-	                               d_costo,d_obs,mrequerimientos_id,status,dia,id_categoria,unidad_med from mdetalles
+	                               d_costo,d_obs,mrequerimientos_id,status,dia,id_categoria,unidad_med 
+								   from mdetalles
 	                                    WHERE status=1 $cadena ;");
 	$items = 0;
 
@@ -72,7 +75,7 @@ if(!$id_sesion_usuario){
 			case '3':	$tipo='HOSPEDAJE';	break;
 			case '4':	$tipo='LOGISTICA';	break;	
 			case '5':	$tipo='MATERIALES';	break;	
-			case '6':	$tipo='ELEMENTOS DE ASEO Y/O PROTECCION PERSONAL';break;	
+			case '6':	$tipo='HIDRATACION Y ESTACION DE CAFÉ';break;	
 			case '7':	$tipo='ELEMENTOS DE ASEO Y/O PROTECCION PERSONAL';break;	
 			case '8':	$tipo='REEMBOLSOS';	break;				
 			case '9':	$tipo='TIQUETES AEREOS';break;
@@ -85,14 +88,14 @@ if(!$id_sesion_usuario){
 	}	
 
 		array_push($result,array(
-											 "id"=>$rs->id,
-											 "dia"=>$rs->dia,
-					    					 "tipo"=>$tipo,
-					     					 "concepto"=>$rs->d_concepto,
-		                            	     "cantidad"=>$rs->d_cantidad,
-											 "medida"=>$tipo2,
-											 "costo"=>$rs->d_costo,
-		                            	     "observaciones"=>$rs->d_obs
+								"id"=>$rs->id,
+								"dia"=>$rs->dia,
+								"tipo"=>$tipo,
+								"concepto"=>$rs->d_concepto,
+								"cantidad"=>$rs->d_cantidad,
+								"medida"=>$tipo2,
+								"costo"=>$rs->d_costo,
+								"observaciones"=>$rs->d_obs
 											
 
 		                         ));

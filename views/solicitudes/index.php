@@ -248,8 +248,8 @@ $(document).ready(function() {
 				
 				// $.post( "../../controllers/msolicitudes_controller", {action: "del_temp"}).done(function(data){},"json");
 				// $.post( "../../controllers/msolicitudes_controller", {action: "del_temp_null"}).done(function(data){},"json");
-				$.post( "../../controllers/msolicitudes_controller", {action: "del_temp_delete"}).done(function(data){},"json");
-				$.post( "../../controllers/msolicitudes_controller", {action: "crear"}).done(function(data){},"json");
+				// $.post( "../../controllers/msolicitudes_controller", {action: "del_temp_delete"}).done(function(data){},"json");
+				// $.post( "../../controllers/msolicitudes_controller", {action: "crear"}).done(function(data){},"json");
 
 				setTimeout(function() {       
 					$(location).attr('href','frm_registrar');
