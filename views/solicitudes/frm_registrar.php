@@ -1367,7 +1367,7 @@ session_start();
 	$(document).ready(function() {
 		var ahora = new Date();
 		var hora = ahora.getHours() + ':' + ahora.getMinutes();
-		document.getElementById("total_ejecutado").disabled=true;
+		//document.getElementById("total_ejecutado").disabled=true;
 
 		$('#hsoli').val(hora);
 		
