@@ -85,11 +85,11 @@ $(document).ready(function() {
 
                 //   $responsable=mData.responsable;
 
-				//   alert( $responsable);break;
+				//   alert( mData.a_supe_dir);break;
 
-					if ((mData.a_supe)== 1){
+					if ((mData.a_supe_dir)== 1){
 
-							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/aprobado1.png),radial-gradient(white,white )');
+							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/aprobado2.png),radial-gradient(white,white )');
 							$('td:eq(0)', nRow).css('background-size','70px 25px');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
@@ -97,7 +97,17 @@ $(document).ready(function() {
 							$('td:eq(0)', nRow).css('background-position','bottom center');
 							$('td:eq(11)', nRow).css('opacity','0');
 
-							} else	if ((mData.a_supe)== 2){
+							}  else	if ((mData.a_supe)== 1){
+
+								$('td:eq(0)', nRow).css('background-image','url(../../dist/img/despachado2.png),radial-gradient(white,white )');
+								$('td:eq(0)', nRow).css('background-size','70px 25px');
+								$('td:eq(0)', nRow).css('background-repeat','no-repeat');
+								$('td:eq(0)', nRow).css('font-weight','bold');
+								$('td:eq(0)', nRow).css('text-align','left');
+								$('td:eq(0)', nRow).css('background-position','bottom center');
+								$('td:eq(11)', nRow).css('opacity','0');
+
+							}else if ( ( (mData.a_supe)== 2) || ((mData.a_supe_dir)== 2)){
 
 							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/rechazado.jpeg),radial-gradient(white,white )');
 							$('td:eq(0)', nRow).css('background-size','70px 35px');
@@ -107,7 +117,9 @@ $(document).ready(function() {
 							$('td:eq(0)', nRow).css('background-position','bottom center');
 							$('td:eq(11)', nRow).css('opacity','0');
 
-							} else{
+							}
+							
+							else{
 								
 							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/asignado.png),radial-gradient(white, white)');
 							$('td:eq(0)', nRow).css('background-size','70px 25px');

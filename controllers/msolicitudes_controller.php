@@ -109,13 +109,21 @@ $fecha5= date("d-m-Y",strtotime($fecha_actual."+ 10 days"));
 
 ///*********************** */
 
-@$grup_financ = ($_POST["grup_financ"]);
+@$grup_financ_id = ($_POST["grup_financ"]);
 @$total_ejecutado = ($_POST["total_ejecutado"]);
 @$modalidad_evento = ($_POST["modalidad_evento"]);
 @$plan_accion = ($_POST["plan_accion"]);
 
-
 /***********************************/
+// Agregando Nivel de Aprobación
+
+@$a_supe = ($_POST["a_supe"]);
+@$a_supe_obs = ($_POST["a_supe_obs"]);
+@$a_supe_dir = ($_POST["a_supe_dir"]);
+@$a_supe_obs_dir = ($_POST["a_supe_obs_dir"]);
+
+//***********************************/
+
 
 
 switch ($action){
@@ -590,7 +598,6 @@ break;
             $alia->reg_temp='false';
             
             $alia->id_sesion_usuario = $id_sesion_usuario;
-
             $alia->grup_financ_id = $grup_financ_id;
             $alia->total_ejecutado = $total_ejecutado;
             $alia->modalidad_evento = $modalidad_evento;
@@ -1206,6 +1213,31 @@ break;
           }else{
             $t_trans1 = null;
           }
+          if($a_supe==0){
+            if($r_supe==0){
+              $a_supe=0;
+              $a_supe_obs="";
+            }else{
+              $a_supe=2;
+            }  
+          
+          }else{
+            $a_supe=1;
+          }
+
+          if($a_supe_dir==0){
+            if($r_supe_dir==0){
+              $a_supe_dir=0;
+              $a_supe_obs_dir="";
+
+            }else{
+              $a_supe_dir=2;
+            }  
+          
+          }else{
+            $a_supe_dir=1;
+          }
+
          
           $to_total = str_replace("$ ", "", $to_total);
          
@@ -1259,7 +1291,6 @@ break;
           $alia->a_terro = $a_terro;
           $alia->a_nacio = $a_nacio;
           $alia->a_funco = $a_funco;
-          $alia->a_supeo = $a_supeo;  
           $alia->arutaval = $arutaval;
           $alia->apircval = $apircval;
           $alia->afase = $afase;
@@ -1279,6 +1310,14 @@ break;
           $alia->created = $hoy;
           $alia->completado = 1;
           $alia->status = 1;
+
+          /// VAlores asociados a las Aprobaciones
+
+          $alia->a_supe = $a_supe;
+          $alia->a_supe_obs = $a_supe_obs;
+
+          $alia->a_supe_dir = $a_supe_dir;
+          $alia->a_supe_obs_dir = $a_supe_obs_dir;
 
 
           if($alia->save()){ // da el mensaje de guardado...
@@ -1728,7 +1767,11 @@ case 'aprobar':
                   "a_terro"=>$rs->a_terro,
                   "a_nacio"=>$rs->a_nacio,
                   "a_funco"=>$rs->a_funco,
-                  "a_supeo"=>$rs->a_supeo,
+                  
+                  "a_supe"=>$rs->a_supe,
+                  "a_supe_obs"=>$rs->a_supe_obs,
+                  "a_supe_dir"=>$rs->a_supe_dir,
+                  "a_supe_obs_dir"=>$rs->a_supe_obs_dir,
 
                   "arutaval"=>$rs->arutaval,
                   "apircval"=>$rs->apircval,
@@ -1782,7 +1825,7 @@ case 'aprobar':
   
           foreach($data as $rs){
             $int = floatval($ideco);
-            @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = '.$rs->id.'  and status = 1');
+            @$data = Mdetalle::find_by_sql('SELECT sum(d_costo_t) as tot_cos from mdetalles where mrequerimientos_id = '.$rs->id.'  and status = 1 and id_categoria=8 ');
         
           if($data !=null){
             foreach($data as $rs_d){
@@ -1885,10 +1928,7 @@ case 'aprobar':
 
   if($record !=null){
 
-      //session_start();
-      //@$usuario_id = $_SESSION['idusuariox'];
-      
-//echo($usuario_id);exit();
+
       $rol = $_SESSION['rolx'];
       $hoy = date("d-m-Y");
 
@@ -1897,8 +1937,6 @@ case 'aprobar':
     if($data !=null){
 
       foreach($data as $rs){
-//echo($rs->tipos);exit();
-              
 
         $resp = array(
                 "id"=>$rs->id,                    

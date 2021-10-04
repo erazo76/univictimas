@@ -605,13 +605,7 @@ ValidaSession("../login");
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_recom' class="aaa"><p></p></div>
 						</div>
 						</div><!-- /.box-body -->
-
-
-
 				 </div><!-- /.box -->	
-
-				
-
 			</div>
 
 			<div class="col-md-4">
@@ -646,65 +640,70 @@ ValidaSession("../login");
 						<button id="quitar" type="button" class="btn btn-danger sm" tabindex="50"><i class="fa fa-fw fa-minus"></i>Quitar</button>
 					</div>
 				</div>	
-				<div class="box-header with-border">
-					 	<h3 class="box-title">Aprobaciones</h3>
-				</div><!-- /.box-header -->
-
+				
 				<div class="box box-primary">
 						<!-- form start -->
 						<div class="box-body">
 							<div class="form-group-sm">
 							<?php 
-							if($_SESSION['rolx']==2 || $_SESSION['rolx']==1){
 							
-							?>
+							if(($_SESSION['rolx']==2 ) ){
+						   
+						   ?>
+						<!-- <HR><h3 class="box-title">Aprobaciones</h3><HR> -->
+						<span class="input-group-addon" >
+						<label>APROBACIONES</label>
+						</span>
 
-								<label>Nivel territorial</label>
-								<div class="input-group" >
-									<span class="input-group-addon" >
-										<input disabled type="checkbox" id="a_terr">
-									</span>
-									<input disabled type="text" class="form-control ccc" id="a_terro" placeholder="Observación"  onpaste="return true" tabindex="0" autocomplete="off">
-								</div>								
-								<?php 
-							 }elseif($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
-							
-							?>
-								<label>Nivel nacional</label>
-								<div class="input-group" >
-									<span class="input-group-addon">
-										<input disabled type="checkbox" id="a_naci">
-									</span>
-									<input disabled type="text" class="form-control ccc" id="a_nacio" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
-								</div>	
-								<?php 
-							 }elseif($_SESSION['rolx']==1 || $_SESSION['rolx']==2){
-							
-							?>							
-								<label>Nivel Funcionario</label>
-								<div class="input-group" >
-									<span class="input-group-addon" >
-										<input disabled type="checkbox" id="a_func">
-									</span>
-									<input disabled type="text" class="form-control ccc" id="a_funco" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
-								</div>
-								<?php 
-							 }elseif($_SESSION['rolx']==1 || $_SESSION['rolx']==1){
-							
-							?>
 
 								<label>Nivel supervisor</label>
 								<div class="input-group" >
 									<span class="input-group-addon" >
-										<input type="checkbox" id="a_supe">
+									<label>Aprobado</label>
+									<input type="checkbox" id="a_supe" >
+									
+									<label>Rechazado</label>
+										<input type="checkbox" id="r_supe" >
 									</span>
-									<input type="text" class="form-control ccc" id="a_supeo" placeholder="Observación"  onpaste="return false" tabindex="0"  autocomplete="off">
-								</div>								
+									</div>
+									<label for="a_supe_obs">observaciones</label>
+    							<textarea class="form-control ccc" id="a_supe_obs" rows="3" placeholder="Redacte sus observaciones"  onpaste="return true" tabindex="0"  onblur="alsalir(this.id);"    autocomplete="off"></textarea>
+								<!-- <div class="input-group" >
+									<input type="text" class="form-control ccc" id="a_supe_obs" placeholder="Observación" tabindex="13" onpaste="return false"   autocomplete="off">
+								</div> -->
+															
 								<?php 
-							 }else{
-							}
-							?>																					
+							 }else if($_SESSION['rolx']==3 ){
 
+   
+								?>
+								<!-- <HR><h3 class="box-title">Aprobaciones</h3><HR> -->
+								<span class="input-group-addon" >
+								<label>APROBACIONES</label>
+								</span>
+		
+		
+										<label>Nivel Sub-Dirección</label>
+										<div class="input-group" >
+											<span class="input-group-addon" >
+											<label>Aprobado</label>
+											<input type="checkbox" id="a_supe_dir" >
+											
+											<label>Rechazado</label>
+												<input type="checkbox" id="r_supe_dir" >
+											</span>
+											</div>
+											<label for="a_supe_obs_dir">observaciones</label>
+										<textarea class="form-control ccc" id="a_supe_obs_dir" rows="3" placeholder="Redacte sus observaciones"  onpaste="return true" tabindex="0"  onblur="alsalir(this.id);"    autocomplete="off"></textarea>
+										 
+																	
+										<?php 
+
+
+							 }
+							 else{
+							}
+							?>
 						</div>
 						</div><!-- /.box-body -->
 				 </div><!-- /.box -->	
@@ -809,12 +808,11 @@ ValidaSession("../login");
 					</div>
 
 					<div class="box-footer">
-					    <button id="anex" type="button" class="btn btn-success btn-xs " tabindex="55"><i class="fa fa-fw fa-plus"></i>add</button>
-				        <button id="ver" type="button" class="btn btn-primary btn-xs " tabindex="56" ><i class="fa fa-fw fa-eye" ></i>ver</button>
-						<button id="save" type="button" class="btn btn-success " tabindex="57" style="width: 97px;" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
-						<!-- <button id="anex" type="button" class="btn btn-success " tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus" ></i>Anexo</button> -->
-						<button id="exit" type="button" class="btn btn-primary " tabindex="58" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
-						<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
+					    <button id="save" type="button" class="btn btn-primary btn-xs " tabindex="55" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
+					    <button id="anex" type="button" class="btn btn-success btn-xs " tabindex="56"><i class="fa fa-fw fa-plus"></i>Add</button>
+				        <button id="ver" type="button" class="btn btn-primary btn-xs " tabindex="57" ><i class="fa fa-fw fa-eye" ></i>Ver</button>
+						<button id="exit" type="button" class="btn btn-primary btn-xs " tabindex="58" ><i class="fa fa-fw fa-reply" ></i>Regresar</button> 
+						<!-- <button id="exit" type="button" class="btn btn-primary " tabindex="58" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button> -->
 					</div>				
 					<div class="focusguard" id="guardia2" tabindex="59"></div>
 				</div><!-- /.box-body -->
@@ -1422,6 +1420,14 @@ ValidaSession("../login");
 
  <script type="text/javascript">
 
+var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
+
+// if ((desh!=2)){
+// 	document.getElementById("total_ejecutado").disabled=true;
+
+// }
+
+
 $(document).ready(function() {
 	var ahora = new Date();
 	var hora = ahora.getHours() + ':' + ahora.getMinutes();
@@ -1463,36 +1469,21 @@ setTimeout(function() {
 //alert(desh);
 		switch (desh) {
 
-		case 1:	document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
+		case 1:	//document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
+				// document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
+				// document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
+				document.getElementById("a_supe").disabled=false;document.getElementById("a_supe_obs").disabled=false;
+				document.getElementById("a_supe_dir").disabled=false;document.getElementById("a_supe_obs_dir").disabled=false;
+
 			    break;					
-		case 2:	document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
-				document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-				document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-				document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;		
+		case 2:	//document.getElementById("a_terr").disabled=false;document.getElementById("a_terro").disabled=false;
+				// document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
+				// document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
+				document.getElementById("a_supe").disabled=false;document.getElementById("a_supe_obs").disabled=false;	
+				document.getElementById("a_supe_dir").disabled=false;document.getElementById("a_supe_obs_dir").disabled=false;
+	
 			    break;
-		// case 3:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-		// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-		// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-		// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-		// 		break;	
-		// case 5:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-		// 		document.getElementById("a_naci").disabled=false;document.getElementById("a_nacio").disabled=false;
-		// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-		// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-		// 		break;			
-		// case 6:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-		// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-		// 		document.getElementById("a_func").disabled=false;document.getElementById("a_funco").disabled=false;
-		// 		document.getElementById("a_supe").disabled=true;document.getElementById("a_supeo").disabled=false;
-		// 		break;
-		// case 7:	document.getElementById("a_terr").disabled=true;document.getElementById("a_terro").disabled=false;
-		// 		document.getElementById("a_naci").disabled=true;document.getElementById("a_nacio").disabled=false;
-		// 		document.getElementById("a_func").disabled=true;document.getElementById("a_funco").disabled=false;
-		// 		document.getElementById("a_supe").disabled=false;document.getElementById("a_supeo").disabled=false;
-		// 		break;
+	
 	}
 
 
@@ -2041,7 +2032,7 @@ $("#izquierda" ).click(function() {
 		$("#exit" ).click(function() {
 
 						$.confirm({
-						    title: '¡Esta acción lo llevará al listado de requerimientos y borrará los datos no registrados!.¿Desea continuar?',
+						    title: '¡Esta acción lo llevará al listado de requerimientos y borrará los datos no Guardados!.¿Desea continuar?',
 						    content:false,
 						    confirmButton: 'Si',
 						    cancelButton: 'No',
@@ -2236,13 +2227,21 @@ $("#izquierda" ).click(function() {
 			}
 		});
 
-		$("#a_supe" ).change(function() {
-			if( $('#a_supe').prop('checked')== true ) {
-				$("#v_supe").val(1);  
-			}else{
-				$("#v_supe").val(0); 
-			}
-		});				
+		// $("#a_supe" ).change(function() {
+		// 	if( $('#a_supe').prop('checked')== true ) {
+		// 		$("#a_supe").val(1);  
+		// 	}else{
+		// 		$("#a_supe").val(0); 
+		// 	}
+		// });	
+		
+		// $("#a_supe_dir" ).change(function() {
+		// 	if( $('#a_supe_dir').prop('checked')== true ) {
+		// 		$("#a_supe_dir").val(1);  
+		// 	}else{
+		// 		$("#a_supe_dir").val(0); 
+		// 	}
+		// });	
 
 		$("#aruta" ).change(function() {
 
@@ -3120,8 +3119,18 @@ $("#izquierda" ).click(function() {
 				});
 		
 		//** enviar los datos al controlador ***********************************************************
-		$("#save" ).click(function() {
-				//alert($("#t_trans").val());
+		$('#save').click( function () {
+         
+         $.confirm({
+
+			title: '¿Esta Seguro de Actualizar el Registro ?',
+			content:false,
+			confirmButton: 'Si',
+			cancelButton: 'No',
+			confirmButtonClass: 'btn-primary',
+				cancelButtonClass: 'btn-success',
+
+			confirm: function(){
 				
 				$.post( "../../controllers/msolicitudes_controller", {
 
@@ -3179,7 +3188,11 @@ $("#izquierda" ).click(function() {
 					a_terro: $("#a_terro").val(),
 					a_nacio: $("#a_nacio").val(),
 					a_funco: $("#a_funco").val(),
-					a_supeo: $("#a_supeo").val(),	
+					// Agregando Nivel de Aprobaciones
+					a_supe: $("#a_supe").val(),
+					a_supe_obs: $("#a_supe_obs").val(),
+					a_supe_dir: $("#a_supe_dir").val(),
+					a_supe_obs_dir: $("#a_supe_obs_dir").val(),	
 
 					arutaval: $("#arutaval").val(),
 					apircval: $("#apircval").val(),
@@ -3231,17 +3244,7 @@ $("#izquierda" ).click(function() {
 
 					if(parsedJson.resultado != 'error'){
 
-					/*$.post( "../../controllers/mdetalles_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-						$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});
-
-					$.post( "../../controllers/mvictimas_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-						$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});		
-
-					$.post( "../../controllers/madjuntos_controller", { action: "definitivo2",recordado:$("#ideado").val()}).done(function( data ) {
-						$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-					});		*/		
+						
 
 						$('.base').unslider('animate:0');
 							//valore=$("#ideado").val();
@@ -3253,11 +3256,20 @@ $("#izquierda" ).click(function() {
 
 					              }, 1500);
 
-					}
+									}
 
-				},"json");
+								},"json");
 
-		});//end save
+									
+							},
+
+				cancel: function(){
+
+				}
+				});
+
+
+});	
 
 
 		//setTimeout(function() {	
@@ -3454,7 +3466,135 @@ $("#izquierda" ).click(function() {
 		$("#modalidad_evento").val(parsedJson.modalidad_evento);		
 		$("#plan_accion").val(parsedJson.plan_accion);
 
+
+		/// Agregando Validaciones Para Nivel de Aprobaciones SUPERVISOR
+
+
+
+// /// Agregando Validaciones Para Nivel de Aprobaciones SUB-DIRECTORA
+
+var rol=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
+
+if (rol==3){
+       $("#a_supe_dir").val(parsedJson.a_supe_dir);
+	   $("#a_supe_obs_dir").val(parsedJson.a_supe_obs_dir);
+
+		var a_supe_dir =parsedJson.a_supe_dir;	
+       if(a_supe_dir==0){
+		        $("#a_supe_dir").val(0);  
+		        $("#r_supe_dir").val(0);    
+				document.getElementById('a_supe_dir').checked = false;
+				document.getElementById('r_supe_dir').checked = false;
+	   }else    if(a_supe_dir==1){
+		        $("#r_supe_dir").val(0);  
+		        $("#a_supe_dir").val(1);    
+				document.getElementById('r_supe_dir').checked = false;
+				document.getElementById('a_supe_dir').checked = true;
+	   }else if(a_supe_dir==2){
+		        $("#r_supe_dir").val(1);  
+		        $("#a_supe_dir").val(0);    
+				document.getElementById('a_supe_dir').checked = false;
+				document.getElementById('r_supe_dir').checked = true;
+	   }
+
+} else  if (rol==2){
+	$("#a_supe").val(parsedJson.a_supe);
+	$("#a_supe_obs").val(parsedJson.a_supe_obs);
+
+	var a_supe =parsedJson.a_supe;	
 	
+       if(a_supe==0){
+		        $("#a_supe").val(0);  
+		        $("#r_supe").val(0);    
+				document.getElementById('a_supe').checked = false;
+				document.getElementById('r_supe').checked = false;
+	   }   else   if(a_supe==1){
+		        $("#r_supe").val(0);  
+		        $("#a_supe").val(1);    
+				document.getElementById('r_supe').checked = false;
+				document.getElementById('a_supe').checked = true;
+	   }   else if(a_supe==2){
+		        $("#r_supe").val(1);  
+		        $("#a_supe").val(0);    
+				document.getElementById('a_supe').checked = false;
+				document.getElementById('r_supe').checked = true;
+	   }
+}
+
+	   /// FIn Validaciones Nivel e Aprobaciones
+
+				$("#a_supe" ).click(function() {
+						if( $('#a_supe').prop('checked')== true ) {
+							$("#r_supe").val(0);  
+							$("#a_supe").val(1);    
+							document.getElementById('a_supe').checked = true;
+							document.getElementById('r_supe').checked = false;
+
+						}else{
+							$("#a_supe").val(0); 
+							$("#a_supe").val(0); 
+							document.getElementById('a_supe').checked = false;
+							document.getElementById('r_supe').checked = false;				
+
+						}
+			
+});
+
+////************************************************* */
+
+
+
+				$("#r_supe" ).click(function() {
+							if( $('#r_supe').prop('checked')== true ) {
+								$("#a_supe").val(0);  
+								$("#r_supe").val(1);    
+								document.getElementById('a_supe').checked = false;
+								document.getElementById('r_supe').checked = true;
+
+							}else{
+								$("#a_supe").val(0); 
+								$("#a_supe").val(0); 
+								document.getElementById('a_supe').checked = false;
+								document.getElementById('r_supe').checked = false;				
+
+							}
+							
+});
+
+
+				$("#a_supe_dir" ).click(function() {
+						if( $('#a_supe_dir').prop('checked') == true ) {
+							$("#r_supe_dir").val(0);  
+							$("#a_supe_dir").val(1);    
+							document.getElementById('a_supe_dir').checked = true;
+							document.getElementById('r_supe_dir').checked = false;
+
+						}else{
+							$("#a_supe_dir").val(0); 
+							$("#r_supe_dir").val(0); 
+							document.getElementById('a_supe_dir').checked = false;
+							document.getElementById('r_supe_dir').checked = false;				
+
+						}
+			
+});
+
+				  $("#r_supe_dir" ).click(function() {
+							if( $('#r_supe_dir').prop('checked') == true ) {
+								$("#a_supe_dir").val(0);  
+								$("#r_supe_dir").val(1);    
+								document.getElementById('a_supe_dir').checked = false;
+								document.getElementById('r_supe_dir').checked = true;
+
+							}else{
+								$("#a_supe_dir").val(0); 
+								$("#a_supe_dir").val(0); 
+								document.getElementById('a_supe_dir').checked = false;
+								document.getElementById('r_supe_dir').checked = false;				
+
+							}
+							
+});	
 
 },"json");
 

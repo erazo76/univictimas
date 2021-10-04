@@ -7,8 +7,9 @@ session_start();
 //$toca=0;
 	//muestra toda la data
 		$data = Msolicitude::find_by_sql("SELECT id,cid,nombre,mdepartamentos_id,mmunicipios_id,fecha2,rt_nombre1,rt_apellido1,
-		                                         updated,created,user_create,user_modify,rn_nombre1 as nombre_responsable,rn_apellido1  as apellido_responsable,completado,a_supe 
-												   FROM Msolicitudes WHERE status=1  order by id desc;");
+		                                         updated,created,user_create,user_modify,rn_nombre1 as nombre_responsable,
+												 rn_apellido1  as apellido_responsable,completado,a_supe,a_supe_dir 
+												   FROM Msolicitudes WHERE status=1  order by id asc;");
 
 		$result = array();
 	
@@ -88,7 +89,8 @@ session_start();
 								"userupdate"=>$userupdate, 
 								"resp_aprob"=>$resp_aprob, 
 								"aprobado"=>$rs->completado,
-								"a_supe"=>$rs->a_supe
+								"a_supe"=>$rs->a_supe,
+								"a_supe_dir"=>$rs->a_supe_dir
 
 																								
 	
