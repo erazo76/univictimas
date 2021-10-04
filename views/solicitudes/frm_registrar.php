@@ -575,7 +575,7 @@ session_start();
 
 					<div class="box box-primary">
 						<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-							<table id="tabla" class="table table-bordered table-hover">
+						   <table id="tabla" class="table table-bordered table-hover">
 								<thead>
 									<tr>
 										<th></th>
