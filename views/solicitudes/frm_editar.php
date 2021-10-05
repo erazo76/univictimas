@@ -3457,7 +3457,7 @@ $("#izquierda" ).click(function() {
 
 var rol=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
-if (rol==3){
+if ((rol==3)||(rol==1)){
        $("#a_supe_dir").val(parsedJson.a_supe_dir);
 	   $("#a_supe_obs_dir").val(parsedJson.a_supe_obs_dir);
 
