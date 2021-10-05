@@ -438,52 +438,52 @@ case 'contar_id':
                   }
               
                   
-              // $mail = new PHPMailer();
-              // $mail->IsSMTP(); // telling the class to use SMTP
-              // $mail->Host          = "smtp.gmail.com";
-              // $mail->SMTPSecure = 'tls';
-              // $mail->SMTPAuth      = true;                  // enable SMTP authentication
-              // //A$mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent           
-              // $mail->Port          = 587;                    // set the SMTP port for the GMAIL server
-              // $mail->Username      = $remitente; // SMTP account username
-              // $mail->Password      = $clave_email;        // SMTP account password
-              // $mail->SetFrom('app.univictimas@gmail.com', 'UNIVICTIMAS');
-              // $mail->AddReplyTo('app.univictimas@gmail.com', 'UNIVICTIMAS');
-              // $mail->Subject       = "NUEVA COTIZACION REGISTRADA";
-              // $body                = '<div class="container-fluid">
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>COTIZACION REGISTRADA</center></div>  
-              //                         </div> 
-              //                         <hr>
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>NUMERO DE COTIZACION</center></div> 
-              //                         <div class="col-sm-8"><left>'.$idaccion.'</left></div> 
-              //                         </div> 
-              //                         <hr>
+              $mail = new PHPMailer();
+              $mail->IsSMTP(); // telling the class to use SMTP
+              $mail->Host          = "smtp.gmail.com";
+              $mail->SMTPSecure = 'tls';
+              $mail->SMTPAuth      = true;                  // enable SMTP authentication
+              //A$mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent           
+              $mail->Port          = 587;                    // set the SMTP port for the GMAIL server
+              $mail->Username      = $remitente; // SMTP account username
+              $mail->Password      = $clave_email;        // SMTP account password
+              $mail->SetFrom('app.univictimas@gmail.com', 'UNIVICTIMAS');
+              $mail->AddReplyTo('app.univictimas@gmail.com', 'UNIVICTIMAS');
+              $mail->Subject       = "NUEVA COTIZACION REGISTRADA";
+              $body                = '<div class="container-fluid">
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>COTIZACION REGISTRADA</center></div>  
+                                      </div> 
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>NUMERO DE COTIZACION</center></div> 
+                                      <div class="col-sm-8"><left>'.$idaccion.'</left></div> 
+                                      </div> 
+                                      <hr>
                                       
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>FECHA DE REGISTRO</center></div>
-              //                         <div class="col-sm-8"><left>FECHA: '.$fecha2.'  FECHA ENTREGA: '.$fecha2.'</left></div>  
-              //                         </div> 
-              //                         <hr>
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center>VALOR COTIZACION</center></div>
-              //                         <div class="col-sm-8"><left> '.$costo_total.'</left></div>  
-              //                         </div> 
-              //                         <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>FECHA DE REGISTRO</center></div>
+                                      <div class="col-sm-8"><left>FECHA: '.$fecha2.'  FECHA ENTREGA: '.$fecha2.'</left></div>  
+                                      </div> 
+                                      <hr>
+                                      <div class="row">
+                                      <div class="col-sm-8"><center>VALOR COTIZACION</center></div>
+                                      <div class="col-sm-8"><left> '.$costo_total.'</left></div>  
+                                      </div> 
+                                      <hr>
                                       
                                       
-              //                         <div class="row">
-              //                         <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
-              //                         </div>
-              //                         </div>';
-              //   $body             = preg_replace("~/~",'',$body);
-              //   $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-              //   $mail->MsgHTML($body);
-              //   $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
-              //   $mail->Send();
-              //   $mail->ClearAddresses();
-              //   $mail->ClearAttachments(); 
+                                      <div class="row">
+                                      <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
+                                      </div>
+                                      </div>';
+                $body             = preg_replace("~/~",'',$body);
+                $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+                $mail->MsgHTML($body);
+                $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
+                $mail->Send();
+                $mail->ClearAddresses();
+                $mail->ClearAttachments(); 
 
 
                 $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
@@ -571,10 +571,13 @@ case 'contar_id':
               $a_supe=0;
             }else{
               $a_supe=2;
+              $detalle_cotizacion="COTIZACION RECHAZADA";
+
             }  
           
           }else{
             $a_supe=1;
+            $detalle_cotizacion="COTIZACION APROBADA";
           }
 
           $hoy = date('d-m-Y');
@@ -616,56 +619,56 @@ case 'contar_id':
             
               if($a_supe==1){
 
-              //   $mail = new PHPMailer();
-              //   $mail->IsSMTP(); // telling the class to use SMTP
-              //   $mail->Host          = "smtp.gmail.com";
-              //   $mail->SMTPSecure = 'tls';
-              //   $mail->SMTPAuth      = true;                  // enable SMTP authentication
-              //   $mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent           
-              //   $mail->Port          = 587;                    // set the SMTP port for the GMAIL server
-              //   $mail->Username      = $remitente; // SMTP account username
-              //   $mail->Password      = $clave_email;        // SMTP account password
-              //   $mail->SetFrom('app.univictimas@gmail.com', 'UNIVICTIMAS');
-              //   $mail->AddReplyTo('app.univictimas@gmail.com', 'UNIVICTIMAS');
-              // $mail->Subject       = "COTIZACION APROBADA";
-              // $body                = '<div class="container-fluid">
-              //                       <div class="row">
-              //                       <div class="col-sm-8"><center>COTIZACION APROBADA</center></div>  
-              //                       </div> 
-              //                       <hr>
-              //                       <div class="row">
-              //                       <div class="col-sm-8"><center>NUMERO DE COTIZACION</center></div> 
-              //                       <div class="col-sm-8"><center>'.$idaccion.'</center></div> 
-              //                       </div> 
-              //                       <hr>
+                $mail = new PHPMailer();
+                $mail->IsSMTP(); // telling the class to use SMTP
+                $mail->Host          = "smtp.gmail.com";
+                $mail->SMTPSecure = 'tls';
+                $mail->SMTPAuth      = true;                  // enable SMTP authentication
+                $mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent           
+                $mail->Port          = 587;                    // set the SMTP port for the GMAIL server
+                $mail->Username      = $remitente; // SMTP account username
+                $mail->Password      = $clave_email;        // SMTP account password
+                $mail->SetFrom('app.univictimas@gmail.com', 'UNIVICTIMAS');
+                $mail->AddReplyTo('app.univictimas@gmail.com', 'UNIVICTIMAS');
+                $mail->Subject       = $detalle_cotizacion;
+                $body                = '<div class="container-fluid">
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>COTIZACION APROBADA</center></div>  
+                                    </div> 
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>'.$detalle_cotizacion.'</center></div> 
+                                    <div class="col-sm-8"><center>'.$idaccion.'</center></div> 
+                                    </div> 
+                                    <hr>
                                     
-              //                       <div class="row">
-              //                       <div class="col-sm-8"><center>FECHA DE REGISTRO</center></div>
-              //                       <div class="col-sm-8"><center>FECHA: '.$fecha2.'  FECHA ENTREGA: '.$fecha2.'</center></div>  
-              //                       </div> 
-              //                       <hr>
-              //                       <div class="row">
-              //                       <div class="col-sm-8"><center>VALOR COTIZACION</center></div>
-              //                       <div class="col-sm-8"><center> '.$costo_total.'</center></div>  
-              //                       </div> 
-              //                       <hr>
-              //                       <div class="row">
-              //                       <div class="col-sm-8"><center>OBSERVACIOES DE APROBACION</center></div>
-              //                       <div class="col-sm-8"><center> '.$a_supeo.'</center></div>  
-              //                       </div> 
-              //                       <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>FECHA DE REGISTRO</center></div>
+                                    <div class="col-sm-8"><center>FECHA: '.$fecha2.'  FECHA ENTREGA: '.$fecha2.'</center></div>  
+                                    </div> 
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>VALOR COTIZACION</center></div>
+                                    <div class="col-sm-8"><center> '.$costo_total.'</center></div>  
+                                    </div> 
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>OBSERVACIOES DE APROBACION</center></div>
+                                    <div class="col-sm-8"><center> '.$a_supeo.'</center></div>  
+                                    </div> 
+                                    <hr>
                                     
                                     
-              //                       <div class="row">
-              //                       <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
-              //                       </div>
-              //                       </div>';
-              // $body             = preg_replace("~/~",'',$body);
-              // $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-              // $mail->MsgHTML($body);
-              // $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
-              // $mail->ClearAddresses();
-              // $mail->ClearAttachments(); 
+                                    <div class="row">
+                                    <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
+                                    </div>
+                                    </div>';
+              $body             = preg_replace("~/~",'',$body);
+              $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+              $mail->MsgHTML($body);
+              $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
+              $mail->ClearAddresses();
+              $mail->ClearAttachments(); 
      }
                 
 

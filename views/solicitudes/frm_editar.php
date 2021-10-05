@@ -673,7 +673,7 @@ ValidaSession("../login");
 								</div> -->
 															
 								<?php 
-							 }else if($_SESSION['rolx']==3 ){
+							 }else if(($_SESSION['rolx']==3) || ($_SESSION['rolx']==1)){
 
    
 								?>
@@ -1433,25 +1433,7 @@ $(document).ready(function() {
 	var hora = ahora.getHours() + ':' + ahora.getMinutes();
 	//alert(hora);
               $('#hsoli').val(hora);
-//alert( $('#hsoli').val());
-/*	$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-*/
-// setTimeout(function() {	
-// 	$.post( "../../controllers/msolicitudes_controller", { action: "contar_id"}).done(function( data ) {
-// 		var parsedJson = $.parseJSON(data);
-// 		var numstring=parsedJson.toString();
-// 		var res = numstring.padStart(4, 0);
-// 		var global=<?php echo $id_global;  ?>;
-		
-// //alert(parsedJson);
-// 		//S$("#n_accion").val( res );
-// 		$("#ideado").val( global );
-// 		//$("#id_req").val( id_global );
-// 	},"json");
 
-// }, 2500);
 
 setTimeout(function() {	
 	var ideco2 = <?php echo intval($_GET["record"]); ?>;
@@ -2581,7 +2563,7 @@ $("#izquierda" ).click(function() {
 		});	
 
 
-		setTimeout(function() {	
+	               	setTimeout(function() {	
 								var este = document.getElementById("idea").value;
 
 								
