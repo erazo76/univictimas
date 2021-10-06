@@ -58,7 +58,7 @@ session_start();
 
 							<div class="form-group-sm">
 								<label for="nombre">Nombre del Evento</label>
-								<input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad" onpaste="return false" tabindex="2" onblur="alsalir(this.id)" autocomplete="off">
+								<input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad" onpaste="return true" tabindex="2" onblur="alsalir(this.id)" autocomplete="off">
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' class="aaa">
 									<p></p>
 								</div>
@@ -1165,7 +1165,7 @@ session_start();
 
 										<div class="form-group-sm">
 											<label>Nombre del participante</label>
-											<input type="text" class="form-control" id="nombre2" placeholder="Nombre completo" onpaste="return false" tabindex="260" onkeypress="return esnombre4(event);" onblur="alsalir(this.id)" autocomplete="off">
+											<input type="text" class="form-control" id="nombre2" placeholder="Nombre completo" onpaste="return true" tabindex="260" onkeypress="return esnombre4(event);" onblur="alsalir(this.id)" autocomplete="off">
 											<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre2'>
 												<p></p>
 											</div>
@@ -1937,9 +1937,7 @@ session_start();
 	$('#jump3').on('focus', function() {
 		$('#agregar').focus();
 	});
-	// $('#jump3').on('focus', function() {
-	// 		$('#quitar').focus();
-	// });
+
 
 	$('.guardia79').on('focus', function() {
 		$('#entidad').focus();
@@ -2856,10 +2854,10 @@ session_start();
 
 
 
-	$('#delete').click(function() {
+	$('#quitar').click(function() {
 
 			
-		var value= table100.$('tr.selected').children('td:first').text();
+	var value= table.$('tr.selected').children('td:first').text();
 
 		if (!value) {
 
@@ -3064,10 +3062,6 @@ session_start();
 		});
 
 	});
-	// $("#quitar").click(function() {
-	// 	$('#jump3').modal({backdrop: 'static',keyboard: false});
-
-	// });
 
 
 	$("#agregar2").click(function() {
@@ -3341,10 +3335,6 @@ session_start();
 								modalidad_evento: $("#modalidad_evento").val(),
 								plan_accion: $("#plan_accion").val()
 
-
-
-
-
 										}).done(function(data) {
 										// document.getElementById('save').disabled = false;
 										var parsedJson = $.parseJSON(data);
@@ -3377,10 +3367,10 @@ session_start();
 
 											$('.base').unslider('animate:0');
 											valore = $("#ideado").val();
-											//alert(valore);
+											var cond_doc='REG';
 											setTimeout(function() {
 
-												$(location).attr('href', 'frm_reportar?record=' + valore);
+												$(location).attr('href', 'frm_reportar?record=' + valore+'&cond_doc='+cond_doc);
 
 											}, 1500);
 

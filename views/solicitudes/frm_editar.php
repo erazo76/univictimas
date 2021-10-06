@@ -51,12 +51,12 @@ ValidaSession("../login");
 
 						 	<div class="form-group-sm">
 							  <label for="n_accion">Nro. de Evento</label>
-							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de evento"  onpaste="return false" tabindex="1" disabled="true">
+							  <input type="text" class="form-control bbb" id="n_accion" placeholder="Indique numero de evento"  onpaste="return true" tabindex="1" disabled="true">
 							</div>
 
 							<div class="form-group-sm">
 							  <label for="nombre">Nombre del Evento</label>
-							  <input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad"  onpaste="return false" tabindex="2" onkeypress="return esnombre(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
+							  <input type="text" class="form-control bbb" id="nombre" placeholder="Ingrese nombre de la actividad"  onpaste="return true" tabindex="2" onkeypress="return esnombre(event);"  onblur="alsalir(this.id)"  autocomplete="off" >
 							  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre' class="aaa"><p></p></div>
 							</div>
 
@@ -450,7 +450,7 @@ ValidaSession("../login");
 									<option value="2">COLECTIVA</option>
 								</select>-->
 								
-						<input type="text" class="form-control bbb" id="tipo1" placeholder="Ingrese el tipo de evento"  onpaste="return false" tabindex="24" autocomplete="off">
+						<input type="text" class="form-control bbb" id="tipo1" placeholder="Ingrese el tipo de evento"  onpaste="return true" tabindex="24" autocomplete="off">
 						
 
 						<div class="box-body" id="actv_1" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
@@ -1231,7 +1231,7 @@ ValidaSession("../login");
 
 					 	 <div class="form-group-sm">
 					 	 	<label>Nombre del participante</label>
-							<input type="text" class="form-control" id="nombre2" placeholder="Nombre completo"  onpaste="return false" tabindex="260" onkeypress="return esnombre4(event);"  onblur="alsalir(this.id)" autocomplete="off">
+							<input type="text" class="form-control" id="nombre2" placeholder="Nombre completo"  onpaste="return true" tabindex="260" onkeypress="return esnombre4(event);"  onblur="alsalir(this.id)" autocomplete="off">
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_nombre2'><p></p></div>
 					 	 </div>
 							
@@ -2973,9 +2973,33 @@ $("#izquierda" ).click(function() {
 							confirmButtonClass: 'btn-success'
 						});
 			}else{
-				var record = <?php echo intval($_GET["record"]); ?>;
 	
-			 $(location).attr('href','frm_adjuntados?id_adj='+value+'&record='+record);
+
+				$.post( "../../controllers/madjuntos_controller", { action: "search_adjuntos",
+					record:value}).done(function( data ) {
+			        var parsedJson = $.parseJSON(data);
+				    parsedJson.forEach(function(parsedJson, index) {				
+					var imagen =parsedJson.imagen;
+					
+						if(imagen != null && index > 0){	
+						
+					        window.open("../../dist/img/adjuntos/"+imagen,'',"titlebars=0, toolbar=0,scrollbars=0,location=1,statusbar=0,menubar=0,resizable=0,width=320,height=240,top=250,left=500");	
+							 wind.moveTo(0,0);
+						}else{
+					        window.open("../../dist/img/adjuntos/"+imagen,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=320,height=240,top=250,left=500");	
+						}	
+						if(imagen == null){
+							$('#ifr_bas').attr('src','../../dist/img/adjunto.png');	
+							$('#docum').append('<div class="col-auto bg-danger p-5 text-center">NO HAY ARCHIVOS ADJUNTOS!!</div>');	
+							$("#ifr_bas").css({"height": "10%", "overflow": "auto"});						
+						}
+
+				});
+
+		});	
+				
+	
+			// $(location).attr('href','frm_adjuntados?id_adj='+value+'&record='+record);
 
 		}
 		});
@@ -3092,9 +3116,6 @@ $("#izquierda" ).click(function() {
 				$("#rt_apellido2").val(parsedJson.rs_apellido2);
 				$("#correo1").val(parsedJson.rs_correo);
 				$("#tele1").val(parsedJson.rs_tele);
-					//alert( $("#correo2").val());
-					//alert( $("#tele2").val());
-					
 					
 				});
 				
@@ -3102,7 +3123,7 @@ $("#izquierda" ).click(function() {
 		
 		//** enviar los datos al controlador ***********************************************************
 		$('#save').click( function () {
-         
+       
          $.confirm({
 
 			title: '¿Esta Seguro de Actualizar el Registro ?',
@@ -3175,6 +3196,13 @@ $("#izquierda" ).click(function() {
 					a_supe_obs: $("#a_supe_obs").val(),
 					a_supe_dir: $("#a_supe_dir").val(),
 					a_supe_obs_dir: $("#a_supe_obs_dir").val(),	
+
+					// Agregando Nivel de Aprobaciones
+					r_supe: $("#r_supe").val(),
+					r_supe_obs: $("#r_supe_obs").val(),
+					r_supe_dir: $("#r_supe_dir").val(),
+					r_supe_obs_dir: $("#r_supe_obs_dir").val(),	
+                    //  Casos Rechazados
 
 					arutaval: $("#arutaval").val(),
 					apircval: $("#apircval").val(),
@@ -3526,20 +3554,20 @@ if ((rol==3)||(rol==1)){
 
 
 
-				$("#r_supe" ).click(function() {
-							if( $('#r_supe').prop('checked')== true ) {
-								$("#a_supe").val(0);  
-								$("#r_supe").val(1);    
-								document.getElementById('a_supe').checked = false;
-								document.getElementById('r_supe').checked = true;
+						$("#r_supe" ).click(function() {
+									if( $('#r_supe').prop('checked')== true ) {
+										$("#a_supe").val(0);  
+										$("#r_supe").val(1);    
+										document.getElementById('a_supe').checked = false;
+										document.getElementById('r_supe').checked = true;
 
-							}else{
-								$("#a_supe").val(0); 
-								$("#a_supe").val(0); 
-								document.getElementById('a_supe').checked = false;
-								document.getElementById('r_supe').checked = false;				
+									}else{
+										$("#a_supe").val(0); 
+										$("#a_supe").val(0); 
+										document.getElementById('a_supe').checked = false;
+										document.getElementById('r_supe').checked = false;				
 
-							}
+									}
 							
 });
 

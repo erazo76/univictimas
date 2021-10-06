@@ -124,6 +124,10 @@ $fecha5= date("d-m-Y",strtotime($fecha_actual."+ 10 days"));
 
 //***********************************/
 
+@$r_supe = ($_POST["r_supe"]);
+@$r_supe_obs = ($_POST["r_supe_obs"]);
+@$r_supe_dir = ($_POST["r_supe_dir"]);
+@$r_supe_obs_dir = ($_POST["r_supe_obs_dir"]);
 
 
 switch ($action){
@@ -1213,6 +1217,13 @@ break;
           }else{
             $t_trans1 = null;
           }
+          // @$r_supe = ($_POST["r_supe"]);
+          // @$r_supe_obs = ($_POST["r_supe_obs"]);
+          // @$r_supe_dir = ($_POST["r_supe_dir"]);
+          // @$r_supe_obs_dir = ($_POST["r_supe_obs_dir"]);
+
+
+
           if($a_supe==0){
             if($r_supe==0){
               $a_supe=0;
@@ -1403,7 +1414,7 @@ break;
               $body             = preg_replace("~/~",'',$body);
               $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
               $mail->MsgHTML($body);
-              $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');               
+               $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');              
               $mail->Send();
               $mail->ClearAddresses();
               $mail->ClearAttachments(); 

@@ -98,7 +98,8 @@ ValidaSession("../login");
 
 //#########################################INSERTAR LOS DIVS CON LA COSNSULA DE ADJUNTOS ##################################
 
-		$.post( "../../controllers/madjuntos_controller", { action: "search_adjuntados",record:<?php echo intval($_GET["id_adj"]); ?>}).done(function( data ) {
+		$.post( "../../controllers/madjuntos_controller", { action: "search_adjuntos",
+			record:<?php echo intval($_GET["id_adj"]); ?>}).done(function( data ) {
 
 
 			var parsedJson = $.parseJSON(data);
@@ -111,11 +112,23 @@ ValidaSession("../login");
 					
 						if(imagen != null && index > 0){
 
-							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'"  width="100%" height="480px" id="ifr_bas"></iframe>');	
+							//$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'"  width="100%" height="480px" id="ifr_bas"></iframe>');	
+
+							//location.href('<iframe src="../../dist/img/adjuntos/'+imagen+'"  width="100%" height="480px" id="ifr_bas"></iframe>');	
+					        window.open("../../dist/img/adjuntos/"+imagen,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=320,height=240,top=250,left=500");	
+
+
+							
+
+
 
 						}else{
 
-							$('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'"  width="100%"  height="480px" id="ifr_bas"></iframe>');	
+					        window.open("../../dist/img/adjuntos/"+imagen,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=320,height=240,top=250,left=500");	
+							// $('#docum').append('<iframe src="../../dist/img/adjuntos/'+imagen+'"  width="100%"  height="480px" id="ifr_bas"></iframe>');	
+
+
+
 							//$('#docum').append('<div class="col-auto bg-danger p-5 text-center">NO HAY ARCHIVOS ADJUNTOS!!</div>');	
 						
 						}	

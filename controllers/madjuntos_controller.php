@@ -452,7 +452,6 @@ case 'delete_adjuntado':
   break;
 
 #*******************************************************************************
-#*******************************************************************************
 case 'search_adjuntados':
   if($record !=null){
 
@@ -483,6 +482,34 @@ case 'search_adjuntados':
 break;
 
 #*******************************************************************************
+case 'search_adjuntos':
+  if($record !=null){
+
+      //session_start();
+      //$usuario_id = $_SESSION['idusuariox'];
+      $rol = $_SESSION['rolx'];
+      $hoy = date("d-m-Y");
+
+    @$data = Madjunto::find('all',array('conditions' => array('id=?',intval($origen))));
+
+    if($data !=null){
+
+      foreach($data as $rs){
+
+          $resp[] = array(
+                "imagen"=>$rs->imagen,
+          );
+
+      }
+     // print_r($resp);exit();
+      echo json_encode($resp);
+    }else{
+      $resp[] = array( );
+      echo json_encode($resp);
+    }
+
+  }
+break;
 
 
 #*******************************************************************************
@@ -514,6 +541,11 @@ case 'buscar_id_requerimiento':
   }
 break;
 
+
+
+
+
+
 case 'search_adjuntos':
   if($record !=null){
 
@@ -522,7 +554,7 @@ case 'search_adjuntos':
       $rol = $_SESSION['rolx'];
       $hoy = date("d-m-Y");
 
-    @$data = Madjunto::find('all',array('conditions' => array('mrequerimientos_id=?',$record)));
+    @$data = Madjunto::find('all',array('conditions' => array('id=?',$record)));
 
     if($data !=null){
 
@@ -688,8 +720,11 @@ break;
         $hoy = date('d-m-Y');
 
             if($sourcePath){//si cargaron el archivo
-              if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf")){
-                move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
+              if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf") ||
+              ($tipo_archivo == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")|| 
+              ($tipo_archivo == "application/vnd.ms-excel")||
+              ($tipo_archivo == "application/msword")||($tipo_archivo == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")){
+                    move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
                 @$nombre_imagen = $id."_".($_FILES['file']['name']);
               }
             }else{ //si no cargaron nada
@@ -867,8 +902,12 @@ case 'temporal_adjuntado':
     $hoy = date('d-m-Y');
 
         if($sourcePath){//si cargaron el archivo
-          if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf")){
-            move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
+          if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf") ||
+          ($tipo_archivo == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")|| 
+          ($tipo_archivo == "application/vnd.ms-excel")||
+          ($tipo_archivo == "application/msword")||($tipo_archivo == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")){
+
+move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
             @$nombre_imagen = $id."_".($_FILES['file']['name']);
           }
         }else{ //si no cargaron nada
