@@ -697,7 +697,9 @@ $data_credencial = Musuario::find_by_sql("SELECT email, clave_email
               $mail->Subject       = "Nueva solicitud registrada";
               $body                = '<div class="container-fluid">
                                       <div class="row">
-                                      <div class="col-sm-8"><center>SOLICITUD REGISTRADA</center></div>  
+                                      <div class="col-sm-8"><center>NUMERO DE SOLICITUD REGISTRADA</center></div>  
+                                      <div class="col-sm-8"><left>'.$num_solicitud.'</left></div> 
+
                                       </div> 
                                       <hr>
                                       <div class="row">
@@ -1369,6 +1371,13 @@ break;
                                     <div class="row">
                                     <div class="col-sm-8"><center>'.$det_solicitud.'</center></div>  
                                     </div> 
+
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>NUMERO DE SOLICITUD SOLICITUD</center></div> 
+                                    <div class="col-sm-8"><left>'.$id.'</left></div> 
+                                    </div> 
+                                    <hr>
                                     <hr>
                                     <div class="row">
                                     <div class="col-sm-8"><center>NOMBRE SOLICITUD</center></div> 
