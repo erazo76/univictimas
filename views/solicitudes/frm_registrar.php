@@ -404,7 +404,7 @@ session_start();
 									<option value="2">COLECTIVA</option>
 								</select>-->
 
-							<input type="text" class="form-control bbb" id="tipo1" placeholder="Ingrese el tipo de evento" onpaste="return false" tabindex="24" autocomplete="off">
+							<input type="text" class="form-control bbb" id="tipo1" placeholder="Ingrese el tipo de evento" onpaste="return true" tabindex="24" autocomplete="off">
 
 
 							<div class="box-body" id="actv_1" style="border-width:1px;border-style:solid; border-color: #ecf0f5; display:none">
