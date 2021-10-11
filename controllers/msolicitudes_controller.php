@@ -1939,6 +1939,7 @@ case 'aprobar':
                     "costo_total"=>$rs->costo_total,
                     "presup"=>$rs->presup,
                     "region"=>$rs->mregiones_id,
+                    "modalidad"=>$rs->modalidad_evento,
                     "completado"=>$rs->completado
                    );
           }

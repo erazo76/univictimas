@@ -148,6 +148,9 @@
     font-size:7px;
 }
 
+.f_sl{
+    font-size:15px;
+}
 .f_s2{
     font-size:6px;
     line-height: 7px;
@@ -246,7 +249,7 @@
 
 .ig-89{
     grid-row: 8/9;
-    height: 15px;
+    height: 25px;
 }
 
 .ig-910{
@@ -442,6 +445,9 @@
 .ig-2930{
     grid-row: 29/30;
 }
+.ig-3031{
+    grid-row: 30/31;
+}
 
 .vig-160{ /*10 lineas maximo*/
     height: 160px;     
@@ -463,10 +469,10 @@
 }
 
 .linea{
-    border-top: 1px solid black;
+    /* border-top: 1px solid #fff; */
     height: 2px;
     max-width: 200px;
-    margin: 32px;
+    margin: 32px 32px 40px 32px;
     
 }
 

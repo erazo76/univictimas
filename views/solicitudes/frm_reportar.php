@@ -57,7 +57,9 @@ ValidaSession("../login");
 						</div> 
 					</div>
 					<div class="caja1 ce tit_7 f_s">Modalidad</div>
-					<div class="caja1 ce tit_8 f_s">Presencial</div>
+					<div class="caja1 ce tit_8 f_s" id="modalidad"></div>
+
+					
 
 					<div class="caja1 ce na_1_7">N° De solicitud:
 						<div class="rw_base">
@@ -161,26 +163,36 @@ ValidaSession("../login");
 					<div class="caja1 rl-1 vig-96 ce f_s">LOGÍSTICA</div>
 					<div class="caja1 rl-1 vig-96 ce f_s">ADICIONALES</div>
 					<div class="caja1 rl-1 vig-96 ce f_s">MATERIALES</div>
+					<!-- <div class="caja1 rl-1 vig-96 ce f_s">TIQUETES</div> -->
 
 					<div class="caja1 rl-25 alt ig-2627 f_s" id="a-1"></div>
 					<div class="caja1 rl-25 alt ig-2728 f_s" id="l-1"></div>
 					<div class="caja1 rl-25 alt ig-2829 f_s" id="ad-1"></div>
 					<div class="caja1 rl-25 alt ig-2930 f_s" id="ma-1"></div>
+					<!-- <div class="caja1 rl-25 alt ig-3031 f_s" id="ti-1"></div> -->
+
 
 					<div class="caja1 ig-2627 alt igr-516 f_s" id="a-2"></div>
 					<div class="caja1 ig-2728 alt igr-516 f_s" id="l-2"></div>
 					<div class="caja1 ig-2829 alt igr-516 f_s" id="ad-2"></div>
 					<div class="caja1 ig-2930 alt igr-516 f_s" id="ma-2"></div>
+					<!-- <div class="caja1 ig-3031 alt igr-516 f_s" id="ti-2"></div> -->
+
+					
 
 					<div class="caja1 ig-2627 alt igr-1617 f_s" id="a-3"></div>
 					<div class="caja1 ig-2728 alt igr-1617 f_s" id="l-3"></div>
 					<div class="caja1 ig-2829 alt igr-1617 f_s" id="ad-3"></div>
 					<div class="caja1 ig-2930 alt igr-1617 f_s" id="ma-3"></div>
+					<!-- <div class="caja1 ig-3031 alt igr-1617 f_s" id="ti-3"></div> -->
+
 
 					<div class="caja1 ig-2627 alt igr-1721 f_s" id="a-4"></div>
 					<div class="caja1 ig-2728 alt igr-1721 f_s" id="l-4"></div>
 					<div class="caja1 ig-2829 alt igr-1721 f_s" id="ad-4"></div>
 					<div class="caja1 ig-2930 alt igr-1721 f_s" id="ma-4"></div>
+					<!-- <div class="caja1 ig-3031 alt igr-1721 f_s" id="ti-4"></div> -->
+
 
 					<div class="caja1 ce f_s igr-15 gris">TIQUETES AEREOS</div>
 						<div class="igr-516">
@@ -213,19 +225,23 @@ ValidaSession("../login");
 					<div class="caja1 igr-121 alt">
 						<div class="rn_base">													
 							<div class="rl-1 ig-3536">
-								<div class="linea ce"></div>
-							<div id="responsableevent2">Responsable del evento</div>	
-								<div class="ce deco">Responsable del evento</div>
+							<div class="linea ce"  id="responsableevent2"></div>
+							<!-- <div id="responsableevent2"></div> -->
+							<div class="ce deco">Responsable del evento</div>
+								
+
 							</div>							
 							<div class="rl-2  ig-3536">
-								<div class="linea ce"></div>
-								<div id="responsablesub2">Responsable del evento</div>	
+								<div class="linea ce" id="responsablesub2"></div>
 								<div class="ce deco">Sub-director(a) solicitante</div>
+								<!-- <div id="responsablesub2">Responsable del evento</div>	 -->
+								
 							</div>							
 							<div class="rl-3  ig-3536">
-								<div class="linea ce"></div>	
-								<div id="">Aura Helena Acevedo Vargas</div>
-								<div class="ce deco">Supervisión del contrato <div id="">Aura Helena Acevedo Vargas</div></div> 
+								<div class="linea ce" id="responsablesub3"></div>	
+								<!-- <div id="">Aura Helena Acevedo Vargas</div> -->
+								<div class="ce deco">Supervisión del contrato</div>
+								 <!-- <div id="">Aura Helena Acevedo Vargas</div></div>  -->
 								<div class="rl-3">
 									<div class="ro_base">
 										<!--<div class="f_s iz rl-1">Vo Bo: </div>
@@ -453,8 +469,9 @@ ValidaSession("../login");
 	var a1t=parsedJson.rt_apellido1;
 	var a2t=parsedJson.rt_apellido2;
 	var respot=n1t+' '+n2t+' '+a1t+' '+a2t;
-	
+	var resp="Aura Helena Acevedo Vargas";
 	$("#responsablesub2").html(respot);
+	$("#responsablesub3").html(resp);
 
 	var bdep =parsedJson.departamento;
 	var bmun =parsedJson.municipio;
@@ -535,6 +552,14 @@ $("#grupo").html( data );
 		case 5:	aref="Via";break;			
 		case 6:	aref="Dentro";break;
 	}
+	var modalidad =parsedJson.modalidad;
+	switch (modalidad) {
+		case 1:	modalidad_evento="Presencial";break;						
+		case 2:	modalidad_evento="Virtual";break;
+	}
+
+	$("#modalidad").html(modalidad_evento);
+	
 
 	var direcc= aprima+' '+d_acc1+' #'+d_acc2+'-'+d_numd+' ('+aref+' '+d_refe+').'
 
@@ -759,6 +784,7 @@ $("#grupo").html( data );
 					var hora1 =parsedJson.hora1;
 					var hora2 =parsedJson.hora2;				
 
+
 					var r_observaciones =parsedJson.observaciones;	
 					 /// ************************
 
@@ -801,6 +827,8 @@ $("#grupo").html( data );
 						}else if ((r_tipo==4)||(r_tipo==6)||(r_tipo==1)){
 
 							categoria=2; //Logistica
+							
+							
 
 						} else if ((r_tipo==5)||(r_tipo==7)){
 							categoria=3; //Materiales
@@ -993,9 +1021,11 @@ $("#grupo").html( data );
                     {
 						
 						switch (categoria) {
+                       
+
 						case 1:
-							//alert(r_dia);
-						//insertar div de SALONES						
+
+											
 						$('#salones').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 						$('#a-1').append('<div  class="caja2 " >'+r_concepto+'</div>');
 						
@@ -1204,10 +1234,69 @@ $("#grupo").html( data );
 						$('#ad-3').append('<div  class="caja2 " >'+r_cantidad+'</div>');
 						$('#ad-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');
 						break;
-						case 5:	
+
+                 ////////**************************************************************** */
+
+				 case 5:	
+				 //insertar div de cotizables
+				 $('#cotizables').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#lr-1').append('<div class="caja2 "  >'+r_concepto+'</div>');
+						//alert(r_dia);
+						    if(r_dia=="previo 3"){
+
+						      $('#lr-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+
+							 }else if(r_dia=="previo 2"){
+						      $('#lr-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							  );
+							 }else if(r_dia=="previo 1"){
+						   
+						      $('#lr-2').append(
+							   '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 1"){
+						    
+						      $('#lr-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s">'+r_cantidad+'<strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 2"){
+
+						    $('#lr-2').append(
+							'<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia 3"){
+						    
+						      $('#lr-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong>'+r_cantidad+'</strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							 );
+							}else if(r_dia=="Dia posterior"){
+						     
+						      $('#lr-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong>'+r_cantidad+'</strong></div></div>'
+							 );
+						    }else if(r_dia==""){
+						      $('#lr-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							);
+						     }else{
+						      $('#lr-2').append(
+							 '<div class="rl_base "><div class="caja2 rl-1 ce f_s"><strong></strong></div><div class="caja2 rl-2 ce f_s"><strong></strong></div><div class="caja2 rl-3 ce f_s"><strong></strong></div><div class="caja2 rl-4 ce f_s"><strong></strong></div><div class="caja2 rl-5 ce f_s"><strong></strong></div><div class="caja2 rl-6 ce f_s"><strong></strong></div><div class="caja2 rl-7 ce f_s"><strong></strong></div></div>'
+							);
+						     }
+						$('#lr-3').append('<div  class="caja2 " >'+r_cantidad+'</div>');
+						$('#lr-4').append('<div  class="caja2 " >'+r_observaciones+'</div>');
+						break;
+
+				 ////////******************************************************************/
+
+
+						case 7:	
 						//insertar div de CONTABLES
 						
-						$('#cotizables').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
+						$('#cotizables2').append('<div class="caja1 pg1_3 aiz" style="line-height: 7px;font-size:7px;">'+r_concepto+'</div><div class="caja1 pg3_4">'+r_cantidad+'</div><div class="caja1 pg4_5">'+med+'</div><div class="caja1 pg5_6">'+r_costo+'</div><div class="caja1 pg6_8 aiz" style="line-height: 7px;font-size:7px;">'+r_observaciones+'</div>');
 					
 						break;						
 						case 6:	
@@ -1257,8 +1346,6 @@ $("#grupo").html( data );
 
 				
 			} );
-
-
 
 
 });	
