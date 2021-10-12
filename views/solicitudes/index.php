@@ -54,13 +54,16 @@ include("../../lib/validar_session.php");
  <script type="text/javascript">
 
 var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
+if ((desh==4)){
+	document.getElementById("delete").disabled=true;
+	document.getElementById("edit").disabled=false;
 
-if ((desh>3)){
+}else if ((desh>3)){
 	document.getElementById("delete").disabled=true;
 	document.getElementById("edit").disabled=true;
 
 }
-
+ 
 
 $(document).ready(function() {
 
@@ -85,7 +88,7 @@ $(document).ready(function() {
 
                 //   $responsable=mData.responsable;
 
-				//   alert( mData.a_supe_dir);break;
+				   //alert( mData);break;
 
 					if ((mData.a_supe_dir)== 1){
 
