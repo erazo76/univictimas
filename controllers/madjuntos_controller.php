@@ -305,6 +305,60 @@ switch ($action){
   break;
 
 #*******************************************************************************
+
+
+#*******************************************************************************
+case 'limpiar_adjuntos':
+
+
+
+        //session_start();
+        //$usuario_id = $_SESSION['idusuariox'];
+        $rol = $_SESSION['rolx'];  
+        $id_sesion_usuario = $_SESSION['instante'];
+
+        $data_buscar = Madjunto::find_by_sql('select imagen,id from Madjuntos where reg_temp=true and id_sesion_usuario='.$id_sesion_usuario.' ;');
+
+      //	$data_delete = Madjunto::find_by_sql("delete from Madjuntos where reg_temp=true and id_sesion_usuario=1 ;");
+
+
+        foreach ($data_buscar as $st) {
+          unlink('../dist/img/adjuntos/'.$st->imagen);
+          $data_delete = Madjunto::find_by_sql('delete from Madjuntos where reg_temp=true and id='.$st->id.' ;');
+        
+
+       }
+
+                  if($data_buscar){
+
+                    $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
+                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                        <h4>
+                        <i class="icon fa fa-check"></i>
+                        Alerta!
+                        </h4>
+                        Se elimino el archivo de la lista.
+                        </div>');
+
+                  }else {
+                    $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
+                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                    <h4>
+                    <i class="icon fa fa-ban"></i>
+                    Alerta!
+                    </h4>
+                    Error al eliminar el archivo de la lista.
+                    </div>');
+                }
+
+
+          echo json_encode($respuesta);
+
+  
+  
+  break;
+
+
 case 'delete_adjuntado':
 
   if($record !=null){

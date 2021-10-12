@@ -709,10 +709,11 @@ session_start();
 						</div>
 
 						<div class="box-footer">
-							<button id="save" type="button" class="btn btn-success " tabindex="54" style="width: 97px;"><i class="fa fa-fw fa-save"></i>Guardar</button>
-							<button id="anex" type="button" class="btn btn-success " tabindex="55" style="width: 97px;"><i class="fa fa-fw fa-plus"></i>Anexo</button>
-							<button id="exit" type="button" class="btn btn-primary " tabindex="56" style="width: 103px;"><i class="fa fa-fw fa-reply"></i>Regresar</button>
-							<!--<button id="cancelar" type="button" class="btn btn-primary" tabindex="-1"><i class="fa fa-fw fa-times"></i>Cancelar</button>-->
+						<button id="save" type="button" class="btn btn-primary btn-xs " tabindex="55" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
+					    <button id="anex" type="button" class="btn btn-success btn-xs " tabindex="56"><i class="fa fa-fw fa-plus"></i>Add</button>
+				        <button id="limpiar" type="button" class="btn btn-danger btn-xs " tabindex="57" ><i class="fa fa-fw fa-minus" ></i>limpiar</button>
+						<button id="exit" type="button" class="btn btn-primary btn-xs " tabindex="58" ><i class="fa fa-fw fa-reply" ></i>Regresar</button> 
+
 						</div>
 						<div class="focusguard" id="guardia2" tabindex="57"></div>
 					</div><!-- /.box-body -->
@@ -2851,7 +2852,39 @@ session_start();
 	}, 3000);
 
 
+	$('#limpiar').click( function () {
 
+
+		$.confirm({
+
+					title: '¿Desea Limpiar la caja de Documentos Adjuntos?!',
+					content:false,
+					confirmButton: 'Si',
+					cancelButton: 'No',
+					confirmButtonClass: 'btn-primary',
+						cancelButtonClass: 'btn-success',
+
+					confirm: function(){
+
+						$.post( "../../controllers/madjuntos_controller", {action:"limpiar_adjuntos"}).done(function( data ) {
+							//$(".message").html(data);
+							var parsedJson = $.parseJSON(data);
+							$(".message").html(parsedJson.mensaje);
+
+							setTimeout(function(){
+								$('#tabla30').DataTable().ajax.reload();
+							}, 1000);
+						});		
+
+					},
+
+					cancel: function(){
+
+					}
+		});
+
+
+});	
 
 
 	$('#quitar').click(function() {
