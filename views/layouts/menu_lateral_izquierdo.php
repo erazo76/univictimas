@@ -56,6 +56,8 @@
 		echo ' <li class="header">MENU</li>';
 		echo ' <li class="treeview"><a href="#"><i class="fa fa-link"></i> <span>Procesos</span> <i class="fa fa-angle-left pull-right"></i></a><ul class="treeview-menu">';
 		echo '<li><a href="../requerimientos/"><i class="fa fa-certificate "></i> <span>Cotizaciones</span></a></li>';
+		echo '<li><a href="../solicitudes/"><i class="fa fa-certificate "></i> <span>Requerimientos</span></a></li>';
+
 		echo '</ul>';
 		echo '</li>';
 
@@ -70,7 +72,7 @@
 
 
 
-else if(!empty($id_sesion) && (($rol==2 ) || ($rol==5 ) || ($rol==6 ) || ($rol==7 ))){//privilegios de supervisor
+else if(!empty($id_sesion) && ($rol==7 )){//privilegios de supervisor
 
 	echo '<ul class="sidebar-menu nav">';
 
