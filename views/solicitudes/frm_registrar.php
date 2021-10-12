@@ -711,7 +711,7 @@ session_start();
 						<div class="box-footer">
 						<button id="save" type="button" class="btn btn-primary btn-xs " tabindex="55" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
 					    <button id="anex" type="button" class="btn btn-success btn-xs " tabindex="56"><i class="fa fa-fw fa-plus"></i>Add</button>
-				        <button id="limpiar" type="button" class="btn btn-danger btn-xs " tabindex="57" ><i class="fa fa-fw fa-minus" ></i>limpiar</button>
+				        <!-- <button id="limpiar" type="button" class="btn btn-danger btn-xs " tabindex="57" ><i class="fa fa-fw fa-minus" ></i>limpiar</button> -->
 						<button id="exit" type="button" class="btn btn-primary btn-xs " tabindex="58" ><i class="fa fa-fw fa-reply" ></i>Regresar</button> 
 
 						</div>
