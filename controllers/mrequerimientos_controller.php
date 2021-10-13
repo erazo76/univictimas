@@ -397,14 +397,13 @@ case 'contar_id':
                
               $data_search_adjunto = Mrequerimiento::find_by_sql("SELECT max(id) as num_req 
                 FROM Mrequerimientos 
-                                  WHERE status=1 and id_sesion_usuario=id_sesion_usuario 
-                                                 and reg_temp=false and user_create=$alia->user_create; ");
+                                  WHERE status=1 and id_sesion_usuario=$id_sesion_usuario
+                                                 and reg_temp=false ; ");
 
               $data_search_adjunto_all = Madjuntado::find_by_sql("SELECT id as id_adjunto
               FROM Madjuntados 
                     WHERE status=1  
-                          and reg_temp=true and mrequerimientos_id=0 and id_sesion_usuario=id_sesion_usuario
-                          and user_create=$alia->user_create; ");
+                          and reg_temp=true and mrequerimientos_id=0 and id_sesion_usuario=$id_sesion_usuario ;");
                      $num_req=0;
                     if($data_search_adjunto !=null){
                     
