@@ -16,9 +16,9 @@
 
                 $host= '127.0.0.1';
                 $port='5432';
-                $dbname='app_univictimas_Definitiva_PRD';
+                $dbname='app_univictimas';
                 $user='postgres';
-                $password='postgres';                
+                $password='postgresbd2021';                
                                  
   						
   		$this->conn=$this->bd->conectar("postgres",$host,$user,$password,$port,$dbname);

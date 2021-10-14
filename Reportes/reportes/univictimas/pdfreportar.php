@@ -19,9 +19,9 @@ class pdfreporte extends fpdf {
         $this->bd = new baseClases();
         $this->cab = new Cabecera();
         $this->orden=str_replace(' ', '', $this->orden);
-        $this->reg_sol=getvalue('reg_sol');
-        $this->reg_sol=str_replace(' ', '', $this->reg_sol);
-        $this->reg_sol=131;
+        $this->reg_sol=getvalue('n_solicitud');
+        // $this->reg_sol=str_replace(' ', '', $this->reg_sol);
+        //$this->reg_sol=155;
        // $this->titulo='ORDEN DE LABORATORIO';
         $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
         $this->arrp = $this->bd->select($sql);
@@ -35,6 +35,7 @@ class pdfreporte extends fpdf {
         $this->arrp_muni = $this->bd->select($sql_muni);
         $grupos_id=$this->arrp[0]['grupos_id'];
         $sql_grupo = "SELECT  nombre as grupo from grupos where id= ".$grupos_id." and status=1 ;  ";
+       
         $this->arrp_grupo = $this->bd->select($sql_grupo);
         
        
@@ -103,9 +104,7 @@ class pdfreporte extends fpdf {
         $this->SetXY($x+0, $y-20);
         $this->SetWidths(array(160));
         $this->SetAligns(array('C'));
-       // $this->SetBorder(true);
-        // $this->SetJump(18);
-        // $this->RowM(array(''));
+    
         
         $this->SetXY($x+60, $y-20);
          $this->SetWidths(array(90));
@@ -150,8 +149,7 @@ class pdfreporte extends fpdf {
         $this->SetAligns(array('L','L','L'));
         $this->SetBorder(0);
         $this->SetJump(6);
-        // date_default_timezone_set('America/Bogota');
-	    // $this->RowM(array(date("d"),date("m"),date("Y")));
+    
         $this->SetY($y-8);
         $this->SetFont("ARIAL", "", "6");
 
@@ -255,14 +253,15 @@ class pdfreporte extends fpdf {
         $this->SetBorder(true);
         $this->SetFillTable(0);
         $this->SetJump(3);
-        if($this->cant>180){
-            $this->SetJump(3);
-        }else{
-            $this->SetJump(6);
-        }
+       
+        // if($this->cant>10){
+        //     $this->SetJump(3);
+        // }else{
+        //     $this->SetJump(6);
+        // }
 
         $this->RowM(array('                                               DESCRIPCION BREVE DEL EVENTO',utf8_decode($descripcion),''));
-
+        $this->SetXY(148, $this->GetY()-6);
        
         $this->SetJump(5);
 
@@ -271,11 +270,11 @@ class pdfreporte extends fpdf {
         $this->SetWidths(array(52));
         $this->SetAligns(array('L'));
         $this->SetBorder(0);   $this->SetFont("ARIAL", "", 6);
-        if($this->cant>180){
-            $this->SetXY(148, $this->GetY()-9);
-        }else{
-           $this->SetXY(148, $this->GetY()-10);
-        }
+        // if($this->cant>150){
+        //     $this->SetXY(148, $this->GetY()-9);
+        // }else{
+        //    $this->SetXY(148, $this->GetY()-10);
+        // }
         $this->RowM(array(utf8_decode('Nro de Personas Esperadas : '.$this->nun_total_asistentes)));
 
 
@@ -353,8 +352,6 @@ class pdfreporte extends fpdf {
          $this->Rect(13,$var_y1-6, 187,$var_y1-100);
          $this->Rect(13,$var_y2+8, 187,$var_y2-128);
          $this->Rect(13,$var_y3+24, 187,$var_y3-162);
-
-
 
 
            

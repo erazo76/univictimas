@@ -348,7 +348,9 @@ $(document).ready(function() {
 
 				}else{
 
-					$(location).attr('href','frm_reportar?record='+value);
+					//$(location).attr('href','frm_reportar?record='+value);
+					window.open("../../Reportes/reportes/univictimas/rreportar.php?n_solicitud="+value,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=320,height=240,top=250,left=500");
+
 
 				}
 			});
