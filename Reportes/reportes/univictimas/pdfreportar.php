@@ -20,6 +20,9 @@ class pdfreporte extends fpdf {
         $this->cab = new Cabecera();
         $this->orden=str_replace(' ', '', $this->orden);
         $this->reg_sol=getvalue('n_solicitud');
+
+        //$this->reg_sol=200;
+
         $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
         $this->arrp = $this->bd->select($sql);
        
@@ -34,8 +37,17 @@ class pdfreporte extends fpdf {
         $sql_grupo = "SELECT  nombre as grupo from grupos where id= ".$grupos_id." and status=1 ;  ";
        
         $this->arrp_grupo = $this->bd->select($sql_grupo);
-        
+
+
+        $monto_reembolso = "select sum (d_costo) as monto_reembolso   from mdetalles 
+                                   where mrequerimientos_id= ".$this->reg_sol." and d_tipo=8 and status=1 ;";                                                   
        
+        $this->arrp_reembolso = $this->bd->select($monto_reembolso);
+        $this->monto_reembolso=$this->arrp_reembolso[0]['monto_reembolso'];
+        $this->monto_reembolso= number_format($this->monto_reembolso, 0, ",", ".");
+       
+
+ 
 
 
   $this->nun_funcionarios=$this->arrp[0]['entidad'];
@@ -237,41 +249,44 @@ class pdfreporte extends fpdf {
         $this->SetFont("ARIAL", "", "6");
         $this->RowM(array('',$this->arrp_dep[0]['departamento'],' ',$this->arrp_muni[0]['mmunicipio'],'', $fec1,'', $fec2,''));
 
-        $descripcion = substr($this->descripcion, 0, 180) . '...';
-        $this->cant=strlen($descripcion);
-// echo $this->cant;exit;
-        $this->SetY($this->GetY()+3);
+        $this->cantidad=strlen($this->descripcion);
+        if ($this->cantidad>280){
+            $descripcion = substr($this->descripcion, 0, 280) . '...';
+
+        }else{
+            $descripcion =$this->descripcion;
+
+        }
+        
+        $this->Rect(10,$this->GetY()+3,190,10);
+        $this->Rect(10,$this->GetY()+3,40,10);
+
+
+       
         $this->SetFont("ARIAL", "", "6");
 
         $this->SetWidths(array(40,98,52));
-        $this->SetAligns(array('C','C','C'));
-        $this->SetJump(12);
+        $this->SetAligns(array('C','L','C'));
+        //$this->SetJump(12);
 
-        $this->SetBorder(true);
+        $this->SetBorder(0);
         $this->SetFillTable(0);
         $this->SetJump(3);
-       
-        // if($this->cant>10){
-        //     $this->SetJump(3);
-        // }else{
-        //     $this->SetJump(6);
-        // }
-
-        $this->RowM(array('                                               DESCRIPCION BREVE DEL EVENTO',utf8_decode($descripcion),''));
-        $this->SetXY(148, $this->GetY()-6);
-       
-        $this->SetJump(5);
-
+        $this->SetY($this->GetY()+3);
+        $this->y_fija=$this->GetY()+3;
         
-        
-        $this->SetWidths(array(52));
-        $this->SetAligns(array('L'));
-        $this->SetBorder(0);   $this->SetFont("ARIAL", "", 6);
-        // if($this->cant>150){
-        //     $this->SetXY(148, $this->GetY()-9);
-        // }else{
-        //    $this->SetXY(148, $this->GetY()-10);
-        // }
+        $this->RowM(array('                                                         DESCRIPCION BREVE DEL EVENTO',utf8_decode($descripcion),''));
+       
+         if ($this->cantidad<150){
+            $this->Ln(6);
+         }        
+         $this->SetWidths(array(52));
+         $this->SetAligns(array('L'));
+         $this->SetBorder(1);   $this->SetFont("ARIAL", "", 6);
+     
+            $this->SetXY(148, $this->y_fija-3);;
+     
+
         $this->RowM(array(utf8_decode('Nro de Personas Esperadas : '.$this->nun_total_asistentes)));
 
 
@@ -414,7 +429,7 @@ class pdfreporte extends fpdf {
         $this->SetFont("ARIAL", "B", "6");
         $this->SetFillTable(1);
         $this->SetBorder(1);
-        $this->RowM(array('VALOR A DESEMBOLSAR:  $ ',utf8_decode('OBSERVACIONES / JUSTIFICACIÓN')));
+        $this->RowM(array('VALOR A DESEMBOLSAR:  $ '.$this->monto_reembolso,utf8_decode('OBSERVACIONES / JUSTIFICACIÓN')));
         $this->SetFillTable(1);
 
         $this->SetWidths(array(60));
@@ -424,7 +439,6 @@ class pdfreporte extends fpdf {
         $this->SetBorder(true);
         $this->SetFillTable(1);
         $this->SetJump(15);
-
         $this->RowM(array('Sugerencias y recomendaciones:'));
 
         $this->SetXY(50,$this->GetY()-14);
@@ -574,11 +588,13 @@ class pdfreporte extends fpdf {
 
              $this->arrp_detalle_concepto = $this->bd->select($sql_detalle_concepto);
 
-                 // H::PrintR($sql_detalle_concepto);exit; 
+                // H::PrintR($sql_detalle_concepto);exit; 
                 $concepto= $this->arrp_detalle_concepto[0]['d_concepto'];
 
-                
+                $total= $monto_p3=$monto_p2=$monto_p1=$monto_d1=$monto_d2=$monto_d3=$monto_dp='';
+
                  foreach($this->arrp_detalle_concepto as $data_arrp_concepto) {
+
                     $r_tipo=$data_arrp_concepto['d_tipo']; 
                   
                   //  if (($concepto==$data_arrp_concepto['d_concepto'])){
@@ -586,21 +602,27 @@ class pdfreporte extends fpdf {
                   
 
                  if($data_arrp_concepto['dia']=='p3'){
-                    $monto_p3=+$data_arrp_concepto['d_cantidad'];
+                    $monto_p3+=$data_arrp_concepto['d_cantidad'];
                 } else  if($data_arrp_concepto['dia']=='p2'){
-                    $monto_p2=+$data_arrp_concepto['d_cantidad'];
+                    $monto_p2+=$data_arrp_concepto['d_cantidad'];
+
                 }else  if($data_arrp_concepto['dia']=='p1'){
-                    $monto_p1=+$data_arrp_concepto['d_cantidad'];
+                    $monto_p1+=$data_arrp_concepto['d_cantidad'];
+
                 }else  if($data_arrp_concepto['dia']=='D1'){
-                    $monto_d1=+$data_arrp_concepto['d_cantidad'];
+                    $monto_d1+=$data_arrp_concepto['d_cantidad'];
+
                 }else  if($data_arrp_concepto['dia']=='D2'){
-                    $monto_d2=+$data_arrp_concepto['d_cantidad'];
+                    $monto_d2+=$data_arrp_concepto['d_cantidad'];
+
                 }else  if($data_arrp_concepto['dia']=='D3'){
-                    $monto_d3=+$data_arrp_concepto['d_cantidad'];
+                    $monto_d3+=$data_arrp_concepto['d_cantidad'];
+
                 }else  if($data_arrp_concepto['dia']=='DP'){
-                    $monto_dp=$data_arrp_concepto['d_cantidad'];
+                    $monto_dp+=$data_arrp_concepto['d_cantidad'];
+
                 }
-                $observacion = substr($data_arrp_concepto['d_obs'], 0, 55) . '...';
+                $observacion = substr($data_arrp_concepto['d_obs'], 0, 45) . '...';
                 $observacion=utf8_decode($observacion);
                
                 $total= $monto_p3+ $monto_p2+ $monto_p1+$monto_d1+$monto_d2+$monto_d3+$monto_dp;
@@ -621,7 +643,7 @@ class pdfreporte extends fpdf {
                                         $categoria=3; //Materiales
                                         $y_3=$y_3+4;
                                         $conta_3++;
-                                    }else if (($r_tipo==2)||($r_tipo==10)||($r_tipo==8)){
+                                    }else if (($r_tipo==2)||($r_tipo==10)){
                                         $categoria=4; //Adicionales
                                         $y_4=$y_4+4;
                                         $conta_4++;
@@ -629,10 +651,6 @@ class pdfreporte extends fpdf {
                                         $categoria=5; //Tiquetes Aereos
                                         $y_5=$y_5+4;
                                         $conta_5++;
-                                    }else{
-                                        $categoria=6; //Reembolsos
-                                        $y_6=$y_6+4;
-                                        $conta_6++;
                                     }
                             
                                 if($categoria==1){
@@ -643,7 +661,7 @@ class pdfreporte extends fpdf {
                                         $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
                                         $this->SetBorder(1);  
                                         $this->RowM(array(utf8_decode($concepto),$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-                                       if($conta_1>=6){
+                                       if($conta_1>=9){
                                         $this->AddPage();
                                         $conta_1=0;
                                        }
@@ -656,7 +674,7 @@ class pdfreporte extends fpdf {
                                         $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
                                         $this->SetBorder(1);  
                                         $this->RowM(array(utf8_decode($concepto),$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-                                        if($conta_2>=6){
+                                        if($conta_2>=9){
                                             $this->AddPage();
                                             $conta_2=0;
                                            }
@@ -669,7 +687,7 @@ class pdfreporte extends fpdf {
                                         $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
                                         $this->SetBorder(1);  
                                         $this->RowM(array(utf8_decode($concepto),$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-                                        if($conta_3>=6){
+                                        if($conta_3>=9){
                                             $this->AddPage();
                                             $conta_3=0;
                                            }
@@ -683,7 +701,7 @@ class pdfreporte extends fpdf {
                                         $this->SetBorder(1);  
 
                                         $this->RowM(array(utf8_decode($concepto),$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-                                        if($conta_4>=6){
+                                        if($conta_4>=9){
                                             $this->AddPage();
                                             $conta_4=0;
                                            }
@@ -697,17 +715,13 @@ class pdfreporte extends fpdf {
                                         $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
                                         $this->SetBorder(1);  
 
-                                        $this->RowM(array('',$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-                                        if($conta_5>=10){
+                                        $this->RowM(array('',$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,''));
+                                        if($conta_5>=9){
                                             $this->AddPage();
                                             $conta_5=0;
                                            }
                                     }
        
-
-
-
-
 
         ///************************** */
 
