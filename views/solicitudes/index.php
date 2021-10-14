@@ -102,7 +102,7 @@ $(document).ready(function() {
 
 							}  else	if ((mData.a_supe)== 1){
 
-								$('td:eq(0)', nRow).css('background-image','url(../../dist/img/despachado2.png),radial-gradient(white,white )');
+								$('td:eq(0)', nRow).css('background-image','url(../../dist/img/despachado.png),radial-gradient(white,white )');
 								$('td:eq(0)', nRow).css('background-size','70px 25px');
 								$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 								$('td:eq(0)', nRow).css('font-weight','bold');
@@ -120,8 +120,7 @@ $(document).ready(function() {
 							$('td:eq(0)', nRow).css('background-position','bottom center');
 							$('td:eq(11)', nRow).css('opacity','0');
 
-							}
-							
+							}				
 							else{
 								
 							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/asignado.png),radial-gradient(white, white)');
@@ -349,7 +348,7 @@ $(document).ready(function() {
 				}else{
 
 					//$(location).attr('href','frm_reportar?record='+value);
-					window.open("../../Reportes/reportes/univictimas/rreportar.php?n_solicitud="+value,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=320,height=240,top=250,left=500");
+					window.open("../../Reportes/reportes/univictimas/rreportar.php?n_solicitud="+value,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
 
 
 				}
