@@ -20,9 +20,6 @@ class pdfreporte extends fpdf {
         $this->cab = new Cabecera();
         $this->orden=str_replace(' ', '', $this->orden);
         $this->reg_sol=getvalue('n_solicitud');
-        // $this->reg_sol=str_replace(' ', '', $this->reg_sol);
-        //$this->reg_sol=155;
-       // $this->titulo='ORDEN DE LABORATORIO';
         $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
         $this->arrp = $this->bd->select($sql);
        
@@ -670,7 +667,7 @@ class pdfreporte extends fpdf {
                                         $this->SetFont("ARIAL", "", "4");  
                                         $this->SetWidths(array(45,12,12,12,12,12,12,13,12,45));
                                         $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
-                                        $this->SetBorder(0);  
+                                        $this->SetBorder(1);  
                                         $this->RowM(array(utf8_decode($concepto),$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
                                         if($conta_3>=6){
                                             $this->AddPage();
