@@ -21,7 +21,7 @@ class pdfreporte extends fpdf {
         $this->orden=str_replace(' ', '', $this->orden);
         $this->reg_sol=getvalue('n_solicitud');
 
-        //$this->reg_sol=200;
+        // $this->reg_sol=191;
 
         $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
         $this->arrp = $this->bd->select($sql);
@@ -54,6 +54,9 @@ class pdfreporte extends fpdf {
   $this->nun_victimas=$this->arrp[0]['num_vic'];
   $this->nun_total_asistentes=$this->nun_funcionarios+ $this->nun_victimas;
   $this->descripcion=$this->arrp[0]['descripcion'];
+  $this->recomendaciones=$this->arrp[0]['recomendaciones'];
+
+  
 
 
   $modalidad_evento=$this->arrp[0]['modalidad_evento'];
@@ -250,8 +253,8 @@ class pdfreporte extends fpdf {
         $this->RowM(array('',$this->arrp_dep[0]['departamento'],' ',$this->arrp_muni[0]['mmunicipio'],'', $fec1,'', $fec2,''));
 
         $this->cantidad=strlen($this->descripcion);
-        if ($this->cantidad>280){
-            $descripcion = substr($this->descripcion, 0, 280) . '...';
+        if ($this->cantidad>220){
+            $descripcion = substr($this->descripcion, 0, 220) . '...';
 
         }else{
             $descripcion =$this->descripcion;
@@ -331,16 +334,17 @@ class pdfreporte extends fpdf {
         $this->RowM(array('Servicios y Cantidades Aproximadas Solicitadas'));
         $this->SetXY(58, $this->GetY());
         $this->SetJump(3);  
-        $this->SetFont("ARIAL", "B", "5");
+        $this->SetFont("ARIAL", "B", "4");
 
-        $this->SetWidths(array(12,12,12,12,12,12,13));
+        $this->SetWidths(array(11,11,11,11,11,11,11));
         $this->SetAligns(array('C','C','C','C','C','C','C')); 
         $this->SetBorder(true);
 
-        $this->RowM(array(utf8_decode('Día previo 3'),utf8_decode('Día previo 2'),utf8_decode('Día previo 1'),utf8_decode('Día 1'),utf8_decode('Día 2'),utf8_decode('Día 3'),utf8_decode('Día Posterior')));
-        $this->SetWidths(array(48,12,12,12,12,12,12,13,12,45));
+        $this->RowM(array(utf8_decode('Día Previo3'),utf8_decode('Día Previo2'),utf8_decode('Día Previo'),utf8_decode('Día 1'),utf8_decode('Día 2'),utf8_decode('Día 3'),utf8_decode('Día.Posterior')));
+        $this->SetWidths(array(48,11,11,11,11,11,11,11,11,54));
         $this->SetAligns(array('C','L','L','L','L','L','L','L','C','C')); 
         $this->SetBorder(true);
+        $this->SetFont("ARIAL", "B", "5");
 
         // Habilitar cuando se pueda hacer el arreglo de fechas
 
@@ -356,25 +360,27 @@ class pdfreporte extends fpdf {
 
         $this->SetBorder(true);
         $this->SetFillTable(1);
-        $this->SetFont("ARIAL", "", "10");
+        $this->SetFont("ARIAL", "", "9");
         $this->SetFillTable(1);
 
-        $this->SetFillColor(230,230,230);
-         $this->Rect(13,$var_y-20, 187,$var_y-70);
-         $this->Rect(13,$var_y1-6, 187,$var_y1-100);
-         $this->Rect(13,$var_y2+8, 187,$var_y2-128);
-         $this->Rect(13,$var_y3+24, 187,$var_y3-162);
+         $this->SetFillColor(230,230,230);
+         $this->Rect(13,$var_y-20, 187,$var_y-75);
+         $this->Rect(13,$var_y1-11, 187,$var_y1-95);
+         $this->Rect(13,$var_y2+8, 187,$var_y2-135);
+         $this->Rect(13,$var_y3+17, 187,$var_y3-168);
+                
+         $this->Rect(10,$var_y-20, 3,163);
 
 
            
 
-        $this->RotatedText(12,$var_y+15,'ALOJAMIENTO',90);
+        $this->RotatedText(12.5,$var_y+13,'ALOJAMIENTO',90);
 
-         $this->RotatedText(12,$var_y1+25,'LOGISTICA',90);
+         $this->RotatedText(12.5,$var_y1+25,'LOGISTICA',90);
 
-         $this->RotatedText(12,$var_y2+39,'ADICIONALES',90);
+         $this->RotatedText(12.5,$var_y2+39,'ADICIONALES',90);
 
-         $this->RotatedText(12,$var_y3+53,'MATERIALES',90);
+         $this->RotatedText(12.5,$var_y3+45,'MATERIALES',90);
 
 
 
@@ -384,29 +390,34 @@ class pdfreporte extends fpdf {
 
     
     function  Footer() {
-        $this->y2=250;
+        $this->y2=257;
         $this->SetFillColor(230,230,230);
         $this->SetFont("ARIAL", "B", "8");
         
 		if(strlen($this->arrp[0]['observacion'])>90){
 			$this->SetFont("ARIAL", "B",7);
-			$direccion=utf8_decode($this->arrp[$this->reg]['observacion']);
+			$direccion=utf8_decode($this->arrp[0]['observacion']);
                          $estirar_y=15;
 			
 		}else{
-			$direccion=utf8_decode($this->arrp[$this->reg]['observacion']);
-                        $estirar_y=20;
+			$direccion=utf8_decode($this->arrp[0]['observacion']);
+                       
 		}     
-        
-
-      //  $facturar=utf8_decode ('Local Planta Los Andes Nro. S/N. Sector La Morenita Zona Postal 3023');
-      //  $localidad=0;            
+    
  
         $this->SetY($this->y2+$estirar_y);
-        $this->SetWidths(array(190));
-        $this->SetAligns(array('L'));
-        $this->SetBorder(true);
-        $this->RowM(array('TIQUETES AEREOS: '.$direccion));     
+        // $this->SetWidths(array(190));
+        // $this->SetAligns(array('L'));
+       
+
+        $this->SetWidths(array(48,11,11,11,11,11,11,11,11,54));
+        $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C')); 
+        $this->SetBorder(true);  
+        $this->SetFillTable(0);
+
+        $this->RowM(array('TIQUETES AEREOS: ','','','','','','','','',''));    
+        $this->SetFillTable(0);
+
         
         $this->SetY($this->GetY());
         $this->SetWidths(array(190));
@@ -433,13 +444,24 @@ class pdfreporte extends fpdf {
         $this->SetFillTable(1);
 
         $this->SetWidths(array(60));
-        $this->SetAligns(array('C',));
+        $this->SetAligns(array('C'));
         $this->SetJump(5);
 
         $this->SetBorder(true);
         $this->SetFillTable(1);
         $this->SetJump(15);
         $this->RowM(array('Sugerencias y recomendaciones:'));
+        $this->SetXY(10,$this->GetY()-15);
+
+        
+        $this->SetWidths(array(60,130));
+        $this->SetAligns(array('C','C'));
+        $this->SetJump(5);
+
+        $this->SetBorder(true);
+        $this->SetFillTable(0);
+        $this->SetJump(15);
+        $this->RowM(array('',''));
 
         $this->SetXY(50,$this->GetY()-14);
 
@@ -448,33 +470,18 @@ class pdfreporte extends fpdf {
         $this->SetJump(2);
         $this->SetFont("times", "", "4.5");
 
-        $this->SetBorder(0);
+        $this->SetBorder(1);
          $this->SetFillTable(0);
         // $this->SetFillColor(0,0,255);
         $this->SetTextColor(255,0,0);
         // $this->SetDrawColor(0,0,255);
         $this->SetX(70);
+        $this->SetBorder(0);
 
-        $this->RowM(array(utf8_decode('*SE SOLICITA QUE EL SALÓN TENGA UNA CONSOLA DE SONIDO, CON INTERFASE PARA LA COMPUTADORA.')));
+        $this->RowM(array(utf8_decode( $this->recomendaciones)));
         $this->SetX(70);
-        $this->RowM(array(utf8_decode('*SE REQUIERE QUE PREVIO AL EVENTO NOS ENVIEN VARIAS OPCIONES DE HOTELES Y LOS MENUS PARA APROBACIÓN.')));
-        $this->SetX(70);
-
-        $this->RowM(array(utf8_decode('*DOS SALONES PARA EL ESPACIO DE ALIMENTACIÓN EL SEGUNDO DÍA')));
-        $this->SetX(70);
-
-        $this->RowM(array(utf8_decode('*SALONES DOTADOS CON 3 CAJAS DE TAPABOCAS, ALCOHOL Y GEL ANTIBACTERIAL.')));
-        $this->SetX(70);
-
-        $this->RowM(array(utf8_decode('*MESAS PARA LA ORGANIZACIÓN POR GRUPOS.')));
-        $this->SetX(70);
-
-        $this->RowM(array(utf8_decode('*PANEL PARA EL SEGUNDO DÍA CON UN SOFA O UNAS SILLAS QUE SE PUEDA HACER UNA TRANSMISIÓN EN VIVO MUY BIEN VISTO PARA LOS ESPECTADORES.')));
-        $this->SetX(70);
-
-        $this->RowM(array(utf8_decode('*AGENDA ESFERO Y ESCARAPELA PARA 40 PERSONAS ( EL MODELO DEBERA SER APROBADO POR LA DIRECTORA)')));
-    
-
+ 
+        $this->SetY(284);
         $this->SetWidths(array(190));
         $this->SetAligns(array('L',));
         $this->SetTextColor(0,0,0);
@@ -484,14 +491,13 @@ class pdfreporte extends fpdf {
         $this->SetY($this->GetY());
          $this->RowM(array(''));
          $this->SetBorder(0);
-         $this->SetAligns(array('L',));
+         $this->SetAligns(array('L'));
 
-         $this->SetY($this->GetY()-42);
+         $this->SetY($this->GetY()-41);
          $this->RowM(array('OBSERVACIONES GENERALES'));
          $this->SetY($this->GetY()-12);
          $this->SetJump(2);
          $this->SetFont("courier", "", "5");
-
          $this->RowM(array(utf8_decode('1. Debe confirmarse sitio del evento con 3 días como mínimo de anticipación y la confirmación de la convocatoria.')));
          $this->SetY($this->GetY());
 
@@ -511,8 +517,18 @@ class pdfreporte extends fpdf {
          $this->SetY($this->GetY());
 
          $this->RowM(array(utf8_decode('7. Cualquier solicitud adicional se deberá tramitar directamente a los responsables de la DGI a través de correo electrónico.')));
+        
+         $this->SetY($this->GetY()+5);
 
 
+        $this->SetWidths(array(60,70,60));
+        $this->SetFont("courier", "B", "7");
+        $this->SetAligns(array('C','C','C'));
+        $this->RowM(array('Carolina Murillo',utf8_decode('Yanny Zambrano Díaz'),'Aura Helena Acevedo Vargas'));
+        $this->RowM(array('Responsable del evento','Sub-director(a) solicitante',utf8_decode('Supervisión del Contrato')));
+
+
+         $this->SetBorder(true);
 
         
     }
@@ -588,7 +604,7 @@ class pdfreporte extends fpdf {
 
              $this->arrp_detalle_concepto = $this->bd->select($sql_detalle_concepto);
 
-                // H::PrintR($sql_detalle_concepto);exit; 
+                //  H::PrintR($sql_detalle_concepto);exit; 
                 $concepto= $this->arrp_detalle_concepto[0]['d_concepto'];
 
                 $total= $monto_p3=$monto_p2=$monto_p1=$monto_d1=$monto_d2=$monto_d3=$monto_dp='';
@@ -622,7 +638,16 @@ class pdfreporte extends fpdf {
                     $monto_dp+=$data_arrp_concepto['d_cantidad'];
 
                 }
-                $observacion = substr($data_arrp_concepto['d_obs'], 0, 45) . '...';
+
+                $this->long=strlen($data_arrp_concepto['d_obs']);
+                if ($this->long>60){
+                    $observacion = substr($data_arrp_concepto['d_obs'], 0, 59) . '_';
+        
+                }else{
+                    $observacion = $data_arrp_concepto['d_obs'];        
+                }
+
+
                 $observacion=utf8_decode($observacion);
                
                 $total= $monto_p3+ $monto_p2+ $monto_p1+$monto_d1+$monto_d2+$monto_d3+$monto_dp;
@@ -656,9 +681,9 @@ class pdfreporte extends fpdf {
                                 if($categoria==1){
                                         $this->SetXY(13, 89+$y_1);
                                         $this->SetJump(1);  
-                                        $this->SetFont("ARIAL", "", "4"); 
-                                        $this->SetWidths(array(45,12,12,12,12,12,12,13,12,45));
-                                        $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
+                                        $this->SetFont("ARIAL", "B", "4"); 
+                                        $this->SetWidths(array(45,11,11,11,11,11,11,11,11,54));
+                                        $this->SetAligns(array('L','C','C','C','C','C','C','C','C','C'));   
                                         $this->SetBorder(1);  
                                         $this->RowM(array(utf8_decode($concepto),$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
                                        if($conta_1>=9){
@@ -666,25 +691,25 @@ class pdfreporte extends fpdf {
                                         $conta_1=0;
                                        }
 
-                                    }else  if($categoria==2){
-                                        $this->SetXY(13, 133+$y_2);
+                                    }else  if($categoria==2){ //LOGISTICA
+                                        $this->SetXY(13, 128+$y_2);
                                         $this->SetJump(1);  
-                                        $this->SetFont("ARIAL", "", "4"); 
-                                        $this->SetWidths(array(45,12,12,12,12,12,12,13,12,45));
-                                        $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
+                                        $this->SetFont("ARIAL", "B", "4"); 
+                                        $this->SetWidths(array(45,11,11,11,11,11,11,11,11,54));
+                                        $this->SetAligns(array('L','C','C','C','C','C','C','C','C','C'));   
                                         $this->SetBorder(1);  
-                                        $this->RowM(array(utf8_decode($concepto),$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-                                        if($conta_2>=9){
+                                         $this->RowM(array(utf8_decode($concepto),$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
+                                        if($conta_2>11){
                                             $this->AddPage();
                                             $conta_2=0;
                                            }
 
                                  }else  if($categoria==3){
-                                        $this->SetXY(13, 120+$y_3);
+                                        $this->SetXY(13, 220+$y_3);
                                         $this->SetJump(1);  
-                                        $this->SetFont("ARIAL", "", "4");  
-                                        $this->SetWidths(array(45,12,12,12,12,12,12,13,12,45));
-                                        $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
+                                        $this->SetFont("ARIAL", "B", "4"); 
+                                        $this->SetWidths(array(45,11,11,11,11,11,11,11,11,54));
+                                        $this->SetAligns(array('L','C','C','C','C','C','C','C','C','C'));   
                                         $this->SetBorder(1);  
                                         $this->RowM(array(utf8_decode($concepto),$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
                                         if($conta_3>=9){
@@ -695,27 +720,31 @@ class pdfreporte extends fpdf {
                                         $this->SetXY(13, 177+$y_4);
 
                                         $this->SetJump(1);  
-                                        $this->SetFont("ARIAL", "", "4"); 
-                                        $this->SetWidths(array(45,12,12,12,12,12,12,13,12,45));
-                                        $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
+                                        $this->SetFont("ARIAL", "B", "4"); 
+                                        $this->SetWidths(array(45,11,11,11,11,11,11,11,11,54));
+                                        $this->SetAligns(array('L','C','C','C','C','C','C','C','C','C'));   
                                         $this->SetBorder(1);  
 
-                                        $this->RowM(array(utf8_decode($concepto),$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-                                        if($conta_4>=9){
+                                         $this->RowM(array(utf8_decode($concepto),$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
+                                        if($conta_4>10){
                                             $this->AddPage();
                                             $conta_4=0;
                                            }
                                     }
                                     else  if($categoria==5){
-                                        $this->SetXY(10, 265+$y_5);
+                                        $this->SetXY(10, 252+$y_5);
+                                        $this->SetJump(1);
 
-                                        $this->SetJump(1);  
-                                        $this->SetFont("ARIAL", "", "4"); 
-                                        $this->SetWidths(array(45,12,12,12,12,12,12,13,12,48));
+                                        $this->SetFont("ARIAL", "B", "4"); 
+
+                                        $this->SetWidths(array(48,11,11,11,11,11,11,11,11,54));
                                         $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
-                                        $this->SetBorder(1);  
+                                        // $this->SetBorder(1);  
+                                        // $this->SetFillTable(1);
+                                         $this->SetFillColor(250,250,250);
 
-                                        $this->RowM(array('',$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,''));
+                                         $this->RowM(array('',$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
+                                        $this->SetFillTable(0);
                                         if($conta_5>=9){
                                             $this->AddPage();
                                             $conta_5=0;
@@ -730,459 +759,19 @@ class pdfreporte extends fpdf {
                 $d_tipo=$data_arrp_concepto[$k]['d_tipo'];
                 $k++;
 
-            //} ///////  if (($concepto!=$data_arrp_concepto['d_concepto'])){
 
-
-
-           
- 
-     //   }  ///////  foreach($this->arrp_concepto as $data_arrp_concepto) {
-
-
-
-            
-
-        
         
  }   /////////         foreach($this->arrp_tipo as $data_arrp_tipo) {
 
-
-
-
-
-
+                   
+                           
+        }  // FIN data_arrp_detalle
+           
+                          
+       
+    }//end cuerpo
 
     
-
-
-        //     $sql_detalle_concepto = " select d_cantidad,d_concepto,d_obs,id_categoria,d_tipo,
-        //                                     case WHEN dia='previo 3' then  'p3'
-        //                                     WHEN dia='previo 2' then      'p2'
-        //                                     WHEN dia='previo 1' then      'p1'
-        //                                     WHEN dia='Dia 1' then         'D1' 
-        //                                     WHEN dia='Dia 2' then         'D2' 
-        //                                     WHEN dia='Dia 3' then         'D3' 
-		//                                     WHEN dia='Dia posterior' then 'DP' end  AS DIA
-        //                                     from mdetalles
-        //                                         WHERE mrequerimientos_id=".$id_solicitud." and status=1 order by id_categoria,d_concepto ; ";
-
-        //          $this->arrp_detalle_concepto = $this->bd->select($sql_detalle_concepto);
-        //       //  H::PrintR($sql_detalle_concepto);exit; 
-        //                         $concepto="";//$this->arrp_detalle_concepto[0]['d_concepto'];
-        //                         $d_tipo="";//$this->arrp_detalle_concepto[0]['d_tipo'];
-        //                         $k=0;
-        // $y_1=1;
-        // $y_2=1;
-        // $y_3=1;
-        // $y_4=1;
-        // $y_5=1;
-        // $y_6=1;
-        // $conta_1=0;
-        // $conta_2=0;
-        // $conta_3=0;
-        // $conta_4=0;
-        // $conta_5=0;
-        // $conta_6=0;
-        //                             foreach($this->arrp_detalle_concepto as $data_arrp_detalle) {
-                                    
-                                       
-        //                               if (($concepto!=$data_arrp_detalle['d_concepto'])){
-        //                                 $r_tipo=$data_arrp_detalle['d_tipo']; 
-        //                                 $categoria=0;
-        //                                 if($r_tipo==3){
-        //                                    $categoria=1; // Alojamiento
-        //                                    $y_1=$y_1+4;
-        //                                    $conta_1++;
-        //                                }else if (($r_tipo==4)||($r_tipo==6)||($r_tipo==1)){
-                               
-        //                                    $categoria=2; //Logistica
-        //                                    $y_2=$y_2+4;
-        //                                    $conta_2++;
-        //                                } else if (($r_tipo==5)||($r_tipo==7)){
-        //                                    $categoria=3; //Materiales
-        //                                    $y_3=$y_3+4;
-        //                                    $conta_3++;
-        //                                }else if (($r_tipo==2)||($r_tipo==10)||($r_tipo==8)){
-        //                                    $categoria=4; //Adicionales
-        //                                    $y_4=$y_4+4;
-        //                                    $conta_4++;
-        //                                }else if($r_tipo==9){
-        //                                    $categoria=5; //Tiquetes Aereos
-        //                                    $y_5=$y_5+4;
-        //                                    $conta_5++;
-        //                                }else{
-        //                                    $categoria=6; //Reembolsos
-        //                                    $y_6=$y_6+4;
-        //                                    $conta_6++;
-        //                                }
-        //                                $total= $monto_p3= $monto_p2= $monto_p1=$monto_d1=$monto_d2=$monto_d3=$monto_dp="";
-
-        //                                 if($categoria==1){
-        //                                 $this->SetXY(13, 90+$y_1);
-        //                                 $this->SetJump(1);  
-        //                                 $this->SetFont("ARIAL", "", "4"); 
-        //                                 $this->SetWidths(array(45,12,12,12,12,12,12,13,12,45));
-        //                                 $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
-        //                                 $this->SetBorder(true);  
-
- 
-        //                                 if($data_arrp_detalle['dia']=='p3'){
-        //                                     $monto_p3=$data_arrp_detalle['d_cantidad'];
-        //                                 } else  if($data_arrp_detalle['dia']=='p2'){
-        //                                     $monto_p2=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='p1'){
-        //                                     $monto_p1=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='D1'){
-        //                                     $monto_d1=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='D2'){
-        //                                     $monto_d2=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='D3'){
-        //                                     $monto_d3=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='DP'){
-        //                                     $monto_dp=$data_arrp_detalle['d_cantidad'];
-        //                                 }
-        //                                 $observacion = substr($data_arrp_detalle['d_obs'], 0, 55) . '...';
-        //                                 $observacion=utf8_decode($observacion);
-
-        //                                 $d_concepto=$data_arrp_detalle['d_concepto'];
-        //                                 $total= $monto_p3+ $monto_p2+ $monto_p1+$monto_d1+$monto_d2+$monto_d3+$monto_dp;
-
-        //                                 $this->RowM(array($d_concepto,$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-        //                                if($conta_1>=9){
-        //                                 $this->AddPage();
-        //                                 $conta_1=0;
-        //                                }
-
-        //                             }else  if($categoria==2){
-        //                                 $this->SetXY(13, 112+$y_2);
-        //                                 $this->SetJump(1);  
-        //                                 $this->SetFont("ARIAL", "", "4"); 
-        //                                 $this->SetWidths(array(45,12,12,12,12,12,12,13,12,45));
-        //                                 $this->SetAligns(array('C','C','C','C','C','C','C','C','C','L'));   
-        //                                 $this->SetBorder(true);  
-                                       
-        //                                 $x_con=$data_arrp_detalle['d_concepto'];
-        //                                 $sql_detalle_Xconcepto = " select d_cantidad,d_concepto,d_obs,id_categoria,d_tipo,
-        //                                     case WHEN dia='previo 3' then  'p3'
-        //                                     WHEN dia='previo 2' then      'p2'
-        //                                     WHEN dia='previo 1' then      'p1'
-        //                                     WHEN dia='Dia 1' then         'D1' 
-        //                                     WHEN dia='Dia 2' then         'D2' 
-        //                                     WHEN dia='Dia 3' then         'D3' 
-		//                                     WHEN dia='Dia posterior' then 'DP' end  AS DIA
-        //                                     from mdetalles
-        //                                         WHERE mrequerimientos_id=".$id_solicitud."  and d_tipo=".$r_tipo."
-        //                                         and d_concepto='$x_con'
-        //                                         and status=1 order by id_categoria,d_concepto ; ";
-
-        //                          $this->arrp_detalle_Xconcepto = $this->bd->select($sql_detalle_Xconcepto);
-
-
-        //                          foreach($this->arrp_detalle_Xconcepto as $data_arrp_detalle_x) {
-
-
-
-
-
-
-        //                                 if($data_arrp_detalle_x['dia']=='p3'){
-        //                                     $monto_p3=$data_arrp_detalle_x['d_cantidad'];
-        //                                 } else  if($data_arrp_detalle_x['dia']=='p2'){
-        //                                     $monto_p2=$data_arrp_detalle_x['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle_x['dia']=='p1'){
-        //                                     $monto_p1=$data_arrp_detalle_x['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle_x['dia']=='D1'){
-        //                                     $monto_d1=$data_arrp_detalle_x['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle_x['dia']=='D2'){
-        //                                     $monto_d2=$data_arrp_detalle_x['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle_x['dia']=='D3'){
-        //                                     $monto_d3=$data_arrp_detalle_x['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle_x['dia']=='DP'){
-        //                                     $monto_dp=$data_arrp_detalle_x['d_cantidad'];
-        //                                 }
-
-        //                                 $observacion = substr($data_arrp_detalle_x['d_obs'], 0, 50) . '...';
-        //                                 $observacion=utf8_decode($observacion);
-        //                                 $d_concepto=$data_arrp_detalle_x['d_concepto'];
-        //                                 $total= $monto_p3+ $monto_p2+ $monto_p1+$monto_d1+$monto_d2+$monto_d3+$monto_dp;
-
-        //                                 $this->RowM(array($d_concepto,$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-        //                                 if($conta_2>=9){
-        //                                     $this->AddPage();
-        //                                     $conta_2=0;
-        //                                    }
-
-        //                          }
-
-
-
-
-        //                             }else  if($categoria==3){
-        //                                 $this->SetXY(13, 120+$y_3);
-        //                                 $this->SetJump(1);  
-        //                                 $this->SetFont("ARIAL", "", "4");  
-        //                                 $this->SetWidths(array(45,12,12,12,12,12,12,13,12,45));
-        //                                 $this->SetAligns(array('C','C','C','C','C','C','C','C','C','L'));   
-        //                                 $this->SetBorder(true);  
-
-        //                                 if($data_arrp_detalle['dia']=='p3'){
-        //                                     $monto_p3=$data_arrp_detalle['d_cantidad'];
-        //                                 } else  if($data_arrp_detalle['dia']=='p2'){
-        //                                     $monto_p2=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='p1'){
-        //                                     $monto_p1=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='D1'){
-        //                                     $monto_d1=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='D2'){
-        //                                     $monto_d2=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='D3'){
-        //                                     $monto_d3=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='DP'){
-        //                                     $monto_dp=$data_arrp_detalle['d_cantidad'];
-        //                                 }
-
-        //                                 $observacion = substr($data_arrp_detalle['d_obs'], 0, 50) . '...';
-        //                                 $observacion=utf8_decode($observacion);
-
-        //                                 $d_concepto=$data_arrp_detalle['d_concepto'];
-        //                                 $total= $monto_p3+ $monto_p2+ $monto_p1+$monto_d1+$monto_d2+$monto_d3+$monto_dp;
-
-        //                                 $this->RowM(array($d_concepto,$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-        //                                 if($conta_3>=9){
-        //                                     $this->AddPage();
-        //                                     $conta_3=0;
-        //                                    }
-        //                             }else  if($categoria==4){
-        //                                 $this->SetXY(13, 172+$y_4);
-
-        //                                 $this->SetJump(1);  
-        //                                 $this->SetFont("ARIAL", "", "4"); 
-        //                                 $this->SetWidths(array(45,12,12,12,12,12,12,13,12,45));
-        //                                 $this->SetAligns(array('C','C','C','C','C','C','C','C','C','L'));   
-        //                                 $this->SetBorder(true);  
-
-        //                                 if($data_arrp_detalle['dia']=='p3'){
-        //                                     $monto_p3=$data_arrp_detalle['d_cantidad'];
-        //                                 } else  if($data_arrp_detalle['dia']=='p2'){
-        //                                     $monto_p2=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='p1'){
-        //                                     $monto_p1=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='D1'){
-        //                                     $monto_d1=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='D2'){
-        //                                     $monto_d2=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='D3'){
-        //                                     $monto_d3=$data_arrp_detalle['d_cantidad'];
-        //                                 }else  if($data_arrp_detalle['dia']=='DP'){
-        //                                     $monto_dp=$data_arrp_detalle['d_cantidad'];
-        //                                 }
-
-        //                                 $observacion=utf8_decode($data_arrp_detalle['d_obs']);
-        //                                 $d_concepto=$data_arrp_detalle['d_concepto'];
-        //                                 $total= $monto_p3+ $monto_p2+ $monto_p1+$monto_d1+$monto_d2+$monto_d3+$monto_dp;
-
-        //                                 $this->RowM(array($d_concepto,$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-        //                                 if($conta_4>=9){
-        //                                     $this->AddPage();
-        //                                     $conta_4=0;
-        //                                    }
-        //                             }
-                                        
-                                        
-                                        
-        //                                 $concepto=$data_arrp_detalle[$k]['d_concepto'];
-        //                                 $d_tipo=$data_arrp_detalle[$k]['d_tipo'];
-        //                                 $k++;
-                                   
-                                   
-        //                             }
-                                   
-                           
-                           
-                                   
-                            //         $r_tipo=$data_arrp_detalle['d_tipo'];  
-                            //         if($r_tipo==3){
-                            //            $categoria=1; // Alojamiento
-                            //        }else if (($r_tipo==4)||($r_tipo==6)||($r_tipo==1)){
-                           
-                            //            $categoria=2; //Logistica
-                                       
-                                       
-                           
-                            //        } else if (($r_tipo==5)||($r_tipo==7)){
-                            //            $categoria=3; //Materiales
-                            //        }else if (($r_tipo==2)||($r_tipo==10)||($r_tipo==8)){
-                            //            $categoria=4; //Adicionales
-                            //        }else if($r_tipo==9){
-                            //            $categoria=5; //Tiquetes Aereos
-                            //        }else{
-                            //            $categoria=6; //Reembolsos
-                            //        }
-                             
-                      
-                            //  switch ($categoria) {
-                            //   case 2:
-                             
-                      
-                            //   $this->SetWidths(array(45,12,12,12,12,12,12,13,12,45));
-                            //   $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C'));   
-                            //   $this->SetBorder(true);
-                            //   $this->RowM(array($d_concepto,$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-                              
-                            //   break;
-                            //   case 6:
-                            //       $this->SetXY(13, $this->GetY());
-                            //       $this->SetJump(2);  
-                            //       $this->SetFont("ARIAL", "", "5");
-                          
-                            //       $this->SetWidths(array(45,12,12,12,12,12,12,13,12,45));
-                            //       $this->SetAligns(array('C','C','C','C','C','C','C','C','C','C')); 
-                            //       $this->SetBorder(true);
-                            //       //$this->SetY($this->GetY()+42);
-                            //       $this->RowM(array($d_concepto,$monto_p3,$monto_p2,$monto_p1,$monto_d1,$monto_d2,$monto_d3,$monto_dp,$total,$observacion));
-                            //       // $this->SetWidths(array(40,12,12,12,12,12,12,13,15,50));
-                            //       // $this->SetAligns(array('C','L','L','L','L','L','L','L','C','C')); 
-                            //       $this->SetBorder(true);
-                            //  }
-                           
-                           
-                           
-                           
-                           
-                           
-                                }  // FIN data_arrp_detalle
-           
-                          // H::PrintR($observacion.' '.$concepto.' '.$total);exit; 
-
-                         
-            
-
-
-
-/////////////############### HASTA AQUIIIIIIIIIIIII  ################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // $this->tipo_exa='';
-        // $this->exa='';
-        // $column_width = 190/2;
-        // $x1='';
-        // $x2='';
-        // $this->auxy=0;
-        // $this->cel=0;
-        // $this->cols=1;
-        // $this->ord=$this->arrp[0]['numord'];
-        // $ycuadro=$this->GetY();
-      
-  
-
-
-
-                 //  }
-
-					
-            
-               
-
-
-
-            // $this->arrp_grupo = $this->bd->select($sql_grupo);
-
-			
-			// $contador++;
-            // if($this->num_ord!=$data['numord']){
-  
-            //     $this->reg = $puntero;
-            //     $this->cols=1;
- 
-            //      $this->AddPage();
-                 
-
-            // }
-            // if ($contador==25)
-            // {
-			// 	$this->cols=1;
-            //     // $this->SetXY($column_width+5*2, $yp);
-            //      $this->Rect(10, $ycuadro-4, 190,250-$ycuadro);
-            //      $this->AddPage();
-            //      $contador=0;
-			// }
-            //             $yp=$this->GetY();
-               
-            //     if($this->tipo_exa!=$data['id_tipo_examen']){
-                    
-            //         $this->SetFont("ARIAL", "B", 6);
-            //         $this->MultiCellBlt($column_width,4,chr(149),$data['tipo_examen']);
-            //         $this->SetWidths(array(60));
-            //         $this->SetAligns(array('L'));
-            //         //$this->RowM(array($data['TIPO_EXAMEN']));
-            //         $this->SetFont("ARIAL", "", 6);
-            //         $this->MultiCellBlt($column_width,4,"",$data['examen']);
-            //         $this->SetWidths(array(60));
-            //         $this->SetAligns(array('L'));
-            //         $yy=$this->GetY();
-            //     }else{
-            //          $this->SetFont("ARIAL", "", 6);
-            //          $this->MultiCellBlt($column_width,4,"",$data['examen']);
-            //          $this->SetWidths(array(60));
-            //          $this->SetAligns(array('L'));
-            //          //$this->RowM(array($data['EXAMEN']));
-            //     }
-                
-
-        //         $this->y2=$this->GetY();
-                
-                
-
-
-        //     if($this->GetY()>240){
-        //        $this->auxy=$this->y2-$yp;
-        //        $this->auxy1=$this->GetY();
-        //       // print $this->auxy1;exit;
-        //        $this->cel='1';
-
-        //        //print $this->auxy;exit;
-
-        //       //print "<pre>".$this->ord."==".$data['NUMORD'];
-        //        if($this->ord==$data['numord']){
-        //            $col=$this->cols++;
-        //            //print "<pre>".$this->num_ord."==".$this->ord;
-        //            //print "<pre>".$this->num_ord."==".$data['NUMORD'];
-        //        }
-        //        //print "<pre>". $col;
-        //        $this->SetXY($column_width*$col, $yp);
-        //        $this->ord=$data['numord'];
-        //        //$this->AddPage();
-        //     }else{
-        //         //print ('sasdsa'.$this->cel);
-        //         $this->SetXY($this->GetX(), $this->GetY());
-
-        //     }
-        //     $this->ord=$data['numord'];
-        //     $this->num_ord=$data['numord'];
-        //     $this->tipo_exa=$data['id_tipo_examen'];
-        //     $puntero++;
-           
-            
-        // }
-       
-        // $this->Rect(10, $ycuadro-4, 190,270-$ycuadro);
-       
-        //$this->Image("../../img/fondo_andes.png",$x,$yimage,190,$yimage2); 
-        
-        
-    }//end cuerpo
  }
 
 
