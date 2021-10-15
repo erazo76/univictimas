@@ -21,7 +21,7 @@ class pdfreporte extends fpdf {
         $this->orden=str_replace(' ', '', $this->orden);
         $this->reg_sol=getvalue('n_solicitud');
 
-        // $this->reg_sol=191;
+        //  $this->reg_sol=218;
 
         $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
         $this->arrp = $this->bd->select($sql);
@@ -238,7 +238,8 @@ class pdfreporte extends fpdf {
          $timeDiff = abs($endTimeStamp - $startTimeStamp);
          $numberDays = $timeDiff/86400;  // 86400 seconds in one day
 
-        $numberDays = intval($numberDays);
+        $numberDays = intval($numberDays+1);
+        
       
         $this->SetBorder(true);
         $this->SetFillTable(0);
