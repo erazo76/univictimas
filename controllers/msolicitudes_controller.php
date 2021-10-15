@@ -748,11 +748,8 @@ $data_credencial = Musuario::find_by_sql("SELECT email, clave_email
                 $mail->MsgHTML($body);
                 $mail->AddAddress($correo1);
                 $mail->Send();
-
                 $mail->ClearAddresses();
                 $mail->ClearAttachments(); 
-              
-              // echo $body;
 
               
                 $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
@@ -1039,18 +1036,6 @@ break;
           </div>');
 
     }
-    // else if($fecha4 >= $fecha5){
-
-    //   $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-    //       <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-    //       <h4>
-    //       <i class="icon fa fa-warning"></i>
-    //       Alerta!
-    //       </h4>
-    //        Fecha Fuera de Rango selecciones una fecha de inicio menor.
-    //       </div>');
-
-    // }
     
     else if($fecha3 ==""){
 
@@ -1107,18 +1092,7 @@ break;
           Indique el apellido del responsable del evento.
           </div>');
 
-    }/*else if($rt_num_doc ==""){
-
-      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-          <h4>
-          <i class="icon fa fa-warning"></i>
-          Alerta!
-          </h4>
-          Indique el número del documento de identidad.
-          </div>');
-
-    }*/else if($tele1 ==""){
+    }else if($tele1 ==""){
 
       $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -1264,8 +1238,8 @@ break;
          
           $alia = Msolicitude::find($id);     
           $alia->nombre = $nombre;
-          $alia->fecha1 = $hoy;
-          $alia->hsoli = $hsoli;
+          // $alia->fecha1 = $hoy;
+          // $alia->hsoli = $hsoli;
           $alia->mdepartamentos_id = $departamento;
           $alia->mmunicipios_id = $municipio;
           $alia->mcpoblado_id = $cpoblado;
@@ -1423,7 +1397,7 @@ break;
               $body             = preg_replace("~/~",'',$body);
               $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
               $mail->MsgHTML($body);
-               $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');              
+              $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');              
               $mail->Send();
               $mail->ClearAddresses();
               $mail->ClearAttachments(); 
