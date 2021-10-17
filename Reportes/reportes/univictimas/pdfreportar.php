@@ -3,11 +3,9 @@
 // ini_set('display_errors', '1');
 
 require_once("../../lib/general/fpdf/fpdf.php");
-
 require_once("../../lib/bd/basedatosAdoIbase.php");
 require_once("../../lib/general/cabecera.php");
 require_once("../../lib/general/Herramientas.class.php");
-//require_once("../../lib/general/qrcode/qrcode.class.php");
 include_once("../../lib/utiles.php");
 include_once("../../lib/funciones.php");
 
@@ -21,7 +19,7 @@ class pdfreporte extends fpdf {
         $this->orden=str_replace(' ', '', $this->orden);
         $this->reg_sol=getvalue('n_solicitud');
 
-       //   $this->reg_sol=221;
+        //   $this->reg_sol=2;
 
         $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
         $this->arrp = $this->bd->select($sql);
@@ -52,11 +50,11 @@ class pdfreporte extends fpdf {
  
 
 
-  $this->nun_funcionarios=$this->arrp[0]['entidad'];
-  $this->nun_victimas=$this->arrp[0]['num_vic'];
-  $this->nun_total_asistentes=$this->nun_funcionarios+ $this->nun_victimas;
-  $this->descripcion=$this->arrp[0]['descripcion'];
-  $this->recomendaciones=$this->arrp[0]['recomendaciones'];
+        $this->nun_funcionarios=$this->arrp[0]['entidad'];
+        $this->nun_victimas=$this->arrp[0]['num_vic'];
+        $this->nun_total_asistentes=$this->nun_funcionarios+ $this->nun_victimas;
+        $this->descripcion=$this->arrp[0]['descripcion'];
+        $this->recomendaciones=$this->arrp[0]['recomendaciones'];
 
   
 
@@ -616,7 +614,15 @@ class pdfreporte extends fpdf {
 
              $this->arrp_detalle_concepto = $this->bd->select($sql_detalle_concepto);
 
-                //  H::PrintR($sql_detalle_concepto);exit; 
+            //  $monto=$this->arrp_detalle_concepto[0]['d_costo'];
+
+            //  $monto = (string)$monto;
+            //  $str = str_replace(".","",$monto);
+            //  $str2 = str_replace(",", "",$str);
+             
+
+              
+                //   H::PrintR($str2);exit; 
                 $concepto= $this->arrp_detalle_concepto[0]['d_concepto'];
 
                 $total= $monto_p3=$monto_p2=$monto_p1=$monto_d1=$monto_d2=$monto_d3=$monto_dp='';
@@ -690,7 +696,7 @@ class pdfreporte extends fpdf {
                                         $conta_5++;
                                     }
                             
-                                if($categoria==1){
+                                if($categoria==1){    // Alojamiento
                                         $this->SetXY(13, 89+$y_1);
                                         $this->SetJump(1);  
                                         $this->SetFont("ARIAL", "B", "4"); 
@@ -716,8 +722,8 @@ class pdfreporte extends fpdf {
                                             $conta_2=0;
                                            }
 
-                                 }else  if($categoria==3){
-                                        $this->SetXY(13, 220+$y_3);
+                                 }else  if($categoria==3){   //Materiales
+                                        $this->SetXY(13, 216+$y_3);
                                         $this->SetJump(1);  
                                         $this->SetFont("ARIAL", "B", "4"); 
                                         $this->SetWidths(array(45,11,11,11,11,11,11,11,11,54));
@@ -728,7 +734,7 @@ class pdfreporte extends fpdf {
                                             $this->AddPage();
                                             $conta_3=0;
                                            }
-                                    }else  if($categoria==4){
+                                    }else  if($categoria==4){  //Adicionales
                                         $this->SetXY(13, 177+$y_4);
 
                                         $this->SetJump(1);  
@@ -743,7 +749,7 @@ class pdfreporte extends fpdf {
                                             $conta_4=0;
                                            }
                                     }
-                                    else  if($categoria==5){
+                                    else  if($categoria==5){ //Tiquetes Aereos
                                         $this->SetXY(10, 252+$y_5);
                                         $this->SetJump(1);
 
