@@ -480,6 +480,8 @@ case 'contar_id':
                 $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
                 $mail->MsgHTML($body);
                 $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
+                $mail->AddAddress($correo1);
+
                 $mail->Send();
                 $mail->ClearAddresses();
                 $mail->ClearAttachments(); 
@@ -565,24 +567,44 @@ case 'contar_id':
     }else{  //(A)
 
 
+
+
+          $hoy = date('d-m-Y');
+
+          $envia_correo=false;
+          $alia = Mrequerimiento::find($id);
+
+//######################
+
           if($a_supe==0){
             if($r_supe==0){
               $a_supe=0;
             }else{
               $a_supe=2;
               $detalle_cotizacion="COTIZACION RECHAZADA";
-
+              if($alia->a_supe!=$a_supe){
+                $envia_correo=true;
+              }
             }  
           
-          }else{
-            $a_supe=1;
+          }else if($a_supe==1){
             $detalle_cotizacion="COTIZACION APROBADA";
+            if($alia->a_supe!=$a_supe){
+            $envia_correo=true;
           }
+          }else if($a_supe==2){
+            $detalle_cotizacion="COTIZACION RECHAZADA";
+            if($alia->a_supe!=$a_supe){
+            $envia_correo=true;
+          }
+          }else{
+            $a_supe=0;
+          }  
 
-          $hoy = date('d-m-Y');
 
-    
-          $alia = Mrequerimiento::find($id);
+///####################
+
+
           $alia->fecha1 = $hoy;
           $alia->mdepartamentos_id = $departamento;
           $alia->mmunicipios_id = $municipio;
@@ -616,7 +638,14 @@ case 'contar_id':
            if($alia->save()){ // da el mensaje de guardado...
 
             
-              if($a_supe==1){
+              if($envia_correo){
+                $data_credencial = Musuario::find_by_sql("SELECT email, clave_email 
+                FROM Musuarios  WHERE status=1 and id=11"); 
+                    foreach ($data_credencial as $user) {
+                    $remitente=$user->email;
+                    $clave_email=$user->clave_email;
+                    } 
+
 
                 $mail = new PHPMailer();
                 $mail->IsSMTP(); // telling the class to use SMTP
@@ -662,12 +691,15 @@ case 'contar_id':
                                     <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
                                     </div>
                                     </div>';
-              $body             = preg_replace("~/~",'',$body);
-              $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-              $mail->MsgHTML($body);
-              $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
-              $mail->ClearAddresses();
-              $mail->ClearAttachments(); 
+                            $body             = preg_replace("~/~",'',$body);
+                            $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+                            $mail->MsgHTML($body);
+                            $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');  
+                            $mail->AddAddress($correo1); 
+                            $mail->Send();
+                            $mail->ClearAddresses();
+                            $mail->ClearAttachments(); 
+
      }
                 
 
@@ -1182,18 +1214,7 @@ break;
              Indique medio de despacho al aliado.
             </div>');
 
-      }/*else if($descuento ==""){
-
-        $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-            <h4>
-            <i class="icon fa fa-warning"></i>
-            Alerta!
-            </h4>
-             Indique porcentaje de descuento al aliado.
-            </div>');
-
-      }*/else if($seca ==""){
+      }else if($seca ==""){
 
         $respuesta = array('deslizador'=>'2','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>

@@ -21,7 +21,7 @@ class pdfreporte extends fpdf {
         $this->orden=str_replace(' ', '', $this->orden);
         $this->reg_sol=getvalue('n_solicitud');
 
-        //  $this->reg_sol=218;
+       //   $this->reg_sol=221;
 
         $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
         $this->arrp = $this->bd->select($sql);
@@ -45,7 +45,9 @@ class pdfreporte extends fpdf {
         $this->arrp_reembolso = $this->bd->select($monto_reembolso);
         $this->monto_reembolso=$this->arrp_reembolso[0]['monto_reembolso'];
         $this->monto_reembolso= number_format($this->monto_reembolso, 0, ",", ".");
-       
+
+        $this->a_supe=$this->arrp[0]['a_supe'];
+        $this->a_supe_dir=$this->arrp[0]['a_supe_dir'];
 
  
 
@@ -519,14 +521,23 @@ class pdfreporte extends fpdf {
 
          $this->RowM(array(utf8_decode('7. Cualquier solicitud adicional se deberá tramitar directamente a los responsables de la DGI a través de correo electrónico.')));
         
-         $this->SetY($this->GetY()+5);
-
-
+        
+         $aprobado='';
+         $autorizado='';
+         if($this->a_supe==1){
+             $aprobado='APROBADO POR :';
+         }
+         if($this->a_supe_dir==1){
+            $autorizado='AUTORIZADO POR :';
+        }
+        $this->SetY($this->GetY()+8);
         $this->SetWidths(array(60,70,60));
         $this->SetFont("courier", "B", "7");
         $this->SetAligns(array('C','C','C'));
+        $this->RowM(array('',$autorizado,$aprobado));
+        $this->Ln(1);
         $this->RowM(array('Carolina Murillo',utf8_decode('Yanny Zambrano Díaz'),'Aura Helena Acevedo Vargas'));
-        $this->RowM(array('Responsable del evento','Sub-director(a) solicitante',utf8_decode('Supervisión del Contrato')));
+        $this->RowM(array('Responsable del Evento','Sub-director(a) Solicitante',utf8_decode('Supervisión del Contrato')));
 
 
          $this->SetBorder(true);

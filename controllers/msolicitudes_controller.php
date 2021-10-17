@@ -1193,53 +1193,70 @@ break;
           }else{
             $t_trans1 = null;
           }
-          // @$r_supe = ($_POST["r_supe"]);
-          // @$r_supe_obs = ($_POST["r_supe_obs"]);
-          // @$r_supe_dir = ($_POST["r_supe_dir"]);
-          // @$r_supe_obs_dir = ($_POST["r_supe_obs_dir"]);
-
-
-
-          if($a_supe==0){
-            if($r_supe==0){
-              $a_supe=0;
-              $a_supe_obs="";
-            }else{
-              $a_supe=2;
-              $det_solicitud="SOLICITUD RECHAZADA";
-            }  
-          
-          }else{
-            $a_supe=1;
-            $det_solicitud="SOLICITUD APROBADA PARA EJECUCION";
-            
-
-          }
-
-          if($a_supe_dir==0){
-            if($r_supe_dir==0){
-              $a_supe_dir=0;
-              $a_supe_obs_dir="";
-
-            }else{
-              $a_supe_dir=2;
-              $det_solicitud="SOLICITUD RECHAZADA";
-
-            }  
-          
-          }else{
-            $a_supe_dir=1;
-            $det_solicitud="SOLICITUD APROBADA";
-           
-          }
-
+ 
+          $envia_correo=false;     
          
           $to_total = str_replace("$ ", "", $to_total);
          
-          $alia = Msolicitude::find($id);     
+          $alia = Msolicitude::find($id); 
+          
+          /// *** VALIDACION PARA ENVIAR EL CORREO
+
+         // if(($a_supe!="")||($a_supe_dir!="")){
+
+                if($a_supe==1){
+                            $a_supe=1;
+                            $a_supe_dir=0;
+                            $det_solicitud="SOLICITUD APROBADA PARA EJECUCION";
+                              if($alia->a_supe!=$a_supe){
+                                $envia_correo=true;
+                              }
+                          
+                            }  else  if($a_supe==0){
+
+                              if($r_supe==0){
+                                $a_supe=0;
+                                $a_supe_obs="";
+                              } else if($r_supe==1){
+                                  $a_supe=2;
+                                  $a_supe_dir=0;
+                                  $det_solicitud="SOLICITUD RECHAZADA";
+                                    if($alia->a_supe!=$a_supe){
+                                      $envia_correo=true;
+                                    }
+                                    }else{
+                                      if($a_supe_dir==0){
+                                        if($r_supe_dir==0){
+                                          $a_supe_dir=0;
+                                          $a_supe_obs_dir="";
+                            
+                                        }else{
+                                          $a_supe_dir=2;
+                                          $a_supe=0;
+                                          $det_solicitud="SOLICITUD RECHAZADA";
+                                            if($alia->a_supe_dir!=$a_supe_dir){
+                                              $envia_correo=true;
+                                            }
+                            
+                                        }  
+                                      
+                                      }else{
+                                        $a_supe_dir=1;
+                                        $a_supe=0;
+                                        $det_solicitud="SOLICITUD AUTORIZADA";
+                                          if($alia->a_supe_dir!=$a_supe_dir){
+                                            $envia_correo=true;
+                                          }
+                                    
+                                    }
+
+                                      // $a_supe=0;
+                              }         // $a_supe_dir=0;     
+                            }
+                           
+
+          ////******** */
           $alia->nombre = $nombre;
-          // $alia->fecha1 = $hoy;
-          // $alia->hsoli = $hsoli;
           $alia->mdepartamentos_id = $departamento;
           $alia->mmunicipios_id = $municipio;
           $alia->mcpoblado_id = $cpoblado;
@@ -1318,8 +1335,8 @@ break;
           if($alia->save()){ // da el mensaje de guardado...
            
            
-          //  if($a_supeo==1){
-              if(1==1){
+         
+              if($envia_correo){
 
                     $data_credencial = Musuario::find_by_sql("SELECT email, clave_email 
                     FROM Musuarios  WHERE status=1 and id=11"); 
@@ -1397,7 +1414,10 @@ break;
               $body             = preg_replace("~/~",'',$body);
               $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
               $mail->MsgHTML($body);
-              $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');              
+               $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');  
+               $mail->AddAddress('eventosempresariales2021@gmail.com');   
+                $mail->AddAddress($correo1);   
+
               $mail->Send();
               $mail->ClearAddresses();
               $mail->ClearAttachments(); 

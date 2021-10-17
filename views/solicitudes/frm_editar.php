@@ -647,7 +647,7 @@ ValidaSession("../login");
 							<div class="form-group-sm">
 							<?php 
 							
-							if(($_SESSION['rolx']==2 ) ){
+							if(($_SESSION['rolx']==2 )||($_SESSION['rolx']==1 ) ){
 						   
 						   ?>
 						<!-- <HR><h3 class="box-title">Aprobaciones</h3><HR> -->
@@ -673,7 +673,7 @@ ValidaSession("../login");
 								</div> -->
 															
 								<?php 
-							 }else if(($_SESSION['rolx']==3) || ($_SESSION['rolx']==1)){
+							 }else if($_SESSION['rolx']==3){
 
    
 								?>
@@ -3485,7 +3485,7 @@ $("#izquierda" ).click(function() {
 
 var rol=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
-if ((rol==3)||(rol==1)){
+if ((rol==3)||(rol==3)){
        $("#a_supe_dir").val(parsedJson.a_supe_dir);
 	   $("#a_supe_obs_dir").val(parsedJson.a_supe_obs_dir);
 
@@ -3507,7 +3507,7 @@ if ((rol==3)||(rol==1)){
 				document.getElementById('r_supe_dir').checked = true;
 	   }
 
-} else  if (rol==2){
+} else  if ((rol==2)||(rol==1)){
 	$("#a_supe").val(parsedJson.a_supe);
 	$("#a_supe_obs").val(parsedJson.a_supe_obs);
 

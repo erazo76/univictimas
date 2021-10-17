@@ -1386,7 +1386,7 @@ session_start();
 			}).done(function(data) {
 				var parsedJson = $.parseJSON(data);
 				var numstring = parsedJson.toString();
-				var res = numstring.padStart(4, 0);
+				var res = numstring.padStart(3, 0);
 
 				//alert(parsedJson);
 				$("#n_accion").val(res);
