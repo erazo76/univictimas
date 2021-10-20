@@ -1900,8 +1900,25 @@ $("#izquierda" ).click(function() {
 
 		$("#anex").click(function() {
 			//$('#modal3').modal({backdrop: 'static',keyboard: false});
-			$(location).attr('href','frm_adjuntados?record='+$("#idea").val()+'&origin=1');
 			
+			var value= table.$('tr.selected').children('td:first').text();
+				// alert(value);
+				if(!value){
+
+						$.alert({
+							title: '!Seleccione el archivo a visualizar!',
+							content: false,
+							confirmButton: true, // hides the confirm button.
+							closeIcon: false,
+							confirmButton: 'cerrar',
+							confirmButtonClass: 'btn-success'
+						});
+			}else{
+				var record = <?php echo intval($_GET["record"]); ?>;
+	
+			 $(location).attr('href','frm_adjuntados?id_adj='+value+'&record='+record);
+
+		}
 		});
 
 
