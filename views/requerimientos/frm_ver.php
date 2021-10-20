@@ -1915,8 +1915,9 @@ $("#izquierda" ).click(function() {
 						});
 			}else{
 				var record = <?php echo intval($_GET["record"]); ?>;
+				var origin=1;
 	
-			 $(location).attr('href','frm_adjuntados?id_adj='+value+'&record='+record);
+				$(location).attr('href','frm_adjuntados?id_adj='+value+'&record='+record+'&origin='+origin);
 
 		}
 		});

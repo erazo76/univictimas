@@ -140,22 +140,11 @@ $('#print').click( function () {
 
 	$("#volver").click(function() {
 			var origin=<?php echo intval($_GET["origin"]); ?>;
-
-			var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
-
-		if ((desh==1) || (desh==2) || (desh==4)){ //si el rol del usuario es SUPERVISOR... o programador
-			$(location).attr('href','frm_editar?record='+$("#idea").val());
-
-		}else{
+		if(origin==1){
 			$(location).attr('href','frm_ver?record='+$("#idea").val());
-
+		}else{
+			$(location).attr('href','frm_editar?record='+$("#idea").val());
 		}
-		
-		// if(origin==1){
-		// 	$(location).attr('href','frm_ver?record='+$("#idea").val());
-		// }else{
-		// 	$(location).attr('href','frm_editar?record='+$("#idea").val());
-		// }
 
 	});
 
