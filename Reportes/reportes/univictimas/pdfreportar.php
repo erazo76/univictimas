@@ -19,7 +19,7 @@ class pdfreporte extends fpdf {
         $this->orden=str_replace(' ', '', $this->orden);
         $this->reg_sol=getvalue('n_solicitud');
 
-        //   $this->reg_sol=2;
+       // $this->reg_sol=220;
 
         $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
         $this->arrp = $this->bd->select($sql);
@@ -44,11 +44,10 @@ class pdfreporte extends fpdf {
         $this->monto_reembolso=$this->arrp_reembolso[0]['monto_reembolso'];
         $this->monto_reembolso= number_format($this->monto_reembolso, 0, ",", ".");
 
-        $this->a_supe=$this->arrp[0]['a_supe'];
-        $this->a_supe_dir=$this->arrp[0]['a_supe_dir'];
-
- 
-
+        $this->rn_nombre1=strtolower($this->arrp[0]['rn_nombre1']);
+        $this->rn_apellido1=strtolower($this->arrp[0]['rn_apellido1']);
+        $this->nombre_apellido=$this->rn_nombre1.' '.$this->rn_apellido1;
+        $this->rn_nombre_apellido = ucfirst($this->nombre_apellido);
 
         $this->nun_funcionarios=$this->arrp[0]['entidad'];
         $this->nun_victimas=$this->arrp[0]['num_vic'];
@@ -56,10 +55,7 @@ class pdfreporte extends fpdf {
         $this->descripcion=$this->arrp[0]['descripcion'];
         $this->recomendaciones=$this->arrp[0]['recomendaciones'];
 
-  
-
-
-  $modalidad_evento=$this->arrp[0]['modalidad_evento'];
+         $modalidad_evento=$this->arrp[0]['modalidad_evento'];
 
   
 
@@ -534,7 +530,7 @@ class pdfreporte extends fpdf {
         $this->SetAligns(array('C','C','C'));
         $this->RowM(array('',$autorizado,$aprobado));
         $this->Ln(1);
-        $this->RowM(array('Carolina Murillo',utf8_decode('Yanny Zambrano Díaz'),'Aura Helena Acevedo Vargas'));
+        $this->RowM(array($this->rn_nombre_apellido,utf8_decode('Yanny Zambrano Díaz'),'Aura Helena Acevedo Vargas'));
         $this->RowM(array('Responsable del Evento','Sub-director(a) Solicitante',utf8_decode('Supervisión del Contrato')));
 
 
