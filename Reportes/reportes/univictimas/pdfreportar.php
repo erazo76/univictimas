@@ -46,8 +46,12 @@ class pdfreporte extends fpdf {
 
         $this->rn_nombre1=strtolower($this->arrp[0]['rn_nombre1']);
         $this->rn_apellido1=strtolower($this->arrp[0]['rn_apellido1']);
+        $this->rn_nombre1=ucfirst($this->rn_nombre1);
+        $this->rn_apellido1=ucfirst($this->rn_apellido1);
+
+
         $this->nombre_apellido=$this->rn_nombre1.' '.$this->rn_apellido1;
-        $this->rn_nombre_apellido = ucfirst($this->nombre_apellido);
+        $this->rn_nombre_apellido = $this->nombre_apellido;
 
         $this->nun_funcionarios=$this->arrp[0]['entidad'];
         $this->nun_victimas=$this->arrp[0]['num_vic'];
