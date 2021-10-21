@@ -1,6 +1,4 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', '1');
 
 require_once("../../lib/general/fpdf/fpdf.php");
 require_once("../../lib/bd/basedatosAdoIbase.php");
@@ -19,7 +17,7 @@ class pdfreporte extends fpdf {
         $this->orden=str_replace(' ', '', $this->orden);
         $this->reg_sol=getvalue('n_solicitud');
 
-       // $this->reg_sol=220;
+       //$this->reg_sol=216;
 
         $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
         $this->arrp = $this->bd->select($sql);
@@ -46,12 +44,36 @@ class pdfreporte extends fpdf {
 
         $this->rn_nombre1=strtolower($this->arrp[0]['rn_nombre1']);
         $this->rn_apellido1=strtolower($this->arrp[0]['rn_apellido1']);
+        $this->rn_nombre2=strtolower($this->arrp[0]['rn_nombre2']);
+        $this->rn_apellido2=strtolower($this->arrp[0]['rn_apellido2']);
+
         $this->rn_nombre1=ucfirst($this->rn_nombre1);
         $this->rn_apellido1=ucfirst($this->rn_apellido1);
 
+        $this->rn_nombre2=ucfirst($this->rn_nombre2);
+        $this->rn_apellido2=ucfirst($this->rn_apellido2);
+        $this->nombre_apellido_responsable=$this->rn_nombre1.' '.$this->rn_nombre2.' '.$this->rn_apellido1.' '.$this->rn_apellido2;
+ 
+        $this->correo_responsable=$this->arrp[0]['correo2'];
+        $this->telefono_responsable=$this->arrp[0]['tele2'];
 
-        $this->nombre_apellido=$this->rn_nombre1.' '.$this->rn_apellido1;
-        $this->rn_nombre_apellido = $this->nombre_apellido;
+
+ 
+ $this->rt_nombre1=strtolower($this->arrp[0]['rt_nombre1']);
+ $this->rt_apellido1=strtolower($this->arrp[0]['rt_apellido1']);
+ $this->rt_nombre2=strtolower($this->arrp[0]['rt_nombre2']);
+ $this->rt_apellido2=strtolower($this->arrp[0]['rt_apellido2']);
+
+ $this->rt_nombre1=ucfirst($this->rt_nombre1);
+ $this->rn_apellido1=ucfirst($this->rn_apellido1);
+
+ $this->rt_nombre2=ucfirst($this->rt_nombre2);
+ $this->rt_apellido2=ucfirst($this->rt_apellido2);
+
+ $this->nombre_apellido_subdirector=$this->rt_nombre1.' '.$this->rt_nombre2.' '.$this->rt_apellido1.' '.$this->rt_apellido2;
+
+ $this->correo_subdirector=$this->arrp[0]['correo1'];
+ $this->telefono_subdirector=$this->arrp[0]['tele1'];
 
         $this->nun_funcionarios=$this->arrp[0]['entidad'];
         $this->nun_victimas=$this->arrp[0]['num_vic'];
@@ -313,10 +335,21 @@ class pdfreporte extends fpdf {
         $this->SetWidths(array(50,50,50,40));
         $this->SetAligns(array('C','C','L','L'));
         $this->SetBorder(true);
-        $this->RowM(array('SUBDIRECTOR (A) SOLICITANTE','Yanny Zambrano Diaz','EMAIL : yanny.zambrano@unidadvictimas.gov.co',utf8_decode('TELÉFONO: ')));
-        $this->RowM(array('RESPONSABLE DEL EVENTO','Carolina Murillo','EMAIL : diana.murillo@unidadvictimas.gov.co',utf8_decode('TELÉFONO: 3155747140')));
+        $this->RowM(array('SUBDIRECTOR (A) SOLICITANTE',utf8_decode($this->nombre_apellido_subdirector),'EMAIL : '.$this->correo_subdirector,utf8_decode('TELÉFONO: '.$this->telefono_subdirector)));
+        $this->RowM(array('RESPONSABLE DEL EVENTO',utf8_decode($this->nombre_apellido_responsable),'EMAIL : '.$this->correo_responsable,utf8_decode('TELÉFONO: '.$this->telefono_responsable)));
+
+
+
+
+
+
+
         $this->SetWidths(array(190));
+
         $this->SetAligns(array('C'));
+
+        
+
         $this->SetBorder(true);
         $this->SetFillTable(1);
         $this->SetFont("ARIAL", "B", "8");
@@ -473,9 +506,7 @@ class pdfreporte extends fpdf {
 
         $this->SetBorder(1);
          $this->SetFillTable(0);
-        // $this->SetFillColor(0,0,255);
         $this->SetTextColor(255,0,0);
-        // $this->SetDrawColor(0,0,255);
         $this->SetX(70);
         $this->SetBorder(0);
 
@@ -494,9 +525,9 @@ class pdfreporte extends fpdf {
          $this->SetBorder(0);
          $this->SetAligns(array('L'));
 
-         $this->SetY($this->GetY()-41);
+         $this->SetY($this->GetY()-42);
          $this->RowM(array('OBSERVACIONES GENERALES'));
-         $this->SetY($this->GetY()-12);
+         $this->SetY($this->GetY()-13);
          $this->SetJump(2);
          $this->SetFont("courier", "", "5");
          $this->RowM(array(utf8_decode('1. Debe confirmarse sitio del evento con 3 días como mínimo de anticipación y la confirmación de la convocatoria.')));
@@ -519,7 +550,6 @@ class pdfreporte extends fpdf {
 
          $this->RowM(array(utf8_decode('7. Cualquier solicitud adicional se deberá tramitar directamente a los responsables de la DGI a través de correo electrónico.')));
         
-        
          $aprobado='';
          $autorizado='';
          if($this->a_supe==1){
@@ -528,23 +558,24 @@ class pdfreporte extends fpdf {
          if($this->a_supe_dir==1){
             $autorizado='AUTORIZADO POR :';
         }
-        $this->SetY($this->GetY()+8);
+        $this->SetY($this->GetY()+5);
         $this->SetWidths(array(60,70,60));
-        $this->SetFont("courier", "B", "7");
+        $this->SetFont("courier", "B", "6");
         $this->SetAligns(array('C','C','C'));
         $this->RowM(array('',$autorizado,$aprobado));
         $this->Ln(1);
-        $this->RowM(array($this->rn_nombre_apellido,utf8_decode('Yanny Zambrano Díaz'),'Aura Helena Acevedo Vargas'));
+        $this->RowM(array(utf8_decode($this->nombre_apellido_responsable),utf8_decode($this->nombre_apellido_subdirector),'Aura Helena Acevedo Vargas'));
         $this->RowM(array('Responsable del Evento','Sub-director(a) Solicitante',utf8_decode('Supervisión del Contrato')));
+        $this->SetFont("courier", "B", "5");     
+        $this->Ln(2);
+        $this->SetAligns(array('C','C','C'));
+        $this->RowM(array('Vo B0: Aura Aristizabal Gil',utf8_decode('Revisado: Isaias Lozano Vera'),utf8_decode('Verificado: Javier Diaz Rojas')));
 
-
-         $this->SetBorder(true);
-
+        $this->SetBorder(true);
         
     }
 
     function Header() {
-       // $this->cab->poner_cabecera($objeto, $rep, $configuracion, $pagina, $sw)
         $this->cab->poner_cabecera($this, $this->titulo, "p","","n");
         $y=$this->GetY();
         $x=$this->GetX();
@@ -614,13 +645,6 @@ class pdfreporte extends fpdf {
 
              $this->arrp_detalle_concepto = $this->bd->select($sql_detalle_concepto);
 
-            //  $monto=$this->arrp_detalle_concepto[0]['d_costo'];
-
-            //  $monto = (string)$monto;
-            //  $str = str_replace(".","",$monto);
-            //  $str2 = str_replace(",", "",$str);
-             
-
               
                 //   H::PrintR($str2);exit; 
                 $concepto= $this->arrp_detalle_concepto[0]['d_concepto'];
@@ -633,7 +657,6 @@ class pdfreporte extends fpdf {
                   
                   //  if (($concepto==$data_arrp_concepto['d_concepto'])){
 
-                  
 
                  if($data_arrp_concepto['dia']=='p3'){
                     $monto_p3+=$data_arrp_concepto['d_cantidad'];
