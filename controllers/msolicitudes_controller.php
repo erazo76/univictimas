@@ -644,7 +644,7 @@ break;
 
 $data_search_adjunto = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud 
                 FROM Msolicitudes 
-                                  WHERE status=1 and id_sesion_usuario=id_sesion_usuario 
+                                  WHERE status=1 and id_sesion_usuario=$id_sesion_usuario 
                                                  and reg_temp=false and user_create=$alia->user_create; ");
                 
                 $data_search_adjunto_all = Madjunto::find_by_sql("SELECT id as id_adjunto
@@ -1414,9 +1414,10 @@ break;
               $body             = preg_replace("~/~",'',$body);
               $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
               $mail->MsgHTML($body);
-               $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');  
-               $mail->AddAddress('eventosempresariales2021@gmail.com');   
-                $mail->AddAddress($correo1);   
+                $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');  
+                $mail->AddAddress('eventosempresariales2021@gmail.com');   
+                $mail->AddAddress($correo1);  
+ 
 
               $mail->Send();
               $mail->ClearAddresses();
