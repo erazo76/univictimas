@@ -1,6 +1,4 @@
 <?php
-include("../../lib/validar_session.php");
-ValidaSession("../login");
 session_start([
   'cache_limiter' => 'private',
   'read_and_close' => true,
