@@ -1,5 +1,6 @@
 <?php
-
+include("../../lib/validar_session.php");
+ValidaSession("../login");
 session_start([
   'cache_limiter' => 'private',
   'read_and_close' => true,
@@ -208,9 +209,7 @@ case 'contar_id':
             //session_start();
             //@$usuario_id = $_SESSION['idusuariox'];
             $hoy = date('d-m-Y');
-//echo($usuario_id);exit();
              $consulta = Mtemporale::find('all',array('conditions' => array('user_create=? AND completado=?',$usuario_id,2)));
-//print_r($consulta);exit();
           if($consulta){
             $tipos = implode(",", $estatus_aliado);
             $dias1 = implode(",", $dias);
@@ -307,7 +306,21 @@ case 'contar_id':
 /******************************************** ADD *************************************** */
   case 'add':
 
-      if($departamento ==""){
+    session_start();
+    @$session = $_SESSION['idusuariox'];
+     
+    if(!$session){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable" >
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Su Sesión ha Caducado, Debe Loguearse Nuevamente !.
+          </div>');
+
+    }else if($departamento ==""){
 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -359,7 +372,6 @@ case 'contar_id':
           $hoy = date('d-m-Y');
 
             $alia = new Mrequerimiento();    
-           // $alia = Mrequerimiento::find($id);
             $alia->fecha1 = $hoy;
             $alia->mdepartamentos_id = $departamento;
             $alia->mmunicipios_id = $municipio;
@@ -424,8 +436,6 @@ case 'contar_id':
                       }
                       }
 
-
-
             $data_credencial = Musuario::find_by_sql("SELECT email, clave_email 
                                   FROM Musuarios  WHERE status=1 and id=11 ;"); 
 
@@ -481,7 +491,6 @@ case 'contar_id':
                 $mail->MsgHTML($body);
                 $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
                 $mail->AddAddress($correo1);
-
                 $mail->Send();
                 $mail->ClearAddresses();
                 $mail->ClearAttachments(); 
@@ -516,11 +525,24 @@ case 'contar_id':
             echo json_encode($respuesta);
 
   break;
-
   /******************************************** ADD EDIT *************************************** */
   case 'add_edit':
 
-    if($departamento ==""){
+    session_start();
+    @$session = $_SESSION['idusuariox'];
+     
+    if(!$session){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable" >
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Su Sesión ha Caducado, Debe Loguearse Nuevamente !.
+          </div>');
+
+    }else if($departamento ==""){
 
       $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -567,14 +589,10 @@ case 'contar_id':
     }else{  //(A)
 
 
-
-
           $hoy = date('d-m-Y');
 
           $envia_correo=false;
           $alia = Mrequerimiento::find($id);
-
-//######################
 
           if($a_supe==0){
             if($r_supe==0){
@@ -700,7 +718,7 @@ case 'contar_id':
                             $mail->ClearAddresses();
                             $mail->ClearAttachments(); 
 
-     }
+       }
                 
 
               $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">

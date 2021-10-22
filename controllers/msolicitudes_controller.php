@@ -1,5 +1,6 @@
 <?php
-//session_start();
+include("../../lib/validar_session.php");
+ValidaSession("../login");
 session_start([
   'cache_limiter' => 'private',
   'read_and_close' => true,
@@ -15,8 +16,6 @@ require_once '../models/Mmunicol.php';
 require_once '../models/Mcpoblado.php';
 require_once '../models/Madjuntado.php';
 require_once '../models/Musuario.php';
-
-
 
 @$action = ($_POST["action"]);
 @$id = ($_POST["id"]);
@@ -324,9 +323,22 @@ break;
 /******************************************** ADD *************************************** */
 
   case 'add':
+    session_start();
+    @$session = $_SESSION['idusuariox'];
+     
+    if(!$session){
 
-      if($nombre ==""){
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable" >
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Su Sesión ha Caducado, Debe Loguearse Nuevamente !.
+          </div>');
 
+    }else if($nombre ==""){
+ 
         $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable" >
             <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
             <h4>
@@ -514,8 +526,6 @@ break;
 
       }else{  //(A)
 
-       
-
             session_start();
             @$usuario_id = $_SESSION['idusuariox'];
             $id_sesion_usuario = $_SESSION['instante'];
@@ -615,13 +625,13 @@ break;
           
                 $data_search = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud 
                 FROM Msolicitudes 
-                                  WHERE status=1 and id_sesion_usuario=$id_sesion_usuario; ");
+                                  WHERE status=1 and id_sesion_usuario=".$id_sesion_usuario." ;");
                 
                 $data_search_detalle = Mdetalle::find_by_sql("SELECT id as id_detalles
                                 FROM Mdetalles 
                                     WHERE status=1  
                                         and reg_temp=true and mrequerimientos_id=0
-                                        and id_sesion_usuario=$id_sesion_usuario; ");
+                                        and id_sesion_usuario=".$id_sesion_usuario." ; ");
                   
                           
                 foreach ($data_search as $acti) {
@@ -644,14 +654,14 @@ break;
 
 $data_search_adjunto = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud 
                 FROM Msolicitudes 
-                                  WHERE status=1 and id_sesion_usuario=$id_sesion_usuario 
-                                                 and reg_temp=false and user_create=$alia->user_create; ");
+                                  WHERE status=1 and id_sesion_usuario=".$id_sesion_usuario." 
+                                                 and reg_temp=false and user_create=".$alia->user_create." ; ");
                 
                 $data_search_adjunto_all = Madjunto::find_by_sql("SELECT id as id_adjunto
                                 FROM Madjuntos 
                                                   WHERE status=1  
                                                                  and reg_temp=true and mrequerimientos_id is null
-                                                                 and user_create=$alia->user_create; ");
+                                                                 and user_create=".$alia->user_create." ; ");
 
 $data_credencial = Musuario::find_by_sql("SELECT email, clave_email 
                       FROM Musuarios  WHERE status=1 and id=11"); 
@@ -1002,7 +1012,21 @@ break;
 #*******************************************************************************  
   case 'edit':
 
-    if($nombre ==""){
+    session_start();
+    @$session = $_SESSION['idusuariox'];
+     
+    if(!$session){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable" >
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Su Sesión ha Caducado, Debe Loguearse Nuevamente !.
+          </div>');
+
+    }else if($nombre ==""){
 
       $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable" >
           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
