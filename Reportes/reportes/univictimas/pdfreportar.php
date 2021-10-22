@@ -17,7 +17,7 @@ class pdfreporte extends fpdf {
         $this->orden=str_replace(' ', '', $this->orden);
         $this->reg_sol=getvalue('n_solicitud');
 
-       //$this->reg_sol=216;
+       //$this->reg_sol=234;
 
         $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
         $this->arrp = $this->bd->select($sql);
@@ -114,10 +114,7 @@ class pdfreporte extends fpdf {
     $this->modalidad_plan_accion='Plan de Trabajo Mesa Nacional';
   
   }
-
-  
         $this->reg=0;
-        
        
     }
     
@@ -148,7 +145,6 @@ class pdfreporte extends fpdf {
         $this->SetX($x+30);
         $this->SetWidths(array(130));
         $this->SetAligns(array('C'));
-       // $this->RowM(array('LACTEOS LOS ANDES'));
         $this->SetX($x+30);
         $this->SetWidths(array(130));
         $this->SetAligns(array('C'));
@@ -569,7 +565,7 @@ class pdfreporte extends fpdf {
         $this->SetFont("courier", "B", "5");     
         $this->Ln(2);
         $this->SetAligns(array('C','C','C'));
-        $this->RowM(array('Vo B0: Aura Aristizabal Gil',utf8_decode('Revisado: Isaias Lozano Vera'),utf8_decode('Verificado: Javier Diaz Rojas')));
+        $this->RowM(array('Vo B0: Claudia Aristizabal Gil',utf8_decode('Revisado: Isaias Lozano Vera'),utf8_decode('Verificado: Javier Diaz Rojas')));
 
         $this->SetBorder(true);
         
