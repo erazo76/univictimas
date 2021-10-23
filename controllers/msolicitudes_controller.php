@@ -1,5 +1,4 @@
 <?php
-
 session_start([
   'cache_limiter' => 'private',
   'read_and_close' => true,
@@ -651,39 +650,32 @@ break;
                   
 /////####################  GUARDA LOS ADJUNTOS TEMPORALES   ########################################################
 
-$data_search_adjunto = Msolicitude::find_by_sql("SELECT max(id) as num_solicitud 
-                FROM Msolicitudes 
-                                  WHERE status=1 and id_sesion_usuario=".$id_sesion_usuario." 
-                                                 and reg_temp=false and user_create=".$alia->user_create." ; ");
                 
                 $data_search_adjunto_all = Madjunto::find_by_sql("SELECT id as id_adjunto
                                 FROM Madjuntos 
-                                                  WHERE status=1  
-                                                                 and reg_temp=true and mrequerimientos_id is null
-                                                                 and user_create=".$alia->user_create." ; ");
+                                WHERE status=1  
+                                                and reg_temp=true and mrequerimientos_id=0
+                                                and id_sesion_usuario=".$id_sesion_usuario." ; ");
 
-$data_credencial = Musuario::find_by_sql("SELECT email, clave_email 
-                      FROM Musuarios  WHERE status=1 and id=11"); 
-       foreach ($data_credencial as $user) {
-        $remitente=$user->email;
-        $clave_email=$user->clave_email;
-         }               
-                                  
-                foreach ($data_search_adjunto as $acti) {
-                  $num_solicitud=$acti->num_solicitud;
-                   }
-
+          
                    if($data_search_adjunto_all !=null){
                     foreach ($data_search_adjunto_all as $detalles_solicitud) {
                       $reg_2 = Madjunto::find($detalles_solicitud->id_adjunto);
             
-                        $reg->mrequerimientos_id = $num_solicitud;
+                        $reg_2->mrequerimientos_id = $num_solicitud;
                         $reg_2 ->reg_temp = 'false';
       
                         $reg_2 ->save();
               
                        }
                       }
+
+                      $data_credencial = Musuario::find_by_sql("SELECT email, clave_email 
+                                    FROM Musuarios  WHERE status=1 and id=11"); 
+                    foreach ($data_credencial as $user) {
+                      $remitente=$user->email;
+                      $clave_email=$user->clave_email;
+                      }    
 
 /////#############################################################################
 
@@ -755,7 +747,8 @@ $data_credencial = Musuario::find_by_sql("SELECT email, clave_email
                 $body             = preg_replace("~/~",'',$body);
                 $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
                 $mail->MsgHTML($body);
-                $mail->AddAddress($correo1);
+                // $mail->AddAddress($correo1);
+                $mail->AddAddress('yonnygr@gmail.com');
                 $mail->Send();
                 $mail->ClearAddresses();
                 $mail->ClearAttachments(); 
@@ -1437,9 +1430,10 @@ break;
               $body             = preg_replace("~/~",'',$body);
               $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
               $mail->MsgHTML($body);
-                $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');  
-                $mail->AddAddress('eventosempresariales2021@gmail.com');   
-                $mail->AddAddress($correo1);  
+              // $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');  
+              // $mail->AddAddress('eventosempresariales2021@gmail.com');   
+              // $mail->AddAddress($correo1);  
+              $mail->AddAddress('yonnygr@gmail.com');
  
 
               $mail->Send();
