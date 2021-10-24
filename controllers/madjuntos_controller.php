@@ -26,6 +26,7 @@ date_default_timezone_set('America/Bogota');
 @$id = ($_POST["idea"]);
 @$idea3 = ($_POST["regis3"]);
 @$guarda = ($_POST["guarda"]);
+@$editar = ($_POST["editar"]);
 
 
 
@@ -824,6 +825,8 @@ break;
 
  case 'permanente_adjuntado':
 
+  if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf")){
+
   @$comodin=$id."_".($_FILES['file']['name']);
   @$blanco=($_FILES['file']['name']);
   @$consulta1 = Madjuntado::find('all',array('conditions' => array('imagen=?',$comodin)));
@@ -874,6 +877,16 @@ break;
                   La imagen ['.$comodin.'] ya está incluida. cambie el nombre del archivo e intente de nuevo.
                   </div>';
   }
+}else{
+  echo'<div class="alert alert-danger alert-dismissable">
+                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                  <h4>
+                  <i class="icon fa fa-ban"></i>
+                  Alerta!
+                  </h4>
+                  El Formato del Archivo NO es Soportado !.
+                  </div>';
+}
     
   break;
 
@@ -883,7 +896,9 @@ break;
 
 
 case 'temporal_adjuntado':
-
+ 
+  if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf")){
+ 
   @$comodin=$id."_".($_FILES['file']['name']);
   @$blanco=($_FILES['file']['name']);
   @$consulta1 = Madjuntado::find('all',array('conditions' => array('imagen=?',$comodin)));
@@ -934,6 +949,16 @@ case 'temporal_adjuntado':
                   La imagen ['.$comodin.'] ya está incluida. cambie el nombre del archivo e intente de nuevo.
                   </div>';
   }
+}else{
+  echo'<div class="alert alert-danger alert-dismissable">
+        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+        <h4>
+        <i class="icon fa fa-ban"></i>
+        Alerta!
+        </h4>
+        El Formato del Archivo NO es Soportado !.
+        </div>';
+}
     
   break;
 
@@ -943,6 +968,12 @@ case 'temporal_adjuntado':
  #******************************************************************************
 
  case 'temporal_adjunto':
+
+  if (($tipo_archivo == "image/png") || ($tipo_archivo == "image/jpg") || ($tipo_archivo == "image/jpeg") || ($tipo_archivo == "application/pdf") ||
+          ($tipo_archivo == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")|| 
+          ($tipo_archivo == "application/vnd.ms-excel")||
+          ($tipo_archivo == "application/msword")||($tipo_archivo == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")){
+
 
   @$comodin=$id."_".($_FILES['file']['name']);
   @$blanco=($_FILES['file']['name']);
@@ -961,7 +992,7 @@ case 'temporal_adjuntado':
           ($tipo_archivo == "application/vnd.ms-excel")||
           ($tipo_archivo == "application/msword")||($tipo_archivo == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")){
 
-move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
+            move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
             @$nombre_imagen = $id."_".($_FILES['file']['name']);
           }
         }else{ //si no cargaron nada
@@ -970,7 +1001,16 @@ move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
         $tempo = new Madjunto();
 
         $tempo->imagen = $nombre_imagen;
-        $tempo->mrequerimientos_id = 0;
+        if($editar==1){
+          $tempo->mrequerimientos_id=$id;
+          $tempo->reg_temp = 'false';
+
+
+        }else{
+          $tempo->mrequerimientos_id = 0;
+
+        }
+
         $tempo->user_create = $usuario_id;
         $tempo->created = $hoy;
         $tempo->id_sesion_usuario = $id_sesion_usuario;
@@ -998,6 +1038,16 @@ move_uploaded_file($sourcePath,$targetPath) ; // Mover archivo subido
                   La imagen ['.$comodin.'] ya está incluida. cambie el nombre del archivo e intente de nuevo.
                   </div>';
   }
+}else{
+                  echo'<div class="alert alert-danger alert-dismissable">
+                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                  <h4>
+                  <i class="icon fa fa-ban"></i>
+                  Alerta!
+                  </h4>
+                  Archivo NO Soportado !.
+                  </div>';
+}
     
   break;
 

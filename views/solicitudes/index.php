@@ -39,12 +39,37 @@ include("../../lib/validar_session.php");
 							</tbody>
 						</table>
 				</div>
-				<div class="box-footer">
-					<button id="add" class="btn btn-primary" type="button"><i class="fa fa-fw fa-plus"></i> Agregar</button>
-				<button id="edit" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-pencil"></i> Editar</button> 
-					<button id="delete" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> Eliminar</button>
-					<button id="repo" class="btn btn-primary" type="button"><i class="fa fa-fw fa-eye"></i>Vista previa</button>
-				</div>
+				            <?php 
+							
+							if(($_SESSION['rolx']==5) ){
+						   
+						   ?>
+								<div class="box-footer">
+									<button id="operador" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-pencil"></i> Operador</button> 
+									<button id="exit" class="btn btn-primary" type="button"><i class="fa fa-fw fa-reply" ></i>Regresar</button> 
+
+
+								</div>
+
+								<?php 
+							 }
+							 else {   
+								?>
+
+								<div class="box-footer">
+									<button id="add" class="btn btn-primary" type="button"><i class="fa fa-fw fa-plus"></i> Nuevo</button>
+									<button id="edit" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-pencil"></i> Editar</button> 
+									<button id="repo" class="btn btn-primary" type="button"><i class="fa fa-fw fa-eye"></i>Vista</button>
+									<button id="delete" class="btn btn-primary" type="button"><i class="fa fa-fw fa-trash-o"></i> Quitar</button>
+									<button id="exit" class="btn btn-primary" type="button"><i class="fa fa-fw fa-reply" ></i>Regresar</button> 
+
+							    </div>
+														
+								<?php 
+								}
+
+						       ?>
+				
 			</div>
 		</div>
 </div>
@@ -53,29 +78,33 @@ include("../../lib/validar_session.php");
 <link rel="stylesheet" href="../../plugins/confirma/jquery-confirm.min.css" type="text/css"/>
  <script type="text/javascript">
 
-var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
-if ((desh==4)){
-	document.getElementById("delete").disabled=true;
-	document.getElementById("edit").disabled=true;
 
-}else if ((desh>3)){
-	document.getElementById("delete").disabled=true;
-	document.getElementById("edit").disabled=true;
-
-}
- 
 
 $(document).ready(function() {
+var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
-		var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
-		
-		if (desh==2){ //si el rol del usuario es SUPERVISOR...
 
-		}else{
+ if ((desh==4)){	
+	 document.getElementById("delete").disabled=true;
+	 document.getElementById("edit").disabled=true;
+	 document.getElementById('edit').style.display = 'none';	
+	 document.getElementById('delete').style.display = 'none';	
 
-		}
-		//deshabilitar edicion mientras se programa el modulo editar
-		//document.getElementById("edit").disabled=true;
+
+}else if ((desh==3)){	
+
+	 document.getElementById('delete').style.display = 'none';	
+	 document.getElementById('add').style.display = 'none';	
+
+
+
+}
+// else if ((desh==1)||(desh==2)||(desh==5)){	
+
+
+// }
+
+ 
 
 			var table = $('#tabla').dataTable({
 				
@@ -266,6 +295,28 @@ $(document).ready(function() {
      			}, 2000);
 			});
 
+			$('#operador').click( function () {
+				var value= table.$('tr.selected').children('td:first').text();
+				// value=parseFloa(value);
+				 //alert(value);
+				if(!value){
+
+						$.alert({
+						    title: '!Seleccione el registro a Visualizar !',
+						    content: false,
+						    confirmButton: true, // hides the confirm button.
+						    closeIcon: false,
+						    confirmButton: 'cerrar',
+						    confirmButtonClass: 'btn-success'
+						});
+
+				}else{
+
+					$(location).attr('href','frm_editar?record='+value);
+
+				}
+			} );
+
 			$('#edit').click( function () {
 				var value= table.$('tr.selected').children('td:first').text();
 				// value=parseFloa(value);
@@ -363,6 +414,34 @@ $(document).ready(function() {
 		return str.length < max ? pad("0" + str, max) : str;
 	
 	}
+
+
+$("#exit" ).click(function() {
+
+$.confirm({
+	title: '¿ Desea Abandonar esta Sección de Requerimientos ?',
+	content:false,
+	confirmButton: 'Si',
+	cancelButton: 'No',
+	confirmButtonClass: 'btn-primary',
+		cancelButtonClass: 'btn-success',
+
+	confirm: function(){
+		
+
+		setTimeout(function(){
+
+				  $(location).attr('href','../inicio/');
+
+		}, 1000);
+	},
+
+	cancel: function(){
+
+	}
+});				
+
+});
 </script>
 
 <?php include_once("../layouts/pie.php") ?>

@@ -126,6 +126,11 @@ $fecha5= date("d-m-Y",strtotime($fecha_actual."+ 10 days"));
 @$r_supe_dir = ($_POST["r_supe_dir"]);
 @$r_supe_obs_dir = ($_POST["r_supe_obs_dir"]);
 
+@$editar = ($_POST["editar"]);
+
+
+
+
 
 switch ($action){
 
@@ -536,8 +541,13 @@ break;
             }
             
             $to_total = str_replace("$ ", "", $to_total);
-         
-            $alia = new Msolicitude();
+            if($editar==1){
+              $alia = Msolicitude::find($id); 
+
+
+            }else{
+              $alia = new Msolicitude();
+            }
             $alia->nombre = $nombre;
             $alia->fecha1 = $hoy;
             $alia->hsoli = $hsoli;
@@ -1000,6 +1010,213 @@ break;
 }
 
   break;
+
+  #*******************************************************************************  
+  case 'edit_aprobacion':
+
+    session_start();
+    @$session = $_SESSION['idusuariox'];
+     
+    if(!$session){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable" >
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Su Sesión ha Caducado, Debe Loguearse Nuevamente !.
+          </div>');
+
+    }else if(($a_supe_dir==0) && ($r_supe_dir==0)){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable" >
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Debe Seleccionar Alguna Opción.
+          </div>');
+
+    }else if(($r_supe_obs_dir=="")&&($a_supe_obs_dir=="")){
+
+      $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable" >
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Debe Indicar Alguna Observación.
+          </div>');
+
+    }else{  //(A)
+
+          $hoy = date('d-m-Y');
+
+          
+ 
+          $envia_correo=false;     
+         
+         
+         
+          $alia = Msolicitude::find($id); 
+
+
+                        if($a_supe_dir==0){
+                          if($r_supe_dir==0){
+                            $a_supe_dir=0;
+                            $a_supe_obs_dir="";
+              
+                          }else{
+                            $a_supe_dir=2;
+                            
+                            $det_solicitud="SOLICITUD RECHAZADA";
+                              if($alia->a_supe_dir!=$a_supe_dir){
+                                $envia_correo=true;
+                              }
+              
+                          }  
+                        
+                        }else{
+                          $a_supe_dir=1;
+                          
+                          $det_solicitud="SOLICITUD AUTORIZADA";
+                            if($alia->a_supe_dir!=$a_supe_dir){
+                              $envia_correo=true;
+                            }
+                      
+                      }
+          ////******** */
+         
+          $alia->status = 1;
+
+
+          $alia->a_supe_dir = $a_supe_dir;
+          $alia->a_supe_obs_dir = $a_supe_obs_dir;
+
+
+          if($alia->save()){ // da el mensaje de guardado...
+           
+           
+         
+              if($envia_correo){
+
+                    $data_credencial = Musuario::find_by_sql("SELECT email, clave_email 
+                    FROM Musuarios  WHERE status=1 and id=11"); 
+                        foreach ($data_credencial as $user) {
+                        $remitente=$user->email;
+                        $clave_email=$user->clave_email;
+                        } 
+
+
+            $mail = new PHPMailer();
+            $mail->IsSMTP(); // telling the class to use SMTP
+            $mail->Host          = "smtp.gmail.com";
+            $mail->SMTPSecure = 'tls';
+            $mail->SMTPAuth      = true;                  // enable SMTP authentication
+            //A$mail->SMTPKeepAlive = true;                  // SMTP connection will not close after each email sent           
+            $mail->Port          = 587;                    // set the SMTP port for the GMAIL server
+            $mail->Username      = $remitente; // SMTP account username
+            $mail->Password      = $clave_email;         // SMTP account password
+            $mail->SetFrom('app.univictimas@gmail.com', 'UNIVICTIMAS');
+            $mail->AddReplyTo('app.univictimas@gmail.com', 'UNIVICTIMAS');
+            $mail->Subject       = $det_solicitud;
+            $body                = '<div class="container-fluid">
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>'.$det_solicitud.'</center></div>  
+                                    </div> 
+
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>NUMERO DE SOLICITUD SOLICITUD</center></div> 
+                                    <div class="col-sm-8"><left>'.$id.'</left></div> 
+                                    </div> 
+                                    <hr>
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>NOMBRE SOLICITUD</center></div> 
+                                    <div class="col-sm-8"><left>'.$nombre.'</left></div> 
+                                    </div> 
+                                    <hr>
+                                    
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>FECHA DEL EVENTO</center></div>
+                                    <div class="col-sm-8"><left>FECHA INICIO: '.$fecha2.'  FECHA FIN: '.$fecha3.'</left></div>  
+                                    </div> 
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>RESPONSABLE DEL EVENTO</center></div>
+                                    <div class="col-sm-8"><left> '.$rn_nombre1.' '.$rn_nombre2.' '.$rn_apellido1.'</left></div>  
+                                    </div> 
+                                    <hr>
+                                    
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>SUBDIRECCION RESPONSABLE</center></div>
+                                    <div class="col-sm-8"><left>'.$rt_nombre1.' '.$rt_nombre2.' '.$rt_apellido1.'</left></div>  
+                                    </div>
+                                    <hr>
+                                    
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>NUMERO DE PARTICIPANTES</center></div>
+                                    <div class="col-sm-8"><left>FUNCIONARIOS: '.$entidad.'  VICTIMAS: '.$num_vic.'</left></div>  
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>DESCRIPCION</center></div>
+                                    <div class="col-sm-8"><left>'.$descripcion.'</left></div>  
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center>RECOMENDACION</center></div>
+                                    <div class="col-sm-8"><left>'.$recomendaciones.'</left></div>  
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-sm-8"><center><strong>UNIVICTIMAS</strong></center></div>
+                                    </div>
+                                    </div>';
+              $body             = preg_replace("~/~",'',$body);
+              $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
+              $mail->MsgHTML($body);
+              $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');  
+              $mail->AddAddress('eventosempresariales2021@gmail.com');   
+              $mail->AddAddress($correo1);   
+
+              $mail->Send();
+              $mail->ClearAddresses();
+              $mail->ClearAttachments(); 
+           
+          }
+
+            
+              $respuesta = array('resultado'=>'ok','mensaje'=>'<div class="alert alert-success alert-dismissable">
+                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                  <h4>
+                  <i class="icon fa fa-check"></i>
+                  Alerta!
+                  </h4>
+                  Los datos han sido registrados exitosamente !.
+                  </div>');
+
+          }else{
+
+
+            $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
+                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                <h4>
+                <i class="icon fa fa-ban"></i>
+                Alerta!
+                </h4>
+                Error al registrar los datos.
+                </div>');
+
+
+          }
+
+      }
+          echo json_encode($respuesta);
+
+  break;
 #*******************************************************************************  
   case 'edit':
 
@@ -1215,9 +1432,7 @@ break;
          
           $alia = Msolicitude::find($id); 
           
-          /// *** VALIDACION PARA ENVIAR EL CORREO
-
-         // if(($a_supe!="")||($a_supe_dir!="")){
+      
 
                 if($a_supe==1){
                             $a_supe=1;
@@ -1431,8 +1646,7 @@ break;
               $mail->MsgHTML($body);
               $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');  
               $mail->AddAddress('eventosempresariales2021@gmail.com');   
-              $mail->AddAddress($correo1);  
- 
+              $mail->AddAddress($correo1);   
 
               $mail->Send();
               $mail->ClearAddresses();
@@ -1500,29 +1714,7 @@ case 'aprobar':
               Ingrese el primer apellido del responsable territorial.
               </div>');
   
-        }/*else if($rn_num_doc ==""){
-  
-          $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-              <h4>
-              <i class="icon fa fa-warning"></i>
-              Alerta!
-              </h4>
-              Ingrese el numero de documento del responsable territorial.
-              </div>');
-  
-        }*//*else if($tele2 ==""){
-  
-          $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-              <h4>
-              <i class="icon fa fa-warning"></i>
-              Alerta!
-              </h4>
-              Ingrese el número telefónico/celualar del responsable territorial.
-              </div>');
-  
-        }*/else if($correo2 == ""){
+        }else if($correo2 == ""){
   
           $respuesta = array('deslizador'=>'1','resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>

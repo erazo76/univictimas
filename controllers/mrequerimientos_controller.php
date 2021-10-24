@@ -4,7 +4,6 @@ session_start([
   'read_and_close' => true,
 ]);
 
-
 @$usuario_id = $_SESSION['idusuariox'];
 require_once '../mail/class.phpmailer.php';
 require_once '../mail/class.smtp.php';
@@ -407,13 +406,13 @@ case 'contar_id':
                
               $data_search_adjunto = Mrequerimiento::find_by_sql("SELECT max(id) as num_req 
                 FROM Mrequerimientos 
-                                  WHERE status=1 and id_sesion_usuario=$id_sesion_usuario
+                                  WHERE status=1 and id_sesion_usuario=".$id_sesion_usuario."
                                                  and reg_temp=false ; ");
 
               $data_search_adjunto_all = Madjuntado::find_by_sql("SELECT id as id_adjunto
               FROM Madjuntados 
                     WHERE status=1  
-                          and reg_temp=true and mrequerimientos_id=0 and id_sesion_usuario=$id_sesion_usuario ;");
+                          and reg_temp=true and mrequerimientos_id=0 and id_sesion_usuario=".$id_sesion_usuario." ;");
                      $num_req=0;
                     if($data_search_adjunto !=null){
                     
@@ -427,9 +426,9 @@ case 'contar_id':
                       $reg_2 = Madjuntado::find($detalles_requer->id_adjunto);
 
                         $reg_2->mrequerimientos_id = $num_req;
-                        $reg_2 ->reg_temp = 'false';
+                        $reg_2->reg_temp = 'false';
 
-                        $reg_2 ->save();
+                        $reg_2->save();
 
                       }
                       }
@@ -488,7 +487,7 @@ case 'contar_id':
                 $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
                 $mail->MsgHTML($body);
                 $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
-                $mail->AddAddress($correo1);
+               $mail->AddAddress($correo1);
                 $mail->Send();
                 $mail->ClearAddresses();
                 $mail->ClearAttachments(); 
@@ -709,9 +708,9 @@ case 'contar_id':
                                     </div>';
                             $body             = preg_replace("~/~",'',$body);
                             $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
-                            $mail->MsgHTML($body);
-                            $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');  
-                            $mail->AddAddress($correo1); 
+                            $mail->MsgHTML($body); 
+                            $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
+                            $mail->AddAddress($correo1);
                             $mail->Send();
                             $mail->ClearAddresses();
                             $mail->ClearAttachments(); 
@@ -1397,8 +1396,6 @@ break;
              echo json_encode($respuesta);
            }
   break;
-
-#*******************************************************************************
 
 
 #*******************************************************************************  

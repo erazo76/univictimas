@@ -224,7 +224,7 @@ ValidaSession("../login");
 						<div class="col-sm-6">
 							
 								<label for="fecha2">Fecha Inicio</label>
-								<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="14">
+								<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="14" readonly="true">
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha2' class="aaa"><p></p></div>
 													
 						</div>
@@ -232,7 +232,7 @@ ValidaSession("../login");
 						<div class="col-sm-6">
 							
 								<label for="fecha3">Fecha Final</label>
-								<input class="form-control bbb" id="fecha3" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="15">
+								<input class="form-control bbb" id="fecha3" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="15" readonly="true">
 								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha3' class="aaa"><p></p></div>
 													
 						</div>
@@ -695,14 +695,15 @@ ValidaSession("../login");
 											</div>
 											<label for="a_supe_obs_dir">observaciones</label>
 										<textarea class="form-control ccc" id="a_supe_obs_dir" rows="3" placeholder="Redacte sus observaciones"  onpaste="return true" tabindex="0"  onblur="alsalir(this.id);"    autocomplete="off"></textarea>
+										<button id="save_aprob" type="button" class="btn btn-primary btn-xs " tabindex="55" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
+
 										 
 																	
 										<?php 
 
 
 							 }
-							 else{
-							}
+							 
 							?>
 						</div>
 						</div><!-- /.box-body -->
@@ -1422,17 +1423,18 @@ ValidaSession("../login");
 
 var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
-// if ((desh!=2)){
-// 	document.getElementById("total_ejecutado").disabled=true;
 
-// }
+if ((desh==3)||(desh==5)){
+BloquearCampos();
+}
 
 
 $(document).ready(function() {
+
+
 	var ahora = new Date();
 	var hora = ahora.getHours() + ':' + ahora.getMinutes();
-	//alert(hora);
-              $('#hsoli').val(hora);
+    $('#hsoli').val(hora);
 
 
 setTimeout(function() {	
@@ -2209,22 +2211,7 @@ $("#izquierda" ).click(function() {
 			}
 		});
 
-		// $("#a_supe" ).change(function() {
-		// 	if( $('#a_supe').prop('checked')== true ) {
-		// 		$("#a_supe").val(1);  
-		// 	}else{
-		// 		$("#a_supe").val(0); 
-		// 	}
-		// });	
-		
-		// $("#a_supe_dir" ).change(function() {
-		// 	if( $('#a_supe_dir').prop('checked')== true ) {
-		// 		$("#a_supe_dir").val(1);  
-		// 	}else{
-		// 		$("#a_supe_dir").val(0); 
-		// 	}
-		// });	
-
+	
 		$("#aruta" ).change(function() {
 
 			if( $('#aruta').prop('checked')== true ) {
@@ -3122,11 +3109,93 @@ $("#izquierda" ).click(function() {
 				});
 		
 		//** enviar los datos al controlador ***********************************************************
+
+
+	
+		$('#save_aprob').click( function () {
+
+						var ideco2=parseInt($("#n_accion").val());
+
+
+						$.confirm({
+
+						title: '¿Está Seguro de Actualizar el Registro ?',
+						content:false,
+						confirmButton: 'Si',
+						cancelButton: 'No',
+						confirmButtonClass: 'btn-primary',
+							cancelButtonClass: 'btn-success',
+
+						confirm: function(){
+							
+							$.post( "../../controllers/msolicitudes_controller", {
+
+								action: "edit_aprobacion",
+								id:	$("#idea").val(),
+								a_supe_dir: $("#a_supe_dir").val(),
+								r_supe_dir: $("#r_supe_dir").val(),
+								a_supe_obs_dir: $("#a_supe_obs_dir").val()
+								
+								}).done(function(data){
+
+								var parsedJson = $.parseJSON(data);
+								$(".message").html(parsedJson.mensaje);
+
+								switch(parsedJson.deslizador){
+
+									case "1":
+										$('.base').unslider('animate:0');
+										tick=0;
+										document.getElementById('izquierda').disabled = true;
+										$("#izquierda").css("display", "none");
+										document.getElementById('derecha').disabled = false;
+										$("#derecha").css("display", "block");
+									break;
+
+									case "2":
+										$('.base').unslider('animate:1');
+										tick=1;
+										document.getElementById('izquierda').disabled = false;
+										$("#izquierda").css("display", "block");
+										document.getElementById('derecha').disabled = true;
+										$("#derecha").css("display", "none");
+									break;
+
+								}
+
+								if(parsedJson.resultado != 'error'){
+
+									$('.base').unslider('animate:0');
+										setTimeout(function(){
+											$(location).attr('href','./');								
+
+											}, 1500);
+
+												}
+
+											},"json");
+
+												
+										},
+
+							cancel: function(){
+
+							}
+							});
+
+
+						});	
+
+
 		$('#save').click( function () {
+
+
+           var ideco2=parseInt($("#n_accion").val());
+
        
          $.confirm({
 
-			title: '¿Esta Seguro de Actualizar el Registro ?',
+			title: '¿Está Seguro de Actualizar el Registro ?',
 			content:false,
 			confirmButton: 'Si',
 			cancelButton: 'No',
@@ -3254,15 +3323,9 @@ $("#izquierda" ).click(function() {
 
 					if(parsedJson.resultado != 'error'){
 
-						
-
 						$('.base').unslider('animate:0');
-							//valore=$("#ideado").val();
-							//alert(valore);
 					    	setTimeout(function(){
-
-								var ideco2=parseInt($("#n_accion").val());
-								   $(location).attr('href','frm_reportar?record='+ideco2);
+								$(location).attr('href','./');								
 
 					              }, 1500);
 
@@ -3382,7 +3445,6 @@ $("#izquierda" ).click(function() {
 										$(this).addClass('selected');
 									}
 								});
-
 
 		$.post( "../../controllers/msolicitudes_controller", { action: "search",record:<?php echo intval($_GET["record"]); ?>}).done(function( data ) {
         //alert($(data).val());
@@ -3531,7 +3593,7 @@ if ((rol==3)||(rol==3)){
 	   }
 }
 
-	   /// FIn Validaciones Nivel e Aprobaciones
+	   /// Fin Validaciones Nivel e Aprobaciones
 
 				$("#a_supe" ).click(function() {
 						if( $('#a_supe').prop('checked')== true ) {
@@ -4324,8 +4386,29 @@ function esnombre4(e) {
 //************************************************************************
 
 
+function esentidad(e) {
 
-			function esentidad(e) {
+k = (document.all) ? e.keyCode : e.which;
+if (k == 8 || k == 0 || k == 13) return true;
+patron = /^[0-9]$/;
+n = String.fromCharCode(k);
+
+if (patron.test(n) == '') {
+
+	document.getElementById('ms_entidad').style.display = 'block';
+	document.getElementById("ms_entidad").innerHTML = 'Use solo números';
+	return patron.test(n);
+
+} else {
+
+	document.getElementById("ms_entidad").innerHTML = '';
+	return patron.test(n);
+
+}
+
+}
+
+			function esentidad_OLD(e) {
 
 				k = (document.all) ? e.keyCode : e.which;
 				if (k==8 || k==0 || k==13) return true;
@@ -4601,6 +4684,62 @@ function esidaccion(e) {
 
 		return numero;
 	}
+	function Reporte(id){
+
+		var wind=   window.open('../../Reportes/reportes/univictimas/rreportar.php?n_solicitud='+id,"Reporte","menubar=0,resizable=0,width=200,height=200");
+         wind.moveTo(0,0);
+
+	}
+
+	function BloquearCampos(){
+		
+		document.getElementById('agregar').style.display = 'none';
+		document.getElementById('quitar').style.display = 'none';	
+		document.getElementById('save').style.display = 'none';	
+		document.getElementById('anex').style.display = 'none';	
+
+		document.getElementById("agregar").disabled = true;
+		document.getElementById("quitar").disabled = true;
+		document.getElementById("save").disabled = true;
+		document.getElementById("anex").disabled = true;
+
+
+		document.getElementById("nombre").disabled = true;
+		document.getElementById("departamento").disabled = true;
+		document.getElementById("municipio").disabled = true;
+		document.getElementById("fecha2").disabled = true;
+		document.getElementById("fecha3").disabled = true;
+		document.getElementById("hora1").disabled = true;
+		document.getElementById("hora2").disabled = true;
+		document.getElementById("rn_nombre1").disabled = true;
+		document.getElementById("rn_nombre2").disabled = true;
+		document.getElementById("rn_apellido1").disabled = true;
+		document.getElementById("rn_apellido2").disabled = true;
+		document.getElementById("tele2").disabled = true;
+		document.getElementById("correo2").disabled = true;
+		document.getElementById("save").disabled = true;
+
+		document.getElementById("grup_financ").disabled = true;
+		document.getElementById("grupo").disabled = true;
+		document.getElementById("rt_nombre1").disabled = true;
+		document.getElementById("rt_nombre2").disabled = true;
+		document.getElementById("rt_apellido1").disabled = true;
+		document.getElementById("rt_apellido2").disabled = true;
+		document.getElementById("tele1").disabled = true;
+		document.getElementById("correo1").disabled = true;
+
+		document.getElementById("modalidad_evento").disabled = true;
+		document.getElementById("tipo1").disabled = true;
+		document.getElementById("entidad").disabled = true;
+		document.getElementById("num_vic").disabled = true;
+		document.getElementById("descripcion").disabled = true;
+		document.getElementById("recomendaciones").disabled = true;
+		document.getElementById("alojamiento").disabled = true;
+		document.getElementById("transporte").disabled = true;
+		document.getElementById("presup").disabled = true;
+		document.getElementById("total_ejecutado").disabled = true;
+		document.getElementById("plan_accion").disabled = true;
+ }
 			
 
 

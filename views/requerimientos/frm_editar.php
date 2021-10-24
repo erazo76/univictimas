@@ -2032,7 +2032,7 @@ $("#izquierda" ).click(function() {
 
 		//** enviar los datos al controlador ***********************************************************
 		$("#save").click(function() {
-				
+			document.getElementById('save').disabled = true;
 				$.post( "../../controllers/mrequerimientos_controller", {
 
 					action: "add_edit",
@@ -2077,7 +2077,7 @@ $("#izquierda" ).click(function() {
 					if(parsedJson.resultado != 'error'){
 				
 					    	setTimeout(function(){
-
+								document.getElementById('save').disabled = false;
 								$(location).attr('href','index');
 
 					        }, 1500);
@@ -2085,6 +2085,8 @@ $("#izquierda" ).click(function() {
 					}
 
 				},"json");
+				document.getElementById('save').disabled = false;
+
 
 		});//end save
 

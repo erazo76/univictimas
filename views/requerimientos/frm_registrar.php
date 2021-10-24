@@ -1941,7 +1941,7 @@ $("#izquierda" ).click(function() {
 		//** enviar los datos al controlador ***********************************************************
 		$("#save" ).click(function() {
 				//alert($("#t_trans").val());	
-				// document.getElementById('save').disabled = true;
+				 document.getElementById('save').disabled = true;
 			
 				$.post( "../../controllers/mrequerimientos_controller", {
 
@@ -1982,7 +1982,6 @@ $("#izquierda" ).click(function() {
 					costo_total: $("#costo_total").val()
 
 				}).done(function(data){
-					// document.getElementById('save').disabled = true;
 					var parsedJson = $.parseJSON(data);
 					$(".message").html(parsedJson.mensaje);
 
@@ -1990,19 +1989,19 @@ $("#izquierda" ).click(function() {
 
 					    	setTimeout(function(){
 
+								document.getElementById('save').disabled = false;
 								$(location).attr('href','frm_registrar');
 
 					        }, 1500);	
 
 					}
+					document.getElementById('save').disabled = false;
+
 
 				},"json");
 
+
 		});//end save
-
-
-//################################  VALIDACIONES############################################
-
 
 
 //############################################################################
@@ -2032,7 +2031,6 @@ function menor(){
 }
 //################################  VALIDACIONES  ############################################
 
-          //****longitud de campos********************************************
 
 	$(function(){
 

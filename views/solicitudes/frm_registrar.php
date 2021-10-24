@@ -47,6 +47,7 @@ session_start();
 						<input type="hidden" id="v_naci" value=0>
 						<input type="hidden" id="v_func" value=0>
 						<input type="hidden" id="v_supe" value=0>
+						<input type="hidden" id="edit" value=0>
 
 
 						<div class="box-body">
@@ -131,27 +132,31 @@ session_start();
 								<select name="munir" id="municipio" class="form-control bbb" tabindex="6">
 									<option></option>
 								</select>
+
+								
 							</div>
-
-							<!--<div class="form-group-sm">
-								<label>Centro Poblado</label>
-								<select id="cpoblado" class="form-control bbb" tabindex="7">
-								<option></option>
-								</select>
-							</div>-->
-
-
+                            
 
 						</div>
 
+						<div class="form-group-sm"> 
+						<button id="salir" type="button" class="btn btn-primary btn-xs sm pull-right"  ><i class="fa fa-fw fa-reply" ></i>Salir</button> 					
+						<button id="visprev" type="button" class="btn btn-primary btn-xs sm pull-right"><i class="fa fa-fw fa-eye" ></i>Ver</button>
+						<button id="editar" type="button" class="btn btn-success btn-xs sm pull-right"><i class="fa fa-fw fa-pencil" ></i>Editar</button>
+						<button id="new" type="button" class="btn btn-success btn-xs sm pull-right" ><i class="fa fa-fw fa-plus" ></i>Nuevo</button>
+
+
+
+						
+							</div>
+
 					</div>
+					
 
 		
 				</div>
 
 				<div class="col-md-4">
-
-
 
 					<div class="box-header with-border">
 						<h3 class="box-title">Inicio y Final del Evento</h3>
@@ -166,7 +171,7 @@ session_start();
 									<div class="col-sm-6">
 
 										<label for="fecha2">Fecha Inicio</label>
-										<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="14">
+										<input class="form-control bbb" id="fecha2" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="14" readonly="true">
 										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha2' class="aaa">
 											<p></p>
 										</div>
@@ -176,7 +181,7 @@ session_start();
 									<div class="col-sm-6">
 
 										<label for="fecha3">Fecha Final</label>
-										<input class="form-control bbb" id="fecha3" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="15">
+										<input class="form-control bbb" id="fecha3" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="15" readonly="true">
 										<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha3' class="aaa">
 											<p></p>
 										</div>
@@ -1366,9 +1371,20 @@ session_start();
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		document.getElementById('visprev').style.display = 'none';
+		document.getElementById('salir').style.display = 'none';	
+		document.getElementById('new').style.display = 'none';	
+		document.getElementById('editar').style.display = 'none';	
+
+		document.getElementById("visprev").disabled = true;
+		document.getElementById("salir").disabled = true;
+		document.getElementById("new").disabled = true;
+		document.getElementById("editar").disabled = true;
+		document.getElementById("edit").value = 0;
+
+
 		var ahora = new Date();
 		var hora = ahora.getHours() + ':' + ahora.getMinutes();
-		//document.getElementById("total_ejecutado").disabled=true;
 
 		$('#hsoli').val(hora);
 		
@@ -2355,7 +2371,7 @@ session_start();
 
 
 	$("#close1").click(function() {
-		var ideco2 = $("#ideado").val();
+
 		$.post("../../controllers/mdetalles_controller", {
 			action: "detalles_temporal",
 			idea: $('#ideado').val(),
@@ -2365,7 +2381,8 @@ session_start();
 			cantidad: $('#d_cantidad').val(),
 			medida: $('#d_medida').val(),
 			costo: $('#d_costo').val(),
-			observaciones: $('#d_obs').val()
+			observaciones: $('#d_obs').val(),
+			editar: $("#edit").val()
 
 
 		}).done(function(data) {
@@ -2384,20 +2401,24 @@ session_start();
 					$("#d_medida").val(null);
 					$("#d_obs").val(null);
 					$("#d_costo").val(null);
-					//Pendiente de esta parte
+
+					$("#tarifario").val(null);
+					$("#dia").val(null);
+					$("#tipo_tarifario").val(null);
+					$("#concepto").val(null);
+					
+
+
+
 					$('#tabla').DataTable().ajax.reload();
 					$(".alert").alert('close');
 					$('#modal1').modal('toggle');
 					$("#agregar").focus();
 
-					$.post("../../controllers/mdetalles_controller", {
-						action: "sumar_costo_temporal",
-						idea
-					}).done(function(data) {
+					$.post("../../controllers/mdetalles_controller",{action: "sumar_costo_temporal",idea}).done(function(data) {
 						var parsedJson = $.parseJSON(data);
 						var cos_tot = parsedJson;
 						cos_tot = formato_numero(cos_tot, 2, ',', '.');
-						//$("#totalite").val(cos_tot);
 						$("#totalite").val('$ '+cos_tot);
 
 					}, "json");
@@ -2573,10 +2594,11 @@ session_start();
 		formData.append('file', $('input[type=file]')[0].files[0]);
 		formData.append('action', 'temporal_adjunto');
 		formData.append('idea', $("#ideado").val());
+		formData.append('editar', $("#edit").val());
 
 		$.ajax({
 			url: "../../controllers/madjuntos_controller",
-			type: "POST",
+			type: "POST",			
 			data: formData,
 			contentType: false,
 			cache: false,
@@ -3276,16 +3298,14 @@ session_start();
 		});
 
 	});
-
 	
 
 	//** enviar los datos al controlador ***********************************************************
 
 	$('#save').click( function () {
-   
 		$.confirm({
 
-					title: '¿Esta Seguro de Guarar el Registro ?',
+					title: '¿Esta Seguro de Guardar el Registro ?',
 					content:false,
 					confirmButton: 'Si',
 					cancelButton: 'No',
@@ -3293,6 +3313,7 @@ session_start();
 						cancelButtonClass: 'btn-success',
 
 					confirm: function(){
+						document.getElementById('save').disabled = true;
 						$.post("../../controllers/msolicitudes_controller", {
 
 								action: "add",
@@ -3366,8 +3387,8 @@ session_start();
 								grup_financ: $("#grup_financ").val(),
 								total_ejecutado: $("#total_ejecutado").val(),
 								modalidad_evento: $("#modalidad_evento").val(),
-								plan_accion: $("#plan_accion").val()
-
+								plan_accion: $("#plan_accion").val(),
+                                editar: $("#edit").val()
 										}).done(function(data) {
 										// document.getElementById('save').disabled = false;
 										var parsedJson = $.parseJSON(data);
@@ -3399,17 +3420,22 @@ session_start();
 
 
 											$('.base').unslider('animate:0');
-											valore = $("#ideado").val();
-											var cond_doc='REG';
-											setTimeout(function() {
+											
+											setTimeout(function() {												
+												var b= BloquearCampos();
+												var a= Activar();
+												$(".alert").alert('close');
+											}, 3000);
 
-												$(location).attr('href', 'frm_reportar?record=' + valore+'&cond_doc='+cond_doc);
-
-											}, 1500);
 
 											}
+											document.getElementById('save').disabled = false;
+											
 
-											}, "json");				
+
+											}, "json");		
+											
+		
 					
 					},
 
@@ -4133,7 +4159,7 @@ session_start();
 
 
 
-	function esentidad(e) {
+	function esentidad_old(e) {
 
 		k = (document.all) ? e.keyCode : e.which;
 		if (k == 8 || k == 0 || k == 13) return true;
@@ -4154,6 +4180,28 @@ session_start();
 		}
 
 	}
+
+	function esentidad(e) {
+
+k = (document.all) ? e.keyCode : e.which;
+if (k == 8 || k == 0 || k == 13) return true;
+patron = /^[0-9]$/;
+n = String.fromCharCode(k);
+
+if (patron.test(n) == '') {
+
+	document.getElementById('ms_entidad').style.display = 'block';
+	document.getElementById("ms_entidad").innerHTML = 'Use solo números';
+	return patron.test(n);
+
+} else {
+
+	document.getElementById("ms_entidad").innerHTML = '';
+	return patron.test(n);
+
+}
+
+}
 
 
 	//************************************************************************/
@@ -4432,6 +4480,165 @@ session_start();
 
 		return numero;
 	}
+
+	$("#visprev").click(function() {
+
+		var id_sol=parseInt($("#n_accion").val());
+
+      window.open("../../Reportes/reportes/univictimas/rreportar.php?n_solicitud="+id_sol,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");	
+
+
+	});
+	$("#new").click(function() {
+		var control= Bloquear();
+		$(location).attr('href','frm_registrar');
+
+
+	});
+	$("#salir").click(function() {
+		$(location).attr('href','./');
+
+
+	});
+	$("#editar").click(function() {
+		
+		document.getElementById("save").disabled = false;	
+
+		document.getElementById('izquierda').disabled = true;
+		$("#izquierda").css("display", "none");
+		document.getElementById('derecha').disabled = false;
+		$("#derecha").css("display", "block");
+		Bloquear();
+		HabilitarCampos();
+		document.getElementById('edit').value = 1;
+	});
+
+	function Bloquear(){
+		document.getElementById("visprev").disabled = true;
+		document.getElementById("salir").disabled = true;
+		document.getElementById("new").disabled = true;
+		document.getElementById("editar").disabled = true;
+
+		document.getElementById('visprev').style.display = 'none';
+		document.getElementById('salir').style.display = 'none';	
+		document.getElementById('new').style.display = 'none';
+		document.getElementById('editar').style.display = 'none';
+
+
+
+}
+	function Activar(){
+	
+		document.getElementById('visprev').style.display = 'block';
+		document.getElementById('salir').style.display = 'block';	
+		document.getElementById('new').style.display = 'block';
+		document.getElementById('editar').style.display = 'block';
+
+		document.getElementById("visprev").disabled = false;
+		 document.getElementById("salir").disabled = false;
+		document.getElementById("new").disabled = false;
+		document.getElementById("editar").disabled = false;
+
+		$('.base').unslider('animate:0');
+		tick = 0;
+		document.getElementById('izquierda').disabled = true;
+		$("#izquierda").css("display", "none");
+		document.getElementById('derecha').disabled = true;
+		$("#derecha").css("display", "none");
+
+
+}
+
+	function BloquearCampos(){
+		
+		document.getElementById('visprev').style.display = 'none';
+		document.getElementById('salir').style.display = 'none';	
+		document.getElementById('new').style.display = 'none';	
+		document.getElementById('editar').style.display = 'none';	
+
+		document.getElementById("visprev").disabled = true;
+		document.getElementById("salir").disabled = true;
+		document.getElementById("new").disabled = true;
+		document.getElementById("editar").disabled = true;
+		document.getElementById("edit").value = 0;
+
+
+		document.getElementById("nombre").disabled = true;
+		document.getElementById("departamento").disabled = true;
+		document.getElementById("municipio").disabled = true;
+		document.getElementById("fecha2").disabled = true;
+		document.getElementById("fecha3").disabled = true;
+		document.getElementById("hora1").disabled = true;
+		document.getElementById("hora2").disabled = true;
+		document.getElementById("rn_nombre1").disabled = true;
+		document.getElementById("rn_nombre2").disabled = true;
+		document.getElementById("rn_apellido1").disabled = true;
+		document.getElementById("rn_apellido2").disabled = true;
+		document.getElementById("tele2").disabled = true;
+		document.getElementById("correo2").disabled = true;
+		document.getElementById("save").disabled = true;
+
+		document.getElementById("grup_financ").disabled = true;
+		document.getElementById("grupo").disabled = true;
+		document.getElementById("rt_nombre1").disabled = true;
+		document.getElementById("rt_nombre2").disabled = true;
+		document.getElementById("rt_apellido1").disabled = true;
+		document.getElementById("rt_apellido2").disabled = true;
+		document.getElementById("tele1").disabled = true;
+		document.getElementById("correo1").disabled = true;
+
+		document.getElementById("modalidad_evento").disabled = true;
+		document.getElementById("tipo1").disabled = true;
+		document.getElementById("entidad").disabled = true;
+		document.getElementById("num_vic").disabled = true;
+		document.getElementById("descripcion").disabled = true;
+		document.getElementById("recomendaciones").disabled = true;
+		document.getElementById("alojamiento").disabled = true;
+		document.getElementById("transporte").disabled = true;
+		document.getElementById("presup").disabled = true;
+		document.getElementById("total_ejecutado").disabled = true;
+		document.getElementById("plan_accion").disabled = true;
+ }
+function HabilitarCampos(){
+		
+	    document.getElementById("nombre").disabled = false;
+		document.getElementById("departamento").disabled = false;
+		document.getElementById("municipio").disabled = false;
+		document.getElementById("fecha2").disabled = false;
+		document.getElementById("fecha3").disabled = false;
+		document.getElementById("hora1").disabled = false;
+		document.getElementById("hora2").disabled = false;
+		document.getElementById("rn_nombre1").disabled = false;
+		document.getElementById("rn_nombre2").disabled = false;
+		document.getElementById("rn_apellido1").disabled = false;
+		document.getElementById("rn_apellido2").disabled = false;
+		document.getElementById("tele2").disabled = false;
+		document.getElementById("correo2").disabled = false;
+		document.getElementById("save").disabled = false;
+
+		document.getElementById("grup_financ").disabled = false;
+		document.getElementById("grupo").disabled = false;
+		document.getElementById("rt_nombre1").disabled = false;
+		document.getElementById("rt_nombre2").disabled = false;
+		document.getElementById("rt_apellido1").disabled = false;
+		document.getElementById("rt_apellido2").disabled = false;
+		document.getElementById("tele1").disabled = false;
+		document.getElementById("correo1").disabled = false;
+
+		document.getElementById("modalidad_evento").disabled = false;
+		document.getElementById("tipo1").disabled = false;
+		document.getElementById("entidad").disabled = false;
+		document.getElementById("num_vic").disabled = false;
+		document.getElementById("descripcion").disabled = false;
+		document.getElementById("recomendaciones").disabled = false;
+		document.getElementById("alojamiento").disabled = false;
+		document.getElementById("transporte").disabled = false;
+		document.getElementById("presup").disabled = false;
+		document.getElementById("total_ejecutado").disabled = false;
+		document.getElementById("plan_accion").disabled = false;
+}
+
+							
 </script>
 
 
