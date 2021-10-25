@@ -46,6 +46,7 @@ include("../../lib/validar_session.php");
 						   ?>
 								<div class="box-footer">
 									<button id="operador" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-pencil"></i> Operador</button> 
+									<button id="repo" class="btn btn-primary" type="button"><i class="fa fa-fw fa-eye"></i>Vista</button>
 									<button id="exit" class="btn btn-primary" type="button"><i class="fa fa-fw fa-reply" ></i>Regresar</button> 
 
 
