@@ -758,6 +758,7 @@ break;
                 $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
                 $mail->MsgHTML($body);
                 $mail->AddAddress($correo1);
+                $mail->AddAddress($correo2);                
                 $mail->Send();
                 $mail->ClearAddresses();
                 $mail->ClearAttachments(); 
@@ -1646,7 +1647,8 @@ break;
               $mail->MsgHTML($body);
               $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');  
               $mail->AddAddress('eventosempresariales2021@gmail.com');   
-              $mail->AddAddress($correo1);   
+              $mail->AddAddress($correo1);  
+              $mail->AddAddress($correo2); 
 
               $mail->Send();
               $mail->ClearAddresses();
