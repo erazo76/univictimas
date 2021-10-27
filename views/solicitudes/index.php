@@ -87,8 +87,6 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
  if ((desh==4)){	
 	 document.getElementById("delete").disabled=true;
-	 document.getElementById("edit").disabled=true;
-	 document.getElementById('edit').style.display = 'none';	
 	 document.getElementById('delete').style.display = 'none';	
 
 
@@ -117,7 +115,6 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 				  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
 
                 //   $responsable=mData.responsable;
-
 				   //alert( mData);break;
 
 					if ((mData.a_supe_dir)== 1){
@@ -179,7 +176,7 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 							{ "data": "userupdate" },
 							{ "data": "responsable" },
 							{ "data": "resp_aprob" },
-							{ "data": "aprobado" }
+							{ "data": "a_supe" }
 						],
 						fixedColumns: false,
 						"aoColumnDefs": [
@@ -257,35 +254,6 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 				}
 			} );
 
-		/*	$('#tabla tbody').on( 'dblclick', 'tr', function () {
-
-					table.$('tr.selected').removeClass('selected');
-					$(this).addClass('selected');
-
-				var value= table.$('tr.selected').children('td:first').text();
-				//var completo=table.$('tr.selected').children('td:last').text();
-
-
-				if(!value){
-
-						$.confirm({
-						    title: '¡Seleccione el registro a editar !', // hides the title.
-						    cancelButton: false, // hides the cancel button.
-						    confirmButton: true, // hides the confirm button.
-						    closeIcon: false,
-						    confirmButton: 'cerrar',
-						    confirmButtonClass: 'btn-success',
-						    content: false// hides content block.
-						});
-
-				}else{
-
-					$(location).attr('href','frm_editar?record='+value);
-
-				}
-
-
-			} );*/
 
 
 			$("#add" ).click(function() {
@@ -320,8 +288,8 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
 			$('#edit').click( function () {
 				var value= table.$('tr.selected').children('td:first').text();
-				// value=parseFloa(value);
-				 //alert(value);
+				var control=table.$('tr.selected').children('td:last').text();
+			
 				if(!value){
 
 						$.alert({
@@ -333,9 +301,30 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 						    confirmButtonClass: 'btn-success'
 						});
 
-				}else{
+				}else{ 
+					   if (desh!=4){
+					            $(location).attr('href','frm_editar?record='+value);
 
-					$(location).attr('href','frm_editar?record='+value);
+                                }else{ 
+									if (control!=2){
+
+
+							
+
+													$.alert({
+													title: '!Usted No tiene Permisos de Modificar esta Solicitud ! !',
+													content: false,
+													confirmButton: true, // hides the confirm button.
+													closeIcon: false,
+													confirmButton: 'cerrar',
+													confirmButtonClass: 'btn-success'
+												});
+					              }else{
+									$(location).attr('href','frm_editar?record='+value);
+ 
+								  }
+								}
+
 
 				}
 			} );
@@ -385,6 +374,8 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
 			$('#repo').click( function () {
 				var value= table.$('tr.selected').children('td:first').text();
+				
+				
 				
 				if(!value){
 

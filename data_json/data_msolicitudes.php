@@ -87,9 +87,9 @@ session_start();
 								"usercreate"=>$usercreated, 
 								"updated"=>$updated, 
 								"userupdate"=>$userupdate, 
-								"resp_aprob"=>$resp_aprob, 
-								"aprobado"=>$rs->completado,
+								"resp_aprob"=>$resp_aprob, 								
 								"a_supe"=>$rs->a_supe,
+								"aprobado"=>$rs->completado,
 								"a_supe_dir"=>$rs->a_supe_dir
 
 																								
