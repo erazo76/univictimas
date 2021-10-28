@@ -114,13 +114,7 @@ ValidaSession("../login");
 
 						</div>
 
-						<!--<div class="box-body">
-
-							<div class="form-group-sm">
-								<label>Asignado por:</label>
-								<input type="text" class="form-control bbb" id="rt_nombre2" value="<?php echo($_SESSION['nombresx']); ?>"  onpaste="return false"  onblur="alsalir(this.id)"  autocomplete="off" disabled="true">
-							</div>
-						</div>-->
+						
 						<div class="box-footer">
 						</div>
 
@@ -177,8 +171,7 @@ ValidaSession("../login");
 								</div> -->
 															
 								<?php 
-							 }else{
-							}
+							 }
 							?>
 							</div>
 						<!--<label>Nombre(s) y Apellido(s)</label>
@@ -454,9 +447,6 @@ ValidaSession("../login");
   </div>
 </form>                   
 </div>
-
-
-
 <script language="JavaScript" src="../../plugins/maxLength/maxLength.js"></script>
 <script type="text/javascript" src="../../plugins/datepicker/bootstrap-datepicker.js"></script>
 <script src="../../plugins/datepicker/locales/bootstrap-datepicker.es.js" charset="UTF-8"></script>
@@ -468,10 +458,6 @@ ValidaSession("../login");
 <script src="../../plugins/leaflet/leaflet.js"></script>
 <script src="../../plugins/leaflet/leaflet.label.js"></script>
 
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAq8g7WPAx_OtQaQNzYPvexnbbV50CDf0o" async defer></script>
-<script src="../../plugins/leaflet/gmaps.js"></script>
-
-<script src="../../plugins/leaflet/Leaflet.GoogleMutant.js"></script>-->
 
 <script src="../../plugins/select3/bootstrap-select.min.js"></script>
 <script src="../../plugins/select3/i18n/defaults-es_ES.min.js"></script>
@@ -486,27 +472,17 @@ ValidaSession("../login");
 
  <script type="text/javascript">
 
+
 $(document).ready(function() {
 
+	var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
+
+if (desh==6){
+BloquearCampos();
+}
+
 	document.getElementById("anex").disabled=false;
-	/*$.post( "../../controllers/mdetalles_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-	$.post( "../../controllers/mvictimas_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
-	$.post( "../../controllers/madjuntos_controller", { action: "search_act_delete"}).done(function( data ) {},"json");
 
-	$.post( "../../controllers/mrequerimientos_controller", { action: "contar_id"}).done(function( data ) {
-		var parsedJson = $.parseJSON(data);
-		var numstring=parsedJson.toString();
-		var res = numstring.padStart(4, 0);
-//alert(parsedJson);
-		$("#n_accion").val( res );
-		$("#ideado").val( numstring );
-	},"json");
-
-	$.post( "../../controllers/mdetalles_controller", { action: "sumar_costo"}).done(function( data ) {
-		var parsedJson = $.parseJSON(data);
-		var cos_tot=parsedJson;
-		$("#totalite").val( cos_tot );
-	},"json");*/
 
 		$("#izquierda").css("display", "none");
 
@@ -548,7 +524,7 @@ $(document).ready(function() {
 					
 					 $("#region").val( parsedJson );	
 		
-					alert($("#region").val());
+					// alert($("#region").val());
 
 				});				
 				
@@ -581,6 +557,9 @@ $(document).ready(function() {
 		$("#fecha1").val(parsedJson.fecha1);
 		$("#fecha2").val(parsedJson.fecha2);
 		$("#costo_total").val(parsedJson.costo_total);
+		if (desh!=6){
+
+
 		$("#a_supe").val(parsedJson.a_supe);
 		$("#a_supeo").val(parsedJson.a_supeo);
 
@@ -601,6 +580,7 @@ $(document).ready(function() {
 				document.getElementById('a_supe').checked = false;
 				document.getElementById('r_supe').checked = true;
 	   }
+	}
 
 		var bdep =parsedJson.departamento;
 		var bmun =parsedJson.municipio;
@@ -3018,6 +2998,20 @@ function esidaccion(e) {
 		}
 
 }
+
+function BloquearCampos(){
+		
+		document.getElementById('save').style.display = 'none';
+		document.getElementById('agregar').style.display = 'none';	
+		document.getElementById('quitar').style.display = 'none';
+
+		 document.getElementById("departamento").disabled = true;
+		 document.getElementById("municipio").disabled = true;
+		 document.getElementById("cpoblado").disabled = true;
+		 
+		 document.getElementById("fecha2").disabled = true;
+	 	 document.getElementById("costo_total").disabled = true;
+ }
 //************************************************************************/
 
 			function readURL(input) {
@@ -3032,6 +3026,9 @@ function esidaccion(e) {
 					reader.readAsDataURL(input.files[0]);
 				}
 			}
+
+
+			
 
  </script>
  <?php include_once("../layouts/pie.php") ?>

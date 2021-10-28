@@ -98,10 +98,11 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
 
 }
-// else if ((desh==1)||(desh==2)||(desh==5)){	
+ else if (desh==6){	
+	document.getElementById('delete').style.display = 'none';	
+	 document.getElementById('add').style.display = 'none';	
 
-
-// }
+ }
 
  
 

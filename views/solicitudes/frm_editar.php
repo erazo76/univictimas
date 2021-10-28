@@ -1424,7 +1424,7 @@ ValidaSession("../login");
 var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
 
-if ((desh==3)||(desh==5)){
+if ((desh==3)||(desh==5)||(desh==6)){
 BloquearCampos();
 }
 

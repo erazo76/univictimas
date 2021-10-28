@@ -52,11 +52,14 @@ ValidaSession("../login");
 
 		var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 		
-		if (desh==2){ //si el rol del usuario es SUPERVISOR...
+		// if (desh==6){ //si el rol del usuario es AUDITOR...
+		// 	document.getElementById('delete').style.display = 'none';	
+	    //     document.getElementById('add').style.display = 'none';	
 
-		}else{
 
-		}
+		// }else{
+
+		// }
 		//deshabilitar edicion mientras se programa el modulo editar
 		document.getElementById("see").disabled=false;
 
