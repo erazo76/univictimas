@@ -1132,7 +1132,7 @@ break;
 
                                     <hr>
                                     <div class="row">
-                                    <div class="col-sm-8"><center>NUMERO DE SOLICITUD SOLICITUD</center></div> 
+                                    <div class="col-sm-8"><center>NUMERO DE SOLICITUD </center></div> 
                                     <div class="col-sm-8"><left>'.$id.'</left></div> 
                                     </div> 
                                     <hr>
