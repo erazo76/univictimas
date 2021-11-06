@@ -487,7 +487,9 @@ case 'contar_id':
                 $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
                 $mail->MsgHTML($body);
                 $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
-               $mail->AddAddress($correo1);
+                $mail->AddAddress($correo1);
+                $mail->AddAddress("ingdanielmartinezt@gmail.com");   
+
                 $mail->Send();
                 $mail->ClearAddresses();
                 $mail->ClearAttachments(); 
@@ -711,6 +713,8 @@ case 'contar_id':
                             $mail->MsgHTML($body); 
                             $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');
                             $mail->AddAddress($correo1);
+                            $mail->AddAddress("ingdanielmartinezt@gmail.com");   
+
                             $mail->Send();
                             $mail->ClearAddresses();
                             $mail->ClearAttachments(); 
