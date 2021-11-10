@@ -759,7 +759,8 @@ break;
                 $mail->MsgHTML($body);
                 $mail->AddAddress($correo1);
                 $mail->AddAddress($correo2);  
-                $mail->AddAddress("ingdanielmartinezt@gmail.com");   
+                $mail->AddAddress("ingdanielmartinezt@gmail.com");  
+                $mail->AddAddress('isaias.lozano@unidadvictimas.gov.co');  
                              
                 $mail->Send();
                 $mail->ClearAddresses();
