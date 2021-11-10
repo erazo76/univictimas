@@ -69,9 +69,9 @@ session_start();
 			}else{
 				$updated='No modificado';
 			}
-			if (strlen($rs->nombre) > 40){
-				$rs->nombre = substr($rs->nombre, 0, 40) . '...';
-					 } 
+			// if (strlen($rs->nombre) > 40){
+			// 	$rs->nombre = substr($rs->nombre, 0, 40) . '...';
+			// 		 } 
 					 $responsable=$rs->nombre_responsable.' '.$rs->apellido_responsable;
 		 
 	
