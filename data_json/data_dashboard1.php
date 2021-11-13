@@ -1,10 +1,13 @@
 <?php
 require_once '../models/Msolicitude.php';
 require_once '../models/Mregione.php';
+require_once '../models/Mcontrato.php';
+
 
 
 	$result = array();
-
+	@$data = Mcontrato::find('all');
+    if($data !=null){
 	$ejecafe = Msolicitude::find_by_sql("SELECT sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mregiones_id=1;");
 	$centro_o = Msolicitude::find_by_sql("SELECT sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mregiones_id=2;");
 	$caribe = Msolicitude::find_by_sql("SELECT sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mregiones_id=3;");
@@ -101,7 +104,13 @@ require_once '../models/Mregione.php';
 				"valor"=>$val,
 				"region"=>$nom		
 			));	
-	}	
+	}
+}else{
+	array_push($result,array(   
+		"valor"=>0,
+		"region"=>""		
+	));	
+}	
 
 //echo($data);exit();
 	//print_r(json_encode($result));

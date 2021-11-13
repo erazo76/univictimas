@@ -75,9 +75,9 @@ switch ($action){
           $usuario_id = $_SESSION['idusuariox'];
           $hoy = date('d-m-Y');
 
-          $segme = new Mcontrato();
-          $segme->num_contrato = $num_contrato;
-          $segme->cos_contrato = $cos_contrato;
+          
+          $segme= Mcontrato::find($id);
+          
           $segme->user_create = $usuario_id;
           $segme->created = $hoy;
           
@@ -190,7 +190,7 @@ break;
             // if($vic_ext==""){
             //   $vic_ext=0;
             // }
-
+            $cos_contrato = str_replace("$ ", "", $cos_contrato);
             $segme = new Mcontrato();
             $segme->cos_contrato = $cos_contrato;
             $segme->num_contrato = $num_contrato;
@@ -300,6 +300,15 @@ break;
 
             //$depa= Mcontrato::find($id);
             // $depa=Mcontrato::find('all',array('conditions' => array('num_contrato=?',$num_contrato)));
+
+            
+
+            
+            
+            //  $cos_contrato = str_replace(".", "", $cos_contrato);
+
+
+
             $depa=Mcontrato::find($id);
 
             $depa->cos_contrato = $cos_contrato;
@@ -394,7 +403,7 @@ case 'asignar':
             $vic_ext=0;
           }
 
-          $depa=Mcontrato::find($id);
+          $depa=Mcontrato::find($id_contrato);
           
           $depa->sub_participacion = $sub_participacion;
           $depa->dir_inter = $dir_inter;            
@@ -686,7 +695,11 @@ break;
             "sub_part_cos"=>floatval(0),
             "dir_ges_cos"=>floatval(0),
             "dir_cord_cos"=>floatval(0),
-            "restan"=>floatval(0)   
+            "restan"=>floatval(0),
+            "dir_cord_nac_cos"=>floatval(0),
+            "grup_proy"=>floatval(0),
+            "vict_ext_cos"=>floatval(0),
+            "restan"=>floatval(0)
           );
           echo json_encode($resp);
     }   

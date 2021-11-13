@@ -72,6 +72,7 @@ $control_total=false;
                   Ejecutados <i class="fa fa-check"></i>
                 </a>
               </div>
+
             </div><!-- ./col -->
 
 
@@ -123,9 +124,16 @@ $control_total=false;
               </div>
             </div><!-- ./col -->
 
-
+            
 
           </div><!-- /.row -->
+
+          <div class="box-footer">
+            <button id="reportes" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-graph"></i> Generar Reporte General</button> 
+            <button id="reporte_facturacion" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-graph"></i> Generar Reportes Facturados</button> 
+			
+
+							    </div>
 
 <div class="row">
 
@@ -196,6 +204,8 @@ $control_total=false;
                   <div class="box-footer">
                     <button id="p_guarda" type="button" class="btn btn-success"><i class="fa fa-fw fa-save"></i>Guardar</button>
                     <button id="p_edita" type="button" class="btn btn-success" style="display:none;"><i class="fa fa-fw fa-edit"></i>Editar</button>
+                    <button id="p_editar" type="button" class="btn btn-success" style="display:none;"><i class="fa fa-fw fa-edit"></i>Ajustar</button>
+
                 </div>  
                 <?php 
 						   
@@ -246,17 +256,19 @@ $control_total=false;
                   <label>GRUPO DE GESTIÓN DE PROYECTOS</label>
                   <div class="input-group">                            
                     <span class="input-group-addon">$</span>
-                    <input type="text" class="form-control" id="grup_proy" placeholder="Indique la asignación "  onpaste="return false" tabindex="20" onkeypress="return esnum_grup_proy(event);" onblur="alsalir(this.id)" autocomplete="off">
+                    <input type="text" class="form-control" id="grup_ges_proy" placeholder="Indique la asignación "  onpaste="return false" tabindex="20" onkeypress="return esnum_grup_proy(event);" onblur="alsalir(this.id)" autocomplete="off">
                   </div>
-                  <div style="background-color:#F39C12;color:#fff;text-align:center" id='grup_proy'><p></p></div>
+                  <div style="background-color:#F39C12;color:#fff;text-align:center" id='grup_ges_proy'><p></p></div>
                
                   <label>VICTIMAS EN EL EXTERIOR</label>
                   <div class="input-group">                            
                     <span class="input-group-addon">$</span>
-                    <input type="text" class="form-control" id="vic_ext" placeholder="Indique la asignación "  onpaste="return false" tabindex="20" onkeypress="return esnum_vic_ext(event);" onblur="alsalir(this.id)" autocomplete="off">
+                    <input type="text" class="form-control" id="grup_vic_ext" placeholder="Indique la asignación "  onpaste="return false" tabindex="20" onkeypress="return esnum_vic_ext(event);" onblur="alsalir(this.id)" autocomplete="off">
                   </div>
+                  <div style="background-color:#F39C12;color:#fff;text-align:center" id='grup_vic_ext'><p></p></div>
+
                   <div class="box-footer">
-                    <button id="p_asignar" type="button" class="btn btn-success"><i class="fa fa-fw fa-save"></i>Guardar</button>
+                    <button id="p_asignar" type="button" class="btn btn-success"><i class="fa fa-fw fa-save"></i>Asignar</button>
                     <!-- <button id="p_edita" type="button" class="btn btn-success" style="display:none;"><i class="fa fa-fw fa-edit"></i>Editar</button> -->
                 </div> 
 
@@ -273,17 +285,99 @@ $control_total=false;
 </div>
 
 
+
+
+<div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+	<form id="form" role="form" enctype="multipart/form-data">
+		<div class="modal-dialog modal-lm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="contenido-modal">
+						<h4 class="modal-title" id="myModalLabel1">Reportes</h4>
+						<div class="message1"></div>
+						<div class="row">
+							<!-- left column -->
+							<div class="col-md-12">
+								<!-- general form elements -->
+								<div class="box box-primary">
+
+									<div class="box-header with-border"></div><!-- /.box-header -->
+									<!-- form start -->
+									<div class="box-body">
+
+                  <div class="row">
+
+              <div class="col-sm-6">
+                
+                  <label for="fecha_inicio">Fecha Inicio</label>
+                  <input class="form-control bbb" id="fecha_inicio" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="14" readonly="true">
+                  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha_inicio' class="aaa"><p></p></div>
+                            
+              </div>
+
+              <div class="col-sm-6">
+                
+                  <label for="fecha_final">Fecha Final</label>
+                  <input class="form-control bbb" id="fecha_final" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false" tabindex="15" readonly="true">
+                  <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha_final' class="aaa"><p></p></div>
+                            
+              </div>
+
+              <div class="col-sm-4">
+								<label>Solicitud Inicial</label>
+								<input type="text"  class="form-control" id="num_sol_ini"  placeholder="Indique la Solicitud"  onpaste="return false" onkeypress="return esdcantidad(event);"  autocomplete="off">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_sol_ini' ></div>
+							</div>
+
+              <div class="col-sm-4">
+								<label>Solicitud Final</label>
+								<input type="text"  class="form-control" id="num_sol_fin"  placeholder="Indique la Solicitud"  onpaste="return false" onkeypress="return esdcantidad(event);"  autocomplete="off">
+								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_sol_fin' ></div>
+							</div>
+</div>		
+										
+
+									</div><!-- /.box-body -->
+
+								</div><!-- /.box -->
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button id="crear_reporte" type="button" class="btn btn-success"><i class="fa fa-fw fa-save"></i>Generar</button>
+
+							<button id="cancelar" type="button" class="btn btn-primary  pull-right"><i class="fa fa-fw fa-times"></i>Cancelar</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
 <script type="text/javascript" src="../../plugins/confirma/jquery-confirm.min.js"></script>
 <link rel="stylesheet" href="../../plugins/confirma/jquery-confirm.min.css" type="text/css"/>
+
+<script type="text/javascript" src="../../plugins/datepicker/bootstrap-datepicker.js"></script>
+<script src="../../plugins/datepicker/locales/bootstrap-datepicker.es.js" charset="UTF-8"></script>
+
 <script type="text/javascript" src="../../plugins/amcharts4/core.js"></script>
 <script type="text/javascript" src="../../plugins/amcharts4/charts.js"></script>
 <script type="text/javascript" src="../../plugins/amcharts4/themes/animated.js"></script>
 
 <script type="text/javascript">
 
+/// Constante para dar Formato a los Monstos en Peso Colombianos 
+const formatterPeso = new Intl.NumberFormat('es-CO', {
+       style: 'currency',
+       currency: 'COP',
+       minimumFractionDigits: 0
+     })
+    
 $(document).ready(function() {
 
-
+  var control_total=false;
   $.post( "../../controllers/mcontratos_controller", { action: "search_presupuesto"}).done(function( data ) {
 		var parsedJson = $.parseJSON(data);
     
@@ -292,43 +386,47 @@ $(document).ready(function() {
     var cos_cont = parsedJson.cos_contrato;
     var id_contrato= parsedJson.id_contrato;
 
-    if(cos_cont!=null){
-        cos_cont = formato_numero(cos_cont, 2, ',', '.');
-      }        
+    // if(cos_cont!=null){
+    //   cos_cont= formatterPeso.format(cos_cont) ;
+    //   cos_cont=cos_cont.replace("$", '');
+    //   }  
     var estato = parsedJson.estado;
-    if(estato!=null){
-      estato = formato_numero(estato, 2, ',', '.');
-      }  
+    // if(estato!=null){
+    //   estato= formatterPeso.format(estato) ;
+    //   }  
     var sub_part_cos = parsedJson.sub_part_cos;  
-    if(sub_part_cos!=null){
-      sub_part_cos = formato_numero(sub_part_cos, 2, ',', '.');
-    }
+    // if(sub_part_cos!=null){
+    //   sub_part_cos= formatterPeso.format(sub_part_cos) ;
+
+    // }
     var dir_ges_cos = parsedJson.dir_ges_cos;
-    if(dir_ges_cos!=null){
-      dir_ges_cos = formato_numero(dir_ges_cos, 2, ',', '.');
-      }  
+    // if(dir_ges_cos!=null){
+    //   dir_ges_cos= formatterPeso.format(dir_ges_cos) ;
+
+    //   }  
     var dir_cord_cos = parsedJson.dir_cord_cos;
-    if(dir_cord_cos!=null){
-      dir_cord_cos = formato_numero(dir_cord_cos, 2, ',', '.');
-      }  
+    // if(dir_cord_cos!=null){
+    //   dir_cord_cos= formatterPeso.format(dir_cord_cos) ;
+
+    //   }  
     var dir_cord_nac_cos = parsedJson.dir_cord_nac_cos;
-    if(dir_cord_nac_cos!=null){
-      dir_cord_nac_cos = formato_numero(dir_cord_nac_cos, 2, ',', '.');;
-      }
+    // if(dir_cord_nac_cos!=null){
+    //   dir_cord_nac_cos= formatterPeso.format(dir_cord_nac_cos) ;
+    //   }
 
 
     var vict_ext_cos = parsedJson.vict_ext_cos;
-    if(vict_ext_cos!=null){
-      vict_ext_cos = formato_numero(vict_ext_cos, 2, ',', '.');;
-      } 
+    // if(vict_ext_cos!=null){
+    //   vict_ext_cos= formatterPeso.format(vict_ext_cos) ;
+    //   } 
     var grup_proy = parsedJson.grup_proy;
-    if(grup_proy!=null){
-      grup_proy = formato_numero(grup_proy, 2, ',', '.');
-      }     
+    // if(grup_proy!=null){
+    //   grup_proy= formatterPeso.format(grup_proy) ;
+    //   }     
     var restan = parsedJson.restan;
-    if(restan!=null){
-      restan = formato_numero(restan, 2, ',', '.');
-      } 
+    // if(restan!=null){
+    //   restan= formatterPeso.format(restan) ;
+    //   } 
         
 		$("#num_contrato").val( num_cont );       
 		$("#cos_contrato").val( cos_cont );
@@ -341,9 +439,16 @@ $(document).ready(function() {
     $("#grup_proy").html( grup_proy +'<sup style="font-size: 20px">$</sup>' );
     $("#id_contrato").val( id_contrato );
     //  $("#cole").html( dir_cord_cos +'<sup style="font-size: 20px">$</sup>');
-        if(estato!="si"){
+        if(estato=="si"){
             $("#p_guarda").css("display", "none");
-            $("#p_edita").css("display", "block");
+            $("#p_edita").css("display", "none");
+            $("#p_editar").css("display", "block");
+
+            document.getElementById("num_contrato").disabled=true;
+            document.getElementById("cos_contrato").disabled=true;
+            document.getElementById("p_edita").disabled=true;
+
+
         }
 	},"json");
 
@@ -416,20 +521,20 @@ $(document).ready(function() {
 });
 
 
-// $.post( "../../controllers/mcontratos_controller", { action: "search_asig_presupuesto"}).done(function( data ) {
-// 	var parsedJson = $.parseJSON(data);
+$.post( "../../controllers/mcontratos_controller", { action: "search_asig_presupuesto"}).done(function( data ) {
+	var parsedJson = $.parseJSON(data);
 
-// 			$("#sub_participacion").val(parsedJson.sub_participacion);
-//       $("#dir_inter").val(parsedJson.dir_inter);
-// 			$("#subdir_snariv").val(parsedJson.subdir_snariv);
-// 			$("#subdir_snariv").val(parsedJson.subdir_snariv);
-// 			$("#subdir_nac").val(parsedJson.subdir_nac);
-// 			$("#grup_proy").val(parsedJson.grup_proy);
-//       $("#vic_ext").val(parsedJson.vic_ext);
+			$("#sub_participacion").val(parsedJson.sub_participacion);
+      $("#dir_inter").val(parsedJson.dir_inter);
+			$("#subdir_snariv").val(parsedJson.subdir_snariv);
+			$("#subdir_snariv").val(parsedJson.subdir_snariv);
+			$("#subdir_nac").val(parsedJson.subdir_nac);
+			$("#grup_ges_proy").val(parsedJson.grup_proy);
+      $("#grup_vic_ext").val(parsedJson.vic_ext);
      
 
 
-// 	});
+	});
 
 am4core.ready(function() {
 
@@ -583,6 +688,71 @@ var datum3 = [];
 //      }];
 
 // },"json");
+$("#cancelar").click(function() {
+
+$('#modal3').modal('toggle');
+$("#InputFile").val(null);
+$("#file_url").attr('src', '');
+$("#anex").focus();
+
+});
+
+$('#fecha_inicio').datepicker({
+			// startDate: '+0d',
+    		todayBtn: false,
+		    todayHighlight: true,
+		    autoclose: true,
+			language: 'es',
+			showOnFocus: true
+
+		});
+
+		
+
+		$('#fecha_final').datepicker({
+			// startDate: '+0d',
+    		todayBtn: false,
+		    todayHighlight: true,
+		    autoclose: true,
+			language: 'es',
+			showOnFocus: true
+
+		});
+
+
+$("#reportes").click(function() {
+		 	$('#modal3').modal({backdrop: 'static',keyboard: false});
+			
+			
+		 });
+
+
+ $('#crear_reporte').click( function () {
+				var fecha_inicio=$('#fecha_inicio').val();
+        var fecha_final=$('#fecha_final').val();
+
+        var num_sol_ini=$('#num_sol_ini').val();
+        var num_sol_fin=$('#num_sol_fin').val();
+
+        
+					window.open("../../Reportes/reportes/univictimas/rreportador.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final+'&num_sol_ini='+num_sol_ini+'&num_sol_fin='+num_sol_fin,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
+          $('#modal3').modal('toggle');
+
+			});
+
+
+
+
+    $('#reporte_facturacion').click( function () {
+
+      var imagen="ejecutada.xlsx";
+      window.open("../../Reportes/reportes/facturados/"+imagen,'',"titlebars=0, toolbar=0,scrollbars=0,location=1,statusbar=0,menubar=0,resizable=0,width=320,height=240,top=250,left=500");	
+							 wind.moveTo(0,0);
+
+			});
+
+
+
 
      setTimeout(function() {	
 
@@ -757,6 +927,29 @@ var datum3 = [];
             } 
 
 
+            function esdcantidad(e) {
+
+k = (document.all) ? e.keyCode : e.which;
+if (k==8 || k==0 || k==13) return true;
+patron = /^[0-9]$/;
+n = String.fromCharCode(k);
+
+                  if(patron.test(n)==''){
+
+                    document.getElementById('ms_num_sol_ini').style.display = 'block';
+                       document.getElementById("ms_num_sol_ini").innerHTML = 'Use solo números';
+                        return patron.test(n);
+
+                  }else{
+
+                       document.getElementById("ms_num_sol_ini").innerHTML = '';
+                       return patron.test(n);
+
+                  }
+
+}
+
+
 function esnum_subdir_snariv(e) {
 
 k = (document.all) ? e.keyCode : e.which;
@@ -832,7 +1025,7 @@ $.post( "../../controllers/mcontratos_controller", {
     action: "add",
 
     num_contrato: $("#num_contrato").val(),
-    cos_contrato: $("#cos_contrato").val(),
+    cos_contrato: $("#cos_contrato").val()
     // sub_participacion: $("#sub_participacion").val(),
     // dir_inter: $("#dir_inter").val(),
     // cos_contrato: $("#cos_contrato").val(),
@@ -851,8 +1044,10 @@ $.post( "../../controllers/mcontratos_controller", {
 
             setTimeout(function(){
 
-                    $(location).attr('href','dashboard');
-
+              var value=true;
+                              
+                $(location).attr('href','dashboard?control_total='+value);
+                             
             }, 1500);
 
         }
@@ -864,10 +1059,9 @@ $.post( "../../controllers/mcontratos_controller", {
 //// **********************************************
 
             $("#p_asignar" ).click(function() {
-
                     $.post( "../../controllers/mcontratos_controller", {
 
-                        action: "asignar",
+                        action: "add_asignar",
 
                         id_contrato: $("#id_contrato").val(),
                         sub_participacion: $("#sub_participacion").val(),
@@ -875,8 +1069,8 @@ $.post( "../../controllers/mcontratos_controller", {
                         cos_contrato: $("#cos_contrato").val(),
                         subdir_snariv: $("#subdir_snariv").val(),
                         subdir_nac: $("#subdir_nac").val(),
-                        grup_proy: $("#grup_proy").val(),
-                        vic_ext: $("#vic_ext").val()
+                        grup_proy: $("#grup_ges_proy").val(),
+                        vic_ext: $("#grup_vic_ext").val()
 
 
                         }).done(function(data){
@@ -886,10 +1080,11 @@ $.post( "../../controllers/mcontratos_controller", {
 
                             if(parsedJson.resultado != 'error'){
 
-                                setTimeout(function(){
-                                  
+                                setTimeout(function(){                                  
 
-                                        $(location).attr('href','dashboard');
+                                  var value=true;
+                              
+                                     $(location).attr('href','dashboard?control_total='+value);
 
                                 }, 1500);
 
@@ -899,7 +1094,18 @@ $.post( "../../controllers/mcontratos_controller", {
 
             });  
             
- 
+            $("#p_editar" ).click(function() {
+              $("#p_edita").css("display", "block");
+              $("#p_editar").css("display", "none");
+
+              document.getElementById("num_contrato").disabled=false;
+            document.getElementById("cos_contrato").disabled=false;
+            document.getElementById("p_edita").disabled=false;
+            var control_total=false;
+
+         
+           
+});   
            
               $("#p_edita" ).click(function() {
            

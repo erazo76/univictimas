@@ -1,11 +1,14 @@
 <?php
 require_once '../models/Msolicitude.php';
 require_once '../models/Mdepartamento.php';
+require_once '../models/Mcontrato.php';
+
 
 
 
 	$result = array();
-
+	@$data = Mcontrato::find('all');
+    if($data !=null){
 	$depa = Mdepartamento::find_by_sql("SELECT id,nombre,cdd from mdepartamentos WHERE status=1;");
 
 	$cont = 1;
@@ -46,7 +49,15 @@ require_once '../models/Mdepartamento.php';
 
 		$cont = $cont + 1;		
 	}	
-
+	}else{
+		$nom="";		
+		$val=0;
+			
+				array_push($result,array(   
+					"valor"=>$val,
+					"departamento"=>$nom		
+				));	
+	}
 //echo($data);exit();
 	//print_r(json_encode($result));
 	echo json_encode($result);
