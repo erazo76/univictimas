@@ -21,11 +21,13 @@ ValidaSession("../login");
 						<table id="tabla" class="table table-bordered table-hover">
 							<thead>
 								<tr>
-									<th>Nro seg.:</th>									
+									<th>Nro seg.:</th>	
+									<th>Observaciones</th>								
 									<th>Departamento</th>
 									<th>Municipio</th>									
 									<th>Fecha de entrega</th>
-									<th>Costo Cotizacion</th>		
+									<th>Costo Cotizacion</th>
+		
 									<th></th>									
 								</tr>
 							</thead>
@@ -75,32 +77,32 @@ ValidaSession("../login");
 						if ((mData.a_supe)== 1){
 
 							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/aprobado1.png),radial-gradient(white,white )');
-							$('td:eq(0)', nRow).css('background-size','70px 25px');
+							$('td:eq(0)', nRow).css('background-size','50px 20px');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
 							$('td:eq(0)', nRow).css('text-align','left');
 							$('td:eq(0)', nRow).css('background-position','bottom center');
-							$('td:eq(5)', nRow).css('opacity','0');
+							$('td:eq(6)', nRow).css('opacity','0');
 
 						} else	if ((mData.a_supe)== 2){
 
 							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/rechazado.jpeg),radial-gradient(white,white )');
-							$('td:eq(0)', nRow).css('background-size','70px 35px');
+							$('td:eq(0)', nRow).css('background-size','50px 20px');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
 							$('td:eq(0)', nRow).css('text-align','left');
 							$('td:eq(0)', nRow).css('background-position','bottom center');
-							$('td:eq(5)', nRow).css('opacity','0');
+							$('td:eq(6)', nRow).css('opacity','0');
 
 							} else{
 								
 							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/asignado.png),radial-gradient(white, white)');
-							$('td:eq(0)', nRow).css('background-size','70px 25px');
+							$('td:eq(0)', nRow).css('background-size','50px 20px');
 							$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 							$('td:eq(0)', nRow).css('font-weight','bold');
 							$('td:eq(0)', nRow).css('text-align','left');
 							$('td:eq(0)', nRow).css('background-position','bottom center');							
-							$('td:eq(5)', nRow).css('opacity','0');
+							$('td:eq(6)', nRow).css('opacity','0');
 						}
 
 						return nRow;
@@ -109,11 +111,12 @@ ValidaSession("../login");
 				  "scrollY": "280px",
 				  "scrollCollapse": true,
 				  "columns": [
-						{ "data": "id" },						
+						{ "data": "id" },	
+						{ "data": "observacion" },					
 						{ "data": "departamento" },
 						{ "data": "municipio" },
 						{ "data": "fecha" },
-						{ "data": "costo_total" },						
+						{ "data": "costo_total" },	
 						{ "data": "aprobado" },
 						
 						

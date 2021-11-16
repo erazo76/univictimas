@@ -6,7 +6,13 @@ require_once '../models/Musuario.php';
 session_start();
 //$toca=0;
 	//muestra toda la data
-		$data = Mrequerimiento::find_by_sql("SELECT id,cid,mdepartamentos_id,mmunicipios_id,fecha2,rt_nombre1,rt_nombre2,updated,created,user_create,user_modify,rn_nombre1,completado,costo_total,idaccion,a_supeo,a_supe FROM mrequerimientos WHERE status=1 order by id desc;");
+		$data = Mrequerimiento::find_by_sql("SELECT id,cid,mdepartamentos_id,mmunicipios_id,fecha2,costo_total,completado		,
+		case 
+		when a_supeo='' then  'SIN OBSERVACION' 
+		when a_supeo is null then  'SIN OBSERVACION'
+		else a_supeo
+		end ,a_supe
+			FROM mrequerimientos WHERE status=1 order by id desc;");
 
 	$result = array();
 	
@@ -33,26 +39,18 @@ session_start();
 				$mun='No Asignado';
 		}
 	
-		if($rs->rn_nombre1 != null){
-			$resp_aprob=$rs->rn_nombre1;
-		}else{
-			$resp_aprob='Entrega pendiente';
-		}
-		
+
+
 		array_push($result,array(
 						
 		                           		 "id"=>$rs->id,		                           		 
 		                           		 "departamento"=>$dep,
 		                           		 "municipio"=>$mun,
 		                           		 "fecha"=>$rs->fecha2->format("d-m-Y"),
-										 "beneficiario"=>$rs->rt_nombre1,
-										 "asignado"=>$rs->rt_nombre2, 
-										 "despachado"=>$resp_aprob, 
 										 "aprobado"=>$rs->completado,
-										 "idaccion"=>$rs->idaccion,
 										 "costo_total"=>$rs->costo_total,
 										 "a_supe"=>$rs->a_supe,
-										 "a_supeo"=>$rs->a_supeo
+										 "observacion"=>$rs->a_supeo
 		                        		 
 
 		                         ));
