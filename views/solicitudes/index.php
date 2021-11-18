@@ -115,9 +115,7 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 				  },
 				  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
 
-                //   $responsable=mData.responsable;
-				   //alert( mData);break;
-
+           
 					if ((mData.a_supe_dir)== 1){
 
 							$('td:eq(0)', nRow).css('background-image','url(../../dist/img/aprobado2.png),radial-gradient(white,white )');
@@ -177,7 +175,7 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 							{ "data": "userupdate" },
 							{ "data": "responsable" },
 							{ "data": "resp_aprob" },
-							{ "data": "a_supe" }
+							{ "data": "control" }
 						],
 						fixedColumns: false,
 						"aoColumnDefs": [
@@ -290,6 +288,7 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 			$('#edit').click( function () {
 				var value= table.$('tr.selected').children('td:first').text();
 				var control=table.$('tr.selected').children('td:last').text();
+		
 			
 				if(!value){
 
@@ -310,16 +309,14 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 									if (control!=2){
 
 
-							
-
-													$.alert({
-													title: '!Usted No tiene Permisos de Modificar esta Solicitud ! !',
-													content: false,
-													confirmButton: true, // hides the confirm button.
-													closeIcon: false,
-													confirmButton: 'cerrar',
-													confirmButtonClass: 'btn-success'
-												});
+										$.alert({
+										title: '!Usted No tiene Permisos de Modificar esta Solicitud ! !',
+										content: false,
+										confirmButton: true, // hides the confirm button.
+										closeIcon: false,
+										confirmButton: 'cerrar',
+										confirmButtonClass: 'btn-success'
+									});
 					              }else{
 									$(location).attr('href','frm_editar?record='+value);
  

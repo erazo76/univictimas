@@ -69,9 +69,15 @@ session_start();
 			}else{
 				$updated='No modificado';
 			}
-			// if (strlen($rs->nombre) > 40){
-			// 	$rs->nombre = substr($rs->nombre, 0, 40) . '...';
-			// 		 } 
+            if(($rs->a_supe==2)||$rs->a_supe_dir==2){
+				$control=2;
+			}else if(($rs->a_supe_dir==1)||$rs->a_supe_dir==1){
+				$control=1;
+			}else{
+				$control=0;
+			}
+			
+			
 					 $responsable=$rs->nombre_responsable.' '.$rs->apellido_responsable;
 		 
 	
@@ -90,7 +96,8 @@ session_start();
 								"resp_aprob"=>$resp_aprob, 								
 								"a_supe"=>$rs->a_supe,
 								"aprobado"=>$rs->completado,
-								"a_supe_dir"=>$rs->a_supe_dir
+								"a_supe_dir"=>$rs->a_supe_dir,
+								"control"=>$control
 
 																								
 	
