@@ -16,6 +16,8 @@
 		echo '<li><a href="../solicitudes/"><i class="fa fa-certificate "></i> <span>Requerimientos</span></a></li>';
 		echo '<li><a href="../solicitudes/dashboard"><i class="fa fa-bar-chart"></i> <span>Informes</span></a></li>';
 		echo '<li><a href="../facturacion/"><i class="fa fa-certificate"></i> <span>Facturación</span></a></li>';
+		
+		// echo '<li><a href="../gestor_reportes/"><i class="fa fa-certificate"></i> <span>Reportes</span></a></li>';
 
 			//echo '<li><a href="../mapa/"><i class="fa fa-link"></i> <span>Geolocalización</span></a></li>';
 		echo '</ul>';

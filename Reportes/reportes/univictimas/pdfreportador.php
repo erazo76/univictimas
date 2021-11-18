@@ -15,7 +15,6 @@ class pdfreporte extends fpdf {
         $this->fpdf("p", "mm", "legal");
         $this->bd = new baseClases();
         $this->cab = new Cabecera();
-        $this->orden=str_replace(' ', '', $this->orden);
         $this->fecha_desde=getvalue('fecha_inicio');
         $this->fecha_hasta=getvalue('fecha_final');
 
@@ -24,7 +23,7 @@ class pdfreporte extends fpdf {
 
 if (($this->fecha_desde!='') && ($this->fecha_hasta!='')){
 
-    $cadena_fecha="to_char(fecha3, 'DD-MM-YYYY') >= '$this->fecha_desde' and to_char(fecha3, 'DD-MM-YYYY') < '$this->fecha_hasta' and";
+    $cadena_fecha="fecha1  BETWEEN '$this->fecha_desde' and  '$this->fecha_hasta' and";
 }else{
     $cadena_fecha="";
 }
@@ -42,7 +41,6 @@ if (($this->solicitud_desde!='') && ($this->solicitud_hasta!='')){
         // $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
 
         $sql = "SELECT  * from msolicitudes where   $cadena_fecha $cadena_sol status=1 order by id asc ;  ";
-            //   H::PrintR($sql);exit; 
 
         $this->arrp = $this->bd->select($sql);
        
@@ -229,10 +227,10 @@ if (($this->solicitud_desde!='') && ($this->solicitud_hasta!='')){
 
 
 
-       
-        $this->SetWidths(array(40,20,60,70));
-        $this->SetAligns(array('C','C','C','C'));
-        $this->SetJump(5);
+          
+            $this->SetWidths(array(40,20,60,70));
+            $this->SetAligns(array('C','C','C','C'));
+            $this->SetJump(5);
 
             $this->SetBorder(true);
             $this->SetFillTable(0);

@@ -39,7 +39,13 @@ ValidaSession("../login");
 
 							  <label for="nombre">Nombre del Evento </label> 
 							  <textarea class="form-control" id="nombre" rows="5" placeholder="Nombre del Evento" onpaste="return true"   autocomplete="off" readonly="true"></textarea>
-	   						</div>
+	   							</div>
+
+						 	<div class="form-group-sm">
+							  <label for="fecha1">Fecha de Registro</label> 	   
+					          <input class="form-control bbb" id="fecha1" data-date-format="dd-mm-yyyy" placeholder="dia-mes-año" type="text" onpaste="return false"  disabled="true">
+							</div>
+
 						
 						</div>
 
@@ -66,7 +72,7 @@ ValidaSession("../login");
 
 						<div class="form-group-sm">	
 							<label for="costo_evento_cotizado">Costo Evento Cotizado</label>
-							<input class="form-control bbb" id="costo_evento_cotizado"  type="text" placeholder="Valor Costo Evento Cotizado"  onkeypress="return esnumero_costo_evento(event)" onchange="return SumarCostoEvento(value)" onpaste="return false" tabindex="16"  >
+							<input class="form-control bbb" id="costo_evento_cotizado"  type="text" placeholder="Valor Costo Evento Cotizado"  onkeypress="return esnumero_costo_evento(event)" onchange="return SumarCostoEvento(value)" onpaste="return false" tabindex="16" >
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_costo_evento_cotizado'><p></p></div>
 
 						</div>	
@@ -77,16 +83,25 @@ ValidaSession("../login");
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_servicios_no_gravados'><p></p></div>
 
 						</div>	
+						<div class="form-group-sm">	
+						<label for="base_iva"><p style="color:blue;">Base de Cálculo IVA % Ejecutado Logistico</p> </label>
+						<input class="form-control bbb" id="base_iva"  type="text" placeholder="" onkeypress="return esnumero_base_iva(event)" onpaste="return false" onchange="return SumarEjecutadoLogisticoIVA(value)" tabindex="16" >
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_base_iva'><p></p></div>
+
+						</div>
 
 						<div class="form-group-sm">	
 							<label for="pagos_a_terceros">Pagos a terceros</label>
-							<input class="form-control bbb" id="pagos_a_terceros"  type="text" placeholder="Valor Pagos a terceros" onkeypress="return esnumero_pagos_a_terceros(event)" onchange="return SumarCostoEvento(value)" onpaste="return false"  tabindex="16" >
+							<input class="form-control bbb" id="pagos_a_terceros"  type="text" placeholder="Valor Pagos a terceros" onkeypress="return esnumero_pagos_a_terceros(event)" onchange="return SumarEjecutadoLogisticoIVA(value)" onpaste="return false"  tabindex="16" >
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_pagos_a_terceros'><p></p></div>
 
 						</div>	
+					
+
+
 						<div class="form-group-sm">	
-							<label for="servicios_gravados">Servicios gravados </label>
-							<input class="form-control bbb" id=servicios_gravados "  type="text" placeholder="Valor Servicios gravados " onkeypress="return esnumero_servicios_gravados(event)" onpaste="return false" onchange="return SumarEjecutadoLogisticoIVA(value)" tabindex="16" >
+							<label for="servicios_gravados">Servicios Gravados </label>
+							<input class="form-control bbb" id="servicios_gravados"  type="text" placeholder="Valor Servicios gravados " onkeypress="return esnumero_servicios_gravados(event)" onpaste="return false" onchange="return SumarEjecutadoLogisticoIVA(value)" tabindex="16" >
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_servicios_gravados'><p></p></div>
 
 						</div>
@@ -99,7 +114,7 @@ ValidaSession("../login");
 				
 
 						<div class="form-group-sm">	
-							<label for="ejecutado_logistico">EJECUTADO LOGISTICO</label>
+							<label for="ejecutado_logistico"><p style="color:red;">EJECUTADO LOGISTICO</p></label>
 							<input class="form-control bbb" id="ejecutado_logistico"  type="text" placeholder="Valor Ejecutado Logistico" onpaste="return false" tabindex="16" >
 
 						</div>
@@ -114,10 +129,16 @@ ValidaSession("../login");
 
 			<div class="box box-primary">
 				<div class="box-body">
-						
+				  
+				        <div class="form-group-sm">	
+						<label for="base_iva_ree"><p style="color:blue;">Base de Cálculo IVA % Ejecutado Reembolso</p></label>
+						<input class="form-control bbb" id="base_iva_ree"  type="text" placeholder="" onkeypress="return esnumero_base_iva(event)" onpaste="return false" onchange="return SumarEjecutadoLogisticoIVA(value)" tabindex="16" >
+						<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_base_iva_ree'><p></p></div>
+
+						</div>
 						<div class="form-group-sm">	
-							<label for="gastos_reembolsables">Gastos reembolsables</label>
-							<input class="form-control bbb" id="gastos_reembolsables"  type="text" placeholder="Valor Gastos reembolsables" onkeypress="return esnumero_gastos_reembolsables(event)" onpaste="return true" onchange="return SumarIntermediacion(value)"  tabindex="16" >
+							<label for="gastos_reembolsables">Gastos Reembolsables</label>
+							<input class="form-control bbb" id="gastos_reembolsables"  type="text" placeholder="Valor Gastos reembolsables" onkeypress="return esnumero_gastos_reembolsables(event)"  onchange="return SumarIntermediacion(value)" onpaste="return true" tabindex="16" >
 							<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_gastos_reembolsables'><p></p></div>
 
 						</div>
@@ -134,13 +155,13 @@ ValidaSession("../login");
 							<input class="form-control bbb" id="intermediacion"  type="text" placeholder="Valor Intermediación 3%" onpaste="return false" tabindex="16" >
 
 						</div>
-					
+						
 						<div class="form-group-sm">	
 							<label for="iva_intermediacion_reembolso">IVA Intermediación reembolso</label>
 							<input class="form-control bbb" id="iva_intermediacion_reembolso"  type="text" placeholder="Valor IVA Intermediación reembolso" onpaste="return false" tabindex="16" >
 						</div>
 						<div class="form-group-sm">	
-							<label for="ejecutado_reembolso">EJECUTADO REEMBOLSO</label>
+							<label for="ejecutado_reembolso"><p style="color:red;">BEJECUTADO REEMBOLSO</p></label>
 							<input class="form-control bbb" id="ejecutado_reembolso"  type="text" placeholder="Valor Ejecutado Reembolso" onpaste="return false" tabindex="16" >
 						</div>
 						<div class="form-group-sm">	
@@ -154,11 +175,11 @@ ValidaSession("../login");
 							<input class="form-control bbb" id="iva_tiquetes"  type="text" placeholder="Valor IVA Tiquetes " onpaste="return false" tabindex="16" >
 						</div>
 						<div class="form-group-sm">	
-							<label for="costo_total_tiquetes">Costo Total Tiquetes Ejecutado</label>
+							<label for="costo_total_tiquetes"><p style="color:red;">Costo Total Tiquetes Ejecutado</p></label>
 							<input class="form-control bbb" id="costo_total_tiquetes"  type="text" placeholder="Valor Costo Total Tiquetes Ejecutado" onpaste="return false" tabindex="16" >
 						</div>
 						<div class="form-group-sm">	
-							<label for="costo_total_evento">TOTAL COSTO DEL EVENTO</label>
+							<label for="costo_total_evento"><p style="color:red;">TOTAL COSTO DEL EVENTO</p></label>
 							<input class="form-control bbb" id="costo_total_evento"  type="text" placeholder="Valor Total Costo Evento" onpaste="return false" tabindex="16" >
 						</div>
 						<div class="box-footer">
@@ -206,8 +227,8 @@ ValidaSession("../login");
 <link rel="stylesheet" href="../../plugins/select3/bootstrap-select.min.css">
 
  <script type="text/javascript">
-	// document.getElementById("limpiar").disabled=true;
-	
+    document.getElementById("base_iva").value=19;
+	document.getElementById("base_iva_ree").value=19;	
 	BloquearCampos();
 	
 $(document).ready(function() {
@@ -256,7 +277,6 @@ var costo_evento_cotizado=0;
 var servicios_no_gravados=0;
 var pagos_a_terceros=0;
 var servicios_gravados=0;
-
 
 if(M_costo_evento_cotizado!=''){
 	costo_evento_cotizado=M_costo_evento_cotizado;
@@ -307,50 +327,61 @@ $("#costo_total_evento").val(TotalSuma_costo_evento);
 
 
 }
- 
-///###########################################################################////
-
-function SumarEjecutadoLogistico (valor) {
-
-	$("#ejecutado_logistico").val(0);
-    var TotalSuma = 0;  
-    valor = parseInt(valor); // Convertir a numero entero (número).
-    TotalSuma = parseInt($("#costo_evento_cotizado").val())+parseInt($("#servicios_no_gravados").val());   
-    TotalSuma = parseInt(TotalSuma);
-   
-	$("#ejecutado_logistico").val(TotalSuma);
-	
-
-}
 ///###########################################################################////
 
 function SumarEjecutadoLogisticoIVA (valor) {
 
 	 
-   var servicios_gravados=$("#servicios_gravados").val();
-   var pagos_a_terceros=$("#pagos_a_terceros").val();
-   $("#iva").val(0);
+var Mservicios_gravados=$("#servicios_gravados").val();
+var Mpagos_a_terceros=$("#pagos_a_terceros").val();
 
-   var TotalSuma = 0;  
-    // valor = parseInt(valor); // Convertir a numero entero (número).
-    TotalSuma = parseInt(servicios_gravados)+parseInt(pagos_a_terceros);  
-	var iva= (TotalSuma*19)/100;
-    iva = parseInt(iva);
-   
-	$("#iva").val(iva);
-	// $("#ejecutado_logistico").val(TotalSuma);
-	var total=SumarCostoEvento (valor);
+var M_base_iva=$("#base_iva").val();
+base_iva = parseInt(M_base_iva);
+
+
+var servicios_gravados=0;
+var pagos_a_terceros=0;
+
+
+
+
+if(Mpagos_a_terceros!=''){
+	pagos_a_terceros=Mpagos_a_terceros;
 }
+if(Mservicios_gravados!=''){
+	servicios_gravados=Mservicios_gravados;
+}
+
+$("#iva").val(0);
+
+var TotalSuma = 0;  
+ // valor = parseInt(valor); // Convertir a numero entero (número).
+ TotalSuma = parseInt(servicios_gravados)+parseInt(pagos_a_terceros);  
+ var iva= (TotalSuma*base_iva)/100;
+ iva = parseInt(iva);
+
+ $("#iva").val(iva);
+ // $("#ejecutado_logistico").val(TotalSuma);
+ var total=SumarCostoEvento (valor);
+}
+
 ///###########################################################################////
 
 function SumarIntermediacion (valor) {
 
 $("#intermediacion").val(0);
+
  var TotalSuma = 0;  
 // valor = parseInt(valor); // Convertir a numero entero (número).
 TotalSuma = parseInt($("#gastos_reembolsables").val());  
 var iva= (TotalSuma*3)/100;
-var iva_ter= (iva*19)/100;
+
+var M_base_iva_ree=$("#base_iva_ree").val();
+var base_iva_ree = parseInt(M_base_iva_ree);
+
+
+
+var iva_ter= (iva*base_iva_ree)/100;
 
 iva = parseInt(iva);
 iva_ter = parseInt(iva_ter);
@@ -415,11 +446,10 @@ var sum=parseInt(suma)+parseInt(cost)
 //$("#costo_total_evento").val(sum);
 var total=SumarCostoEvento (valor);
 
+
+
 }
-
 ///###########################################################################////
-
-
 var tick=0;
 
 
@@ -2320,6 +2350,10 @@ function BloquearCampos(){
 		document.getElementById("costo_total_evento").disabled = true;
 		document.getElementById("save").disabled = true;
 		document.getElementById("giro_fecty").disabled = true;
+		document.getElementById("base_iva").disabled = true;
+		document.getElementById("base_iva_ree").disabled = true;
+		
+
 
 
  }
@@ -2346,38 +2380,12 @@ function BloquearCampos(){
 		document.getElementById("costo_total_evento").disabled = true;
 		document.getElementById("save").disabled = false;
 		document.getElementById("giro_fecty").disabled = false;
-
-
- }
-
- 
-
-	function LimpiarCampos(){
-		
-	
-        document.getElementById("num_sol").value = '';
-	    document.getElementById("nombre").value = '';
-		document.getElementById("costo_evento_cotizado").value = '';
-		document.getElementById("servicios_no_gravados").value = '';
-		document.getElementById("pagos_a_terceros").value = '';
-		document.getElementById("servicios_gravados").value = '';
-		document.getElementById("iva").value = '';
-		document.getElementById("ejecutado_logistico").value = '';
-		document.getElementById("gastos_reembolsables").value = '';
-		document.getElementById("intermediacion").value = '';
-		document.getElementById("iva_intermediacion_reembolso").value = '';		
-		document.getElementById("ejecutado_reembolso").value = '';
-		document.getElementById("costo_tiquetes_ejecutado").value = '';
-
-
-		document.getElementById("iva_tiquetes").value = '';
-		document.getElementById("costo_total_tiquetes").value = '';
-		document.getElementById("costo_total_evento").value = '';
-		document.getElementById("save").value = '';
-		document.getElementById("giro_fecty").value = ''; 	 	
-
+		document.getElementById("base_iva").disabled = false;
+		document.getElementById("base_iva_ree").disabled = false;	 
 
  }
+
+
 	
 
  </script>
