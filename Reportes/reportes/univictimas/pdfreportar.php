@@ -561,7 +561,7 @@ class pdfreporte extends fpdf {
         if($this->a_supe==2){
             $aprobado='RECHAZADO POR :';
         }
-        if($this->a_supe_dir==1){
+        if($this->a_supe_dir==2){
            $autorizado='RECHAZADO POR :';
        }
 
