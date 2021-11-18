@@ -14,13 +14,16 @@ class pdfreporte extends fpdf {
         $this->fpdf("p", "mm", "legal");
         $this->bd = new baseClases();
         $this->cab = new Cabecera();
-        $this->orden=str_replace(' ', '', $this->orden);
         $this->reg_sol=getvalue('n_solicitud');
 
-       //$this->reg_sol=234;
 
         $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
         $this->arrp = $this->bd->select($sql);
+
+        $this->a_supe=$this->arrp[0]['a_supe'];
+            
+        $this->a_supe_dir=$this->arrp[0]['a_supe_dir'];
+          
        
         $id_dep=$this->arrp[0]['mdepartamentos_id'];
         $sql_dep = "SELECT  nombre as departamento from mdepartamentos where cdd= ".$id_dep." and status=1 ;  ";
@@ -59,21 +62,21 @@ class pdfreporte extends fpdf {
 
 
  
- $this->rt_nombre1=strtolower($this->arrp[0]['rt_nombre1']);
- $this->rt_apellido1=strtolower($this->arrp[0]['rt_apellido1']);
- $this->rt_nombre2=strtolower($this->arrp[0]['rt_nombre2']);
- $this->rt_apellido2=strtolower($this->arrp[0]['rt_apellido2']);
+        $this->rt_nombre1=strtolower($this->arrp[0]['rt_nombre1']);
+        $this->rt_apellido1=strtolower($this->arrp[0]['rt_apellido1']);
+        $this->rt_nombre2=strtolower($this->arrp[0]['rt_nombre2']);
+        $this->rt_apellido2=strtolower($this->arrp[0]['rt_apellido2']);
 
- $this->rt_nombre1=ucfirst($this->rt_nombre1);
- $this->rn_apellido1=ucfirst($this->rn_apellido1);
+        $this->rt_nombre1=ucfirst($this->rt_nombre1);
+        $this->rn_apellido1=ucfirst($this->rn_apellido1);
 
- $this->rt_nombre2=ucfirst($this->rt_nombre2);
- $this->rt_apellido2=ucfirst($this->rt_apellido2);
+        $this->rt_nombre2=ucfirst($this->rt_nombre2);
+        $this->rt_apellido2=ucfirst($this->rt_apellido2);
 
- $this->nombre_apellido_subdirector=$this->rt_nombre1.' '.$this->rt_nombre2.' '.$this->rt_apellido1.' '.$this->rt_apellido2;
+        $this->nombre_apellido_subdirector=$this->rt_nombre1.' '.$this->rt_nombre2.' '.$this->rt_apellido1.' '.$this->rt_apellido2;
 
- $this->correo_subdirector=$this->arrp[0]['correo1'];
- $this->telefono_subdirector=$this->arrp[0]['tele1'];
+        $this->correo_subdirector=$this->arrp[0]['correo1'];
+        $this->telefono_subdirector=$this->arrp[0]['tele1'];
 
         $this->nun_funcionarios=$this->arrp[0]['entidad'];
         $this->nun_victimas=$this->arrp[0]['num_vic'];
@@ -554,11 +557,20 @@ class pdfreporte extends fpdf {
          if($this->a_supe_dir==1){
             $autorizado='AUTORIZADO POR :';
         }
+
+        if($this->a_supe==2){
+            $aprobado='RECHAZADO POR :';
+        }
+        if($this->a_supe_dir==1){
+           $autorizado='RECHAZADO POR :';
+       }
+
+
         $this->SetY($this->GetY()+5);
         $this->SetWidths(array(60,70,60));
         $this->SetFont("courier", "B", "6");
         $this->SetAligns(array('C','C','C'));
-        $this->RowM(array('',$autorizado,$aprobado));
+        $this->RowM(array('SOLICITADO POR',$autorizado,$aprobado));
         $this->Ln(1);
         $this->RowM(array(utf8_decode($this->nombre_apellido_responsable),utf8_decode($this->nombre_apellido_subdirector),'Aura Helena Acevedo Vargas'));
         $this->RowM(array('Responsable del Evento','Sub-director(a) Solicitante',utf8_decode('Supervisión del Contrato')));
