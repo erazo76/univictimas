@@ -553,6 +553,7 @@ class pdfreporte extends fpdf {
          $autorizado='';
          if($this->a_supe==1){
              $aprobado='APROBADO POR :';
+             $autorizado='AUTORIZADO POR :';
          }
          if($this->a_supe_dir==1){
             $autorizado='AUTORIZADO POR :';
