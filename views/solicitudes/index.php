@@ -128,8 +128,8 @@ var desh=<?php echo $_SESSION['rolx'];  ?>;//verifica el rol del usuario
 
 							}  else	if ((mData.a_supe)== 1){
 
-								$('td:eq(0)', nRow).css('background-image','url(../../dist/img/despachado.png),radial-gradient(white,white )');
-								$('td:eq(0)', nRow).css('background-size','70px 25px');
+								$('td:eq(0)', nRow).css('background-image','url(../../dist/img/ejecutado.png),radial-gradient(white,white )');
+								$('td:eq(0)', nRow).css('background-size','60px 20px');
 								$('td:eq(0)', nRow).css('background-repeat','no-repeat');
 								$('td:eq(0)', nRow).css('font-weight','bold');
 								$('td:eq(0)', nRow).css('text-align','left');
