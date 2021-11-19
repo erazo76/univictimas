@@ -129,8 +129,8 @@ $control_total=false;
           </div><!-- /.row -->
 
           <div class="box-footer">
-            <button id="reportes" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-graph"></i> Generar Reporte General</button> 
-            <button id="reporte_facturacion" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-graph"></i> Generar Reportes Facturados</button> 
+            <button id="reportes" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-graph"></i> Generar Reporte </button> 
+            <!-- <button id="reporte_facturacion" class="btn btn-primary" type="button" ><i  class="fa fa-fw fa-graph"></i> Generar Reportes Facturados</button>  -->
 			
 
 							    </div>
@@ -141,7 +141,7 @@ $control_total=false;
               <!-- BAR CHART -->
               <div class="box box-success">
                 <div class="box-header with-border">
-                  <h3 class="box-title">EJECUCIÓN PRESUPUESTAL REGIONAL</h3>
+                  <h3 class="box-title">NUMERO DE EVENTOS POR SUBDIRECCION</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -156,7 +156,7 @@ $control_total=false;
 
               <div class="box box-success">
                 <div class="box-header with-border">
-                  <h3 class="box-title">EJECUCIÓN PRESUPUESTAL DEPARTAMENTAL </h3>
+                  <h3 class="box-title">EJECUCIÓN PRESUPUESTAL POR DEPARTAMENTOS </h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -212,19 +212,14 @@ $control_total=false;
 							if($_GET["control_total"]){
 						   
 						   ?>
-                   
-
                 <div class="box-header with-border">
                   <h3 class="box-title">ASIGNACIÓN ESPECIFICA</h3>
                   <div class="box-tools pull-right">
                   </div>
                   </div>
-                  
-                
                 <label>Subdireccion de Participacion</label>
                   <div class="input-group">                            
                     <span class="input-group-addon">$</span>
-                    <!-- <input type="text" class="form-control" id="sub_participacion" placeholder="Indique la asignación "  onpaste="return false" tabindex="20" onkeypress="return esnum_sub_participacion(event);" onblur="alsalir(this.id)" autocomplete="off"> -->
                     <input type="text" class="form-control pesos" id="sub_participacion" placeholder="Indique la asignación "  onpaste="return false"  onkeypress="return esnum_sub_participacion(event);" onblur="monto_alsalir(this.id)" autocomplete="off">
 
                   </div>
@@ -293,7 +288,7 @@ $control_total=false;
 			<div class="modal-content">
 				<div class="modal-body">
 					<div class="contenido-modal">
-						<h4 class="modal-title" id="myModalLabel1">Reportes</h4>
+						<h4 class="modal-title" id="myModalLabel1"><p style="color:blue;">Gestor de Reportes</p></h4>
 						<div class="message1"></div>
 						<div class="row">
 							<!-- left column -->
@@ -306,6 +301,21 @@ $control_total=false;
 									<div class="box-body">
 
                   <div class="row">
+
+                    <div class="form-group">
+                    <select class="form-control" id="vista">
+                    <option value="" selected disabled>Seleccione el Reporte a Consultar</option>
+                    <option value="rep_gen_sol">Reporte General de Solicitudes</option>
+                    <option value="rep_sol_fec">Reporte de Solicitudes por Rango de Fechas</option>
+                    <option value="rep_sol_sol">Reporte de Solicitudes por Rango de Ordenes</option>
+                    <option value="rep_eve_fac">Eventos Facturados PDF</option>
+                    <option value="rep_eve_sin_fac">Eventos Sin Facturar PDF</option>
+                    <option value="rep_eve_fac_excel">Eventos Facturados XLSX</option>
+                    <option value="rep_eve_sin_fac_excel">Eventos Sin Facturar XLSX</option>
+
+                  </select>
+                    </div>
+
 
               <div class="col-sm-6">
                 
@@ -521,6 +531,38 @@ $(document).ready(function() {
 });
 
 
+$("#vista").click(function() {
+		if ($("#vista").val()=='rep_gen_sol'){
+
+			 document.getElementById('fecha_inicio').disabled = true;
+			 document.getElementById('fecha_final').disabled = true;
+       document.getElementById('num_sol_ini').disabled = true;
+			 document.getElementById('num_sol_fin').disabled = true;
+
+		}else if ($("#vista").val()=='rep_eve_fac'){
+       document.getElementById('fecha_inicio').disabled = false;
+			 document.getElementById('fecha_final').disabled = false;
+       document.getElementById('num_sol_ini').disabled = false;
+			 document.getElementById('num_sol_fin').disabled = false;
+
+    }else if ($("#vista").val()=='rep_eve_sin_fac'){
+       document.getElementById('fecha_inicio').disabled = false;
+			 document.getElementById('fecha_final').disabled = false;
+       document.getElementById('num_sol_ini').disabled = false;
+			 document.getElementById('num_sol_fin').disabled = false;
+
+    }else if ($("#vista").val()=='rep_sol_fec'){
+       document.getElementById('fecha_inicio').disabled = false;
+			 document.getElementById('fecha_final').disabled = false;
+       document.getElementById('num_sol_ini').disabled = true;
+			 document.getElementById('num_sol_fin').disabled = true;
+
+    }
+    
+						
+	});
+
+
 $.post( "../../controllers/mcontratos_controller", { action: "search_asig_presupuesto"}).done(function( data ) {
 	var parsedJson = $.parseJSON(data);
 
@@ -568,7 +610,7 @@ setTimeout(function() {
      // chart.legend.scrollable = true;
       //chart.innerRadius = am4core.percent(50);
       var title = chart.titles.create();
-      title.text = "Presupuesto ejecutado ($)";
+      title.text = "Ejecuacion de Eventos";
       title.fontSize = 16;
       title.marginBottom = 30;
 
@@ -592,11 +634,11 @@ setTimeout(function() {
       // This creates initial animation
     //  pieSeries.labels.template.maxWidth = 90;
     //  pieSeries.labels.template.wrap = true;
-      pieSeries.labels.template.text = "[bold font-size: 10px]{category} -> {value.percent.formatNumber('#.0')}%";
+      pieSeries.labels.template.text = "[bold font-size: 10px]{category} -> {value.percent.formatNumber('#.#')}%";
       pieSeries.hiddenState.properties.opacity = 1;
       pieSeries.hiddenState.properties.endAngle = -90;
       pieSeries.hiddenState.properties.startAngle = -90;
-      pieSeries.slices.template.tooltipText = "{category}: [bold font-size: 12px]{value.value}($)";     
+      pieSeries.slices.template.tooltipText = "{category}: [bold font-size: 12px]{value.value}";     
 
       chart.hiddenState.properties.radius = am4core.percent(0);
 }, 500);
@@ -733,10 +775,68 @@ $("#reportes").click(function() {
 
         var num_sol_ini=$('#num_sol_ini').val();
         var num_sol_fin=$('#num_sol_fin').val();
+        var genera=false;
+        var mensaje=0;
+        if ($("#vista").val()=='rep_sol_fec'){
+         if((fecha_inicio!="") && (fecha_final!="") ){
+          genera=true;
 
-        
-					window.open("../../Reportes/reportes/univictimas/rreportador.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final+'&num_sol_ini='+num_sol_ini+'&num_sol_fin='+num_sol_fin,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
-          $('#modal3').modal('toggle');
+         }else{
+           mensaje=1;
+         }
+
+
+        }else if ($("#vista").val()=='rep_sol_sol'){
+         if((num_sol_ini!="") && (num_sol_ini!="") ){
+          genera=true;
+
+         }else{
+           mensaje=2;
+         }
+
+
+        }else if ($("#vista").val()=='rep_gen_sol'){
+          genera=true;      
+
+
+        }
+        if(mensaje==1){
+          $.alert({
+						    title: '!Debe Seleccionar el Rango de Fechas !',
+						    content: false,
+						    confirmButton: true, // hides the confirm button.
+						    closeIcon: false,
+						    confirmButton: 'cerrar',
+						    confirmButtonClass: 'btn-success'
+						});
+        }else if(mensaje==2){
+          $.alert({
+						    title: '!Debe Seleccionar el Rango de las Solicitudes !',
+						    content: false,
+						    confirmButton: true, // hides the confirm button.
+						    closeIcon: false,
+						    confirmButton: 'cerrar',
+						    confirmButtonClass: 'btn-success'
+						});
+        }else if(mensaje==0){
+          $.alert({
+						    title: '!El Reporte Seleccionado ESTA EN DESARROLLO !',
+						    content: false,
+						    confirmButton: true, // hides the confirm button.
+						    closeIcon: false,
+						    confirmButton: 'cerrar',
+						    confirmButtonClass: 'btn-success'
+						});
+        } else{
+          if(genera){
+            window.open("../../Reportes/reportes/univictimas/rreportador.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final+'&num_sol_ini='+num_sol_ini+'&num_sol_fin='+num_sol_fin,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
+             $('#modal3').modal('toggle');
+          }
+
+          
+          
+        }
+
 
 			});
 

@@ -2,6 +2,8 @@
 require_once '../models/Msolicitude.php';
 require_once '../models/Mdepartamento.php';
 require_once '../models/Mcontrato.php';
+require_once '../models/Vfacturado.php';
+
 
 
 
@@ -15,7 +17,9 @@ require_once '../models/Mcontrato.php';
 
 	foreach ($depa as &$dp) {
 		
-		$alf = Msolicitude::find_by_sql("SELECT mdepartamentos_id, sum(costo_total) as tot_cos from msolicitudes WHERE status=1 AND mdepartamentos_id=".$dp->cdd."GROUP BY mdepartamentos_id;");
+		$alf = Vfacturado::find_by_sql("SELECT mdepartamentos_id, sum(costo_total_evento) as tot_cos from Vfacturados WHERE mdepartamentos_id=".$dp->cdd." GROUP BY mdepartamentos_id;");
+		// $alf = Msolicitude::find_by_sql("SELECT mdepartamentos_id, sum(costo_total) as tot_cos from msolicitudes WHERE a_supe=1 and status=1 AND mdepartamentos_id=".$dp->cdd."GROUP BY mdepartamentos_id;");
+
 		
 
 	    if($alf !=null){
