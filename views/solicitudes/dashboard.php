@@ -307,9 +307,6 @@ $control_total=false;
                     <option value="" selected disabled>Seleccione el Reporte a Consultar</option>
                     <option value="rep_gen_sol">Reporte General de Solicitudes</option>
                     <option value="rep_sol_fec">Reporte de Solicitudes por Rango de Fechas</option>
-                    <option value="rep_sol_sol">Reporte de Solicitudes por Rango de Ordenes</option>
-                    <option value="rep_eve_fac">Eventos Facturados PDF</option>
-                    <option value="rep_eve_sin_fac">Eventos Sin Facturar PDF</option>
                     <option value="rep_eve_fac_excel">Eventos Facturados XLSX</option>
                     <option value="rep_eve_sin_fac_excel">Eventos Sin Facturar XLSX</option>
 
