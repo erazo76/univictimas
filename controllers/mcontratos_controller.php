@@ -2,6 +2,9 @@
 require_once '../models/Mcontrato.php';
 require_once '../models/Mrequerimiento.php';
 require_once '../models/Msolicitude.php';
+require_once '../models/Vfacturado.php';
+
+
 date_default_timezone_set('America/Bogota');
 
 @$action = ($_POST["action"]);
@@ -586,12 +589,20 @@ break;
 
     if($data !=null){
       foreach($data as $rs){
-          @$subdi_participacion = Msolicitude::find_by_sql("SELECT sum(costo_total) as sub_part_cos from msolicitudes WHERE status=1 AND grup_financ_id=1 ;");  
-          @$direc_gest_inter = Msolicitude::find_by_sql("SELECT sum(costo_total) as dir_ges_cos from msolicitudes WHERE status=1 AND grup_financ_id=2;"); 
-          @$direc_cord_snariv = Msolicitude::find_by_sql("SELECT sum(costo_total) as dir_cord_cos from msolicitudes WHERE status=1 AND grup_financ_id=3;"); 
-          @$direc_cord_nac = Msolicitude::find_by_sql("SELECT sum(costo_total) as dir_cord_nac_cos from msolicitudes WHERE status=1 AND grup_financ_id=4;"); 
-          @$grupo_gestion_proy = Msolicitude::find_by_sql("SELECT sum(costo_total) as grup_gest_cos from msolicitudes WHERE status=1 AND grup_financ_id=5;"); 
-          @$victimas_ext = Msolicitude::find_by_sql("SELECT sum(costo_total) as vict_ext_cos from msolicitudes WHERE status=1 AND grup_financ_id=6;"); 
+          // @$subdi_participacion = Msolicitude::find_by_sql("SELECT sum(costo_total) as sub_part_cos from msolicitudes WHERE status=1 AND grup_financ_id=1 ;");  
+          // @$direc_gest_inter = Msolicitude::find_by_sql("SELECT sum(costo_total) as dir_ges_cos from msolicitudes WHERE status=1 AND grup_financ_id=2;"); 
+          // @$direc_cord_snariv = Msolicitude::find_by_sql("SELECT sum(costo_total) as dir_cord_cos from msolicitudes WHERE status=1 AND grup_financ_id=3;"); 
+          // @$direc_cord_nac = Msolicitude::find_by_sql("SELECT sum(costo_total) as dir_cord_nac_cos from msolicitudes WHERE status=1 AND grup_financ_id=4;"); 
+          // @$grupo_gestion_proy = Msolicitude::find_by_sql("SELECT sum(costo_total) as grup_gest_cos from msolicitudes WHERE status=1 AND grup_financ_id=5;"); 
+          // @$victimas_ext = Msolicitude::find_by_sql("SELECT sum(costo_total) as vict_ext_cos from msolicitudes WHERE status=1 AND grup_financ_id=6;"); 
+          @$subdi_participacion = Vfacturado::find_by_sql("SELECT sum(costo_total_evento) as sub_part_cos from Vfacturados WHERE grup_financ_id=1 ;");  
+          @$direc_gest_inter = Vfacturado::find_by_sql("SELECT sum(costo_total_evento) as dir_ges_cos from Vfacturados WHERE grup_financ_id=2 ;"); 
+          @$direc_cord_snariv = Vfacturado::find_by_sql("SELECT sum(costo_total_evento) as dir_cord_cos from Vfacturados WHERE grup_financ_id=3 ;"); 
+          @$direc_cord_nac = Vfacturado::find_by_sql("SELECT sum(costo_total_evento) as dir_cord_nac_cos from Vfacturados WHERE grup_financ_id=4 ;"); 
+          @$grupo_gestion_proy = Vfacturado::find_by_sql("SELECT sum(costo_total_evento) as grup_gest_cos from Vfacturados WHERE grup_financ_id=5 ;"); 
+          @$victimas_ext = Vfacturado::find_by_sql("SELECT sum(costo_total_evento) as vict_ext_cos from Vfacturados WHERE grup_financ_id=6 ;"); 
+            
+
 
           if($subdi_participacion !=null){
             foreach($subdi_participacion as $r1){
