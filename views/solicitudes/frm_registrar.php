@@ -571,40 +571,40 @@ session_start();
 
 				</div>
 
-				<div class="col-md-4">
-
-
-					<div class="box-header with-border">
-						<h3 id="jump3" tabindex="0" class="box-title">Detalle especifico del requerimiento</h3>
-					</div><!-- /.box-header -->
-
-					<div class="box box-primary">
-						<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
-						   <table id="tabla" class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Día</th>
-										<th>Tipo</th>
-										<th>Concepto</th>
-										<th>Cantidad</th>
-										<th>Medida</th>
-										<th>Costo Unitario</th>
-										<th>Observaciones</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-						</div>
-
-						<div class="box-footer">
-						<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
-						<!-- <button id="delete" type="button" class="btn btn-danger sm" tabindex="50"><i class="fa fa-fw fa-minus"></i>Quitar</button> -->
-					</div>
-				</div>	
 				
-					<div class="box box-primary">
+			<div class="col-md-4">
+			
+
+			<div class="box-header with-border">
+				<h3 id="jump3" tabindex="0" class="box-title">Detalle especifico del requerimiento</h3>
+			</div><!-- /.box-header -->
+
+			<div class="box box-primary" >			
+				<div class="box-body dataTables_wrapper form-inline dt-bootstrap" width="100%" style="width: 100%">
+						<table id="tabla" class="table table-bordered table-hover">
+
+							<thead>
+								<tr>
+									<th></th>
+									<th>Día</th>
+									<th>Tipo</th>
+									<th>Concepto</th>
+									<th>Cantidad</th>
+									<th>Medida</th>
+									<th>Costo Unitario</th>
+									<th>Observaciones</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+				</div>
+			
+				<div class="box-footer">
+					<button id="agregar" type="button" class="btn btn-primary sm" tabindex="49"><i class="fa fa-fw fa-plus"></i>Agregar</button>
+					<button id="quitar" type="button" class="btn btn-danger sm" tabindex="50"><i class="fa fa-fw fa-minus"></i>Quitar</button>
+				</div>
+			</div>		<div class="box box-primary">
 						<!-- form start -->
 						<div class="box-body">
 							<div class="form-group-sm">
@@ -632,7 +632,7 @@ session_start();
 							<label>Requerimiento de Alojamiento</label>
 							<div class="input-group">
 								<span class="input-group-addon">
-									<input type="checkbox" tabindex="50" id="alojamiento">
+									<input type="checkbox" tabindex="510" id="alojamiento">
 								</span>
 								<input type="text" class="form-control" id="msg_aloja" value="No requiere Alojamiento" disabled>
 							</div>
@@ -716,7 +716,6 @@ session_start();
 						<div class="box-footer">
 						<button id="save" type="button" class="btn btn-primary btn-xs " tabindex="55" ><i class="fa fa-fw fa-save" ></i>Guardar</button>
 					    <button id="anex" type="button" class="btn btn-success btn-xs " tabindex="56"><i class="fa fa-fw fa-plus"></i>Add</button>
-				        <!-- <button id="limpiar" type="button" class="btn btn-danger btn-xs " tabindex="57" ><i class="fa fa-fw fa-minus" ></i>limpiar</button> -->
 						<button id="exit" type="button" class="btn btn-primary btn-xs " tabindex="58" ><i class="fa fa-fw fa-reply" ></i>Regresar</button> 
 
 						</div>
@@ -1496,7 +1495,7 @@ session_start();
 
 	//MASCARAS DE VALIDACION ########################################
 
-	$('.pesos').mask('#.##0,00', {
+	$('.pesos').mask('#.##0,000', {
 		reverse: true
 	});
 
@@ -2131,8 +2130,6 @@ session_start();
 	// ********************************************************************************************
 
 
-
-
 	$("#a_tra").click(function() {
 
 		if ($('#transporte').prop('checked') == true && $('#t_trans option:selected').length == 0) {
@@ -2368,8 +2365,6 @@ session_start();
 
 
 
-
-
 	$("#close1").click(function() {
 
 		$.post("../../controllers/mdetalles_controller", {
@@ -2407,8 +2402,6 @@ session_start();
 					$("#tipo_tarifario").val(null);
 					$("#concepto").val(null);
 					
-
-
 
 					$('#tabla').DataTable().ajax.reload();
 					$(".alert").alert('close');
@@ -2671,60 +2664,45 @@ session_start();
 	setTimeout(function() {
 		var este = document.getElementById("ideado").value;
 
-
 		var table = $('#tabla').dataTable({
-
-			//"destroy": true,
-
-			"ajax": {
-				"url": "../../data_json/data_mdetalles?este=" + este,
-				"dataSrc": ""
-			},
-
-			"fnRowCallback": function(nRow, mData, iDisplayIndex) {
-
-				$('td:eq(0)', nRow).css('opacity', '0');
-
-				return nRow;
-			},
-			"scrollX": true,
-			"scrollY": "130px",
-			"columns": [{
-					"data": "id"
-				},
-				{
-					"data": "dia"
-				},
-				{
-					"data": "tipo"
-				},
-				{
-					"data": "concepto"
-				},
-				{
-					"data": "cantidad"
-				},
-				{
-					"data": "medida"
-				},
-				{
-					"data": "costo"
-				},
-				{
-					"data": "observaciones"
-				}
-
-
-			],
-			"order": [[ 0, "desc" ]],
-			"bPaginate": false,
-			"info": false,
-			"bFilter": false
-
-			//"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
-		});
-
-		$('#tabla tbody').on('click', 'tr', function() {
+										  	
+											  //"destroy": true,
+	
+											  "ajax": {
+												"url": "../../data_json/data_mdetalles?este="+este,
+												"dataSrc": ""
+											  },
+	
+											  "fnRowCallback": function(nRow, mData, iDisplayIndex ) {
+	
+												$('td:eq(0)', nRow).css('opacity','0');
+		
+												return nRow;
+												},
+											  "scrollX": true,
+											  "scrollY": "130px",
+											  "columns": [
+													{ "data": "id" },
+													{ "data": "dia" },
+													{ "data": "tipo" },
+													{ "data": "concepto" },
+													{ "data": "cantidad" },
+													{ "data": "medida" },
+													{ "data": "costo" },
+													{ "data": "observaciones" }
+													
+													
+												],
+											//"order": [[ 0, "asc" ]],
+											"bPaginate": false,
+											"info":     false,
+											"bFilter": false
+	
+											  //"aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }]
+										});
+	
+	
+			$('#tabla tbody').on( 'click', 'tr', function () {
 
 			if ($(this).hasClass('selected')) {
 				$(this).removeClass('selected');
@@ -2874,113 +2852,72 @@ session_start();
 	}, 3000);
 
 
-	$('#limpiar').click( function () {
+		$('#quitar').click( function () {
+		
+		var value= $('tr.selected').children('td:first').text();
+		if(!value){
 
+				$.alert({
+					title: '!Seleccione el item a desincorporar!',
+					content: false,
+					confirmButton: true, // hides the confirm button.
+					closeIcon: false,
+					confirmButton: 'cerrar',
+					confirmButtonClass: 'btn-success'
+				});
 
-		$.confirm({
+		}else{
 
-					title: '¿Desea Limpiar la caja de Documentos Adjuntos?!',
-					content:false,
-					confirmButton: 'Si',
-					cancelButton: 'No',
-					confirmButtonClass: 'btn-primary',
-						cancelButtonClass: 'btn-success',
+				$.confirm({
 
-					confirm: function(){
+							title: '¿Desea desincorporar este item?!',
+							content:false,
+							confirmButton: 'Si',
+							cancelButton: 'No',
+							confirmButtonClass: 'btn-primary',
+								cancelButtonClass: 'btn-success',
 
-						$.post( "../../controllers/madjuntos_controller", {action:"limpiar_adjuntos"}).done(function( data ) {
-							//$(".message").html(data);
-							var parsedJson = $.parseJSON(data);
-							$(".message").html(parsedJson.mensaje);
+							confirm: function(){
 
-							setTimeout(function(){
-								$('#tabla30').DataTable().ajax.reload();
-							}, 1000);
-						});		
+								$.post( "../../controllers/mdetalles_controller", {action:"delete",record:value}).done(function( data ) {
+									//$(".message").html(data);
+									var parsedJson = $.parseJSON(data);
+									$(".message").html(parsedJson.mensaje);
 
-					},
+									setTimeout(function(){
 
-					cancel: function(){
+										$(".alert").alert('close');
+										//$('#tabla').dataTable();
+										
 
-					}
-		});
+												$.post( "../../controllers/mdetalles_controller", { action: "search_act"}).done(function( data ) {
+														
+														var parsedJson = $.parseJSON(data);
 
+																if(parsedJson == 'si'){
+																
+																	$('#tabla').DataTable().ajax.reload();
 
-});	
+																}else{
 
+																	$('#tabla').DataTable().ajax.reload();
+																}
 
-	$('#quitar').click(function() {
+												},"json");	
 
-			
-	var value= table.$('tr.selected').children('td:first').text();
+									}, 3000);
+								});		
 
-		if (!value) {
+							},
 
-			$.alert({
-				title: '!Seleccione el item a desincorporar!',
-				content: false,
-				confirmButton: true, // hides the confirm button.
-				closeIcon: false,
-				confirmButton: 'cerrar',
-				confirmButtonClass: 'btn-success'
-			});
+							cancel: function(){
 
-		} else {
-
-			$.confirm({
-
-				title: '¿Desea desincorporar este item?!',
-				content: false,
-				confirmButton: 'Si',
-				cancelButton: 'No',
-				confirmButtonClass: 'btn-primary',
-				cancelButtonClass: 'btn-success',
-
-				confirm: function() {
-
-					$.post("../../controllers/mdetalles_controller", {
-						action: "delete",
-						record: value
-					}).done(function(data) {
-						//$(".message").html(data);
-						var parsedJson = $.parseJSON(data);
-						$(".message").html(parsedJson.mensaje);
-
-						setTimeout(function() {
-
-							$(".alert").alert('close');
-							//$('#tabla').dataTable();
-
-
-							$.post("../../controllers/mdetalles_controller", {
-								action: "search_act"
-							}).done(function(data) {
-
-								var parsedJson = $.parseJSON(data);
-
-								if (parsedJson == 'si') {
-
-									$('#tabla').DataTable().ajax.reload();
-
-								} else {
-
-									$('#tabla').DataTable().ajax.reload();
-								}
-
-							}, "json");
-
-						}, 3000);
-					});
-
-				},
-
-				cancel: function() {
-
-				}
-			});
+							}
+				});
 
 		}
-	});
+		});	
+
 
 	$('#quitar2').click(function() {
 
