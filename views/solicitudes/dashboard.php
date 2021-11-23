@@ -17,7 +17,7 @@ $control_total=false;
               <!-- small box -->
               <div class="small-box bg-aqua">
                 <div class="inner">
-                  <h4 style="font-size: 34px" id="restan"><sup style="font-size: 20px">$</sup></h4>
+                  <h4 style="font-size: 25px" id="restan"><sup style="font-size: 20px">$</sup></h4>
                   <p>PRESUPUESTO NACIONAL</p>
                 </div>
                 <div class="icon">
@@ -30,9 +30,9 @@ $control_total=false;
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
-              <div class="small-box bg-green">
+              <div class="small-box bg-teal">
                 <div class="inner">
-                  <h4 style="font-size: 34px" id="sub_part_cos"><sup style="font-size: 20px">$</sup></h4>
+                  <h4 style="font-size: 25px" id="sub_part_cos"><sup style="font-size: 20px">$</sup></h4>
                   <p>SUBDIRECCIÓN  DE PARTICIPACIÓN</p>
                 </div>
                 <div class="icon">
@@ -43,11 +43,11 @@ $control_total=false;
                 </a>
               </div>
             </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
+            <div class="col-lg-3 col-xs-4">
               <!-- small box -->
-              <div class="small-box bg-yellow">
+              <div class="small-box bg-olive">
                 <div class="inner">
-                  <h4 style="font-size: 34px" id="dir_ges_cos"><sup style="font-size: 20px">$</sup></h4>
+                  <h4 style="font-size: 25px" id="dir_ges_cos"><sup style="font-size: 20px">$</sup></h4>
                   <p>DIRECCIÓN DE GESTIÓN INTERINSTITUCIONAL</p>
                 </div>
                 <div class="icon">
@@ -58,11 +58,27 @@ $control_total=false;
                 </a>
               </div>
             </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
+           
+            <div class="col-lg-3 col-xs-4">
               <!-- small box -->
-              <div class="small-box bg-red">
+              <div class="small-box bg-aqua">
                 <div class="inner">
-                  <h4 style="font-size: 34px" id="dir_cord_cos"><sup style="font-size: 20px">$</sup></h4>
+                  <h4 style="font-size: 25px" id="dir_cord_nac_cos"><sup style="font-size: 20px">$</sup></h4>
+                  <p>SUBDIRECCIÓN COORDINACIÓN NACIÓN TERRITORIO</p>
+                </div>
+                <div class="icon">
+                  <i class="ion-home"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                  Ejecutados <i class="fa fa-check"></i>
+                </a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-4">
+              <!-- small box -->
+              <div class="small-box bg-orange">
+                <div class="inner">
+                  <h4 style="font-size: 25px" id="dir_cord_cos"><sup style="font-size: 20px">$</sup></h4>
                   <p>SUBDIRECCIÓN COORDINACIÓN SNARIV</p>
                 </div>
                 <div class="icon">
@@ -75,28 +91,11 @@ $control_total=false;
 
             </div><!-- ./col -->
 
-
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-orange">
-                <div class="inner">
-                  <h4 style="font-size: 34px" id="dir_cord_nac_cos"><sup style="font-size: 20px">$</sup></h4>
-                  <p>SUBDIRECCIÓN COORDINACIÓN NACIÓN TERRITORIO</p>
-                </div>
-                <div class="icon">
-                  <i class="ion-home"></i>
-                </div>
-                <a href="#" class="small-box-footer">
-                  Ejecutados <i class="fa fa-check"></i>
-                </a>
-              </div>
-            </div><!-- ./col -->
-
-            <div class="col-lg-3 col-xs-6">
+            <div class="col-lg-3 col-xs-4">
               <!-- small box -->
               <div class="small-box bg-blue">
                 <div class="inner">
-                  <h4 style="font-size: 34px" id="grup_proy"><sup style="font-size: 20px">$</sup></h4>
+                  <h4 style="font-size: 25px" id="grup_proy"><sup style="font-size: 20px">$</sup></h4>
                   <p>GRUPO DE GESTIÓN DE PROYECTOS</p>
                 </div>
                 <div class="icon">
@@ -112,7 +111,7 @@ $control_total=false;
               <!-- small box -->
               <div class="small-box bg-green">
                 <div class="inner">
-                  <h4 style="font-size: 34px" id="vict_ext_cos"><sup style="font-size: 20px">$</sup></h4>
+                  <h4 style="font-size: 25px" id="vict_ext_cos"><sup style="font-size: 20px">$</sup></h4>
                   <p>VICTIMAS EN EL EXTERIOR</p>
                 </div>
                 <div class="icon">
@@ -123,8 +122,7 @@ $control_total=false;
                 </a>
               </div>
             </div><!-- ./col -->
-
-            
+                       
 
           </div><!-- /.row -->
 
@@ -305,10 +303,10 @@ $control_total=false;
                     <div class="form-group">
                     <select class="form-control" id="vista">
                     <option value="" selected disabled>Seleccione el Reporte a Consultar</option>
-                    <option value="rep_gen_sol">Reporte General de Solicitudes</option>
-                    <option value="rep_sol_fec">Reporte de Solicitudes por Rango de Fechas</option>
+                    <!-- <option value="rep_gen_sol">Reporte General de Solicitudes</option> -->
+                    <!-- <option value="rep_sol_fec">Reporte de Solicitudes por Rango de Fechas</option> -->
                     <option value="rep_eve_fac_excel">Eventos Facturados XLSX</option>
-                    <option value="rep_eve_sin_fac_excel">Eventos Sin Facturar XLSX</option>
+                    <!-- <option value="rep_eve_sin_fac_excel">Eventos Sin Facturar XLSX</option> -->
 
                   </select>
                     </div>
@@ -330,17 +328,7 @@ $control_total=false;
                             
               </div>
 
-              <div class="col-sm-4">
-								<label>Solicitud Inicial</label>
-								<input type="text"  class="form-control" id="num_sol_ini"  placeholder="Indique la Solicitud"  onpaste="return false" onkeypress="return esdcantidad(event);"  autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_sol_ini' ></div>
-							</div>
-
-              <div class="col-sm-4">
-								<label>Solicitud Final</label>
-								<input type="text"  class="form-control" id="num_sol_fin"  placeholder="Indique la Solicitud"  onpaste="return false" onkeypress="return esdcantidad(event);"  autocomplete="off">
-								<div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_num_sol_fin' ></div>
-							</div>
+            
 </div>		
 										
 
@@ -533,26 +521,21 @@ $("#vista").click(function() {
 
 			 document.getElementById('fecha_inicio').disabled = true;
 			 document.getElementById('fecha_final').disabled = true;
-       document.getElementById('num_sol_ini').disabled = true;
-			 document.getElementById('num_sol_fin').disabled = true;
+       
 
-		}else if ($("#vista").val()=='rep_eve_fac'){
+		}else if ($("#vista").val()=='rep_eve_fac_excel'){
        document.getElementById('fecha_inicio').disabled = false;
 			 document.getElementById('fecha_final').disabled = false;
-       document.getElementById('num_sol_ini').disabled = false;
-			 document.getElementById('num_sol_fin').disabled = false;
+       
 
     }else if ($("#vista").val()=='rep_eve_sin_fac'){
        document.getElementById('fecha_inicio').disabled = false;
 			 document.getElementById('fecha_final').disabled = false;
-       document.getElementById('num_sol_ini').disabled = false;
-			 document.getElementById('num_sol_fin').disabled = false;
-
+       
     }else if ($("#vista").val()=='rep_sol_fec'){
        document.getElementById('fecha_inicio').disabled = false;
 			 document.getElementById('fecha_final').disabled = false;
-       document.getElementById('num_sol_ini').disabled = true;
-			 document.getElementById('num_sol_fin').disabled = true;
+      
 
     }
     
@@ -620,13 +603,13 @@ setTimeout(function() {
       pieSeries.labels.template.maxWidth = 120;
       pieSeries.labels.template.wrap = true;
 
-      pieSeries.colors.list = [
-        am4core.color("#ffff80"),
-        am4core.color("#93b980"),
-        am4core.color("#81a6b9"),
+      pieSeries.colors.list = [   
+        am4core.color("#f44336"),  
+        am4core.color("#3c0023"),
+        am4core.color("#C90076"),
+        am4core.color("#f44336"),
         am4core.color("#80c3d3"),
-        am4core.color("#e2eed0"),
-        am4core.color("#ffaa81")
+        am4core.color("#81a6b9"),     
       ];
       // This creates initial animation
     //  pieSeries.labels.template.maxWidth = 90;
@@ -699,15 +682,15 @@ setTimeout(function() {
 
     chart2.cursor = new am4charts.XYCursor();
     chart2.cursor.lineX.strokeOpacity = 0;
-    chart2.cursor.lineY.strokeOpacity = 0;
+    chart2.cursor.lineY.strokeOpacity = 1;
 }, 2000);
 
 //############################################################################
 
 // Create chart instance
-var chart3 = am4core.create("chartdiv3", am4charts.PieChart3D);
-// Add data
-var datum3 = [];
+// var chart3 = am4core.create("chartdiv3", am4charts.PieChart3D);
+// // Add data
+// var datum3 = [];
 
 // $.post( "../../controllers/mcontratos_controller", { action: "search_act"}).done(function( data ) {
 //       var parsedJson3 = $.parseJSON(data);
@@ -769,12 +752,9 @@ $("#reportes").click(function() {
  $('#crear_reporte').click( function () {
 				var fecha_inicio=$('#fecha_inicio').val();
         var fecha_final=$('#fecha_final').val();
-
-        var num_sol_ini=$('#num_sol_ini').val();
-        var num_sol_fin=$('#num_sol_fin').val();
         var genera=false;
         var mensaje=0;
-        if ($("#vista").val()=='rep_sol_fec'){
+        if ($("#vista").val()=='rep_eve_fac_excel'){
          if((fecha_inicio!="") && (fecha_final!="") ){
           genera=true;
 
@@ -815,18 +795,11 @@ $("#reportes").click(function() {
 						    confirmButton: 'cerrar',
 						    confirmButtonClass: 'btn-success'
 						});
-        }else if(mensaje==0){
-          $.alert({
-						    title: '!El Reporte Seleccionado ESTA EN DESARROLLO !',
-						    content: false,
-						    confirmButton: true, // hides the confirm button.
-						    closeIcon: false,
-						    confirmButton: 'cerrar',
-						    confirmButtonClass: 'btn-success'
-						});
         } else{
           if(genera){
-            window.open("../../Reportes/reportes/univictimas/rreportador.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final+'&num_sol_ini='+num_sol_ini+'&num_sol_fin='+num_sol_fin,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
+            window.open("../../Reportes/reportes/facturados/rexcel.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
+            // window.open("../../Reportes/reportes/univictimas/rreportador.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final+'&num_sol_ini='+num_sol_ini+'&num_sol_fin='+num_sol_fin,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
+
              $('#modal3').modal('toggle');
           }
 
