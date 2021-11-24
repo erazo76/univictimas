@@ -36,7 +36,9 @@ $fecha_final = ($_GET["fecha_final"]);
 
 if (($fecha_desde!='') && ($fecha_final!='')){
 
-    $cadena_fecha="WHERE to_char(fecha_solicitud,'DD-MM-YYYY')  BETWEEN '$fecha_desde' and  '$fecha_final' ";
+    $cadena_fecha="WHERE fecha_solicitud
+
+    BETWEEN CAST ('$fecha_desde' AS DATE) AND CAST ('$fecha_final' AS DATE) ";
 }else{
     $cadena_fecha="";
 }
@@ -46,11 +48,6 @@ if (($fecha_desde!='') && ($fecha_final!='')){
 
         $sql = "SELECT  * from vfactura_ejecucion $cadena_fecha ;  ";
         $arrp = $bd->select($sql);
-
-
-
-
-//  print_r($sql);exit;
 
 
 $documento = new Spreadsheet();
