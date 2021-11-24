@@ -575,6 +575,7 @@ var datum = [];
 
 $.post( "../../data_json/data_dashboard1.php").done(function( data ) {
       var parsedJson = $.parseJSON(data);
+      // alert(parsedJson);
       datum=parsedJson;
       datum.pop();
 });
