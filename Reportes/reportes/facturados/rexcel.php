@@ -1,4 +1,5 @@
 <?php
+//  ValidaSession("../../../login");
 
 
 /**
@@ -35,7 +36,7 @@ $fecha_final = ($_GET["fecha_final"]);
 
 if (($fecha_desde!='') && ($fecha_final!='')){
 
-    $cadena_fecha="WHERE fecha_solicitud  BETWEEN '$fecha_desde' and  '$fecha_final' ";
+    $cadena_fecha="WHERE to_char(fecha_solicitud,'DD-MM-YYYY')  BETWEEN '$fecha_desde' and  '$fecha_final' ";
 }else{
     $cadena_fecha="";
 }
@@ -49,7 +50,7 @@ if (($fecha_desde!='') && ($fecha_final!='')){
 
 
 
-// print_r($sql);exit;
+//  print_r($sql);exit;
 
 
 $documento = new Spreadsheet();
@@ -61,18 +62,18 @@ $documento
     ->setDescription('Un archivo de Excel exportado desde Postgres por parzibyte');
 
 
-$sharedStyle2 = new Style();
-$sharedStyle2->applyFromArray(
-    ['fill' => [
-                'fillType' => Fill::FILL_SOLID,
-                'color' => ['argb' => 'FFCCFFCC'],
-            ],
-            'borders' => [
-                'bottom' => ['borderStyle' => Border::BORDER_THIN],
-                'right' => ['borderStyle' => Border::BORDER_MEDIUM],
-            ],
-        ]
-);
+// $sharedStyle2 = new Style();
+// $sharedStyle2->applyFromArray(
+//     ['fill' => [
+//                 'fillType' => Fill::FILL_SOLID,
+//                 'color' => ['argb' => 'FFCCFFCC'],
+//             ],
+//             'borders' => [
+//                 'bottom' => ['borderStyle' => Border::BORDER_THIN],
+//                 'right' => ['borderStyle' => Border::BORDER_MEDIUM],
+//             ],
+//         ]
+// );
 
 // $spreadsheet->getActiveSheet()->duplicateStyle($sharedStyle2, 'A1:T100');
 
