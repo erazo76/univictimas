@@ -1,11 +1,7 @@
 <?php
 require_once '../models/Msolicitude.php';
- require_once '../models/Grupo.php';
+require_once '../models/Grupo.php';
 require_once '../models/Mcontrato.php';
-require_once '../models/Vfacturado.php';
-
-
-
 
 	$result = array();
 	@$data = Mcontrato::find('all');
@@ -129,50 +125,7 @@ require_once '../models/Vfacturado.php';
 			"region"=>$nom		
 		));	
 }
-	
-// 	if ($grup_financ_id!="") {	
-// 	if ($grup_financ_id==1) {
-			
-// 				 $val = floatval($reg1);
-// 				 $nom = "SUBDIRECCIÓN  DE PARTICIPACIÓN";				
-// 	}
-// 	if ($grup_financ_id==2) {
-			
-// 		$val = floatval($reg2);
-// 		$nom = "DIRECCIÓN DE GESTIÓN INTERINSTITUCIONAL";				
-// 	} if ($grup_financ_id==3) {
-			
-// 		$val = floatval($reg3);
-// 		$nom = "SUBDIRECCIÓN COORDINACIÓN SNARIV";				
-// 	} if ($grup_financ_id==4) {
-			
-// 		$val = floatval($reg4);
-// 		$nom = "SUBDIRECCIÓN COORDINACIÓN NACIÓN TERRITORIO";				
-// 	} if ($grup_financ_id==5) {
-			
-// 		$val = floatval($reg5);
-// 		$nom = "GRUPO DE GESTIÓN DE PROYECTOS";				
-// 	}  if ($grup_financ_id==6) {
-			
-// 		$val = floatval($reg6);
-// 		$nom = "VICTIMAS EN EL EXTERIOR";				
-// 	}
-// 			array_push($result,array(   
-// 				"valor"=>$val,
-// 				"region"=>$nom		
-// 			));	
-	
-// }else{
-// 	array_push($result,array(   
-// 		"valor"=>0,
-// 		"region"=>""		
-// 	));	
-// }
-// 	}else{
-// 		array_push($result,array(   
-// 			"valor"=>0,
-// 			"region"=>""		
-// 		));	
+
 
 	}
 	echo json_encode($result);
