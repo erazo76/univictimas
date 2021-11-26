@@ -46,7 +46,7 @@ if (($fecha_desde!='') && ($fecha_final!='')){
 
         $bd = new baseClases();
 
-        $sql = "SELECT  * from vfactura_ejecucion WHERE facturado=TRUE $cadena_fecha ;  ";
+        $sql = "SELECT  * from vfactura_ejecucion WHERE facturado=FALSE $cadena_fecha ;  ";
         $arrp = $bd->select($sql);
 
 // print_r($sql);exit;
@@ -59,27 +59,13 @@ $documento
     ->setDescription('Un archivo de Excel exportado desde Postgres por parzibyte');
 
 
-// $sharedStyle2 = new Style();
-// $sharedStyle2->applyFromArray(
-//     ['fill' => [
-//                 'fillType' => Fill::FILL_SOLID,
-//                 'color' => ['argb' => 'FFCCFFCC'],
-//             ],
-//             'borders' => [
-//                 'bottom' => ['borderStyle' => Border::BORDER_THIN],
-//                 'right' => ['borderStyle' => Border::BORDER_MEDIUM],
-//             ],
-//         ]
-// );
-
-// $spreadsheet->getActiveSheet()->duplicateStyle($sharedStyle2, 'A1:T100');
 
 # Como ya hay una hoja por defecto, la obtenemos, no la creamos
 $hojaDeProductos = $documento->getActiveSheet();
 $hojaDeProductos->setTitle("UNIVICTIMAS");
 
 # Escribir encabezado de los productos
-$encabezado = ["No. Requerimiento", "Fecha Solicitud", "Fecha facturación", "Actividad", "Subdirección o Grupo DGI", "Responsable", "Fecha Inicio", "Fecha Terminacion", "Departamento", "Municipio", "Victimas", "Funcionarios", "Total", "Costo Evento Cotizado", "Servicios No gravados ", "Pagos a terceros", "Servicios gravados ", "IVA ", "Ejecutado Logistico", "Gastos reembolsables", "Giro Efecty", "Intermediación 3%", "IVA Intermediación reembolso", "Costo Tiquetes Ejecutado", "IVA Tiquetes", "Costo Tiquetes Ejecutado", "Total Costo Evento"];
+$encabezado = ["No. Requerimiento", "Fecha Solicitud", "Fecha facturación", "Actividad", "Subdirección o Grupo DGI", "Responsable", "Fecha Inicio", "Fecha Terminacion", "Departamento", "Municipio", "Victimas", "Funcionarios", "Total"];
 # El último argumento es por defecto A1 pero lo pongo para que se explique mejor
 $hojaDeProductos->fromArray($encabezado, null, 'A1');
 
@@ -205,21 +191,7 @@ foreach($arrp as $data){
     $funcionarios = $data['funcionarios'];
     $total =$victimas+$funcionarios;
     
-    $costo_evento_cotizado = $data['costo_evento_cotizado'];
-    $servicios_no_gravados = $data['servicios_no_gravados'];
-    $pagos_a_terceros = $data['pagos_a_terceros'];
-    $servicios_gravados = $data['servicios_gravados'];
-    $iva = $data['iva'];
-    $ejecutado_logistico = $data['ejecutado_logistico'];
-    $gastos_reembolsables = $data['gastos_reembolsables'];
-    $giro_fecty = $data['giro_fecty'];
-    $intermediacion = $data['intermediacion'];
-    $iva_intermediacion_reembolso = $data['iva_intermediacion_reembolso'];
-    $ejecutado_reembolso = $data['ejecutado_reembolso'];
-    $costo_tiquetes_ejecutado = $data['costo_tiquetes_ejecutado'];
-    $iva_tiquetes = $data['iva_tiquetes'];
-    $costo_total_tiquetes = $data['costo_total_tiquetes'];
-    $costo_total_evento = $data['costo_total_evento'];
+   
 
     # Escribirlos en el documento
     $hojaDeProductos->setCellValueByColumnAndRow(1, $numeroDeFila, $id_sol);
@@ -235,20 +207,7 @@ foreach($arrp as $data){
     $hojaDeProductos->setCellValueByColumnAndRow(11, $numeroDeFila, $victimas);
     $hojaDeProductos->setCellValueByColumnAndRow(12, $numeroDeFila, $funcionarios);
     $hojaDeProductos->setCellValueByColumnAndRow(13, $numeroDeFila, $total);
-    $hojaDeProductos->setCellValueByColumnAndRow(14, $numeroDeFila, $costo_evento_cotizado);
-    $hojaDeProductos->setCellValueByColumnAndRow(15, $numeroDeFila, $servicios_no_gravados);
-    $hojaDeProductos->setCellValueByColumnAndRow(16, $numeroDeFila, $pagos_a_terceros);
-    $hojaDeProductos->setCellValueByColumnAndRow(17, $numeroDeFila, $servicios_gravados);
-    $hojaDeProductos->setCellValueByColumnAndRow(18, $numeroDeFila, $iva);
-    $hojaDeProductos->setCellValueByColumnAndRow(19, $numeroDeFila, $ejecutado_logistico);
-    $hojaDeProductos->setCellValueByColumnAndRow(20, $numeroDeFila, $gastos_reembolsables);
-    $hojaDeProductos->setCellValueByColumnAndRow(21, $numeroDeFila, $giro_fecty);
-    $hojaDeProductos->setCellValueByColumnAndRow(22, $numeroDeFila, $intermediacion);
-    $hojaDeProductos->setCellValueByColumnAndRow(23, $numeroDeFila, $iva_intermediacion_reembolso);
-    $hojaDeProductos->setCellValueByColumnAndRow(24, $numeroDeFila, $costo_tiquetes_ejecutado);
-    $hojaDeProductos->setCellValueByColumnAndRow(25, $numeroDeFila, $iva_tiquetes);
-    $hojaDeProductos->setCellValueByColumnAndRow(26, $numeroDeFila, $costo_total_tiquetes);
-    $hojaDeProductos->setCellValueByColumnAndRow(27, $numeroDeFila, $costo_total_evento);
+   
 
 
 

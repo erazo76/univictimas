@@ -20,6 +20,8 @@ date_default_timezone_set('America/Bogota');
 @$num_sol = ($_POST["num_sol"]);
 @$fecha_registro = ($_POST["fecha_registro"]);
 @$fecha_facturacion = ($_POST["fecha_facturacion"]);
+@$procesar = ($_POST["procesar"]);
+@$precarga = ($_POST["precarga"]);
 @$costo_evento_cotizado = ($_POST["costo_evento_cotizado"]);
 @$servicios_no_gravados = ($_POST["servicios_no_gravados"]);
 
@@ -47,6 +49,20 @@ date_default_timezone_set('America/Bogota');
 switch ($action){
   case 'add':
 
+    if($procesar){
+      if($fecha_facturacion==""){
+        $pasar=false;
+      }else{
+        $pasar=true;
+        $facturar=1;
+
+      }
+    }else  if($precarga){
+        $pasar=true;
+        $facturar=0;
+      
+    }
+
       if($num_sol ==""){
 
         $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
@@ -56,6 +72,17 @@ switch ($action){
             Alerta!
             </h4>
             Ingrese el Numero de la Solicitud.
+            </div>');
+
+      }else  if(!$pasar){
+
+        $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <h4>
+            <i class="icon fa fa-warning"></i>
+            Alerta!
+            </h4>
+            Ingrese Fecha de la Facturación.
             </div>');
 
       }else{  //(A) si se escribe un nombre se consulta si ya existe...
@@ -72,8 +99,14 @@ switch ($action){
             $segme->mrequerimientos_id = $num_sol;
             $segme->user_create = $usuario_id;
             $segme->created = $hoy;
+            if($facturar){
+              $segme->fecha_factura = $fecha_facturacion;
+            }else{
+              $segme->fecha_factura = $hoy;
 
-            $segme->fecha_factura = $fecha_facturacion;
+            }
+            $segme->facturado = $facturar;
+
 
             $segme->costo_evento_cotizado = $costo_evento_cotizado;
             $segme->servicios_no_gravados = $servicios_no_gravados;
@@ -173,18 +206,43 @@ switch ($action){
 #*******************************************************************************
 case 'edit':
 
-  if($num_sol ==""){
+  if($procesar){
+    if($fecha_facturacion==""){
+      $pasar=false;
+    }else{
+      $pasar=true;
+      $facturar=1;
 
-    $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
-        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-        <h4>
-        <i class="icon fa fa-warning"></i>
-        Alerta!
-        </h4>
-        Ingrese el Numero de la Solicitud.
-        </div>');
+    }
+  }else  if($precarga){
+      $pasar=true;
+      $facturar=0;
+    
+  }
 
-  }else{  //(A) si se escribe un nombre se consulta si ya existe...
+    if($num_sol ==""){
+
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese el Numero de la Solicitud.
+          </div>');
+
+    }else  if(!$pasar){
+
+      $respuesta = array('resultado'=>'error','mensaje'=>'<div class="alert alert-warning alert-dismissable">
+          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+          <h4>
+          <i class="icon fa fa-warning"></i>
+          Alerta!
+          </h4>
+          Ingrese Fecha de la Facturación.
+          </div>');
+
+    }else{  //(A) si se escribe un nombre se consulta si ya existe...
 
     $consulta = Mfacturado::find('all',array('conditions' => array('mrequerimientos_id=?',$num_sol)));
     $id=4;
@@ -198,7 +256,13 @@ case 'edit':
 
         $segme->user_modify = $usuario_id;
 
-        $segme->fecha_factura = $fecha_facturacion;
+        if($facturar){
+          $segme->fecha_factura = $fecha_facturacion;
+        }else{
+          $segme->fecha_factura = $hoy;
+
+        }
+        $segme->facturado = $facturar;
 
         $segme->costo_evento_cotizado = $costo_evento_cotizado;
         $segme->servicios_no_gravados = $servicios_no_gravados;
@@ -386,7 +450,9 @@ case 'search_facturados':
                 "costo_tiquetes_ejecutado"=>$rs->costo_tiquetes_ejecutado,
                 "iva_tiquetes"=>$rs->iva_tiquetes,
                 "costo_total_tiquetes"=>$rs->costo_total_tiquetes,
-                "costo_total_evento"=>$rs->costo_total_evento
+                "costo_total_evento"=>$rs->costo_total_evento,
+                "facturado"=>$rs->facturado
+
                );
       }
 

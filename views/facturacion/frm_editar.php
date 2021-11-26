@@ -48,7 +48,22 @@ ValidaSession("../login");
 
 						
 						</div>
+						<div class="form-group-sm">
 
+						<span class="input-group-addon" >
+							<label>PROCESAR FACTURACION</label>
+							</span>
+						<label></label>
+									<div class="input-group" >
+										<span class="input-group-addon" >
+										<label>Ejecutado</label>
+										<input type="checkbox" id="procesar" >
+										
+										<label>Pre-Cargado</label>
+											<input type="checkbox" id="precarga" >
+										</span>
+										</div>
+						</div>
 						
 						<div class="box-footer">
 						</div>
@@ -237,7 +252,7 @@ $(document).ready(function() {
 		var parsedJson = $.parseJSON(data);         
 		$("#num_sol").val(parsedJson.num_sol);
 		$("#nombre").val(parsedJson.nombre);
-		$("#fecha2").val(parsedJson.fecha_factura);
+		
 		$("#costo_evento_cotizado").val(parsedJson.costo_evento_cotizado);
 		$("#servicios_no_gravados").val(parsedJson.servicios_no_gravados);
 		$("#pagos_a_terceros").val(parsedJson.pagos_a_terceros);
@@ -253,6 +268,30 @@ $(document).ready(function() {
 		$("#iva_tiquetes").val(parsedJson.iva_tiquetes);
 		$("#costo_total_tiquetes").val(parsedJson.costo_total_tiquetes);
 		$("#costo_total_evento").val(parsedJson.costo_total_evento);
+
+
+		var facturado =parsedJson.facturado;	
+		var fecha_fact_g="";
+	
+   if(facturado==0){
+			 $("#procesar").val(0);  
+			 $("#precarga").val(1);    
+			 document.getElementById('procesar').checked = false;
+			 document.getElementById('precarga').checked = true;	
+			 document.getElementById('fecha2').disabled = true;		
+			 $("#fecha2").val(""); 
+	} else if(facturado==1){
+		        $("#procesar").val(1);  
+		        $("#precarga").val(0);    
+				document.getElementById('precarga').checked = false;
+				document.getElementById('procesar').checked = true;
+				$("#fecha2").val(parsedJson.fecha_factura);
+				document.getElementById('fecha2').disabled = false;
+				fecha_fact_g=parsedJson.fecha_factura;
+				
+	} 
+	
+
 	});	
 
 
@@ -452,11 +491,75 @@ var total=SumarCostoEvento (valor);
 ///###########################################################################////
 var tick=0;
 
+$("#procesar" ).click(function() {
 
+			if( $('#procesar').prop('checked') == true ) {
+				$("#precarga").val(0);  
+				$("#procesar").val(1);    
+				document.getElementById('procesar').checked = true;
+				document.getElementById('precarga').checked = false;
+
+				DesBloquearCampos();
+				document.getElementById('fecha2').disabled = false;
+				// $("#fecha2").val(fecha_fact_g);
+				// alert(fecha_fact_g);
+				
+
+
+			}else{
+				$("#procesar").val(0); 
+				$("#precarga").val(0); 
+				BloquearCampos();	
+
+				document.getElementById('procesar').checked = false;
+				document.getElementById('precarga').checked = false;
+				document.getElementById('fecha2').disabled = true;
+				document.getElementById('procesar').disabled = false;
+				document.getElementById('precarga').disabled = false;	
+				// $("#fecha2").val(""); 
+
+
+
+			}
+							
+});	
+
+
+$("#precarga" ).click(function() {
+							if( $('#precarga').prop('checked') == true ) {
+								$("#precarga").val(1);  
+								$("#procesar").val(0);    
+								document.getElementById('procesar').checked = false;
+								document.getElementById('precarga').checked = true;
+								DesBloquearCampos();
+								document.getElementById('fecha2').disabled = true;
+								// $("#fecha2").val(""); 
+
+
+
+							}else{
+								$("#procesar").val(0); 
+								$("#precarga").val(0); 
+								BloquearCampos();	
+
+								document.getElementById('procesar').checked = false;
+								document.getElementById('precarga').checked = false;
+								document.getElementById('fecha2').disabled = true;
+								document.getElementById('procesar').disabled = false;
+								document.getElementById('precarga').disabled = false;								
+								// $("#fecha2").val(""); 
+
+			
+
+							}
+							
+});	
 
 $('#editar').click(function() {
 
-DesBloquearCampos();
+ DesBloquearCampos();
+document.getElementById("precarga").disabled=false;
+document.getElementById("procesar").disabled=false;
 document.getElementById("num_sol").disabled = true;
 document.getElementById("editar").disabled=true;
 
@@ -1151,6 +1254,8 @@ $("#izquierda" ).click(function() {
 				id_fac:$("#id_fac").val(),					
 				num_sol:$("#num_sol").val(),					
 				fecha_facturacion: $("#fecha2").val(),
+				procesar: $("#procesar").val(),
+				precarga: $("#precarga").val(),
 				costo_evento_cotizado: $("#costo_evento_cotizado").val(),
 				servicios_no_gravados: $("#servicios_no_gravados").val(),
 				pagos_a_terceros: $("#pagos_a_terceros").val(),
@@ -2352,6 +2457,9 @@ function BloquearCampos(){
 		document.getElementById("giro_fecty").disabled = true;
 		document.getElementById("base_iva").disabled = true;
 		document.getElementById("base_iva_ree").disabled = true;
+		document.getElementById("precarga").disabled=true;
+		document.getElementById("procesar").disabled=true;
+
 		
 
 
@@ -2381,7 +2489,10 @@ function BloquearCampos(){
 		document.getElementById("save").disabled = false;
 		document.getElementById("giro_fecty").disabled = false;
 		document.getElementById("base_iva").disabled = false;
-		document.getElementById("base_iva_ree").disabled = false;	 
+		document.getElementById("base_iva_ree").disabled = false;	
+		document.getElementById("precarga").disabled=false;
+		document.getElementById("procesar").disabled=false; 
+
 
  }
 

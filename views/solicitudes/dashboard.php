@@ -306,7 +306,7 @@ $control_total=false;
                     <!-- <option value="rep_gen_sol">Reporte General de Solicitudes</option> -->
                     <!-- <option value="rep_sol_fec">Reporte de Solicitudes por Rango de Fechas</option> -->
                     <option value="rep_eve_fac_excel">Eventos Facturados XLSX</option>
-                    <!-- <option value="rep_eve_sin_fac_excel">Eventos Sin Facturar XLSX</option> -->
+                    <option value="rep_eve_sinfac_excel">Eventos Sin Facturar XLSX</option>
 
                   </select>
                     </div>
@@ -517,7 +517,7 @@ $(document).ready(function() {
 
 
 $("#vista").click(function() {
-		if ($("#vista").val()=='rep_gen_sol'){
+		if ($("#vista").val()=='rep_eve_sinfac_excel'){
 
 			 document.getElementById('fecha_inicio').disabled = true;
 			 document.getElementById('fecha_final').disabled = true;
@@ -528,7 +528,7 @@ $("#vista").click(function() {
 			 document.getElementById('fecha_final').disabled = false;
        
 
-    }else if ($("#vista").val()=='rep_eve_sin_fac'){
+    }else if ($("#vista").val()=='rep_eve_sinfac_excelxx'){
        document.getElementById('fecha_inicio').disabled = false;
 			 document.getElementById('fecha_final').disabled = false;
        
@@ -754,24 +754,22 @@ $("#reportes").click(function() {
 				var fecha_inicio=$('#fecha_inicio').val();
         var fecha_final=$('#fecha_final').val();
         var genera=false;
+        var tipo=0;
+
         var mensaje=0;
         if ($("#vista").val()=='rep_eve_fac_excel'){
          if((fecha_inicio!="") && (fecha_final!="") ){
           genera=true;
+          tipo=1;
 
          }else{
            mensaje=1;
          }
 
 
-        }else if ($("#vista").val()=='rep_sol_sol'){
-         if((num_sol_ini!="") && (num_sol_ini!="") ){
+        }else if ($("#vista").val()=='rep_eve_sinfac_excel'){
           genera=true;
-
-         }else{
-           mensaje=2;
-         }
-
+          tipo=2;
 
         }else if ($("#vista").val()=='rep_gen_sol'){
           genera=true;      
@@ -798,9 +796,11 @@ $("#reportes").click(function() {
 						});
         } else{
           if(genera){
+            if(tipo==1){
             window.open("../../Reportes/reportes/facturados/rexcel.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
-            // window.open("../../Reportes/reportes/univictimas/rreportador.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final+'&num_sol_ini='+num_sol_ini+'&num_sol_fin='+num_sol_fin,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
-
+              }else if(tipo==2){
+            window.open("../../Reportes/reportes/facturados/rexcelnf.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
+              }
              $('#modal3').modal('toggle');
           }
 

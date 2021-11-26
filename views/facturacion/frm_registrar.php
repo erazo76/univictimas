@@ -50,6 +50,24 @@ ValidaSession("../login");
 
 						
 						</div>
+						<div class="form-group-sm">
+
+							<span class="input-group-addon" >
+								<label>PROCESAR FACTURACION</label>
+								</span>
+							<label></label>
+										<div class="input-group" >
+											<span class="input-group-addon" >
+											<label>Ejecutar</label>
+											<input type="checkbox" id="procesar" >
+											
+											<label>Pre-Carga</label>
+												<input type="checkbox" id="precarga" >
+											</span>
+											</div>
+						</div>
+
+						
 
 						
 						<div class="box-footer">
@@ -233,6 +251,12 @@ ValidaSession("../login");
 	document.getElementById("base_iva").value=19;
 	document.getElementById("base_iva_ree").value=19;
 
+	document.getElementById("procesar").disabled=true;
+	document.getElementById("precarga").disabled=true;
+
+
+	
+	
 
 	BloquearCampos();
 $(document).ready(function() {
@@ -475,8 +499,9 @@ $('#buscar').click(function() {
 
 			$("#nombre" ).html( data );
 			$("#nombre" ).val( data ); 
-			
-			DesBloquearCampos();
+			DesBloquearProceso();
+
+			// DesBloquearCampos();
 			document.getElementById("buscar").disabled=true;
 			document.getElementById("num_sol").disabled = true;
 			document.getElementById("limpiar").disabled=false;	
@@ -994,6 +1019,56 @@ $("#izquierda" ).click(function() {
     	 });
 
 
+		 $("#procesar" ).click(function() {
+							if( $('#procesar').prop('checked') == true ) {
+								$("#precarga").val(0);  
+								$("#procesar").val(1);    
+								document.getElementById('procesar').checked = true;
+								document.getElementById('precarga').checked = false;
+								DesBloquearCampos();
+								document.getElementById('fecha2').disabled = false;
+
+
+							}else{
+								$("#procesar").val(0); 
+								$("#precarga").val(0); 
+								document.getElementById('procesar').checked = false;
+								document.getElementById('precarga').checked = false;
+								BloquearCampos();	
+								document.getElementById('fecha2').disabled = true;
+			
+
+							}
+							
+});	
+
+$("#precarga" ).click(function() {
+							if( $('#precarga').prop('checked') == true ) {
+								$("#precarga").val(1);  
+								$("#procesar").val(0);    
+								document.getElementById('procesar').checked = false;
+								document.getElementById('precarga').checked = true;
+								DesBloquearCampos();
+								document.getElementById('fecha2').disabled = true;
+
+
+							}else{
+								$("#procesar").val(0); 
+								$("#precarga").val(0); 
+								document.getElementById('procesar').checked = false;
+								document.getElementById('precarga').checked = false;
+								BloquearCampos();	
+								document.getElementById('fecha2').disabled = true;
+			
+
+							}
+							
+});	
+
+
+
+
+
    $('#save').click( function () {
 
 
@@ -1017,6 +1092,8 @@ $("#izquierda" ).click(function() {
 				num_sol:$("#num_sol").val(),					
 				fecha_registro: $("#fecha1").val(),
 				fecha_facturacion: $("#fecha2").val(),
+				procesar: $("#procesar").val(),
+				precarga: $("#precarga").val(),
 				costo_evento_cotizado: $("#costo_evento_cotizado").val(),
 				servicios_no_gravados: $("#servicios_no_gravados").val(),
 				pagos_a_terceros: $("#pagos_a_terceros").val(),
@@ -2252,7 +2329,12 @@ function BloquearCampos(){
 
  }
 
- 
+ function DesBloquearProceso(){
+		
+		document.getElementById("procesar").disabled = false;
+		document.getElementById("precarga").disabled = false;
+
+ }
 
 	function LimpiarCampos(){
 		
