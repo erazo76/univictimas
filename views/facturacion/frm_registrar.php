@@ -491,8 +491,6 @@ $('#buscar').click(function() {
 				$(".message").html(parsedJson.mensaje);
 				$('.base').unslider('animate:0');
 				$('.base').unslider('animate:1');
-
-
 	
 
 			}else{

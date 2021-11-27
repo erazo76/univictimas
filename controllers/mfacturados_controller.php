@@ -365,7 +365,7 @@ break;
 case 'search_sol':
 
  
-    @$data = Msolicitude::find_by_sql("select  id, nombre from Msolicitudes where id=".$num_sol." ;");
+    @$data = Msolicitude::find_by_sql("select  id, nombre,a_supe from Msolicitudes where id=".$num_sol." ;");
     @$data_fac = Mfacturado::find_by_sql("select  id from Mfacturados where mrequerimientos_id=".$num_sol." ;");
 
 
@@ -390,7 +390,22 @@ case 'search_sol':
 
     foreach($data as $rs){
 
-      $resp = $rs->nombre;
+      $a_supe=$rs->a_supe;
+      if($a_supe==1){
+        $resp = $rs->nombre;
+      }else{
+        $resp = array('resultado'=>'error','mensaje'=>'<div class="alert alert-danger alert-dismissable">
+                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                  <h4>
+                  <i class="icon fa fa-ban"></i>
+                  Alerta!
+                  </h4>
+                  El Número de Solicitud NO HA SIDO APROBABADA Por El Supervisor !!.
+                  </div>');
+
+      }
+
+     
     }
 
   

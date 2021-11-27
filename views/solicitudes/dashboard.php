@@ -13,12 +13,27 @@ $control_total=false;
 <div class="message"></div>
           <!-- Small boxes (Stat box) -->
           <div class="row">
+          <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-red">
+                <div class="inner">
+                  <h4 style="font-size: 25px" id="presupuesto_nacional"><sup style="font-size: 20px">$</sup></h4>
+                  <p>PRESUPUESTO NACIONAL</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-bank"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                  Asignado <i class="fa fa-check"></i>
+                </a>
+              </div>
+            </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
-              <div class="small-box bg-aqua">
+              <div class="small-box bg-navy">
                 <div class="inner">
                   <h4 style="font-size: 25px" id="restan"><sup style="font-size: 20px">$</sup></h4>
-                  <p>PRESUPUESTO NACIONAL</p>
+                  <p>DISPONIBLE NACIONAL</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-bank"></i>
@@ -30,7 +45,7 @@ $control_total=false;
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
-              <div class="small-box bg-teal">
+              <div class="small-box bg-purple">
                 <div class="inner">
                   <h4 style="font-size: 25px" id="sub_part_cos"><sup style="font-size: 20px">$</sup></h4>
                   <p>SUBDIRECCIÓN  DE PARTICIPACIÓN</p>
@@ -43,6 +58,23 @@ $control_total=false;
                 </a>
               </div>
             </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-4">
+              <!-- small box -->
+              <div class="small-box bg-orange">
+                <div class="inner">
+                  <h4 style="font-size: 25px" id="dir_cord_cos"><sup style="font-size: 20px">$</sup></h4>
+                  <p>SUBDIRECCIÓN COORDINACIÓN SNARIV</p>
+                </div>
+                <div class="icon">
+                  <i class="ion-pie-graph"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                  Ejecutados <i class="fa fa-check"></i>
+                </a>
+              </div>
+
+            </div><!-- ./col -->
+
             <div class="col-lg-3 col-xs-4">
               <!-- small box -->
               <div class="small-box bg-olive">
@@ -74,23 +106,7 @@ $control_total=false;
                 </a>
               </div>
             </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-4">
-              <!-- small box -->
-              <div class="small-box bg-orange">
-                <div class="inner">
-                  <h4 style="font-size: 25px" id="dir_cord_cos"><sup style="font-size: 20px">$</sup></h4>
-                  <p>SUBDIRECCIÓN COORDINACIÓN SNARIV</p>
-                </div>
-                <div class="icon">
-                  <i class="ion-pie-graph"></i>
-                </div>
-                <a href="#" class="small-box-footer">
-                  Ejecutados <i class="fa fa-check"></i>
-                </a>
-              </div>
-
-            </div><!-- ./col -->
-
+           
             <div class="col-lg-3 col-xs-4">
               <!-- small box -->
               <div class="small-box bg-blue">
@@ -379,6 +395,9 @@ $(document).ready(function() {
 		var num_cont = parsedJson.num_contrato;
     var num_contrato = parsedJson.num_contrato;
     var cos_cont = parsedJson.cos_contrato;
+    var presupuesto_nacional = parsedJson.presupuesto_nacional;
+
+    
     var id_contrato= parsedJson.id_contrato;
 
     // if(cos_cont!=null){
@@ -425,6 +444,7 @@ $(document).ready(function() {
         
 		$("#num_contrato").val( num_cont );       
 		$("#cos_contrato").val( cos_cont );
+    $("#presupuesto_nacional").html( presupuesto_nacional +'<sup style="font-size: 20px">$</sup>' );
     $("#restan").html( restan +'<sup style="font-size: 20px">$</sup>' );
     $("#sub_part_cos").html( sub_part_cos +'<sup style="font-size: 20px">$</sup>' );  
     $("#dir_ges_cos").html( dir_ges_cos +'<sup style="font-size: 20px">$</sup>' );
@@ -605,12 +625,12 @@ setTimeout(function() {
       pieSeries.labels.template.wrap = true;
 
       pieSeries.colors.list = [   
-        am4core.color("#f44336"),  
-        am4core.color("#3c0023"),
-        am4core.color("#C90076"),
-        am4core.color("#f44336"),
-        am4core.color("#80c3d3"),
-        am4core.color("#81a6b9"),     
+        am4core.color("#cc0000"),  
+        am4core.color("#c90076"),
+        am4core.color("#0a3f6f"),
+        am4core.color("#32099a"),
+        am4core.color("#3f8fcb"),
+        am4core.color("#357918"),     
       ];
       // This creates initial animation
     //  pieSeries.labels.template.maxWidth = 90;

@@ -1,19 +1,19 @@
 <?php
-require_once '../models/Msolicitude.php';
+require_once '../models/Vfacturado.php';
 require_once '../models/Grupo.php';
 require_once '../models/Mcontrato.php';
 
 	$result = array();
 	@$data = Mcontrato::find('all');
     if($data !=null){
-	$ejecafe = Msolicitude::find_by_sql("SELECT count(id) as tot_cos from msolicitudes WHERE  a_supe!=2 and a_supe_dir!=2 and status=1 AND grup_financ_id=1;");
-	$centro_o = Msolicitude::find_by_sql("SELECT count(id) as tot_cos from msolicitudes WHERE  a_supe!=2 and a_supe_dir!=2 and status=1 AND grup_financ_id=2;");
-	$caribe = Msolicitude::find_by_sql("SELECT count(id) as tot_cos from msolicitudes WHERE  a_supe!=2 and a_supe_dir!=2 and status=1 AND grup_financ_id=3;");
-	$llano = Msolicitude::find_by_sql("SELECT count(id) as tot_cos from msolicitudes WHERE  a_supe!=2 and a_supe_dir!=2 and status=1 AND grup_financ_id=4;");
-	$centro_s = Msolicitude::find_by_sql("SELECT count(id) as tot_cos from msolicitudes WHERE  a_supe!=2 and a_supe_dir!=2 and status=1 AND grup_financ_id=5;");
-	$pacifico = Msolicitude::find_by_sql("SELECT count(id) as tot_cos from msolicitudes WHERE  a_supe!=2 and a_supe_dir!=2 and status=1 AND grup_financ_id=6;");
+	$ejecafe = Vfacturado::find_by_sql("SELECT count(id_sol) as tot_cos from Vfacturados WHERE grup_financ_id=1;");
+	$centro_o = Vfacturado::find_by_sql("SELECT count(id_sol) as tot_cos from Vfacturados WHERE grup_financ_id=2;");
+	$caribe = Vfacturado::find_by_sql("SELECT count(id_sol) as tot_cos from Vfacturados WHERE grup_financ_id=3;");
+	$llano = Vfacturado::find_by_sql("SELECT count(id_sol) as tot_cos from Vfacturados WHERE grup_financ_id=4;");
+	$centro_s = Vfacturado::find_by_sql("SELECT count(id_sol) as tot_cos from Vfacturados WHERE grup_financ_id=5;");
+	$pacifico = Vfacturado::find_by_sql("SELECT count(id_sol) as tot_cos from Vfacturados WHERE grup_financ_id=6;");
 	
-	 $region = Grupo::find_by_sql("SELECT id,nombre from grupos WHERE status=1;");
+	 $region = Grupo::find_by_sql("SELECT id,nombre from grupos WHERE status=1 order by id asc;");
 	$items = 0;
 
     if($ejecafe !=null){
@@ -22,7 +22,6 @@ require_once '../models/Mcontrato.php';
 			$reg1=0;
 		  }else{
 		  $reg1 = $r1->tot_cos;  
-		  $grup_financ_id=1;
     
 		  }
 
@@ -36,7 +35,6 @@ require_once '../models/Mcontrato.php';
 			$reg2=0;
 		  }else{
 		  $reg2 = $r2->tot_cos;  
-		  $grup_financ_id=2;
     
 		  }
 
@@ -50,7 +48,6 @@ require_once '../models/Mcontrato.php';
 			$reg3=0;
 		  }else{
 		  $reg3 = $r3->tot_cos; 
-		  $grup_financ_id=3;
      
 		  }
 		}   
@@ -63,7 +60,6 @@ require_once '../models/Mcontrato.php';
 			$reg4=0;
 		  }else{
 		  $reg4 = $r4->tot_cos;    
-		  $grup_financ_id=4;
   
 		  }
 
@@ -77,7 +73,6 @@ require_once '../models/Mcontrato.php';
 			$reg5=0;
 		  }else{
 		  $reg5 = $r5->tot_cos;   
-		  $grup_financ_id=5;
    
 		  }
 		}    
@@ -90,7 +85,6 @@ require_once '../models/Mcontrato.php';
 			$reg6=0;
 		  }else{
 		  $reg6 = $r6->tot_cos;  
-		  $grup_financ_id=6;
     
 		  }
 		}  

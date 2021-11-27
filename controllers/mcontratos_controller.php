@@ -16,7 +16,6 @@ date_default_timezone_set('America/Bogota');
 
 @$sub_participacion=($_POST["sub_participacion"]);
 @$dir_inter=($_POST["dir_inter"]);
-@$cos_contrato=($_POST["cos_contrato"]);
 @$subdir_snariv=($_POST["subdir_snariv"]);
 @$subdir_nac=($_POST["subdir_nac"]);
 @$grup_proy=($_POST["grup_proy"]);
@@ -583,7 +582,7 @@ break;
     $hoy = date("d-m-Y");
 
    /// @$data = Mcontrato::find('all');
-    @$data = Mcontrato::find_by_sql(" SELECT  max(id) as id_contrato ,num_contrato,cos_contrato from mcontratos WHERE  status=1 AND vigente=true  GROUP BY num_contrato,cos_contrato limit 1;");  
+    @$data = Mcontrato::find_by_sql(" SELECT  max(id) as id_contrato ,num_contrato,cos_contrato from mcontratos WHERE  status=1 AND vigente=TRUE  GROUP BY num_contrato,cos_contrato limit 1;");  
 
 
 
@@ -664,10 +663,11 @@ break;
             }        
           }
 
-          $reg_t=$rs->cos_contrato-($reg1+$reg2+$reg3+$reg4+$reg5+$reg6);
+          $reg_t=floatval($rs->cos_contrato)-(floatval($reg1)+floatval($reg2)+floatval($reg3)+floatval($reg4)+floatval($reg5)+floatval($reg6));
           @$resp = array(
                     "num_contrato"=>$rs->num_contrato,
                     "cos_contrato"=>$rs->cos_contrato,
+                    "presupuesto_nacional"=>number_format($rs->cos_contrato,1,',', ' '),
                     "estado"=>"si",
                     "sub_part_cos"=>number_format($reg1,1,',', ' '),
                     "dir_ges_cos"=>number_format($reg2,1,',', ' '),
