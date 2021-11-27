@@ -18,29 +18,44 @@ class pdfreporte extends fpdf {
         $this->fecha_desde=getvalue('fecha_inicio');
         $this->fecha_hasta=getvalue('fecha_final');
 
-        $this->solicitud_desde=getvalue('num_sol_ini');
-        $this->solicitud_hasta=getvalue('num_sol_fin');
 
-if (($this->fecha_desde!='') && ($this->fecha_hasta!='')){
+        $fecha_de = ($_GET["fecha_inicio"]);
+        $fecha_fi = ($_GET["fecha_final"]);
+        
+        $fecha_de_sol=  substr($fecha_de, 0, 10);
+            
+            $partes = explode("-", $fecha_de_sol);
+            $aa= $partes[0];
+            $mes= $partes[1];
+            $dd=$partes[2];
+            $fecha_ini=$dd.'-'.$mes.'-'.$aa;
+        
+        $fecha_fin=  substr($fecha_fi, 0, 10);
+            
+            $partes_f = explode("-", $fecha_fin);
+            $aa1= $partes_f[0];
+            $mes1= $partes_f[1];
+            $dd1=$partes_f[2];
+            $fecha_fin=$dd1.'-'.$mes1.'-'.$aa1;
+        
+        
+        
+        
+        
+        
+        if (($fecha_de_sol!='') && ($fecha_fin!='')){
+        
+            $cadena_fecha=" fecha1
+        
+            BETWEEN CAST ('$fecha_ini' AS DATE) AND CAST ('$fecha_fin' AS DATE) and";
+        }else{
+            $cadena_fecha="";
+        }
 
-    $cadena_fecha="fecha1  BETWEEN '$this->fecha_desde' and  '$this->fecha_hasta' and";
-}else{
-    $cadena_fecha="";
-}
-
-if (($this->solicitud_desde!='') && ($this->solicitud_hasta!='')){
-
-    $cadena_sol="id >= '.$this->solicitud_desde.' and id < '.$this->solicitud_hasta.' and";
-}else{
-    $cadena_sol="";
-}
 
 
-       $this->reg_sol=1;
 
-        // $sql = "SELECT  * from msolicitudes where id= ".$this->reg_sol." and status=1 ;  ";
-
-        $sql = "SELECT  * from msolicitudes where   $cadena_fecha $cadena_sol status=1 order by id asc ;  ";
+        $sql = "SELECT  * from msolicitudes where   $cadena_fecha status=1 order by id asc ;  ";
 
         $this->arrp = $this->bd->select($sql);
        
@@ -81,21 +96,21 @@ if (($this->solicitud_desde!='') && ($this->solicitud_hasta!='')){
 
 
  
- $this->rt_nombre1=strtolower($this->arrp[0]['rt_nombre1']);
- $this->rt_apellido1=strtolower($this->arrp[0]['rt_apellido1']);
- $this->rt_nombre2=strtolower($this->arrp[0]['rt_nombre2']);
- $this->rt_apellido2=strtolower($this->arrp[0]['rt_apellido2']);
+        $this->rt_nombre1=strtolower($this->arrp[0]['rt_nombre1']);
+        $this->rt_apellido1=strtolower($this->arrp[0]['rt_apellido1']);
+        $this->rt_nombre2=strtolower($this->arrp[0]['rt_nombre2']);
+        $this->rt_apellido2=strtolower($this->arrp[0]['rt_apellido2']);
 
- $this->rt_nombre1=ucfirst($this->rt_nombre1);
- $this->rn_apellido1=ucfirst($this->rn_apellido1);
+        $this->rt_nombre1=ucfirst($this->rt_nombre1);
+        $this->rn_apellido1=ucfirst($this->rn_apellido1);
 
- $this->rt_nombre2=ucfirst($this->rt_nombre2);
- $this->rt_apellido2=ucfirst($this->rt_apellido2);
+        $this->rt_nombre2=ucfirst($this->rt_nombre2);
+        $this->rt_apellido2=ucfirst($this->rt_apellido2);
 
- $this->nombre_apellido_subdirector=$this->rt_nombre1.' '.$this->rt_nombre2.' '.$this->rt_apellido1.' '.$this->rt_apellido2;
+        $this->nombre_apellido_subdirector=$this->rt_nombre1.' '.$this->rt_nombre2.' '.$this->rt_apellido1.' '.$this->rt_apellido2;
 
- $this->correo_subdirector=$this->arrp[0]['correo1'];
- $this->telefono_subdirector=$this->arrp[0]['tele1'];
+        $this->correo_subdirector=$this->arrp[0]['correo1'];
+        $this->telefono_subdirector=$this->arrp[0]['tele1'];
 
         $this->nun_funcionarios=$this->arrp[0]['entidad'];
         $this->nun_victimas=$this->arrp[0]['num_vic'];
@@ -225,7 +240,13 @@ if (($this->solicitud_desde!='') && ($this->solicitud_hasta!='')){
 
             $grupos=$this->arrp_grupo[0]['grupo'];
 
-
+            $fecha1=  substr($data['fecha1'], 0, 10);
+            
+            $partes_f = explode("-", $fecha1);
+            $aa11= $partes_f[0];
+            $mes11= $partes_f[1];
+            $dd11=$partes_f[2];
+            $fecha_1=$dd11.'-'.$mes11.'-'.$aa11;
 
           
             $this->SetWidths(array(40,20,60,70));
@@ -247,14 +268,14 @@ if (($this->solicitud_desde!='') && ($this->solicitud_hasta!='')){
             $this->SetBorder(true);
             $this->SetFillTable(1);
             $fecha=date("d/m/Y");
-            $this->SetWidths(array(95,95));
-            $this->SetAligns(array('L','L'));
+            $this->SetWidths(array(40,70,80));
+            $this->SetAligns(array('L','L','L'));
             $this->SetBorder(true);
     
-            $this->RowM(array('Departamento '.utf8_decode($departamento) ,'Ciudad o Municipio : '.utf8_decode($municipio)));
-            $this->SetBorder(true);
-            $this->SetFillTable(0);
-            $this->RowM(array('MONTO DEL EVENTO: $ '.$costo_total,''));
+            $this->RowM(array('Fecha de Solicitud '.$fecha_1,'Departamento '.utf8_decode($departamento) ,'Ciudad o Municipio : '.utf8_decode($municipio)));
+            // $this->SetBorder(true);
+            // $this->SetFillTable(0);
+            // $this->RowM(array('MONTO DEL EVENTO: $ '.$costo_total,''));
             $this->Ln(5);
             if($this->GetY()>290){
                 $this->AddPage();

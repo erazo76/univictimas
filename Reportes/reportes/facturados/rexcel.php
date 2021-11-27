@@ -30,15 +30,35 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Style;
 
-$fecha_desde = ($_GET["fecha_inicio"]);
-$fecha_final = ($_GET["fecha_final"]);
+$fecha_de = ($_GET["fecha_inicio"]);
+$fecha_fi = ($_GET["fecha_final"]);
+
+$fecha_de_sol=  substr($fecha_de, 0, 10);
+    
+    $partes = explode("-", $fecha_de_sol);
+    $aa= $partes[0];
+    $mes= $partes[1];
+    $dd=$partes[2];
+    $fecha_ini=$dd.'-'.$mes.'-'.$aa;
+
+$fecha_fin=  substr($fecha_fi, 0, 10);
+    
+    $partes_f = explode("-", $fecha_fin);
+    $aa1= $partes_f[0];
+    $mes1= $partes_f[1];
+    $dd1=$partes_f[2];
+    $fecha_fin=$dd1.'-'.$mes1.'-'.$aa1;
 
 
-if (($fecha_desde!='') && ($fecha_final!='')){
+
+
+
+
+if (($fecha_ini!='') && ($fecha_fin!='')){
 
     $cadena_fecha=" and fecha_solicitud
 
-    BETWEEN CAST ('$fecha_desde' AS DATE) AND CAST ('$fecha_final' AS DATE) ";
+    BETWEEN CAST ('$fecha_ini' AS DATE) AND CAST ('$fecha_fin' AS DATE) ";
 }else{
     $cadena_fecha="";
 }
@@ -49,7 +69,7 @@ if (($fecha_desde!='') && ($fecha_final!='')){
         $sql = "SELECT  * from vfactura_ejecucion WHERE facturado=TRUE $cadena_fecha ;  ";
         $arrp = $bd->select($sql);
 
-// print_r($sql);exit;
+//  print_r($sql);exit;
 $documento = new Spreadsheet();
 $documento
     ->getProperties()

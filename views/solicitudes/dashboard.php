@@ -319,10 +319,10 @@ $control_total=false;
                     <div class="form-group">
                     <select class="form-control" id="vista">
                     <option value="" selected disabled>Seleccione el Reporte a Consultar</option>
-                    <!-- <option value="rep_gen_sol">Reporte General de Solicitudes</option> -->
+                    <option value="rep_gen_sol">Reporte General de Solicitudes (PDF(</option>
                     <!-- <option value="rep_sol_fec">Reporte de Solicitudes por Rango de Fechas</option> -->
-                    <option value="rep_eve_fac_excel">Eventos Facturados XLSX</option>
-                    <option value="rep_eve_sinfac_excel">Eventos Sin Facturar XLSX</option>
+                    <option value="rep_eve_fac_excel">Eventos Facturados (XLSX)</option>
+                    <option value="rep_eve_sinfac_excel">Eventos Sin Facturar (XLSX)</option>
 
                   </select>
                     </div>
@@ -792,9 +792,8 @@ $("#reportes").click(function() {
           tipo=2;
 
         }else if ($("#vista").val()=='rep_gen_sol'){
-          genera=true;      
-
-
+          genera=true;     
+          tipo=3;
         }
         if(mensaje==1){
           $.alert({
@@ -820,6 +819,8 @@ $("#reportes").click(function() {
             window.open("../../Reportes/reportes/facturados/rexcel.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
               }else if(tipo==2){
             window.open("../../Reportes/reportes/facturados/rexcelnf.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
+              }else if(tipo==3){
+            window.open("../../Reportes/reportes/univictimas/rreportador.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
               }
              $('#modal3').modal('toggle');
           }

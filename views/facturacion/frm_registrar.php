@@ -2316,7 +2316,7 @@ function BloquearCampos(){
 		document.getElementById("costo_tiquetes_ejecutado").disabled = false;
 
 
-		document.getElementById("iva_tiquetes").disabled = true;
+		document.getElementById("iva_tiquetes").disabled = false;
 		document.getElementById("costo_total_tiquetes").disabled = true;
 		document.getElementById("costo_total_evento").disabled = true;
 		document.getElementById("save").disabled = false;
