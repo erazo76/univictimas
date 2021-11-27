@@ -319,15 +319,14 @@ $control_total=false;
                     <div class="form-group">
                     <select class="form-control" id="vista">
                     <option value="" selected disabled>Seleccione el Reporte a Consultar</option>
-                    <option value="rep_gen_sol">Reporte General de Solicitudes (PDF(</option>
-                    <!-- <option value="rep_sol_fec">Reporte de Solicitudes por Rango de Fechas</option> -->
+                    <option value="rep_gen_sol">Reporte General de Solicitudes (PDF)</option>
                     <option value="rep_eve_fac_excel">Eventos Facturados (XLSX)</option>
                     <option value="rep_eve_sinfac_excel">Eventos Sin Facturar (XLSX)</option>
 
                   </select>
                     </div>
 
-
+                 
               <div class="col-sm-6">
                 
                   <label for="fecha_inicio">Fecha Inicio</label>
@@ -343,8 +342,30 @@ $control_total=false;
                   <div style="background-color:#F39C12;color:#fff;text-align:center" id='ms_fecha_final' class="aaa"><p></p></div>
                             
               </div>
+              <div class="col-sm-6">
 
-            
+              <div class="form-group-sm">
+								<label>Seleccione el Mes de Facturación</label>
+								<div class="input-group">
+                    <span class="input-group-btn">
+										<select id="mes_factura" class="btn-sm" tabindex="555">		
+                    <option value="00">...</option>								
+									    <option value="01">Enero</option>
+										  <option value="02">Febrero</option>
+                      <option value="03">Marzo</option>
+										  <option value="04">Abril</option>
+										  <option value="05">Mayo</option>
+										  <option value="06">Junio</option>
+										  <option value="07">Julio</option>
+										  <option value="08">Agosto</option>
+										  <option value="09">Septiembre</option>
+										  <option value="10">Obtubre</option>
+										  <option value="11">Noviembre</option>
+										  <option value="22">Diciembre</option>
+										</select>
+									</span>
+                  </div>
+                  </div>
 </div>		
 										
 
@@ -385,7 +406,14 @@ const formatterPeso = new Intl.NumberFormat('es-CO', {
        currency: 'COP',
        minimumFractionDigits: 0
      })
-    
+     document.getElementById('mes_factura').disabled = true;
+     document.getElementById('fecha_inicio').disabled = true;
+     document.getElementById('fecha_final').disabled = true;
+     document.getElementById('crear_reporte').disabled = true;
+
+     
+
+
 $(document).ready(function() {
 
   var control_total=false;
@@ -541,21 +569,32 @@ $("#vista").click(function() {
 
 			 document.getElementById('fecha_inicio').disabled = true;
 			 document.getElementById('fecha_final').disabled = true;
+       document.getElementById('mes_factura').disabled = true;
+       document.getElementById('crear_reporte').disabled = false;
+
        
 
 		}else if ($("#vista").val()=='rep_eve_fac_excel'){
-       document.getElementById('fecha_inicio').disabled = false;
-			 document.getElementById('fecha_final').disabled = false;
-       
+      document.getElementById('fecha_inicio').disabled = true;
+			 document.getElementById('fecha_final').disabled = true;
+       document.getElementById('mes_factura').disabled = false;
+       document.getElementById('crear_reporte').disabled = false;       
 
-    }else if ($("#vista").val()=='rep_eve_sinfac_excelxx'){
-       document.getElementById('fecha_inicio').disabled = false;
-			 document.getElementById('fecha_final').disabled = false;
-       
-    }else if ($("#vista").val()=='rep_sol_fec'){
-       document.getElementById('fecha_inicio').disabled = false;
-			 document.getElementById('fecha_final').disabled = false;
+    }else if ($("#vista").val()=='rep_gen_sol'){
+       document.getElementById('fecha_inicio').disabled = true;
+			 document.getElementById('fecha_final').disabled = true;
+       document.getElementById('mes_factura').disabled = true;
+       document.getElementById('crear_reporte').disabled = false;
+
+
       
+
+    }else{
+      document.getElementById('fecha_inicio').disabled = true;
+			 document.getElementById('fecha_final').disabled = true;
+       document.getElementById('mes_factura').disabled = true;
+       document.getElementById('crear_reporte').disabled = true;
+
 
     }
     
@@ -737,6 +776,7 @@ $('#modal3').modal('toggle');
 $("#InputFile").val(null);
 $("#file_url").attr('src', '');
 $("#anex").focus();
+LimpiarCampos();
 
 });
 
@@ -768,17 +808,32 @@ $("#reportes").click(function() {
 			
 			
 		 });
+     
+     
+     
+     function LimpiarCampos(){	
+	
+    document.getElementById("fecha_inicio").value = '';
+    document.getElementById("fecha_final").value = '';
+    document.getElementById("mes_factura").value = '';
+    document.getElementById("vista").value = '';
+    document.getElementById('mes_factura').disabled = true;
+     document.getElementById('fecha_inicio').disabled = true;
+     document.getElementById('fecha_final').disabled = true;
+     document.getElementById('crear_reporte').disabled = true;
 
+     }
 
  $('#crear_reporte').click( function () {
 				var fecha_inicio=$('#fecha_inicio').val();
         var fecha_final=$('#fecha_final').val();
+        var mes_factura=$('#mes_factura').val();
         var genera=false;
         var tipo=0;
 
         var mensaje=0;
         if ($("#vista").val()=='rep_eve_fac_excel'){
-         if((fecha_inicio!="") && (fecha_final!="") ){
+         if(mes_factura!="00") {
           genera=true;
           tipo=1;
 
@@ -797,7 +852,7 @@ $("#reportes").click(function() {
         }
         if(mensaje==1){
           $.alert({
-						    title: '!Debe Seleccionar el Rango de Fechas !',
+						    title: '!Debe Seleccionar el Mes de Fcaturación!',
 						    content: false,
 						    confirmButton: true, // hides the confirm button.
 						    closeIcon: false,
@@ -816,7 +871,7 @@ $("#reportes").click(function() {
         } else{
           if(genera){
             if(tipo==1){
-            window.open("../../Reportes/reportes/facturados/rexcel.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
+            window.open("../../Reportes/reportes/facturados/rexcel.php?mes_factura="+mes_factura,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
               }else if(tipo==2){
             window.open("../../Reportes/reportes/facturados/rexcelnf.php?fecha_inicio="+fecha_inicio+'&fecha_final='+fecha_final,'',"titlebars=0, toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=640,top=150,left=500");
               }else if(tipo==3){
