@@ -149,9 +149,10 @@ $total_reg=count($arrp);
     $hojaDeProductos->setCellValueByColumnAndRow(8, $numeroDeFila, $fecha_fin);
     $hojaDeProductos->setCellValueByColumnAndRow(9, $numeroDeFila, $responsable);
     $hojaDeProductos->setCellValueByColumnAndRow(10, $numeroDeFila, $subdireccion );
-    $hojaDeProductos->setCellValueByColumnAndRow(11, $numeroDeFila, $victimas);
-    $hojaDeProductos->setCellValueByColumnAndRow(12, $numeroDeFila, $funcionarios);
-    $hojaDeProductos->setCellValueByColumnAndRow(13, $numeroDeFila, $total);
+    $hojaDeProductos->setCellValueByColumnAndRow(11, $numeroDeFila, $actividad);
+    $hojaDeProductos->setCellValueByColumnAndRow(12, $numeroDeFila, $victimas);
+    $hojaDeProductos->setCellValueByColumnAndRow(13, $numeroDeFila, $funcionarios);
+    $hojaDeProductos->setCellValueByColumnAndRow(14, $numeroDeFila, $total);
     
 
 
