@@ -39,7 +39,7 @@ $control_total=false;
                   <i class="fa fa-bank"></i>
                 </div>
                 <a href="#" class="small-box-footer">
-                  Restante <i class="fa fa-check"></i>
+                  Disponible <i class="fa fa-check"></i>
                 </a>
               </div>
             </div><!-- ./col -->
@@ -183,6 +183,21 @@ $control_total=false;
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
 
+              <div class="box box-success">
+                <div class="box-header with-border">
+                  <h3 class="box-title">PRESUPUESTO DISPONIBLE POR SUBDIRECCION </h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                <div id="chartdiv3" style="width:100%;max-height:300px;height:100vh;">
+                  
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
             </div>
 
             <div class="col-md-6">
@@ -287,7 +302,7 @@ $control_total=false;
 							}
 							?>
                 </form> 
-                <div id="chartdiv3" style="width:100%;height:300px;max-height:300px;">
+                <div id="chartdiv4" style="width:100%;height:300px;max-height:300px;">
                 </div>
               </div><!-- /.box-body -->
             </div><!-- /.box -->
@@ -350,8 +365,9 @@ $control_total=false;
 								<label>Seleccione el Mes de Facturación</label>
 								<div class="input-group">
                     <span class="input-group-btn">
-										<select id="mes_factura" class="btn-sm" tabindex="555">		
-                    <option value="00">...</option>								
+									  	<select id="mes_factura" class="btn-sm" tabindex="555">	
+                      <option value="000">..</option>	
+                      <option value="00">TODOS</option>								
 									    <option value="01">Enero</option>
 										  <option value="02">Febrero</option>
                       <option value="03">Marzo</option>
@@ -361,7 +377,7 @@ $control_total=false;
 										  <option value="07">Julio</option>
 										  <option value="08">Agosto</option>
 										  <option value="09">Septiembre</option>
-										  <option value="10">Obtubre</option>
+										  <option value="10">Octubre</option>
 										  <option value="11">Noviembre</option>
 										  <option value="22">Diciembre</option>
 										</select>
@@ -696,6 +712,63 @@ setTimeout(function() {
 
 //#######################################################################################
 
+// Create chart instance
+var chart3 = am4core.create("chartdiv3", am4charts.PieChart3D);
+// Add data
+var datum = [];
+
+$.post( "../../data_json/data_dashboard3.php").done(function( data ) {
+      var parsedJson = $.parseJSON(data);
+      // alert(parsedJson);
+      datum=parsedJson;
+      datum.pop();
+});
+
+
+
+setTimeout(function() {	
+
+     // chart.legend = new am4charts.Legend();
+
+      chart3.data = datum;
+     // chart.legend.maxHeight = 100;
+    //  chart3.legend.scrollable = true;
+     chart3.innerRadius = am4core.percent(30);
+      var title = chart3.titles.create();
+      title.text = "Presupuesto Disponible";
+      title.fontSize = 16;
+      title.marginBottom = 30;
+
+      // Add and configure Series
+      var pieSeries = chart3.series.push(new am4charts.PieSeries3D());
+      pieSeries.dataFields.value = "valor";
+      pieSeries.dataFields.category = "region";
+      pieSeries.slices.template.stroke = am4core.color("#fff");
+      pieSeries.slices.template.strokeOpacity = 1;
+      pieSeries.labels.template.maxWidth = 120;
+      pieSeries.labels.template.wrap = true;
+
+      pieSeries.colors.list = [          
+        am4core.color("#76f218"),
+        am4core.color("#f28926"),
+        am4core.color("#357918"),  
+        am4core.color("#f2e826"),  
+        am4core.color("#2beede"),
+        am4core.color("#0a3f6f"),   
+      ];
+      // This creates initial animation
+    //  pieSeries.labels.template.maxWidth = 90;
+    //  pieSeries.labels.template.wrap = true;<<<s
+      pieSeries.labels.template.text = "[bold font-size: 10px]{category} -> {value.percent.formatNumber('#.#')}%";
+      pieSeries.hiddenState.properties.opacity = 1;
+      pieSeries.hiddenState.properties.endAngle = -90;
+      pieSeries.hiddenState.properties.startAngle = -90;
+      pieSeries.slices.template.tooltipText = "{category}: [bold font-size: 12px]{value.value}";     
+
+      chart3.hiddenState.properties.radius = am4core.percent(0);
+}, 500);
+
+//#######################################################################################
 var chart2 = am4core.create("chartdiv2", am4charts.XYChart3D);
 
 var datum2 = [];
@@ -844,7 +917,7 @@ $("#reportes").click(function() {
 
         var mensaje=0;
         if ($("#vista").val()=='rep_eve_fac_excel'){
-         if(mes_factura!="00") {
+         if(mes_factura!="000") {
           genera=true;
           tipo=1;
 

@@ -176,7 +176,7 @@ ValidaSession("../login");
 							<input class="form-control bbb" id="iva_intermediacion_reembolso"  type="text" placeholder="Valor IVA Intermediación reembolso" onpaste="return false" tabindex="16" >
 						</div>
 						<div class="form-group-sm">	
-							<label for="ejecutado_reembolso"><p style="color:red;">BEJECUTADO REEMBOLSO</p></label>
+							<label for="ejecutado_reembolso"><p style="color:red;">EJECUTADO REEMBOLSO</p></label>
 							<input class="form-control bbb" id="ejecutado_reembolso"  type="text" placeholder="Valor Ejecutado Reembolso" onpaste="return false" tabindex="16" >
 						</div>
 						<div class="form-group-sm">	

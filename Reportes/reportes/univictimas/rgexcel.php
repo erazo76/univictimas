@@ -50,7 +50,7 @@ $hojaDeProductos = $documento->getActiveSheet();
 $hojaDeProductos->setTitle("UNIVICTIMAS");
 
 # Escribir encabezado de los productos
-$encabezado = ["No. Requerimiento", "Nombre del Evento", "Modalidad del Evento", "Actividad Plan de Acción", "Fecha Solicitud", "Fecha de Inicio",  "Fecha Finalización", "Responsable del Evento","Subdirección o Grupo DGI","Nombre de la Actividad","Nro de Victimas","Nro de Funcionarios","Nro de Participantes"];
+$encabezado = ["No. Requerimiento", "Nombre del Evento", "Modalidad del Evento", "Actividad Plan de Acción", "Fecha Solicitud", "Fecha de Inicio",  "Fecha Finalización", "Responsable del Evento","Subdirección o Grupo DGI","Nombre de la Actividad","Nro de Victimas","Nro de Funcionarios","Nro de Participantes","   ","Detalles Especificos del Requerimiento"];
 # El último argumento es por defecto A1 pero lo pongo para que se explique mejor
 $hojaDeProductos->fromArray($encabezado, null, 'A1');
 
@@ -59,14 +59,25 @@ $hojaDeProductos->fromArray($encabezado, null, 'A1');
 $numeroDeFila = 2;
 foreach($arrp as $data){
     # Obtener los datos de la base de datos
-
+    $id_sol = $data['id'];
   $grupo=$data['grup_financ_id'];
     $sql_grupo = "SELECT  nombre from grupos where  id='.$grupo.' and status=1";
     $arrp_grupo = $bd->select($sql_grupo);
     $subdireccion = $arrp_grupo[0]['nombre'];
 
+    $sql_detalles = "   select count(d_cantidad) as cantidad,d_concepto as concepto
+		    from mdetalles
+			WHERE 
+			mrequerimientos_id=".$id_sol."
+							  
+			and status=1 
+			 GROUP BY d_concepto order by d_concepto; ";
+   $arrp_detalles = $bd->select($sql_detalles);
 
+
+$total_reg_det=count($arrp_detalles);
 $total_reg=count($arrp);
+
 
 
 
@@ -146,18 +157,28 @@ $total_reg=count($arrp);
     $hojaDeProductos->setCellValueByColumnAndRow(5, $numeroDeFila, $fecha_solicitud);
     $hojaDeProductos->setCellValueByColumnAndRow(6, $numeroDeFila, $fecha_inicio);
     $hojaDeProductos->setCellValueByColumnAndRow(7, $numeroDeFila, $fecha_fin);
-    $hojaDeProductos->setCellValueByColumnAndRow(8, $numeroDeFila, $fecha_fin);
-    $hojaDeProductos->setCellValueByColumnAndRow(9, $numeroDeFila, $responsable);
-    $hojaDeProductos->setCellValueByColumnAndRow(10, $numeroDeFila, $subdireccion );
-    $hojaDeProductos->setCellValueByColumnAndRow(11, $numeroDeFila, $actividad);
-    $hojaDeProductos->setCellValueByColumnAndRow(12, $numeroDeFila, $victimas);
-    $hojaDeProductos->setCellValueByColumnAndRow(13, $numeroDeFila, $funcionarios);
-    $hojaDeProductos->setCellValueByColumnAndRow(14, $numeroDeFila, $total);
+    $hojaDeProductos->setCellValueByColumnAndRow(8, $numeroDeFila, $responsable);
+    $hojaDeProductos->setCellValueByColumnAndRow(9, $numeroDeFila, $subdireccion);
+    $hojaDeProductos->setCellValueByColumnAndRow(10, $numeroDeFila, $actividad );
+    $hojaDeProductos->setCellValueByColumnAndRow(11, $numeroDeFila, $victimas);
+    $hojaDeProductos->setCellValueByColumnAndRow(12, $numeroDeFila, $funcionarios);
+    $hojaDeProductos->setCellValueByColumnAndRow(13, $numeroDeFila, $total);
+    $i = 1;
+
+  foreach($arrp_detalles as $data_detalles){
+
+  $hojaDeProductos->setCellValueByColumnAndRow(14+$i, $numeroDeFila, $data_detalles['cantidad'].'--'.$data_detalles['concepto']);
+  $i++;                    
+
+}
+
+$numeroDeFila++;
+
+
     
 
 
 
-    $numeroDeFila++;
 }
 
 $nombreDelDocumento = "Reporte General de Solicitudes.xlsx";
