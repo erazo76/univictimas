@@ -347,14 +347,10 @@ var Mservicios_gravados=$("#servicios_gravados").val();
 var Mpagos_a_terceros=$("#pagos_a_terceros").val();
 
 var M_base_iva=$("#base_iva").val();
-base_iva = parseInt(M_base_iva);
-
+base_iva = Math.round(M_base_iva);
 
 var servicios_gravados=0;
 var pagos_a_terceros=0;
-
-
-
 
 if(Mpagos_a_terceros!=''){
 	pagos_a_terceros=Mpagos_a_terceros;
@@ -369,7 +365,8 @@ var TotalSuma = 0;
  // valor = parseInt(valor); // Convertir a numero entero (número).
  TotalSuma = parseInt(servicios_gravados)+parseInt(pagos_a_terceros);  
  var iva= (TotalSuma*base_iva)/100;
- iva = parseInt(iva);
+ iva = Math.round(iva);
+
 
  $("#iva").val(iva);
  // $("#ejecutado_logistico").val(TotalSuma);
@@ -394,8 +391,9 @@ var base_iva_ree = parseInt(M_base_iva_ree);
 
 var iva_ter= (iva*base_iva_ree)/100;
 
-iva = parseInt(iva);
-iva_ter = parseInt(iva_ter);
+iva = Math.round(iva);
+iva_ter = Math.round(iva_ter);
+
 
 
 var M_gastos_reembolsables=TotalSuma;
@@ -443,7 +441,8 @@ var tiq = 0;
 tiq = parseInt($("#costo_tiquetes_ejecutado").val());   
 var porc=5.50147;
 var iva_tiq= (tiq*porc)/100;
-iva_tiq = parseInt(iva_tiq);
+
+iva_tiq=Math.round(iva_tiq);
 
 $("#iva_tiquetes").val(iva_tiq);
 
