@@ -187,7 +187,7 @@ ValidaSession("../login");
 						</div>
 						<div class="form-group-sm">	
 							<label for="iva_tiquetes">IVA Tiquetes </label>
-							<input class="form-control bbb" id="iva_tiquetes"  type="text" placeholder="Valor IVA Tiquetes " onpaste="return false" tabindex="16" >
+							<input class="form-control bbb" id="iva_tiquetes"  type="text" placeholder="Valor IVA Tiquetes " onchange="return SumarIvaTiquetes(value)"  onpaste="return false" tabindex="16" >
 						</div>
 						<div class="form-group-sm">	
 							<label for="costo_total_tiquetes"><p style="color:red;">Costo Total Tiquetes Ejecutado</p></label>
@@ -462,6 +462,34 @@ var total=SumarCostoEvento (valor);
 
 }
 
+///###########################################################################////
+
+
+function SumarIvaTiquetes (valor) {
+
+var iva_tiq=$("#iva_tiquetes").val();
+
+$("#costo_total_tiquetes").val(0);
+var tiq = 0;  
+tiq = parseInt($("#costo_tiquetes_ejecutado").val());   
+
+iva_tiq=Math.round(iva_tiq);
+
+$("#iva_tiquetes").val(iva_tiq);
+
+var suma=parseInt(tiq)+parseInt(iva_tiq)
+
+$("#costo_total_tiquetes").val(suma);
+
+var cost=$("#costo_total_evento").val();
+var sum=parseInt(suma)+parseInt(cost)
+
+//$("#costo_total_evento").val(sum);
+var total=SumarCostoEvento (valor);
+
+
+
+}
 ///###########################################################################////
 
 
